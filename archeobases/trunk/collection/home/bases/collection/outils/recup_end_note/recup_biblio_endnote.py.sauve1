@@ -1,0 +1,149 @@
+#! /usr/bin/python
+#
+# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2.0
+# or, at your option, any higher version.
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
+# a uiliser comme suit:
+# ./recup_biblio collection < recup_excel.csv
+
+# Correspondance EndNote <=> table biblio de la collection
+#
+#       @               type_biblio
+#       indice          indice
+#       author          auteur
+#       title           titre
+#       booktitle       nom
+#       publisher       editeur
+#       adress          adresse
+#       pages           pages
+#       year            annee
+#       month           mois
+#       volume          nombre_volume
+#       abstract        resume
+#       keywords        mots_clefs
+#       journal         journal 
+#       institution     institution
+#       school          ecole
+#       series          serie
+#       edition         edition
+# TODO: voir si adresse = ville edition
+import sys
+import string
+
+sys.path.append("../cgi")
+
+import database
+
+db = database.DataBase(database=sys.argv[1], username = "postgres")
+cpt=0
+pb=0
+
+identifiant = ''
+type_biblio = ''
+sous_type = ''
+indice = ''
+nom = ''
+titre = ''
+auteur = ''
+editeur = ''
+annee = ''
+nombre_volume = ''
+pages = ''
+institution = ''
+resume = ''
+mots_clefs = ''
+redacteur = ''
+ecole = ''
+journal = ''
+serie = ''
+mois = ''
+adresse = ''
+
+lignes = sys.stdin.readlines()
+l = 0
+
+Correspondance = {      'Authors':'auteur', \
+                        'Title':'titre', \
+                        'BookTitle':'nom', \
+                        'Publisher':'editeur', \
+                        'Adress':'ville_edition', \
+                        'Pages':'pages', \
+                        'Year':'annee', \
+                        'Month':'mois', \
+                        'Volume':'nombre_volume', \
+                        'Abstract':'resume', \
+                        'Keywords':'mots_clefs', \
+                        'Journal':'journal', \
+                        'Institution':'institution', \
+                        'School':'ecole', \
+                        'Series':'serie', \
+                        'Edition':'edition', \
+                 }
+#for k in Correspondance.keys():
+        #print Correspondance[k]
+        
+liste_clefs = Correspondance.keys()
+        
+def decoupe_ligne(ligne):        
+        champs = string.split(ligne, " = {")
+        clef = champs[0]
+        print champs [0]
+        #valeur = champs[1]
+        #if valeur[-1] == ',':
+        #        valeur = valeur.strip[:-1]
+        #valeur.replace('}', '')
+        #print "Clef: ", clef, " Valeur:", valeur
+                     
+                     
+maligne=''                     
+                     
+enregistrements = []                     
+for ligne in lignes:
+        #print "ligne:",ligne
+        ligne = string.strip(ligne[:-1])
+        if ligne:
+                if (ligne[0] == '@'):
+                        enregistrements.append(maligne)
+                        #print maligne
+                        maligne = ligne
+                else: 
+                        trouve = 0
+                        for k in Correspondance.keys(): 
+                                longueur = len(k)
+                                if (ligne[0:longueur]) == k:           
+                                        trouve = 1
+                        if (trouve == 0):
+                                if (ligne[0] in ('A','B','C','D','E','F','G','H','I','J', \
+                                                'K','L','M','N','O','P','Q','R','S','T', \
+                                                'U','V','W','X','Y','Z', \
+                                                '-','1','2','3','4','5','6','7','8','9','0')):
+                                        maligne = maligne + '\n' + ligne
+                                else:
+                                        maligne = maligne + ' ' + ligne
+                        else:
+                                maligne = maligne + ligne
+        else:
+                print 'Ligne vide'
+#print enregistrements
+        
+for i in range(0, len(enregistrements)):        
+        print "enregistrement: ", enregistrements[i]
+        enreg = enregistrements[i]
+        accolade = enreg.find('{')
+        type_biblio = enreg[1:accolade]
+        print "type_biblio", type_biblio
+        champs = enregistrements[i].split("},")
+        for j in range (0, len(champs)):
+                print "champs[i]:",champs[j]
+                
+                
+        print '\n\n'        
+        
+        

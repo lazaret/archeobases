@@ -1,0 +1,4 @@
+AuthUserFile /home/bases/auth/bego.passwd
+AuthName "Mont Bego: Accès Restreint"
+AuthType Basic
+Require valid-user

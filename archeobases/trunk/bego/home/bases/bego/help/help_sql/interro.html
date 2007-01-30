@@ -1,0 +1,649 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17 i686) [Netscape]">
+  <title>sql</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+ alink="#ff0000" link="#0000ee" vlink="#551a8b">
+<dic align="Justify">
+<a href="accueil.html">retour vers page principale</a>
+</dic>
+<center>
+<p><b><font color="#000000"><font size="+3">1- INTERROGER LA BASE</font></font></b></p>
+</center>
+<p>L'interrogation de la base se fait avec le mot clef SELECT qui
+permet
+de s&eacute;lectionner les donn&eacute;es que l'on veut consulter:
+</p>
+<p><font size="+1">A- S&eacute;lectionner les donn&eacute;es:</font>
+</p>
+<p><u><font color="#ff0000">1- La clause SELECT</font></u> (permet de
+r&eacute;cuperer
+des donn&eacute;es contenues dans une ou plusieurs tables)
+</p>
+<p>selectionner toutes les colonnes de la table:
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#000000">SELECT </font><font
+ color="#009900">*</font>
+          <br>
+          <font color="#000000">FROM</font><font color="#009900">
+nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+s&eacute;lectionner seulement certaines colonnes:
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#000000">SELECT</font><font
+ color="#009900"> nom_colonne1,
+nom_colonne2, ...</font>
+          <br>
+          <font color="#000000">FROM</font><font color="#009900">
+nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">2- La&nbsp; clause DISTINCT</font></u>
+(permet d'&eacute;liminer les doublons)
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT </font><font
+ color="#000000">DISTINCT</font><font color="#009900">
+nom_colonne1</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">3-&nbsp; La clause WHERE </font></u>(
+restreint
+les lignes s&eacute;lectionn&eacute;es apr une condition)
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT *</font>
+          <br>
+          <font color="#009900">FROM nom_table</font>
+          <br>
+          <font color="#000000">WHERE</font><font color="#009900">
+condition1
+AND condition2 ...;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">4- Les op&eacute;rateurs de comparaison</font></u>
+</p>
+<p>Les conditions sont pos&eacute;es gr&acirc;ce aux op&eacute;rateurs
+suivants:
+<br>
+<font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+=&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp; &eacute;gal
+<br>
+<font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+!=</font>&nbsp;&nbsp;&nbsp; diff&eacute;rent
+<br>
+<font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inf&eacute;rieur
+<br>
+<font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp; sup&eacute;rieur
+<br>
+<font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;=</font>&nbsp;&nbsp; inf&eacute;rieur ou &eacute;gal
+<br>
+<font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;=</font>&nbsp;&nbsp; sup&eacute;rieur ou &eacute;gal
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT *</font>
+          <br>
+          <font color="#009900">FROM nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ1</font><font
+ color="#000000">
+&gt;</font><font color="#009900"> nom_champ2;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">5- BETWEEN</font></u> ( compris entre )
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ1</font>
+          <br>
+          <font color="#000000">BETWEEN</font><font color="#009900">
+expression1
+and expression2;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font color="#ff0000"><u>6- IN</u> </font>compris dans la liste
+de choix
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM&nbsp; nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ1 </font><font
+ color="#000000">IN
+          </font><font color="#009900">(
+expression1, expression2, ...);</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">7- LIKE</font></u> permet de comparer les
+chaines de caract&egrave;res
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * from nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ1 </font><font
+ color="#000000">LIKE</font><font color="#009900">
+'chaine' ;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+o&ugrave; chaine peut contenir des caract&egrave;res jokers:
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+ color="#ff0000">&nbsp;
+_</font> remplace 1 caract&egrave;re
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ LIKE 'ch</font><font
+ color="#000000">_</font><font color="#009900">ine'
+;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+ color="#ff0000">
+%</font> remplace une chaine de caract&egrave;re de longueur
+quelconque.
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ1 LIKE&nbsp; 'c</font><font
+ color="#000000">%</font><font color="#009900">'
+;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">8- NULL</font></u><font color="#000000">
+permet de savoir si le champ a &eacute;t&eacute; saisi ou nom</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ1 </font><font
+ color="#000000">IS
+NULL</font><font color="#009900"> AND champ2 </font><font
+ color="#000000">IS
+NOT NULL</font><font color="#009900"> ;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">9- Les op&eacute;rateurs logiques</font></u>
+<br>
+&nbsp;
+</p>
+<p>&nbsp;&nbsp;&nbsp;<font color="#3366ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#ff0000">AND</font>:&nbsp; ET logique o&ugrave; la
+condition1 et la condition2 doivent &ecirc;tre v&eacute;rifi&eacute;es
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM table</font>
+          <br>
+          <font color="#009900">WHERE condition1 AND condition2;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#ff0000">OR</font>: OU logique o&ugrave; il suffit que
+l'une
+des conditions au moins soit v&eacute;rifi&eacute;e
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM table</font>
+          <br>
+          <font color="#009900">WHERE&nbsp; condition1 </font><font
+ color="#000000">OR</font><font color="#009900">
+condition2;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+NOT</font><font color="#000000">: NON logique qui permet de tester le
+contraire
+d'une condition</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT * FROM nom_table</font>
+          <br>
+          <font color="#009900">WHERE nom_champ1 </font><font
+ color="#000000">NOT</font><font color="#009900">
+IN (expression1, expression2) ;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">10- Les jointures</font></u> permettent
+de faire une requ&ecirc;te sur plusieurs tables
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT nom_champ1, nom_champ2</font>
+          <br>
+          <font color="#009900">FROM nom_table1, nom_table2</font>
+          <br>
+          <font color="#009900">WHERE&nbsp; nom_table1.nom_champ3 =
+nom_table2.nom_champ3;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">11- Les requ&ecirc;tes imbriqu&eacute;es</font></u><font
+ color="#000000">:
+</font>elles
+peuvent se faire sur une ou plusieurs tables
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT nom_champ1, nom_champ2</font>
+          <br>
+          <font color="#009900">FROM nom_table1</font>
+          <br>
+          <font color="#009900">WHERE&nbsp; nom_champ3 IN (SELECT
+nom_champ4
+FROM nom_table2 WHERE condition);</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<font size="+1">B- Ordonner les donn&eacute;es:</font>
+<p><font color="#ff0000"><u>1- La clause ORDER BY</u> </font><font
+ color="#003300">permet
+de classer le r&eacute;sultat d'un select par ordre croissant (ASC) ou
+d&eacute;croissant (DESC)</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT nom_champ1,
+nom_champ2, ...</font>
+          <br>
+          <font color="#009900">FROM nom_table</font>
+          <br>
+          <font color="#000000">ORDER BY </font><font color="#009900">nom_champ1
+; </font><font color="#000000">(ordre croissant par d&eacute;faut)</font>
+          <p><font color="#009900">SELECT nom_champ1, nom_champ2,
+nom_champ3, ...</font>
+          <br>
+          <font color="#009900">FROM nom_table</font>
+          <br>
+          <font color="#000000">ORDER BY</font><font color="#009900">
+nom_champ1,
+nom_champ2 </font><font color="#000000">DESC </font><font
+ color="#009900">;</font></p>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font color="#ff0000"><u>2- AS</u>&nbsp;</font><font color="#000000">
+permet de pr&eacute;ciser un nom de colonne.</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT nom_champ1, nom_champ2
+          </font><font color="#000000">AS</font><font color="#009900">
+nom_choisi</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font color="#000000">Ce mot clef est tr&egrave;s pratique pour
+donner un nom de colonne pour un r&eacute;sultat de calcul.</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT nom_champ1 +
+nom_champ2 </font><font color="#000000">AS</font><font color="#009900">
+total</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<font size="+1">C- Les op&eacute;rateurs ensemblistes</font>
+<p><u><font color="#ff0000">1- La clause GROUP BY</font></u><font
+ color="#000000">&nbsp;
+permet de subdiviser une table en plusieurs groupes. Chaque groupe
+regroupe
+l'ensemble des lignes ayant</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT nom_champ1,
+count(nom_champ2)</font>
+          <br>
+          <font color="#009900">FROM nom_table</font>
+          <br>
+          <font color="#000000">GROUP BY</font><font color="#009900">
+nom_champ1;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font color="#000000">Cette requ&ecirc;te donnera sur la colonne
+de gauche les diff&eacute;rents nom_champ1 existants et dans la colonne
+de droite le total de nom_champ2 correspondant pour chaque nom_champ1.</font>
+</p>
+<p><u><font color="#ff0000">2- la clause HAVING</font></u><font
+ color="#000000">&nbsp;
+permet de pr&eacute;ciser la condition &agrave; laquelle le GROUP BY
+doit
+s'ex&eacute;cuter. Elle fonctionne de la m&ecirc;me fa&ccedil;on que la
+clause WHERE.</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT nom_champ1,
+count(nom_champ2)</font>
+          <br>
+          <font color="#009900">FROM nom_table</font>
+          <br>
+          <font color="#009900">GROUP BY nom_champ1</font>
+          <br>
+          <font color="#000000">HAVING</font><font color="#006600"> </font><font
+ color="#009900">condition;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<font size="+1">D- Les fonctions:</font>
+<p><u><font color="#ff0000">1- Fonctions et op&eacute;rateurs
+arithm&eacute;tiques</font></u><font color="#000000">peuvent
+etre employ&eacute;s sur des noms de champ,</font>
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#3366ff">+ </font>addition
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#3366ff">-</font> soustraction
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#3366ff">* </font>multiplication
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+ color="#3366ff">&nbsp;
+/</font>&nbsp; division
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ABS (champ_num&eacute;rique) valeur absolue
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ROUND ( champ_num&eacute;rique, nb) arrondi de champ_num&eacute;rique
+&agrave;
+nb chiffres apr&egrave;s la virgule
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TRUNC ( champ_num&eacute;rique, nb)&nbsp; renvoit
+champ_num&eacute;rique
+tronqu&eacute; &agrave; nb chiffres apr&egrave;s la virgule
+</p>
+<p><u><font color="#ff0000">2- Fonctions de chaines de caract&egrave;res</font></u>
+</p>
+<p><font color="#ff0000">&nbsp;&nbsp;&nbsp; CONCAT</font>( chaine1,
+chaine2
+)
+</p>
+<p>&nbsp;&nbsp;&nbsp;<font color="#3366ff"> </font><font
+ color="#ff0000">INITCAP</font>
+( chaine) met le premier caract&egrave;re de chaque mot de cha&icirc;ne
+en majuscule et le reste du mot en miniscules
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT INITCAP (nom_champ)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font color="#3366ff">&nbsp;&nbsp;&nbsp;</font><font color="#ff0000">
+LOWER</font><font color="#3366ff">&nbsp;</font> (chaine) met tous les
+caract&egrave;res
+de la chaine en lettres minuscules.
+</p>
+<p><font color="#ff0000">&nbsp;&nbsp;&nbsp; REPLACE</font>
+(nom_champ,&nbsp;
+ancienne_chaine, nouvelle_chaine) remplace dans le champ nom_champ,
+les&nbsp;
+occurences d'ancienne_chaine par nouvelle_chaine).
+</p>
+<p><font color="#ff0000">&nbsp;&nbsp;&nbsp; UPPER</font> (chaine) met
+tous
+les caract&egrave;res de la chaine en lettres majuscules.
+</p>
+<p><u><font color="#ff0000">3- Fonctions et op&eacute;rateurs sur les
+dates</font></u>
+<br>
+&nbsp;
+</p>
+<p><font size="+1">E- Les fonctions de groupe:</font>
+</p>
+<p><u><font color="#ff0000">1- AVG</font></u>: calcule la moyenne des
+valeurs
+contenues dans champ_num&eacute;rique
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT AVG (
+champ_num&eacute;rique)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">2- COUNT</font></u>: compte le nombre de
+lignes du r&eacute;sultat de la requ&ecirc;te
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT COUNT(*)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">3- MIN</font></u> : s&eacute;lectionne
+la plus petite valeur contenu dans le champ nom_champ
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT MIN( nom_champ)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<u><font color="#ff0000">4- MAX</font></u>: s&eacute;lectionne la plus
+grande valeur contenu dans le champ nom_champ
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT MAX( nom_champ)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<u><font color="#ff0000">5- SUM</font></u>: calcule la somme des
+valeurs
+de nom_champ
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT SUM( nom_champ)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<u><font color="#ff0000">6- STDDEV</font></u>: calcule
+l'&eacute;cart-type
+des valeurs de nom_champ
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT STDDEV( nom_champ)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<u><font color="#ff0000">7- VARIANCE</font></u>: calcule la variance
+des
+valeurs de nom_champ
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#009900">SELECT VARIANCE( nom_champ)</font>
+          <br>
+          <font color="#009900">FROM nom_table;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+Remarque: on peut combiner toutes ces fonctions avec l'attribut
+DISTINCT.
+<br>
+&nbsp;
+</p>
+<p><a href="text_exo.html">TEXTES EXERCICES</a>&nbsp;&nbsp;&nbsp; <a
+ href="exo_select.html">EXERCICES
+CORRIGES</a>
+</p>
+</body>
+</html>

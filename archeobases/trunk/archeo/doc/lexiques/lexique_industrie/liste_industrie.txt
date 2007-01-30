@@ -1,0 +1,3277 @@
+2- ÉCRAN INDUSTRIE
+
+(i_forme_galet)
+ O
+ P
+ PI
+
+ PC1
+ PC2
+ PC3
+ PC5
+ PC6
+ PC7
+ PC8
+
+ PL1
+ PL4
+ PL7
+ PL8
+ EA
+ EB
+ EBI
+
+ EBC1
+ EBC2
+ EBC3
+ EBC7
+ EBC8
+
+ EBL1
+ EBL4
+ EBL7
+ EBL8
+ EC
+ ECI
+
+ ECC1
+ ECC2
+ ECC3
+ ECC7
+ ECC8
+
+ ECL1
+ ECL4
+ ECL7
+ ECL8
+ED
+ EDI
+
+ EDC1
+ EDC2
+ EDC3
+ EDC7
+ EDC8
+
+ EDL1
+ EDL4
+ EDL7
+ EDL8
+
+ (i_objet)
+ ECL
+ ECLDBT
+ ECLDFB
+ LAM
+ PEC
+ LAML
+ ERT
+ DEB
+ GAL
+ GALF
+ EP
+ PERC
+ BIF
+ HACH
+ NUC
+ NUCLEV
+ OUT
+ GAM
+ CHBUR
+ PPLEV
+ GALENLV
+
+(i_matiere)
+IND
+S
+ ST
+ SB
+ SR
+ SJ
+ SF
+ J
+ JS
+ CS
+ CH
+ Q
+ QI
+ QBO
+ QBT
+ QBB
+ QR
+ QZT
+ QZT0
+ QZT1
+ QZT2
+ QZT3
+ GQZT
+ GQZT1
+ GQZT2
+ G
+ SCH
+
+ VI
+ VA
+ VD
+ VR
+ VB
+ M
+ MI
+ MM
+ MGS
+ MG
+ GAB
+
+ CAI
+ CAG
+ CAM
+ CAR
+ CSUB
+ CPS
+ CAGS
+ BS
+ CHT
+ ES
+ D
+ LYD
+ DNT
+ OS
+
+ (i_patine)
+ N
+ G
+ GBG
+ GM
+ GBT
+ GBL
+ GR
+ GV
+ GVR
+ BG
+ BR
+ BL
+ J
+ M
+ RL
+ RG
+ GN
+ VIO
+
+(i_dpatine)
+ H
+
+ RD
+ RDF
+ RDS
+ RN
+ RNP
+ RNO
+ RNR
+
+ RNI
+ RND
+ RNE
+
+(i_alteration)
+ NA
+ AF
+ MA
+ AT
+
+ (i_desilicification)
+ ND
+ DF
+ DM
+ DT
+
+(i_encroutement)
+ ECC
+ ECE
+ ECP
+ ECF
+ ECT
+
+ (i_pmycelium)
+ PMC
+ PME
+ PMP
+ PMF
+ PMT
+
+(i_action)
+ BL
+ GR
+ RB
+ RS
+
+ CQI
+ CQF
+ CQG
+
+
+ DPI
+ DPF
+ DPG
+
+ DCI
+ DCF
+ DCG
+
+ ECI
+ ECF
+ ECG
+
+ (i_eolisation)
+ NE
+ FE
+ TE
+ (i_lustrage)
+ NL
+ FL
+ TL
+
+ (i_roulage)
+ NR
+ FR
+ TR
+
+( r_type)
+ M
+ E
+E/2
+ SUR
+MI
+ PL
+ ENV
+
+
+
+ BUR S1
+ BUR S2
+ BUR S3
+
+
+ BUR M1
+ BUR M2
+ BUR M3
+
+(r_obliquite)
+ NA
+ ABR
+SA
+ O
+
+ (r_denticulation)
+ ND
+ DENT
+ ENC
+
+ (r_cas)
+ UBT
+ IBT
+ I
+ DEB
+ BN
+ UO
+U
+
+ ( r_dimension)
+ MR
+
+ RC
+ RM
+ RL
+ RLL
+
+ (r_association)
+ 1
+ 1'
+ 2
+ 3
+ 3'
+ 4
+ 4'
+
+ 5
+
+ 6
+
+ (r_superposition)
+ I
+ C
+ CHIRR
+ CHREG
+ SIRR
+ SREG
+                    
+ (r_extremite)
+ A
+ C
+ CA
+ R
+
+ (r_bord)
+ D
+ C
+ P
+
+(r_frequence)
+
+ U
+ (nombre)
+ QQI
+
+ 1
+ QQ
+ NB
+
+ (r_ecrasement)
+
+ EBT
+ ERI
+ ERC
+ ED
+ EBN
+
+ (r_lustrage)
+ L
+ NL
+
+ (r_utilisation)
+
+ BP
+ BA
+ BB
+ BCE
+
+ (r_strie)
+
+ SPL
+ SPR
+ SOB
+ SEN
+
+ SFPL
+ SFEN
+r_origine)
+ A
+ B
+ P
+ AF
+ BF
+ PF
+ FL
+
+ BT
+ BC
+ BR
+ BD
+
+
+ BTA
+ BTC
+
+ BTP
+ BTE
+
+ BTDF
+ BTDC
+ BTDN
+ BTT
+
+ BTPC
+ BTPM
+ BTPT
+ BTPR
+ M
+
+ (r_destination)
+
+ A
+ B
+ P
+
+ AF
+ B
+ PF
+ FL
+
+ BT
+ BC
+ BR
+ BD
+
+
+ BTA
+ BTC
+
+ BTP
+ BTE
+
+ BTDF
+ BTDC
+ BTDN
+ BTT
+
+
+
+
+ BTPC
+ BTPM
+ BTPT
+ BTPR
+ M
+ I
+
+(r_sens)
+ DIR
+ INV
+ MIX
+ MIXAL
+
+ PROFL
+ PROFT
+ PROFM
+
+
+ MSG
+ MSD
+ MSX
+
+ MIG
+ MID
+ MIX
+ (r_ tranchant) 
+ IND
+
+ ARMEDT
+ ARMEDPROX
+ ARMEDMES
+ ARMEDDIS
+ PERIP
+ FAA
+ FAB
+
+ (r_relation)
+ G
+
+ F*
+ CF*
+ AF*
+ BT
+ T
+
+
+ O**
+ OA**
+ OB**
+ OC**
+ CO**
+ AO**
+
+
+(fi_type)
+ FI
+ FIA
+ FIB
+ FII
+
+ FII1
+
+
+
+ FII2
+ FII3
+
+ FII4
+ FII5
+
+ FII6
+ FII7
+
+
+
+ FII2bis
+ FII3bis
+
+ FII4bis
+ FII5bis
+
+ FII6bis
+ FII7bis
+
+
+ FII8
+ FII8bis
+ FII9
+ FII10
+ FII11
+
+ FII12
+ FIII
+
+ FIII1
+ FIII2
+
+
+ FIII3
+ FIII4
+
+
+ FIII5
+ FIII5bis
+ FIII6
+ FIII7
+ FIII8
+
+
+ FIII9
+ FIV
+
+ FIV1
+ FIV2
+
+
+ FIV3
+ FIV4
+
+
+ FIV5
+ FIV5bis
+ FIV6
+ FIV7
+ FIV8
+
+ FIV9
+ FV
+ FV0
+
+ FV1
+
+
+ FV2
+ FV2bis
+ FV3
+ FV4
+ FV5
+ FV6
+ FVI
+ FVI0
+
+ FVI1
+ FVI2
+ FVI3
+ FVI4
+ FVI5
+ FVI6
+ FVI7
+
+ (fi_percussion)
+ A
+ P
+
+ (fi_mode)
+ FD
+ PL
+ IR
+ TH
+ ST
+ CR
+ ON
+ OND
+ ONA
+
+ (fi_anciennete)
+ R
+ A
+
+ E
+ B*
+ C*
+ D*
+
+(s_type)
+
+ SI
+ SIST
+
+ SL
+ SLST
+
+ SP
+ SPST
+ ST
+ SIN
+ SD
+
+(s_sous_type)
+ FPC
+ FPFC
+ FE
+ FPE
+ FS
+ FEF
+ FEA
+ FC
+ FAS
+ FB
+ FF
+ FACC
+ FRF
+ FRA
+ UE
+ UL
+ UP
+
+ (s_lustrage )
+ LL
+ LE
+ (s_polissage)
+ PA
+ PP
+ PI
+
+ (s_localisation)
+ I
+
+ IND
+ ANGGPROX
+
+ LATGT
+ LATGPROX
+ LATGMES
+ LATGDIS
+ ANGGDIS
+
+ TRDIST
+ TRDISG
+ TRDISMES
+ TRDISD
+ PTDIS
+ ANGDDIS
+
+
+
+ LATDT
+ LATDDIS
+ LATDMES
+ LATDPROX
+ ANGDPROX
+
+ TRPROXT
+ TRPROXD
+ TRPROXMES
+ TRPROXG
+ PTMAX
+
+ ARMEDT
+ ARMEDPROX
+ ARMEDMES
+ ARMEDDIS
+ PERIP
+
+ FIND
+ FA
+ FAA
+
+ FAPT
+ FAPG
+ FAPM
+ FAPD
+
+ FAMT
+ FAMG
+ FAMM
+ FAMD
+
+ FADT
+ FADG
+ FADM
+ FADD
+ FB
+ FBB
+
+ FBPT
+ FBPG
+ FBPM
+ FBPD
+
+ FBMT
+ FBMG
+ FBMM
+ FBMD
+
+ FBDT
+ FBDG
+ FBDM
+FBDD
+
+ (s_situation )
+ I
+ P
+ B
+ F
+
+
+
+ (s_relation )
+ G
+
+ F
+ CF
+ AF
+ PL
+
+ O
+ CO
+ AO
+ AT
+
+
+ (e_debitage)
+ I
+ IA
+ IAC
+ IAC1
+ IAC2
+ IAC3
+ IAC4
+ IAC5
+ IAC6
+ IAL
+ IAL1
+ IAL2
+ IAL3
+ IAL4
+ IAL5
+ IAL6
+ IB
+ IBC
+ IBC1
+ IBC2
+ IBC3
+ IBC4
+ IBC5
+ IBC6
+ IBL
+ IBL1
+ IBL2
+ IBL3
+ IBL4
+ IBL5
+ IBL6
+ IC
+ ICC
+ ICC1
+ ICC2
+ ICC3
+ ICC4
+ ICC5
+ ICC6
+ ICL
+ ICL1
+ ICL2
+ ICL3
+ ICL4
+ ICL5
+ ICL6
+ ID
+ ID1
+ ID2
+
+ II
+ IIA
+ IIAC
+ IIAC1
+ IIAC2
+ IIAC3
+ IIAC4
+ IIAC5
+ IIAC6
+ IIAL
+ IIAL1
+ IIAL2
+ IIAL3
+ IIAL4
+ IIAL5
+ IIAL6
+ IIB
+ IIBC
+ IIBC1
+ IIBC2
+ IIBC3
+ IIBC4
+ IIBC5
+ IIBC6
+ II BL
+ IIBL1
+ IIBL2
+ IIBL3
+ IIBL4
+ IIBL5
+ IIBL6
+ IIC
+ IICC
+ IICC1
+ IICC2
+ IICC3
+ IICC4
+ IICC5
+ IICC6
+ IICL
+ IICL1
+ IICL2
+ IICL3
+ IICL4
+ IICL5
+ IICL6
+ IID
+ IID1
+ IID2
+
+ III
+ IIIA
+ IIIA1
+ IIIA1A
+ IIIA1B
+ IIIA2
+
+ IIIA2A
+ IIIA2B
+
+ IIIA2C
+ IIIA2D
+ IIIA3
+
+ IIIA3A
+ IIIA3B
+
+ IIIA3C
+ IIIA3D
+
+
+
+
+
+ IIIA4
+
+ IIIA4A
+ IIIA4B
+
+ IIIA4C
+ IIIA4D
+ IIIA5
+
+ IIIA5A
+ IIIA5B
+
+ IIIA5C
+ IIIA5D
+ IIIB
+ IIIB1
+ IIIB1A
+ IIIB1B
+ IIIB2
+
+ IIIB2A
+ IIIB2B
+
+ IIIB2C
+ IIIB2D
+ IIIB3
+
+ IIIB3A
+ IIIB3B
+
+ IIIB3C
+ IIIB3D
+ IIIB4
+
+ IIIB4A
+ IIIB4B
+
+ IIIB4C
+ IIIB4D
+ IIIB5
+ IIIB5A
+ IIIB5B
+ IIIC
+ IIIC1
+ IIIC1A
+ IIIC1B
+ IIIC2
+
+ IIIC2A
+ IIIC2B
+
+ IIIC2C
+ IIIC2D
+ IIIC3
+
+ IIIC3A
+ IIIC3B
+
+ IIIC3C
+ IIIC3D
+
+
+
+
+
+ IIIC4
+
+ IIIC4A
+ IIIC4B
+
+ IIIC4C
+ IIIC4D
+ IIIC5
+
+ IIIC5A
+ IIIC5B
+
+ IIIC5C
+ IIIC5D
+ IIID
+ IIID1A
+ IIID2
+ IIID2A
+ IIID2C
+ IIID3
+ IIID3A
+ IIID3C
+ IIID4
+ IIID4A
+ IIID4C
+ IIID5
+ IIID5A
+ IIID5C
+ IV
+ IVA
+ IVA1
+ IVA2
+ IVB
+ IVB1
+ IVB2
+ IVC
+ IVD
+
+
+ G0
+ G
+ G1
+ G2
+ G3
+ D
+
+ D1
+ D2
+
+ D3
+ D4
+ N
+
+ L
+ L0
+
+ LE1
+ LE2
+ LE3
+ LE4
+ LBN
+
+
+
+
+
+ LP1
+
+ LP2
+ LP3
+ LP4
+
+ LP5
+ LP6
+ LP7
+ LP8
+
+ LL1
+ LL2
+ LL3
+ LLBN
+ NL
+ NL0
+
+ NLE1
+
+ NLE2
+ NLE3
+ NLE4
+
+ NLE5M
+ NLE6M
+ NLE7M
+
+ NLE5
+ NLE6
+ NLE7
+ NLBN
+ EP
+ EFB
+ NLP
+
+ NLPP1
+ NLPP2
+ NLPP3
+
+ NLL1
+ NLL2
+ NLL3
+ NLM
+ PE
+
+ PEE1
+ PEE2
+ PEL
+ PE
+ ER
+
+
+ (e_section_trans)
+ A
+
+ B
+ C
+ D
+
+ E
+ F
+ G
+ H
+ I
+ J
+ P
+ R
+
+ (e_section_long)
+	
+ LB
+ LC
+ LD
+ LE
+ LF
+ LG
+ LH
+ LI
+ LJ
+ LP
+ LR
+
+ (e_contour)
+
+ A1
+ A2
+ A3
+
+ Q1
+ Q2
+ Q3
+ Q4
+ Q5
+ Q6
+ P
+
+ TC
+ TD
+ R
+ I
+
+ (e_enlevement)
+ O
+
+ LC
+ LU
+ LB
+
+ TU
+ TB
+ OR
+ E
+ C
+ I
+ D
+ (e_talon)
+ TL
+ TL1
+ TL2
+ TL3
+ TLP
+
+ TD
+
+ TD1A
+ TD1B
+
+ TD4A
+ TD4B
+
+ TD5A
+ TD5B
+
+ TD3A
+ TD3B
+ TF
+
+ TF1A
+ TF1B
+
+ TF2A
+ TF2B
+
+ TF3A
+ TF3B
+
+ TF4A
+ TF4B
+
+ TF5A
+ TF5B
+ TR
+
+ TR6C
+ TR6D
+ TR7
+ TC
+ TO
+ TO8
+ TO9
+ TI
+ TA
+TP2
+ TP3
+ TP4
+
+ (e_bulbe)
+ A
+
+ E1
+ E2
+ E3
+ I
+
+
+ UTC
+ UC
+ UPD
+ UD
+ UN
+ UP
+
+
+ M1A
+ M1B
+ M1C
+ M2A
+ M1D
+ M1E
+ M2B
+ M2C
+ M2D
+
+
+ (e_cone)
+ N
+ FD
+ D
+ TD
+ A
+
+e_onde)
+ N
+ FD
+ D
+ TD
+ A
+
+ (e_epi)
+ N
+ FD
+ D
+ TD
+ A
+
+ (e_strie)
+ N
+A
+ P
+
+ (e_parasite)
+ N
+
+ PP
+ PM
+ PG
+ PTG
+ A
+
+ (e_secondaire)
+ N
+
+ PU
+ PQ
+ PN
+ A
+
+ (e_charniere)
+ N
+ O
+ AN
+ S
+ P
+ A
+
+(e_carene)
+ N
+ A
+ P
+
+ (b_extremite)
+ LATG
+ TRDIS
+ LATD
+ TRPROX
+ ANGGPROX
+ ANGGDIS
+ ANGDPROX
+ ANGDDIS
+
+ (b_code)
+
+
+
+ MC
+ MNC
+ MBN
+
+ MRD
+ MRI
+ MRM
+
+
+ TL
+
+ TLC
+ TNC
+
+ TLD
+ TLI
+ TLM
+ BIT
+
+
+
+ I
+ PP
+ TT
+ CH
+
+ MBC
+ MBNC
+ MBPF
+ MBCA
+ MBFV
+
+ EC
+ ENC
+
+
+
+ PUA
+ PUG
+ PUD
+
+ PBA
+ PBG
+ PBD
+
+ TTD
+ TTI
+ TTM
+
+ TRD
+ TRI
+ TRM
+
+ MTRD
+ MTRI
+ MTRM
+ O
+ POL
+
+
+
+ I
+ PP
+ TT
+
+ TL
+ BTL
+
+ MBC
+ MBNC
+ MBCA
+ MBFV
+
+ EC
+ ENC
+
+
+
+ PUA
+ PUG
+ PUD
+
+ PBA
+ PBG
+ PBD
+
+ TTD
+ TTI
+ TTM
+
+ TRD
+ TRI
+ TRM
+
+ MTRD
+ MTRI
+ MTRM
+ O
+ POL
+
+ (b_amincissement)
+
+
+ ALCD
+ ALCI
+ ALCM
+
+ ALED
+ ALEI
+ ALEM
+
+
+
+
+
+ ADCD
+ ADCI
+ ADCM
+ ADCP
+
+ ADED
+ ADEI
+ ADEM
+ ADEP
+
+
+
+ APCD
+ APCI
+ APCM
+ APCP
+
+ APED
+ APEI
+ APEM
+ APEP
+ (o_code)(o_multcomp) 
+
+
+
+ RACLAT
+ RACANG
+ RACTRA
+
+ RACDLAT
+ RACDLATTRA
+
+
+
+ PTECT
+ PTLG
+
+ LIMPL
+ LIMEP
+ PROLIM
+ RACCONV
+
+
+ PTDEJD
+ PTDEJG
+
+ PTDEJD
+ PTDEJG
+
+
+ RACDEJD
+ RACDEJG
+
+ RACDEJLD
+ RACDEJLG
+ RACDB
+ RACTP
+ RACQU
+
+
+ RACDENLAT
+ RACDENANG
+ RACDENTRA
+ RACCAR
+
+ RACDDENLAT
+ RACDDENTRA
+ RACDDENLATTRA
+
+
+ PTQ
+
+ PTTYC
+ PTTYL
+
+ LIDPL
+ LIDEP
+ PRLID
+ RACCONVD
+
+
+
+
+
+ PTEDDEJD
+ PTEDDEJG
+
+ RACDINCD
+ RACDINCG
+
+
+ RACDDEJD
+ RACDDEJG
+
+ RACDDEJLD
+ RACDDEJLG
+ RACDDB
+ RACDTP
+ RACDQU
+
+
+
+
+ ENC RE S
+ ENCRED
+ ENCREM
+ BEC1ENCRTT
+
+ BEC1ENCRTN
+ BEC1ENCRTR
+ BEC1ENCRTA
+
+
+ DENTRLAT
+ DENTRANG
+ DENTRTRA
+
+ DENTRDLAT
+ DENTRDANG
+ DENTRDTRA
+
+
+
+ PTYRC
+ PTYRL
+ DENTRCONV
+
+
+ DENTRDEJD
+ DENTRDEJLG
+
+ DENTRDEJLD
+ DENTRDEJLG
+ DENTRDB
+ DENTRTP
+ DENTRQU
+
+
+ ENCCS
+ BEC1ENCCTT
+ BEC1ENCCTN
+ BEC1ENCCTR
+ BEC1ENCCTA
+
+ DENTCLAT
+ DENTCANG
+ DENTCTRA
+
+
+ ENCMD
+ ENCMM
+
+ BECENCM
+
+ DENTMLAT
+ DENTMANG
+ DENTMTRA
+
+ DENTMDLAT
+ DENTMDTRA
+ DENTMDLATTRA
+
+
+
+ PTYMC
+ PTYML
+ DENTMCONV
+
+
+ DENTMDEJD
+ DENTMDEJG
+
+ DENTMDEJLD
+ DENTMDEJLG
+ DENTMDB
+ DENTMTP
+ DENTMQU
+
+
+
+
+
+
+ GRFPLLN
+ GRFPLLR
+ GRFPLLA
+
+
+ GRFPLEMN
+ GRFPLEMR
+
+ GRFPLEEN
+ GRFPLEER
+
+ GRFPCL
+
+ GRFPCEM
+ GRFPCEE
+ GRFPCEU
+ GRFPCEC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ GRFMLLN
+ GRFMLLR
+ GRFMLLA
+
+
+ GRFMLEMN
+ GRFMLEMR
+
+
+ GRFMLEEN
+ GRFMLEER
+
+ GRFMCL
+
+ GRFMCEM
+ GRFMCEL
+ GRFMCC
+
+
+ GRMPSE
+
+ GRMP1ER
+ GRMP1EC
+
+ GRMP2ER
+ GRMP2EC
+ GRMP2EM
+
+ GRMESE
+
+ GRME1ER
+ GRME1EC
+
+ GRME2ER
+ GRME2EC
+ GRME2EM
+
+
+ GRMMPSE
+
+ GRMMP1ER
+ GRMMP1EC
+
+ GRMMP2ER
+ GRMMP2EC
+ GRMMP2EM
+
+ GRMMESE
+
+ GRMME1ER
+ GRMME1EC
+
+ GRMME2ER
+ GRMME2EC
+ GRMME2EM
+
+
+
+
+
+
+
+
+
+ GRCMSE
+
+ GRCM1ER
+ GRCM1EC
+
+ GRCM2ER
+ GRCM2EC
+ GRCM2EM
+ GRCCA
+ GRCCN
+ GRCEV
+ GRN
+
+
+ RBC
+ RBN
+
+
+
+
+
+ BUUSLN1
+
+ BUUSLN2
+ BUUSLN3
+ BUUSLN4
+
+
+ BUUSLT1
+ BUUSLT2
+ BUUSLT3
+
+ BUUSLT4
+ BUUSLT5
+ BUUSLT6
+ BUUSLT7
+
+
+ BUUSLO1
+ BUUSLO2
+ BUUSLO3
+
+ BUUSLO4
+ BUUSLO5
+ BUUSLO6
+
+ BUUSLE1
+ BUUSLE2
+
+
+ BUUSTN1
+ BUUSTN2
+
+
+ BUUSTE1
+ BUUSTE2
+ BUUSTE3
+
+ BUUSTN
+ BUUSC
+
+
+
+
+ BUUMLN1
+
+ BUUMLN2
+ BUUMLN3
+ BUUMLN4
+
+
+ BUUMLT1
+ BUUMLT2
+ BUUMLT3
+
+ BUUMLT4
+ BUUMLT5
+ BUUMLT6
+
+ BUUMLE1
+ BUUMLE2
+
+
+ BUUMTN1
+ BUUMTN2
+
+
+ BUUMTE1
+ BUUMTE2
+ BUUMTE3
+ BUUMTN
+
+
+ BUBSA
+
+ BUBSDG
+ BUBSDD
+
+
+ BUBSADG
+ BUBSADD
+
+ BUBSAAG
+ BUBSAAD
+
+ BUBMA
+
+ BUBMDG
+ BUBMDD
+
+
+ BUBMADG
+ BUBMADD
+
+ BUBMAAG
+ BUBMAAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ PEU1
+ PEU2
+ PEU3
+ PEU4
+ PEU5
+ PEU6
+
+ PEB1
+ PEB2
+ PEB3
+ PEB4
+
+
+ PE1E1
+ PE1E2
+
+
+ PE1E3
+ PE1E4
+ PE1E5
+
+ PE1E6
+ PE1E7
+ PE1E8
+
+ PE2E1
+ PE2E2
+ PE2E3
+ PE2E4
+
+ PE2E5
+ PE2E6
+ PE2E7
+ PE2E8
+
+ PEZ1
+ PEZ2
+ PEZ3
+
+ MPEU
+ MPEB
+ MPE1E
+ MPE2E
+ PEDB
+ PETP
+ PEQU
+ PETR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ TRP1
+ TRP2
+ TRP3
+
+ TRP4
+ TRP5
+
+
+ TRO1
+ TRO2
+
+ TRO3
+ TRO4
+
+ TRO5
+ TRO6
+
+
+ TRO7
+ TRO8
+
+ TRO9
+ TRO10
+ TRDB
+
+
+
+ RETTRP1
+ RETTRP2
+ RETTRP3
+
+
+ RETTRO1
+ RETTRO2
+
+ RETTRO3
+ RETTRO4
+
+ RETTRO5
+ RETTRO6
+ RETTRDB
+
+
+
+ EVSD
+ EVSI
+ EVSM
+
+ EVPD
+ EVPI
+ EVPM
+
+
+ ECD
+ ECI
+ ECM
+
+
+
+
+
+
+
+
+
+
+ AMCUG
+ AMCUD
+ AMCB
+
+
+ AMEUG
+ AMEUD
+ AM B
+
+
+
+
+ ENCABR1
+ ENCABR2
+ ENCABR3
+
+ ENCABC1
+ ENCABC2
+ ENCABC3
+
+
+ ENCAGR1
+ ENCAGR2
+ ENCAGR3
+
+ ENCAGC1
+ ENCAGC2
+ ENCAGC3
+
+
+ EPM
+ EPE
+ EPSAM
+ EPAM
+ EPAE
+
+
+
+ ENCEVBA
+ ENCEVBP
+
+ ENCEVGA
+ ENCEVGP
+
+ ENCEVPA
+ ENCEVPP
+
+
+(o_forme)
+ REC
+ CONV
+ CONC
+
+ SCONV
+ SCONC
+GD
+ GCD
+
+
+ GA1
+ GA1D
+
+ GA2
+ GA2D
+
+ GO
+ GOD
+
+ GV
+ GVD
+
+
+ BR
+ BCV
+ BR
+ BT
+ BAR
+ BDC
+ BI
+
+ (o_orientation)
+ P
+ NP
+ I
+
+ (o_retouche)
+
+
+ M
+ MD
+
+ E/2
+ E/2D
+
+ E
+ ED
+
+
+
+ Q/2
+ Q/2D
+
+ Q
+ QD
+
+ SE
+ SED
+
+
+
+ SA
+ SAD
+
+ AM
+ AMD
+
+ AE
+ AED
+
+ DM
+ D1/2E
+ DE
+ DES
+ DSA
+ DAM
+ DAE
+ DEV
+ DEVS
+ DQ2
+
+ P
+ PD
+
+
+ EV
+ EVD
+
+ EVS
+ EVSD
+
+ LSP
+ LP
+ LE
+
+ (o_etat)
+ 1
+
+ 2A
+ 2B
+ 2C
+ 2D
+ 2E
+ 2F
+ 3
+
+ (o_origine)
+
+ A
+ B
+ P
+
+ AF
+ B
+ PF
+ FL
+
+ BT
+ BC
+ BR
+ BD
+
+
+
+
+
+ BTA
+ BTC
+
+ BTP
+ BTE
+
+ BTDC
+ BTDN
+ BTT
+
+ BTPI
+ BTPC
+ BTPM
+ BTPT
+ BTPR
+ M
+
+
+
+
+ A
+ B
+ P
+
+ AF
+ B
+ PF
+ FL
+
+ BT
+ BC
+ BR
+ BD
+
+
+ BTA
+ BTC
+
+ BTP
+ BTE
+
+ BTDC
+ BTDN
+ BTT
+
+ BTPI
+ BTPC
+ BTPM
+ BTPT
+ BTPR
+ M
+
+
+
+
+
+
+
+
+
+
+
+
+ (o_sens )
+ DIR
+ INV
+ MIX
+ MIXAL
+
+ PROFL
+ PROFT
+ PROFM
+
+
+ MSG
+ MSD
+ MSX
+
+ MIG
+ MID
+ MIX
+
+ (o_localisation )
+ IND
+ ANGGPROX
+
+ LATGT
+ LATGPROX
+ LATGMES
+ LATGDIS
+
+ ANGGDIS
+
+ TRDIST
+ TRDISG
+ TRDISMES
+ TRDISD
+ PTDIS
+ ANGDDIS
+
+ LATDT
+ LATDDIS
+ LATDMES
+ LATDPROX
+ ANGDPROX
+
+ TRPROXT
+ TRPROXD
+ TRPROXMES
+ TRPROXG
+ PTPROX
+
+ ARMEDT
+ ARMEDPROX
+ ARMEDMES
+ ARMEDDIS
+ PERP
+
+
+ (ga_type)
+
+ IA
+IA1
+ 
+ E
+ IA1E1
+ IA1E2
+ IA1ET
+ A
+ IA1A5
+ IA1A2
+ IA1AT
+ IA1A3
+ IA1A4
+ IA1A5
+ IA1A6
+ IA1B1
+ IA1B2
+ IA1BT
+ IA1B3
+ IA1B4
+ IA1B5
+ IA1B6
+ IA1C1
+ IA1C2
+ IA1CT
+ IA1C3
+ IA1C4
+ IA1C5
+ IA1C6
+ IA1D1
+ IA1D2
+ IA1DT
+IA2
+ 
+ 
+ IA2SE1
+ IA2SE2
+ IA2SET
+ IA2SA1
+ IA2SA2
+ IA2SAT
+ IA2SA3
+ IA2SA4
+ IA2SA5
+ IA2SA6
+ IA2SB1
+ IA2SB2
+ IA2SBT
+ IA2SB3
+ IA2SB4
+ IA2SB5
+ IA2SB6
+ IA2SC1
+ IA2SC2
+ IA2SCT
+ IA2SC3
+ IA2SC4
+ IA2SC5
+ IA2SC6
+ IA2SD1
+ IA2SD2
+ IA2SDT
+ IA2ME1
+ IA2ME2
+ IA2MET
+ IA2MA1
+ IA2MA2
+ IA2MAT
+ IA2MA3
+ IA2MA4
+ IA2MA5
+ IA2MA6
+ IA2MB1
+ IA2MB2
+ IA2MBT
+ IA2MB3
+ IA2MB4
+ IA2MB5
+ IA2MB6
+ IA2MC1
+ IA2MC2
+ IA2MCT
+ IA2MC3
+ IA2MC4
+ IA2MC5
+ IA2MC6
+ IA2MD1
+ IA2MD2
+ IA2MDT
+ IA2MFA1
+ IA2MFAT
+ IA2MFA3
+ IA2MFA5
+ IA2MFB1
+ IA2MFBT
+ IA2MFB3
+ IA2MFB5
+ IA2MGA1
+ IA2MGAT
+ IA2MGA3
+ IA2MGA5
+ IA2MGB1
+ IA2MGBT
+ IA2MGB3
+ IA2MGB5
+ IA2MHA1
+ IA2MHAT
+ IA2MHA3
+ IA2MHA5
+ IA2MHB1
+ IA2MHBT
+ IA2MHB3
+ IA2MHB5
+ IA2MHC1
+ IA2MHCT
+ IA2MHC3
+ IA2MHC5
+ IA3
+ IA3 1
+ IA3 2
+ IA3 3
+ IA3 4
+ ID
+ ID1
+ ID1A1
+ ID1A2
+ ID1A3
+ ID1A4
+ ID1A5
+ ID1A6
+ ID1A7
+ ID1A8
+ ID1A9
+ ID1B1
+ ID1B2
+ ID1B3
+ ID1B4
+ ID1B5
+ ID1B6
+ ID1B7
+ ID1B8
+ ID1B9
+ ID2
+ ID2A1
+ ID2A2
+ ID2A3
+ ID2A4
+ ID2B1
+ ID2B2
+ ID2B3
+ ID2B4
+ ID2C1
+ ID2C2
+ ID2C3
+ ID2C4
+ ID2D1
+ ID2D2
+ ID2D3
+ ID2D4
+ ID2E1
+ ID2E2
+ ID2E3
+ ID2E4
+ ID3
+ ID3A
+ ID3B
+ IM
+ IMS
+ IMS1A1
+ IMS1A2
+ IMS2A
+ IMS2B1
+ IMS2B2
+ IMS3
+IMS4
+ IMC
+ IMC1A1
+ IMC1A2
+ IMC2A3
+ IMC1B1
+ IMC1B2
+ IMC2B3
+ IMC2A1
+ IMC2A2
+ IMC2A3
+ IMC2A4
+ IMC2A5
+ IMC2A6
+ IMC2B1
+ IMC2B2
+ IMC2B3
+ IMC2B4
+ IMC2B5
+ IMC2B6
+ IMC2C1
+ IMC2C2
+ IMC2C3
+ IMC2C4
+ IMC2C5
+ IMC2C6
+ IMC3A1
+ IMC3A2
+ IMC3A3
+ IMC3A4
+ IMC3A5
+ IMC3A6
+ IMC3B
+ IMC3C
+ IMC4A1
+ IMC4A1
+ IMC4B
+II R
+ II R1
+ II R2
+ II R3
+ II S1
+ II S1C1
+ II S1C2
+ II S1C3
+ II S1R1
+ II S1R2
+ II S1R3
+ II S2
+ II S2C1
+ II S2C2
+ II S2C3
+ II S2R1
+ II S2R2
+ II S2R3
+ II SP
+ II SP1
+ II SP2
+ II SP3
+ II S3
+ II S3A
+ II S3B
+ II S3C
+ II S3D
+ II S3E
+ II A
+ II A1A
+ II A1B
+ II A1C
+ II A1D
+ II A2A
+ II A2B
+ II A2C
+ II A2D
+ II A3A
+ II A3B
+ IIA3C
+ II A3D
+ II N
+ II B
+ II B1
+ II B1A
+ II B1B
+ II B1C
+ II B1D
+ II B2
+ II B2A
+ II B2B
+ II B2C
+ II B2D
+ II B3
+ II B3A
+ II B3B
+ II B3C
+ II B3D
+ II B4
+ II B4B
+ II C
+ II C1
+ II C1AA
+ II C1AB
+ II C1BA
+ II C1BB
+ II C1CA
+ II C1CB
+ II C1DA
+ II C1DB
+ II C1EA
+ II C1EB
+ II C1FA
+ II C1FB
+ II C2
+ II C2AA
+ II C2AB
+ II C2AC
+ II C2AD
+ II C2BA
+ II C2BB
+ II C2BC
+ II C2BD
+ II C2CA
+ II C2CB
+ II C2CC
+ II C2CD
+ II C3
+ II C3A
+ II C3B
+ II C3C
+ II C3D
+ II C3E
+ II C3F
+ II C3G
+ II C3H
+ II T
+ II T1
+ II T2
+ II D
+ II D1
+ II D2
+ II E
+ II E1
+ II E1AA
+ II E2AB
+ II E1BA
+ II E1BB
+ II E1CA
+ II E1CB
+ II E2
+ II E2A1A
+ II E2A1B
+ II E2A2A
+ II E2A2B
+ II E2B1A
+ II E2B1B
+ II E2B2A
+ II E2B2B
+ II F
+ II FE
+ II FE1
+ II FE2
+ II FE3
+ II FL
+ II FL1
+ II FL2
+ II FL3
+ II G
+ III
+ IIIA
+ III A1
+ III A2
+ III A3
+ III A4
+ III A5
+ III A6
+ III A7
+ III A8
+ III A9
+ III B
+ III BA1
+ III BA2
+ III BA3
+ III BA4
+ III BA5
+ III BA6
+ III BA7
+ III BA8
+ III BA9
+ III BB1
+ III BB3
+ III BB5
+ III BB7
+ III BB8
+ III BB9
+ III C
+ III C1
+ III C2
+ III D
+ III D1
+ III D2
+ IV R
+ IV R1
+ IV R2
+ IV R3
+ IV S1
+ IV S1C2
+ IV S1C3
+ IV S1R2
+ IV S1R3
+ IV S2
+ IV S2C2
+ IV S2C3
+ IV S2R2
+ IV S2R3
+ IV SP
+ IV SP2
+ IV SP3
+ IV S3
+ IV S3A
+ IV S3B
+ IV S3C
+ IV S3D
+ IV S3E
+ IV A
+ IV AA
+ IV AB
+ IV AC
+ IV AD
+ IV N
+ IV N
+ IV B
+ IV B1
+ IV B1A
+ IV B1B
+ IV B2
+ IV B2A
+ IV B2B
+ IV B3
+ IV B3A
+ IV B3B
+ IV B4
+ IV C
+ IV C1
+ IV C1AA
+ IV C1AB
+ IV C1BA
+ IV C1BB
+ IV C1CA
+ IV C1CB
+ IV C1DA
+ IV C1DB
+ IV C1EA
+ IV C1EB
+ IV C2
+ IV C2AA
+ IV C1AB
+ IV C2BA
+ IV C1BB
+ IV C2CA
+ IV C1CB
+ IV C3
+ IV C3A
+ IV C3B
+ IV D
+ IV D1
+ IV D2
+ IV E
+ V
+ V 1
+ V 2
+ V 2BIS
+ V 3
+ V 4
+ V 5
+ V 6
+ V 7
+ V 8
+ V 9
+ V 10
+ V 11
+ VI
+ VI 1
+ VI 2
+ VI 2BIS
+ VI 3
+ VI 4
+ VI 5
+ VI 6
+ VI 7
+ VI 8
+ VI 9
+ VI 10
+ VI 11
+ VI 12
+ VII
+ VII A
+ VII A1
+ VII A1A
+ VII A1B
+ VII A2
+ VII A2A
+ VII A2B
+ VII B
+ VII B1
+ VII B1A
+ VII B1B
+ VII B2
+ VII B2A
+ VII B2B
+ VII C
+ VIII
+ IX
+ IX A
+ IX B
+
+(ga_facture)
+ M
+ R
+ T
+
+ (ga_qualite)
+ B
+ M
+ I
+
+(eg_forme)
+
+
+ R
+ RD
+
+ CONV
+ CONVD
+
+ TR
+ TRD
+
+ CONC
+ CONCD
+
+ COCL
+ COCLD
+
+
+ SCONV
+ SCONVD
+
+ SCONC
+ SCONCD
+ CIRC
+
+
+ BCP
+ BCPD
+
+
+ BCM
+ BCMD
+
+ BCT
+ BCTD
+
+ BCMS
+ BCMSD
+ IND
+
+(eg_arete)
+ CRD
+ CRI
+ CS
+ DR
+ DS
+
+(eg_orientation)
+ P
+ NP
+ I
+
+
+(eg_ retouche)
+A
+
+
+ M
+ MD
+
+ 1/2E
+ 1/2ED
+
+ E
+ ED
+
+
+ 1/2Q
+ 1/2Q D
+
+ Q
+ QD
+
+ SE
+ SED
+
+
+ SA
+ SAD
+
+ AM
+ AMD
+
+ AE
+ AED
+
+ DM
+ D1/2E
+ DE
+ DSE
+ DSA
+ DAM
+ DAE
+ DEV
+ DEVS
+
+ P
+ PD
+
+
+ EV
+ EVD
+
+ EVS
+ EVSD
+
+ LSP
+ LP
+ LE
+
+(eg_longueur_générale)
+C
+ SL
+ L
+ E
+
+(eg_profil)
+ P
+ CV
+ SC
+ CC
+ S
+
+(eg_profondeur)
+ C
+ M
+ E
+ P
+
+(eg_obliquité)
+ H
+ O
+ SA
+ A
+
+ (eg_extremite)
+ I
+ ATN
+ PC
+ CR
+ COP
+ FP
+
+ (eg_proeminence)
+ N
+ P
+
+ (eg_sens)
+ DIR
+ INV
+ MIX
+ MIXAL
+
+ PROFL
+ PROFT
+ PROFM
+ MP
+
+ (eg_ localisation)
+ IND
+ ANGGPROX
+
+ LATGT
+ LATGPROX
+ LATGMES
+ LATGDIS
+ ANGGDIS
+
+ TRDIST
+ TRDISG
+ TRDISMES
+ TRDID
+ PTDIS
+ ANGDDIS
+
+ LATDT
+ LATDPROX
+ LATDMES
+ LATDDIS
+ ANGDPROX
+
+
+ TRPROXT
+ TRPROXG
+ TRPROXMES
+ TRPROXD
+ PTPROX
+
+ (eg_situation)
+ I
+ P
+ B
+
+ (eg_epaisseur)
+ I
+ E
+ N
+ M
+(eg_ tranchant)
+I
+T1
+T2
+T3
+T4
+T5
+C1
+C2
+C3
+C4
+C5
+C6
+C7
+C8
+C9
+
+
+(n_type)
+ N1
+ N1A
+ N1ARC
+ N1AEP
+ N1ARU
+ N1ARB  
+ N1B
+ N1C
+ N1CRU
+ N1CRB
+ N2
+ N2DA
+ N2DB
+ N2DC
+ N2DD
+ N2 DE
+ N2DF
+ N2RA
+ N2RB
+ N2RC
+ N2RD
+ N2RE
+ N2RF
+ N2IA
+ N2IB
+ N2IC
+ N2ID
+ N2IE
+ N2IF
+ N3
+ N3DA
+ N3DB
+ N3RA
+ N3RB
+ N3IA
+ N3IB
+ N4
+ N4A
+ N4B
+ N4B1
+ N4C
+ N4D
+ N4D1
+ N4E
+ N4F
+ N4F1
+ N5
+ N5U
+ N5UA
+ N5UB
+ N5UC
+ N5UD
+ N5B
+ N5BOA
+ N5BOB
+ N5BOC
+ N5BOD
+ N5BOE
+ N5BAA
+ N5BAB
+ N5BAC
+ N5BAD
+ N6
+ N6A
+ N6B
+ N6C
+ N6D
+ NO
+ NO2
+ NO3
+ NO4
+ NO5
+ N7
+ N7U
+ N7UA
+ N7UB
+ N7UC
+ N7UD
+ N7UE
+ N7UF
+ N7D
+ N7DA
+ N7DB
+ N7DC
+ N7DD
+ N7DE
+ N7DF
+ N7B
+ N7B1A
+ N7B1B
+ N7B1C
+ N7B1D
+ N7B1E
+ N7B1F
+ N7B1G
+ N7B2A
+ N7B2B
+ N7B2C
+ N7B2D
+ N7B2E
+ N7B2F
+ N7B2G
+ N7B3A
+ N7B3B
+ N7B3C
+ N7B3D
+ N7B3E
+ N7B3F
+ N7B3G
+ N7B4A
+ N7B4B
+ N7B4C
+ N7B4D
+ N7B4E
+ N7B4F
+ N7B4G
+ N7M
+ N7MA
+ N7MB
+ N7MC
+ NA
+ NA1
+ NA2
+ NA3
+ NA4
+
+
+2- NOMBRE DE PLANS (n_nbplan)
+(n_cortotal)
+
+ 3
+ 2
+ 1
+ 0
+
+ (en_frappe)
+ PFC
+ PFF
+
+ PFAR
+ PFAE
+
+ (en_inclinaison)
+ PAR
+ OBL
+ PER
+ PRO
+
+en_direction
+	
+C
+ L1
+ L2
+ L3
+ T1
+ T2
+ T3
+ P1
+ P2
+ P3
+ O
+(b_base)
+ B1
+ B2
+
+(b_surface)
+ SO0
+ SO1
+ SO2
+ SO3
+
+ (b_enlèvement)
+ EB1
+ EB2
+ EB3
+
+ (b_aménagement_bord)
+
+ AB0
+ AB1
+
+ AB2
+
+ AB3
+
+ (b_aménagement_distal)
+ 1
+ 2
+
+(b_distale)
+ ED1
+ ED2
+ ED3
+ ED4
+ ED5
+ ED6
+
+ (b_biseau)
+ BT0
+ BT1
+
+ BT1A
+
+ BT1B
+
+ BT1C
+
+(b_bord)
+ FB1
+ FB2
+ FB3
+ FB4
+ FB23
+ FB12
+ FB13
+(b_meplat)
+ MI0
+ MI1
+ MI1U
+ MI1B
+
+ (b_extension)
+ ERU
+ EAU
+ EMU
+
+ ER
+ ERA
+ EA
+ EMA
+ EMM
+ EMR
+
+ (b_amenagement_distal)
+ SMD0
+ SMD1
+
+(b_bilaterale)
+ SB0
+ SB1
+
+ (b_facture)
+ FHB
+ FHM
+ HT
+
+(b_symétrie)
+ EQ1
+ EQ2
+
+(b_arete)
+ ALR
+ ALI
+ ALS
+ ALSI
+ ALSR
+ ALRI
+ ALRS
+ ALIS
+ AL0
+
+(b_retouche)
+ RS0
+ RS1
+ RS2
+ RS5
+
+ (h_base)
+ B1
+ B2
+
+ (h_surface)
+ SO0
+
+ SO1
+ SO2
+ SO3
+
+ (h_aménagement_bord)
+
+ AB0
+ AB1
+
+ AB2
+
+ AB3
+
+ (h_amenagement_distal)
+ 1
+ 2
+
+(h_biseau)
+ BT0
+ BT1
+
+ BT1A
+
+ BT1B
+
+ BT1C
+
+(h_bord)
+ FB1
+ FB2
+ FB3
+ FB4
+ FB23
+ FB12
+ FB13
+
+(h_meplat)
+ MI0
+ MI1
+ MI1U
+ MI1B
+
+ (h_extension)
+
+ ERU
+ EAU
+ EMU
+
+
+ ER
+ ERA
+ EA
+ EMA
+ EMM
+ EMR
+
+
+ (h_amenagement_distal)
+ SMD0
+ SMD1
+(h_facture)
+ FHB
+ FHM
+ HT
+(h_bilaterale)
+ SB0
+ SB1
+(h_arete)
+ ALR
+ ALI
+ ALS
+ ALSI
+ ALSR
+ ALRI
+ ALRS
+ ALIS
+ AL0
+
+(h_retouche)
+ RS0
+ RS1
+ RS2
+ RS5
+
+
+
+7
+
+

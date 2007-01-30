@@ -1,0 +1,11 @@
+This is "archeobases-bego" a part of the Archeobases project from the Lazaret archaeological laboratory.
+
+Annuaire is a set of Python script and a PostgreSQL database used to maintain a directory of related peoples. (This is very related to our personal usage, you may see firts about LDAP if your whant to maintain a people directory).
+
+You can see the last news about Archeobases project at our Trac page :
+http://lazaret.unice.fr/opensource/
+
+WARNING :
+This 1.0 version or Archeobase is distributed mainly for historical reasons. This version is not supported anymore except for big security issues. Consider first to try the last version of Archeobases from our repository.
+
+If you whant to test it anyway, is know to work on Debian 3 + Python 2.1 + PostgreSQL 7.2.

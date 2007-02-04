@@ -1,0 +1,11 @@
+This is "archeobases-genmap" a part of the Archeobases project from the Lazaret Archaeological Laboratory.
+
+Genmap is a Web-Python script based on Pdefmap who create a PDF output whith datas extrated from the Archeo databases. Outputs are projection and maps.
+
+You can see the last news about Archeobases project at our Trac page :
+http://lazaret.unice.fr/opensource/
+
+WARNING :
+This 1.0 version or Archeobase is distributed mainly for historical reasons. This version is not supported anymore except for big security issues. Consider first to try the last version of Archeobases from our repository.
+
+If you whant to test it anyway, is know to work on Debian 3 + Python 2.1 + PostgreSQL 7.2.

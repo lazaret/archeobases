@@ -1,0 +1,10 @@
+1) Install the Python prerequistes : reportlab, jaxtml & pdfmap 
+
+2) Install the genmap.py into your cgi-bin folder or make a symbolic link to it (change apache rules if necessary).
+
+3) If necessary activate mod_python for apache
+
+4) Put the content of the install_files/genmap folder under your webserver files hierachy with read-write access to the files to the web server
+
+For example if put the genmap folder under the root web folder, you can access it from :
+http://www.example.com/genmap

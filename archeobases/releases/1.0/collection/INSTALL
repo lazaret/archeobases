@@ -1,0 +1,14 @@
+Installation Instructions
+*************************
+
+* Complete install instructions under the /doc folder
+
+
+Resume :
+---------
+
+1) Create a PostgreSQL dataabase from the SQL schema
+2) Place "install_files" under the /home/base directory
+3) Give read-write access to this files to the Apache user (usaly www or wwwrun)
+4) Create the necessary symbolic links
+5) manage right for apache and the database

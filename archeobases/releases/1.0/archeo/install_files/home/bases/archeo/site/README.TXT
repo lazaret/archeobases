@@ -1,0 +1,1 @@
+Edit and rename site.html accordignly to the database/site name. For example lazaret.html

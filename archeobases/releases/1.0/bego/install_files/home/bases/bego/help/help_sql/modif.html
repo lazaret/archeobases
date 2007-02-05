@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.07 [en] (X11; I; Linux 2.0.36 i686) [Netscape]">
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+ alink="#ff0000" link="#0000ee" vlink="#551a8b">
+<a href="accueil.html">Retour vers la page principale</a>
+<center>
+<p><b><font size="+3">2- MODIFIER LA BASE DE DONNEES</font></b></p>
+</center>
+<p><br>
+</p>
+<p><font size="+1">A- Insertion</font>
+</p>
+<p>L' ajout de lignes dans une table se fait par la commande <font
+ color="#ff0000">INSERT
+INTO</font>.
+<br>
+&nbsp;
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#000000">INSERT INTO</font><font
+ color="#009900">
+nom_table ( nom_champ1, nom_champ2, ...)</font>
+          <br>
+          <font color="#000000">VALUES </font><font color="#009900">(
+valeur_champ1,
+valeur_champ2, ...);</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font color="#000000">Si l'on ne pr&eacute;cise pas les nom_champ,
+par d&eacute;faut la liste des nom_champ sera la liste compl&egrave;te
+des champ de la table. Par contre dans ce cas l&agrave;, il faut bien
+donner
+une valeur pour tous les champ de la table dans le VALUES et dans le
+bon
+ordre ( donc fortement d&eacute;conseill&eacute;).</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#000000">INSERT INTO</font><font
+ color="#009900">
+          </font><font color="#006600">nom_table</font>
+          <br>
+          <font color="#000000">VALUES</font><font color="#009900"> (
+valeur_champ1,
+valeur_champ2, valeur_champ3)</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<font size="+1">B- Modification</font>
+<p>La modification se fait sur un ou plusieurs champ avec le mot clef
+<font color="#ff0000">UPDATE.</font>
+<br>
+&nbsp;
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#000000">UPDATE</font><font
+ color="#009900"> nom_table</font>
+          <br>
+          <font color="#000000">SET</font><font color="#009900">
+nom_champ1 =
+nouvelle_valeur1,</font>
+          <br>
+          <font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+nom_champ2 = nouvelle_valeur2,</font>
+          <br>
+          <font color="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+nom_champ3 = nouvelle_valeur3</font>
+          <br>
+          <font color="#000000">WHERE </font><font color="#009900">condition;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+<font size="+1">C- Suppression</font>
+</p>
+<p>Pour supprimer une ou plusieurs lignes d'une table, on utilise la
+commande
+<font color="#ff0000">DELETE</font><font color="#000000">.</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote><font color="#000000">DELETE </font><font
+ color="#009900">FROM
+nom_table</font>
+          <br>
+          <font color="#009900">WHERE condition;</font></blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+</body>
+</html>

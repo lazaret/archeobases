@@ -1,0 +1,1104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.07 [en] (X11; I; Linux 2.0.36 i686) [Netscape]">
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+ alink="#ff0000" link="#0000ee" vlink="#551a8b">
+<a href="accueil.html">retour vers la page principale</a>
+<center>
+<p><b><font size="+2">EXERCICES CORRIGES</font></b></p>
+</center>
+<br>
+&nbsp;
+<p><br>
+</p>
+<p>Soit une table stagiaire comprenant 6 champs:
+</p>
+<blockquote>
+  <blockquote>=&gt;
+id_stagiaire&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+( champ num&eacute;rique)
+    <br>
+=&gt; nom_stagiaire&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( champ
+texte)
+    <br>
+=&gt; prenom_stagiaire&nbsp; (champ texte)
+    <br>
+=&gt;
+note1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(champ num&eacute;rique)
+    <br>
+=&gt;
+note2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(champ num&eacute;rique)
+    <br>
+=&gt;
+id_option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+( champ num&eacute;rique)</blockquote>
+</blockquote>
+<p><br>
+soit une table option comprenant 3 champs:
+</p>
+<blockquote>
+  <blockquote>=&gt; id_option (champ num&eacute;rique)
+    <br>
+=&gt; nom_option (champ texte)
+    <br>
+=&gt; coefficient (champ num&eacute;rique)</blockquote>
+</blockquote>
+<font color="#3366ff"><font size="+1">1- INTERROGER LA BASE DE DONNEES</font></font>
+<p><font size="+1">A- S&eacute;lectionner les donn&eacute;es:</font>
+</p>
+<p><u>1- Editer toutes les informations contenues dans la table option:</u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT * from option;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="3" width="30%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">id_option</td>
+      <td nosave="">nom_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr nosave="">
+      <td nosave="">1</td>
+      <td nosave="">informatique</td>
+      <td nosave="">4</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>bureautique</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">2- Editer toutes les informations contenues
+dans la table stagiaire:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#000000">&nbsp;</font><font color="#ff0000">SELECT
+* FROM stagiaire ;</font></blockquote>
+  </blockquote>
+</blockquote>
+<p><br>
+On obtient le r&eacute;sultat suivant:
+<br>
+&nbsp;
+<br>
+&nbsp;
+<table nosave="" border="1" cols="6" width="60%">
+  <tbody>
+    <tr nosave="" align="center" valign="CENTER">
+      <td nosave="">id_stagiaire</td>
+      <td>nom_stagiaire</td>
+      <td>prenom_stagiaire</td>
+      <td nosave="" align="center" valign="CENTER">note1</td>
+      <td>note2</td>
+      <td>id_option</td>
+    </tr>
+    <tr nosave="" align="center" valign="CENTER">
+      <td nosave="" align="center" valign="CENTER">1</td>
+      <td>vaudron</td>
+      <td>rachel</td>
+      <td>10</td>
+      <td>10</td>
+      <td>1</td>
+    </tr>
+    <tr nosave="" align="center" valign="CENTER">
+      <td nosave="" align="center" valign="CENTER">2</td>
+      <td>dupont</td>
+      <td>karine</td>
+      <td>7</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+    <tr nosave="" align="center" valign="CENTER">
+      <td nosave="" align="center" valign="CENTER">3</td>
+      <td>durand</td>
+      <td>maxime</td>
+      <td>5</td>
+      <td>8</td>
+      <td>2</td>
+    </tr>
+    <tr nosave="" align="center" valign="CENTER">
+      <td>4</td>
+      <td>smith</td>
+      <td>maxime</td>
+      <td>2</td>
+      <td nosave="" align="center" valign="CENTER">6</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p><u>3- Editer uniquement l'identifiant et le nom des stagiaires:</u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT id_stagiaire, nom_stagiaire</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <center>id_stagiaire</center>
+      </td>
+      <td>
+      <center>nom_stagiaire</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>vaudron</center>
+      </td>
+      <td>
+      <center>rachel</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>dupont</center>
+      </td>
+      <td>
+      <center>karine</center>
+      </td>
+    </tr>
+    <tr nosave="">
+      <td nosave="">
+      <center>durand</center>
+      </td>
+      <td nosave="">
+      <center>maxime</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>smith</center>
+      </td>
+      <td>
+      <center>maxime</center>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><u>4- chercher tous les pr&eacute;noms repr&eacute;sent&eacute;s par
+les stagiaires</u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT DISTINCT prenom_stagiaire</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="1" width="15%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <center>prenom_stagiaire</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>karine</center>
+      </td>
+    </tr>
+    <tr nosave="">
+      <td nosave="">
+      <center>maxime</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>rachel</center>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">5- Chercher toutes le informations
+concernant
+le stagiaire vaudron:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT * FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">WHERE nom_stagiaire = 'vaudron';</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="6" width="60%">
+  <tbody>
+    <tr nosave="">
+      <td>id_stagiaire</td>
+      <td nosave="">nom_stagiaire</td>
+      <td>prenom_stagiaire</td>
+      <td>note1</td>
+      <td>note2</td>
+      <td nosave="">id_option</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>vaudron</td>
+      <td>rachel</td>
+      <td>10</td>
+      <td>10</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">6- Editer le nom des stagiaires qui ont
+leur
+premi&egrave;re note sup&eacute;rieure ou &eacute;gale &agrave; 5 et
+leur
+deuxi&egrave;me note inf&eacute;rieure &agrave; 7:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">WHERE note1 &gt;= 5 AND note2 &lt; 7;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="1" width="15%">
+  <tbody>
+    <tr>
+      <td>nom_stagiaire</td>
+    </tr>
+    <tr>
+      <td>dupont</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">7- Editer l'identifiant et le nom des
+stagiaires
+qui ont leur note1 comprise entre 3 et 8:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT id_stagiaire,&nbsp;
+nom_stagiaire
+FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">WHERE note1</font>
+      <br>
+      <font color="#ff0000">BETWEEN 3 AND 8;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="25%">
+  <tbody>
+    <tr>
+      <td>id_stagiaire</td>
+      <td>nom_stagiaire</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>dupont</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>durand</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">8- Editer les noms des stagiaires dont les
+prenoms sont maxime ou karine:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire FROM&nbsp;
+stagiaire</font>
+      <br>
+      <font color="#ff0000">WHERE prenom_stagiaire IN ( 'maxime',
+'karine');</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="1" width="15%">
+  <tbody>
+    <tr>
+      <td>nom_stagiaire</td>
+    </tr>
+    <tr>
+      <td>dupont</td>
+    </tr>
+    <tr>
+      <td>smith</td>
+    </tr>
+    <tr>
+      <td>durand</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">9- Editer toutes les informations
+concernant
+les stagiaires dont les noms commencent par du:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT * FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">WHERE nom_stagiaire LIKE 'du%';</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="6" width="50%">
+  <tbody>
+    <tr>
+      <td>id_stagiaire</td>
+      <td>nom_stagiaire</td>
+      <td>prenom_stagiaire</td>
+      <td>note1</td>
+      <td>note2</td>
+      <td>id_option</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>dupont</td>
+      <td>karine</td>
+      <td>7</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>durand</td>
+      <td>maxime</td>
+      <td>5</td>
+      <td>8</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p><u>10- Editer les pr&eacute;noms des stagiaires dont la
+deuxi&egrave;me
+lettre du pr&eacute;nom est un a et dont le pr&eacute;nom comporte 6
+lettres:</u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire ,
+prenom_stagiaire
+FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">WHERE prenom_stagiaire LIKE '_a____' ;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="25%">
+  <tbody>
+    <tr>
+      <td>prenom_stagiaire</td>
+      <td>nom_stagiaire</td>
+    </tr>
+    <tr>
+      <td>rachel</td>
+      <td>vaudron</td>
+    </tr>
+    <tr>
+      <td>karine</td>
+      <td>dupont</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">11- Editer toutes les informations
+concernant
+les options dont le coefficient a &eacute;t&eacute; saisi:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT * FROM option</font>
+      <br>
+      <font color="#ff0000">WHERE coefficient IS&nbsp; NOT NULL&nbsp; ;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="3" width="30%">
+  <tbody>
+    <tr>
+      <td>id_option</td>
+      <td>nom_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>informatique</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">12- Afficher le nom et le pr&eacute;nom des
+stagiaires suivis de l'option qu'ils ont choisie et du coefficient
+correspondant
+&agrave; cette option:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire,
+prenom_stagiaire,
+stagiaire.id_option, coefficient</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire, option</font>
+      <br>
+      <font color="#ff0000">WHERE&nbsp; stagiaire.id_option =
+option.id_option;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="4" width="40%">
+  <tbody>
+    <tr>
+      <td>nom_stagiaire</td>
+      <td>prenom_stagiaire</td>
+      <td>id_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr>
+      <td>vaudron</td>
+      <td>rachel</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>smith</td>
+      <td>maxime</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>durand</td>
+      <td>maxime</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>dupont</td>
+      <td>karine</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">13- Afficher toutes les informations
+concernant
+les stagiaires qui ont choisi une option qui a &eacute;t&eacute; saisie:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT *</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">WHERE&nbsp;&nbsp; id_option IN (SELECT
+id_option
+FROM option WHERE coefficient IS NOT NULL);</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="6" width="60%">
+  <tbody>
+    <tr>
+      <td>id_stagiaire</td>
+      <td>nom_stagiaire</td>
+      <td>prenom_stagiaire</td>
+      <td>note1</td>
+      <td>note2</td>
+      <td>id_option</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>vaudron</td>
+      <td>rachel</td>
+      <td>10</td>
+      <td>10</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>smith</td>
+      <td>maxime</td>
+      <td>2</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<p><font size="+1">B- <font color="#000000">Ordonner les
+donn&eacute;es:</font></font>
+</p>
+<p><u><font color="#000000">1-&nbsp; Afficher les noms et
+pr&eacute;noms
+des stagiaires par odre alphab&eacute;tique:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire,
+prenom_stagiaire</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">ORDER BY nom_stagiaire ;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr>
+      <td>nom_stagiaire</td>
+      <td>prenom_stagiaire</td>
+    </tr>
+    <tr>
+      <td>dupont</td>
+      <td>karine</td>
+    </tr>
+    <tr>
+      <td>durand</td>
+      <td>maxime</td>
+    </tr>
+    <tr>
+      <td>smith</td>
+      <td>maxime</td>
+    </tr>
+    <tr>
+      <td>vaudron</td>
+      <td>rachel</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">2- Etablir le classement de la meilleure
+&agrave;
+la plus mauvaise note, en affichant le nom du stagiaire correspondant:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire, note1</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">ORDER BY note1 DESC ;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr>
+      <td>nom_stagiaire</td>
+      <td>note1</td>
+    </tr>
+    <tr>
+      <td>vaudron</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>dupont</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>durand</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>smith</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">3- Afficher dans une colonne le nom des
+stagiaires
+et dans une autre le total de leurs deux notes par ordre croissant:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire,&nbsp;
+note1+note2
+AS Total</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">ORDER BY total;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr>
+      <td>nom_stagiaire</td>
+      <td>total</td>
+    </tr>
+    <tr>
+      <td>smith</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>dupont</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>durand</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>vaudron</td>
+      <td>20</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<p><font color="#000000"><font size="+1">C- Les op&eacute;rateurs
+ensemblistes</font></font>
+</p>
+<p><u><font color="#000000">1- Afficher le nombre de stagiaires par
+id_option</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT id_option,
+count(id_stagiaire)
+AS total</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">GROUP BY id_option;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr>
+      <td>id_option,</td>
+      <td>total</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p><font color="#000000"><u>2- la clause HAVING</u>&nbsp; permet de
+pr&eacute;ciser
+la condition &agrave; laquelle le GROUP BY doit s'ex&eacute;cuter. Elle
+fonctionne de la m&ecirc;me fa&ccedil;on que la clause WHERE.</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT id_option,
+count(id_stagiaire)
+AS total</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire</font>
+      <br>
+      <font color="#ff0000">GROUP BY id_option</font>
+      <br>
+      <font color="#ff0000">HAVING id_option =1;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">id_option</td>
+      <td>total</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<p><font color="#000000"><font size="+1">D- Les fonctions:</font></font>
+</p>
+<p><u><font color="#000000">1- Afficher les moyennes des stagiaires:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT nom_stagiaire,
+(note1+note2)/2
+AS Moyenne</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr>
+      <td>nom_stagiaire</td>
+      <td>Moyenne</td>
+    </tr>
+    <tr>
+      <td>vaudron</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>durand</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>dupont</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>smith</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">2- Afficher le nom de tous les stagiaires
+en
+majuscules et leur pr&eacute;nom avec&nbsp; seulement la
+premi&egrave;re
+lettre en majuscules:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT UPPER(noms_stagiaire),
+INITCAP(prenom_stagiaire)</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr nosave="">
+      <td>nom_stagiaire</td>
+      <td nosave="">prenom_stagiaire</td>
+    </tr>
+    <tr>
+      <td>VAUDRON</td>
+      <td>Rachel</td>
+    </tr>
+    <tr>
+      <td>DUPONT</td>
+      <td>Karine</td>
+    </tr>
+    <tr>
+      <td>DURAND</td>
+      <td>Mathieu</td>
+    </tr>
+    <tr>
+      <td>SMITH</td>
+      <td>Mathieu</td>
+    </tr>
+  </tbody>
+</table>
+<p><font color="#000000"><font size="+1">E- Les fonctions de groupe:</font></font>
+</p>
+<p><u><font color="#000000">1- Calculer la moyenne des note1:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT AVG ( note1)</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="1" width="10%">
+  <tbody>
+    <tr>
+      <td>avg</td>
+    </tr>
+    <tr>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">2- Compter le nombre de stagiaire:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT COUNT(*)</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="1" width="10%">
+  <tbody>
+    <tr>
+      <td>count</td>
+    </tr>
+    <tr>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">3- Afficher la plus mauvaise note1, et la
+meilleure
+note2:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT MIN( note1), MAX(note2)</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="2" width="20%">
+  <tbody>
+    <tr>
+      <td>min</td>
+      <td>max</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+<p><u><font color="#000000">4- Calculer la somme des note1:</font></u>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT SUM( note1)</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="1" width="10%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">sum</td>
+    </tr>
+    <tr>
+      <td>24</td>
+    </tr>
+  </tbody>
+</table>
+<p><font color="#000000"><u>5- Calculer l'&eacute;crat-type des note2 </u>(
+pas encore implant&eacute; dans la version que nous utilisons de
+PostGresql)</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT STDDEV( note2)</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<font color="#000000"><u>7- Calculer la variance des note2</u>( pas
+encore
+implant&eacute; dans la version que nous utilisons de PostGresql)</font>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">SELECT VARIANCE( note2)</font>
+      <br>
+      <font color="#ff0000">FROM stagiaire;</font></blockquote>
+  </blockquote>
+</blockquote>
+<font color="#3366ff"><font size="+1">2- MODIFIER LA BASE DE DONNEES</font></font>
+<p><font size="+1">A- Insertion</font>
+</p>
+<p>1- Ins&eacute;rer dans la table&nbsp; option une option SQL ayant
+pour
+identifiant 3:
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">INSERT INTO option ( id_option,
+nom_option)</font>
+      <br>
+      <font color="#ff0000">VALUES ( 3, 'SQL');</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="3" width="30%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">id_option</td>
+      <td>nom_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>informatique</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>bureautique</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>SQL</td>
+      <td>NULL</td>
+    </tr>
+  </tbody>
+</table>
+<p><font color="#000000">2- ajouter une option programmation ayant pour
+identifiant4et pour coefficient 4</font>
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">INSERT INTO option</font>
+      <br>
+      <font color="#ff0000">VALUES ( 4, 'programmation', 4);</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="3" width="30%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">id_option</td>
+      <td>nom_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>informatique</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>bureautique</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>SQL</td>
+      <td>NULL</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>programmation</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<p><font size="+1">B- Modification</font>
+</p>
+<p>1- Mettre le coefficient de l'option bureautique &agrave; 2:
+<br>
+&nbsp;
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">UPDATE option</font>
+      <br>
+      <font color="#ff0000">SET coefficient = 2</font>
+      <br>
+      <font color="#ff0000">WHERE&nbsp; nom_option = 'bureautique';</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="3" width="30%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">id_option</td>
+      <td>nom_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>informatique</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>bureautique</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>SQL</td>
+      <td>NULL</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>programmation</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>2- Mettre le coefficient &agrave; 3 partout o&ugrave; il est
+&agrave;
+4 et partout o&ugrave; il est &agrave; 2:
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">UPDATE option</font>
+      <br>
+      <font color="#ff0000">SET coefficient = 3</font>
+      <br>
+      <font color="#ff0000">WHERE&nbsp; coefficient = 4 OR coefficient
+=
+2;</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="3" width="30%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">id_option</td>
+      <td>nom_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>informatique</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>bureautique</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>SQL</td>
+      <td>NULL</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>programmation</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<p><font size="+1">C- Suppression</font>
+</p>
+<p>3- Supprimer l'option informatique de la table option
+</p>
+<blockquote>
+  <blockquote>
+    <blockquote><font color="#ff0000">DELETE FROM nom_table</font>
+      <br>
+      <font color="#ff0000">WHERE nom_option = 'informatique';</font></blockquote>
+  </blockquote>
+</blockquote>
+<table nosave="" border="1" cols="3" width="30%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">id_option</td>
+      <td>nom_option</td>
+      <td>coefficient</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>bureautique</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>SQL</td>
+      <td>NULL</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>programmation</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+</body>
+</html>

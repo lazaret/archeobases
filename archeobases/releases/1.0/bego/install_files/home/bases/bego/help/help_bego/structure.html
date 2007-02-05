@@ -1,0 +1,1904 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [en] (X11; U; Linux 2.2.17 i686) [Netscape]">
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+ alink="#ff0000" link="#0000ee" vlink="#551a8b">
+<center><a href="accueil.html"><img src="logobego.gif" border="0"
+ height="115" width="514"></a><a name="SOMMAIRE"></a>
+<p><b><font color="#ff0000"><font size="+1">VII- ANCIENNE ET
+NOUVELLE&nbsp;
+STRUCTURE DE LA BASE</font></font></b></p>
+</center>
+<p><b><a href="#NSTRUCTURE">1- Nouvelle structure</a></b>
+</p>
+<blockquote>
+  <blockquote><img src="bulletblue.gif" align="texttop" height="15"
+ width="15"><a href="#ESSENTIELLES">Les
+tables principales</a>
+    <br>
+    <img src="bulletblue.gif" align="texttop" height="15" width="15"><a
+ href="#TABLE_DE_ZONE">Les
+tables de la zone</a>
+    <br>
+    <img src="bulletblue.gif" align="texttop" height="15" width="15"><a
+ href="#REQUETE">La
+table requ&ecirc;te</a></blockquote>
+</blockquote>
+<b><a href="#COMPRAISON">2- Comparaison</a></b>
+<blockquote>
+  <blockquote><img src="bulletblue.gif" align="texttop" height="15"
+ width="15"><a href="#CROCHE">La
+table roche</a>
+    <br>
+    <img src="bulletblue.gif" align="texttop" height="15" width="15"><a
+ href="#CFACE">La
+table face</a>
+    <br>
+    <img src="bulletblue.gif" align="texttop" height="15" width="15"><a
+ href="#CFIGURE">La
+table figure</a>
+    <br>
+    <img src="bulletblue.gif" align="texttop" height="15" width="15"><a
+ href="#CASSOCIATION">La
+table association</a></blockquote>
+</blockquote>
+<p><br>
+<a name="NSTRUCTURE"></a></p>
+<center><b><font color="#ff0000"><font size="+1">1- Nouvelle structure</font></font></b></center>
+<p><a name="ESSENTIELLES"></a>
+</p>
+<div align="right"><a href="#SOMMAIRE"><img src="flecheH.gif" border="0"
+ height="25" width="25"></a></div>
+<img src="bulletrouge.gif" align="texttop" height="18" width="19"><b> <u>LES
+TABLES PRINCIPALES:</u></b>
+<br>
+&nbsp;
+<table nosave="" cols="4" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="" align="left"><br>
+      </td>
+      <td nosave="">&nbsp;<a href="#ZONE">ZONE</a>
+      <br>
+      <a href="#ROCHE">ROCHE</a>
+      <br>
+      <a href="#FACE">FACE</a>
+      <br>
+      <a href="#FIGURE">FIGURE</a>
+      <br>
+      <a href="#ASSOCIATION">ASSOCIATION</a>
+      <br>
+      <a href="#FIGASSOC">FIGASSOCIE</a></td>
+      <td nosave=""><a href="#ZONE">PHOTOZONE</a>
+      <br>
+      <a href="#ROCHE">PHOTOROCHE&nbsp;</a>
+      <br>
+      <a href="#FACE">PHOTOFACE&nbsp;</a>
+      <br>
+      <a href="#FIGURE">PHOTOFIGURE</a>
+      <br>
+      <a href="#ASSOCIATION">PHOTOASSOCIATION</a></td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="ZONE"></a>
+<div align="right"><a href="#ESSENTIELLES"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<hr width="100%">
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">ZONE&nbsp;</td>
+          </tr>
+          <tr>
+            <td>secteur</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>groupe</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>acces</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>sentier</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>sommet</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>col</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>lac</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>torrent</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>tourbiere</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>eboulis</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>moraine</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>glacier</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>vegetation</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">PHOTOZONE</td>
+          </tr>
+          <tr>
+            <td><u>idphoto</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>legende</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="ROCHE"></a>
+<div align="right"><a href="#ESSENTIELLES"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<hr width="100%">
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">ROCHE</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>x</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>y</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>z</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>nature</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>type</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>longueur</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>largeur</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>epaisseur</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>orientation</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>contexte</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>remarquable</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>publication</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">PHOTOROCHE</td>
+          </tr>
+          <tr>
+            <td><u>idphoto</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>legende</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="FACE"></a>
+<div align="right"><a href="#ESSENTIELLES"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<hr width="100%">
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">FACE</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>type</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>forme</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>longueur</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>largeur</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>couleur</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>aspect</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>element</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>erosion</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>desquamation</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>contour</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>direction</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>inclinaison</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>orientation</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">PHOTOFACE</td>
+          </tr>
+          <tr>
+            <td>i<u>dphoto</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>legende</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="FIGURE"></a>
+<div align="right"><a href="#ESSENTIELLES"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<hr width="100%">
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">FIGURE</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>figure</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>carre</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>identite</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>signe</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>style</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>longueur</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>largeur</td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>sens</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>cardinale</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>geographique</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>qualite</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>contour</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>debord</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>profil</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>strie</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>alignement</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>surface</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>bavure</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>perif</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>raclage</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>forme</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>profondeur</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>taille</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>disposition</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>description</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>conti</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td>
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">PHOTOFIGURE</td>
+          </tr>
+          <tr>
+            <td>i<u>dphoto</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>figure</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>legende</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="ASSOCIATION"></a>
+<div align="right"><a href="#ESSENTIELLES"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<hr width="100%">
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">Table o&ugrave; sont d&eacute;crites seulement les
+caract&eacute;ristiques
+propres &agrave; l'association elle-m&ecirc;me.
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">ASSOCIATION</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>association</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>disposition</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <br>
+&nbsp;
+      <br>
+&nbsp;
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">PHOTOASSOCIATION</td>
+          </tr>
+          <tr>
+            <td>i<u>dphoto</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>association</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>legende</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="FIGASSOC"></a>
+<div align="right"><a href="#ESSENTIELLES"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<hr width="100%">
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">Table permettant de faire le lien entre les figures
+et les associations.
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">FIGASSOC</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td><u>association</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>figure</u></td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="TABLE_DE_ZONE"></a>
+<div align="right"><a href="#NSTRUCTURE"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<img src="bulletrouge.gif" align="texttop" height="18" width="19"><b> <u>LES
+TABLES PERMETTANT LA DESCRIPTION DES ZONES</u></b>
+<p>Pour chaque caract&eacute;ristique de la zone, on a une
+premi&egrave;re
+table o&ugrave; est saisie la liste des valeurs possibles de la
+caract&eacute;ristique
+pour l'ensemble des zones et une seconde table qui contient une liste
+mettant
+en relation la table avec la valeur de la caract&eacute;ristique.
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <br>
+Table o&ugrave; est saisie la liste des acc&egrave;s correspondant
+&agrave; l'ensemble des zones.
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">ACCES</td>
+          </tr>
+          <tr>
+            <td><u>idacces</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>acces</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td nosave="">
+      <br>
+Table o&ugrave; est saisie la liste des acc&egrave;s pour chaque zone.
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_ACCES</td>
+          </tr>
+          <tr>
+            <td>i<u>dacces</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">SENTIER</td>
+          </tr>
+          <tr>
+            <td><u>idsentier</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>sentier</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_SENTIER</td>
+          </tr>
+          <tr>
+            <td>i<u>dsentier</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">SOMMET</td>
+          </tr>
+          <tr>
+            <td><u>idsommet</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>sommet</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_SOMMET</td>
+          </tr>
+          <tr>
+            <td>i<u>dsommet</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">COL</td>
+          </tr>
+          <tr>
+            <td><u>idcol</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>col</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_COL</td>
+          </tr>
+          <tr>
+            <td>i<u>dcol</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">LAC</td>
+          </tr>
+          <tr>
+            <td><u>idlac</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>lac</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_LAC</td>
+          </tr>
+          <tr>
+            <td>i<u>dlac</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">TORRENT</td>
+          </tr>
+          <tr>
+            <td><u>idtorrent</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>torrent</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_TORRENT</td>
+          </tr>
+          <tr>
+            <td>i<u>dtorrent</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">TOURBIERE</td>
+          </tr>
+          <tr>
+            <td><u>idtourbiere</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>tourbiere</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_TORRENT</td>
+          </tr>
+          <tr>
+            <td>i<u>dtourbiere</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">EBOULIS</td>
+          </tr>
+          <tr>
+            <td><u>idebouli</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>eboulis</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_EBOULIS</td>
+          </tr>
+          <tr>
+            <td>i<u>deboulis</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">MORAINE</td>
+          </tr>
+          <tr>
+            <td><u>idmoraine</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>moraine</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_MORAINE</td>
+          </tr>
+          <tr>
+            <td>i<u>dmoraine</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">GLACIER</td>
+          </tr>
+          <tr>
+            <td><u>idglacier</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>glacier</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_GLACIER</td>
+          </tr>
+          <tr>
+            <td>i<u>dglacier</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">VEGETATION</td>
+          </tr>
+          <tr>
+            <td><u>idvegetation</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td>vegetation</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr>
+            <td colspan="3" ,="" align="center" bgcolor="#cccae5">ZONE_VEGETATION</td>
+          </tr>
+          <tr>
+            <td>i<u>dvegetation</u></td>
+            <td>integer</td>
+          </tr>
+          <tr>
+            <td><u>idzone</u></td>
+            <td>integer</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="REQUETE"></a>
+</p>
+<div align="right"><a href="#NSTRUCTURE"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<img src="bulletrouge.gif" align="texttop" height="18" width="19"><b> <u>LA
+TABLE
+REQUETE</u></b>
+<p>C'est la table qui permet de stocker les requ&ecirc;tes avec un nom,
+afin de pouvoir s'en resservir. En pratique, il n'y a pas besoin de
+l'interroger
+directement. Il suffit de cliquer sur la requ&ecirc;te
+d&eacute;sir&eacute;e
+dans l'&eacute;cran SQL.
+<br>
+&nbsp;
+<table nosave="" cols="3" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="2" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">REQUETE</td>
+          </tr>
+          <tr>
+            <td><u>nomrequete</u></td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>coderequete</td>
+            <td>text</td>
+          </tr>
+        </tbody>
+      </table>
+&nbsp;</td>
+      <td nosave=""><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<center>
+<p><a name="COMPRAISON"></a><b><font color="#ff0000"><font size="+1">2-
+Comparaison</font></font></b></p>
+</center>
+<div align="right"><a href="#SOMMAIRE"><img src="flecheH.gif" border="0"
+ height="25" width="25"></a></div>
+Les tables suivantes n'existaient pas pr&eacute;c&eacute;demment:
+<br>
+&nbsp;
+<table nosave="" cols="5" width="100%">
+  <tbody>
+    <tr nosave="">
+      <td nosave=""><br>
+      </td>
+      <td>zone&nbsp;
+      <br>
+photozone
+      <br>
+photoroche
+      <br>
+photoface
+      <br>
+photofigure
+      <br>
+photoassociation
+      <br>
+figassoc
+      <br>
+acces&nbsp;
+      <br>
+sentier&nbsp;
+      <br>
+sommet
+      <br>
+col
+      <br>
+lac
+      <br>
+torrent
+      <br>
+tourbiere
+      <br>
+eboulis
+      <br>
+moraine
+      <br>
+glacier
+      <br>
+vegetation</td>
+      <td nosave="">
+      <br>
+&nbsp;
+      <br>
+&nbsp;
+      <br>
+&nbsp;
+      <br>
+&nbsp;
+      <br>
+&nbsp;
+      <p>zone_acces
+      <br>
+zone_sentier
+      <br>
+zone_sommet
+      <br>
+zone_col
+      <br>
+zone_lac
+      <br>
+zone_torrent
+      <br>
+zone_tourbiere
+      <br>
+zone_eboulis
+      <br>
+zone_moraine
+      <br>
+zone_glacier
+      <br>
+zone_vegetation</p>
+      </td>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><a name="CROCHE"></a>
+</p>
+<div align="right"><a href="#COMPRAISON"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<img src="bulletrouge.gif" align="texttop" height="18" width="19"><b>
+LA TABLE
+ROCHE</b>
+<table nosave="" cols="1" width="70%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="4" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">NOUVELLE
+TABLE ROCHE</td>
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">&nbsp;ANCIENNE
+TABLE
+ROCHE</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+            <td>zone</td>
+            <td>numeric 3</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+            <td>groupe</td>
+            <td>numeric 3</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+            <td>roche + bis</td>
+            <td>numeric 5 + string 3</td>
+          </tr>
+          <tr>
+            <td>x</td>
+            <td>integer</td>
+            <td>x</td>
+            <td>numeric 7</td>
+          </tr>
+          <tr>
+            <td>y</td>
+            <td>integer</td>
+            <td>y</td>
+            <td>numeric 7</td>
+          </tr>
+          <tr>
+            <td>z</td>
+            <td>integer</td>
+            <td>z</td>
+            <td>numeric 7</td>
+          </tr>
+          <tr>
+            <td>nature</td>
+            <td>text</td>
+            <td>nature</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>type</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>longueur</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>largeur</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>epaisseur</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>orientation</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>contexte</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>remarquable</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>publication</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><a name="CFACE"></a>
+</p>
+<div align="right"><a href="#COMPRAISON"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<img src="bulletrouge.gif" align="texttop" height="18" width="19"><b>
+LA TABLE
+FACE</b>
+<table nosave="" cols="1" width="70%">
+  <tbody>
+    <tr>
+    </tr>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="4" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">NOUVELLE
+TABLE FACE</td>
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">ANCIENNE
+TABLE FACE</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+            <td>zone</td>
+            <td>numeric 3</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+            <td>groupe</td>
+            <td>numeric 3</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+            <td>roche + bis</td>
+            <td>numeric 5 + string 3</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+            <td>face</td>
+            <td>string 1</td>
+          </tr>
+          <tr>
+            <td>type</td>
+            <td>text</td>
+            <td>autre</td>
+            <td>string 2</td>
+          </tr>
+          <tr>
+            <td>forme</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>longueur</td>
+            <td>integer</td>
+            <td>longueur</td>
+            <td>amount 4</td>
+          </tr>
+          <tr>
+            <td>largeur</td>
+            <td>integer</td>
+            <td>largeur</td>
+            <td>amount 4</td>
+          </tr>
+          <tr>
+            <td>couleur</td>
+            <td>text</td>
+            <td>couleur</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>aspect</td>
+            <td>text</td>
+            <td>aspect</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>element</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>erosion</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>desquamation</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>contour</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>direction</td>
+            <td>text</td>
+            <td>direction</td>
+            <td>string 4</td>
+          </tr>
+          <tr>
+            <td>inclinaison</td>
+            <td>integer</td>
+            <td>inclinaison</td>
+            <td>numeric 3</td>
+          </tr>
+          <tr>
+            <td>orientation</td>
+            <td>text</td>
+            <td>orient</td>
+            <td>string 4</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="CFIGURE"></a>
+<div align="right"><a href="#COMPRAISON"><img src="flecheH.gif"
+ border="0" height="25" width="25"></a></div>
+<img src="bulletrouge.gif" align="texttop" height="18" width="19"><b>
+LA TABLE
+FIGURE</b>
+<table nosave="" cols="1" width="70%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="4" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">NOUVELLE
+TABLE FIGURE</td>
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">ANCIENNE
+TABLE FIGURE</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+            <td>zone</td>
+            <td>numeric 3</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+            <td>groupe</td>
+            <td>numeric 3</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+            <td>roche + bis</td>
+            <td>numeric 5 + string 3</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+            <td>face</td>
+            <td>string 1</td>
+          </tr>
+          <tr>
+            <td><u>figure</u></td>
+            <td>text</td>
+            <td>figure + bis</td>
+            <td>numeric 5 + string 3</td>
+          </tr>
+          <tr>
+            <td>carre</td>
+            <td>text</td>
+            <td>carre</td>
+            <td>string 6</td>
+          </tr>
+          <tr>
+            <td>identite</td>
+            <td>text</td>
+            <td>identification</td>
+            <td>string 40</td>
+          </tr>
+          <tr>
+            <td>signe</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>style</td>
+            <td>text</td>
+            <td>style</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>longueur</td>
+            <td>integer</td>
+            <td>longueur</td>
+            <td>amount 3</td>
+          </tr>
+          <tr>
+            <td>largeur</td>
+            <td>integer</td>
+            <td>largeur</td>
+            <td>amount 3</td>
+          </tr>
+          <tr>
+            <td>sens</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>cardinale</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>geographique</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>qualite</td>
+            <td>text</td>
+            <td>qualite</td>
+            <td>string 2</td>
+          </tr>
+          <tr>
+            <td>contour</td>
+            <td>text</td>
+            <td>contour</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>debord</td>
+            <td>text</td>
+            <td>bords</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>profil</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>strie</td>
+            <td>text</td>
+            <td>strie</td>
+            <td>string 1</td>
+          </tr>
+          <tr>
+            <td>alignement</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>surface</td>
+            <td>text</td>
+            <td>pgravure</td>
+            <td>string 4</td>
+          </tr>
+          <tr>
+            <td>bavure</td>
+            <td>text</td>
+            <td>bavures</td>
+            <td>string 1</td>
+          </tr>
+          <tr>
+            <td>perif</td>
+            <td>text</td>
+            <td>piqutage</td>
+            <td>string 1</td>
+          </tr>
+          <tr>
+            <td>raclage</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>forme</td>
+            <td>text</td>
+            <td>fcupules</td>
+            <td>string 5</td>
+          </tr>
+          <tr>
+            <td>profondeur</td>
+            <td>text</td>
+            <td>pcupules</td>
+            <td>string 4</td>
+          </tr>
+          <tr>
+            <td>taille</td>
+            <td>text</td>
+            <td>tcupules</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>disposition</td>
+            <td>text</td>
+            <td>dcupules</td>
+            <td>string 5</td>
+          </tr>
+          <tr>
+            <td>description</td>
+            <td>text</td>
+            <td>description</td>
+            <td>text 40</td>
+          </tr>
+          <tr>
+            <td>conti</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>motif</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>association</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>superposition</td>
+            <td>string 3</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a name="CASSOCIATION"></a>
+<div align="right"><a href="#COMPRAISON"><img src="flecheH.gif"
+ alt="Sommaire" border="0" height="25" width="25"></a></div>
+<img src="bulletrouge.gif" align="texttop" height="18" width="19"><b>
+LA TABLE
+ASSOCIATION</b>
+<table nosave="" cols="1" width="70%">
+  <tbody>
+    <tr nosave="">
+      <td nosave="">
+      <table nosave="" border="1" cols="4" width="100%">
+        <tbody>
+          <tr nosave="">
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">NOUVELLE
+TABLE ASSOCIATION</td>
+            <td colspan="2" nosave="" align="center" bgcolor="#cccae5">ANCIENNE
+TABLE ASSOCIATION</td>
+          </tr>
+          <tr>
+            <td><u>zone</u></td>
+            <td>integer</td>
+            <td>zone</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td><u>groupe</u></td>
+            <td>integer</td>
+            <td>groupe</td>
+            <td>string 3</td>
+          </tr>
+          <tr>
+            <td><u>roche</u></td>
+            <td>text</td>
+            <td>roche</td>
+            <td>numeric 5 + string 3</td>
+          </tr>
+          <tr>
+            <td><u>face</u></td>
+            <td>text</td>
+            <td>asupnum</td>
+            <td>numeric 5</td>
+          </tr>
+          <tr>
+            <td><u>association</u></td>
+            <td>integer</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>disposition</td>
+            <td>text</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>acode</td>
+            <td>string 20</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>alist</td>
+            <td>string 250</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>suptype</td>
+            <td>string 10</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>suplist</td>
+            <td>string 250</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+</body>
+</html>

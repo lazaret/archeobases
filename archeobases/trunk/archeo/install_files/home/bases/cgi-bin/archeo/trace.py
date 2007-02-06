@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -173,7 +175,7 @@ class Trace(archeodata.Data) :
                         self.__doc__.pop()
                	        self.__doc__.pop()
 
-################################### En entrÈe ########################################
+################################### En entr√©e ########################################
 	def t_nature_base_to_form(self, enreg, penreg = None) :
 		afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
 		self.__doc__.push()
@@ -189,7 +191,7 @@ class Trace(archeodata.Data) :
 		afficheclefs.champ_liste(self, "t_agent", "agent", enreg, penreg, "Origine", dontchange = 0)
 
 	def t_phenomene_base_to_form(self, enreg, penreg = None) :
-		afficheclefs.champ_liste(self, "t_phenomene", "phÈnomËne", enreg, penreg, "", dontchange = 0)
+		afficheclefs.champ_liste(self, "t_phenomene", "ph√©nom√®ne", enreg, penreg, "", dontchange = 0)
 		self.__doc__.pop()
 
 ##############
@@ -223,7 +225,7 @@ class Trace(archeodata.Data) :
 		afficheclefs.champ_liste(self, "t_section", "section", enreg, penreg, "", dontchange = 0)
 
 	def t_diametre_base_to_form(self, enreg, penreg = None) :
-		afficheclefs.champ_saisie(self, "t_diametre", "diamËtre", 3, 20, "", enreg, penreg)
+		afficheclefs.champ_saisie(self, "t_diametre", "diam√®tre", 3, 20, "", enreg, penreg)
 		self.__doc__.pop()
 #####################
 	def t_dstrie_base_to_form(self, enreg, penreg = None) :
@@ -231,7 +233,7 @@ class Trace(archeodata.Data) :
 		afficheclefs.champ_liste(self, "t_dstrie", "dstries", enreg, penreg, "Morphologie", dontchange = 0)
 
 	def t_trace_base_to_form(self, enreg, penreg = None) :
-		afficheclefs.champ_liste(self, "t_trace", "tracÈ", enreg, penreg, "", dontchange = 0)
+		afficheclefs.champ_liste(self, "t_trace", "trac√©", enreg, penreg, "", dontchange = 0)
 		self.__doc__.pop()
 #####################
 	def t_allure_base_to_form(self, enreg, penreg = None) :
@@ -254,7 +256,7 @@ class Trace(archeodata.Data) :
 		afficheclefs.champ_liste(self, "t_photo", "photo", enreg, penreg, "", dontchange = 0)
 
 	def t_replique_base_to_form(self, enreg, penreg = None) :
-		afficheclefs.champ_liste(self, "t_replique", "rÈplique", enreg, penreg, "", dontchange = 0)
+		afficheclefs.champ_liste(self, "t_replique", "r√©plique", enreg, penreg, "", dontchange = 0)
 
 		self.__doc__.pop()
 ###############
@@ -379,25 +381,25 @@ class Trace(archeodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                archeoconf.fatalerror_message("Impossible de supprimer le rÈpertoire [%s]" % rr)
+                                archeoconf.fatalerror_message("Impossible de supprimer le r√©pertoire [%s]" % rr)
 
                         # on efface la trace
                         self.delete_records(["zone", "numero", "bis", "t_ensemble"])
                         return 0
 
         def creer(self) :
-                # si la trace n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la trace n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis", "t_ensemble"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None, "o_ordre": None,"t_ensemble" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la trace dans la base
+                        # on ins√®re maintenant la trace dans la base
                         # sauf si la faune n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "faune") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la trace dans la base
+                                # on ins√®re maintenant la trace dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

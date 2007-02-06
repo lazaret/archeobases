@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 
 import os
 import string
@@ -111,7 +113,7 @@ class Usure_Dent(archeodata.Data) :
                 afficheclefs.champ_saisie(self, "ud_type", "type", 3, 20, " ",enreg, penreg)
 
         def ud_lateralite_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_saisie(self, "ud_lateralite", "lateralitÈ", 1, 20, "", enreg, penreg)
+                afficheclefs.champ_saisie(self, "ud_lateralite", "lateralit√©", 1, 20, "", enreg, penreg)
                 self.__doc__.pop()
 
         def ud_usure_base_to_form(self, enreg, penreg = None) :
@@ -137,18 +139,18 @@ class Usure_Dent(archeodata.Data) :
                         return 0
 
         def creer(self) :
-                # si la usure_dent n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la usure_dent n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis", "ud_serie"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None, "o_ordre": None,"ud_serie" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la usure_dent dans la base
+                        # on ins√®re maintenant la usure_dent dans la base
                         # sauf si la faune n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "faune") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la usure_dent dans la base
+                                # on ins√®re maintenant la usure_dent dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

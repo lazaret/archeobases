@@ -1,4 +1,5 @@
 #!  /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                   1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -65,7 +66,7 @@ page.button(name="controle_bord", value="Bord",onclick='parent.bas.location="' +
 
 page.button(name="controle_outil", value="Outil",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_outil") + '"')
 
-page.button(name="controle_galet_amenage", value="G.Aménagé",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_galet_amenage") + '"')
+page.button(name="controle_galet_amenage", value="G.AmÃ©nagÃ©",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_galet_amenage") + '"')
 
 page.button(name="controle_enlevement_galet_amenage", value="Enlevement des GA",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_enlevement_galet_amenage") + '"')
 page.pop()
@@ -77,9 +78,9 @@ page.td(align = "center")
 page.br()
 
 
-page.button(name="controle_nucleus", value="Nucléus",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_nucleus") + '"')
+page.button(name="controle_nucleus", value="NuclÃ©us",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_nucleus") + '"')
 
-page.button(name="controle_enlevement_galet_nucleus", value="Enlevement des nucléus",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_enlevement_nucleus") + '"')
+page.button(name="controle_enlevement_galet_nucleus", value="Enlevement des nuclÃ©us",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_enlevement_nucleus") + '"')
 
 page.button(name="controle_biface", value="Biface",onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_biface") + '"')
 

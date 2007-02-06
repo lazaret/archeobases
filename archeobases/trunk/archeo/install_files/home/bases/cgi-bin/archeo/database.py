@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # database.py - (c) 1999 Jerome ALET <alet@unice.fr>
 #
 # You're welcome to redistribute this software under the
@@ -32,7 +34,7 @@ import pg
 __version__ = "1.0"
 
 #
-# Définition d'une classe d'accès à une base de données PostrgreSQL sous Python
+# DÃ©finition d'une classe d'accÃ¨s Ã  une base de donnÃ©es PostrgreSQL sous Python
 # Cette classe encapsule les fonctions importantes du modules Pg et ajoute
 # la possibilite de tracer toutes les requetes en les envoyant sur stderr.
 # Dans le cas de l'utilisation de cette classe dans un script CGI alors les
@@ -48,7 +50,7 @@ class DataBase :
                         self.__database = pg.connect(host = host, dbname = database, user = username)
                         if self.__debuglevel > 0 :
                                 self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
-                except pg.error, msg :
+                except pg.Error, msg :
                         self.fatal_message("Unable to connect to Host [%s] DataBase [%s] Username [%s] ==> [%s]" % (host, database, username, msg))
 
         def log_message(self, msg, level) :
@@ -82,7 +84,7 @@ class DataBase :
                                 self.sql_message(q)
                         try :
                                 return self.__database.query(q)
-                        except pg.error, msg:
+                        except pg.Error, msg:
                                 if msg and (msg[-1] == '\n') :
                                         msg = msg[:-1]
                                 self.__database.query("ROLLBACK;")      # auto rollback

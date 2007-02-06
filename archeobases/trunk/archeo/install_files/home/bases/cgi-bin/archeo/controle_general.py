@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                   1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -103,7 +104,7 @@ class PageRequete(archeoconf.Bas) :
 
 
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
-doc = PageRequete("Modification des contrôles", "Modification des contrôles")
+doc = PageRequete("Modification des contrÃ´les", "Modification des contrÃ´les")
 db = archeoconf.ArcheoDataBase()
 if form.has_key("champ") :
         param = form["champ"].value

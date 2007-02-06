@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -162,7 +164,7 @@ class Outil(archeodata.Data) :
                 #afficheclefs.champ_liste( self, "o_ordre", "ordre", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
 
-################################### En entrÈe ##############################################
+################################### En entr√©e ##############################################
         def o_code_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
@@ -177,7 +179,7 @@ class Outil(archeodata.Data) :
                 afficheclefs.champ_liste( self, "o_retouche", "retouche", enreg, penreg, "Description", dontchange = 0)
                 
         def o_etat_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "o_etat", "Ètat", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "o_etat", "√©tat", enreg, penreg, "", dontchange = 0)
 
         def o_origine_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "o_origine", "origine", enreg, penreg, "", dontchange = 0)
@@ -200,13 +202,13 @@ class Outil(archeodata.Data) :
                 afficheclefs.champ_saisie(self, "o_relation", "relation", 5, 20, "", enreg, penreg)
                 
         def o_serie_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "o_serie", "sÈrie", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "o_serie", "s√©rie", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
 ##                
         def o_forme_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "o_forme", "forme", enreg, penreg, "CaractÈristiques", dontchange = 0)
+                afficheclefs.champ_liste( self, "o_forme", "forme", enreg, penreg, "Caract√©ristiques", dontchange = 0)
 
         def o_orientation_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "o_orientation", "orientation", enreg, penreg, "", dontchange = 0)
@@ -354,24 +356,24 @@ class Outil(archeodata.Data) :
                 return 0
 
         def supprimer(self) :
-                # on efface l'outil sur Èclat
+                # on efface l'outil sur √©clat
                 self.delete_records(["zone", "numero", "bis", "o_ordre"])
                 return 0
 
         def creer(self) :
-                # si l'outil n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si l'outil n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis", "o_ordre"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None, "o_ordre": None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant l'outil dans la base
+                        # on ins√®re maintenant l'outil dans la base
                         # sauf si l'industrie n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "industrie") : 
                         #"eclat") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None, "o_": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant l'outil dans la base
+                                # on ins√®re maintenant l'outil dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

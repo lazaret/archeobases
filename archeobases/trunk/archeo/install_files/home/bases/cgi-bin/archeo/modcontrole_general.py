@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -52,7 +53,7 @@ def enlever(database, form, liste, param) :
 
 def recupere_liste(nomliste) :
         liste = []
-        if type(form[nomliste]) == type([]) : # plusieurs options sélectionnées 
+        if type(form[nomliste]) == type([]) : # plusieurs options sÃ©lectionnÃ©es 
                 for a in form[nomliste] :                    
                         liste.append(a.value)
         else :
@@ -68,7 +69,7 @@ def ajouter_param(database, form, param) :
         return database.query(query)
 
 
-doc = archeoconf.Bas("Modification des paramètres", "Modification d'une zone")
+doc = archeoconf.Bas("Modification des paramÃ¨tres", "Modification d'une zone")
 db = archeoconf.ArcheoDataBase()
 form = cgi.FieldStorage()
 
@@ -105,7 +106,7 @@ elif form["action"].value == "AJOUTER" :
 urlencode(dico))
 
 else :
-        archeoconf.fatalerror_message("Aucune action à effectuer !")
+        archeoconf.fatalerror_message("Aucune action Ã  effectuer !")
 
 doc.output()
 

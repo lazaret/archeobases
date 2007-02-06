@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -129,7 +131,7 @@ class Fracture_Industrie(archeodata.Data) :
                 self.__doc__.pop()
 
 
-################################### En entrée #########################     
+################################### En entrÃ©e #########################     
         def fi_type_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "fi_type", "type", enreg, penreg, " ", dontchange = 0)
@@ -180,7 +182,7 @@ class Fracture_Industrie(archeodata.Data) :
                                 return (-2, primarykeys)
                         # sinon si son parent existe, on le cree
                         else :
-                                # on insère maintenant le fracture dans la base
+                                # on insÃ¨re maintenant le fracture dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

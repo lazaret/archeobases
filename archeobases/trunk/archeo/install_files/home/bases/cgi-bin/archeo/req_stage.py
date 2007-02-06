@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 
 import cgi
 import pg
@@ -6,11 +8,11 @@ import jaxml
 
 class Requete(jaxml.CGI_document) :
     def initialise(self, requete = "") :
-        self._default_header(title="Requêtes SQL")
+        self._default_header(title="RequÃªtes SQL")
         self.body(bgcolor="white")
         self._push()
         self.h2("Initiation aux SGBDR  - Tester vos SELECT sur la Base d'exemple 'biblio' ")
-        self.h3("Entrez vos requêtes ci-dessous:")
+        self.h3("Entrez vos requÃªtes ci-dessous:")
         self.form(action=self._script_name(), method="POST")
         self._push()
         self.textarea(requete, name = "requete", rows = "10", cols = "70", wrap = "physical")
@@ -22,14 +24,14 @@ class Requete(jaxml.CGI_document) :
         
     def affresultat(self, result) :
         self._push()
-        self.h3("Résultat:")
+        self.h3("RÃ©sultat:")
         if type(result) == type("") :
             msg1 = "Permission denied."
             msg2 = "you do not own"
             if (result[-len(msg1):] == msg1) or (result.find(msg2) != -1) : 
                 msg = "Alors, on s'amuse ?"
             else :    
-                msg = "L'exécution de votre requête a provoqué une erreur :"
+                msg = "L'exÃ©cution de votre requÃªte a provoquÃ© une erreur :"
             self.h4(msg)
             self.p("%s" % result)
         else :    
@@ -62,7 +64,7 @@ if (out._request_method() == "POST") or not out._query_string() :
         requete = form["requete"].value.strip()
         if requete :
             if requete.upper().count("CREATE") :
-                resultat = "Désolée, ceci est interdit !"
+                resultat = "DÃ©solÃ©e, ceci est interdit !"
             else :
                 try :
                     db = pg.connect(host = "localhost", dbname = "stage", user = "stageuser", passwd = None)
@@ -77,7 +79,7 @@ if (out._request_method() == "POST") or not out._query_string() :
     if requete and resultat :
         out.affresultat(resultat)
     out.p()
-    out._text("Pour accèder à un aide mémoire SQL et des exercices corrigés, veuillez visiter")
+    out._text("Pour accÃ¨der Ã  un aide mÃ©moire SQL et des exercices corrigÃ©s, veuillez visiter")
     out.a("Mon Site", href="http://rachel.familinux.org/")
 else :        
     out._do_nothing()

@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -66,7 +68,7 @@ class Photo(archeodata.Data) :
                 self.__tablename__ = "photo" + self.__tablename__
 
         def transfere_fichier(self, taille, mogrify) :
-                """Stocke le fichier sur le disque et lance la commande mogrify appropriÈe"""
+                """Stocke le fichier sur le disque et lance la commande mogrify appropri√©e"""
                 fout = open(taille, "w")
                 fout.write(self.__form__["fichier_photo"].value)
                 fout.close()
@@ -121,7 +123,7 @@ class Photo(archeodata.Data) :
                 self.retour()
 
         def creer(self) :
-                # on commence par crÈer le rÈpertoire destination s'il n'existe pas dÈj‡
+                # on commence par cr√©er le r√©pertoire destination s'il n'existe pas d√©j√†
                 try :
                         z  = "Z" + self.__form__["zone"].value
                         rep = archeoconf.image_fullname(z)
@@ -139,7 +141,7 @@ class Photo(archeodata.Data) :
                                 os.mkdir(rep, 0755)
 
                 except OSError, msg:
-                        archeoconf.fatalerror_message("Impossible de crÈer le rÈpertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
+                        archeoconf.fatalerror_message("Impossible de cr√©er le r√©pertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
 
                 #
                 idphoto = self.get_nextval()
@@ -148,8 +150,8 @@ class Photo(archeodata.Data) :
                 big = fname + ".jpeg"
                 normale = fname + ".tiff"
 
-                # on insËre maintenant la photo dans la base
-                # mais seulement si le chargement des images a fonctionnÈ
+                # on ins√®re maintenant la photo dans la base
+                # mais seulement si le chargement des images a fonctionn√©
                 try :
                         t = self.__form__["taille"].value
                         t = "mogrify_" + t
@@ -157,7 +159,7 @@ class Photo(archeodata.Data) :
                         self.transfere_fichier(small, archeoconf.mogrify_small)
                         self.transfere_fichier(big, getattr(archeoconf, t))
                 except :
-                        archeoconf.fatalerror_message("Impossible de transfÈrer la photo " + fname)
+                        archeoconf.fatalerror_message("Impossible de transf√©rer la photo " + fname)
 
                 self.__db__.query(self.make_insert_query({ "idphoto": idphoto }))
                 self.retour()

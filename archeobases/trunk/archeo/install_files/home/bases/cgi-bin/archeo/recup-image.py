@@ -1,7 +1,8 @@
 #! /usr/bin/env python
-
+# -*- coding: utf-8 -*-
+#
 # 2003 Rachel Vaudron
-# recupere les images d'un cd pour les insÈrer dasn la base
+# recupere les images d'un cd pour les ins√©rer dasn la base
 
 import sys
 import os
@@ -10,7 +11,7 @@ import database
 import archeoconf
 
 def transfere_fichier(infile, taille, mogrify) :
-        """Stocke le fichier sur le disque et lance la commande mogrify appropriÈe"""
+        """Stocke le fichier sur le disque et lance la commande mogrify appropri√©e"""
         inf = open(infile, "rb")
         fout = open(taille, "wb")
         fout.write(inf.read())
@@ -21,7 +22,7 @@ def transfere_fichier(infile, taille, mogrify) :
                 raise "Erreur"
 
 def creer_image(z = "", n = "", b = "") :
-        # on commence par crÈer le rÈpertoire destination s'il n'existe pas dÈj‡
+        # on commence par cr√©er le r√©pertoire destination s'il n'existe pas d√©j√†
         (zone, numero, bis) = (z, n, b)
         try :
                 z = "Z" + z
@@ -41,7 +42,7 @@ def creer_image(z = "", n = "", b = "") :
                         if not os.path.isdir(rep) :
                                 os.mkdir(rep, 0755)
         except OSError, msg:
-                sys.stderr.write("Impossible de crÈer le rÈpertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
+                sys.stderr.write("Impossible de cr√©er le r√©pertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
 
         #
         idphoto = db.query("select nextval('seq_photoindustrie');").dictresult()[0]['nextval']
@@ -50,8 +51,8 @@ def creer_image(z = "", n = "", b = "") :
         big = fname + ".jpeg"
         normale = fname + ".tiff"
 
-        # on insËre maintenant la photo dans la base
-        # mais seulement si le chargement des images a fonctionnÈ
+        # on ins√®re maintenant la photo dans la base
+        # mais seulement si le chargement des images a fonctionn√©
         try :
                 transfere_fichier("tempo.tiff", normale, archeoconf.mogrify_normale)
                 transfere_fichier("tempo.tiff", small, archeoconf.mogrify_small)
@@ -63,7 +64,7 @@ def creer_image(z = "", n = "", b = "") :
                 print idphoto
                 sys.stdout.flush()
         except :
-                sys.stderr.write("Impossible de transfÈrer la photo [%s]\n"  % (fname))
+                sys.stderr.write("Impossible de transf√©rer la photo [%s]\n"  % (fname))
                 sys.stderr.flush()
                         
 def parcours(param, dirname, names) :

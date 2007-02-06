@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -178,15 +180,15 @@ class Microfaune(archeodata.Data) :
                 afficheclefs.display_bis( self, enreg, penreg)
 
         def mf_serie_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_x_serie(self, "mf_serie", "10",enreg, penreg)
+                afficheclefs.display_x_serie(self, "mf_serie", "10", enreg, penreg)
 
-        def mf_type_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_type(self, "mf_type", enreg, penreg) 
+	def mf_type_base_to_form(self, enreg, penreg = None) :
+		afficheclefs.display_type(self, "mf_type", enreg, penreg) 
                 self.__doc__.pop()
 
-################################### En entrÈe ########################################
+################################### En entr√©e ########################################
         def mf_m1_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
+		afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "mf_m1", "M1", 6, 20," ", enreg,  penreg)
         def mf_m2_base_to_form(self, enreg, penreg = None) :
@@ -274,23 +276,23 @@ class Microfaune(archeodata.Data) :
                 return 0
 
         def supprimer(self) :
-                # on efface la microfaune sur Èclat
+                # on efface la microfaune sur √©clat
                 self.delete_records(["zone", "numero", "bis", "mf_serie", "mf_type"])
                 return 0
 
         def creer(self) :
-                # si la microfaune n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la microfaune n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis", "mf_serie", "mf_type"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None, "o_ordre": None,"mf_serie" : None, "mf_type" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la microfaune dans la base
+                        # on ins√®re maintenant la microfaune dans la base
                         # sauf si la faune n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "faune") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None, "mf_serie": None, "mf_type": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la microfaune dans la base
+                                # on ins√®re maintenant la microfaune dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

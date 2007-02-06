@@ -1,4 +1,5 @@
 #!  /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Archeo  - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -15,20 +16,20 @@
 #
 # $Log: requetes.py,v $
 # Revision 1.13  2002/11/04 08:17:48  jerome
-# Plus besoin de &nbsp; en mode simplifié
+# Plus besoin de &nbsp; en mode simplifiÃ©
 #
 # Revision 1.12  2002/11/04 00:00:55  jerome
 # Petit bug de sortie
 #
 # Revision 1.11  2002/11/03 23:38:41  jerome
-# Problème de type
+# ProblÃ¨me de type
 #
 # Revision 1.10  2002/11/03 23:34:34  jerome
-# L'affichage de la requête avait été désactivé...
+# L'affichage de la requÃªte avait Ã©tÃ© dÃ©sactivÃ©...
 #
 # Revision 1.9  2002/11/03 23:26:13  jerome
 # Grosse optimisation.
-# Certaines fonctionnalités (lien sur les champs) sont désormais désactivées.
+# Certaines fonctionnalitÃ©s (lien sur les champs) sont dÃ©sormais dÃ©sactivÃ©es.
 #
 # Revision 1.8  2002/09/16 11:27:56  rachel
 # modification des boutons+ajout de zabs=zref+zrela
@@ -61,8 +62,8 @@ except :
 import archeoconf
 import jahtml
 
-elabore = "Elaboré"
-simplifie = "Simplifié"
+elabore = "ElaborÃ©"
+simplifie = "SimplifiÃ©"
 telecharget = "Texte + Tabs"
 telechargev = "Texte + Virgules"
 liste_affichage = [ simplifie, elabore, telecharget, telechargev ]
@@ -75,7 +76,7 @@ def cherche_requete(db, nom) :
                 return resultat[0]
 
 def display_field(doc, form, pkeys, champ, lgmax, enreg) :
-        """Cette fonction ne sert plus à rien, sauf comme aide mémoire."""
+        """Cette fonction ne sert plus Ã  rien, sauf comme aide mÃ©moire."""
         link = None
         if champ in pkeys :
                 if (champ == "coderequete") :
@@ -136,7 +137,7 @@ class PageRequete(archeoconf.Bas) :
                 self.table(border = "10")
                 self.push()
                 self.tr( bgcolor = coultete )
-                self.th("Saisissez votre requête")
+                self.th("Saisissez votre requÃªte")
                 self.pop()
                 self.tr(bgcolor = coultete)
                 self.td(align="center")
@@ -179,7 +180,7 @@ class PageRequete(archeoconf.Bas) :
                 self.pop()
                 dico = { "requete" : "SELECT nomrequete,coderequete FROM requete ORDER BY nomrequete ASC;", "presentation" : elabore }
                 self.td(align = "center", valign = "middle")
-                self.a("Liste des Requêtes", href = self.script_name() + '?' + urllib.urlencode(dico))
+                self.a("Liste des RequÃªtes", href = self.script_name() + '?' + urllib.urlencode(dico))
                 self.br()
                 self.a("Aide", href = archeoconf.help_location, target = "top")
                 self.pop()
@@ -205,8 +206,8 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                        archeoconf.log_message("La requête s'est terminée sans problème", level = "info")
-                        break   # Requête terminée sans problème
+                        archeoconf.log_message("La requete s'est terminee sans probleme", level = "info")
+                        break   # RequÃªte terminÃ©e sans problÃ¨me
                 else :
                         if parent.isAlive() :
                                 heure_courante = time.time()
@@ -222,12 +223,12 @@ def mixed_part_handler(parent, indicateur, timer) :
                                 part.default_header(title = "Veuillez patienter...")
                                 part.body()
                                 part.h3("Veuillez patienter...")
-                                part.insert_text("Durée écoulée: %02.2f secondes" % (time.time() - heure_debut))
+                                part.insert_text("DurÃ©e Ã©coulÃ©e: %02.2f secondes" % (time.time() - heure_debut))
                                 part.pop()
                                 part.insert_text("\n--" + endpart)
                                 part.output()
                         else :
-                                archeoconf.log_message("La requête est tombée en erreur", level = "notice")
+                                archeoconf.log_message("La requÃªte est tombÃ©e en erreur", level = "notice")
         sys.exit(0)
 
 master = None
@@ -237,7 +238,7 @@ max_timer = 30.0                # 30 secondes
 endpart = "rachelvaudron"
 
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
-doc=PageRequete("Requêtes SQL", "Requêtes SQL")
+doc=PageRequete("RequÃªtes SQL", "RequÃªtes SQL")
 ruser = doc.remote_user()
 if ruser:# in archeoconf.superusers :
         db = archeoconf.ArcheoDataBase(debuglevel = 1)
@@ -264,7 +265,7 @@ if ruser:# in archeoconf.superusers :
                                                 quequette = res["coderequete"]
                                                 nomrequete = res["nomrequete"]
                                         else :
-                                                archeoconf.fatalerror_message("La requête %s n'existe pas" % form["nomrequete"].value)
+                                                archeoconf.fatalerror_message("La requÃªte %s n'existe pas" % form["nomrequete"].value)
                         else :
                                 quequette = ""
                         doc.set_redirect(doc.script_name() + '?' + urllib.urlencode({"requete" : quequette, "nomrequete" : nomrequete, "presentation" : form["presentation"].value, "lue": 1 }))
@@ -320,7 +321,7 @@ if ruser:# in archeoconf.superusers :
                                                         esse = 's'
                                                 else :
                                                         esse = ''
-                                                doc.font(`nbrecords` + " enregistrement%s trouvé%s" % (esse, esse), color="red")
+                                                doc.font(`nbrecords` + " enregistrement%s trouvÃ©%s" % (esse, esse), color="red")
                                                 
                                                 if form["presentation"].value != simplifie:
                                                         doc.table(border = "1", lines = nbrecords + 1, cols = len(liste_champs))
@@ -366,12 +367,12 @@ if ruser:# in archeoconf.superusers :
                         else:
                                 doc.push()
                                 doc.pre()
-                                doc.insert_text("Résultat de la requête: " + `resultat`)
+                                doc.insert_text("RÃ©sultat de la requÃªte: " + `resultat`)
                                 doc.pop()
                         if havethreads :
                                 rendezvous.set()
         doc.output()
 else:
-        archeoconf.fatalerror_message("Vous n'avez pas l'autorisation d'accèder à cet écran")
+        archeoconf.fatalerror_message("Vous n'avez pas l'autorisation d'accÃ¨der Ã  cet Ã©cran")
 
 

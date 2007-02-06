@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -48,7 +49,7 @@ page.br()
 #afficheclefs.ajoute_ligne(page, "100%", "1", "10", "4")
 page.tr()
 page.td(align="center")
-page.insert_text(" Contrôles des champs de l'écran industrie  ")
+page.insert_text(" ContrÃ´les des champs de l'Ã©cran industrie  ")
 page.pop()
 
 page.tr()

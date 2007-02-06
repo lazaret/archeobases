@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 
 import os
 import string
@@ -129,18 +131,18 @@ class Carnet(archeodata.Data) :
         def locus_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "4")
                 self.__doc__.push()
-                afficheclefs.champ_liste(self, "locus", "locus", enreg, penreg, "Générique", dontchange = 0)
+                afficheclefs.champ_liste(self, "locus", "locus", enreg, penreg, "GÃ©nÃ©rique", dontchange = 0)
 
         def localite_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste(self, "localite", "localité", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste(self, "localite", "localitÃ©", enreg, penreg, "", dontchange = 0)
 
         def carre_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste(self, "carre", "carré", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste(self, "carre", "carrÃ©", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
 
         def souscarre_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste(self, "souscarre", "sous-carré", enreg, penreg," ", dontchange = 0)
+                afficheclefs.champ_liste(self, "souscarre", "sous-carrÃ©", enreg, penreg," ", dontchange = 0)
 
         def ensemble_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste(self, "ensemble", "ensemble", enreg, penreg, "", dontchange = 0)
@@ -163,13 +165,13 @@ class Carnet(archeodata.Data) :
 
         def nofouille_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "nofouille", "n°fouille", 4, 14, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "nofouille", "nÂ°fouille", 4, 14, " ", enreg, penreg)
 
         def nomusee_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_saisie(self, "nomusee", "n°musee", 7, 17, "", enreg, penreg)
+                afficheclefs.champ_saisie(self, "nomusee", "nÂ°musee", 7, 17, "", enreg, penreg)
 
         def nosopi_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_saisie(self, "nosopi", "n°sopi", 7, 17, "", enreg, penreg)
+                afficheclefs.champ_saisie(self, "nosopi", "nÂ°sopi", 7, 17, "", enreg, penreg)
                 self.__doc__.pop()
 
         def responsable_fouille_base_to_form(self, enreg, penreg = None) :
@@ -235,7 +237,7 @@ class Carnet(archeodata.Data) :
         def trouve_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "5", "4")
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self,"trouve", "objet trouvé le", 10, 20, "", 2, enreg, penreg)
+                afficheclefs.champ_nsaisie(self,"trouve", "objet trouvÃ© le", 10, 20, "", 2, enreg, penreg)
 
         def saisie_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
@@ -278,7 +280,7 @@ class Carnet(archeodata.Data) :
                         return 0
 
         def creer(self) :
-                # si l'objet n'existe pas déjà alors on la crée, sinon on refuse
+                # si l'objet n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis"]) :
                         return (-1, { "zone" : None, "numero" : None, "bis": None})
                 else :

@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -56,7 +57,7 @@ if f.has_key("action") :
                 page.tr()
                 dico = afficheclefs.form_to_enreg(f)
                 afficheclefs.display_zone(photo.__db__, page, dico)
-                 #afficheclefs.display_zone(page, dico)
+                Â #afficheclefs.display_zone(page, dico)
                 afficheclefs.display_numero(page, dico)
                 afficheclefs.display_bis(photo.__db__, page, dico)
                 nbcols = 3
@@ -86,7 +87,7 @@ if f.has_key("action") :
                 page.push()
                 page.tr()
                 page.p()
-                page.td("Légende:", align = "right", valign = "top")
+                page.td("LÃ©gende:", align = "right", valign = "top")
                 page.td(align = "left", valign = "top", colspan = nbcols - 1)
                 page.textarea(name = "legende", rows="4", cols="50", wrap="physical")
                 page.pop()

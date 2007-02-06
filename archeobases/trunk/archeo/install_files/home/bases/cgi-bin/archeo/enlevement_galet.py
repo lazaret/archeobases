@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -179,7 +181,7 @@ class Enlevement_Galet(archeodata.Data) :
                 self.__doc__.pop()
 
 
-################################### En entrée ##############################################
+################################### En entrÃ©e ##############################################
 #########################
 
         def eg_element_base_to_form(self, enreg, penreg = None) :
@@ -188,7 +190,7 @@ class Enlevement_Galet(archeodata.Data) :
 
 
         def eg_longueur_generale_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "eg_longueur_generale", "Lg générale", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "eg_longueur_generale", "Lg gÃ©nÃ©rale", enreg, penreg, "", dontchange = 0)
 
         def eg_profil_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "eg_profil", "profil", enreg, penreg, "", dontchange = 0)
@@ -200,7 +202,7 @@ class Enlevement_Galet(archeodata.Data) :
                 afficheclefs.champ_liste( self, "eg_profondeur", "profondeur", enreg, penreg, " ", dontchange = 0)
 
         #def eg_obliquite_degre_base_to_form(self, enreg, penreg = None) :
-                #afficheclefs.champ_saisie(self, "eg_obliquite_degre", "obliquite °", 3, 3, " ", enreg, penreg)
+                #afficheclefs.champ_saisie(self, "eg_obliquite_degre", "obliquite Â°", 3, 3, " ", enreg, penreg)
         def eg_extremite_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "eg_extremite", "extremite", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
@@ -237,13 +239,13 @@ class Enlevement_Galet(archeodata.Data) :
                 afficheclefs.champ_saisie(self, "eg_largeur", "largeur", 3, 20, "", enreg, penreg)
 
         def eg_epaisseur_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "eg_epaisseur", "épaisseur", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "eg_epaisseur", "Ã©paisseur", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
 
 ########################
         def eg_obliquite_degre_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "eg_obliquite_degre", "obliquite °", 3, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "eg_obliquite_degre", "obliquite Â°", 3, 20, " ", enreg, penreg)
 
         def eg_corde_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "eg_corde", "corde", 3, 20, "", enreg, penreg)
@@ -286,7 +288,7 @@ class Enlevement_Galet(archeodata.Data) :
                                 return (-2, primarykeys)
                         # sinon si son parent existe, on le cree
                         else :
-                                # on insère maintenant le enlevement dans la base
+                                # on insÃ¨re maintenant le enlevement dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

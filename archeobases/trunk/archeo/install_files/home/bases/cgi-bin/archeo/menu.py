@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Archeo  - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -67,7 +68,7 @@ bouton(page, "requetes", "sql")
 if archeoconf.utilisateur_courant in archeoconf.superusers :
         bouton(page, "controle", "controles")
 #        bouton(page, "sauvegarde", "sauvegarde")
-page.a("Déconnexion", href =  "/cgi-bin/archeo.py?base=aucune", target = "_top")
+page.a("DÃ©connexion", href =  "/cgi-bin/archeo.py?base=aucune", target = "_top")
 page.a("Site", href = archeoconf.site_location, target = "_top") 
 page.a("Aide", href =  archeoconf.help_location + "manuel.pdf", target = "_top")
 page.a("Lexique Industrie", href =  archeoconf.lexique_location + "/lexique-industrie.pdf", target = "_top")

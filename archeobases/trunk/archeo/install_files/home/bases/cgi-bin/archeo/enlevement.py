@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -132,11 +134,11 @@ class Enlevement(archeodata.Data) :
                 self.__doc__.pop()
 
 
-################################### En entrée ##############################################
+################################### En entrÃ©e ##############################################
         def e_longueur_generale_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "e_longueur_generale", "Lg générale", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "e_longueur_generale", "Lg gÃ©nÃ©rale", enreg, penreg, " ", dontchange = 0)
 
         def e_profil_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "e_profil", "profil", enreg, penreg, "", dontchange = 0)
@@ -211,7 +213,7 @@ class Enlevement(archeodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                archeoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                archeoconf.fatalerror_message("Impossible de supprimer le rÃ©pertoire [%s]" % rr)
 
                         # on efface l' enlevement
                         self.delete_records(["zone", "numero", "bis", "e_ordre"])
@@ -229,7 +231,7 @@ class Enlevement(archeodata.Data) :
                                 return (-2, primarykeys)
                         # sinon si son parent existe, on le cree
                         else :
-                                # on insère maintenant le enlevement dans la base
+                                # on insÃ¨re maintenant le enlevement dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

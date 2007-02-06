@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -243,7 +245,7 @@ class Biface(archeodata.Data) :
                 self.__doc__.pop()
 
 
-################################### En entrée ##############################################
+################################### En entrÃ©e ##############################################
         def b_forme_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
@@ -253,10 +255,10 @@ class Biface(archeodata.Data) :
                 afficheclefs.champ_saisie(self, "b_type","type", 15, 20, "" , enreg, penreg)
 
         def b_base_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "b_base", "base réservée", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "b_base", "base rÃ©servÃ©e", enreg, penreg, "", dontchange = 0)
 
         def b_surface_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "b_surface", "surface réservée", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "b_surface", "surface rÃ©servÃ©e", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
 
 
@@ -283,7 +285,7 @@ class Biface(archeodata.Data) :
                 afficheclefs.champ_liste( self, "b_bord", "forme bords", enreg, penreg, "", dontchange = 0)
 
         def b_meplat_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "b_meplat", "meplat latéral", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "b_meplat", "meplat latÃ©ral", enreg, penreg, "", dontchange = 0)
         
         def b_extension_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_extension", "extension enlev", enreg, penreg, "", dontchange = 0)
@@ -305,7 +307,7 @@ class Biface(archeodata.Data) :
 ###########################
         def b_arete_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "b_arete", "arete latérale", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "b_arete", "arete latÃ©rale", enreg, penreg, " ", dontchange = 0)
 
         def b_retouche_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_retouche", "ret secondaire", enreg, penreg, "", dontchange = 0)
@@ -671,7 +673,7 @@ class Biface(archeodata.Data) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant la industrie dans la base
+                        # on insÃ¨re maintenant la industrie dans la base
                         z = self.__form__["zone"].value
                         n = self.__form__["numero"].value
                         b = self.__form__["bis"].value

@@ -1,15 +1,18 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
-# Collection   - (c) 2006 Rachel VAUDRON <rachel@cleo.unice.fr>
+#
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
+
 # modifier m_numero_individu en m_individu
 # ajouter m_ville, m_groupe, m_nom_scientifique, m_holotype_espece
 
@@ -29,7 +32,7 @@ class Materiel(collectiondata.Data) :
         __color__ = collectionconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
-        __champs__ = { 
+        __champs__ = {
                         "identifiant"           : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
                         "m_type_materiel"       : { "type" : "text", "default" : "",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
@@ -50,13 +53,13 @@ class Materiel(collectiondata.Data) :
                         "m_dimensions"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_echelle"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_largeur_coupe"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        
+
                         "m_batiment"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_meuble"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_piece"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_tiroir"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_etagere"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        
+
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_localite"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_commune"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -68,11 +71,11 @@ class Materiel(collectiondata.Data) :
                         "m_periode_culturelle"  : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_periode_geologique"  : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        
+
                         "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_bibliographie"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_mots_clefs"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        
+
                         "m_numero_individu"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_groupe"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_classe"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -100,8 +103,8 @@ class Materiel(collectiondata.Data) :
         __listenfants__   = []
         __listeclefs__    = ["identifiant"]
         __vraiparent__    = "materiel"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nombre_exemplaires","m_numero_inventaire", \
@@ -131,7 +134,7 @@ class Materiel(collectiondata.Data) :
                         "m_age_individu","m_sexe_individu","m_donnees_individu","m_representation_squel", \
                         "m_description_anatomique","m_observations_anatomique","m_nature","m_date_modif","m_saisie","liens"]
 
-                        
+
         __orderby__ = " ORDER BY identifiant ASC;"
 
         #
@@ -143,22 +146,22 @@ class Materiel(collectiondata.Data) :
                         return -1
                 else :
                         return 0
-                        
+
         def champ_verify(self, fieldname, value) :
                 # si la longueur de la valeur issue du formulaire est > a la longueur
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"])*2) :
                         return -1       # erreur
-                else :          
+                else :
                         return 0
-                        
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
                         if self.__champs__[champ]["longueur"] :
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                collectiondata.Data.__init__(self, parent)                                        
-        
+                collectiondata.Data.__init__(self, parent)
+
 ################################### En entrée ###########################
         def identifiant_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -168,7 +171,7 @@ class Materiel(collectiondata.Data) :
                 self.__doc__.insert_text(" ")
                 afficheclefs.display_identifiant(self, enreg, penreg, 1)
                 self.__doc__.pop()
- 
+
 ################################### En entrée ###########################
         ##################### PARTIE SUPPORT
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
@@ -176,308 +179,308 @@ class Materiel(collectiondata.Data) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 afficheclefs.champ_liste( self, "m_type_materiel", "Type Materiel", enreg, penreg, "SUPPORT", dontchange = 0)
                 self.__doc__.pop()
-                
+
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "m_type_support", "Type Support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                                                
+
         def m_numero_inventaire_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_numero_inventaire", "Numero", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
-        
+
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nombre Exemplaires", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_titre_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_titre", "Titre", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_donnateur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_donnateur", "Donnateur", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_depot_original_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_depot_original", "Depot Original", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_auteur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_auteur", "Auteur(s)", 2, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_date_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_date", "Date Copie", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_date_acquisition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_date_acquisition", "Date Acquisition", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
-        
+
         def m_editeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_editeur", "Editeur", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_edition", "Edition/Production", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-        
+
         def m_date_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_date_edition", "Date Edition", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_diffusion_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_diffusion", "Diffusion", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-        
+
         def m_duree_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_duree", "Duree", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_support", "Support", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
-        
+
         def m_dimensions_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_dimensions", "Dimensions", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_echelle_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_echelle", "Echelle", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_largeur_coupe_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_largeur_coupe", "Largeur Coupe", 15, 15, " ", enreg, penreg)
                 self.__doc__.pop()
-                
-        ######### PARTIE LOCALISATION                                        
+
+        ######### PARTIE LOCALISATION
         def m_batiment_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 afficheclefs.champ_liste( self, "m_batiment", "Batiment", enreg, penreg, "LOCALISATION", dontchange = 0)
                 self.__doc__.pop()
-                                                
+
         def m_piece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "m_piece", "Piece", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                
-        def m_meuble_base_to_form(self, enreg, penreg = None):        
+
+        def m_meuble_base_to_form(self, enreg, penreg = None):
                 self.__doc__.push()
                 afficheclefs.champ_saisie( self, "m_meuble", "Meuble", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_tiroir_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_tiroir", "Tiroir", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_etagere_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_etagere", "Etagere", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                
-        ############## PARTIE SITE                                        
+
+        ############## PARTIE SITE
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 afficheclefs.champ_saisie(self, "m_nom_site", "Nom Site", 80, 80, "SITE", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_localite_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_localite", "Localite", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_ville_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_ville", "Ville", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_commune_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_commune", "Commune", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_region_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_region", "Region", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_pays_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_pays", "Pays", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_inventeur", "Inventeur", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_date_decouverte", "Date Decouverte", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_periode_culturelle_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_periode_culturelle", "Periode Culturelle", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_periode_geologique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_periode_geologique", "Periode Geologique", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_age_absolu", "Age Absolu", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_observations_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_bibliographie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_bibliographie", "Bibliographie", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
-                                                
-        ##################### INDIVIDU                                        
+
+
+        ##################### INDIVIDU
         def m_numero_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_numero_individu", "Numero Individu", 80, 80, "INDIVIDU", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_classe_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_classe", "Classe", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_ordre_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_ordre", "Ordre", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_famille_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_famille", "Famille", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_genre_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_genre", "Genre", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_espece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_espece", "Espece", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_holotype_espece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_holotype_espece", "Holotype Espece", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nom_familier", "Nom Familier", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_nom_scientifique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nom_scientifique", "Nom Scientifique", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-        
+
         def m_synonymes_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_synonymes", "Synonyme(s)", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_nom_commun_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nom_commun", "Nom Commun", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_age_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_age_individu", "Age Individu", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_sexe_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "m_sexe_individu", "Sexe Individu", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                
+
         def m_donnees_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_donnees_individu", "Autres donnees", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_representation_squel_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "m_representation_squel", "Rep. Squelette", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                
+
         def m_description_anatomique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_description_anatomique", "Desc. Anatomique", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_observations_anatomique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_observations_anatomique", "Obs. Anatomique", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_nature_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "m_nature", "Nature", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                
+
         def m_date_modif_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
                         afficheclefs.champ_saisie(self,"m_date_modif", "Modif le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
-                
+
         def m_saisie_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
                         afficheclefs.champ_saisie(self,"m_saisie", "Fiche saisie le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
-                
+
         def liens_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         dico = { "action" : "Chercher" }
-                        query = "(SELECT identifiant_2 FROM association" 
+                        query = "(SELECT identifiant_2 FROM association"
                         query = query + " WHERE identifiant_1 =" + self.__db__.quote(enreg["identifiant"], "text") + ")"
                         query = query + "  UNION "
-                        query = query + " (SELECT identifiant_1 FROM association"   
-                        query = query + " WHERE identifiant_2 =" + self.__db__.quote(enreg["identifiant"], "text") + ");" 
+                        query = query + " (SELECT identifiant_1 FROM association"
+                        query = query + " WHERE identifiant_2 =" + self.__db__.quote(enreg["identifiant"], "text") + ");"
                         valeur = self.__db__.query(query)
                         valeur = valeur.dictresult()
                         self.__doc__.push()
@@ -515,12 +518,12 @@ class Materiel(collectiondata.Data) :
                                         link = collectionconf.script_location("modbiblio") + '?' + urllib.urlencode(dico)
                                 else:
                                         link = collectionconf.script_location("modmateriel") + '?' + urllib.urlencode(dico)
-                                        
+
                                 if link :
                                         self.__doc__.a(valeur[k]['identifiant_2'], href = link)
                                 self.__doc__.pop()
                                 self.__doc__.pop()
-                                
+
                 self.__doc__.pop()
 #########################################################################
 #                                PHOTOS
@@ -570,7 +573,7 @@ class Materiel(collectiondata.Data) :
                                 self.__doc__.textarea(name = "legende", rows="4", cols="80", wrap="physical")
                                 if photo["legende"] == None:
                                         self.__doc__.insert_text("&nbsp;")
-                                else :  
+                                else :
                                         self.__doc__.insert_text(photo["legende"])
                                 self.__doc__.pop()
 

@@ -1,11 +1,11 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
-
-# Collection   - (c) 2006 Rachel VAUDRON <rachel@cleo.unice.fr>
+#
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -28,7 +28,7 @@ class Audio_video(collectiondata.Data) :
         __color__ = collectionconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
-        __champs__ = { 
+        __champs__ = {
                         "identifiant"           : { "type" : "text",   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
                         "m_type_materiel"       : { "type" : "text", "default" : "AUDIO_VIDEO",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
@@ -72,22 +72,22 @@ class Audio_video(collectiondata.Data) :
                         return -1
                 else :
                         return 0
-                        
+
         def champ_verify(self, fieldname, value) :
                 # si la longueur de la valeur issue du formulaire est > a la longueur
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"])*2) :
                         return -1       # erreur
-                else :          
+                else :
                         return 0
-                        
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
                         if self.__champs__[champ]["longueur"] :
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                collectiondata.Data.__init__(self, parent)                                        
-        
+                collectiondata.Data.__init__(self, parent)
+
 ################################### En entrée ###########################
         def identifiant_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -97,7 +97,7 @@ class Audio_video(collectiondata.Data) :
                 self.__doc__.insert_text(" ")
                 afficheclefs.display_identifiant(self, enreg, penreg, 1)
                 self.__doc__.pop()
- 
+
 ################################### En entrée ###########################
         ##################### PARTIE SUPPORT
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
@@ -105,84 +105,84 @@ class Audio_video(collectiondata.Data) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 afficheclefs.champ_liste( self, "m_type_materiel", "Type Materiel", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                
+
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "m_type_support", "Type Support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                                                
+
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nom_familier", "Nom Familier", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def m_date_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_date", "Date", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_inventeur", "Auteur", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_observations_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_support", "Support", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_edition", "Edition/Production", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_diffusion_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_diffusion", "Diffusion", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_duree_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_duree", "Duree", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb Exemplaires Sup.", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
-                                                
+
         def m_date_modif_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
                         afficheclefs.champ_saisie(self,"m_date_modif", "Modif le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
                 self.__doc__.pop()
-                
+
         def m_saisie_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
                         afficheclefs.champ_saisie(self,"m_saisie", "Fiche saisie le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
                 self.__doc__.pop()
-                
+
         def liens_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         dico = { "action" : "Chercher" }
-                        query = "(SELECT identifiant_2 FROM association" 
+                        query = "(SELECT identifiant_2 FROM association"
                         query = query + " WHERE identifiant_1 =" + self.__db__.quote(enreg["identifiant"], "text") + ")"
                         query = query + "  UNION "
-                        query = query + " (SELECT identifiant_1 FROM association"   
-                        query = query + " WHERE identifiant_2 =" + self.__db__.quote(enreg["identifiant"], "text") + ");" 
+                        query = query + " (SELECT identifiant_1 FROM association"
+                        query = query + " WHERE identifiant_2 =" + self.__db__.quote(enreg["identifiant"], "text") + ");"
                         valeur = self.__db__.query(query)
                         valeur = valeur.dictresult()
                         self.__doc__.push()
@@ -220,14 +220,14 @@ class Audio_video(collectiondata.Data) :
                                         link = collectionconf.script_location("modbiblio") + '?' + urllib.urlencode(dico)
                                 else:
                                         link = collectionconf.script_location("modmateriel") + '?' + urllib.urlencode(dico)
-                                        
+
                                 if link :
                                         self.__doc__.a(valeur[k]['identifiant_2'], href = link)
                                 self.__doc__.pop()
                                 self.__doc__.pop()
-                                
+
                 #self.__doc__.pop()
-                
+
 #########################################################################
 #                                PHOTOS
 #########################################################################
@@ -276,7 +276,7 @@ class Audio_video(collectiondata.Data) :
                                 self.__doc__.textarea(name = "legende", rows="4", cols="80", wrap="physical")
                                 if photo["legende"] == None:
                                         self.__doc__.insert_text("&nbsp;")
-                                else :  
+                                else :
                                         self.__doc__.insert_text(photo["legende"])
                                 self.__doc__.pop()
 
@@ -337,7 +337,7 @@ class Audio_video(collectiondata.Data) :
                 self.__db__.query(delete_association)
                 delete_association = "DELETE FROM association WHERE identifiant_2='" + i + "';"
                 self.__db__.query(delete_association)
-                
+
                 i = "I" + self.__form__["identifiant"].value
                 rr = collectionconf.image_fullname(i)
                 try :

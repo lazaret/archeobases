@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # archeoo - (c)  1999-2003 Rachel VAUDRON <rachel@cleo.unice.fr>
 #

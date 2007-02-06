@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # archeo - (c)  1999-2003 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -24,7 +25,7 @@ sys.path.append("../cgi")
 # RECUPERATION DU NOM DE LA NOUVELLE BASE ET CONNEXION A template1
 #=================================================================
 
-nom_base = raw_input('Nom de la base sur laquelle vous souhaitez créer les droits:')
+nom_base = raw_input('Nom de la base sur laquelle vous souhaitez crÃ©er les droits:')
 db = database.DataBase(database=nom_base, username = "postgres")
 
 print(" CREATION DES DROITS SUR LES TABLES DE LA BASE")
@@ -59,8 +60,7 @@ for i in range( 1, len(res_table)):
         db.query(grant_public)
 
         
-grant_public = 
-"GRANT SELECT ON " + res_table[i]["relname"] + " TO public;"  
+grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public;"  
         db.query(grant_public)
 
 #######GRANT SUR TABLES CONTROLE

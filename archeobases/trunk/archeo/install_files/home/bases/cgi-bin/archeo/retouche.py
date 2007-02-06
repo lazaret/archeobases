@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -170,7 +172,7 @@ class Retouche(archeodata.Data) :
                 self.__doc__.pop()
 
 
-################################### En entrée ##############################################
+################################### En entrÃ©e ##############################################
         def r_type_base_to_form(self, enreg, penreg = None) :
                 #afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
@@ -278,7 +280,7 @@ class Retouche(archeodata.Data) :
                                 return (-2, primarykeys)
                         # sinon si son parent existe, on le cree
                         else :
-                                # on insère maintenant le retouche dans la base
+                                # on insÃ¨re maintenant le retouche dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

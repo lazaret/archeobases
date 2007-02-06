@@ -1,17 +1,17 @@
-#!  /usr/bin/python
+#! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# collection  - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 import sys
 import time
 import string
@@ -236,7 +236,7 @@ if ruser:# in collectionconf.superusers :
                         quequette = string.strip(string.replace(form["requete"].value, "\r", ""))
                         #doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", requete = quequette)
                         doc.ecran_requetes(collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor, requete = quequette)
-                        
+
                         # la premiere alerte doit etre lancee assez tot pour
                         # que l'utilisateur ne s'impatiente pas
                         # mais assez tard pour qu'une erreur sur la requete ait ete recuperee
@@ -279,7 +279,7 @@ if ruser:# in collectionconf.superusers :
                                                 else :
                                                         esse = ''
                                                 doc.font(`nbrecords` + " enregistrement%s trouvé%s" % (esse, esse), color="red")
-                                                
+
                                                 if form["presentation"].value != simplifie:
                                                         doc.table(border = "1", lines = nbrecords + 1, cols = len(liste_champs))
                                                         doc.push()
@@ -293,7 +293,7 @@ if ruser:# in collectionconf.superusers :
                                                                         value = enregistrement[i]
                                                                         if type(value) == type("") :
                                                                                 align = "left"
-                                                                        else :        
+                                                                        else :
                                                                                 align = "right"
                                                                         line = line + '<td align="%s" bgcolor="%s">%s</td>\n' % (align, collectionconf.bas1_bgcolor, str(value))
                                                                 doc.insert_text("<tr>%s</tr>\n" % line)

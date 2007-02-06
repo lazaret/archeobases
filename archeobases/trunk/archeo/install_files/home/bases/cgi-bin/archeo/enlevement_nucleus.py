@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 
 import os
 import string
@@ -129,7 +131,7 @@ class Enlevement_Nucleus(archeodata.Data) :
                 self.__doc__.pop()
 
 
-################################### En entrée ##############################################
+################################### En entrÃ©e ##############################################
 
         def en_longueur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -143,7 +145,7 @@ class Enlevement_Nucleus(archeodata.Data) :
 ##################################
         def en_obliquite_degre_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "en_obliquite_degre", "obliquite °", 3, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "en_obliquite_degre", "obliquite Â°", 3, 20, " ", enreg, penreg)
 
         def en_corde_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "en_corde", "corde", 3, 20, "", enreg, penreg)
@@ -161,7 +163,7 @@ class Enlevement_Nucleus(archeodata.Data) :
                 afficheclefs.champ_liste( self, "en_frappe", "frappe", enreg, penreg, "", dontchange = 0)
                 
         def en_numero_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_saisie(self, "en_numero", "numéro", 2, 20, "", enreg, penreg)
+                afficheclefs.champ_saisie(self, "en_numero", "numÃ©ro", 2, 20, "", enreg, penreg)
                 self.__doc__.pop()
  
 ###############################
@@ -201,7 +203,7 @@ class Enlevement_Nucleus(archeodata.Data) :
                                 return (-2, primarykeys)
                         # sinon si son parent existe, on le cree
                         else :
-                                # on insère maintenant le enlevement dans la base
+                                # on insÃ¨re maintenant le enlevement dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

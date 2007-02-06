@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # Archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -33,7 +34,7 @@ import archeoconf
 import afficheclefs
 import archeodata
 
-doc = archeoconf.Bas("Modification des paramètres", "Modification d'une zone")
+doc = archeoconf.Bas("Modification des paramÃ¨tres", "Modification d'une zone")
 db = archeoconf.ArcheoDataBase()
 form = cgi.FieldStorage()
 doc.br()

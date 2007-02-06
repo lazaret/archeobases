@@ -1,8 +1,11 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Fichier de configuration
 #
 # Archeo - (c)  1999 Jerome ALET
-#                       2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+#               2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+#		2006 Bertrand Lecervoisier
 #
 # You're welcome to redistribute this software under the
 # terms of the GNU General Public Licence version 2.0
@@ -16,18 +19,21 @@
 # modification des boutons+ajout de zabs=zref+zrela
 # ----------------------------------------------------------------------
 #
+# Revision 1.21 Debugages mineurs + mail admin
+# Revision 1.2 2006/11/01 Passage en unicode
+
 # Revision 1.18  2002/07/08 16:43:58  jerome
-# chaine d'indentation reduite à la portion congrue
+# chaine d'indentation reduite Ã  la portion congrue
 #
 # Revision 1.17  2002/03/04 08:23:49  jerome
 # Legere correction dans les chemins
 #
 # Revision 1.16  2002/03/04 00:16:48  jerome
-# Ajout d'un fichier de configuration à placer dans /etc
-# Ajout d'un programme préliminaire à placer dans /cgi-bin (un lien symbolique
+# Ajout d'un fichier de configuration Ã  placer dans /etc
+# Ajout d'un programme prÃ©liminaire Ã  placer dans /cgi-bin (un lien symbolique
 # est parfait) : ce programme permet de choisir la base en fonction de
-# /etc/archeo.conf et de positionner un cookie correspondant à cette base.
-# plein de contrôles ont été ajoutés pour plus de sécurité.
+# /etc/archeo.conf et de positionner un cookie correspondant Ã  cette base.
+# plein de contrÃ´les ont Ã©tÃ© ajoutÃ©s pour plus de sÃ©curitÃ©.
 #
 # Revision 1.15  2002/01/14 11:15:16  rachel
 # modif pour changer l'arborescence industrie->eclat->outil en ind->eclat et ind->outil
@@ -55,12 +61,12 @@
 
 import string
 
-#### Début de la partie configurable ####
+#### DÃ©but de la partie configurable ####
 
 #
 # nom de l'application
-author_name  = "Rachel VAUDRON"
-author_email = "rachel@lazaret.unice.fr"
+author_name  = "Rachel Vaudron & Bertrand Lecervoisier"
+author_email = "root@lazaret.unice.fr"
 
 #
 # commandes popur changer la taille des images
@@ -72,12 +78,12 @@ mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160
 
 #
 # Message de copyright
-copyright_msg       = "ARCHEO &copy; 2000-2002 " + author_name
+copyright_msg       = "ARCHEO &copy; 2000-2006 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
 #
-# Couleurs de fond des trois parties de l'écran ou None
+# Couleurs de fond des trois parties de l'Ã©cran ou None
 menu_bgcolor   = "#FFFFFF" #GRIS
 gauche_bgcolor = "#E1DCD6"#"#CCCCCC" #GRIS menu carnet
 bas_bgcolor    = "#E1DCD6"#"#CCCCCC" #GRIS
@@ -89,13 +95,13 @@ lien_parent_bgcolor = "#FF0000" #JAUNE
 lien_enfant_bgcolor = "#3333FF" #ROUGE
 
 #
-# Images de fond des trois parties de l'écran ou None
+# Images de fond des trois parties de l'Ã©cran ou None
 menu_background   = "#FFFFFF"#"logo_lazaret.jpg"#"spirebleue.jpg"#"spirale.jpg"
 gauche_background = "logo_lazaret_grave.jpg"#"spirebleue.jpg"#"spirale.jpg"
 bas_background    = "logo_lazaret_clair_moyen.jpg"#"spirebleue.jpg"#"spirale.jpg"
 
 #
-# couleurs de fond des formulaires de chaque partie de l'écran
+# couleurs de fond des formulaires de chaque partie de l'Ã©cran
 menuform_bgcolor      = "#CCCAE5" #violet
 basform_bgcolorleft   = "#FFFFCC" #jaune partie centrale du formulaire
 basform_bgcolorright  = "#DFDFDF"#CCCAE5" #gris menu_droite
@@ -121,7 +127,7 @@ font_size = -1
 #### Fin de la partie configurable ####
 
 #
-# Rien ne devrait être modifié après cette ligne
+# Rien ne devrait Ãªtre modifiÃ© aprÃ¨s cette ligne
 import sys
 import os
 import time
@@ -207,13 +213,13 @@ if base_courante not in config["bases"].keys() :
 if (utilisateur_courant not in config["bases"][base_courante]["admins"]) \
    and (utilisateur_courant not in config["bases"][base_courante]["users"]) \
    and (utilisateur_courant not in config["bases"][base_courante]["visitors"]) :
-        fatalerror_message("Accès non autorisé !!!")
+        fatalerror_message("AccÃ¨s non autorisÃ© !!!")
 
 # Quels sont les superutilisateurs de cette base ?
 superusers   = config["bases"][base_courante]["admins"]
 
 #
-# Emplacement des programmes et données de l'application
+# Emplacement des programmes et donnÃ©es de l'application
 app_location      = "/cgi-bin/archeo/"
 decors_location   = "/archeo/decors/"
 images_location   =  "/archeo/" + base_courante + "/image/"
@@ -260,7 +266,7 @@ def get_imagesize(filename) :
                 s = image.size
                 image.fp.close()
         except IOError, msg:
-                log_message("Problème d'accès au fichier %s : %s" % (filename, msg))
+                log_message("ProblÃ¨me d'accÃ¨s au fichier %s : %s" % (filename, msg))
                 s = 0,0
         return s
 
@@ -285,7 +291,7 @@ def getparent() :
                         return p
 
 #
-# Classes spécifiques
+# Classes spÃ©cifiques
 class ArcheoDataBase(database.DataBase) :
         def __init__(self, username = utilisateur_courant, debuglevel = 1) :
                 database.DataBase.__init__(self, database = base_courante, username = username, debuglevel = debuglevel)

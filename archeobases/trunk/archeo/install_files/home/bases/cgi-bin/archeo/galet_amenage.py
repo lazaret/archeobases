@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -207,7 +209,7 @@ class Galet_amenage(archeodata.Data) :
                 afficheclefs.display_x_ordre(self, "ga_ordre", 0, 15, enreg, penreg)
                 self.__doc__.pop()
 
-################################### En entrée 
+################################### En entrÃ©e 
         def ga_type_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
@@ -224,7 +226,7 @@ class Galet_amenage(archeodata.Data) :
         def ga_nba_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "ga_nba", "nb A", 3, 20, "Nb enlèvements", enreg, penreg)
+                afficheclefs.champ_saisie(self, "ga_nba", "nb A", 3, 20, "Nb enlÃ¨vements", enreg, penreg)
         
         def ga_nbb_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "ga_nbb", "nb B", 3, 20, "", enreg, penreg)
@@ -239,7 +241,7 @@ class Galet_amenage(archeodata.Data) :
                 afficheclefs.champ_liste( self, "ga_forme", "forme", enreg, penreg, " ", dontchange = 0)
 
         def ga_arete_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "ga_arete", "arête", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "ga_arete", "arÃªte", enreg, penreg, "", dontchange = 0)
 
         def ga_orientation_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "ga_orientation", "orientation", enreg, penreg, "", dontchange = 0)
@@ -248,7 +250,7 @@ class Galet_amenage(archeodata.Data) :
 ########################
         def ga_obliquite_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "ga_obliquite", "obliquité", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "ga_obliquite", "obliquitÃ©", enreg, penreg, " ", dontchange = 0)
 
         def ga_retouche_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "ga_retouche", "retouches", enreg, penreg, "", dontchange = 0)
@@ -375,7 +377,7 @@ class Galet_amenage(archeodata.Data) :
 #
         def ga_chx_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "ga_chx", "CHx", 3, 20, "Degré d'épannelage", enreg, penreg)
+                afficheclefs.champ_saisie(self, "ga_chx", "CHx", 3, 20, "DegrÃ© d'Ã©pannelage", enreg, penreg)
 
         def ga_chxx_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "ga_chxx", "CHxx", 3, 20, "", enreg, penreg)
@@ -435,18 +437,18 @@ class Galet_amenage(archeodata.Data) :
                         return 0
 
         def creer(self) :
-                # si le galet n'existe pas déjà alors on la crée, sinon on refuse
+                # si le galet n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis", "ga_ordre"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None, "ga_ordre":None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant le galet dans la base
+                        # on insÃ¨re maintenant le galet dans la base
                         # sauf si l'industrie n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "industrie") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insère maintenant le ga dans la base
+                                # on insÃ¨re maintenant le ga dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

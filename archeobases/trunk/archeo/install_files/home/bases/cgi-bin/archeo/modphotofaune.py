@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 # archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -92,7 +93,7 @@ if f.has_key("action") :
                 page.push()
                 page.tr()
                 page.p()
-                page.td("Légende:", align = "right", valign = "top")
+                page.td("LÃ©gende:", align = "right", valign = "top")
                 page.td(align = "left", valign = "top", colspan = nbcols - 1)
                 page.textarea(name = "legende", rows="4", cols="40", wrap="physical")
                 page.pop()

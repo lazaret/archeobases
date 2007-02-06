@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -153,10 +155,10 @@ class Os(archeodata.Data) :
                 afficheclefs.display_bis( self, enreg, penreg)
 
         def o_serie_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_x_serie(self, "o_serie", "10", enreg, penreg)
+                afficheclefs.display_x_serie(self, "o_serie", enreg, penreg)
                 self.__doc__.pop()
 
-################################### En entrÈe ########################################
+################################### En entr√©e ########################################
         def o_m1_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "o_m1", "M1", 5, 20," ", enreg,  penreg)
@@ -231,23 +233,23 @@ class Os(archeodata.Data) :
                 return 0
 
         def supprimer(self) :
-                # on efface la os sur Èclat
+                # on efface la os sur √©clat
                 self.delete_records(["zone", "numero", "bis", "o_serie"])
                 return 0
 
         def creer(self) :
-                # si la os n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la os n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis", "o_serie"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None, "o_ordre": None,"o_serie" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la os dans la base
+                        # on ins√®re maintenant la os dans la base
                         # sauf si la faune n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "faune") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la os dans la base
+                                # on ins√®re maintenant la os dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

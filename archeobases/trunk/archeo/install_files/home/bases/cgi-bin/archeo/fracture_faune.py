@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -110,7 +112,7 @@ class Fracture_Faune(archeodata.Data) :
                 afficheclefs.display_bis( self, enreg, penreg)
                 self.__doc__.pop()
 
-################################### En entrÈe ########################################
+################################### En entr√©e ########################################
         def ff_localisation1_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "ff_localisation1", "localisation1", enreg, penreg, "", dontchange = 0)
@@ -169,23 +171,23 @@ class Fracture_Faune(archeodata.Data) :
                 return 0
 
         def supprimer(self) :
-                # on efface la fracture_faune sur Èclat
+                # on efface la fracture_faune sur √©clat
                 self.delete_records(["zone", "numero", "bis"])
                 return 0
 
         def creer(self) :
-                # si la fracture_faune n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la fracture_faune n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None,}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la fracture_faune dans la base
+                        # on ins√®re maintenant la fracture_faune dans la base
                         # sauf si la faune n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "faune") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la fracture_faune dans la base
+                                # on ins√®re maintenant la fracture_faune dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

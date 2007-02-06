@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -211,17 +213,17 @@ class Hachereau(archeodata.Data) :
 
 
 
-################################### En entrÈe ##############################################        
+################################### En entr√©e ##############################################        
         def h_type_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "h_type","type", 15, 20, " " , enreg, penreg)
 
         def h_base_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "h_base", "base rÈservÈe", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "h_base", "base r√©serv√©e", enreg, penreg, "", dontchange = 0)
 
         def h_surface_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "h_surface", "surface rÈservÈe", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "h_surface", "surface r√©serv√©e", enreg, penreg, "", dontchange = 0)
 
         def h_amenagement_bord_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "h_amenagement_bord", "amenag bord", enreg, penreg, "", dontchange = 0)
@@ -238,7 +240,7 @@ class Hachereau(archeodata.Data) :
                 afficheclefs.champ_liste( self, "h_bord", "forme bords", enreg, penreg, "", dontchange = 0)
 
         def h_meplat_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "h_meplat", "meplat latÈral", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "h_meplat", "meplat lat√©ral", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
         
 ###########################
@@ -259,7 +261,7 @@ class Hachereau(archeodata.Data) :
 ###########################
         def h_arete_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "h_arete", "arete latÈrale", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "h_arete", "arete lat√©rale", enreg, penreg, " ", dontchange = 0)
 
         def h_retouche_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "h_retouche", "ret secondaire", enreg, penreg, "", dontchange = 0)
@@ -490,27 +492,27 @@ class Hachereau(archeodata.Data) :
                 return 0
 
         def supprimer(self) :
-                # s'il existe des outil sur hachereau associe ‡ cet Èclat
+                # s'il existe des outil sur hachereau associe √† cet √©clat
                 #if self.exist(["zone", "numero", "bis"], table = "outil"):
                 #        return -1
                 #else :
-                        # on efface l'Èclat
+                        # on efface l'√©clat
                         self.delete_records(["zone", "numero", "bis"])
                         return 0
 
         def creer(self) :
-                # si la industrie n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la industrie n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la industrie dans la base
+                        # on ins√®re maintenant la industrie dans la base
                         # sauf si la bis n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "industrie") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la industrie dans la base
+                                # on ins√®re maintenant la industrie dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

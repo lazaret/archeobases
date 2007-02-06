@@ -1,4 +1,6 @@
-4#! /usr/bin/python
+#! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -163,7 +165,7 @@ class Industrie(archeodata.Data) :
                 if enreg != None:
                         afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                         liste_clefs = ["zone", "numero", "bis"]
-                        self.champ_liste_table("carnet", liste_clefs, "nature", "nature", enreg, penreg, "Rappel des données du carnet", dontchange = None)
+                        self.champ_liste_table("carnet", liste_clefs, "nature", "nature", enreg, penreg, "Rappel des donnÃ©es du carnet", dontchange = None)
                         
         def x_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
@@ -252,7 +254,7 @@ class Industrie(archeodata.Data) :
                         self.champ_saisie_table( "carnet",liste_clefs, "epaisseur", "e", 6, 20, "", enreg, penreg)
                 self.__doc__.pop()
 
-################################### En entrée ###########################
+################################### En entrÃ©e ###########################
         def oa_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
@@ -277,10 +279,10 @@ class Industrie(archeodata.Data) :
         def i_objet_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "i_objet", "objet", enreg, penreg, "Généralités", dontchange = 0)
+                afficheclefs.champ_liste( self, "i_objet", "objet", enreg, penreg, "GÃ©nÃ©ralitÃ©s", dontchange = 0)
         
         def i_matiere_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_liste( self, "i_matiere", "matière", enreg, penreg, "", dontchange = 0)
+                afficheclefs.champ_liste( self, "i_matiere", "matiÃ¨re", enreg, penreg, "", dontchange = 0)
 
 
         def i_support_base_to_form(self, enreg, penreg = None) :
@@ -361,12 +363,12 @@ class Industrie(archeodata.Data) :
                                 #self.__doc__.pop()     
                                 self.__doc__.tr(align="center")
                                 self.__doc__.insert_text("Code composite:")
-                                self.__doc__.insert_text("à calculer")
+                                self.__doc__.insert_text("Ã  calculer")
                                 self.__doc__.tr(align="center")
                                 self.__doc__.td(colspan="4")
                                 self.__doc__.table(border = "5", cellspading = "0", cellspacing = "0", bgcolor = archeoconf.basform_bgcolorright )
                                 #self.__doc__.caption("Composites")
-                                self.__doc__.th("N° Ordre")
+                                self.__doc__.th("NÂ° Ordre")
                                 self.__doc__.th("Code outil")
 
                                 for enreg in res:
@@ -546,25 +548,25 @@ class Industrie(archeodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                archeoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                archeoconf.fatalerror_message("Impossible de supprimer le rÃ©pertoire [%s]" % rr)
 
                         # on efface l' industrie
                         self.delete_records(["zone", "numero", "bis"])
                         return 0
 
         def creer(self) :
-                # si la industrie n'existe pas déjà alors on la crée, sinon on refuse
+                # si la industrie n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis"], table = "industrie") :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant l'industrie dans la base
+                        # on insÃ¨re maintenant l'industrie dans la base
                         # sauf si le carnet n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "carnet") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insère maintenant la industrie dans la base
+                                # on insÃ¨re maintenant la industrie dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

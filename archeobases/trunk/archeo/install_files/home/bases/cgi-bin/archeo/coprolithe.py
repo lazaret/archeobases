@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -186,7 +188,7 @@ class Coprolithe(archeodata.Data) :
                         self.champ_nsaisie_table("carnet",  liste_clefs, "couche", "couche", 1, 20, "", 1, enreg, penreg)
                 self.__doc__.pop()
 
-################################### En entrÈe ###########################
+################################### En entr√©e ###########################
         def c_association_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "c_association", "association", 4, 20, " ", 1, enreg, penreg)
@@ -198,7 +200,7 @@ class Coprolithe(archeodata.Data) :
                 afficheclefs.champ_nsaisie(self, "c_fragmentation", "fragmentation", 4, 20, "Morphologie", 1, enreg, penreg)
                 
         def c_sediment_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_nliste( self, "c_sediment", "sÈdiment", enreg, penreg, "", "1",dontchange = 0)
+                afficheclefs.champ_nliste( self, "c_sediment", "s√©diment", enreg, penreg, "", "1",dontchange = 0)
                 
         def c_couleur_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste( self, "c_couleur", "couleur", enreg, penreg, "", "1",dontchange = 0)
@@ -249,7 +251,7 @@ class Coprolithe(archeodata.Data) :
          #######
         def c_retrecissement_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "c_retrecissement", "rÈtrÈcissement", 4, 20, " ", 1, enreg, penreg)
+                afficheclefs.champ_nsaisie(self, "c_retrecissement", "r√©tr√©cissement", 4, 20, " ", 1, enreg, penreg)
                 
         def c_nombre_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "c_nombre", "nombre", 3, 20, "", enreg, penreg)
@@ -258,7 +260,7 @@ class Coprolithe(archeodata.Data) :
           #######
         def c_extremite_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "c_extremite", "extrÈmitÈ", 4, 20, " ", 1, enreg, penreg)
+                afficheclefs.champ_nsaisie(self, "c_extremite", "extr√©mit√©", 4, 20, " ", 1, enreg, penreg)
                 
         def c_ext1_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste( self, "c_ext1", "ext1", enreg, penreg, "", "1",dontchange = 0)
@@ -296,10 +298,10 @@ class Coprolithe(archeodata.Data) :
          #######
         def c_element_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "c_element", "ÈlÈment", 4, 20, " ", 1, enreg, penreg)
+                afficheclefs.champ_nsaisie(self, "c_element", "√©l√©ment", 4, 20, " ", 1, enreg, penreg)
                 
         def c_granulometrie_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_nliste( self, "c_granulometrie", "granulomÈtrie", enreg, penreg, "", "1",dontchange = 0)
+                afficheclefs.champ_nliste( self, "c_granulometrie", "granulom√©trie", enreg, penreg, "", "1",dontchange = 0)
                 self.__doc__.pop()
          #######
         def c_liant_base_to_form(self, enreg, penreg = None) :
@@ -313,7 +315,7 @@ class Coprolithe(archeodata.Data) :
         def c_ordre_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "c_ordre", "ordre", 20, 35, "DÈtermination", 1, enreg, penreg)
+                afficheclefs.champ_nsaisie(self, "c_ordre", "ordre", 20, 35, "D√©termination", 1, enreg, penreg)
         def c_famille_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "c_famille", "famille", 20, 35, "", 1, enreg, penreg)
         def c_genre_base_to_form(self, enreg, penreg = None) :
@@ -458,25 +460,25 @@ class Coprolithe(archeodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                archeoconf.fatalerror_message("Impossible de supprimer le rÈpertoire [%s]" % rr)
+                                archeoconf.fatalerror_message("Impossible de supprimer le r√©pertoire [%s]" % rr)
 
                         # on efface l' coprolithe
                         self.delete_records(["zone", "numero", "bis"])
                         return 0
 
         def creer(self) :
-                # si la coprolithe n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la coprolithe n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis"], table = "coprolithe") :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant le coprolithe dans la base
+                        # on ins√®re maintenant le coprolithe dans la base
                         # sauf si le carnet n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "carnet") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la coprolithe dans la base
+                                # on ins√®re maintenant la coprolithe dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

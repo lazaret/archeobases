@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -180,13 +182,13 @@ class Dent(archeodata.Data) :
         def d_serie_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.display_x_serie(self, "d_serie", "10",enreg, penreg)
 
-        def d_type_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_type(self, "d_type", enreg, penreg) 
+	def d_type_base_to_form(self, enreg, penreg = None) :
+		afficheclefs.display_type(self, "d_type", enreg, penreg) 
                 self.__doc__.pop()
 
-################################### En entrÈe ########################################
+################################### En entr√©e ########################################
         def d_m1_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
+		afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "d_m1", "M1", 5, 20," ", enreg,  penreg)
         def d_m2_base_to_form(self, enreg, penreg = None) :
@@ -274,23 +276,23 @@ class Dent(archeodata.Data) :
                 return 0
 
         def supprimer(self) :
-                # on efface la dent sur Èclat
+                # on efface la dent sur √©clat
                 self.delete_records(["zone", "numero", "bis", "d_serie", "d_type"])
                 return 0
 
         def creer(self) :
-                # si la dent n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la dent n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis", "d_serie", "d_type"]) :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None, "o_ordre": None,"d_serie" : None, "d_type" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la dent dans la base
+                        # on ins√®re maintenant la dent dans la base
                         # sauf si la faune n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "faune") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None, "d_serie": None, "d_type": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la dent dans la base
+                                # on ins√®re maintenant la dent dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

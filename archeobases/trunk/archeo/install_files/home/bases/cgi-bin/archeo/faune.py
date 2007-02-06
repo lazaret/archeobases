@@ -1,8 +1,8 @@
-
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 # Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
-
 #
 # You're welcome to redistribute this software under the
 # terms of the GNU General Public Licence version 2.0
@@ -63,7 +63,7 @@ class Faune(archeodata.Data) :
                         "f_reference"       : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 15}, \
                         "f_stdent"          : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "f_taille"          : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
-                        "f_association"     : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
+                        "f_association"     : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 0}, \
                         "f_pathologie"      : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 100}, \
                         "f_description"     : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "f_fragge"          : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
@@ -327,7 +327,7 @@ class Faune(archeodata.Data) :
 
        
 
-################################### En entrÈe ###########################
+################################### En entr√©e ###########################
         def f_longueur_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7") 
                 self.__doc__.push()
@@ -346,9 +346,9 @@ class Faune(archeodata.Data) :
         def f_classe_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "f_classe", "classe", 20, 35, "DÈtermination", 2, enreg, penreg)
-                #afficheclefs.champ_nsaisie_determination(self, "classe","genre","classe",25, 35, "DÈtermination", 2, enreg, penreg)
-                #afficheclefs.champ_nliste(self, "f_classe", "classe", enreg, penreg, "DÈtermination",2, dontchange = 0)
+                afficheclefs.champ_nsaisie(self, "f_classe", "classe", 20, 35, "D√©termination", 2, enreg, penreg)
+                #afficheclefs.champ_nsaisie_determination(self, "classe","genre","classe",25, 35, "D√©termination", 2, enreg, penreg)
+                #afficheclefs.champ_nliste(self, "f_classe", "classe", enreg, penreg, "D√©termination",2, dontchange = 0)
 
         def f_ordre_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_ordre", "ordre", 20, 35, "", 2, enreg, penreg)
@@ -409,25 +409,25 @@ class Faune(archeodata.Data) :
         #######
         def f_lateralite_base_to_form(self, enreg, penreg = None) :
                 #self.__doc__.push()
-                afficheclefs.champ_nliste(self, "f_lateralite", "latÈralitÈ", enreg, penreg, "", "2", dontchange = 0)
+                afficheclefs.champ_nliste(self, "f_lateralite", "lat√©ralit√©", enreg, penreg, "", "2", dontchange = 0)
                 #self.__doc__.pop()
                 self.__doc__.pop()
         ######
         def f_stserie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "f_stserie", "sÈrie dentaire", 46, 46, "Fragmentation", 4, enreg, penreg)
+                afficheclefs.champ_nsaisie(self, "f_stserie", "s√©rie dentaire", 46, 46, "Fragmentation", 4, enreg, penreg)
                 #self.__doc__.pop()
         
         #######
         def f_fragge_base_to_form(self, enreg, penreg = None) :
                 #self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "f_fragge", "gÈnÈrale", 12, 30, "", 3, enreg, penreg)
+                afficheclefs.champ_nsaisie(self, "f_fragge", "g√©n√©rale", 12, 30, "", 3, enreg, penreg)
                 self.__doc__.pop()
         
         #######
         def f_fragde_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_nsaisie(self, "f_fragde", "dÈtaillÈe", 50, 50, " ", 4, enreg, penreg)
+                afficheclefs.champ_nsaisie(self, "f_fragde", "d√©taill√©e", 50, 50, " ", 4, enreg, penreg)
                 self.__doc__.pop()
         
         #######
@@ -448,7 +448,7 @@ class Faune(archeodata.Data) :
         #######
         def f_agecl_base_to_form(self, enreg, penreg = None) :
                 #self.__doc__.push()
-                afficheclefs.champ_nliste(self, "f_agecl", "classe ‚ge", enreg, penreg, "", "2", dontchange = 0)
+                afficheclefs.champ_nliste(self, "f_agecl", "classe √¢ge", enreg, penreg, "", "2", dontchange = 0)
                 
         def f_agest_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_agest", "estimation", 6, 20, "", 1, enreg, penreg)
@@ -458,13 +458,13 @@ class Faune(archeodata.Data) :
                 
 ##         def f_sreference_base_to_form(self, enreg, penreg = None) :
 ##                 self.__doc__.push()
-##                 afficheclefs.champ_nsaisie(self, "f_reference", "rÈference", 15, 20, "", 1, enreg, penreg)
+##                 afficheclefs.champ_nsaisie(self, "f_reference", "r√©ference", 15, 20, "", 1, enreg, penreg)
                 
 ##         def f_stdent_base_to_form(self, enreg, penreg = None) :
 ##                 self.__doc__.push()
 ##                 afficheclefs.champ_nsaisie(self, "f_stdent", "vers ecran dent", 2, 20, " ", 1, enreg, penreg)
 ##         def f_reference_base_to_form(self, enreg, penreg = None) :
-##                 afficheclefs.champ_nsaisie(self, "f_reference", "rÈfÈrence", 2, 20, "", 1, enreg, penreg)
+##                 afficheclefs.champ_nsaisie(self, "f_reference", "r√©f√©rence", 2, 20, "", 1, enreg, penreg)
 ##                 self.__doc__.pop()
                 
                 
@@ -500,7 +500,7 @@ class Faune(archeodata.Data) :
          #######
         def f_concretion_base_to_form(self, enreg, penreg = None) :
                 #self.__doc__.push()
-                afficheclefs.champ_nliste(self, "f_concretion", "concrÈtion", enreg, penreg, "", 2, dontchange = 0)
+                afficheclefs.champ_nliste(self, "f_concretion", "concr√©tion", enreg, penreg, "", 2, dontchange = 0)
                 self.__doc__.pop()
                 
         def f_oxyde_base_to_form(self, enreg, penreg = None) :
@@ -528,7 +528,7 @@ class Faune(archeodata.Data) :
         def f_typedos_base_to_form(self, enreg, penreg = None) :
 #                afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
-                afficheclefs.champ_nliste(self, "f_typedos", "type d'os", enreg, penreg, "Les indÈt", 2, dontchange = 0)
+                afficheclefs.champ_nliste(self, "f_typedos", "type d'os", enreg, penreg, "Les ind√©t", 2, dontchange = 0)
 
         def f_complement_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_complement", "complement", enreg, penreg, "", 2, dontchange = 0)
@@ -545,7 +545,7 @@ class Faune(archeodata.Data) :
                 afficheclefs.champ_nliste(self, "f_icirconference", "icirconf", enreg, penreg, "", 2, dontchange = 0)
 
         def f_eclat_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_nliste(self, "f_eclat", "Èclat", enreg, penreg, "", 2, dontchange = 0)
+                afficheclefs.champ_nliste(self, "f_eclat", "√©clat", enreg, penreg, "", 2, dontchange = 0)
                 self.__doc__.pop()
                 
         def f_agent_base_to_form(self, enreg, penreg = None) :
@@ -771,25 +771,25 @@ class Faune(archeodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                archeoconf.fatalerror_message("Impossible de supprimer le rÈpertoire [%s]" % rr)
+                                archeoconf.fatalerror_message("Impossible de supprimer le r√©pertoire [%s]" % rr)
 
                         # on efface l' faune
                         self.delete_records(["zone", "numero", "bis"])
                         return 0
 
         def creer(self) :
-                # si la faune n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si la faune n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["zone", "numero", "bis"], table = "faune") :
                         primarykeys = { "zone" : None, "numero" : None, "bis": None}
                         return (-1, primarykeys)
                 else :
-                        # on insËre maintenant la faune dans la base
+                        # on ins√®re maintenant la faune dans la base
                         # sauf si le carnet n'existe pas.
                         if not self.exist(["zone", "numero", "bis"], table = "carnet") :
                                 primarykeys = { "zone" : None, "numero" : None, "bis": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insËre maintenant la faune dans la base
+                                # on ins√®re maintenant la faune dans la base
                                 z = self.__form__["zone"].value
                                 n = self.__form__["numero"].value
                                 b = self.__form__["bis"].value

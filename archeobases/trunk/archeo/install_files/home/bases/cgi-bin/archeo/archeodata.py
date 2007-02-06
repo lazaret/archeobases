@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 #archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                  1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -32,7 +34,7 @@
 # Bien sur si on oublie le count(*)...
 #
 # Revision 1.32  2002/07/08 16:36:31  jerome
-# SELECT count(*) pour compter, Áa va mieux !
+# SELECT count(*) pour compter, √ßa va mieux !
 #
 # Revision 1.31  2002/07/08 16:32:51  rachel
 # Dernieres modifs
@@ -99,9 +101,9 @@ class Data :
 
                 t = t + pluriel
                 if self.__tablename__ == "nucleus":
-                        t = " des nuclÈus"
+                        t = " des nucl√©us"
                 if self.__tablename__ == "galet_amenage":
-                        t = " des Galets amÈnagÈs"
+                        t = " des Galets am√©nag√©s"
                 if self.__tablename__ == "fracture_faune":
                         t = " des fractures sur faune"
                 if self.__tablename__=="outil":
@@ -114,7 +116,7 @@ class Data :
                         self.__parent__ = self.__tablename__ # est son propre parent
                         #self.__couleur__ = self.__color__
                 else :
-                        # si ca ne vaut pas "bas" on considËre que c'est
+                        # si ca ne vaut pas "bas" on consid√®re que c'est
                         # une instance de la classe "parent"
                         # donc on simule l'heritage
                         self.__doc__ = parent.getcurdoc()
@@ -174,10 +176,10 @@ class Data :
 
 
 ####################################################################
-#                CrÈe un WHERE en fct de la liste de champs en param
+#                Cr√©e un WHERE en fct de la liste de champs en param
 ####################################################################
         def __createwhere__(self, fields) :
-                """CrÈe une clause WHERE en fonction de la liste de champs passee en paramËtre"""
+                """Cr√©e une clause WHERE en fonction de la liste de champs passee en param√®tre"""
                 if fields != None :
                         where = " WHERE "
                         for field in fields :
@@ -200,7 +202,7 @@ class Data :
 #               VERIFIE QUE LES CHAMPS OBLIGATOIRES SONT REMPLIS
 ##################################################################
         def __verify_mandatory__(self) :
-                """VÈrifie que les champs obligatoires sont bien remplis, et sinon affiche une boite d'alerte"""
+                """V√©rifie que les champs obligatoires sont bien remplis, et sinon affiche une boite d'alerte"""
                 not_ok = 0
                 for champ in self.__champs__.keys() :
                         try :
@@ -217,7 +219,7 @@ class Data :
                                                         not_ok = not_ok + 1
                                                         self.__doc__.script('alert("Le champ ' + champ + ' a un contenu invalide [%s])' % v)
                         except AttributeError, msg :
-                                archeoconf.fatalerror_message("Erreur sur la vÈrification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
+                                archeoconf.fatalerror_message("Erreur sur la v√©rification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
                 return not_ok
 
 #######################################################################
@@ -263,12 +265,12 @@ class Data :
                         self.__doc__.pop()
                         self.__doc__.push()
                         self.__doc__.p()
-                        self.__doc__.submit(name = "action", value = "CrÈer")
+                        self.__doc__.submit(name = "action", value = "Cr√©er")
                         self.__doc__.pop()
                         #self.__doc__.br()
                         self.__doc__.push()
                         self.__doc__.p()
-                        self.__doc__.reset(value = "R-‡-ZÈro")
+                        self.__doc__.reset(value = "R-√†-Z√©ro")
                         self.__doc__.pop()
                 self.__doc__.pop()
 
@@ -342,14 +344,14 @@ class Data :
                         return 0
 
         def get_records(self, primarykeys = None, table = None) :
-                """Renvoie les enregistrements correspondant ‡ la liste des clefs passÈe en paramËtre"""
+                """Renvoie les enregistrements correspondant √† la liste des clefs pass√©e en param√®tre"""
                 if table == None :
                         table = self.__tablename__
                 res = self.__db__.query("SELECT * FROM " + table + self.__createwhere__(primarykeys) + ";")
                 return res.dictresult()
 
         def count_records(self, liste_champs = None, table = None):
-                """Renvoie le compte d'enregistrements correspondant ‡ la liste des champs passes en parametre"""
+                """Renvoie le compte d'enregistrements correspondant √† la liste des champs passes en parametre"""
                 if table ==None :
                         table = self.__tablename__
                 cpt = self.__db__.query( "SELECT count(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
@@ -363,7 +365,7 @@ class Data :
  
         def make_update_query(self, primarykeys, table = None):
                 """Calcule la requete de mise a jour"""
-                # TODO: vÈrifier les valeurs des champs avant toute mise ‡ jour
+                # TODO: v√©rifier les valeurs des champs avant toute mise √† jour
                 if table == None :
                         table = self.__tablename__
                 query = "UPDATE " + table + " SET "
@@ -371,7 +373,7 @@ class Data :
                         #
                         # attention, dans cette archeo on ne peut pas modifier
                         # les clefs primaires, donc on optimise en n'ajoutant
-                        # aucune de celles-ci ‡ la requete de mise ‡ jour.
+                        # aucune de celles-ci √† la requete de mise √† jour.
                         # si on veut l'autoriser, il faut enlever le if ci-dessous
                         if champ not in primarykeys :
                                 query = query + champ + "=" + string.upper(self.__getfield__(champ)) + ", "
@@ -442,12 +444,12 @@ class Data :
                         self.__doc__.font(size = archeoconf.font_size)
 
                         if maximum :
-                                self.__doc__.a("PremiËre", href = "#anchor_" + self.__tablename__ + "0")
+                                self.__doc__.a("Premi√®re", href = "#anchor_" + self.__tablename__ + "0")
                                 self.__doc__.insert_text("&nbsp;" * 5)
                                 if current :
-                                        self.__doc__.a("PrÈcÈdente", href = "#anchor_" + self.__tablename__ + `current - 1`)
+                                        self.__doc__.a("Pr√©c√©dente", href = "#anchor_" + self.__tablename__ + `current - 1`)
                                 else :
-                                        self.__doc__.insert_text("PrÈcÈdente")
+                                        self.__doc__.insert_text("Pr√©c√©dente")
                                 self.__doc__.insert_text("&nbsp;" * 5)
 
                         self.__doc__.push()
@@ -462,7 +464,7 @@ class Data :
                                 else :
                                         self.__doc__.insert_text("Suivante")
                                 self.__doc__.insert_text("&nbsp;" * 5)
-                                self.__doc__.a("DerniËre", href = "#anchor_" + self.__tablename__ + `maximum`)
+                                self.__doc__.a("Derni√®re", href = "#anchor_" + self.__tablename__ + `maximum`)
 
                         self.__doc__.br()
                         self.__doc__.font(size = archeoconf.font_size)
@@ -484,7 +486,7 @@ class Data :
                                         elif p == "nucleus":
                                                 self.dessine_lien(("Nucleus"), archeoconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), archeoconf.lien_parent_bgcolor)
                                         elif p == "galet_amenage":
-                                                self.dessine_lien(("Galets amÈnagÈs"), archeoconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), archeoconf.lien_parent_bgcolor)
+                                                self.dessine_lien(("Galets am√©nag√©s"), archeoconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), archeoconf.lien_parent_bgcolor)
                                         elif p == "fracture_faune":
                                                 self.dessine_lien(("Fractures faune"), archeoconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), archeoconf.lien_parent_bgcolor)
                                         else:
@@ -511,7 +513,7 @@ class Data :
                                                 self.dessine_lien(("Nucleus"), archeoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
 
                                         elif enfant == "galet_amenage":
-                                                self.dessine_lien(("Galets amÈnagÈs"), archeoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
+                                                self.dessine_lien(("Galets am√©nag√©s"), archeoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
 
                                         else:
                                                 pluriel = ''
@@ -576,7 +578,7 @@ class Data :
                                         val = self.__db__.quote(vc, self.__champs__[c]["type"])
                                         w = w + "(" + c + " = " + val + ") AND "
                                 except ValueError :
-                                        self.__doc__.script('alert("OpÈration interdite !!!")')
+                                        self.__doc__.script('alert("Op√©ration interdite !!!")')
                         elif penreg and penreg.has_key(c) :
                                 val = self.__db__.quote(penreg[c], self.__champs__[c]["type"])
                                 w = w + "(" + c + " = " + val + ") AND "
@@ -653,7 +655,7 @@ class Data :
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
-                                        self.__doc__.font("Aucun enregistrement trouvÈ", color = "red")
+                                        self.__doc__.font("Aucun enregistrement trouv√©", color = "red")
                                         self.__doc__.pop()
                                         self.formulaire_hook(penreg = penreg)
 
@@ -675,7 +677,7 @@ class Data :
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
-                                        self.__doc__.font("Aucun enregistrement trouvÈ", color = "red")
+                                        self.__doc__.font("Aucun enregistrement trouv√©", color = "red")
                                         self.__doc__.pop()
                                         #self.formulaire_hook(penreg = penreg)
                         else :
@@ -683,14 +685,14 @@ class Data :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
                                         self.__doc__.font(enregs[0]["count"], color = "red")
-                                        self.__doc__.font(" enregistrement(s) trouvÈ(s)", color = "red")
+                                        self.__doc__.font(" enregistrement(s) trouv√©(s)", color = "red")
                                         self.__doc__.pop()
                         self.formulaire_hook(penreg = penreg)
 
 
                 elif self.have_primarykeys(primarykeys) :
                         #
-                        # si le champ action existe alors on veut supprimer ou modifier ou crÈer
+                        # si le champ action existe alors on veut supprimer ou modifier ou cr√©er
                         if self.__form__.has_key("action") :
 
                                 #################### MODIFIER ####################
@@ -699,10 +701,10 @@ class Data :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -713,7 +715,7 @@ class Data :
                                 ################## SUPPRIMER #########################
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
-                                                # il reste des enregistrements dans d'autres tables qui dÈpendent de celui-ci
+                                                # il reste des enregistrements dans d'autres tables qui d√©pendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
                                                 #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -725,18 +727,18 @@ class Data :
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent)+ '"')# + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                                 ################## CREER #############################
-                                elif self.__form__["action"].value == "CrÈer" :
+                                elif self.__form__["action"].value == "Cr√©er" :
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 
                                                 if retour == -1:
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         if not parent :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 elif retour == -2:
-                                                        self.__doc__.script("""alert("Enregistrement impossible ‡ crÈer car il n'a aucun parent !!!")""")
+                                                        self.__doc__.script("""alert("Enregistrement impossible √† cr√©er car il n'a aucun parent !!!")""")
                                                         if not parent :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
@@ -770,34 +772,34 @@ class Data :
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
-                                # mais ce n'est pas grave, on fait "gÈnÈrique"
+                                # mais ce n'est pas grave, on fait "g√©n√©rique"
                                 enregs = self.get_records(primarykeys)
                                 if len(enregs) :
                                         for enreg in enregs :
                                                 self.formulaire_hook(enreg, penreg = penreg)
                                 else :
-                                        archeoconf.log_message("Tentative d'accËs ‡ un enregistrement d'identifiant inexistant")
+                                        archeoconf.log_message("Tentative d'acc√®s √† un enregistrement d'identifiant inexistant")
                                         self.formulaire_hook(penreg = penreg)
                 else :
                         # je me demande ce qui reste execute dans ce qui est ci-dessous
                         # il est grand temps de faire le menage !!!
                         #
                         #
-                        # si le champ action existe alors on veut crÈer ou avoir un formulaire vide
+                        # si le champ action existe alors on veut cr√©er ou avoir un formulaire vide
                         if self.__form__.has_key("action") :
-                                if self.__form__["action"].value == "CrÈer" :
+                                if self.__form__["action"].value == "Cr√©er" :
                                         # toutes les clefs primaires ne sont pas remplies, on ne
-                                        # vient ici (code dupliquÈ) que pour que les messages d'erreur adÈquats s'affichent
+                                        # vient ici (code dupliqu√©) que pour que les messages d'erreur ad√©quats s'affichent
                                         # en effet verify_mandatory devrait tomber tout le temps en erreur car les clefs
                                         # primaires sont aussi des champs obligatoires (sinon y'a un bleme)
                                         # dans l'avenir mettre tout ca sous forme de fonction
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour :
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.formulaire_hook(penreg)
                                                 else :
-                                                        # tout c'est bien passÈ
+                                                        # tout c'est bien pass√©
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -815,7 +817,7 @@ class Data :
                                         archeoconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook(penreg = penreg)
                         else :
-                                # sinon affichage de l'Ècran de saisie vide
+                                # sinon affichage de l'√©cran de saisie vide
                                 self.formulaire_hook(penreg = penreg)
 
                 # si c'est une table "mere" (ex: roche")                                
@@ -1005,9 +1007,9 @@ class Data :
                         #self.__doc__.submit(name = "action", value = "Chercher")
                         #self.__doc__.pop()
                         self.__doc__.p()
-                        self.__doc__.submit(name = "action", value = "CrÈer")
+                        self.__doc__.submit(name = "action", value = "Cr√©er")
                         self.__doc__.br()
-                        self.__doc__.reset(value = "R-‡-ZÈro")
+                        self.__doc__.reset(value = "R-√†-Z√©ro")
                 self.__doc__.pop()
 
         def formulaire_hook_parametre(self, enreg = None, current = 0, maximum = 0, penreg = None) :
@@ -1023,12 +1025,12 @@ class Data :
                         self.__doc__.font(size = archeoconf.font_size)
 
                         if maximum :
-                                self.__doc__.a("PremiËre", href = "#anchor_" + self.__tablename__ + "0")
+                                self.__doc__.a("Premi√®re", href = "#anchor_" + self.__tablename__ + "0")
                                 self.__doc__.insert_text("&nbsp;" * 5)
                                 if current :
-                                        self.__doc__.a("PrÈcÈdente", href = "#anchor_" + self.__tablename__ + `current - 1`)
+                                        self.__doc__.a("Pr√©c√©dente", href = "#anchor_" + self.__tablename__ + `current - 1`)
                                 else :
-                                        self.__doc__.insert_text("PrÈcÈdente")
+                                        self.__doc__.insert_text("Pr√©c√©dente")
                                 self.__doc__.insert_text("&nbsp;" * 5)
 
                         self.__doc__.push()
@@ -1043,7 +1045,7 @@ class Data :
                                 else :
                                         self.__doc__.insert_text("Suivante")
                                 self.__doc__.insert_text("&nbsp;" * 5)
-                                self.__doc__.a("DerniËre", href = "#anchor_" + self.__tablename__ + `maximum`)
+                                self.__doc__.a("Derni√®re", href = "#anchor_" + self.__tablename__ + `maximum`)
 
                         self.__doc__.br()
                         self.__doc__.font(size = archeoconf.font_size)
@@ -1096,22 +1098,22 @@ class Data :
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
-                                        self.__doc__.font("Aucun enregistrement trouvÈ", color = "red")
+                                        self.__doc__.font("Aucun enregistrement trouv√©", color = "red")
                                         self.__doc__.pop()
                                         self.formulaire_hook(penreg = penreg)
                 elif self.have_primarykeys(primarykeys) :
                         #
-                        # si le champ action existe alors on veut supprimer ou modifier ou crÈer
+                        # si le champ action existe alors on veut supprimer ou modifier ou cr√©er
                         if self.__form__.has_key("action") :
                                 if self.__form__["action"].value == "Modifier" :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1120,7 +1122,7 @@ class Data :
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
-                                                # il reste des enregistrements dans d'autres tables qui dÈpendent de celui-ci
+                                                # il reste des enregistrements dans d'autres tables qui d√©pendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
                                                 #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1130,23 +1132,23 @@ class Data :
                                                         self.formulaire_hook_parametre(penreg = penreg)
                                                 else :
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
-                                elif self.__form__["action"].value == "CrÈer" :
+                                elif self.__form__["action"].value == "Cr√©er" :
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour == -1:
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         if not parent :
                                                                 self.formulaire_hook_parametre(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 elif retour == -2:
-                                                        self.__doc__.script("""alert("Enregistrement impossible ‡ crÈer car il n'a aucun parent !!!")""")
+                                                        self.__doc__.script("""alert("Enregistrement impossible √† cr√©er car il n'a aucun parent !!!")""")
                                                         if not parent :
                                                                 self.formulaire_hook_parametre(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1166,34 +1168,34 @@ class Data :
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
-                                # mais ce n'est pas grave, on fait "gÈnÈrique"
+                                # mais ce n'est pas grave, on fait "g√©n√©rique"
                                 enregs = self.get_records(primarykeys)
                                 if len(enregs) :
                                         for enreg in enregs :
                                                 self.formulaire_hook_parametre(enreg, penreg = penreg)
                                 else :
-                                        archeoconf.log_message("Tentative d'accËs ‡ un enregistrement d'identifiant inexistant")
+                                        archeoconf.log_message("Tentative d'acc√®s √† un enregistrement d'identifiant inexistant")
                                         self.formulaire_hook_parametre(penreg = penreg)
                 else :
                         # je me demande ce qui reste execute dans ce qui est ci-dessous
                         # il est grand temps de faire le menage !!!
                         #
                         #
-                        # si le champ action existe alors on veut crÈer ou avoir un formulaire vide
+                        # si le champ action existe alors on veut cr√©er ou avoir un formulaire vide
                         if self.__form__.has_key("action") :
-                                if self.__form__["action"].value == "CrÈer" :
+                                if self.__form__["action"].value == "Cr√©er" :
                                         # toutes les clefs primaires ne sont pas remplies, on ne
-                                        # vient ici (code dupliquÈ) que pour que les messages d'erreur adÈquats s'affichent
+                                        # vient ici (code dupliqu√©) que pour que les messages d'erreur ad√©quats s'affichent
                                         # en effet verify_mandatory devrait tomber tout le temps en erreur car les clefs
                                         # primaires sont aussi des champs obligatoires (sinon y'a un bleme)
                                         # dans l'avenir mettre tout ca sous forme de fonction
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour :
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.formulaire_hook_parametre(penreg)
                                                 else :
-                                                        # tout c'est bien passÈ
+                                                        # tout c'est bien pass√©
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1208,7 +1210,7 @@ class Data :
                                         archeoconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook_parametre(penreg = penreg)
                         else :
-                                # sinon affichage de l'Ècran de saisie vide
+                                # sinon affichage de l'√©cran de saisie vide
                                 self.formulaire_hook_parametre(penreg = penreg)
 
                 # si c'est une table "mere" (ex: roche")                                

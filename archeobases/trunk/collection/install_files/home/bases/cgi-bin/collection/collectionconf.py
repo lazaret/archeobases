@@ -1,13 +1,17 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
-# Fichier de configuration
-#
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
+
 
 import string
 import urllib
@@ -16,8 +20,8 @@ import urllib
 
 #
 # nom de l'application
-author_name  = "Rachel VAUDRON"
-author_email = "rachel@lazaret.unice.fr"
+author_name  = "Laboratoire Départemental de Prehistoire du Lazaret"
+author_email = "opensource@lazaret.unice.fr"
 
 #
 # commandes popur changer la taille des images
@@ -29,16 +33,16 @@ mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160
 
 #
 # Message de copyright
-copyright_msg       = "COLLECTION &copy; 2006 " + author_name
+copyright_msg       = "Archeobases-Collection &copy; 2006-2007 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
 #
 # Couleurs de fond des trois parties de l'écran ou None
-menu_bgcolor   = "#EAEAEA" 
-gauche_bgcolor = "#EAEAEA" 
-bas_bgcolor    = "#EAEAEA" 
-bas1_bgcolor   = "#A3B3C4" #96ADC4" 
+menu_bgcolor   = "#EAEAEA"
+gauche_bgcolor = "#EAEAEA"
+bas_bgcolor    = "#EAEAEA"
+bas1_bgcolor   = "#A3B3C4" #96ADC4"
 bas2_bgcolor   = "#FFF8CE"
 bas3_bgcolor   = "#F3EEEE"
 bas4_bgcolor   = "#E1DCD6"
@@ -178,7 +182,7 @@ images_directory  =  os.path.join(config["docpath"], "collection", base_courante
 help_location     = "/collection/manuel/"
 manuel_location   = "/collection/manuel"
 lexique_location  = "/collection/lexique"
-site_location     = "/collection/site/" + base_courante +".html"  
+site_location     = "/collection/site/" + base_courante +".html"
 #
 # Fonction qui renvoie l'url complete d'un script
 def script_location(script) :

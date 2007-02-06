@@ -1,29 +1,15 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
-#
-# $Id: database.py,v 1.3 2001/07/05 15:29:11 rachel Exp $
-#
-#
-# $Id: database.py,v 1.3 2001/07/05 15:29:11 rachel Exp $
-#
-# $Log: database.py,v $
-# Revision 1.3  2001/07/05 15:29:11  rachel
-# plein de modifs
-#
-# Revision 1.2  2001/03/20 19:59:31  jerome
-# Ajout des tags CVS Id et Log
-#
-#
 #
 
 import sys
@@ -32,7 +18,7 @@ import time
 import pg
 import urllib
 
-__version__ = "1.0"
+__version__ = "1.1"
 
 #
 # Définition d'une classe d'accès à une base de données PostrgreSQL sous Python
@@ -51,7 +37,7 @@ class DataBase :
                         self.__database = pg.connect(host = host, dbname = database, user = username)
                         if self.__debuglevel > 0 :
                                 self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
-                        self.query("SET CLIENT_ENCODING TO 'UTF-8';")        
+                        self.query("SET CLIENT_ENCODING TO 'UTF-8';")
                 except pg.error, msg :
                         self.fatal_message("Unable to connect to Host [%s] DataBase [%s] Username [%s] ==> [%s]" % (host, database, username, msg))
 

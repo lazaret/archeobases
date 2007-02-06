@@ -1,4 +1,6 @@
 # Module for HTML ouput
+# -*- coding: UTF-8 -*-
+
 # jahtml
 # (C) Jerome ALET <alet@unice.fr> 1999-2001
 # You're welcome to redistribute this software under the
@@ -24,6 +26,7 @@
 #
 # $Id: jahtml.py,v 1.5 2001/02/06 10:10:17 jerome Exp $
 #
+
 import sys
 import string
 import time
@@ -337,7 +340,7 @@ class Html_document:
                 ## If SOFTWARE is modified to produce derivative works, such modified
                 ## SOFTWARE should be clearly marked, so as not to confuse it with the
                 ## version available from LANL.
-        """   
+        """
         if type(file) == type("") :
             if (file != "-") and (file != "") :
                 inf = open(file, "r")

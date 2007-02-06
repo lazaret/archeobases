@@ -1,11 +1,11 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -27,7 +27,7 @@ def getLanguagePreference() :
     languages = os.environ.get("HTTP_ACCEPT_LANGUAGE", "")
     langs = [l.strip().split(';')[0] for l in languages.split(",")]
     return "%s_%s" % (langs[0], langs[0].upper())
-    
+
 def getCharsetPreference() :
     """Returns the preferred charset."""
     charsets = os.environ.get("HTTP_ACCEPT_CHARSET", "UTF-8")
@@ -111,15 +111,15 @@ def getval(objet, nomchamp, enreg, penreg = None) :
                         return enreg[nomchamp]#.encode(car)
                 else:
                         return enreg[nomchamp]
-                
+
         elif penreg != None and penreg.has_key(nomchamp) :
                 return penreg[nomchamp] #or ""
         elif objet.__form__.has_key("action") and  ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Chercher") or (objet.__form__["action"].value == "Nouveau")or (objet.__form__["action"].value == "Nouvel")or (objet.__form__["action"].value == "Nouvelle")) :
                 if objet.__form__.has_key(nomchamp)  :
                         if objet.__champs__[nomchamp].has_key("memory") and objet.__champs__[nomchamp]["memory"] :
                                 return objet.__form__[nomchamp].value
-        return "" 
-        
+        return ""
+
 #################################
         # CHAMP LISTE
 #################################
@@ -140,7 +140,7 @@ def champ_liste(objet, nom_champ, libelle, enreg, penreg, titre,dontchange = Non
         objet.__doc__.push()
         objet.__doc__.td(align="left")
         objet.__doc__.font(size=collectionconf.font_size)
-        
+
         query = "SELECT *  FROM controle_" + nom_champ + ";"
         res = objet.__db__.query(query).dictresult()
         liste ={}
@@ -178,7 +178,7 @@ def champ_nliste(objet, nom_champ, libelle, enreg, penreg, titre, colonne, dontc
         #                liste[ctrl[nom_champ] + " " + ctrl["description"]]= ctrl[nom_champ]
         liste_deroulante(objet, nom_champ, liste, getval(objet, nom_champ, enreg, penreg), dontchange = 0)
         objet.__doc__.pop()
-        
+
 ##################################################
         # CHAMP_SIMPLE_SAISIE
 ##################################################
@@ -221,9 +221,9 @@ def champ_saisie(objet, nom_champ, libelle,longueur, maxlongueur, titre, enreg, 
                 objet.__doc__.text(name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
         else:
                 objet.__doc__.text(name = nom_champ, value = "", size = longueur, maxlength = maxlongueur)
-                
+
         objet.__doc__.pop()
-        
+
 ##############################
         # CHAMP_SAISIE_SIMPLE
 ##############################
@@ -233,7 +233,7 @@ def champ_saisie_simple(objet, nom_champ,longueur, maxlongueur, enreg, penreg):
         objet.__doc__.font(size=collectionconf.font_size)
         objet.__doc__.text(name = nom_champ, value = getval(objet, nom_champ, enreg, penreg), size = longueur, maxlength = maxlongueur)
         objet.__doc__.pop()
-        
+
 ###############################################
         # CHAMP_NSAISIE
 ###############################################
@@ -302,10 +302,10 @@ def display_identifiant(objet, enreg, penreg = None, inc = 0, alignement = "left
         objet.__doc__.font(size=collectionconf.font_size)
         objet.__doc__.insert_text("  Identifiant  ")
         objet.__doc__.pop()
-        
+
         objet.__doc__.push()
         objet.__doc__.td(align=alignement, valign="middle", border="2", colspan=col)
-        
+
         val = getval(objet, "identifiant", enreg, penreg)
         if objet.__form__.has_key("action"):
                 if (objet.__form__["action"].value == "Nouveau" or objet.__form__["action"].value == "Nouvel" or objet.__form__["action"].value == "Nouvelle"):
@@ -343,10 +343,10 @@ def display_identifiant_1(objet, enreg, penreg = None, inc = 0, alignement = "le
         objet.__doc__.font(size=collectionconf.font_size)
         objet.__doc__.insert_text("Identifiant1")
         objet.__doc__.pop()
-        
+
         objet.__doc__.push()
         objet.__doc__.td(align=alignement, valign="middle", border="2", colspan=col)
-        
+
         val = getval(objet, "identifiant_1", enreg, penreg)
         if objet.__form__.has_key("action"):
                 if (objet.__form__["action"].value == "Nouveau" or objet.__form__["action"].value == "Nouvel" or objet.__form__["action"].value == "Nouvelle"):
@@ -384,10 +384,10 @@ def display_identifiant_2(objet, enreg, penreg = None, inc = 0, alignement = "le
         objet.__doc__.font(size=collectionconf.font_size)
         objet.__doc__.insert_text("Identifiant2")
         objet.__doc__.pop()
-        
+
         objet.__doc__.push()
         objet.__doc__.td(align=alignement, valign="middle", border="2", colspan=col)
-        
+
         val = getval(objet, "identifiant_2", enreg, penreg)
         if objet.__form__.has_key("action"):
                 if (objet.__form__["action"].value == "Nouveau" or objet.__form__["action"].value == "Nouvel" or objet.__form__["action"].value == "Nouvelle"):
@@ -428,35 +428,35 @@ def display_x_ordre(objet, nom_champ, imin, imax, enreg, penreg = None, aligneme
         val = getval(objet, nom_champ, enreg, penreg)
         try :
             val = int(val)
-        except ValueError :    
+        except ValueError :
             pass
-            
+
         #indice=1
         #if not val:
         #        val=0
         for i in range(imin, imax) :
                 listeordres[i] = i
-        
+
         #for i in range(imin, imax):
          #       tmp= listeordres[i]
           #      listeordres[i] = listeordres[imax -i]
            #     listeordres[imax -i] = tmp
-                
+
         if objet.__form__.has_key("action"):
                 if ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Chercher")):
                         liste_deroulante(objet, nom_champ, listeordres, val, dontchange = change)
                 elif (objet.__form__["action"].value == "Nouveau") or (objet.__form__["action"].value == "Nouvel") or (objet.__form__["action"].value == "Nouvelle"):
                         #for i in range(imin, imax):
-                        #        if val == listeordres[i]: 
+                        #        if val == listeordres[i]:
                         #                indice = i + 1
                         #liste_deroulante(objet, nom_champ, listeordres,  listeordres[indice]) #ajouter+1
                         liste_deroulante(objet, nom_champ, listeordres,  val+1) #ajouter+1
-                else :        
+                else :
                         liste_deroulante(objet, nom_champ, listeordres, val )
         else:
                 liste_deroulante(objet, nom_champ, listeordres, val )
         objet.__doc__.pop()
-        
+
 #====================================
 #           DISPLAY_X_RANG
 #====================================

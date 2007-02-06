@@ -1,16 +1,17 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 import os
 import string
 import cgi
@@ -42,8 +43,8 @@ class Photo(collectiondata.Data) :
 
                 elif self.__tablename__ == "entree" :
                         de = "de l'"
- 
-                else :     
+
+                else :
                         de = "de"
 
                 self.__listechamps__.append("legende")
@@ -63,7 +64,7 @@ class Photo(collectiondata.Data) :
 
         def retour(self) :
                 if not self.__form__.has_key("referer") :
-                        prog = collectionconf.script_location("mod" + self.__tablename__)   
+                        prog = collectionconf.script_location("mod" + self.__tablename__)
                 else :
                         prog = self.__form__["referer"].value
                 self.__doc__.script('parent.bas.location = "' + prog + '?action=Chercher&' + self.__make_url__(self.__listechamps__) + '"')
@@ -90,7 +91,7 @@ class Photo(collectiondata.Data) :
                 #
                 # pas de confirmation pour les photos: pas la peine a mon avis
                 # on commence par effacer les fichiers concernes
-                fname = "I" + self.__form__["identifiant"].value 
+                fname = "I" + self.__form__["identifiant"].value
 
                 fname = fname + os.sep + self.__form__["idphoto"].value
 

@@ -1,18 +1,18 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
-#
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
+
 import collectionconf
 import database
 import urllib
@@ -32,7 +32,7 @@ def bouton(page, module, image) :
         #page.a(href="'parent.bas.location=%s'"  %collectionconf.script_location(module))
         page.img(src=collectionconf.decors_location + image + ".jpg", border=0)
         page.pop()
-        
+
 page = collectionconf.Menu("Menu")
 """page.button(name="menu", value="Entree",onclick='parent.bas.location="'+ collectionconf.script_location("modentree")        + '"')"""
 
@@ -59,7 +59,7 @@ page.td(align = "center")
 bouton(page, "requetes", "sql")
 if collectionconf.utilisateur_courant in collectionconf.superusers :
         bouton(page, "controle", "controles")
-page.a("Aide", href = collectionconf.site_location, target = "_top") 
+page.a("Aide", href = collectionconf.site_location, target = "_top")
 page.a("Déconnexion", href =  "/cgi-bin/collection.py?base=aucune", target = "_top")
 page.pop()
 

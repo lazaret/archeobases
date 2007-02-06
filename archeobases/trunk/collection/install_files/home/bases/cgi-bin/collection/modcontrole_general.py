@@ -1,17 +1,18 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
-#
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
+
 import os
 import cgi
 import urllib
@@ -33,24 +34,24 @@ def enlever(database, form, liste, param) :
         #string.split(liste)
         for a in liste :
                 query = query + param + " = %s OR " % (database.quote(a,"text"))
-        query = query[:-4] + ";"        
+        query = query[:-4] + ";"
         return database.query(query)
 
 def recupere_liste(nomliste) :
         liste = []
-        if type(form[nomliste]) == type([]) : # plusieurs options sélectionnées 
-                for a in form[nomliste] :                    
+        if type(form[nomliste]) == type([]) : # plusieurs options sélectionnées
+                for a in form[nomliste] :
                         liste.append(a.value)
         else :
                 liste.append(form[nomliste].value)
         return liste
 
 def ajouter(database, form, param) :
-        query   = "INSERT INTO controle_" + param + " (" + param + ",description) VALUES ('" + form["modif_param"].value + "','" + form["modif_description"].value + "');" 
+        query   = "INSERT INTO controle_" + param + " (" + param + ",description) VALUES ('" + form["modif_param"].value + "','" + form["modif_description"].value + "');"
         return database.query(query)
 
 def ajouter_param(database, form, param) :
-        query   = "INSERT INTO controle_" + param + " (" + param + ") VALUES ('" + form["modif_param"].value + "');" 
+        query   = "INSERT INTO controle_" + param + " (" + param + ") VALUES ('" + form["modif_param"].value + "');"
         return database.query(query)
 
 

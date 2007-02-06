@@ -1,16 +1,16 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
-#
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
+#
 
 import sys
 import time
@@ -29,33 +29,33 @@ class PageRequete(collectionconf.Bas) :
                 self.td(align="center")
 
                 self.table(border = "2")
-                
+
                 self.tr(bgcolor = coultete)
-                self.td(align="center")         
+                self.td(align="center")
                 self.form(method = "POST", action = collectionconf.script_location("modcontrole_general"))
                 doc.liste_general(param)
                 self.pop()
-       
+
         def liste_general(self,  param):
                 self.push()
                 self.table(border = "2", width = "100%")
-                
+
                 self.push()
                 self.tr()
                 self.th(string.capitalize(param), align = "center", valign = "middle", bgcolor = collectionconf.basform_bgcolorbottom, colspan=2)
                 self.pop()
                 self.tr()
                 self.td(align = "center")
-                
-                # liste des param 
+
+                # liste des param
                 query  = "SELECT " + param + ", description  FROM controle_" + param + ";"
                 #
                 # on recupere la liste des valeurs du param
-                res = db.query(query).dictresult()             
+                res = db.query(query).dictresult()
                 if len(res) :
                         self.select_multiple(name = param, size = 5)
                         res.sort()
-                        
+
                         for enreg in res :
                                 if enreg["description"] == None:
                                         val = enreg[param]
@@ -64,13 +64,13 @@ class PageRequete(collectionconf.Bas) :
                                 if not val :
                                        val = "&nbsp;"
                                 self.option(val, value = enreg[param])
-                else :        
+                else :
                         self.p()
-                        if param in ["civilite","association", "cotisation"] : 
+                        if param in ["civilite","association", "cotisation"] :
                                 self.font("Aucune "+ param +" saisie", color = "red")
-                        else:   
+                        else:
                                 self.font("Aucun "+ param +" saisi", color = "red")
-                self.pop()            
+                self.pop()
 
                 self.br()
                 self.insert_text("Nouvelle valeur: ")

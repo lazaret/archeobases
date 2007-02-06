@@ -1,12 +1,11 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
-#
+# Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -45,7 +44,7 @@ if f.has_key("action") :
                 page.tr()
                 dico = afficheclefs.form_to_enreg(f)
                 afficheclefs.display_zone(photo.__db__, page, dico)
-                 #afficheclefs.display_zone(page, dico)
+                # afficheclefs.display_zone(page, dico)
                 afficheclefs.display_numero(page, dico)
                 afficheclefs.display_bis(photo.__db__, page, dico)
                 nbcols = 3

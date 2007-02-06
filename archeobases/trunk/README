@@ -1,13 +1,16 @@
-This is Archeobases 1.0 project from the Lazaret Archaeological Laboratory.
+This is Archeobases 1.1 project from the LDPL (Laboratoire Départemental de préhistoire du lazaret).
 
 You can see the last news about Archeobases project at our Trac page :
 http://lazaret.unice.fr/opensource/
+Or you can connect to our Subversion repository :
+http://lazaret.unice.fr/svn/
 
 WARNING :
-This 1.0 version or Archeobase is distributed mainly for historical reasons. This version is not supported anymore except for big security issues. Consider first to try the last version of Archeobases from our repository.
+This 1.1 version or Archeobase is a work in progress and may be considered as UNSTABLE.
 
-If you whant to test it anyway, is know to work on Debian 3 + Python 2.1 + PostgreSQL 7.2.
 
 See each sub-projects folder for more infos.
 
-Main Author : Rachel Vaudron
+Main Authors :
+Bertrand Lecervoisier : Version 1.1 (2007)
+Rachel Vaudron : Version 1.0 of the project (2000-2006)

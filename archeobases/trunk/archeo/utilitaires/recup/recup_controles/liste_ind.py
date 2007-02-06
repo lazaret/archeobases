@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
 #
 #                2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
 #

@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# -*- coding: utf-8 -*-
+#
 #archeo- (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -307,7 +309,7 @@ def display_zone(objet, enreg, penreg = None, inc = 0, alignement = "right", col
                                 objet.__doc__.text(name = "zone", value = val, size = 6, maxlength = 15)
                         except ValueError,msg :
                                 # ne devrait pas se produire
-                                archeoconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+                                archeoconf.fatalerror_message("Erreur sur incrÃ©mentation d'un numÃ©ro, valeur=%s, message=%s" % (repr(val), msg))
                 elif (objet.__form__["action"].value == "Compter") :
                 #elif (objet.__form__["action"].value == "Chercher") or (objet.__form__["action"].value == "Compter") :
                         objet.__doc__.text(name = "zone", value = val, size = 6, maxlength = 30)
@@ -355,7 +357,7 @@ def display_numero(objet, enreg, penreg = None, inc = 0, alignement = "right", c
         objet.__doc__.td(align=alignement, valign="middle", border="2", colspan=col)
         objet.__doc__.b()
         objet.__doc__.font(size=archeoconf.font_size)
-        objet.__doc__.insert_text("  Numéro ")
+        objet.__doc__.insert_text("  NumÃ©ro ")
         val = getval(objet, "numero", enreg, penreg)
         if objet.__form__.has_key("action"):
                 if (objet.__form__["action"].value == "Nouveau" or objet.__form__["action"].value == "Nouvel" or objet.__form__["action"].value == "Nouvelle"):
@@ -364,13 +366,13 @@ def display_numero(objet, enreg, penreg = None, inc = 0, alignement = "right", c
                                         objet.__doc__.text(name = "numero", value = int(val) + 1, size = 6, maxlength = 15)
                                 except ValueError,msg :
                                         # ne devrait pas se produire
-                                        archeoconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+                                        archeoconf.fatalerror_message("Erreur sur incrÃ©mentation d'un numÃ©ro, valeur=%s, message=%s" % (repr(val), msg))
                         else:
                                 try :
                                         objet.__doc__.text(name = "numero", value = int(val), size = 6, maxlength = 15)
                                 except ValueError,msg :
                                         # ne devrait pas se produire
-                                        archeoconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+                                        archeoconf.fatalerror_message("Erreur sur incrÃ©mentation d'un numÃ©ro, valeur=%s, message=%s" % (repr(val), msg))
                 elif (objet.__form__["action"].value == "Compter") :
                 #elif (objet.__form__["action"].value == "Chercher") or (objet.__form__["action"].value == "Compter") :
                         objet.__doc__.text(name = "numero", value = val, size = 6, maxlength = 30)
@@ -391,7 +393,7 @@ def display_numero_faune(objet, enreg, penreg = None, inc = 0, alignement = "rig
         objet.__doc__.td(align=alignement, valign="middle", border="2", colspan=col)
         objet.__doc__.b()
         objet.__doc__.font(size=archeoconf.font_size)
-        objet.__doc__.insert_text("  Numéro ")
+        objet.__doc__.insert_text("  NumÃ©ro ")
         val = getval(objet, "numero", enreg, penreg)
         if objet.__form__.has_key("action"):
                 if (objet.__form__["action"].value == "Nouveau" or objet.__form__["action"].value == "Nouvel" or objet.__form__["action"].value == "Nouvelle") and inc:
@@ -399,7 +401,7 @@ def display_numero_faune(objet, enreg, penreg = None, inc = 0, alignement = "rig
                                 objet.__doc__.text(name = "numero", value = int(val) + 1, size = 6, maxlength = 15)
                         except ValueError,msg :
                                 # ne devrait pas se produire
-                                archeoconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+                                archeoconf.fatalerror_message("Erreur sur incrÃ©mentation d'un numÃ©ro, valeur=%s, message=%s" % (repr(val), msg))
                 elif (objet.__form__["action"].value == "Compter") :
                 #elif (objet.__form__["action"].value == "Chercher") or (objet.__form__["action"].value == "Compter") :
                         objet.__doc__.text(name = "numero", value = val, size = 6, maxlength = 15)
@@ -446,11 +448,11 @@ def display_x_serie(objet, nom_champ, n, enreg, penreg = None, alignement = "rig
         objet.__doc__.td(align=alignement, valign="middle", colspan=col)
         objet.__doc__.b()
         objet.__doc__.font(size=archeoconf.font_size)
-        objet.__doc__.insert_text("  Série")
+        objet.__doc__.insert_text(" SÃ©rie")
         #listeordres = {"1":"1","2":"2","3":"3","4":"4","5":"5","6":"6","7":"7","8":"8","9":"9","10":"10","11":"11","12":"12","13":"13","14":"14","15":"15","16":"16","17":"17","18":"18","19":"19","20":"20","21":"21","22":"22","23":"23","24":"24","25":"25","26":"26","27":"27","28":"28","29":"29","30":"30"}
         #listeordres = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"]
         listeordres = {}
-        for i in range(1, int(n)+1) :
+	for i in range(1, int(n)+1) :
                 listeordres.update({i : str(i)})
         if objet.__form__.has_key("action") and ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Nouvel")) :
                 liste_deroulante(objet, nom_champ, listeordres, getval(objet, nom_champ, enreg, penreg) , dontchange = 0)
@@ -576,7 +578,7 @@ def display_ensemble(objet, nom_champ, enreg, penreg = None, alignement = "right
 #             DISPLAY ZABS
 #=========================================
 def display_zabs(objet, enreg, penreg = None, alignement = "right") :
-        if ((objet.__form__["action"].value == "Créer") or (objet.__form__["action"].value == "modifier")) :
+        if ((objet.__form__["action"].value == "CrÃ©er") or (objet.__form__["action"].value == "modifier")) :
                 update ="UPDATE CARNET SET zabsolu = zrelatif+zabsolu WHERE zone=" + objet.__db__.quote(enreg["zone"], "text") + " AND numero=" + objet.__db__.quote(enreg["numero"],"int") + " AND bis=" + objet.__db__.quote(enreg["bis"], "text") + ";"
                 objet.__db__.query(update)
 
@@ -603,7 +605,7 @@ def display_f_typos1(objet, titre,longueur,nom_champ, enreg, penreg = None, inc 
                                 objet.__doc__.text(name = "nom_champ", value = val, size = longueur, maxlength = 15)
                         except ValueError,msg :
                                 # ne devrait pas se produire
-                                archeoconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+                                archeoconf.fatalerror_message("Erreur sur incrÃ©mentation d'un numÃ©ro, valeur=%s, message=%s" % (repr(val), msg))
                 elif (objet.__form__["action"].value == "Compter") :
                         objet.__doc__.text(name = "nom_champ", value = val, size = longueur, maxlength = 15)
                 elif val :

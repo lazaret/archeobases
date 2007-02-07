@@ -12,12 +12,17 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
+
 import os
 import string
 import collectionconf
 import collectiondata
 import afficheclefs
 import re
+
+
+## Moulage_sol class
+#
 
 class Moulage_sol(collectiondata.Data) :
         #
@@ -115,17 +120,17 @@ class Moulage_sol(collectiondata.Data) :
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "m_type_materiel", "Type Materiel", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_materiel", "Type materiel", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_type_support", "Type Support", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_support", "Type support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_familier", "Nom Familier", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_familier", "Nom familier", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
@@ -135,7 +140,7 @@ class Moulage_sol(collectiondata.Data) :
 
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_age_absolu", "Age Absolu", 10, 10, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_age_absolu", "Âge absolu", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_ville_base_to_form(self, enreg, penreg = None) :
@@ -155,7 +160,7 @@ class Moulage_sol(collectiondata.Data) :
 
         def m_depot_original_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_depot_original", "Depot Original", 50, 50, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_depot_original", "Dépôt original", 50, 50, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_description_anatomique_base_to_form(self, enreg, penreg = None) :
@@ -167,7 +172,7 @@ class Moulage_sol(collectiondata.Data) :
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date Decouverte", 4, 4, "DECOUVERTE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date découverte", 4, 4, "DECOUVERTE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
@@ -183,12 +188,12 @@ class Moulage_sol(collectiondata.Data) :
         def m_origine_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_origine", "Origine Moulage", 50, 50, "MOULAGE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_origine", "Origine moulage", 50, 50, "MOULAGE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_acquisition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date Acquisition", 4, 4, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date d'acquisition", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_donnateur_base_to_form(self, enreg, penreg = None) :
@@ -203,18 +208,18 @@ class Moulage_sol(collectiondata.Data) :
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots clefs", 3, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb Exemplaires Sup", 6, 6, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb d'exemplaires sup", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_modif_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
-                        afficheclefs.champ_saisie(self,"m_date_modif", "Modif le", 10, 20, " ", enreg, penreg)
+                        afficheclefs.champ_saisie(self,"m_date_modif", "Fiche modifiée le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
 
         def m_saisie_base_to_form(self, enreg, penreg = None) :

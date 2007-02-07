@@ -169,12 +169,12 @@ class Biblio(collectiondata.Data) :
 
         def b_maison_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_maison_edition", "Maison Edition", 60, 60, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_maison_edition", "Maison d'édition", 60, 60, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_ville_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_ville_edition", "Ville Edition", 15, 15, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_ville_edition", "Ville d'édition", 15, 15, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_dir_pub_base_to_form(self, enreg, penreg = None) :
@@ -184,7 +184,7 @@ class Biblio(collectiondata.Data) :
 
         def b_annee_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_annee", "Annee", 4, 4, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_annee", "Année", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_mois_base_to_form(self, enreg, penreg = None) :
@@ -194,12 +194,12 @@ class Biblio(collectiondata.Data) :
 
         def b_nombre_volume_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_nombre_volume", "Nombre Volumes", 3, 3, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_nombre_volume", "Nombre de volumes", 3, 3, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_numero_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_numero", "Numero", 4, 4, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_numero", "Numéro", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_volume_base_to_form(self, enreg, penreg = None) :
@@ -214,7 +214,7 @@ class Biblio(collectiondata.Data) :
 
         def b_serie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_serie", "Serie", 2, 2, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_serie", "Série", 2, 2, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_fascicule_base_to_form(self, enreg, penreg = None) :
@@ -224,17 +224,17 @@ class Biblio(collectiondata.Data) :
 
         def b_langue_document_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "b_langue_document", "Langue Doc.", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "b_langue_document", "Langue du doc.", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def b_langue_resume_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_langue_resume", "Langue Resume", 30, 30, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_langue_resume", "Langue du résume", 30, 30, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_etablissement_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_etablissement", "Etablissement", 100, 100, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_etablissement", "Établissement", 100, 100, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_description_base_to_form(self, enreg, penreg = None) :
@@ -244,7 +244,7 @@ class Biblio(collectiondata.Data) :
 
         def nb_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "nb_exemplaires", "Nb Exemplaires", 50, 50, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "nb_exemplaires", "Nb D'exemplaires", 50, 50, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_isbn_base_to_form(self, enreg, penreg = None) :
@@ -259,7 +259,7 @@ class Biblio(collectiondata.Data) :
 
         def b_resume_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_resume", "Resume", 5, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_resume", "Résume", 5, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_mots_clefs_base_to_form(self, enreg, penreg = None) :
@@ -274,13 +274,13 @@ class Biblio(collectiondata.Data) :
 
         def b_nombre_ex_supp_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_nombre_ex_supp", "Nb Exemplaires Suppl.", 2, 2, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_nombre_ex_supp", "Nb d'exemplaires suppl.", 2, 2, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_modif_biblio_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
-                        afficheclefs.champ_saisie(self,"b_modif_biblio", "Modif le", 10, 20, " ", enreg, penreg)
+                        afficheclefs.champ_saisie(self,"b_modif_biblio", "Fiche modifiée le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
 
         def b_saisie_base_to_form(self, enreg, penreg = None) :

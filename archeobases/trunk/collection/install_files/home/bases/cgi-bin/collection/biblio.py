@@ -21,6 +21,9 @@ import re
 import database
 import urllib
 
+## Biblio class -
+#
+
 class Biblio(collectiondata.Data) :
         #
         # le nom de la table
@@ -37,7 +40,7 @@ class Biblio(collectiondata.Data) :
                         "b_auteur"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300}, \
                         "b_titre_article" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300}, \
                         "b_titre_periodique" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100}, \
-                        "b_pages"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10}, \
+                        "b_pages"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12}, \
                         "b_maison_edition": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 60}, \
                         "b_ville_edition"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15}, \
                         "b_dir_pub"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100}, \
@@ -161,7 +164,7 @@ class Biblio(collectiondata.Data) :
 
         def b_pages_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_pages", "Pages", 10, 10, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_pages", "Pages", 12, 12, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_maison_edition_base_to_form(self, enreg, penreg = None) :

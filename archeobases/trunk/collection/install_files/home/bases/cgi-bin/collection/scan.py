@@ -207,7 +207,7 @@ class Scan(collectiondata.Data) :
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb d'xemplaires sup.", 6, 6, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb d'exemplaires sup.", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_modif_base_to_form(self, enreg, penreg = None) :

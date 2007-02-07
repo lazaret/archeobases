@@ -12,7 +12,6 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import string
 import urllib
 
@@ -92,8 +91,9 @@ import Image
 
 utilisateur_courant = os.environ.get("REMOTE_USER", None)
 
+
+## fonction qui insere le message de copyright
 #
-# fonction qui insere le message de copyright
 def copyright(doc) :
         doc.hr_noshade(width='66%')
         doc.div(align = "center")

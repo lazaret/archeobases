@@ -1,0 +1,15 @@
+Fichier de creation de code bares au format PDF pour les bases "collection".
+Version 1.0 Rachel Vaudron
+Version 1.1 bertrand Lecervoisier
+
+Changements
+1.1
+* utilisation de ReportLab 2
+* Nouvelle dépendance "barcode" (instalation manuele depuis reportlab requise)
+
+
+Usage :
+./etiquettes.py  prefix  mincount  maxcount  >fichier.pdf
+
+Exemple
+./etiquettes.py DRET-BIB- 8000 8100 > etiquette.pdf

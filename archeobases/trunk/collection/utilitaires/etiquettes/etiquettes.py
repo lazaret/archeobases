@@ -1,15 +1,17 @@
 #! /usr/bin/env python
-# -*- coding: ISO-8859-15 -*-
+# -*- coding: utf-8 -*-
 #
-# GÈnÈration de planches d'Ètiquettes
+# G√©n√©ration de planches d'√©tiquettes
 # Usage :  ./etiquettes.py  prefix  mincount  maxcount  >fichier.pdf\n")
 import sys
 from cStringIO import StringIO
 
 
-from reportlab.extensions.common import *
-from reportlab.extensions import code128
+#from reportlab.extensions.common import *
+#from reportlab.extensions import code128
 
+from reportlab.graphics.barcode import * #modifi√© le 25-01-2007
+from reportlab.graphics.barcode import code128 #modifie le 25-01-2005
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -29,7 +31,7 @@ class EditionPDF(BaseDocTemplate) :
         def __init__(self, name, parent) :
             self.__parent = parent
             frames = []
-            MARGEDROITE = 0.3*cm
+            MARGEDROITE = 0.5*cm # 0.5 au lien de 0.3
             MARGEBAS = 1.2*cm
             DECX = 0.25*cm
             DECY = 0*cm
@@ -61,7 +63,7 @@ class EditionPDF(BaseDocTemplate) :
         # construction du document
         self.body()
         
-        # generation rÈelle du document PDF
+        # generation r√©elle du document PDF
         self.build(self.__objects)
         self.__built = 1
     

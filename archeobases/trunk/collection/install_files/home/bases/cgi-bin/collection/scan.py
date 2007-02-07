@@ -39,7 +39,7 @@ class Scan(collectiondata.Data) :
                         "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_numero_inventaire"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
-                        "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
+                        "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_ville"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_individu"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 3 , "memory" : 0 }, \
@@ -141,7 +141,7 @@ class Scan(collectiondata.Data) :
 
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_age_absolu", "Âge absolu", 10, 10, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_age_absolu", "Âge absolu", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_ville_base_to_form(self, enreg, penreg = None) :

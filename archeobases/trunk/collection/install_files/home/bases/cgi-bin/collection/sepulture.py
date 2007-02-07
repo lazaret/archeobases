@@ -20,6 +20,9 @@ import afficheclefs
 import re
 import urllib
 
+## sepulture class -
+#
+
 class Sepulture(collectiondata.Data) :
         #
         # le nom de la table
@@ -35,7 +38,7 @@ class Sepulture(collectiondata.Data) :
                         "m_etagere"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_nom_familier"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
-                        "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
+                        "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_ville"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_individu"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 3 , "memory" : 0 }, \
@@ -117,17 +120,17 @@ class Sepulture(collectiondata.Data) :
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "m_type_materiel", "Type Materiel", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_materiel", "Type materiel", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_type_support", "Type Support", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_support", "Type support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_familier", "Nom Familier", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_familier", "Nom familier", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
@@ -137,7 +140,7 @@ class Sepulture(collectiondata.Data) :
 
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_age_absolu", "Age Absolu", 10, 10, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_age_absolu", "Âge absolu", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_ville_base_to_form(self, enreg, penreg = None) :
@@ -157,7 +160,7 @@ class Sepulture(collectiondata.Data) :
 
         def m_depot_original_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_depot_original", "Depot Original", 50, 50, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_depot_original", "Dépôt original", 50, 50, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_genre_base_to_form(self, enreg, penreg = None) :
@@ -167,7 +170,7 @@ class Sepulture(collectiondata.Data) :
 
         def m_espece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_espece", "Espece", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_espece", "Espèce", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_description_anatomique_base_to_form(self, enreg, penreg = None) :
@@ -179,7 +182,7 @@ class Sepulture(collectiondata.Data) :
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date Decouverte", 4, 4, "DECOUVERTE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date déecouverte", 4, 4, "DECOUVERTE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
@@ -195,12 +198,12 @@ class Sepulture(collectiondata.Data) :
         def m_origine_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_origine", "Origine Moulage", 50, 50, "MOULAGE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_origine", "Origine du moulage", 50, 50, "MOULAGE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_acquisition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date Acquisition", 4, 4, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date d'acquisition", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_donnateur_base_to_form(self, enreg, penreg = None) :
@@ -215,18 +218,18 @@ class Sepulture(collectiondata.Data) :
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots clefs", 3, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb Exemplaires Sup.", 6, 6, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb d'exemplaires sup.", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_modif_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
-                        afficheclefs.champ_saisie(self,"m_date_modif", "Modif le", 10, 20, " ", enreg, penreg)
+                        afficheclefs.champ_saisie(self,"m_date_modif", "Fiche modifiée le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
 
         def m_saisie_base_to_form(self, enreg, penreg = None) :

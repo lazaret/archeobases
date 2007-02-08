@@ -28,6 +28,7 @@ def getLanguagePreference() :
     langs = [l.strip().split(';')[0] for l in languages.split(",")]
     return "%s_%s" % (langs[0], langs[0].upper())
 
+
 def getCharsetPreference() :
     """Returns the preferred charset."""
     charsets = os.environ.get("HTTP_ACCEPT_CHARSET", "UTF-8")
@@ -40,6 +41,7 @@ def getCharsetPreference() :
 # Fonctions pour afficher les clefs toujours de la meme maniere
 #
 
+
 def form_to_enreg(form) :
         dic = {}
         if form.has_key("identifiant") :
@@ -50,6 +52,7 @@ def form_to_enreg(form) :
                 if form.has_key("identifiant_2"):
                         dic["identifiant_2"] = form["identifiant_2"].value
         return dic
+
 
 #################################
 #        LISTE DEROULANTE
@@ -100,6 +103,7 @@ def liste_deroulante(objet, nom_champs, liste_valeurs, val, dontchange = None, t
                         objet.__doc__.option(p, value = liste_valeurs[p])
         objet.__doc__.pop()
 
+
 #################################
         # GETVAL
 #################################
@@ -119,6 +123,7 @@ def getval(objet, nomchamp, enreg, penreg = None) :
                         if objet.__champs__[nomchamp].has_key("memory") and objet.__champs__[nomchamp]["memory"] :
                                 return objet.__form__[nomchamp].value
         return ""
+
 
 #################################
         # CHAMP LISTE
@@ -152,6 +157,7 @@ def champ_liste(objet, nom_champ, libelle, enreg, penreg, titre,dontchange = Non
         liste_deroulante(objet, nom_champ, liste, getval(objet, nom_champ, enreg, penreg), dontchange = 0)
         objet.__doc__.pop()
 
+
 ########################################
         # CHAMP_NLISTE
 ########################################
@@ -179,6 +185,7 @@ def champ_nliste(objet, nom_champ, libelle, enreg, penreg, titre, colonne, dontc
         liste_deroulante(objet, nom_champ, liste, getval(objet, nom_champ, enreg, penreg), dontchange = 0)
         objet.__doc__.pop()
 
+
 ##################################################
         # CHAMP_SIMPLE_SAISIE
 ##################################################
@@ -189,6 +196,7 @@ def champ_simple_saisie(objet, nom_champ, libelle,longueur, maxlongueur, enreg, 
                 objet.__doc__.text(name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
 
         objet.__doc__.pop()
+
 
 ##################################################
         # CHAMP_SAISIE
@@ -224,6 +232,7 @@ def champ_saisie(objet, nom_champ, libelle,longueur, maxlongueur, titre, enreg, 
 
         objet.__doc__.pop()
 
+
 ##############################
         # CHAMP_SAISIE_SIMPLE
 ##############################
@@ -233,6 +242,7 @@ def champ_saisie_simple(objet, nom_champ,longueur, maxlongueur, enreg, penreg):
         objet.__doc__.font(size=collectionconf.font_size)
         objet.__doc__.text(name = nom_champ, value = getval(objet, nom_champ, enreg, penreg), size = longueur, maxlength = maxlongueur)
         objet.__doc__.pop()
+
 
 ###############################################
         # CHAMP_NSAISIE
@@ -253,6 +263,7 @@ def champ_nsaisie(objet, nom_champ, libelle,longueur, maxlongueur, titre, colonn
 
         objet.__doc__.text(name = nom_champ, value = getval(objet, nom_champ, enreg, penreg), size = longueur, maxlength = maxlongueur)
         objet.__doc__.pop()
+
 
 ################################################
         # CHAMP_SAISIE_AREA
@@ -282,6 +293,7 @@ def champ_saisie_area(objet, nom_champ, libelle, nbligne, nbcol, nbcel, titre, e
         objet.__doc__.pop()
         objet.__doc__.pop()
 
+
 ################################
         # AJOUTE_LIGNE
 ################################
@@ -291,6 +303,7 @@ def ajoute_ligne(objet, largeur, epaisseur, hauteur, nb) :
         objet.__doc__.td(colspan = nb, height = hauteur)
         objet.__doc__.hr(width = largeur, size = epaisseur)
         objet.__doc__.pop()
+
 
 ###################################
         # DISPLAY IDENTIFIANT
@@ -333,6 +346,7 @@ def display_identifiant(objet, enreg, penreg = None, inc = 0, alignement = "left
                 objet.__doc__.text(name = "identifiant", size = "20",maxlength="40")
         objet.__doc__.pop()
 
+
 ###################################
         # DISPLAY IDENTIFIANT_1
 ###################################
@@ -373,6 +387,7 @@ def display_identifiant_1(objet, enreg, penreg = None, inc = 0, alignement = "le
         else :
                 objet.__doc__.text(name = "identifiant_1", size = "20",maxlength="40")
         objet.__doc__.pop()
+
 
 ###################################
         # DISPLAY IDENTIFIANT_2
@@ -415,6 +430,7 @@ def display_identifiant_2(objet, enreg, penreg = None, inc = 0, alignement = "le
                 objet.__doc__.text(name = "identifiant_2", size = "20",maxlength="40")
         objet.__doc__.pop()
 
+
 #####################################
         # DISPLAY_X_ORDRE
 #####################################
@@ -456,6 +472,7 @@ def display_x_ordre(objet, nom_champ, imin, imax, enreg, penreg = None, aligneme
         else:
                 liste_deroulante(objet, nom_champ, listeordres, val )
         objet.__doc__.pop()
+
 
 #====================================
 #           DISPLAY_X_RANG

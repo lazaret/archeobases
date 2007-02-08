@@ -15,11 +15,11 @@
 
 import os
 import string
+import re
+import urllib
 import collectionconf
 import collectiondata
 import afficheclefs
-import re
-import urllib
 
 ## Antropology class -
 #

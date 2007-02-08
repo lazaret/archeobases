@@ -1,18 +1,23 @@
 #! /usr/bin/python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2006 Bertrand LECERVOISIER
+# Collection-archeo - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/
 #
-# Version 0.3
-#
-#You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
+
+## Convert an SQL dump to UTF-8 and import dump into a new database
+#
+# Convert an iso-8859-1 SQL dump to UTF-8 with iconv
+# import the data into an existing database
+# make a little of database maintenance (vacuum + reindex)
 
 #===========CONVERTIT ET IMPORTE UN DUMP DE BASE SQL=================
 
@@ -23,10 +28,14 @@
 # -O = pas de commandes "connect"
 # -x sans droits sur les tables (deja crées par create_structure.py)
 
+# import modules
 import os
 import sys
 import string
+
 import database
+
+
 
 print("")
 print("--------------------------------------------------------------------------")
@@ -34,8 +43,7 @@ print("-> AVERTISSEMENT: placez-vous dans le répertoire où est votre fichier d
 print("   Pour créer ce fichier utilisez les commandes suivante sur votre ancienne base :")
 print("   'pg_dump -a -d -O -x mabase > mabase.sql'")
 print("-> Excutez ce script apres le script 'create_structure.py' en mode root.")
-print("-> (ne tenez compte des avertissement sur clef unique.)")
-	
+print("-> (ne tenez pas compte des avertissement sur clef unique.)")
 print("-> Version de Postgresql: ")
 os.system ("psql -V")
 
@@ -62,7 +70,7 @@ db.query("SET client_encoding = 'UTF8';")
 print("-> SUPPRESSION DU FICHIER UF8")
 os.system ("rm "+nom_fichier+"8")
 
-print ("-> Apparement REUSSI !")	
+print ("-> Apparement REUSSI !")
 print("--------------------------------------------------------------------------")
 print ("Vous devriez maintenant lancer le script des mots de passes utilisateur :")
 print ("./create_passwords.py")

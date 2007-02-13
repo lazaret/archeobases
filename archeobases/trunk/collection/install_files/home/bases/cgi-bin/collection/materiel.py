@@ -85,7 +85,6 @@ class Materiel(collectiondata.Data) :
                         "m_espece"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_holotype_espece"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_nom_familier"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
-                        "m_nom_scientifique"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_synonymes"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_nom_commun"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_age_individu"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -115,7 +114,7 @@ class Materiel(collectiondata.Data) :
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
                         "m_groupe","m_classe","m_ordre","m_famille","m_genre","m_espece","m_holotype_espece", \
-                        "m_nom_familier","m_nom_scientifique","m_synonymes","m_nom_commun", \
+                        "m_nom_familier","m_synonymes","m_nom_commun", \
                         "m_age_individu","m_sexe_individu","m_donnees_individu","m_representation_squel", \
                         "m_description_anatomique","m_observations_anatomique","m_nature","m_date_modif"]
 
@@ -130,7 +129,7 @@ class Materiel(collectiondata.Data) :
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
                         "m_groupe","m_classe","m_ordre","m_famille","m_genre","m_espece","m_holotype_espece", \
-                        "m_nom_familier","m_nom_scientifique","m_synonymes","m_nom_commun", \
+                        "m_nom_familier","m_synonymes","m_nom_commun", \
                         "m_age_individu","m_sexe_individu","m_donnees_individu","m_representation_squel", \
                         "m_description_anatomique","m_observations_anatomique","m_nature","m_date_modif","m_saisie","liens"]
 
@@ -409,11 +408,6 @@ class Materiel(collectiondata.Data) :
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nom_familier", "Nom Familier", 20, 20, " ", enreg, penreg)
-                self.__doc__.pop()
-
-        def m_nom_scientifique_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_scientifique", "Nom Scientifique", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_synonymes_base_to_form(self, enreg, penreg = None) :

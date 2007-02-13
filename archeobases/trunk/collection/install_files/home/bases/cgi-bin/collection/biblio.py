@@ -13,13 +13,15 @@
 #
 
 import os
+import re
 import string
+import urllib
+
+import database
+import afficheclefs
 import collectionconf
 import collectiondata
-import afficheclefs
-import re
-import database
-import urllib
+
 
 ## Biblio class -
 #
@@ -154,12 +156,12 @@ class Biblio(collectiondata.Data) :
 
         def b_titre_article_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_titre_article", "Titre Article", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_titre_article", "Titre de l'article", 3, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_titre_periodique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_titre_periodique", "Titre Periodique", 100, 100, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_titre_periodique", "Titre du periodique", 100, 100, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_pages_base_to_form(self, enreg, penreg = None) :
@@ -244,7 +246,7 @@ class Biblio(collectiondata.Data) :
 
         def nb_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "nb_exemplaires", "Nb D'exemplaires", 50, 50, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "nb_exemplaires", "Nb d'exemplaires", 50, 50, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_isbn_base_to_form(self, enreg, penreg = None) :
@@ -259,7 +261,7 @@ class Biblio(collectiondata.Data) :
 
         def b_resume_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_resume", "Résume", 5, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_resume", "Résumé", 5, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_mots_clefs_base_to_form(self, enreg, penreg = None) :

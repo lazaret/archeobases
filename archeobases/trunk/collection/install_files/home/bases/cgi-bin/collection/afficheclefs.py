@@ -201,9 +201,9 @@ def champ_simple_saisie(objet, nom_champ, libelle,longueur, maxlongueur, enreg, 
 ##################################################
         # CHAMP_SAISIE
 ##################################################
-def champ_saisie(objet, nom_champ, libelle,longueur, maxlongueur, titre, enreg, penreg):
+def champ_saisie(objet, nom_champ, libelle, longueur, maxlongueur, titre, enreg, penreg):
         car = getCharsetPreference()
-        #print "Jeux caractere", car
+        print "Jeux caractere", car #test
         if titre != "":
                 objet.__doc__.tr(align="right")
                 objet.__doc__.push()

@@ -108,7 +108,7 @@ def liste_deroulante(objet, nom_champs, liste_valeurs, val, dontchange = None, t
         # GETVAL
 #################################
 def getval(objet, nomchamp, enreg, penreg = None) :
-        car = getCharsetPreference()
+        #car = getCharsetPreference()
         #print "Jeux caractere", car
         if enreg != None and enreg.has_key(nomchamp) :
                 if enreg[nomchamp] != None:
@@ -202,8 +202,7 @@ def champ_simple_saisie(objet, nom_champ, libelle,longueur, maxlongueur, enreg, 
         # CHAMP_SAISIE
 ##################################################
 def champ_saisie(objet, nom_champ, libelle, longueur, maxlongueur, titre, enreg, penreg):
-        car = getCharsetPreference()
-        print "Jeux caractere", car #test
+        #car = getCharsetPreference()
         if titre != "":
                 objet.__doc__.tr(align="right")
                 objet.__doc__.push()
@@ -220,15 +219,16 @@ def champ_saisie(objet, nom_champ, libelle, longueur, maxlongueur, titre, enreg,
         objet.__doc__.push()
         objet.__doc__.td(align="left", valign="middle" )
         objet.__doc__.font(size=collectionconf.font_size)
-        valeur = getval(objet, nom_champ, enreg, penreg)
-        if valeur != None:
-                try:
-                        valeur = unicode(valeur,"UTF-8").encode(car)
-                except:
-                        valeur = valeur
-                objet.__doc__.text(name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
-        else:
-                objet.__doc__.text(name = nom_champ, value = "", size = longueur, maxlength = maxlongueur)
+        #valeur = getval(objet, nom_champ, enreg, penreg)
+        #if valeur != None:
+        #        try:
+        #                valeur = unicode(valeur,"UTF-8").encode(car)
+        #        except:
+        #                valeur = valeur
+        #        objet.__doc__.text(name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
+        #else:
+        #        objet.__doc__.text(name = nom_champ, value = "", size = longueur, maxlength = maxlongueur)
+        objet.__doc__.text(name = nom_champ, value = getval(objet, nom_champ, enreg, penreg), size = longueur, maxlength = maxlongueur) #test1
 
         objet.__doc__.pop()
 

@@ -40,6 +40,7 @@ class Anthropologie(collectiondata.Data) :
                         "m_etagere"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_nom_commun"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_nom_familier"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
+                        "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_numero_inventaire"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
                         "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
@@ -47,7 +48,6 @@ class Anthropologie(collectiondata.Data) :
                         "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_individu"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 3 , "memory" : 0 }, \
                         "m_depot_original"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
-                        "m_nom_scientifique"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_genre"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_espece"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_holotype_espece"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
@@ -75,15 +75,15 @@ class Anthropologie(collectiondata.Data) :
 
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_groupe","m_etagere","m_nom_commun", \
-                           "m_nom_familier","m_nom_site","m_numero_inventaire","m_age_absolu","m_ville","m_pays","m_individu", \
-                           "m_depot_original","m_nom_scientifique","m_genre","m_espece","m_holotype_espece", \
+                           "m_nom_familier","m_nom_fossile","m_nom_site","m_numero_inventaire","m_age_absolu","m_ville","m_pays","m_individu", \
+                           "m_depot_original","m_genre","m_espece","m_holotype_espece", \
                            "m_synonymes","m_description_anatomique","m_date_decouverte","m_inventeur","m_origine", \
                            "m_date","m_date_acquisition","m_donnateur","m_nature","m_observations","m_bibliographie", \
                            "m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
         __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_groupe","m_etagere","m_nom_commun", \
-                           "m_nom_familier","nom_scientifique","m_nom_site","m_numero_inventaire","m_age_absolu","m_ville","m_pays","m_individu", \
+                           "m_nom_familier","m_nom_fossile","m_nom_site","m_numero_inventaire","m_age_absolu","m_ville","m_pays","m_individu", \
                            "m_depot_original","m_genre","m_espece","m_holotype_espece", \
                            "m_synonymes","m_description_anatomique","m_date_decouverte","m_inventeur","m_origine", \
                            "m_date","m_date_acquisition","m_donnateur","m_nature","m_observations","m_bibliographie", \
@@ -131,12 +131,12 @@ class Anthropologie(collectiondata.Data) :
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "m_type_materiel", "Type materiel", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_materiel", "Type de materiel", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_type_support", "Type support", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_support", "Type de support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_groupe_base_to_form(self, enreg, penreg = None) :
@@ -158,6 +158,11 @@ class Anthropologie(collectiondata.Data) :
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_nom_familier", "Nom familier", 20, 20, " ", enreg, penreg)
+                self.__doc__.pop()
+
+        def m_nom_fossile_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie(self, "m_nom_fossile", "Nom du fossile", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
@@ -193,11 +198,6 @@ class Anthropologie(collectiondata.Data) :
         def m_depot_original_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_depot_original", "Dépôt original", 50, 50, " ", enreg, penreg)
-                self.__doc__.pop()
-
-        def m_nom_scientifique_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_scientifique", "Nom scientifique", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_genre_base_to_form(self, enreg, penreg = None) :

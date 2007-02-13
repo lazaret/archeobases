@@ -1,8 +1,8 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
 # Collection - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
-# http://lazaret.unice.fr/opensource/
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
 # terms of the GNU General Public Licence version 2
@@ -15,6 +15,7 @@
 
 # modifier m_numero_individu en m_individu
 # ajouter m_ville, m_groupe, m_nom_scientifique, m_holotype_espece
+
 
 import os
 import string

@@ -24,7 +24,7 @@ import re
 ## Moulage_objet class
 #
 
-class Moulage_sol(collectiondata.Data) :
+class Moulage_objet(collectiondata.Data) :
         #
         # le nom de la table
         __tablename__ = "moulage_objet"
@@ -373,7 +373,7 @@ class Moulage_sol(collectiondata.Data) :
 ##############################################################################
 
         def modifier(self) :
-                """Met a jour le moulage_sol courant"""
+                """Met a jour le moulage_objet courant"""
                 self.__db__.query(self.make_update_query(["identifiant"],"materiel"))
                 i = self.__form__["identifiant"].value
                 update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
@@ -381,7 +381,7 @@ class Moulage_sol(collectiondata.Data) :
                 return 0
 
         def supprimer(self) :
-               # s'il existe des figures ou des photos sur ce moulage_sol on refuse la suppression
+               # s'il existe des figures ou des photos sur ce moulage_objet on refuse la suppression
                 #if self.exist(["identifiant"], table = "l") :
                 #        return -1
                 #else :
@@ -399,17 +399,17 @@ class Moulage_sol(collectiondata.Data) :
                 except :
                         collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
 
-                # on efface le moulage_sol
+                # on efface le moulage_objet
                 self.delete_records(["identifiant"],"materiel")
                 return 0
 
         def creer(self) :
-                # si le moulage_sol n'existe pas déjà alors on la crée, sinon on refuse
+                # si le moulage_objet n'existe pas déjà alors on la crée, sinon on refuse
                 if self.exist(["identifiant"], table = "materiel") :
                         primarykeys = { "identifiant": None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant le moulage_sol dans la base
+                        # on insère maintenant le moulage_objet dans la base
                         i = self.__form__["identifiant"].value
                         self.__db__.query(self.make_insert_query({},"materiel"))
                         primarykeys = { "identifiant" : i}

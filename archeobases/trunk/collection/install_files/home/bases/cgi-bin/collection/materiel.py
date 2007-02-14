@@ -110,7 +110,7 @@ class Materiel(collectiondata.Data) :
         __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nombre_exemplaires","m_numero_inventaire", \
                         "m_titre","m_donnateur","m_depot_original", "m_auteur","m_date","m_date_acquisition","m_editeur", \
                         "m_edition","m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
-                        "m_largeur_coupe","m_batiment","m_piece","m_meuble","m_etagere","m_tiroir" \
+                        "m_largeur_coupe","m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
                         "m_nom_site", "m_localite","m_ville","m_commune","m_region","m_pays","m_inventeur", \
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
@@ -125,7 +125,7 @@ class Materiel(collectiondata.Data) :
         __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nombre_exemplaires","m_numero_inventaire", \
                         "m_titre","m_donnateur","m_depot_original", "m_auteur","m_date","m_date_acquisition","m_editeur", \
                         "m_edition","m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
-                        "m_largeur_coupe","m_batiment","m_piece","m_meuble","m_etagere","m_tiroir" \
+                        "m_largeur_coupe","m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
                         "m_nom_site", "m_localite","m_ville","m_commune","m_region","m_pays","m_inventeur", \
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
@@ -625,10 +625,10 @@ class Materiel(collectiondata.Data) :
                 return 0
 
         def supprimer(self) :
-               # s'il existe des figures ou des photos sur ce materiel on refuse la suppression
-                if self.exist(["identifiant"], table = "photomateriel") :
-                        return -1
-                else :
+                # s'il existe des figures ou des photos sur ce materiel on refuse la suppression
+                #if self.exist(["identifiant"], table = "photomateriel") :
+                #        return -1
+                #else :
                         i = "I" + self.__form__["identifiant"].value
                         rr = collectionconf.image_fullname(i)
                         try :

@@ -58,7 +58,7 @@ class Anthropologie(collectiondata.Data) :
                         "m_origine"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_date_acquisition"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
-                        "m_donnateur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
+                        "m_depot_moule"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
                         "m_nature"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
                         "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
                         "m_bibliographie"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
@@ -78,7 +78,7 @@ class Anthropologie(collectiondata.Data) :
                            "m_nom_familier","m_nom_fossile","m_nom_site","m_numero_inventaire","m_age_absolu","m_ville","m_pays","m_individu", \
                            "m_depot_original","m_genre","m_espece","m_holotype_espece", \
                            "m_synonymes","m_description_anatomique","m_date_decouverte","m_inventeur","m_origine", \
-                           "m_date","m_date_acquisition","m_donnateur","m_nature","m_observations","m_bibliographie", \
+                           "m_date","m_date_acquisition","m_depot_moule","m_nature","m_observations","m_bibliographie", \
                            "m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
@@ -86,7 +86,7 @@ class Anthropologie(collectiondata.Data) :
                            "m_nom_familier","m_nom_fossile","m_nom_site","m_numero_inventaire","m_age_absolu","m_ville","m_pays","m_individu", \
                            "m_depot_original","m_genre","m_espece","m_holotype_espece", \
                            "m_synonymes","m_description_anatomique","m_date_decouverte","m_inventeur","m_origine", \
-                           "m_date","m_date_acquisition","m_donnateur","m_nature","m_observations","m_bibliographie", \
+                           "m_date","m_date_acquisition","m_depot_moule","m_nature","m_observations","m_bibliographie", \
                            "m_mots_clefs","m_nombre_exemplaires","m_date_modif","m_saisie","liens"]
 
         __orderby__ = " ORDER BY identifiant ASC;"
@@ -253,9 +253,9 @@ class Anthropologie(collectiondata.Data) :
                 afficheclefs.champ_saisie(self, "m_date_acquisition", "Date acquisition", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
-        def m_donnateur_base_to_form(self, enreg, penreg = None) :
+        def m_depot_moule_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_donnateur", "Donateur", 30, 30, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_depot_moule", "Dépôt du moule", 50, 50, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nature_base_to_form(self, enreg, penreg = None) :

@@ -167,7 +167,7 @@ class Anthropologie(collectiondata.Data) :
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_site", "Site", 40, 40, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_site", "Nom du site", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_numero_inventaire_base_to_form(self, enreg, penreg = None) :

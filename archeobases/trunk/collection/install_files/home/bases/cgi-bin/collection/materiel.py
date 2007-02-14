@@ -85,6 +85,7 @@ class Materiel(collectiondata.Data) :
                         "m_espece"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_holotype_espece"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_nom_familier"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
+                        "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_synonymes"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_nom_commun"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_age_individu"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -114,7 +115,7 @@ class Materiel(collectiondata.Data) :
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
                         "m_groupe","m_classe","m_ordre","m_famille","m_genre","m_espece","m_holotype_espece", \
-                        "m_nom_familier","m_synonymes","m_nom_commun", \
+                        "m_nom_familier","m_nom_fossile","m_synonymes","m_nom_commun", \
                         "m_age_individu","m_sexe_individu","m_donnees_individu","m_representation_squel", \
                         "m_description_anatomique","m_observations_anatomique","m_nature","m_date_modif"]
 
@@ -129,7 +130,7 @@ class Materiel(collectiondata.Data) :
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
                         "m_groupe","m_classe","m_ordre","m_famille","m_genre","m_espece","m_holotype_espece", \
-                        "m_nom_familier","m_synonymes","m_nom_commun", \
+                        "m_nom_familier","m_nom_fossile","m_synonymes","m_nom_commun", \
                         "m_age_individu","m_sexe_individu","m_donnees_individu","m_representation_squel", \
                         "m_description_anatomique","m_observations_anatomique","m_nature","m_date_modif","m_saisie","liens"]
 
@@ -176,22 +177,22 @@ class Materiel(collectiondata.Data) :
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "m_type_materiel", "Type Materiel", enreg, penreg, "SUPPORT", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_materiel", "Type de materiel", enreg, penreg, "SUPPORT", dontchange = 0)
                 self.__doc__.pop()
 
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_type_support", "Type Support", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_support", "Type de support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_numero_inventaire_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_numero_inventaire", "Numero", 10, 10, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_numero_inventaire", "Numéro", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nombre Exemplaires", 6, 6, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nombre d'exemplaires", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_titre_base_to_form(self, enreg, penreg = None) :
@@ -206,7 +207,7 @@ class Materiel(collectiondata.Data) :
 
         def m_depot_original_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_depot_original", "Depot Original", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_depot_original", "Dépôt original", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_auteur_base_to_form(self, enreg, penreg = None) :
@@ -221,22 +222,22 @@ class Materiel(collectiondata.Data) :
 
         def m_date_acquisition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date Acquisition", 4, 4, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date d'acquisition", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_editeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_editeur", "Editeur", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_editeur", "Éditeur", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_edition", "Edition/Production", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_edition", "Édition/Production", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_date_edition", "Date Edition", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_edition", "Date d'édition", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_diffusion_base_to_form(self, enreg, penreg = None) :
@@ -246,7 +247,7 @@ class Materiel(collectiondata.Data) :
 
         def m_duree_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_duree", "Duree", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_duree", "Durée", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_support_base_to_form(self, enreg, penreg = None) :
@@ -266,19 +267,19 @@ class Materiel(collectiondata.Data) :
 
         def m_largeur_coupe_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_largeur_coupe", "Largeur Coupe", 15, 15, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_largeur_coupe", "Epaisseur coupe", 15, 15, " ", enreg, penreg)
                 self.__doc__.pop()
 
         ######### PARTIE LOCALISATION
         def m_batiment_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "m_batiment", "Batiment", enreg, penreg, "LOCALISATION", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_batiment", "Bâtiment", enreg, penreg, "LOCALISATION", dontchange = 0)
                 self.__doc__.pop()
 
         def m_piece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_piece", "Piece", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_piece", "Pièce", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_meuble_base_to_form(self, enreg, penreg = None):
@@ -293,19 +294,19 @@ class Materiel(collectiondata.Data) :
 
         def m_etagere_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_etagere", "Etagere", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_etagere", "Étagère", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         ############## PARTIE SITE
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_nom_site", "Nom Site", 80, 80, "SITE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_site", "Nom du site", 80, 80, "SITE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_localite_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_localite", "Localite", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_localite", "Localité", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_ville_base_to_form(self, enreg, penreg = None) :
@@ -320,7 +321,7 @@ class Materiel(collectiondata.Data) :
 
         def m_region_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_region", "Region", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_region", "Région", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_pays_base_to_form(self, enreg, penreg = None) :
@@ -335,22 +336,22 @@ class Materiel(collectiondata.Data) :
 
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date Decouverte", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date de découverte", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_periode_culturelle_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_periode_culturelle", "Periode Culturelle", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_periode_culturelle", "Période culturelle", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_periode_geologique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_periode_geologique", "Periode Geologique", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_periode_geologique", "Période géologique", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_age_absolu", "Age Absolu", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_age_absolu", "Âge absolu", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_observations_base_to_form(self, enreg, penreg = None) :
@@ -365,14 +366,14 @@ class Materiel(collectiondata.Data) :
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 80, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots clefs", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
 
         ##################### INDIVIDU
         def m_numero_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_numero_individu", "Numero Individu", 80, 80, "INDIVIDU", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_numero_individu", "Numéro individu", 80, 80, "INDIVIDU", enreg, penreg)
                 self.__doc__.pop()
 
         def m_classe_base_to_form(self, enreg, penreg = None) :
@@ -397,17 +398,22 @@ class Materiel(collectiondata.Data) :
 
         def m_espece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_espece", "Espece", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_espece", "Espèce", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_holotype_espece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_holotype_espece", "Holotype Espece", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_holotype_espece", "Holotype espèce", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_familier", "Nom Familier", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_familier", "Nom familier", 20, 20, " ", enreg, penreg)
+                self.__doc__.pop()
+
+        def m_nom_fossile_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie(self, "m_nom_fossile", "Nom du fossile", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_synonymes_base_to_form(self, enreg, penreg = None) :
@@ -417,7 +423,7 @@ class Materiel(collectiondata.Data) :
 
         def m_nom_commun_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom Commun", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom commun", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_age_individu_base_to_form(self, enreg, penreg = None) :
@@ -432,7 +438,7 @@ class Materiel(collectiondata.Data) :
 
         def m_donnees_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_donnees_individu", "Autres donnees", 3, 80, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_donnees_individu", "Autres données", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_representation_squel_base_to_form(self, enreg, penreg = None) :
@@ -458,7 +464,7 @@ class Materiel(collectiondata.Data) :
         def m_date_modif_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
-                        afficheclefs.champ_saisie(self,"m_date_modif", "Modif le", 10, 20, " ", enreg, penreg)
+                        afficheclefs.champ_saisie(self,"m_date_modif", "Fiche modifiée le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
 
         def m_saisie_base_to_form(self, enreg, penreg = None) :

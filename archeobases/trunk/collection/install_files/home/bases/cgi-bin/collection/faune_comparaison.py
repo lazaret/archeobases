@@ -133,12 +133,12 @@ class Faune_comparaison(collectiondata.Data) :
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "m_type_materiel", "Type Materiel", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_materiel", "Type de matériel", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_numero_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_numero_individu", "Numero Individu", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_numero_individu", "Numéro Individu", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_classe_base_to_form(self, enreg, penreg = None) :
@@ -163,18 +163,18 @@ class Faune_comparaison(collectiondata.Data) :
 
         def m_espece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_espece", "Espece", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_espece", "Espèce", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_commun_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom Commun", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom vernaculaire", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_nom_site", "Nom Site", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_site", "Nom du site", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_pays_base_to_form(self, enreg, penreg = None) :
@@ -194,7 +194,7 @@ class Faune_comparaison(collectiondata.Data) :
 
         def m_donnees_individu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_donnees_individu", "Autres donnees", 3, 80, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_donnees_individu", "Autres données", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_representation_squel_base_to_form(self, enreg, penreg = None) :
@@ -219,12 +219,12 @@ class Faune_comparaison(collectiondata.Data) :
 
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_age_absolu", "Age Absolu", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_age_absolu", "Âge absolu", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_numero_inventaire_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_numer_inventaire", "Numero Inventaire", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_numer_inventaire", "Numéro d'inventaire", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_donnateur_base_to_form(self, enreg, penreg = None) :
@@ -234,12 +234,12 @@ class Faune_comparaison(collectiondata.Data) :
 
         def m_date_acquisition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date Acquisition", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_acquisition", "Date d'acquisition", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nombre Exemplaires", 6, 6, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nombre d'exemplaires", 6, 6, " ", enreg, penreg)
                 self.__doc__.pop()
 
 
@@ -253,7 +253,7 @@ class Faune_comparaison(collectiondata.Data) :
 
         def m_piece_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_piece", "Piece", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_piece", "Pièce", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_meuble_base_to_form(self, enreg, penreg = None) :
@@ -263,19 +263,19 @@ class Faune_comparaison(collectiondata.Data) :
 
         def m_etagere_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_etagere", "Etagere/Tiroir", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_etagere", "Étagère", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 80, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots clefs", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
 
         def m_date_modif_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
-                        afficheclefs.champ_saisie(self,"m_date_modif", "Modif le", 10, 20, " ", enreg, penreg)
+                        afficheclefs.champ_saisie(self,"m_date_modif", "Fiche modifiée le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
 
         def m_saisie_base_to_form(self, enreg, penreg = None) :

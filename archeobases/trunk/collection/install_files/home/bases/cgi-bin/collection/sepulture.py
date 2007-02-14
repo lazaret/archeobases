@@ -136,7 +136,7 @@ class Sepulture(collectiondata.Data) :
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_site", "Site", 40, 40, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_site", "Nom du site", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
@@ -183,7 +183,7 @@ class Sepulture(collectiondata.Data) :
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date déecouverte", 4, 4, "DECOUVERTE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date découverte", 4, 4, "DECOUVERTE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :

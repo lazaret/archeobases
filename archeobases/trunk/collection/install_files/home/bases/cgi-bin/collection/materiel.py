@@ -187,7 +187,7 @@ class Materiel(collectiondata.Data) :
 
         def m_numero_inventaire_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_numero_inventaire", "Numéro", 10, 10, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_numero_inventaire", "Numéro d'inventaire", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
@@ -423,7 +423,7 @@ class Materiel(collectiondata.Data) :
 
         def m_nom_commun_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom commun", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom vernaculaire", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_age_individu_base_to_form(self, enreg, penreg = None) :

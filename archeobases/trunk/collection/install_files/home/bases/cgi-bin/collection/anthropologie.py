@@ -152,7 +152,7 @@ class Anthropologie(collectiondata.Data) :
         def m_nom_commun_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom commun", 20, 20, "ORIGINAL", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_commun", "Nom vernaculaire", 20, 20, "ORIGINAL", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :

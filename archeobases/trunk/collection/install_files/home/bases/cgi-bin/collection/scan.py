@@ -37,6 +37,7 @@ class Scan(collectiondata.Data) :
                         "identifiant"           : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
                         "m_type_materiel"       : { "type" : "text", "default" : "CT-SCAN",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
+                        "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_numero_inventaire"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
                         "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
@@ -64,13 +65,13 @@ class Scan(collectiondata.Data) :
         __vraiparent__    = "scan"
 
         # liste des seuls champs que l'on veut pouvoir modifier
-        __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_site","m_numero_inventaire", \
+        __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_fossile","m_nom_site","m_numero_inventaire", \
                            "m_age_absolu","m_ville","m_pays","m_individu","m_genre","m_espece", \
                            "m_description_anatomique","m_inventeur","m_nature","m_date","m_largeur_coupe", \
                            "m_observations","m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
-        __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_site","m_numero_inventaire", \
+        __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_fossile","m_nom_site","m_numero_inventaire", \
                            "m_age_absolu","m_ville","m_pays","m_individu","m_genre","m_espece", \
                            "m_description_anatomique","m_inventeur","m_nature","m_date","m_largeur_coupe", \
                            "m_observations","m_mots_clefs","m_nombre_exemplaires","m_date_modif","m_saisie","liens"]
@@ -126,6 +127,11 @@ class Scan(collectiondata.Data) :
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "m_type_support", "Type support", enreg, penreg, " ", dontchange = 0)
+                self.__doc__.pop()
+
+        def m_nom_fossile_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie(self, "m_nom_fossile", "Nom du fossile", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :

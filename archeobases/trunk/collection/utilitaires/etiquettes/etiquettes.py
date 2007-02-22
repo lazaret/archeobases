@@ -26,22 +26,22 @@ from reportlab.lib import styles, colors
 NBLABELS = 65
 NBCOLS = 5
 
-class EditionPDF(BaseDocTemplate) :
+class EditionPDF(BaseDocTemplate) : # Avery C2651
     class MyPageTemplate(PageTemplate) :
         def __init__(self, name, parent) :
             self.__parent = parent
             frames = []
-            MARGEDROITE = 0.5*cm # 0.5 au lien de 0.3
-            MARGEBAS = 1.2*cm
-            DECX = 0.25*cm
+            MARGEDROITE = 0.467*cm # 0.5 au lien de 0.3
+            MARGEBAS = 1.09*cm
+            DECX = 0.254*cm
             DECY = 0*cm
             NBROWS = NBLABELS / NBCOLS
             for x in range(NBCOLS) :
                 for y in range(NBROWS) :
                     xpos = (x * (3.81*cm + DECX)) + MARGEDROITE
                     ypos = (y * (2.12*cm + DECY)) + MARGEBAS     # ou par exemple 0.5*inch
-                    width = 3.8*cm
-                    height = 2.1*cm
+                    width = 3.81*cm
+                    height = 2.12*cm
                     frames.append(Frame(xpos, ypos, width, height, showBoundary = 0))
             PageTemplate.__init__(self, name, frames)
         

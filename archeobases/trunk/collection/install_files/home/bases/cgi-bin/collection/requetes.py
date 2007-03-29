@@ -271,7 +271,7 @@ if ruser:# in collectionconf.superusers :
 
                                                 # puis les enregistrements
                                                 for enregistrement in liste_valeurs :
-                                                        doc.insert_text(unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("iso-8859-15"))
+                                                        doc.insert_text(unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8"))
                                                 if master :
                                                         doc.insert_text("\n--" + endpart + "--\n")
                                         else :

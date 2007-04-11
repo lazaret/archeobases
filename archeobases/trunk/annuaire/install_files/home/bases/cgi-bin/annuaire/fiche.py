@@ -28,7 +28,7 @@ class Fiche(annuairedata.Data) :
         __color__ = annuaireconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
-        __champs__ = { 
+        __champs__ = {
                         "identifiant"    : { "type" : "int", "default" : 0, "mandatory" : 1 , "longueur" : 6, "memory" : 1}, \
                         "type_entree" : { "type" : "text", "default" : "",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "type_personne"  : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
@@ -40,11 +40,11 @@ class Fiche(annuairedata.Data) :
                         "date_naissance" : { "type" : "date", "mandatory" : 0 , "longueur" : 10}, \
                         "fonction"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50, "memory" : 1 }, \
                         "specialite"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50, "memory" : 1 }, \
-                        "commentaire"    : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 0},  
+                        "commentaire"    : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 0},
                         "association"    : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "numero_adherent": { "type" : "int", "mandatory" : 0 , "longueur" : 6 }, \
                         "cotisation"     : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
-                        "chantier"       : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 0},  
+                        "chantier"       : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 0},
                         "modif_fiche"   : { "type" : "date", "mandatory" : 0 , "longueur" : 10}, \
                         }
         #
@@ -53,8 +53,8 @@ class Fiche(annuairedata.Data) :
         #__listeparents__  = ["entree"]
         __listeclefs__    = ["identifiant"]
         __vraiparent__    = "fiche"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["identifiant", "type_entree", "type_personne","civilite", "titre", "nom", "prenom", "nationalite", "date_naissance", "fonction", "specialite", "commentaire", "association", "numero_adherent", "cotisation", "chantier"]
@@ -78,18 +78,18 @@ class Fiche(annuairedata.Data) :
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"])*2) :
                         return -1       # erreur
-                else :          
+                else :
                         return 0
-                        
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
                         if self.__champs__[champ]["longueur"] :
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                annuairedata.Data.__init__(self, parent)                                        
-        
-        
-################################### En entrée ###########################
+                annuairedata.Data.__init__(self, parent)
+
+
+################################### En entrï¿½e ###########################
         def identifiant_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
@@ -98,12 +98,12 @@ class Fiche(annuairedata.Data) :
                 self.__doc__.insert_text(" ")
                 self.__doc__.pop()
                 afficheclefs.display_identifiant(self, enreg, penreg, 1)
- 
+
 
         def type_entree_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste(self, "type_entree", "type_entree", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
-                
+
         def type_personne_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
@@ -113,50 +113,50 @@ class Fiche(annuairedata.Data) :
         def civilite_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "civilite", "Civilite", 
+                afficheclefs.champ_liste( self, "civilite", "Civilite",
 enreg, penreg, " ", dontchange = 0)
 
         def titre_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "titre", "Titre", 20, 20, "", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def nom_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "nom", "Nom", 30, 30, " ", enreg, penreg)
-                
+
         def prenom_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "prenom", "Prenom", 20, 20, "", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def nationalite_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "nationalite", "Nationalite", 20, 20, " ", enreg, penreg)
-                
+
         def date_naissance_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "date_naissance", "Date Naissance", 20, 20, "", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def fonction_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "fonction", "Fonction", 50, 50, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def specialite_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "specialite", "Specialite", 50, 50, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def commentaire_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "commentaire", "Commentaire", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def association_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
                 afficheclefs.champ_liste( self, "association", "Association", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
-                
+
         def numero_adherent_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "numero_adherent", "numero adherent", 6, 6, " ", enreg, penreg)
@@ -164,14 +164,14 @@ enreg, penreg, " ", dontchange = 0)
         def cotisation_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "cotisation", "cotisation", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
-                
+
 
         def chantier_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "chantier", "chantier", 3, 80, 7, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def modif_fiche_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 if enreg != None:
@@ -192,7 +192,7 @@ enreg, penreg, " ", dontchange = 0)
                         adresse.Adresse(self).traite_saisie(["identifiant","ordre"], parent = self.__tablename__, penreg = penreg)
                         self.__doc__.pop()
 
-                                                
+
 #########################################################################
 #                                PHOTOS
 #########################################################################
@@ -241,7 +241,7 @@ enreg, penreg, " ", dontchange = 0)
                                 self.__doc__.textarea(name = "legende", rows="4", cols="50", wrap="physical")
                                 if photo["legende"] == None:
                                         self.__doc__.insert_text("&nbsp;")
-                                else :  
+                                else :
                                         self.__doc__.insert_text(photo["legende"])
                                 self.__doc__.pop()
 
@@ -303,25 +303,25 @@ enreg, penreg, " ", dontchange = 0)
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                annuaireconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                annuaireconf.fatalerror_message("Impossible de supprimer le rÃ©pertoire [%s]" % rr)
 
                         # on efface l' fiche
                         self.delete_records(["identifiant"])
                         return 0
 
         def creer(self) :
-                # si la fiche n'existe pas déjà alors on la crée, sinon on refuse
+                # si la fiche n'existe pas deja alors on la cree, sinon on refuse
                 if self.exist(["identifiant"], table = "fiche") :
                         primarykeys = { "identifiant": None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant la fiche dans la base
+                        # on insere maintenant la fiche dans la base
                         # sauf si la fiche n'existe pas.
                         #if not self.exist(["identifiant"], table = "entree") :
                         #        primarykeys = { "identifiant": None}
                         #        return (-2, primarykeys)
                         #else :
-                        # on insère maintenant la fiche dans la base
+                        # on insere maintenant la fiche dans la base
                         i = self.__form__["identifiant"].value
                         self.__db__.query(self.make_insert_query({ }))
                         primarykeys = { "identifiant" : i}

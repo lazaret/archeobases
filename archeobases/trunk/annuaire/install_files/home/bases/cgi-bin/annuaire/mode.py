@@ -20,11 +20,11 @@ import annuaireconf
 import afficheclefs
 import annuairedata
 
-doc = annuaireconf.Bas("Modification des param�tres", "Modification d'une zone")
+doc = annuaireconf.Bas("Modification des paramètres", "Modification d'une zone")
 db = annuaireconf.ArcheoDataBase()
 form = cgi.FieldStorage()
 
-doc.button(name="entree", value="Entree", onclick='parent.bas.location="' + annuaireconf.script_location("modcontrole_entree.py") + '"')
+doc.button(name="entrée", value="Entrée", onclick='parent.bas.location="' + annuaireconf.script_location("modcontrole_entree.py") + '"')
 
 doc.output()
 

@@ -236,7 +236,7 @@ if ruser:# in annuaireconf.superusers :
                         quequette = string.strip(string.replace(form["requete"].value, "\r", ""))
                         #doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", requete = quequette)
                         doc.ecran_requetes(annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor, requete = quequette)
-                        
+
                         # la premiere alerte doit etre lancee assez tot pour
                         # que l'utilisateur ne s'impatiente pas
                         # mais assez tard pour qu'une erreur sur la requete ait ete recuperee
@@ -259,18 +259,21 @@ if ruser:# in annuaireconf.superusers :
                                                 # en effet, l'option d'ecriture des donnees dans un fichier
                                                 # peut permettre de traiter de GROS volumes, mais le
                                                 # mode entierement bufferise provoquerai un timeout
+
+                                                # export en utf8 avec champs séparés par des guillemets doubles
                                                 doc = jahtml.CGI_document(content_type = "text/montannuaire")
                                                 if form["presentation"].value == telechargev :
-                                                        separateur = ','
+                                                        separateur = '","'
                                                 else :
-                                                        separateur = '\t'
+                                                        separateur = '"\t"'
 
                                                 # on sort l'entete
-                                                doc.insert_text(separateur.join(liste_champs))
+                                                doc.insert_text('"' + separateur.join(liste_champs) + '"')
 
                                                 # puis les enregistrements
                                                 for enregistrement in liste_valeurs :
-                                                        doc.insert_text(unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("iso-8859-15"))
+                                                        # doc.insert_text(unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("iso-8859-15"))
+                                                        doc.insert_text('"' + unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8") + '"')
                                                 if master :
                                                         doc.insert_text("\n--" + endpart + "--\n")
                                         else :
@@ -279,7 +282,7 @@ if ruser:# in annuaireconf.superusers :
                                                 else :
                                                         esse = ''
                                                 doc.font(`nbrecords` + " enregistrement%s trouvé%s" % (esse, esse), color="red")
-                                                
+
                                                 if form["presentation"].value != simplifie:
                                                         doc.table(border = "1", lines = nbrecords + 1, cols = len(liste_champs))
                                                         doc.push()
@@ -293,7 +296,7 @@ if ruser:# in annuaireconf.superusers :
                                                                         value = enregistrement[i]
                                                                         if type(value) == type("") :
                                                                                 align = "left"
-                                                                        else :        
+                                                                        else :
                                                                                 align = "right"
                                                                         line = line + '<td align="%s" bgcolor="%s">%s</td>\n' % (align, annuaireconf.bas1_bgcolor, str(value))
                                                                 doc.insert_text("<tr>%s</tr>\n" % line)

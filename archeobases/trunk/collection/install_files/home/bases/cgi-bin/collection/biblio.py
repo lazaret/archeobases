@@ -37,7 +37,7 @@ class Biblio(collectiondata.Data) :
         __champs__ = {
                         "identifiant"     : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
                         "b_type_biblio"   : { "type" : "text", "default" : "",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
-                        "b_indice"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15}, \
+                        "b_indice"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20}, \
                         "b_titre_ouvrage" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 200}, \
                         "b_auteur"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300}, \
                         "b_titre_article" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300}, \
@@ -136,7 +136,7 @@ class Biblio(collectiondata.Data) :
 ################################### En entrée ###########################
         def b_indice_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_indice", "Indice", 15, 15, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_indice", "Indice", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_type_biblio_base_to_form(self, enreg, penreg = None) :
@@ -146,7 +146,7 @@ class Biblio(collectiondata.Data) :
 
         def b_titre_ouvrage_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_titre_ouvrage", "Titre Ouvrage", 2, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_titre_ouvrage", "Titre de l'ouvrage", 2, 100, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_auteur_base_to_form(self, enreg, penreg = None) :
@@ -161,7 +161,7 @@ class Biblio(collectiondata.Data) :
 
         def b_titre_periodique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_titre_periodique", "Titre du periodique", 100, 100, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_titre_periodique", "Titre du périodique", 100, 100, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_pages_base_to_form(self, enreg, penreg = None) :

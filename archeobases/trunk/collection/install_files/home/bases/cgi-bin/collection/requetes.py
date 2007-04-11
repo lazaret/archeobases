@@ -260,18 +260,21 @@ if ruser:# in collectionconf.superusers :
                                                 # en effet, l'option d'ecriture des donnees dans un fichier
                                                 # peut permettre de traiter de GROS volumes, mais le
                                                 # mode entierement bufferise provoquerai un timeout
+
+                                                # export en utf8 avec champs séparés par des guillemets doubles
                                                 doc = jahtml.CGI_document(content_type = "text/montcollection")
                                                 if form["presentation"].value == telechargev :
-                                                        separateur = ','
+                                                        separateur = '","'
                                                 else :
-                                                        separateur = '\t'
+                                                        separateur = '"\t"'
 
                                                 # on sort l'entete
-                                                doc.insert_text(separateur.join(liste_champs))
+                                                doc.insert_text('"' + separateur.join(liste_champs) + '"')
 
                                                 # puis les enregistrements
                                                 for enregistrement in liste_valeurs :
-                                                        doc.insert_text(unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8"))
+                                                        # doc.insert_text(unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("iso-8859-15"))
+                                                        doc.insert_text('"' + unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8") + '"')
                                                 if master :
                                                         doc.insert_text("\n--" + endpart + "--\n")
                                         else :

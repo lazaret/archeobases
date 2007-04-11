@@ -16,4 +16,4 @@
 import annuaireconf
 import adresse
 
-adresse.Adresse("bas").traite_parametre(["identifiant", "ordre"],  parent = annuaireconf.getparent())
+adresse.Adresse("bas").traite_parametre(["identifiant", "ordre"])#,  parent = annuaireconf.getparent())

@@ -22,7 +22,8 @@ def create_postgresql_backup(to_directory):
     today = "-"+str(datetime.date.today())
     boolean = 0 # compteur pour avertir si pas de bases à sauvegarder
     # recuperation de la liste des bases
-    db = pg.connect("template1")
+    #db = pg.connect("template1")
+    db = pg.connect(dbname="template1", host="localhost", user="postgres")
     bases = [ r["datname"] for r in db.query("SELECT * FROM pg_database;").dictresult() ]
     db.close()
     # sauvegarde des bases de données avec 'today' (date du jour) dans le nom du fichier
@@ -32,14 +33,14 @@ def create_postgresql_backup(to_directory):
         if base=="postgres" or base=="phppgadmin" or base=="template0" or base=="template1" or base=="test":
             continue
         # sauvegarde des bases avec l'option creation de base (-C) et ajout de la date dans le nom
-        os.system("pg_dump -C "+base+" | bzip2 > "+to_directory+base+today+".sql.bz2")
+        os.system("pg_dump -C -U postgres "+base+" | bzip2 > "+to_directory+base+today+".sql.bz2")
         print "  -> Sauvegarde de : "+base+today+".sql.bz2"
-        boolean += 1 
+        boolean += 1
     if boolean==0:
         print "  -> Pas de base PotgreSQL à sauvegarder"
     # dumpall du cluster : les bases systemes, les bases normales, les utilisateurs, etc...
     print "* Dumpall du cluster PostgreSQL en cours :"
-    os.system("pg_dumpall | bzip2 > "+to_directory+"pg_dumpall"+today+".sql.bz2")
+    os.system("pg_dumpall -U postgres | bzip2 > "+to_directory+"pg_dumpall"+today+".sql.bz2")
     print "  -> Sauvegarde de : pg_dumpall"+today+".sql.bz2"
 
 
@@ -61,7 +62,7 @@ def delete_old_backups(to_directory, weeks_old):
         if bool(re.search(".sql.bz2", file))==True and datetime.date.fromtimestamp(mtime)<weeksago:
             os.remove(to_directory+file)
             print "  -> Suppression de : "+file
-	    boolean += 1 
+	    boolean += 1
     # message d'avertissement si pas de suppression
     if boolean==0:
         print "  -> Pas de fichiers à supprimer"

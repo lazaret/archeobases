@@ -1,0 +1,2 @@
+include AUTHORS COPYING INSTALL NEWS README TODO
+include ez_setup.py

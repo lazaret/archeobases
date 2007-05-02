@@ -22,6 +22,6 @@ setup(name= "sauve_bases",
     py_modules = ['sauve_bases'],
     scripts=['sauvedb_jour.sh', 'sauvedb_mois.sh', 'sauvedb_semaine.sh'],
 
-    install_requires = ['PyGreSQL>=0.1'],
+    install_requires = ['PyGreSQL>=3.0'],
     )
 

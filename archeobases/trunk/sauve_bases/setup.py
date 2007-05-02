@@ -10,12 +10,11 @@ use_setuptools()
 
 # Begin of the install script using setuptools
 from setuptools import setup
-import sauve_bases # import module for version number use
 
 setup(
     # Setuptools-Distutils Meta-datas
     name= "sauve_bases",
-    version= sauve_bases.__version__,
+    version= "0.5",
     description= "Module and scripts for database regular saving",
     author= "Bertrand Lecervoisier",
     author_email= "opensource@lazaret.unice.fr",

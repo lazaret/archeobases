@@ -1,0 +1,29 @@
+Installation Instructions
+*************************
+
+
+The scripts and the module use the Python-setuptools packaging systems.
+Just be sure than Python & Setuptools package is installed on your computer
+
+Steeps :
+1) create the directory where the saves will be keeps if they did not exists :
+| su mkdir /home/base/sauve_jours
+| su mkdir /home/base/sauve_semaines
+| su mkdir /home/base/sauve_mois
+2) Unpack the distribution somewhere like /usr/local/src
+| tar zxvf sauve_bases-x.x.tar.gz
+3) Enter into this directory and just type :
+| su python setup.py install
+
+Normaly thats all !
+
+
+The setup script have :
+- Create a module for the scripts under /sur/local/lib/python2.x/site-packages/sauve_bases.py 
+(or under /usr/local/lib64 if you have a x64 machine)
+- Create databases save scripts under /usr/local/bin :
+/usr/local/bin/sauve_jour.sh
+/usr/local/bin/sauve_semaine.sh
+/usr/local/bin/sauve_mois.sh
+- Create symbolics for cron usage :
+

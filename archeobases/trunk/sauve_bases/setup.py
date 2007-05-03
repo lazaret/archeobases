@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-"""  Install Script for sauve_bases module
+"""  Install Script for sauve_bases module based on setuptools
 """
 
 

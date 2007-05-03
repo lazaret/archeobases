@@ -19,15 +19,15 @@ To install as root :
 | python setup.py install
 
 4) Create symbolic links to automate the scripts :
-| ln -s /usr/local/bin/sauve_jour.sh /etc/cron.daily/sauve_jour.sh
-| ln -s /usr/local/bin/sauve_semaine.sh /etc/cron.weekly/sauve_semaine.sh
-| ln -s /usr/local/bin/sauve_mois.sh /etc/cron.monthly/sauve_mois.sh
+| ln -s /usr/local/bin/sauvedb_jour.sh /etc/cron.daily/sauvedb_jour.sh
+| ln -s /usr/local/bin/sauvedb_semaine.sh /etc/cron.weekly/sauvedb_semaine.sh
+| ln -s /usr/local/bin/sauvedb_mois.sh /etc/cron.monthly/sauvedb_mois.sh
 
 Note : The setup.py script will :
 - Create a module for the scripts under /sur/local/lib/python2.x/site-packages/sauve_bases.py
 (or under /usr/local/lib64 if you have a x64 machine)
 - Create scripts under /usr/local/bin :
-/usr/local/bin/sauve_jour.sh
-/usr/local/bin/sauve_semaine.sh
-/usr/local/bin/sauve_mois.sh
+/usr/local/bin/sauvedb_jour.sh
+/usr/local/bin/sauvedb_semaine.sh
+/usr/local/bin/sauvedb_mois.sh
 

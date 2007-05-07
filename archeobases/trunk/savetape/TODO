@@ -1,0 +1,9 @@
+TODO in 1.0:
+- Add a directory command line option
+- Add a tape device command line option
+
+
+TODO latter
+- Add log rotation
+- Add a command line option to avoid logging
+

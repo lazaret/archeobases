@@ -1,0 +1,29 @@
+Installation Instructions
+*************************
+
+
+The script and the module use the Python-setuptools packaging system.
+Just be sure than Python is installed on your computer. If you do not have already the setuptools package
+installed, the setup.py script will automaticaly use the ez_setup.py bootstrap to install everything.
+
+
+To install as root :
+
+1) Unpack the distribution somewhere like /usr/local/src
+| tar zxvf savetape-x.x.tar.gz
+
+3) Enter into this directory and just type :
+| python setup.py install
+
+4) Create symbolic links to automate the scripts.
+For example for a daily save :
+| ln -s /usr/local/bin/savetotape.sh /etc/cron.daily/savetotape.sh
+
+
+Note : The setup.py script will :
+- Create a module for the scripts under /sur/local/lib/python2.x/site-packages/savetape.py
+(or under /usr/local/lib64 if you have a x64 machine)
+- Create script under /usr/local/bin :
+/usr/local/bin/savetotape.sh
+
+

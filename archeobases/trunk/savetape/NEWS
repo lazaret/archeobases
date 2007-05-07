@@ -1,0 +1,23 @@
+New in 0.5:
+
+* Changes :
+  - Create a setuptools-distutils distribution
+
+
+New in 0.3
+
+* Changes :
+  - Add common I/O error handling
+  - Add logging
+
+
+New in 0.2
+
+* Changes :
+  - Add command line option parsing and verbose mode
+
+
+New in 0.1
+
+* Changes :
+  - Create module and the script for saving

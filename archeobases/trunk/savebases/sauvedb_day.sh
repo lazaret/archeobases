@@ -13,7 +13,7 @@ from sauvebases import *
 
 
 ####### Main #######
-print "  Sauvegarde du jour en cours ...\n"
+verbose_message("  Sauvegarde du jour en cours ...\n")
 # supprime les sauvegardes journalières anterieures à 1 semaine
 delete_old_backups('/home/bases/sauvegarde_jours/', 1)
 # pg_dump et pg_dumpall des bases dans le repertoire /home/bases/sauvegarde_jours/

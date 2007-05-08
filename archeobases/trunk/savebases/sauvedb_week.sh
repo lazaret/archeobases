@@ -12,7 +12,7 @@ from savebases import *
 
 
 ####### Main #######
-print "  Sauvegarde de la semaine en cours ...\n"
+verbose_message("  Sauvegarde de la semaine en cours ...\n")
 # supprime les sauvegardes de la semaine anterieures à 5 semaines
 delete_old_backups('/home/bases/sauvegarde_semaine/', 5)
 # crée une copie des sauvegardes du jour dans le dossier des sauvegardes de la semaine

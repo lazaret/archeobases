@@ -12,7 +12,7 @@ from sauvebases import *
 
 
 ####### Main #######
-print "  Sauvegarde du mois en cours ...\n"
+verbose_message("  Sauvegarde du mois en cours ...\n")
 # supprime les sauvegardes du mois anterieures à 1 an (=52 semaines)
 delete_old_backups('/home/bases/sauvegarde_mois/', 52)
 # crée une copie des sauvegardes du jour dans le dossier des sauvegardes du mois

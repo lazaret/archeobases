@@ -2,7 +2,11 @@ TODO in 0.8:
 - Add logging
 - Add command line options
 - Add verbose mode
+- Add command testing
 
+TODO in 0.9:
+- Add folders options
+- Add compression options
 
 TODO in 1.0:
 - Add MySQL databases saving

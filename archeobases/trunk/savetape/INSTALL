@@ -2,9 +2,13 @@ Installation Instructions
 *************************
 
 
-The script and the module use the Python-setuptools packaging system.
-Just be sure than Python is installed on your computer. If you do not have already the setuptools package
-installed, the setup.py script will automaticaly use the ez_setup.py bootstrap to install everything.
+The script and the module use the Python-setuptools packaging systems.
+Just be sure than Python is installed on your computer.
+If you do not have already the setuptools package installed, the setup.py script will automaticaly
+use the ez_setup.py bootstrap to install savetape. You may install first setuptools with :
+| python ez_setup.py
+
+
 
 
 To install as root :

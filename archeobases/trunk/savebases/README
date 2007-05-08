@@ -1,7 +1,7 @@
 This is "savebases" a project from the Lazaret archaeological laboratory.
 
-Savebases is a set of Python script and a Module used to regulary save databases dumps
-onj specified folders.
+Savebases is a set of Python script and a Module used to regulary save with cron
+PostgreSQL databases dumps on specified folders.
 
 You can see the last news about this project at our Trac page :
 http://lazaret.unice.fr/opensource/

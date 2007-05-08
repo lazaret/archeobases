@@ -10,13 +10,16 @@ use_setuptools()
 
 # Begin of the install script using setuptools
 from setuptools import setup
+from savetape import __version__
+from savetape import __author__
+
 
 setup(
     # Setuptools-Distutils Meta-datas
     name= "savetape",
-    version= "0.5",
+    version= savetape.__version__,
     description= "Module and script for savinf directories on unix tape",
-    author= "Bertrand Lecervoisier",
+    author= savetape.__author__,
     author_email= "opensource@lazaret.unice.fr",
     url= "http://lazaret.unice.fr/opensource/",
     license= "GNU GPL v2",

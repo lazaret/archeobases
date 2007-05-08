@@ -3,11 +3,14 @@ Installation Instructions
 
 
 The scripts and the module use the Python-setuptools packaging systems.
-Just be sure than Python is installed on your computer. If you do not have already the setuptools package
-installed, the setup.py script will automaticaly use the ez_setup.py bootstrap to install everything.
+Just be sure than Python is installed on your computer.
+If you do not have already the setuptools package installed, the setup.py script will automaticaly
+use the ez_setup.py bootstrap to install savebases. You may install first setuptools with :
+| python ez_setup.py
 
 
-To install as root :
+----
+To install savebases as root :
 
 1) create the directory where the saves will be keeps if they did not exists :
 | su mkdir /home/base/sauve_jours

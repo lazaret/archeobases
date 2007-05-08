@@ -1,17 +1,24 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__version__ = "0.6"
-"""  Module savebases - B. Lecervoisier 2007 - Source libre sous GPL2
-fournit des fonctions de sauvegarde base de données PostgreSQL et de copie de fichiers
-utilisables par des scripts shells lancé par cron.
+
+"""  Module savebases - Lazaret archaeological laboratory - Free sowtware under GPL v2
+Savebases is a set of Python scripts and a module used to regulary save with cron
+PostgreSQL databases dumps on specified folders.
 """
+
+__version__ = "0.6"
+__author__ = "R. Vaudron & B. Lecervoisier"
+
 
 import os
 import datetime
-import pg
 import re
 import shutil
+import logging
+from optparse import OptionParser
+
+import pg
 
 
 def create_postgresql_backup(to_directory):

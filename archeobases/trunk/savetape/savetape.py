@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*-
 
 
-""" Save the database folders to unix tape
+"""  Module savetape - Lazaret archaeological laboratory - Free sowtware under GPL v2
+Savetape is a Python script and a module used to regulary save with cron
+specified folders on unix tape.
 """
 
 __version__ = "0.5"
+__author__ = "B. Lecervoisier"
 
 
 import commands
@@ -34,7 +37,7 @@ def verbose_message(message):
 
 
 def tape_test(device):
-    """ test if there is an available tape in 'device'. 
+    """ test if there is an available tape in 'device'.
     If not, write log & error messages and stop the script.
     """
     output_string = commands.getoutput("mt -f "+device+" status")
@@ -53,7 +56,7 @@ def tape_save(device, directory_list):
     """
     output_string = commands.getoutput("tar cvf "+device+" "+directory_list)
     if "tar: "+device+": Cannot open:" in output_string:
-	# write error to standart output even in non verbose mode	
+	# write error to standart output even in non verbose mode
 	print "ERROR : (tar cvf "+device+" "+directory_list+") : The tape is not available !"
 	logging.error("(tar cvf "+device+" "+directory_list+") : The tape is not available !")
         raise SystemExit
@@ -65,7 +68,7 @@ def tape_rewoffl(device):
     """
     output_string = commands.getoutput("mt -f "+device+" rewoffl")
     if output_string=="mt: "+device+": No medium found" or output_string=="mt: "+device+": Input/output error":
-	# write error to standart output even in non verbose mode	
+	# write error to standart output even in non verbose mode
 	print "ERROR : (mt -f "+device+" rewoffl) : The tape is not available !"
 	logging.error("(mt -f "+device+" rewoffl) : The tape is not available !")
         raise SystemExit

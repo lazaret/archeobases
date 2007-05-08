@@ -1,6 +1,7 @@
 This is "savetape" a project from the Lazaret archaeological laboratory.
 
-Savetape is a  Python script and a Module used to regulary save directories on an unix tape.
+Savetape is a Python script and a Module used to regulary save with cron
+specified folders on unix tape.
 
 You can see the last news about this project at our Trac page :
 http://lazaret.unice.fr/opensource/

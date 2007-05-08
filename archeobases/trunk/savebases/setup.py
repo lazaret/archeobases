@@ -10,13 +10,16 @@ use_setuptools()
 
 # Begin of the install script using setuptools
 from setuptools import setup
+from savebases import __version__
+from savebases import __author__
+
 
 setup(
     # Setuptools-Distutils Meta-datas
     name= "savebases",
-    version= "0.6",
+    version= savebases.__version__,
     description= "Module and scripts for database regular saving",
-    author= "Bertrand Lecervoisier",
+    author= savebases.__author__,
     author_email= "opensource@lazaret.unice.fr",
     url= "http://lazaret.unice.fr/opensource/",
     license= "GNU GPL v2",

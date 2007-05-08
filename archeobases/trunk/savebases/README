@@ -1,9 +1,11 @@
-This is "sauve-bases" a project from the Lazaret archaeological laboratory.
+This is "savebases" a project from the Lazaret archaeological laboratory.
 
-Sauve-bases is a set of Python script and a Module used to regulary save databases dumps.
+Savebases is a set of Python script and a Module used to regulary save databases dumps
+onj specified folders.
 
 You can see the last news about this project at our Trac page :
 http://lazaret.unice.fr/opensource/
+
 
 -----
 The default directories and save shedule are :
@@ -12,7 +14,7 @@ Dayly saves | /home/bases/sauvegarde_jours | Keep 7 days of savings
 Weekly saves hebdomadaire | /home/bases/sauvegarde_semaines | Keep 5 weeks of savings
 Monthly saves | /home/bases/sauvegarde_mois| Keep 1 year of savings
 
-to change default directory and shedule modify the files :
+To change default directory and shedule modify the files :
 /use/local/bin/sauvedb_jour.py
 /use/local/bin/sauvedb_mois.py
 /use/local/bin/sauvedb_semaine.py

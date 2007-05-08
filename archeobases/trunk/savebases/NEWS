@@ -1,0 +1,15 @@
+New in 0.6:
+
+* Changes :
+   - Change module name to more english one without underscore
+   - Change script name to more english ones
+   - Update install script and comments accordingly
+
+New in 0.5:
+
+* Changes :
+
+  - Import save scripts created by Rachel Vaudron to a new sub-project
+  - Add a module to the scripts for common functions
+  - Change save shedule to days/weeks/months
+  - Create a setuptools-distutils distribution

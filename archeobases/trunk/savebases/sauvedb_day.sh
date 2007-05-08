@@ -9,7 +9,7 @@
 # pour fonctionner doit etre appele par l'utilisateur postgres
 
 
-from sauve_bases import *
+from sauvebases import *
 
 
 ####### Main #######

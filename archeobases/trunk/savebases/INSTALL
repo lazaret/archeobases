@@ -3,7 +3,9 @@ Installation Instructions
 
 
 The scripts and the module use the Python-setuptools packaging systems.
-Just be sure than Python & Setuptools package is installed on your computer
+Just be sure than Python is installed on your computer. If you do not have already the setuptools package
+installed, the setup.py script will automaticaly use the ez_setup.py bootstrap to install everything.
+
 
 To install as root :
 
@@ -13,21 +15,21 @@ To install as root :
 | su mkdir /home/base/sauve_mois
 
 2) Unpack the distribution somewhere like /usr/local/src
-| tar zxvf sauve_bases-x.x.tar.gz
+| tar zxvf savebases-x.x.tar.gz
 
 3) Enter into this directory and just type :
 | python setup.py install
 
 4) Create symbolic links to automate the scripts :
-| ln -s /usr/local/bin/sauvedb_jour.sh /etc/cron.daily/sauvedb_jour.sh
-| ln -s /usr/local/bin/sauvedb_semaine.sh /etc/cron.weekly/sauvedb_semaine.sh
-| ln -s /usr/local/bin/sauvedb_mois.sh /etc/cron.monthly/sauvedb_mois.sh
+| ln -s /usr/local/bin/savedb_day.sh /etc/cron.daily/savedb_day.sh
+| ln -s /usr/local/bin/savedb_week.sh /etc/cron.weekly/savedb_week.sh
+| ln -s /usr/local/bin/savedb_month.sh /etc/cron.monthly/savedb_month.sh
 
 Note : The setup.py script will :
-- Create a module for the scripts under /sur/local/lib/python2.x/site-packages/sauve_bases.py
+- Create a module for the scripts under /sur/local/lib/python2.x/site-packages/savebases.py
 (or under /usr/local/lib64 if you have a x64 machine)
 - Create scripts under /usr/local/bin :
-/usr/local/bin/sauvedb_jour.sh
-/usr/local/bin/sauvedb_semaine.sh
-/usr/local/bin/sauvedb_mois.sh
+/usr/local/bin/sauvedb_day.sh
+/usr/local/bin/sauvedb_week.sh
+/usr/local/bin/sauvedb_month.sh
 

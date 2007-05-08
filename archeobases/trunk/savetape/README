@@ -7,7 +7,7 @@ http://lazaret.unice.fr/opensource/
 
 
 -----
-to change default saved directories option modify the files :
+To change default saved directories option modify the files :
 /use/local/bin/savetotape.sh
 
 

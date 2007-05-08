@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 ### B. Lecervoisier 2007 - Source libre sous GPL2
-# Script lancé par cron qui supprime les anciennes copie de sauvegardes anterieurs à 
-# cinq semaines et copie celles du jours faites par sauvedb_jour.sh dans 
+# Script lancé par cron qui supprime les anciennes copie de sauvegardes anterieurs à
+# cinq semaines et copie celles du jours faites par sauvedb_jour.sh dans
 # le dossier des sauvegardes de la semaine
 # C'est cron qui determine l'intervale de lancement (toutes les semaines)
 # pour ce faire le fichier doit être executable et installé sous /etc/cron.weekly
 
-from sauve_bases import *
+from savebases import *
 
 
 ####### Main #######

@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__version__ = "0.5"
-"""  Module sauve_bases - B. Lecervoisier 2007 - Source libre sous GPL2
+__version__ = "0.6"
+"""  Module savebases - B. Lecervoisier 2007 - Source libre sous GPL2
 fournit des fonctions de sauvegarde base de données PostgreSQL et de copie de fichiers
 utilisables par des scripts shells lancé par cron.
 """

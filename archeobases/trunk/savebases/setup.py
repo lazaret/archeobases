@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-"""  Install Script for sauve_bases module based on setuptools
+"""  Install Script for savebases module based on setuptools
 """
 
 
@@ -13,16 +13,16 @@ from setuptools import setup
 
 setup(
     # Setuptools-Distutils Meta-datas
-    name= "sauve_bases",
-    version= "0.5",
+    name= "savebases",
+    version= "0.6",
     description= "Module and scripts for database regular saving",
     author= "Bertrand Lecervoisier",
     author_email= "opensource@lazaret.unice.fr",
     url= "http://lazaret.unice.fr/opensource/",
     license= "GNU GPL v2",
     # Distributed module and scripts
-    py_modules = ['sauve_bases'],
-    scripts=['sauvedb_jour.sh', 'sauvedb_mois.sh', 'sauvedb_semaine.sh'],
+    py_modules = ['savebases'],
+    scripts=['sauvedb_day.sh', 'sauvedb_week.sh', 'sauvedb_month.sh'],
     # Prerequistes
     install_requires = ['PyGreSQL>=3.0'],
     )

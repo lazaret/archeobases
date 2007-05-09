@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-"""  Module savebases - Lazaret archaeological laboratory - Free sowtware under GPL v2
+""" Module savebases - Lazaret archaeological laboratory - Free software under GPL v2
 Savebases is a set of Python scripts and a module used to regulary save with cron
 PostgreSQL databases dumps on specified folders.
 """

@@ -1,20 +1,26 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-### B. Lecervoisier 2007 - Source libre sous GPL2
-# Script lancé par cron qui supprime les anciennes copie de sauvegardes anterieurs à
-# une année (52 semaines) et copie celles du jours faites par sauvedb_jour.sh dans
-# le dossier des sauvegardes du mois
-# C'est cron qui determine l'intervale de lancement (toutes les mois)
-# pour ce faire le fichier doit être executable et installé sous /etc/cron.monthly
 
-from sauvebases import *
+# Savebases - Lazaret archaeological laboratory - Free sowtware under GPL v2
+# Savedb_month.sh is a Python script called by cron to install it create a symbolic link :
+# > ln -s /usr/local/bin/savedb_month.sh /etc/cron.daily/savedb_month.sh
+# The script copy databases saves fron 'from_directory' into 'to_directory'
+# See http://lazaret.unice.fr/opensource/ for more infos
+
+
+from savebases import *
+
+from_directory = "/home/bases/sauvegarde_jours/"
+to_directory = "/home/bases/sauvegarde_mois/"
+weeks_old = 52
 
 
 ####### Main #######
-verbose_message("  Sauvegarde du mois en cours ...\n")
-# supprime les sauvegardes du mois anterieures à 1 an (=52 semaines)
-delete_old_backups('/home/bases/sauvegarde_mois/', 52)
-# crée une copie des sauvegardes du jour dans le dossier des sauvegardes du mois
-copy_today_backups('/home/bases/sauvegarde_jours/', '/home/bases/sauvegarde_mois/')
+# check if there are previous backups into 'to_directory' and send a warning if not
+check_backups(to_directory)
+# delete backups older than 'week_old' week(s)
+delete_old_backups(to_directory, weeks_old)
+# copy today backups 'from_diretory' into 'to_directory'
+copy_today_backups(from_directory, to_directory)
 

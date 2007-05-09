@@ -1,12 +1,16 @@
-TODO in 0.8:
+TODO in 0.7:
 - Add logging
-- Add command line options
+- Add command line options (OptionParser)
 - Add verbose mode
+- Add config file (ConfigParser)
+
+TODO in 0.8
 - Add command testing
+- add internationalisation
 
 TODO in 0.9:
-- Add folders options
-- Add compression options
+- Add folders command line options
+- Add compression command line options
 
 TODO in 1.0:
 - Add MySQL databases saving

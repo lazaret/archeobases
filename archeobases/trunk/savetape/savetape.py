@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-"""  Module savetape - Lazaret archaeological laboratory - Free sowtware under GPL v2
+""" Module savetape - Lazaret archaeological laboratory - Free software under GPL v2
 Savetape is a Python script and a module used to regulary save with cron
 specified folders on unix tape.
 """

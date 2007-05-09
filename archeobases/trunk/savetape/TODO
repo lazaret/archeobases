@@ -1,3 +1,9 @@
+TODO in 0.8
+- Add config file (ConfigParser)
+
+TODO in 0.9
+- add internationalisation
+
 TODO in 1.0:
 - Add a directory command line option
 - Add a tape device command line option

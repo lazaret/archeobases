@@ -12,7 +12,7 @@ use the ez_setup.py bootstrap to install savebases. You may install first setupt
 ----
 To install savebases as root :
 
-1) create the directory where the saves will be keeps if they did not exists :
+1) create the directories where the saves will be keeps if they did not exists :
 | su mkdir /home/base/sauve_jours
 | su mkdir /home/base/sauve_semaines
 | su mkdir /home/base/sauve_mois
@@ -23,10 +23,14 @@ To install savebases as root :
 3) Enter into this directory and just type :
 | python setup.py install
 
-4) Create symbolic links to automate the scripts :
+4) Create symbolic links to automate the scripts with cron :
 | ln -s /usr/local/bin/savedb_day.sh /etc/cron.daily/savedb_day.sh
 | ln -s /usr/local/bin/savedb_week.sh /etc/cron.weekly/savedb_week.sh
 | ln -s /usr/local/bin/savedb_month.sh /etc/cron.monthly/savedb_month.sh
+
+5) Change the configuration file if necessary :
+/etc/savebases.conf
+
 
 Note : The setup.py script will :
 - Create a module for the scripts under /sur/local/lib/python2.x/site-packages/savebases.py

@@ -17,9 +17,9 @@ from savetape import __author__
 setup(
     # Setuptools-Distutils Meta-datas
     name= "savetape",
-    version= savetape.__version__,
+    version= __version__,
     description= "Module and script for savinf directories on unix tape",
-    author= savetape.__author__,
+    author= __author__,
     author_email= "opensource@lazaret.unice.fr",
     url= "http://lazaret.unice.fr/opensource/",
     license= "GNU GPL v2",

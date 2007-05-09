@@ -88,5 +88,5 @@ def tape_backup(device, directory_list):
         verbose_message("* Rewind and eject of the tape "+device)
         tape_rewoffl(device)
         # write a message to log (if no SystemExit occur)
-        logging.info("Save of "+directory_list+" on tape "+device+" done.")
+        logging.info("Save of backups on tape "+device+" done.")
 

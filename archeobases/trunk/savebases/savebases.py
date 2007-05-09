@@ -29,8 +29,14 @@ parser.add_option("-v", "--verbose", action="store_true", dest="verbose", defaul
 # populating the option parser
 (options, args) = parser.parse_args()
 
+#TODO import config file
 
-##TODO : add testing for pg_dump ; pg_dumpall & bz2
+### Loging options
+logging.basicConfig(level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s : %(message)s",
+                    datefmt="%d-%m-%Y %H:%M",
+                    filename="/var/log/savebases.log",
+                    filemode='a')
 
 
 def verbose_message(message):
@@ -40,83 +46,100 @@ def verbose_message(message):
         print message
 
 
+##TODO : add testing for pg_dump ; pg_dumpall & bz2
+
+def check_backups(to_directory):
+    """ check if there are backups under 'to_directory'
+    if there is no backup then log a warning
+    """
+    boolean = 0 # counter used for warning message (logging)
+    # list all the files into 'directory'
+    files = os.listdir(to_directory)
+    for file in files:
+        if bool(re.search(".sql.bz2", file))==True:
+            boolean += 1
+    if boolean == 0:
+        verbose_message("No database saves into "+to_directory)
+        logging.warning("No database saves into "+to_directory)
+
+
 def create_postgresql_backup(to_directory):
-    """  pg_dump all the the databases (except system ones) with -C option.
-    then pg_dumpall th PostgreSQL cluster.
+    """ pg_dump all the the databases (except system ones) with -C option.
+    then pg_dumpall the PostgreSQL cluster.
     Databases dumps are compresed with bzip and saved under 'to_directory'
     """
-    # crée une chaine a partir de la date du jour
+    # string whith today date used for database filename saves
     today = "-"+str(datetime.date.today())
-    boolean = 0 # compteur pour avertir si pas de bases à sauvegarder
-    # recuperation de la liste des bases
-    #db = pg.connect("template1")
+    boolean = 0 # counter used for warning messages (logging & verbose mode)
+    # get the list of PostgreSQL databases
     db = pg.connect(dbname="template1", host="localhost", user="postgres")
     bases = [ r["datname"] for r in db.query("SELECT * FROM pg_database;").dictresult() ]
     db.close()
-    # sauvegarde des bases de données avec 'today' (date du jour) dans le nom du fichier
+    # databases are saved into 'to_directory' and with 'today' in file name
     verbose_message("* Sauvegarde des bases PostgresSQL en cours :")
     for base in bases :
-        # les bases systemes et phpPgAdmin ne sont pas sauvées
+        # system databases are not saved
         if base=="postgres" or base=="phppgadmin" or base=="template0" or base=="template1" or base=="test":
             continue
-        # sauvegarde des bases avec l'option creation de base (-C) et ajout de la date dans le nom
+        # save the databases with -C option
         os.system("pg_dump -C -U postgres "+base+" | bzip2 > "+to_directory+base+today+".sql.bz2")
         verbose_message("  -> Sauvegarde de : "+base+today+".sql.bz2")
         boolean += 1
-    if boolean==0:
-
+    if boolean == 0:
         verbose_message("  -> Pas de base PotgreSQL à sauvegarder")
-    # dumpall du cluster : les bases systemes, les bases normales, les utilisateurs, etc...
+        logging.warning("No PostgreSQL database to save !.")
+    # dumpall PostgreSQL databases : user names, system databases etc..
     verbose_message("* Dumpall du cluster PostgreSQL en cours :")
+    #TODO testing
     os.system("pg_dumpall -U postgres | bzip2 > "+to_directory+"pg_dumpall"+today+".sql.bz2")
-    verbose_message("  -> Savegarde de : pg_dumpall"+today+".sql.bz2")
+    verbose_message("  -> Sauvegarde de : pg_dumpall"+today+".sql.bz2")
+    if boolean != 0:
+        logging.info("Save of databases done.")
 
 
 def delete_old_backups(to_directory, weeks_old):
-    """  Supprime les anciens fichiers de sauvegarde qui finissent par '.sql.bz2'
-    qui sont anterieures a 'weeks_old' semaines et qui sont situées dans le repertoire 'to_directory'
+    """ Delete old backups files into 'to_directory' older than 'week_old' weeks.
     """
-    # calcul de la date d'il y a 'weeks_old' semaines ?
+    # calculation of the interval betwen today and 'weeks_old'
     weeksago = datetime.date.today() - datetime.timedelta(weeks=weeks_old)
-    boolean = 0 # compteur pour avertir si pas de fichiers à supprimer
+    boolean = 0 # counter used for warning messages (verbose mode)
     verbose_message("* Suppression des fichiers antérieurs à "+str(weeks_old)+" semaines :")
-    # liste tous les fichiers du repertoire 'directory'
+    # list all the files into 'to_directory'
     files = os.listdir(to_directory)
     for file in files:
-        # recupère le timestamp de la derniere modif du fichier analysé
+        # get the timestamp of the last modification of the file
         mtime = os.stat(to_directory+file)[8]
-        # si le nom du fichier contient ".sql.bz2" et si la date de derniere modif
-        # est anterieure (inferieure à) a 'weeks_old' semaines alors on le supprime
+        # if the filename have ".sql.bz2"
+        # and if the timestamp is older than 'weeks_old' then the file is deleted
         if bool(re.search(".sql.bz2", file))==True and datetime.date.fromtimestamp(mtime)<weeksago:
             os.remove(to_directory+file)
             verbose_message("  -> Suppression de : "+file)
-	    boolean += 1
-    # message d'avertissement si pas de suppression
+            boolean += 1
+    # verbose message if there is no old saves to delete
     if boolean==0:
         verbose_message("  -> Pas de fichiers à supprimer")
 
 
 def copy_today_backups(from_directory, to_directory):
-    """  Copie les fichiers de sauvegarde datées du jours qui finissent par '.sql.bz2'
-    depuis dans le repertoire 'from_directory' vers le repertoire 'to_directory'
+    """  Copy the today backups under 'from_directory' into 'to_directory'.
     """
-    # Calcul de la date du jour
+    # get the today date
     today = datetime.date.today()
-    boolean = 0 # compteur pour avertir si pas de fichiers à copier
+    boolean = 0 # counter used for warning messages (verbose mode)
     verbose_message("* Copie des fichiers de sauvegarde crées aujourd'hui :")
-    # liste tous les fichiers du repertoire 'from_directory'
+    # list all the files into 'from_directory'
     files = os.listdir(from_directory)
     for file in files:
-        #recupere le timestamp de la derniere modif du fichier
+        # get the timestamp of the last modification of the file
         mtime = os.stat(from_directory+file)[8]
-        # si le nom du fichier contient ".sql.bz2" et date du jour
-        # alors on en crée une copie depuis le dossier 'from_directory vers 'to_directory'
+        # if the filename have ".sql.bz2"
+        # and if the timestamp is today then the file is copied into 'to_directory'
 	if bool(re.search(".sql.bz2", file))==True and datetime.date.fromtimestamp(mtime)==today:
-	    # copy2 conserve le timestamp du fichier original
+	    # (copy2 keep the file timestamp)
 	    shutil.copy2(from_directory+file, to_directory+file)
 	    verbose_message("  -> Copie de : "+file)
 	    boolean += 1
-    # message d'avertissement si pas de copie
+    # verbose message if there is no backups to copy
     if boolean==0:
         verbose_message("  -> Pas de fichiers à copier")
 

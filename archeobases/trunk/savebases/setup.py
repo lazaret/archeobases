@@ -17,15 +17,15 @@ from savebases import __author__
 setup(
     # Setuptools-Distutils Meta-datas
     name= "savebases",
-    version= savebases.__version__,
+    version= __version__,
     description= "Module and scripts for database regular saving",
-    author= savebases.__author__,
+    author= __author__,
     author_email= "opensource@lazaret.unice.fr",
     url= "http://lazaret.unice.fr/opensource/",
     license= "GNU GPL v2",
     # Distributed module and scripts
     py_modules = ['savebases'],
-    scripts=['sauvedb_day.sh', 'sauvedb_week.sh', 'sauvedb_month.sh'],
+    scripts=['savedb_day.sh', 'savedb_week.sh', 'savedb_month.sh'],
     # Prerequistes
     install_requires = ['PyGreSQL>=3.0'],
     )

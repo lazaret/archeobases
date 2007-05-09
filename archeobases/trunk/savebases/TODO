@@ -1,7 +1,4 @@
 TODO in 0.7:
-- Add logging
-- Add command line options (OptionParser)
-- Add verbose mode
 - Add config file (ConfigParser)
 
 TODO in 0.8

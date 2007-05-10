@@ -7,8 +7,10 @@ Savetape is a Python script and a module used to regulary save with cron
 specified folders on unix tape.
 """
 
-__version__ = "0.5"
+__version__ = "0.6"
 __author__ = "B. Lecervoisier"
+__url__ = "http://lazaret.unice.fr/opensource/"
+__license__ ="GNU General Public License 2 (GPL2)"
 
 
 import commands

@@ -4,15 +4,11 @@
 """
 
 
-# automatic install of setuptools if necessary
-from ez_setup import use_setuptools
-use_setuptools()
-
-
 # Begin of the install script using setuptools
 import sys
 import string
-from setuptools import setup
+from distutils.core import setup
+
 import savetape
 
 
@@ -47,9 +43,8 @@ setup(
         "Topic :: System :: Archiving :: Backup",
     ],
 
-    # Install & test options
+    # test suite
     #test_suite = "",
-    zip_safe = True,
 
     # Distributed files (module, scripts & data files)
     py_modules = ["savetape"],

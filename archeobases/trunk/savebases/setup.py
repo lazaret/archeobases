@@ -9,14 +9,14 @@ from distutils.core import setup
 import savebases as package
 
 
-# Ask to install first PyGreSQL version 3 if necessary
+#Chek if first PyGreSQL is already installed
 if "install" in sys.argv:
-    print "test"
-    #print "This software have only be tested on Linux2 platform."
-    #print "Your detected platform is : "+sys.platform
-    #install = raw_input("If you whant to install this software anyway please type 'YES' : ")
-    #if string.upper(install)!= "YES":
-    #    raise SystemExit("Exiting install...")
+    try:
+        import pg
+    except ImportError:
+        print "\nError : Module PyGreSQL is not installed"
+        print "Please get it first from http://www.pygresql.org/"
+        raise SystemExit("Exiting install...")
 
 
 setup(

@@ -6,6 +6,12 @@ Just be sure first than Python is installed on your computer.
 
 
 ----
+Prerequiste:
+PyGreSQL module is used by savebases. If he is not installed on your system, please install it first from :
+http://www.pygresql.org/
+
+
+----
 To install savebases as root :
 
 1) create the directories where the saves will be keeps if they did not exists :

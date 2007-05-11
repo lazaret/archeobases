@@ -4,7 +4,6 @@
 """
 
 import sys
-import string
 from distutils.core import setup
 import savetape as package
 
@@ -13,8 +12,8 @@ import savetape as package
 if sys.platform != "linux2" and "install" in sys.argv:
     print "This software have only be tested on Linux2 platform."
     print "Your detected platform is : "+sys.platform
-    install = raw_input("If you whant to install this software anyway please type 'YES' : ")
-    if string.upper(install)!= "YES":
+    install = raw_input("If you whant to install this software anyway, please type 'YES' : ")
+    if install.upper() != "YES":
         raise SystemExit("Exiting install...")
 
 

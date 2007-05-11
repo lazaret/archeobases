@@ -1,15 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-"""  Install script for savetape package based on Distutils/Setuptools
+"""  Install script for savetape package based on Distutils
 """
 
-
-# Begin of the install script using setuptools
 import sys
 import string
 from distutils.core import setup
-
-import savetape
+import savetape as package
 
 
 # Ask to confirm the installation on other platforms than linux v2
@@ -23,14 +20,14 @@ if sys.platform != "linux2" and "install" in sys.argv:
 
 setup(
     # Distutils Meta-datas
-    name = "savetape",
-    version = savetape.__version__,
+    name = package.__name__,
+    version = package.__version__,
     description = "Module and script for saving directories on unix tape",
     long_description = "Savetape is a Python script and a module used to regulary save with cron specified folders on unix tape",
-    author = savetape.__author__,
-    author_email = "opensource@lazaret.unice.fr",
-    url = savetape.__url__,
-    license = savetape.__license__,
+    author = package.__author__,
+    author_email = package.__author_email__,
+    url = package.__url__,
+    license = package.__license__,
     platforms = "Unix",
     classifiers = [
         "Development Status :: 4 - Beta",
@@ -42,10 +39,8 @@ setup(
         "Programming Language :: Python",
         "Topic :: System :: Archiving :: Backup",
     ],
-
     # test suite
     #test_suite = "",
-
     # Distributed files (module, scripts & data files)
     py_modules = ["savetape"],
     scripts =["savetotape.sh"],

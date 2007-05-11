@@ -1,2 +1,2 @@
-include AUTHORS COPYING INSTALL NEWS README TODO
-include ez_setup.py
+include AUTHORS COPYING INSTALL MANIFEST.in NEWS README TODO
+include savebases.conf

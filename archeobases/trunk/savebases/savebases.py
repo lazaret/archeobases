@@ -7,8 +7,12 @@ Savebases is a set of Python scripts and a module used to regulary save with cro
 PostgreSQL databases dumps on specified folders.
 """
 
+# Pydoc global variables
 __version__ = "0.6"
 __author__ = "R. Vaudron & B. Lecervoisier"
+__author_email__ ="opensource@lazaret.unice.fr"
+__url__ = "http://lazaret.unice.fr/opensource/"
+__license__ ="GNU General Public License 2 (GPL2)"
 
 
 import os
@@ -19,6 +23,7 @@ import logging
 from optparse import OptionParser
 
 import pg
+
 
 
 ### Command line options
@@ -37,6 +42,7 @@ logging.basicConfig(level=logging.INFO,
                     datefmt="%d-%m-%Y %H:%M",
                     filename="/var/log/savebases.log",
                     filemode='a')
+
 
 
 def verbose_message(message):

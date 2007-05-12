@@ -1,11 +1,14 @@
 Installation Instructions
 *************************
 
-The script and the module use the Python distutils packaging system.
-Just be sure first than Python is installed on your computer.
+
+----
+Prerequiste:
+
+Python >=2.5
 
 
-
+----
 To install as root :
 
 1) Unpack the distribution somewhere like /usr/local/src
@@ -21,7 +24,8 @@ For example for a weekkly save on tape:
 5) Change the configuration file if necessary :
 /etc/savetape.conf
 
-Note : The setup.py script will :
+
+Note : The setup.py script use Python distutils packaging system and will :
 - Install a module for the script under /sur/local/lib/python2.x/site-packages/savetape.py
 (or under /usr/local/lib64 if you have a x64 machine)
 - Install script under /usr/local/bin :

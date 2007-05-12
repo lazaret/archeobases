@@ -48,7 +48,7 @@ logging.basicConfig(level=logging.INFO,
 def verbose_message(message):
     """ write to standart output verboses messages if verbose option is ON.
     """
-    if options.verbose==True:
+    if options.verbose == True:
         print message
 
 
@@ -61,8 +61,8 @@ def check_backups(to_directory):
     boolean = 0 # counter used for warning message (logging)
     # list all the files into 'directory'
     files = os.listdir(to_directory)
-    for file in files:
-        if bool(re.search(".sql.bz2", file))==True:
+    for filename in files:
+        if bool(re.search(".sql.bz2", filename)) == True:
             boolean += 1
     if boolean == 0:
         verbose_message("No database saves into "+to_directory)
@@ -83,13 +83,13 @@ def create_postgresql_backup(to_directory):
     db.close()
     # databases are saved into 'to_directory' and with 'today' in file name
     verbose_message("* Sauvegarde des bases PostgresSQL en cours :")
-    for base in bases :
+    for basename in bases :
         # system databases are not saved
-        if base=="postgres" or base=="phppgadmin" or base=="template0" or base=="template1" or base=="test":
+        if basename == "postgres" or basename == "phppgadmin" or basename == "template0" or basename == "template1" or basename == "test":
             continue
         # save the databases with -C option
-        os.system("pg_dump -C -U postgres "+base+" | bzip2 > "+to_directory+base+today+".sql.bz2")
-        verbose_message("  -> Sauvegarde de : "+base+today+".sql.bz2")
+        os.system("pg_dump -C -U postgres "+basename+" | bzip2 > "+to_directory+basename+today+".sql.bz2")
+        verbose_message("  -> Sauvegarde de : "+basename+today+".sql.bz2")
         boolean += 1
     if boolean == 0:
         verbose_message("  -> Pas de base PotgreSQL à sauvegarder")
@@ -112,17 +112,17 @@ def delete_old_backups(to_directory, weeks_old):
     verbose_message("* Suppression des fichiers antérieurs à "+str(weeks_old)+" semaines :")
     # list all the files into 'to_directory'
     files = os.listdir(to_directory)
-    for file in files:
+    for filename in files:
         # get the timestamp of the last modification of the file
-        mtime = os.stat(to_directory+file)[8]
+        mtime = os.stat(to_directory+filename)[8]
         # if the filename have ".sql.bz2"
         # and if the timestamp is older than 'weeks_old' then the file is deleted
-        if bool(re.search(".sql.bz2", file))==True and datetime.date.fromtimestamp(mtime)<weeksago:
-            os.remove(to_directory+file)
-            verbose_message("  -> Suppression de : "+file)
+        if bool(re.search(".sql.bz2", filename)) == True and datetime.date.fromtimestamp(mtime) < weeksago:
+            os.remove(to_directory+filename)
+            verbose_message("  -> Suppression de : "+filename)
             boolean += 1
     # verbose message if there is no old saves to delete
-    if boolean==0:
+    if boolean == 0:
         verbose_message("  -> Pas de fichiers à supprimer")
 
 
@@ -135,17 +135,17 @@ def copy_today_backups(from_directory, to_directory):
     verbose_message("* Copie des fichiers de sauvegarde crées aujourd'hui :")
     # list all the files into 'from_directory'
     files = os.listdir(from_directory)
-    for file in files:
+    for filename in files:
         # get the timestamp of the last modification of the file
-        mtime = os.stat(from_directory+file)[8]
+        mtime = os.stat(from_directory+filename)[8]
         # if the filename have ".sql.bz2"
         # and if the timestamp is today then the file is copied into 'to_directory'
-	if bool(re.search(".sql.bz2", file))==True and datetime.date.fromtimestamp(mtime)==today:
-	    # (copy2 keep the file timestamp)
-	    shutil.copy2(from_directory+file, to_directory+file)
-	    verbose_message("  -> Copie de : "+file)
-	    boolean += 1
+    if bool(re.search(".sql.bz2", file)) == True and datetime.date.fromtimestamp(mtime) == today:
+        # (copy2 keep the file timestamp)
+        shutil.copy2(from_directory+filename, to_directory+filename)
+        verbose_message("  -> Copie de : "+filename)
+        boolean += 1
     # verbose message if there is no backups to copy
-    if boolean==0:
+    if boolean == 0:
         verbose_message("  -> Pas de fichiers à copier")
 

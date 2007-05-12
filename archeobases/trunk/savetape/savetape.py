@@ -37,7 +37,7 @@ parser.add_option("-v", "--verbose", action="store_true", dest="verbose", defaul
 def verbose_message(message):
     """ write to standart output verboses messages if verbose option is ON.
     """
-    if options.verbose==True:
+    if options.verbose == True:
         print message
 
 
@@ -46,10 +46,10 @@ def tape_test(device):
     If not, write log & error messages and stop the script.
     """
     output_string = commands.getoutput("mt -f "+device+" status")
-    if output_string=="mt: "+device+": No medium found" or output_string=="mt: "+device+": Input/output error":
-	# write error to standart output even in non verbose mode
+    if output_string == "mt: "+device+": No medium found" or output_string=="mt: "+device+": Input/output error":
+    # write error to standart output even in non verbose mode
         print "ERROR : (mt -f "+device+" status) : The tape is not available !"
-	logging.error("(mt -f "+device+" status) : The tape is not available !")
+        logging.error("(mt -f "+device+" status) : The tape is not available !")
         raise SystemExit
     else:
         return True
@@ -61,9 +61,9 @@ def tape_save(device, directory_list):
     """
     output_string = commands.getoutput("tar cvf "+device+" "+directory_list)
     if "tar: "+device+": Cannot open:" in output_string:
-	# write error to standart output even in non verbose mode
-	print "ERROR : (tar cvf "+device+" "+directory_list+") : The tape is not available !"
-	logging.error("(tar cvf "+device+" "+directory_list+") : The tape is not available !")
+        # write error to standart output even in non verbose mode
+        print "ERROR : (tar cvf "+device+" "+directory_list+") : The tape is not available !"
+        logging.error("(tar cvf "+device+" "+directory_list+") : The tape is not available !")
         raise SystemExit
 
 
@@ -72,10 +72,10 @@ def tape_rewoffl(device):
     If an error occur, write log and error messages and stop the script.
     """
     output_string = commands.getoutput("mt -f "+device+" rewoffl")
-    if output_string=="mt: "+device+": No medium found" or output_string=="mt: "+device+": Input/output error":
-	# write error to standart output even in non verbose mode
-	print "ERROR : (mt -f "+device+" rewoffl) : The tape is not available !"
-	logging.error("(mt -f "+device+" rewoffl) : The tape is not available !")
+    if output_string == "mt: "+device+": No medium found" or output_string=="mt: "+device+": Input/output error":
+        # write error to standart output even in non verbose mode
+        print "ERROR : (mt -f "+device+" rewoffl) : The tape is not available !"
+        logging.error("(mt -f "+device+" rewoffl) : The tape is not available !")
         raise SystemExit
 
 
@@ -85,7 +85,7 @@ def tape_backup(device, directory_list):
     ## test if there is an available tape on 'device' /dev/st0
     verbose_message("* Testing if there is a tape on "+device)
     tape_available = tape_test(device)
-    if tape_available==True:
+    if tape_available == True:
         # save 'directory_list' to 'device'
         verbose_message("* Begin of the save on tape "+device)
         tape_save(device, directory_list)

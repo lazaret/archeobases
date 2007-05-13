@@ -9,7 +9,7 @@ specified folders on unix tape.
 
 
 # Pydoc global variables
-__version__ = "0.6"
+__version__ = "0.7"
 __author__ = "B. Lecervoisier"
 __author_email__ ="opensource@lazaret.unice.fr"
 __url__ = "http://lazaret.unice.fr/opensource/"

@@ -1,9 +1,10 @@
-Changes in 1.1
+
+* Changes in 1.1
   - Some bug resolved
   - New fields added or renamed to the database & the scripts
 
 
-Changes in 1.0:
+* Changes in 1.0:
 
   - Add a few text files to the core distribution
   - Rename the project from "collection" to "archeobases-collection" sub-project

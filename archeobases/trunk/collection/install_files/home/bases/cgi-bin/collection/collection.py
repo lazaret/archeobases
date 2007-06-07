@@ -57,6 +57,8 @@ x = jahtml.CGI_document()
 x.html()
 x.push()
 x.head()
+x.insert_text('<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8" />')
+
 form = cgi.FieldStorage()
 if form.has_key("base") and (form["base"].value in config["bases"].keys()) :
         # étape de positionnement du cookie

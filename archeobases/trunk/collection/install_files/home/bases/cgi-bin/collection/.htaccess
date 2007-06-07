@@ -1,4 +1,4 @@
 AuthUserFile /home/bases/auth/authcollection
-AuthName "Application Collection: Accès Restreint"
+AuthName "Application Collection: Acces Restreint"
 AuthType Basic
 Require valid-user

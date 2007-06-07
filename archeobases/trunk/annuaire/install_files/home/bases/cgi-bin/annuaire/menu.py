@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
 # Anuuiare  - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
@@ -29,7 +29,7 @@ def bouton(page, module, image) :
         #page.a(href="'parent.bas.location=%s'"  %annuaireconf.script_location(module))
         page.img(src=annuaireconf.decors_location + image + ".jpg", border=0)
         page.pop()
-        
+
 page = annuaireconf.Menu("Menu")
 """page.button(name="menu", value="Entree",onclick='parent.bas.location="'+ annuaireconf.script_location("modentree")        + '"')"""
 
@@ -57,7 +57,7 @@ page.td(align = "center")
 bouton(page, "requetes", "sql")
 if annuaireconf.utilisateur_courant in annuaireconf.superusers :
         bouton(page, "controle", "controles")
-page.a("Aide", href = annuaireconf.site_location, target = "_top") 
+page.a("Aide", href = annuaireconf.site_location, target = "_top")
 page.a("Deconnexion", href =  "/cgi-bin/annuaire.py?base=aucune", target = "_top")
 page.pop()
 

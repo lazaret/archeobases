@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
-
+#
 # 2003 Rachel Vaudron
 # recupere les images d'un cd pour les inserer dasn la base
 

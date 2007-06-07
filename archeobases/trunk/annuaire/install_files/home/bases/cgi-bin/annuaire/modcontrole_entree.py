@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
 # Annuaire - (c) 2006 Rachel VAUDRON <rachel@cleo.unice.fr>

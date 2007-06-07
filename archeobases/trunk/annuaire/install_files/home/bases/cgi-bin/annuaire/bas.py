@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
 # Archeo  - (c) 1999      Jerome ALET <alet@unice.fr>

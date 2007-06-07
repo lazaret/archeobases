@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
 # Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
@@ -51,7 +51,7 @@ class DataBase :
                         self.__database = pg.connect(host = host, dbname = database, user = username)
                         if self.__debuglevel > 0 :
                                 self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
-                        self.query("SET CLIENT_ENCODING TO 'UTF-8';")        
+                        self.query("SET CLIENT_ENCODING TO 'UTF-8';")
                 except pg.error, msg :
                         self.fatal_message("Unable to connect to Host [%s] DataBase [%s] Username [%s] ==> [%s]" % (host, database, username, msg))
 

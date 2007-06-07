@@ -1,4 +1,5 @@
-#!  /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -21,7 +22,7 @@
 # modifs effectuees pdt un long laps de temps sans reseau ...
 #
 # Revision 1.8  2000/05/27 13:59:03  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 
@@ -42,29 +43,29 @@ class PageRequete(begoconf.Bas) :
                 self.td(align="center")
 
                 self.table(border = "2")
-                
+
                 self.tr(bgcolor = coultete)
-                self.td(align="center")         
+                self.td(align="center")
                 self.form(method = "POST", action = begoconf.script_location("modparametre_valid"))
                 doc.liste_zone_general(param)
                 self.pop()
-       
+
         def liste_zone_general(self,  param):
                 self.push()
                 self.table(border = "2", width = "100%")
-                
+
                 self.push()
                 self.tr()
                 self.th(string.capitalize(param), align = "center", valign = "middle", bgcolor = begoconf.basform_bgcolorbottom)
                 self.pop()
                 self.tr()
                 self.td(align = "center")
-                
+
                 # liste des param appartenant a la zone
                 query  = "SELECT " + param + " FROM " + param + ";"
                 #
                 # on recupere la liste des param de la zone
-                res = db.query(query).dictresult()             
+                res = db.query(query).dictresult()
                 if len(res) :
                         self.select_multiple(name = param, size = 5)
                         res.sort()
@@ -73,13 +74,13 @@ class PageRequete(begoconf.Bas) :
                                 if not val :
                                         val = "&nbsp;"
                                 self.option(val, value = val)
-                else :        
+                else :
                         self.p()
-                        if param in ["tourbiere", "moraine", "vegetation"] : 
+                        if param in ["tourbiere", "moraine", "vegetation"] :
                                 self.font("Aucune "+ param +" saisie", color = "red")
-                        else:   
+                        else:
                                 self.font("Aucun "+ param +" saisi", color = "red")
-                self.pop()            
+                self.pop()
                 self.br()
                 self.insert_text("Nouveau: ")
                 self.text(name = "modif", value = "", size=50, maxlength=50)
@@ -91,10 +92,10 @@ class PageRequete(begoconf.Bas) :
 
 
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
-doc = PageRequete("Modification des Paramètres", "Modification des Paramètres")
+doc = PageRequete("Modification des ParamÃ¨tres", "Modification des ParamÃ¨tres")
 db = begoconf.BegoDataBase(username = "bego")
 
-for p in ['acces', 'sentier', 'sommet', 'col', 'lac', 'torrent', 'tourbiere', 'eboulis', 'moraine', 'glacier', 'vegetation'] : 
+for p in ['acces', 'sentier', 'sommet', 'col', 'lac', 'torrent', 'tourbiere', 'eboulis', 'moraine', 'glacier', 'vegetation'] :
         doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", p)
 
 doc.output()

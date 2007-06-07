@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -24,7 +26,7 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.3  2000/05/27 13:58:59  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 import os
@@ -64,7 +66,7 @@ class Historique(begodata.Data) :
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = [ "zone", "groupe", "roche", "face", "historique", "motif", "type","origine","realisation","superposition", "date", "longueur", "largeur", "qualite", "style","description" ]
         __vraiparent__ = "face"
-        
+
 
         #
         # liste des champs dans leur ordre de saisie
@@ -118,7 +120,7 @@ class Historique(begodata.Data) :
 
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan = "2")
-                self.__doc__.font("Date inscrite/Date estimée:", size=begoconf.font_size)
+                self.__doc__.font("Date inscrite/Date estimÃ©e:", size=begoconf.font_size)
                 self.__doc__.font(size=begoconf.font_size)
 
                 if enreg != None :
@@ -139,7 +141,7 @@ class Historique(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan="2")
                 self.__doc__.font("Type:", size=begoconf.font_size)
-                liste = { "S Schématique":"S","L de Lettré":"L","M Militaire":"M","R Religieux":"R","P Pastoral":"P","T Touristique":"T"}
+                liste = { "S SchÃ©matique":"S","L de LettrÃ©":"L","M Militaire":"M","R Religieux":"R","P Pastoral":"P","T Touristique":"T"}
                 afficheclefs.liste_deroulante(self.__doc__, "type", liste, enreg)
                 self.__doc__.pop()
 
@@ -149,7 +151,7 @@ class Historique(begodata.Data) :
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.insert_text("Origine:")
                 self.__doc__.font(size=begoconf.font_size)
-                liste = { "S Schématique":"S","L de Lettré":"L","M Militaire":"M","R Religieux":"R","P Pastoral":"P","T Touristique":"T"}
+                liste = { "S SchÃ©matique":"S","L de LettrÃ©":"L","M Militaire":"M","R Religieux":"R","P Pastoral":"P","T Touristique":"T"}
                 afficheclefs.liste_deroulante(self.__doc__, "origine", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -165,9 +167,9 @@ class Historique(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan="2")
                 self.__doc__.font(size=begoconf.font_size)
-                self.__doc__.insert_text("Réalisation:")
+                self.__doc__.insert_text("RÃ©alisation:")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"IS Incision Simple": "IS","M Martellé":"M","IZ Incision en Zig-zag": "IZ", "BU BUrinée":"BU", "BO BOuchardée":"BO"}
+                liste={"IS Incision Simple": "IS","M MartellÃ©":"M","IZ Incision en Zig-zag": "IZ", "BU BUrinÃ©e":"BU", "BO BOuchardÃ©e":"BO"}
                 afficheclefs.liste_deroulante(self.__doc__, "realisation", liste, enreg)
                 self.__doc__.pop()
 
@@ -191,7 +193,7 @@ class Historique(begodata.Data) :
                 self.__doc__.u()
                 self.__doc__.font("Dimensions:", size=begoconf.font_size)
                 self.__doc__.pop()
-                
+
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font("L en cm: ", size=begoconf.font_size)
@@ -230,18 +232,18 @@ class Historique(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Aspect général: ", size=begoconf.font_size)
+                self.__doc__.font("Aspect gÃ©nÃ©ral: ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Qualité: ", size=begoconf.font_size)
+                self.__doc__.font("QualitÃ©: ", size=begoconf.font_size)
                 self.__doc__.font(size=begoconf.font_size)
                 liste={"A": "A","B": "B","C" : "C","D":"D"}
                 afficheclefs.liste_deroulante(self.__doc__, "qualite", liste, enreg)
                 self.__doc__.pop()
 
-  
+
         def style_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
@@ -251,7 +253,7 @@ class Historique(begodata.Data) :
                 #self.__doc__.push()
                 #self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"E Elaboré": "E","Peu Elabore": "PE","P Primaire" : "P","C Confus" : "C"}
+                liste={"E ElaborÃ©": "E","Peu Elabore": "PE","P Primaire" : "P","C Confus" : "C"}
                 afficheclefs.liste_deroulante(self.__doc__, "style", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -264,7 +266,7 @@ class Historique(begodata.Data) :
                 self.__doc__.td()
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.u()
-                self.__doc__.insert_text("Description détaillée")
+                self.__doc__.insert_text("Description dÃ©taillÃ©e")
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -392,25 +394,25 @@ class Historique(begodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                begoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
 
                         # on efface la gravure historique
                         self.delete_records(["zone", "groupe", "roche", "face", "historique"])
                         return 0
 
         def creer(self) :
-                # si la face n'existe pas déjà alors on la crée, sinon on refuse
+                # si la face n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone", "groupe", "roche", "face", "historique"]) :
                         primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None, "historique" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant la historique dans la base
+                        # on insÃ¨re maintenant la historique dans la base
                         # sauf si la face n'existe pas.
                         if not self.exist(["zone", "groupe", "roche", "face"], table = "face") :
                                 primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None, "historique" : None}
                                 return (-2, primarykeys)
                         else :
-                                # on insère maintenant la historique dans la base
+                                # on insÃ¨re maintenant la historique dans la base
                                 z = self.__form__["zone"].value
                                 g = self.__form__["groupe"].value
                                 r = self.__form__["roche"].value

@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -21,7 +23,7 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.3  2000/05/27 13:58:57  jerome
-# IntÈgration du message de Log
+# Integration du message de Log
 #
 #
 
@@ -42,7 +44,7 @@ class Data :
                         self.__db__ = begoconf.BegoDataBase()
                         self.__parent__ = self.__tablename__ # est son propre parent
                 else :
-                        # si ca ne vaut pas "bas" on considËre que c'est
+                        # si ca ne vaut pas "bas" on consid√®re que c'est
                         # une instance de la classe "parent"
                         # donc on simule l'heritage
                         self.__doc__ = parent.getcurdoc()
@@ -59,8 +61,8 @@ class Data :
                                 exec(code)
                                 self.__parentkeys__ = instance
                         return self.__parentkeys__
-                
-                
+
+
         def __make_url__(self, fields) :
                 if (fields != None) and len(fields) :
                         rebuiltform = {}
@@ -86,7 +88,7 @@ class Data :
                 return self.__db__.quote(value, self.__champs__[fieldname]["type"])
 
         def __createwhere__(self, fields) :
-                """CrÈe une clause WHERE en fonction de la liste de champs passee en paramËtre"""
+                """Cr√©e une clause WHERE en fonction de la liste de champs passee en param√®tre"""
                 if fields != None :
                         where = " WHERE "
                         for field in fields :
@@ -108,7 +110,7 @@ class Data :
                         return ""
 
         def __verify_mandatory__(self) :
-                """VÈrifie que les champs obligatoires sont bien remplis, et sinon affiche une boite d'alerte"""
+                """V√©rifie que les champs obligatoires sont bien remplis, et sinon affiche une boite d'alerte"""
                 not_ok = 0
                 for champ in self.__champs__.keys() :
                         try :
@@ -122,7 +124,7 @@ class Data :
                                                                 not_ok = not_ok + 1
                                                                 self.__doc__.script('alert("Le champ ' + champ + ' a un contenu invalide !!!")')
                         except AttributeError, msg :
-                                begoconf.fatalerror_message("Erreur sur la vÈrification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
+                                begoconf.fatalerror_message("Erreur sur la v√©rification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
                 return not_ok
 
         def __formgenerique__(self, enreg, penreg = None) :
@@ -153,9 +155,9 @@ class Data :
                         self.__doc__.submit(name = "action", value = "Chercher")
                         self.__doc__.pop()
                         self.__doc__.p()
-                        self.__doc__.submit(name = "action", value = "CrÈer")
+                        self.__doc__.submit(name = "action", value = "Cr√©er")
                         self.__doc__.br()
-                        self.__doc__.reset(value = "R-‡-ZÈro")
+                        self.__doc__.reset(value = "R-√†-Z√©ro")
                 self.__doc__.pop()
 
         def getcurdoc(self) :
@@ -189,7 +191,7 @@ class Data :
                 return res[0]["count"]
 
         def get_records(self, primarykeys = None, table = None) :
-                """Renvoie les enregistrements correspondant ‡ la liste des clefs passÈe en paramËtre"""
+                """Renvoie les enregistrements correspondant √† la liste des clefs pass√©e en param√®tre"""
                 if table == None :
                         table = self.__tablename__
                 res = self.__db__.query("SELECT * FROM " + table + self.__createwhere__(primarykeys) + ";")
@@ -209,7 +211,7 @@ class Data :
                         #
                         # attention, dans cette application on ne peut pas modifier
                         # les clefs primaires, donc on optimise en n'ajoutant
-                        # aucune de celles-ci ‡ la requete de mise ‡ jour.
+                        # aucune de celles-ci √† la requete de mise √† jour.
                         # si on veut l'autoriser, il faut enlever le if ci-dessous
                         if champ not in primarykeys :
                                 query = query + champ + "=" + self.__getfield__(champ) + ", "
@@ -254,12 +256,12 @@ class Data :
                         self.__doc__.font(size = begoconf.font_size)
 
                         if maximum :
-                                self.__doc__.a("PremiËre", href = "#anchor_" + self.__tablename__ + "0")
+                                self.__doc__.a("Premi√®re", href = "#anchor_" + self.__tablename__ + "0")
                                 self.__doc__.insert_text("&nbsp;" * 5)
                                 if current :
-                                        self.__doc__.a("PrÈcÈdente", href = "#anchor_" + self.__tablename__ + `current - 1`)
+                                        self.__doc__.a("Pr√©c√©dente", href = "#anchor_" + self.__tablename__ + `current - 1`)
                                 else :
-                                        self.__doc__.insert_text("PrÈcÈdente")
+                                        self.__doc__.insert_text("Pr√©c√©dente")
                                 self.__doc__.insert_text("&nbsp;" * 5)
 
                         self.__doc__.push()
@@ -274,16 +276,16 @@ class Data :
                                 else :
                                         self.__doc__.insert_text("Suivante")
                                 self.__doc__.insert_text("&nbsp;" * 5)
-                                self.__doc__.a("DerniËre", href = "#anchor_" + self.__tablename__ + `maximum`)
-                                
+                                self.__doc__.a("Derni√®re", href = "#anchor_" + self.__tablename__ + `maximum`)
+
                         self.__doc__.br()
                         self.__doc__.font(size = begoconf.font_size)
-                        if self.__vraiparent__ != None :        
+                        if self.__vraiparent__ != None :
                                 dico = { "action" : "Chercher" }
                                 for clef in self.__clefsparent__() :
                                         dico[clef] = enreg[clef]
                                 self.__doc__.a(string.capitalize(self.__vraiparent__), href = begoconf.script_location("mod" + self.__vraiparent__) + "?" + urllib.urlencode(dico))
-                                
+
                         if hasattr(self, "__listenfants__") :
                                 dico = { "action" : "Chercher" }
                                 for clef in self.__listeclefs__ :
@@ -291,9 +293,9 @@ class Data :
                                 for enfant in self.__listenfants__ :
                                         self.__doc__.insert_text("&nbsp;" * 5)
                                         self.__doc__.a(string.capitalize(enfant) + 's', href = begoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico))
-                                
+
                         self.__doc__.pop()
-                        
+
 
                 self.__doc__.push()
                 self.__doc__.tr()
@@ -374,22 +376,22 @@ class Data :
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
-                                        self.__doc__.font("Aucun enregistrement trouvÈ", color = "red")
+                                        self.__doc__.font("Aucun enregistrement trouv√©", color = "red")
                                         self.__doc__.pop()
                                         self.formulaire_hook(penreg = penreg)
                 elif self.have_primarykeys(primarykeys) :
                         #
-                        # si le champ action existe alors on veut supprimer ou modifier ou crÈer
+                        # si le champ action existe alors on veut supprimer ou modifier ou cr√©er
                         if self.__form__.has_key("action") :
                                 if self.__form__["action"].value == "Modifier" :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -398,7 +400,7 @@ class Data :
                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
-                                                # il reste des enregistrements dans d'autres tables qui dÈpendent de celui-ci
+                                                # il reste des enregistrements dans d'autres tables qui d√©pendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
                                                 #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -408,23 +410,23 @@ class Data :
                                                         self.formulaire_hook(penreg = penreg)
                                                 else :
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
-                                elif self.__form__["action"].value == "CrÈer" :
+                                elif self.__form__["action"].value == "Cr√©er" :
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour == -1:
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         if not parent :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 elif retour == -2:
-                                                        self.__doc__.script("""alert("Enregistrement impossible ‡ crÈer car il n'a aucun parent !!!")""")
+                                                        self.__doc__.script("""alert("Enregistrement impossible √† cr√©er car il n'a aucun parent !!!")""")
                                                         if not parent :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -444,34 +446,34 @@ class Data :
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
-                                # mais ce n'est pas grave, on fait "gÈnÈrique"
+                                # mais ce n'est pas grave, on fait "g√©n√©rique"
                                 enregs = self.get_records(primarykeys)
                                 if len(enregs) :
                                         for enreg in enregs :
                                                 self.formulaire_hook(enreg, penreg = penreg)
                                 else :
-                                        begoconf.log_message("Tentative d'accËs ‡ un enregistrement d'identifiant inexistant")
+                                        begoconf.log_message("Tentative d'acc√®s √† un enregistrement d'identifiant inexistant")
                                         self.formulaire_hook(penreg = penreg)
                 else :
                         # je me demande ce qui reste execute dans ce qui est ci-dessous
                         # il est grand temps de faire le menage !!!
                         #
                         #
-                        # si le champ action existe alors on veut crÈer ou avoir un formulaire vide
+                        # si le champ action existe alors on veut cr√©er ou avoir un formulaire vide
                         if self.__form__.has_key("action") :
-                                if self.__form__["action"].value == "CrÈer" :
+                                if self.__form__["action"].value == "Cr√©er" :
                                         # toutes les clefs primaires ne sont pas remplies, on ne
-                                        # vient ici (code dupliquÈ) que pour que les messages d'erreur adÈquats s'affichent
+                                        # vient ici (code dupliqu√©) que pour que les messages d'erreur ad√©quats s'affichent
                                         # en effet verify_mandatory devrait tomber tout le temps en erreur car les clefs
                                         # primaires sont aussi des champs obligatoires (sinon y'a un bleme)
                                         # dans l'avenir mettre tout ca sous forme de fonction
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour :
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.formulaire_hook(penreg)
                                                 else :
-                                                        # tout c'est bien passÈ
+                                                        # tout c'est bien pass√©
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -486,10 +488,10 @@ class Data :
                                         begoconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook(penreg = penreg)
                         else :
-                                # sinon affichage de l'Ècran de saisie vide
+                                # sinon affichage de l'√©cran de saisie vide
                                 self.formulaire_hook(penreg = penreg)
 
-                # si c'est une table "mere" (ex: roche")                                
+                # si c'est une table "mere" (ex: roche")
                 # on sort le document
                 if self.__parent__ == self.__tablename__ :
                         self.__doc__.output()

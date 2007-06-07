@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -30,9 +32,9 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.7  2000/05/27 13:58:58  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
-#
+
 import os
 import string
 import begoconf
@@ -77,10 +79,10 @@ class Face(begodata.Data) :
         # liste des tables enfants
         __listenfants__ = [ "figure", "historique", "association"]
         __listeclefs__ = ["zone", "groupe", "roche", "face"]
-        
+
         __vraiparent__ = "roche"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = [ "zone", "groupe", "roche", "face", "longueur", "largeur", "type", "forme", "couleur", "aspect", "decrochement", "fissure","microflore","nodule","trou", "erosion", "desquamation", "direction", "inclinaison", "orientation"]
@@ -165,7 +167,7 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                listeformes={"D arronDie":"D","O Ovale":"O","R Rectang.":"R","C Carrée":"C","T Trapéz.":"T"}
+                listeformes={"D arronDie":"D","O Ovale":"O","R Rectang.":"R","C CarrÃ©e":"C","T TrapÃ¨z.":"T"}
                 afficheclefs.liste_deroulante(self.__doc__, "forme", listeformes, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -181,7 +183,7 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                listecouleurs={"B Blanc":"B","G Gris":"G","VE VErt":"VE","O Orange":"O","BR BRun":"BR","R Rouge":"R","VI VIolet":"VI","GO Gris Orangé":"GO","GR Gris Rouge":"GR","GVE Gris VErt":"GVE","GVI Gris VIolet":"GVI"}
+                listecouleurs={"B Blanc":"B","G Gris":"G","VE VErt":"VE","O Orange":"O","BR BRun":"BR","R Rouge":"R","VI VIolet":"VI","GO Gris OrangÃ©":"GO","GR Gris Rouge":"GR","GVE Gris VErt":"GVE","GVI Gris VIolet":"GVI"}
                 afficheclefs.liste_deroulante(self.__doc__,  "couleur", listecouleurs, enreg)
                 self.__doc__.pop()
 
@@ -205,7 +207,7 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Eléments naturels:", size=begoconf.font_size)
+                self.__doc__.font("ElÃ©ments naturels:", size=begoconf.font_size)
                 self.__doc__.pop()
 
 
@@ -214,14 +216,14 @@ class Face(begodata.Data) :
                 self.__doc__.font(size=begoconf.font_size)
 
                 if enreg != None :
-                        if enreg["decrochement"] == 't': 
+                        if enreg["decrochement"] == 't':
                                 self.__doc__.checkbox_checked(name = "decrochement")
                         else :
                                 self.__doc__.checkbox(name = "decrochement") # 'f' ou vide
                 else :
                         self.__doc__.checkbox(name = "decrochement")         # 'f' est la valeur par defaut
 
-                self.__doc__.insert_text("Décrochement")
+                self.__doc__.insert_text("DÃ©crochement")
 
                 self.__doc__.pop()
 
@@ -272,7 +274,7 @@ class Face(begodata.Data) :
                 self.__doc__.font(size=begoconf.font_size)
 
                 if enreg != None :
-                        if enreg["nodule"] == 't': 
+                        if enreg["nodule"] == 't':
                                 self.__doc__.checkbox_checked(name = "nodule")
                         else :
                                 self.__doc__.checkbox(name = "nodule") # 'f' ou vide
@@ -317,7 +319,7 @@ class Face(begodata.Data) :
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font("Erosion: ", size=begoconf.font_size )
 
-                liste={"NE Non Erodée":"NE","E Erodée": "E","TE Très Erodée" : "TE"}
+                liste={"NE Non ErodÃ©e":"NE","E ErodÃ©e": "E","TE TrÃ¨s ErodÃ©e" : "TE"}
                 self.__doc__.font(size=begoconf.font_size)
                 afficheclefs.liste_deroulante(self.__doc__, "erosion", liste, enreg)
                 self.__doc__.pop()
@@ -331,7 +333,7 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"ND Non D": "ND","D   Desquamée": "D","TD Très D" : "TD"}
+                liste={"ND Non D": "ND","D   DesquamÃ©e": "D","TD TrÃ¨s D" : "TD"}
                 afficheclefs.liste_deroulante(self.__doc__, "desquamation", liste, enreg)
                 self.__doc__.pop()
 
@@ -399,7 +401,7 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.caption()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.b("Thèmes:")
+                        self.__doc__.b("ThÃ¨mes:")
                         self.__doc__.pop()
 ################################################
                         id = self.__db__.query("SELECT identite FROM figure WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + " AND face = " + self.__db__.quote(enreg["face"], "text") + ";" )
@@ -477,7 +479,7 @@ class Face(begodata.Data) :
                                                                 elif (lgid > 3) and (identite[3] == '2'):
                                                                         nbrectangle = nbrectangle + 1
                                                         elif (lgid > 2) and (identite[2] == 'r'):
-                                                                if (lgid > 3) : 
+                                                                if (lgid > 3) :
                                                                         if (identite[3] == '1'):
                                                                                 nbcoix = nbcroix + 1
                                                                         elif (identite[3] == '3'):
@@ -548,7 +550,7 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Fig géo composées: ")
+                        self.__doc__.insert_text("Fig gÃ©o composÃ©es: ")
                         self.__doc__.insert_text(nbgeocomp)
                         self.__doc__.pop()
 
@@ -605,14 +607,14 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Réticulés: ")
+                        self.__doc__.insert_text("RÃ©ticulÃ©s: ")
                         self.__doc__.insert_text(nbreticule)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Réticulé à appendice: ")
+                        self.__doc__.insert_text("RÃ©ticulÃ© Ã  appendice: ")
                         self.__doc__.insert_text(nbreticulea)
                         self.__doc__.pop()
 
@@ -815,25 +817,25 @@ class Face(begodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                begoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
 
                         # on efface la face
                         self.delete_records(["zone", "groupe", "roche", "face"])
                         return 0
 
         def creer(self) :
-                # si la face n'existe pas déjà alors on la crée, sinon on refuse
+                # si la face n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone", "groupe", "roche", "face"]) :
                         primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant la face dans la base
+                        # on insÃ¨re maintenant la face dans la base
                         # sauf si la roche n'existe pas.
                         if not self.exist(["zone", "groupe", "roche"], table = "roche") :
                                 primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None}
                                 return (-2, primarykeys)
                         else :
-                                # on insère maintenant la face dans la base
+                                # on insÃ¨re maintenant la face dans la base
                                 z = self.__form__["zone"].value
                                 g = self.__form__["groupe"].value
                                 r = self.__form__["roche"].value

@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -42,7 +44,7 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.5  2000/05/27 13:59:04  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 import os
@@ -144,14 +146,14 @@ class Roche(begodata.Data) :
                         self.__doc__.text(name = "identite", size = "50", maxlength = "50", value = "")
                 self.__doc__.pop()
                 self.__doc__.pop()
-                
+
         def x_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr(align = "right")
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="center")
                 self.__doc__.u()
-                self.__doc__.font("Coordonnées Lambert III:", size=begoconf.font_size)
+                self.__doc__.font("CoordonnÃ©es Lambert III:", size=begoconf.font_size)
                 self.__doc__.pop()
                 self.__doc__.td()
 
@@ -252,7 +254,7 @@ class Roche(begodata.Data) :
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
 
-                listenature={"S Schiste": "S","SG Schiste G.": "SG","G Grès" : "G","GS Grès S." : "GS"}
+                listenature={"S Schiste": "S","SG Schiste G.": "SG","G GrÃ¨s" : "G","GS GrÃ¨s S." : "GS"}
                 afficheclefs.liste_deroulante(self.__doc__, "nature", listenature, enreg)
                 self.__doc__.pop()
 
@@ -319,7 +321,7 @@ class Roche(begodata.Data) :
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
 
-                listecontexte={"L Lac":"L","T Torrent":"T","S Sommet":"S","TB TourBière":"TB","C Conque":"C","CL CoL":"CL"}
+                listecontexte={"L Lac":"L","T Torrent":"T","S Sommet":"S","TB TourBiÃ¨re":"TB","C Conque":"C","CL CoL":"CL"}
                 afficheclefs.liste_deroulante(self.__doc__, "contexte", listecontexte, enreg)
 
         def publication_base_to_form(self, enreg, penreg = None) :
@@ -344,7 +346,7 @@ class Roche(begodata.Data) :
                 else :
                         self.__doc__.checkbox(name = "publication") # 'f' est la valeur par defaut
 
-                self.__doc__.insert_text("Publiée")
+                self.__doc__.insert_text("PubliÃ©e")
                 self.__doc__.pop()
                 self.__doc__.pop()
 
@@ -384,7 +386,7 @@ class Roche(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td(clign = "center", colspan="3")
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Nombre de faces gravées: ")
+                        self.__doc__.insert_text("Nombre de faces gravÃ©es: ")
                         nb = self.__db__.query("SELECT COUNT(*) FROM face WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + ";")
                         nb = nb.dictresult()
                         nb = nb[0]["count"]
@@ -529,10 +531,10 @@ class Roche(begodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                begoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
 
-                        # ces repertoires ne sont pas forcément vides, alors on essaie de les supprimer
-                        # mais si on ne réussit pas ce n'est pas grave
+                        # ces repertoires ne sont pas forcement vides, alors on essaie de les supprimer
+                        # mais si on ne reussit pas ce n'est pas grave
                         try:
                                 if os.path.isdir(rg) :
                                         os.rmdir(rg)
@@ -547,12 +549,12 @@ class Roche(begodata.Data) :
                         return 0
 
         def creer(self) :
-                # si la roche n'existe pas déjà alors on la crée, sinon on refuse
+                # si la roche n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone", "groupe", "roche"]) :
                         primarykeys = { "zone" : None, "groupe" : None, "roche": None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant la roche dans la base
+                        # on insÃ¨re maintenant la roche dans la base
                         #sauf si la zone correspondante n'existe pas
                         if not self.exist(["zone"], table ="zone") :
                                 primarykeys = { "zone" : None, "groupe" : None, "roche": None}

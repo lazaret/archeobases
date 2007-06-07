@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -28,7 +30,7 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.2  2000/05/27 13:58:56  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 import os
@@ -58,8 +60,8 @@ class Association(begodata.Data) :
 
         __listeclefs__ = ["zone", "groupe", "roche", "face", "association"]
         __vraiparent__ = "face"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = [ "zone", "groupe", "roche", "face", "association", "type","disposition"]
@@ -122,7 +124,7 @@ class Association(begodata.Data) :
                 self.__doc__.td(align="left", valign="middle", colspan = "2")
                 self.__doc__.font(size=begoconf.font_size)
 
-                liste={"L en Ligne":"L","F en File":"F","D en Diagonale":"D","T en Triangle":"T","R en Rectangle":"R", "CE en CErcle":"CE","P Perpendiculaires":"P","CO COnvergentes":"CO","O Opposées":"O","E Emboîtées":"E","I l'une Inscrite dans l'autre":"I","S Superposées":"S","SF Superposées en File":"SP","SL Superposées en Ligne":"SL","Y reliées entre elles":"Y","H une gravure encadrée par deux autres":"H","X une gravure encadrée par plusieurs autres":"X"}
+                liste={"L en Ligne":"L","F en File":"F","D en Diagonale":"D","T en Triangle":"T","R en Rectangle":"R", "CE en CErcle":"CE","P Perpendiculaires":"P","CO COnvergentes":"CO","O OpposÃ©es":"O","E EmboÃ®tÃ©es":"E","I l'une Inscrite dans l'autre":"I","S SuperposÃ©es":"S","SF SuperposÃ©es en File":"SP","SL SuperposÃ©es en Ligne":"SL","Y reliÃ©es entre elles":"Y","H une gravure encadrÃ©e par deux autres":"H","X une gravure encadrÃ©e par plusieurs autres":"X"}
                 afficheclefs.liste_deroulante(self.__doc__, "disposition", liste, enreg)
 
                 self.__doc__.pop()
@@ -317,19 +319,19 @@ class Association(begodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                begoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
 
                         # on efface la association
                         self.delete_records(["zone", "groupe", "roche", "face", "association"])
                         return 0
 
         def creer(self) :
-                # si l'association n'existe pas alors on la crée, sinon erreur
+                # si l'association n'existe pas alors on la crÃ©e, sinon erreur
                 if self.exist(["zone", "groupe", "roche", "face", "association"]) :
                         primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None, "association" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant l'association dans la base
+                        # on insÃ¨re maintenant l'association dans la base
                         # sauf si la face n'existe pas.
                         if not self.exist(["zone", "groupe", "roche", "face"], table = "face") :
                                 primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None, "association" : None}

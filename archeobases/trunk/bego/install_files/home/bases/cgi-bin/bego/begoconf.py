@@ -1,4 +1,7 @@
-7# Fichier de configuration de BEGO
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Fichier de configuration de BEGO
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -25,7 +28,7 @@
 #
 # Revision 1.16  2000/09/11 21:04:37  jerome
 # Ajout du stockage de l'image originale en .tiff
-# Finitions du prog de récupération des images de Graziella
+# Finitions du prog de recuperation des images de Graziella
 #
 # Revision 1.15  2000/05/30 07:38:59  rachel
 # modif de l'ecran de saisie modzone_acces pour qu'il ressemble a l'ecran
@@ -46,13 +49,13 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.11  2000/05/27 13:58:57  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 
 import string
 
-#### Début de la partie configurable ####
+#### Debut de la partie configurable ####
 
 #
 # nom de l'application
@@ -79,7 +82,7 @@ copyright_font_size = "-3"
 
 
 #
-# Emplacement des programmes et données de l'application
+# Emplacement des programmes et donnÃ©es de l'application
 
 app_location      = "/cgi-bin/" + app_name + "/"
 decors_location   =  "/" + app_name + "/decors/"
@@ -92,23 +95,23 @@ album_location    = "/devalbum/album/index.html"
 
 
 #
-# Couleurs de fond des trois parties de l'écran ou None
+# Couleurs de fond des trois parties de l'Ã©cran ou None
 menu_bgcolor   = "#FFFFFF"      # blanc
-gauche_bgcolor = "#FFFFFF"      # E1DCD6" 
-bas_bgcolor    = "#FFFFFF"      #E1DCD6"      
+gauche_bgcolor = "#FFFFFF"      # E1DCD6"
+bas_bgcolor    = "#FFFFFF"      #E1DCD6"
 
 #
-# Images de fond des trois parties de l'écran ou None
+# Images de fond des trois parties de l'Ã©cran ou None
 menu_background   = "#FFFFFF"   #haut.jpg" #"fond10.jpg"#rach1clairhuile2.jpg"
 gauche_background = "#FFFFFF"   #haut.jpg" #rach1clairhuile2.jpg"
 bas_background    = "#FFFFFF"   #bas.jpg" #"fond10.jpg"#bas.jpg"
 
 #
-# couleurs de fond des formulaires de chaque partie de l'écran
+# couleurs de fond des formulaires de chaque partie de l'Ã©cran
 menuform_bgcolor      = "#CCCAE5"       #violet
 basform_bgcolorleft   = "#E1DCD6"       #partie centrale du formulaire
 basform_bgcolorright  = "#DFDFDF"       #CCCAE5" #gris menu_droite
-basform_bgcolormiddle = "#DDDDDD"       #gris 
+basform_bgcolormiddle = "#DDDDDD"       #gris
 basform_bgcolorbottom = "#CCCCCC"
 basform_bgcolorcenter = "#CCCCCC"       #vert "#EDFOA4" # jaune
 
@@ -130,7 +133,7 @@ font_size = -1
 #### Fin de la partie configurable ####
 
 #
-# Rien ne devrait être modifié après cette ligne
+# Rien ne devrait Ãªtre modifiÃ© aprÃ¨s cette ligne
 import sys
 import os
 import time
@@ -213,7 +216,7 @@ def get_imagesize(filename) :
                 s = image.size
                 image.fp.close()
         except IOError, msg:
-                log_message("Problème d'accès au fichier %s : %s" % (filename, msg))
+                log_message("ProblÃ¨me d'accÃ¨s au fichier %s : %s" % (filename, msg))
                 s = 0,0
         return s
 
@@ -245,7 +248,7 @@ def copyright(doc) :
         doc.a(copyright_msg, href = copyright_link)
 
 #
-# Classes spécifiques
+# Classes spÃ©cifiques
 class BegoDataBase(database.DataBase) :
         def __init__(self, username = "bego", debuglevel = 0) :
                 database.DataBase.__init__(self, database = "bego", username = username, debuglevel = debuglevel)

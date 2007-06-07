@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+#
 # database.py - (c) 1999 Jerome ALET <alet@unice.fr>
 #
 # You're welcome to redistribute this software under the
@@ -19,7 +22,7 @@ import pg
 __version__ = "1.0"
 
 #
-# Définition d'une classe d'accès à une base de données PostrgreSQL sous Python
+# Definition d'une classe d'accÃ¨s Ã  une base de donnÃ©es PostrgreSQL sous Python
 # Cette classe encapsule les fonctions importantes du modules Pg et ajoute
 # la possibilite de tracer toutes les requetes en les envoyant sur stderr.
 # Dans le cas de l'utilisation de cette classe dans un script CGI alors les

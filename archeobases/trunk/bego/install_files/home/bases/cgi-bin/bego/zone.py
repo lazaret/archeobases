@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -33,7 +35,7 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.2  2000/05/27 13:59:06  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 import os
@@ -60,24 +62,24 @@ class Zone(begodata.Data) :
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = [ "secteur", "zone", "groupes"]
-        
+
         #
         # liste des tables enfants
         __listenfants__ = [ "roche", "face", "figure", "historique", "association"]
         __listeclefs__ = ["zone"]
-        
+
         #
         # liste des champs dans leur ordre de saisie
         __ordrechamps__ = [ "secteur", "zone", "groupes", "remarquable"]
 
         __orderby__ = " ORDER BY zone ASC;"
-        
+
         __vraiparent__ = None
-        
+
         #
         # liste des formulaires supplementaires
         __formsupp__ = ["zone_param","photozones"]
-                
+
         def zone_verify(self, value) :
                 if value == '' :
                         return -1
@@ -97,8 +99,8 @@ class Zone(begodata.Data) :
                 for s in secteurs :
                         listesecteurs[s] = s
                 afficheclefs.liste_deroulante(self.__doc__, "secteur", listesecteurs, enreg)
-                self.__doc__.pop()        
-        
+                self.__doc__.pop()
+
         def zone_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.display_zone(self.__doc__, enreg, penreg)
                 self.__doc__.pop()
@@ -126,10 +128,10 @@ class Zone(begodata.Data) :
                 if enreg != None:
 
                         z = self.__db__.quote(enreg["zone"], "decimal")
-                
+
                         query = "SELECT groupe,roche FROM roche WHERE zone = %s and remarquable = 't' ;" %(z)
                         res = self.__db__.query(query).dictresult()
-                        
+
                         self.__doc__.tr()
 
                         self.__doc__.td(colspan=2)
@@ -149,11 +151,11 @@ class Zone(begodata.Data) :
                                         self.__doc__.th(string.capitalize(c), align = "center", valign = "middle", bgcolor = begoconf.basform_bgcolorbottom)
                                 self.__doc__.pop()
                                 for roche in res :
-                                
+
                                         self.__doc__.push()
                                         self.__doc__.tr()
                                         for c in champs :
-                                                
+
                                                 val = roche[c]
                                                 self.__doc__.push()
                                                 self.__doc__.td(align = "center", valign = "middle")
@@ -173,14 +175,14 @@ class Zone(begodata.Data) :
                                 self.__doc__.push()
                                 self.__doc__.table(border = 0, width = "100%")
                                 self.__doc__.tr()
-                                
+
                                 self.__doc__.td(align = "center")
                                 self.__doc__.font(color = "red", size=begoconf.font_size)
                                 self.__doc__.insert_text("Aucune roche remarquable")
                                 self.__doc__.pop()
                                 #self.__doc__.pop()
                 #self.__doc__.pop()
-                
+
 
 ################################################################################################################
 #                                               LISTE ZONE_PARAM
@@ -189,49 +191,49 @@ class Zone(begodata.Data) :
                 # liste des param appartenant a la zone
                 z = self.__db__.quote(enreg["zone"], "decimal")
                 where = " WHERE zone = %s " % (z)
-                
+
                 query  = "SELECT " + param + " FROM " + param + " WHERE id" + param + " IN ("
-                qassoc = "SELECT id" + param + " FROM zone_" + param  + where 
+                qassoc = "SELECT id" + param + " FROM zone_" + param  + where
                 query  = query + qassoc + ");"
-                
+
                 #
                 # on recupere la liste des param de la zone
-                res = self.__db__.query(query).dictresult()             
+                res = self.__db__.query(query).dictresult()
                 if len(res) :
                         self.__doc__.push()
                         self.__doc__.table(border = 5, width = "100%")
-                        
+
                         self.__doc__.push()
                         self.__doc__.tr()
 
                         self.__doc__.th(string.capitalize(param), align = "center", valign = "middle", bgcolor = begoconf.basform_bgcolorbottom)
                         self.__doc__.pop()
-                        
+
                         for ligne in res :
                                 self.__doc__.push()
                                 self.__doc__.tr()
-                                
+
                                 val = ligne[param]
                                 if not val :
                                         val = "&nbsp;"
                                 self.__doc__.td(val, align = "center", valign = "middle")
                                 self.__doc__.pop()
                         self.__doc__.pop()
-                else :        
+                else :
                         self.__doc__.push()
                         self.__doc__.p()
-        
+
                         self.__doc__.font(size = begoconf.font_size)
                         if param in ["tourbiere", "moraine", "vegetation"] :
                                 self.__doc__.font("Aucune "+ param +" dans la zone", color = "red")
                         else:
                                 self.__doc__.font("Aucun "+ param +" dans la zone", color = "red")
-                                
+
                         self.__doc__.pop()
 
         def zone_param(self, enreg, penreg = None) :
                 if enreg != None :
-                        liste = ["acces","sentier", "sommet", "col","lac","torrent", "tourbiere", "eboulis","moraine", "glacier", "vegetation"] 
+                        liste = ["acces","sentier", "sommet", "col","lac","torrent", "tourbiere", "eboulis","moraine", "glacier", "vegetation"]
                         for i in liste:
                                 self.__doc__.push()
                                 self.__doc__.tr()
@@ -239,7 +241,7 @@ class Zone(begodata.Data) :
                                 self.__doc__.push()
                                 self.__doc__.td(bgcolor = begoconf.basform_bgcolormiddle)
                                 self.__doc__.hidden(name = "zone", value = enreg["zone"])
-                                self.__doc__.hidden(name = "param", value = i)   
+                                self.__doc__.hidden(name = "param", value = i)
                                 self.__doc__.font(size = begoconf.font_size)
                                 self.__doc__.div(align = "center")
                                 self.liste_zone(enreg, i)
@@ -330,7 +332,7 @@ class Zone(begodata.Data) :
                 self.menu_photozones(enreg, begoconf.basform_bgcolormiddle, self.liste_photozones)
 
 ##############################################################################################################################
-#                                               METHODES                
+#                                               METHODES
 ##############################################################################################################################
 
         def modifier(self) :
@@ -349,11 +351,11 @@ class Zone(begodata.Data) :
                                 if os.path.isdir(rz) :
                                         os.rmdir(rz)
                         except :
-                                begoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rz)
-                                
-                        # ces repertoires ne sont pas forcément vides, alors on essaie de les supprimer        
-                        # mais si on ne réussit pas ce n'est pas grave
-                        try:         
+                                begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rz)
+
+                        # ces repertoires ne sont pas forcement vides, alors on essaie de les supprimer
+                        # mais si on ne rÃ©ussit pas ce n'est pas grave
+                        try:
                                 if os.path.isdir(rz) :
                                         os.rmdir(rz)
                         except :
@@ -365,12 +367,12 @@ class Zone(begodata.Data) :
                         return 0
 
         def creer(self) :
-                # si la roche n'existe pas déjà alors on la crée, sinon on refuse
+                # si la roche n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone"]) :
                         primarykeys = { "zone" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant la roche dans la base
+                        # on insÃ¨re maintenant la roche dans la base
                         z = self.__form__["zone"].value
                         self.__db__.query(self.make_insert_query({ }))
                         primarykeys = { "zone" : z}

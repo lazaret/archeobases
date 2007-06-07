@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999	   Jerome ALET <alet@unice.fr>
 #		 1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -30,10 +32,10 @@
 #
 # Revision 1.5	2000/09/11 21:04:37  jerome
 # Ajout du stockage de l'image originale en .tiff
-# Finitions du prog de récupération des images de Graziella
+# Finitions du prog de recuperation des images de Graziella
 #
 # Revision 1.4	2000/05/27 13:59:04  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 import os
@@ -115,7 +117,7 @@ class Photo(begodata.Data) :
 		self.__parent__ = self.__tablename__ # est son propre parent
 
 	def transfere_fichier(self, taille, mogrify) :
-		"""Stocke le fichier sur le disque et lance la commande mogrify appropriée"""
+		"""Stocke le fichier sur le disque et lance la commande mogrify appropriÃ©e"""
 		fout = open(taille, "w")
 		fout.write(self.__form__["fichier_photo"].value)
 		fout.close()
@@ -188,7 +190,7 @@ class Photo(begodata.Data) :
 		self.retour()
 
 	def creer(self) :
-		# on commence par créer le répertoire destination s'il n'existe pas déjà
+		# on commence par crÃ©er le repertoire destination s'il n'existe pas dÃ©jÃ 
 		try :
 			z  = "Z" + self.__form__["zone"].value
 			rep = begoconf.image_fullname(z)
@@ -231,7 +233,7 @@ class Photo(begodata.Data) :
 				if not os.path.isdir(rep) :
 					os.mkdir(rep, 0755)
 		except OSError, msg:
-			begoconf.fatalerror_message("Impossible de créer le répertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
+			begoconf.fatalerror_message("Impossible de crÃ©er le repertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
 
 		#
 		idphoto = self.get_nextval()
@@ -240,8 +242,8 @@ class Photo(begodata.Data) :
 		big = fname + ".jpeg"
 		normale = fname + ".tiff"
 
-		# on insère maintenant la photo dans la base
-		# mais seulement si le chargement des images a fonctionné
+		# on insÃ¨re maintenant la photo dans la base
+		# mais seulement si le chargement des images a fonctionnÃ©
 		try :
 			t = self.__form__["taille"].value
 			t = "mogrify_" + t
@@ -249,7 +251,7 @@ class Photo(begodata.Data) :
 			self.transfere_fichier(small, begoconf.mogrify_small)
 			self.transfere_fichier(big, getattr(begoconf, t))
 		except :
-			begoconf.fatalerror_message("Impossible de transférer la photo " + fname)
+			begoconf.fatalerror_message("Impossible de transfÃ©rer la photo " + fname)
 
 		self.__db__.query(self.make_insert_query({ "idphoto": idphoto }))
 		self.retour()

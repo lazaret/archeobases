@@ -1,4 +1,5 @@
-#!  /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -18,7 +19,7 @@
 # Reintroduction dans CVS apres modifs
 #
 # Revision 1.3  2000/05/27 13:59:04  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 import sys
@@ -34,8 +35,8 @@ except :
 import begoconf
 import jahtml
 
-elabore = "Elaboré"
-simplifie = "Simplifié"
+elabore = "ElaborÃ©"
+simplifie = "SimplifiÃ©"
 telecharget = "Texte + Tabs"
 telechargev = "Texte + Virgules"
 liste_affichage = [ simplifie, elabore, telecharget, telechargev ]
@@ -109,7 +110,7 @@ class PageRequete(begoconf.Bas) :
                 self.table(border = "10")
                 self.push()
                 self.tr( bgcolor = coultete )
-                self.th("Saisissez votre requête")
+                self.th("Saisissez votre requÃ¨te")
                 self.pop()
                 self.tr(bgcolor = coultete)
                 self.td(align="center")
@@ -152,7 +153,7 @@ class PageRequete(begoconf.Bas) :
                 self.pop()
                 dico = { "requete" : "SELECT nomrequete,coderequete FROM requete ORDER BY nomrequete ASC;", "presentation" : elabore }
                 self.td(align = "center", valign = "middle")
-                self.a("Liste des Requêtes", href = self.script_name() + '?' + urllib.urlencode(dico))
+                self.a("Liste des RequÃ¨tes", href = self.script_name() + '?' + urllib.urlencode(dico))
                 self.br()
                 self.a("Aide", href = begoconf.help_location, target = "top")
                 self.pop()
@@ -178,8 +179,8 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                        begoconf.log_message("La requête s'est terminée sans problème", level = "info")
-                        break   # Requête terminée sans problème
+                        begoconf.log_message("La requÃ¨te s'est terminÃ©e sans problÃ¨me", level = "info")
+                        break   # RequÃ¨te terminÃ©e sans problÃ¨me
                 else :
                         if parent.isAlive() :
                                 heure_courante = time.time()
@@ -195,12 +196,12 @@ def mixed_part_handler(parent, indicateur, timer) :
                                 part.default_header(title = "Veuillez patienter...")
                                 part.body()
                                 part.h3("Veuillez patienter...")
-                                part.insert_text("Durée écoulée: %02.2f secondes" % (time.time() - heure_debut))
+                                part.insert_text("DurÃ©e Ã©coulÃ©e: %02.2f secondes" % (time.time() - heure_debut))
                                 part.pop()
                                 part.insert_text("\n--" + endpart)
                                 part.output()
                         else :
-                                begoconf.log_message("La requête est tombée en erreur", level = "notice")
+                                begoconf.log_message("La requÃ¨te est tombÃ©e en erreur", level = "notice")
         sys.exit(0)
 
 master = None
@@ -210,7 +211,7 @@ max_timer = 30.0                # 30 secondes
 endpart = "rachelvaudron"
 
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
-doc=PageRequete("Requêtes SQL", "Requêtes SQL")
+doc=PageRequete("RequÃ¨tes SQL", "RequÃ¨tes SQL")
 ruser = doc.remote_user()
 if ruser in begoconf.superusers :
         db = begoconf.BegoDataBase(username = "user_query", debuglevel = 1) #MODIF: restriction des droits
@@ -236,7 +237,7 @@ if ruser in begoconf.superusers :
                                                 quequette = res["coderequete"]
                                                 nomrequete = res["nomrequete"]
                                         else :
-                                                begoconf.fatalerror_message("La requête %s n'existe pas" % form["nomrequete"].value)
+                                                begoconf.fatalerror_message("La requÃ¨te %s n'existe pas" % form["nomrequete"].value)
                         else :
                                 quequette = ""
                         doc.set_redirect(doc.script_name() + '?' + urllib.urlencode({"requete" : quequette, "nomrequete" : nomrequete, "presentation" : form["presentation"].value, "lue": 1 }))
@@ -258,15 +259,15 @@ if ruser in begoconf.superusers :
                                 doc.div(align="center")
                                 resultat = resultat.dictresult()
                                 if len(resultat) :
-                                        # attention: on a ajouté ici des champs de la table requete afin d'avoir un traitement
-                                        # générique, c'est dégueulasse et IL FAUDRA le réécrire !!!
+                                        # attention: on a ajoutÃ© ici des champs de la table requete afin d'avoir un traitement
+                                        # generique, c'est degueulasse et IL FAUDRA le rÃ©Ã©crire !!!
                                         entetes = ["secteur", "zone", "groupe", "roche", "face", "figure", "association", "nomrequete", "coderequete"]
                                         maliste = []
                                         for champ in entetes :
                                                 if resultat[0].has_key(champ) :
                                                         maliste.append(champ)
 
-                                        # on récupère la liste des clefs primaires présentes
+                                        # on recupere la liste des clefs primaires presentes
                                         primarykeys = maliste[0:]
 
                                         for champ in resultat[0].keys() :
@@ -322,7 +323,7 @@ if ruser in begoconf.superusers :
                                                         esse = 's'
                                                 else :
                                                         esse = ''
-                                                doc.font(`nbrecords` + " enregistrement%s trouvé%s" % (esse, esse), color="red")
+                                                doc.font(`nbrecords` + " enregistrement%s trouvÃ©%s" % (esse, esse), color="red")
 
                                                 if form["presentation"].value != simplifie:
                                                         doc.table(border = "1", lines = len(resultat) + 1, cols = len(resultat[0].keys()))
@@ -355,17 +356,17 @@ if ruser in begoconf.superusers :
                                                         else :
                                                                 #
                                                                 # c'est plus facile pour voir le source de la page HTML
-                                                                # et en plus ca passe à la ligne si affichage simplifié
+                                                                # et en plus ca passe Ã  la ligne si affichage simplifiÃ©
                                                                 doc.insert_text("\n")
                                 else :
                                         doc.font("Aucun enregistrement ne correspond", color="red")
                         else:
                                 doc.push()
                                 doc.pre()
-                                doc.insert_text("Résultat de la requête: " + `resultat`)
+                                doc.insert_text("RÃ©sultat de la requÃ¨te: " + `resultat`)
                                 doc.pop()
                         if havethreads :
                                 rendezvous.set()
         doc.output()
 else:
-        begoconf.fatalerror_message("Vous n'avez pas l'autorisation d'accèder à cet écran")
+        begoconf.fatalerror_message("Vous n'avez pas l'autorisation d'accÃ¨der Ã  cet Ã©cran")

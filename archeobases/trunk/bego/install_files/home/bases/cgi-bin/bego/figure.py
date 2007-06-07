@@ -1,4 +1,6 @@
-#
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+##
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -33,7 +35,7 @@
 # le code reste en place) de l'affichage complet tel qu'il existait avant
 #
 # Revision 1.6  2000/05/27 13:58:58  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 import os
@@ -84,10 +86,10 @@ class Figure(begodata.Data) :
                     }
 
         __listeclefs__ = ["zone", "groupe", "roche", "face", "figure"]
-        
+
         __vraiparent__ = "face"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = [ "zone", "groupe", "roche", "face", "figure", "carre", "identite", "signe", "style", "sens", "longueur","largeur",  "cardinale", "geographique", "qualite", "contour","debord", "profil", "strie", "alignement", "surface", "perif", "raclage", "forme", "profondeur", "taille", "bavure", "disposition", "description", "conti" ]
@@ -127,7 +129,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
 
-                self.__doc__.font("Carré:", size=begoconf.font_size)
+                self.__doc__.font("CarrÃ©:", size=begoconf.font_size)
                 self.__doc__.font(size=begoconf.font_size)
                 if enreg != None :
                         self.__doc__.text(name = "carre", value = enreg["carre"], size = 3, maxlength = 3)
@@ -190,7 +192,7 @@ class Figure(begodata.Data) :
 
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan = "2")
-                liste = { "SEF Simple Elementaire Figuratif":"SEF","SENF Simple Elementaire Non Fig":"SENF","XYR compleXe sYnchrétique Réaliste":"XYR","XYNR compleXe sYncrétique Non R":"XYNR","T Transformé":"T","CE Composé Elementaire":"CE","CX Composé compleXe":"CX"}
+                liste = { "SEF Simple Elementaire Figuratif":"SEF","SENF Simple Elementaire Non Fig":"SENF","XYR compleXe sYnchrÃ©tique RÃ©aliste":"XYR","XYNR compleXe sYncrÃ©tique Non R":"XYNR","T TransformÃ©":"T","CE ComposÃ© Elementaire":"CE","CX ComposÃ© compleXe":"CX"}
                 afficheclefs.liste_deroulante(self.__doc__, "signe", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -303,13 +305,13 @@ class Figure(begodata.Data) :
         def geographique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Géographique: ", size=begoconf.font_size)
+                self.__doc__.font("GÃ©ographique: ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"M Montagne": "M","V Vallée": "V","E Element nat" : "E"}
+                liste={"M Montagne": "M","V VallÃ©e": "V","E Element nat" : "E"}
                 afficheclefs.liste_deroulante(self.__doc__, "geographique", liste, enreg)
                 self.__doc__.pop()
 
@@ -320,12 +322,12 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Aspect général: ", size=begoconf.font_size)
+                self.__doc__.font("Aspect gÃ©nÃ©ral: ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Qualité: ", size=begoconf.font_size)
+                self.__doc__.font("QualitÃ©: ", size=begoconf.font_size)
                 self.__doc__.pop()
 
 
@@ -364,7 +366,7 @@ class Figure(begodata.Data) :
         def debord_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Cupules débordantes: ", size=begoconf.font_size)
+                self.__doc__.font("Cupules dÃ©bordantes: ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -428,7 +430,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"A Absent": "A","P Présent": "P"}
+                liste={"A Absent": "A","P PrÃ©sent": "P"}
                 afficheclefs.liste_deroulante(self.__doc__, "alignement", liste, enreg)
 
                 self.__doc__.pop()
@@ -442,7 +444,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Surface gravée:", size=begoconf.font_size)
+                self.__doc__.font("Surface gravÃ©e:", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -453,7 +455,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan = "2")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"SR Superficielle & Régulière": "SR", "SI Superficielle & Irrégulière": "SI","PPR Peu Profonde & Régulière": "PPR", "PPI Peu Profonde & Irrégulière": "PPI","PR Profonde & Régulière" : "PR","PI Profonde et Irrégulière":"PI","TPR Très Profonde & Régulière" : "TPR", "TPI Très Profonde & Irrégulière":"TPI"}
+                liste={"SR Superficielle & RÃ©guliÃ¨re": "SR", "SI Superficielle & IrrÃ©guliÃ¨re": "SI","PPR Peu Profonde & RÃ©guliÃ¨re": "PPR", "PPI Peu Profonde & IrrÃ©guliÃ¨re": "PPI","PR Profonde & RÃ©guliÃ¨re" : "PR","PI Profonde et IrrÃ©guliÃ¨re":"PI","TPR TrÃ¨s Profonde & RÃ©guliÃ¨re" : "TPR", "TPI TrÃ¨s Profonde & IrrÃ©guliÃ¨re":"TPI"}
                 afficheclefs.liste_deroulante(self.__doc__, "surface", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -469,13 +471,13 @@ class Figure(begodata.Data) :
 
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Périphérie: ", size=begoconf.font_size)
+                self.__doc__.font("PÃ©riphÃ©rie: ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"I Id au centre": "I","D Différente": "D"}
+                liste={"I Id au centre": "I","D DiffÃ©rente": "D"}
                 afficheclefs.liste_deroulante(self.__doc__, "perif", liste, enreg)
                 self.__doc__.pop()
 
@@ -489,7 +491,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"A Absent": "A","P Présent": "P"}
+                liste={"A Absent": "A","P PrÃ©sent": "P"}
                 afficheclefs.liste_deroulante(self.__doc__, "raclage", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -512,7 +514,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan="2")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"AR Arrondies & Régulières": "AR","AI Arrondies & Irrégulières":"AI", "OR Ovales & Régulières": "OR", "OI Ovales et Irrégulières":"OI","TR Triangulaires & Régulières" : "TR","TI Triangulaires & Irrégulières":"TI","LR aLlongées & Régulières" : "LR","LI aLlongées & Irrégulières":"LI","TLR Très aLlongées & Régulières":"TAR", "TLI Très aLlongées & Irrégulières":"TLI","AOR AO & Régulières":"AOR","AOI AO & Irrégulières":"AOI","ALR AL & Régulières":"ALR","ALI AL & Irrégulières":"ALI","ATLR ATL & Régulières":"ATLR", "ATLI ATL & Irrégulières":"ATLI"}
+                liste={"AR Arrondies & RÃ©guliÃ¨res": "AR","AI Arrondies & IrrÃ©guliÃ¨res":"AI", "OR Ovales & RÃ©guliÃ¨res": "OR", "OI Ovales et IrrÃ©guliÃ¨res":"OI","TR Triangulaires & RÃ©guliÃ¨res" : "TR","TI Triangulaires & IrrÃ©guliÃ¨res":"TI","LR aLlongÃ©es & RÃ©guliÃ¨res" : "LR","LI aLlongÃ©es & IrrÃ©guliÃ¨res":"LI","TLR TrÃ¨s aLlongÃ©es & RÃ©guliÃ¨res":"TAR", "TLI TrÃ¨s aLlongÃ©es & IrrÃ©guliÃ¨res":"TLI","AOR AO & RÃ©guliÃ¨res":"AOR","AOI AO & IrrÃ©guliÃ¨res":"AOI","ALR AL & RÃ©guliÃ¨res":"ALR","ALI AL & IrrÃ©guliÃ¨res":"ALI","ATLR ATL & RÃ©guliÃ¨res":"ATLR", "ATLI ATL & IrrÃ©guliÃ¨res":"ATLI"}
                 afficheclefs.liste_deroulante(self.__doc__, "forme", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -534,7 +536,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan="2")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"SR Superficielle & Régulière": "SR", "SI Superficielle & Irrégulière": "SI","PPR Peu Profonde & Régulière": "PPR", "PPI Peu Profonde & Irrégulière": "PPI","PR Profonde & Régulière" : "PR","PI Profonde et Irrégulière":"PI","TPR Très Profonde & Régulière" : "TPR", "TPI Très Profonde & Irrégulière":"TPI"}
+                liste={"SR Superficielle & RÃ©guliÃ¨re": "SR", "SI Superficielle & IrrÃ©guliÃ¨re": "SI","PPR Peu Profonde & RÃ©guliÃ¨re": "PPR", "PPI Peu Profonde & IrÃ©guliÃ¨res": "PPI","PR Profonde & RÃ©guliÃ¨re" : "PR","PI Profonde et IrrÃ©guliÃ¨re":"PI","TPR TrÃ¨s Profonde & RÃ©guliÃ¨re" : "TPR", "TPI TrÃ¨s Profonde & IrrÃ©guliÃ¨re":"TPI"}
                 afficheclefs.liste_deroulante(self.__doc__, "profondeur", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -556,7 +558,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"TP Très Petite":"TP","P Petite":"P","M Moyenne":"M","G Grande" : "G"}
+                liste={"TP TrÃ¨s Petite":"TP","P Petite":"P","M Moyenne":"M","G Grande" : "G"}
                 afficheclefs.liste_deroulante(self.__doc__, "taille", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -578,7 +580,7 @@ class Figure(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", colspan="2")
                 self.__doc__.font(size=begoconf.font_size)
-                liste={"SR Superposées & Régulières": "SR","SI Superposées & Irrégulières":"SI","JR Jointives & Régulières": "JR","JI Jointives & Irrégulières":"JI","CR Côte à côte & Régulières" : "CR","CI Côte à côte & Irrégulières":"CI","ER Espacées & Régulières": "ER", "EI Espacées & Irrégulières":"EI"}
+                liste={"SR SuperposÃ©es & RÃ©guliÃ¨res": "SR","SI SuperposÃ©es & IrrÃ©guliÃ¨res":"SI","JR Jointives & RÃ©guliÃ¨res": "JR","JI Jointives & IrrÃ©guliÃ¨res":"JI","CR CÃ´te Ã  cÃ´te & RÃ©guliÃ¨res" : "CR","CI CÃ´te Ã  cÃ´te & IrrÃ©guliÃ¨res":"CI","ER EspacÃ©es & RÃ©guliÃ¨res": "ER", "EI EspacÃ©es & IrrÃ©guliÃ¨res":"EI"}
                 afficheclefs.liste_deroulante(self.__doc__, "disposition", liste, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
@@ -591,7 +593,7 @@ class Figure(begodata.Data) :
                 self.__doc__.td()
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.u()
-                self.__doc__.insert_text("Description détaillée")
+                self.__doc__.insert_text("Description dÃ©taillÃ©e")
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -719,25 +721,25 @@ class Figure(begodata.Data) :
                                 if os.path.isdir(rr) :
                                         os.rmdir(rr)
                         except :
-                                begoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
+                                begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
 
                         # on efface la figure
                         self.delete_records(["zone", "groupe", "roche", "face", "figure"])
                         return 0
 
         def creer(self) :
-                # si la face n'existe pas déjà alors on la crée, sinon on refuse
+                # si la face n'existe pas dÃ©jÃ  alors on la crÃ©e, sinon on refuse
                 if self.exist(["zone", "groupe", "roche", "face", "figure"]) :
                         primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None, "figure" : None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant la figure dans la base
+                        # on insÃ¨re maintenant la figure dans la base
                         # sauf si la face n'existe pas.
                         if not self.exist(["zone", "groupe", "roche", "face"], table = "face") :
                                 primarykeys = { "zone" : None, "groupe" : None, "roche": None, "face": None, "figure" : None}
                                 return (-2, primarykeys)
                         else :
-                                # on insère maintenant la figure dans la base
+                                # on insÃ¨re maintenant la figure dans la base
                                 z = self.__form__["zone"].value
                                 g = self.__form__["groupe"].value
                                 r = self.__form__["roche"].value

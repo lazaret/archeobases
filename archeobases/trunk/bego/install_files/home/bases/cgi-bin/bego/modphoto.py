@@ -1,4 +1,5 @@
-#! /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -27,7 +28,7 @@
 # modif de figure modif style, dimension, direction=orientation
 #
 # Revision 1.4  2000/05/27 13:59:02  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 
@@ -104,7 +105,7 @@ elif f["action"].value[:8] == "Nouvelle" :
         page.push()
         page.tr()
         page.p()
-        page.td("Légende:", align = "right", valign = "top")
+        page.td("LÃ©gende:", align = "right", valign = "top")
         page.td(align = "left", valign = "top", colspan = nbcols - 1)
         page.textarea(name = "legende", rows="4", cols="50", wrap="physical")
         page.pop()

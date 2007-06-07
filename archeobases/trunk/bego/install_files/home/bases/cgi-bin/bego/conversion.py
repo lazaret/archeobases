@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+# -*- coding: utf-8 -*-
+#
 
 import sys
 import os
@@ -7,7 +9,7 @@ def conversion(romain):
 	if len(romain) >= 1:
 		if romain[1] == 'I':
 			arabe = 1
-		else: 
+		else:
 			if romain[1] == 'V':
 				arabe = 5
 			if romain[1] == 'X':
@@ -22,15 +24,15 @@ def conversion(romain):
 				arabe = 9
 
 	if len(romain) == 3:
-		arabe = arabe + 1 		
-			
+		arabe = arabe + 1
+
 	return arabe
 
 def parcours(arg, dirname, names) :
 	for filename in names :
 		fichier = os.path.join(dirname, filename)
 		if os.path.isfile(fichier) :
-			
+
 			for car in filename:
 				if (filename[car == 'Z'):
 			 		while filename[car] != 'G':

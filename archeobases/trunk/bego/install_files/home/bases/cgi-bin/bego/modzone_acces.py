@@ -1,4 +1,5 @@
-#! /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -28,7 +29,7 @@
 # le menu est modifie pour permettre l'affichage de l'album et de la presentation en up
 #
 # Revision 1.8  2000/05/27 13:59:03  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 
@@ -49,7 +50,7 @@ def liste(database, doc, form, param) :
         (z) = recupere_champs(database, form)
         #
         #
-        where = " WHERE zone = %s" % (z)        
+        where = " WHERE zone = %s" % (z)
         # liste des acces faisant partie de la zone
         qassoc = "SELECT " + param + " FROM " + param + ", zone_"+ param  + where + " AND " + param + ".id" + param + " = zone_" + param + ".id" + param
         #
@@ -98,7 +99,7 @@ def liste(database, doc, form, param) :
         doc.br()
         doc.submit(name = "action",  value = "<-- Enlever")
         doc.pop()
-	
+
 	doc.push()
         doc.td(align = "center", valign = "middle")
         doc.insert_text("Liste " + string.capitalize(param) + " dans la zone")
@@ -140,7 +141,7 @@ def recupere_id(database, form, ac, param) :
 def ajouter(database, form, liste, param) :
         z = recupere_champs(database, form)
         # on fait une transaction pour que si l'un des insert echoue on fasse comme si tous ont
-        # echoué
+        # echouÃ©
         # je ne sais pas si c'est vraiment utile ou pas.
         query = "BEGIN TRANSACTION;\n"
         for a in liste :
@@ -151,7 +152,7 @@ def ajouter(database, form, liste, param) :
 
 def recupere_liste(nomliste) :
         liste = []
-        if type(form[nomliste]) == type([]) : # plusieurs acces sélectionnés
+        if type(form[nomliste]) == type([]) : # plusieurs acces sÃ©lectionnÃ©s
                 for a in form[nomliste] :
                         liste.append(a.value)
         else :
@@ -186,7 +187,7 @@ if form.has_key("action") :
                         begoconf.log_message("%s: Action %s non reconnue" % (doc.script_name(), form["action"].value), level = "info")
                         doc.set_redirect(begoconf.script_location("modzone") + urlretour)
 else :
-        #begoconf.fatalerror_message("Aucune action à effectuer !")
+        #begoconf.fatalerror_message("Aucune action Ã  effectuer !")
         #begoconf.fatalerror_message("y a un bleme !")
         cgi.test()
 

@@ -1,4 +1,5 @@
-#! /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -18,9 +19,9 @@
 # Reintroduction dans CVS apres modifs
 #
 # Revision 1.6  2000/05/27 13:59:01  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
-#
+
 import os
 import cgi
 import urllib
@@ -36,41 +37,41 @@ def liste_multiple(doc, nom, valeurs, param) :
         doc.pop()
 
 def enlever(database, form, liste, param) :
-        query = "DELETE FROM " + param + " WHERE " 
+        query = "DELETE FROM " + param + " WHERE "
         for a in liste :
-                id = "(SELECT id" + param + " FROM " + param + "  WHERE " + param + "= %s)" %(database.quote(a,"text")) 
+                id = "(SELECT id" + param + " FROM " + param + "  WHERE " + param + "= %s)" %(database.quote(a,"text"))
                 query = query + param + " = %s OR " % (database.quote(a,"text"))
-        query = query[:-4] + ";"        
+        query = query[:-4] + ";"
         return database.query(query)
 
 def recupere_liste(nomliste) :
         liste = []
-        if type(form[nomliste]) == type([]) : # plusieurs acces sélectionnés 
-                for a in form[nomliste] :                    
+        if type(form[nomliste]) == type([]) : # plusieurs acces sÃ©lectionnÃ©s
+                for a in form[nomliste] :
                         liste.append(a.value)
         else :
                 liste.append(form[nomliste].value)
         return liste
 
 def recupere_id(database, form, ac, param) :
-        query = "SELECT id" + param + " FROM " + param + " WHERE " + param + "=%s" %(database.quote(ac,"text")) 
+        query = "SELECT id" + param + " FROM " + param + " WHERE " + param + "=%s" %(database.quote(ac,"text"))
         return (database.query(query).dictresult()[0]["id" + param])
 
 def ajouter(database, form, param) :
         #idparam = doc.get_nextval()
-        query   = "INSERT INTO " + param + " (" + param + ") VALUES ('" + form["modif"].value + "');" 
+        query   = "INSERT INTO " + param + " (" + param + ") VALUES ('" + form["modif"].value + "');"
         return database.query(query)
 
 def recupere_liste(nomliste) :
         liste = []
-        if type(form[nomliste]) == type([]) : # plusieurs acces sélectionnés 
-                for a in form[nomliste] :                    
+        if type(form[nomliste]) == type([]) : # plusieurs acces sÃ©lectionnÃ©s
+                for a in form[nomliste] :
                         liste.append(a.value)
         else :
                 liste.append(form[nomliste].value)
         return liste
 
-doc = begoconf.Bas("Modification des paramètres", "Modification d'une zone")
+doc = begoconf.Bas("Modification des paramÃ¨tres", "Modification d'une zone")
 db = begoconf.BegoDataBase(username = "bego")
 form = cgi.FieldStorage()
 
@@ -84,7 +85,7 @@ if form["action"].value == "ENLEVER" :
                 enlever(db, form, recupere_liste(param), param)
         else :
                 begoconf.log_message("aucun " + param + " a supprimer ", level = "info")
-        doc.set_redirect(begoconf.script_location("parametre")) 
+        doc.set_redirect(begoconf.script_location("parametre"))
 elif form["action"].value == "AJOUTER" :
         if form.has_key("modif") :
                 if param :

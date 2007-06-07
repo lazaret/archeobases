@@ -1,4 +1,5 @@
-#! /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -22,7 +23,7 @@
 # le menu est modifie pour permettre l'affichage de l'album et de la presentation en up
 #
 # Revision 1.6  2000/05/27 13:58:59  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 
@@ -65,7 +66,7 @@ if page.remote_user() in begoconf.superusers :
         page.button(name="menu", value="SQL",        onclick='parent.bas.location="' + begoconf.script_location("requetes")   + '"')
 
 #page.a("Album", href =  begoconf.album_location , target = "top")
-page.a("Présentation", href =  begoconf.help_general_location , target = "top")
+page.a("PrÃ©sentation", href =  begoconf.help_general_location , target = "top")
 #page.button(name="menu", value="Album", onclick='parent.location="' + begoconf.album_location + '"')
 #page.button(name="menu", value="Aide", onclick='parent.location="' + begoconf.help_general_location + '"')
 

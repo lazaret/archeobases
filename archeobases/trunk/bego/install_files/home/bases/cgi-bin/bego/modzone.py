@@ -1,4 +1,5 @@
-#! /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
@@ -18,7 +19,7 @@
 # Reintroduction dans CVS apres modifs
 #
 # Revision 1.2  2000/05/27 13:59:02  jerome
-# Intégration du message de Log
+# Integration du message de Log
 #
 #
 

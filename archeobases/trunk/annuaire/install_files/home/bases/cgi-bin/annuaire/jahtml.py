@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
+#
 # Module for HTML ouput
 # jahtml
 # (C) Jerome ALET <alet@unice.fr> 1999-2001

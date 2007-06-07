@@ -1,5 +1,6 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
+#
 # archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #

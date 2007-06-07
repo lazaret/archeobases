@@ -75,7 +75,7 @@ if f.has_key("action") :
                 page.push()
                 page.tr()
                 page.p()
-                page.td("Légende:", align = "right", valign = "top")
+                page.td("LÃ©gende :", align = "right", valign = "top")
                 page.td(align = "left", valign = "top", colspan = nbcols - 1)
                 page.textarea(name = "legende", rows="4", cols="40", wrap="physical")
                 page.pop()

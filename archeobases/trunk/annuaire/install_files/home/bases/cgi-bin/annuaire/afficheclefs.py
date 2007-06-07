@@ -1,5 +1,6 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
+#
 #archeo- (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -90,8 +91,8 @@ def getval(objet, nomchamp, enreg, penreg = None) :
                 if objet.__form__.has_key(nomchamp)  :
                         if objet.__champs__[nomchamp].has_key("memory") and objet.__champs__[nomchamp]["memory"] :
                                 return objet.__form__[nomchamp].value
-        return "" 
-        
+        return ""
+
 #################################
         # CHAMP LISTE
 #################################
@@ -112,7 +113,7 @@ def champ_liste(objet, nom_champ, libelle, enreg, penreg, titre,dontchange = Non
         objet.__doc__.push()
         objet.__doc__.td(align="left")
         objet.__doc__.font(size=annuaireconf.font_size)
-        
+
         query = "SELECT *  FROM controle_" + nom_champ + ";"
         res = objet.__db__.query(query).dictresult()
         liste ={}
@@ -150,7 +151,7 @@ def champ_nliste(objet, nom_champ, libelle, enreg, penreg, titre, colonne, dontc
         #                liste[ctrl[nom_champ] + " " + ctrl["description"]]= ctrl[nom_champ]
         liste_deroulante(objet, nom_champ, liste, getval(objet, nom_champ, enreg, penreg), dontchange = 0)
         objet.__doc__.pop()
-        
+
 ##################################################
         # CHAMP_SIMPLE_SAISIE
 ##################################################
@@ -187,9 +188,9 @@ def champ_saisie(objet, nom_champ, libelle,longueur, maxlongueur, titre, enreg, 
                 objet.__doc__.text(name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
         else:
                 objet.__doc__.text(name = nom_champ, value = "", size = longueur, maxlength = maxlongueur)
-                
+
         objet.__doc__.pop()
-        
+
 ##############################
         # CHAMP_SAISIE_SIMPLE
 ##############################
@@ -199,7 +200,7 @@ def champ_saisie_simple(objet, nom_champ,longueur, maxlongueur, enreg, penreg):
         objet.__doc__.font(size=annuaireconf.font_size)
         objet.__doc__.text(name = nom_champ, value = getval(objet, nom_champ, enreg, penreg), size = longueur, maxlength = maxlongueur)
         objet.__doc__.pop()
-        
+
 ###############################################
         # CHAMP_NSAISIE
 ###############################################
@@ -268,10 +269,10 @@ def display_identifiant(objet, enreg, penreg = None, inc = 0, alignement = "left
         objet.__doc__.font(size=annuaireconf.font_size)
         objet.__doc__.insert_text("  Numero ")
         objet.__doc__.pop()
-        
+
         objet.__doc__.push()
         objet.__doc__.td(align=alignement, valign="middle", border="2", colspan=col)
-        
+
         val = getval(objet, "identifiant", enreg, penreg)
         if objet.__form__.has_key("action"):
                 if (objet.__form__["action"].value == "Nouveau" or objet.__form__["action"].value == "Nouvel" or objet.__form__["action"].value == "Nouvelle"):
@@ -280,13 +281,13 @@ def display_identifiant(objet, enreg, penreg = None, inc = 0, alignement = "left
                                         objet.__doc__.text(name = "identifiant", value = int(val) + 1, size = 6, maxlength = 15)
                                 except ValueError,msg :
                                         # ne devrait pas se produire
-                                        annuaireconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+                                        annuaireconf.fatalerror_message("Erreur sur incrÃ©mentation d'un numÃ©ro, valeur=%s, message=%s" % (repr(val), msg))
                         else:
                                 try :
                                         objet.__doc__.text(name = "identifiant", value = int(val), size = 6, maxlength = 15)
                                 except ValueError,msg :
                                         # ne devrait pas se produire
-                                        annuaireconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+                                        annuaireconf.fatalerror_message("Erreur sur incrÃ©mentation d'un numÃ©ro, valeur=%s, message=%s" % (repr(val), msg))
                 elif (objet.__form__["action"].value == "Compter") :
                 #elif (objet.__form__["action"].value == "Chercher") or (objet.__form__["action"].value == "Compter") :
                         objet.__doc__.text(name = "identifiant", value = val, size = 6, maxlength = 40)
@@ -312,35 +313,35 @@ def display_x_ordre(objet, nom_champ, imin, imax, enreg, penreg = None, aligneme
         val = getval(objet, nom_champ, enreg, penreg)
         try :
             val = int(val)
-        except ValueError :    
+        except ValueError :
             pass
-            
+
         #indice=1
         #if not val:
         #        val=0
         for i in range(imin, imax) :
                 listeordres[i] = i
-        
+
         #for i in range(imin, imax):
          #       tmp= listeordres[i]
           #      listeordres[i] = listeordres[imax -i]
            #     listeordres[imax -i] = tmp
-                
+
         if objet.__form__.has_key("action"):
                 if ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Chercher")):
                         liste_deroulante(objet, nom_champ, listeordres, val, dontchange = change)
                 elif (objet.__form__["action"].value == "Nouveau") or (objet.__form__["action"].value == "Nouvel") or (objet.__form__["action"].value == "Nouvelle"):
                         #for i in range(imin, imax):
-                        #        if val == listeordres[i]: 
+                        #        if val == listeordres[i]:
                         #                indice = i + 1
                         #liste_deroulante(objet, nom_champ, listeordres,  listeordres[indice]) #ajouter+1
                         liste_deroulante(objet, nom_champ, listeordres,  val+1) #ajouter+1
-                else :        
+                else :
                         liste_deroulante(objet, nom_champ, listeordres, val )
         else:
                 liste_deroulante(objet, nom_champ, listeordres, val )
         objet.__doc__.pop()
-        
+
 #====================================
 #           DISPLAY_X_RANG
 #====================================

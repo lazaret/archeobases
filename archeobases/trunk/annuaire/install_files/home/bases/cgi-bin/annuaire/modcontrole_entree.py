@@ -11,6 +11,7 @@
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 import os
 import cgi
 import urllib
@@ -33,7 +34,7 @@ page.br()
 #afficheclefs.ajoute_ligne(page, "100%", "1", "10", "4")
 page.tr()
 page.td(align="center")
-page.insert_text(" Contrôles des champs de l'annuaire  ")
+page.insert_text(" ContrÃ´les des champs de l'annuaire  ")
 page.pop()
 
 page.tr()

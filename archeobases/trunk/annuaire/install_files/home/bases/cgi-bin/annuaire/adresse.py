@@ -1,5 +1,6 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
+#
 # Annuaire   - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -10,6 +11,7 @@
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
+
 import os
 import string
 import annuaireconf
@@ -18,7 +20,7 @@ import afficheclefs
 import re
 
 class Adresse(annuairedata.Data) :
-        
+
 
         #
         # le nom de la table
@@ -27,7 +29,7 @@ class Adresse(annuairedata.Data) :
         __color__ = annuaireconf.bas2_bgcolor
         #
         # tous les champs de la table proprietaire
-        __champs__ = { 
+        __champs__ = {
                         "identifiant"   : { "type" : "int", "default" : 0, "mandatory" : 1 ,"longueur" : 6, "memory" : 1}, \
                         "ordre"         : { "type" : "int", "default" : 1, "mandatory" : 1 ,"longueur" : 2}, \
                         "type_adresse"  : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
@@ -50,15 +52,15 @@ class Adresse(annuairedata.Data) :
         __listeclefs__ = ["identifiant", "ordre"]
         __vraiparent__ = "fiche"
         __listparents__ = ["fiche"]
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
-        __listechamps__ = ["identifiant","ordre","type_adresse","adresse_1","adresse_2","adresse_3","adresse_4","code","ville","pays","telephone_1","telephone_2","fax","email"] 
+        __listechamps__ = ["identifiant","ordre","type_adresse","adresse_1","adresse_2","adresse_3","adresse_4","code","ville","pays","telephone_1","telephone_2","fax","email"]
 
         #
         # liste des champs dans leur ordre de saisie
-        __ordrechamps__ = ["identifiant","ordre","type_adresse","adresse_1","adresse_2","adresse_3","adresse_4","code","ville","pays","telephone_1","telephone_2","fax","email","modif_adresse"] 
+        __ordrechamps__ = ["identifiant","ordre","type_adresse","adresse_1","adresse_2","adresse_3","adresse_4","code","ville","pays","telephone_1","telephone_2","fax","email","modif_adresse"]
 
         __orderby__ = " ORDER BY identifiant, ordre ASC;"
 
@@ -87,23 +89,23 @@ class Adresse(annuairedata.Data) :
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"])*2) :
                         return -1       # erreur
-                else :          
+                else :
                         return 0
-                        
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
                         if self.__champs__[champ]["longueur"] :
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                annuairedata.Data.__init__(self, parent)                                        
-        
+                annuairedata.Data.__init__(self, parent)
+
         def identifiant_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
                 self.__doc__.push()
                 self.__doc__.td()
                 afficheclefs.display_identifiant(self, enreg, penreg,2)
-                
+
         def ordre_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.display_x_ordre(self, "ordre", 1, 5, enreg, penreg)
                 self.__doc__.pop()
@@ -153,15 +155,15 @@ class Adresse(annuairedata.Data) :
         def telephone_1_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "telephone_1", "Telephone", 20, 20, " ", enreg, penreg)
-                
+
         def telephone_2_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "telephone_2", "", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def fax_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "fax", "Fax", 20, 20, " ", enreg, penreg)
-                
+
         def email_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "email", "Email", 30, 30, " ", enreg, penreg)
                 self.__doc__.pop()
@@ -204,7 +206,7 @@ class Adresse(annuairedata.Data) :
                                 return (-2, primarykeys)
                         # sinon si son parent existe, on le cree
                         else :
-                                # on insère maintenant l'adresse dans la base
+                                # on insere maintenant l'adresse dans la base
                                 i = self.__form__["identifiant"].value
                                 o = self.__form__["ordre"].value
                                 self.__db__.query(self.make_insert_query({ }))

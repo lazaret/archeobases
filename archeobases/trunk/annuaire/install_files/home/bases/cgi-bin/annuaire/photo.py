@@ -11,6 +11,7 @@
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 import os
 import string
 import cgi
@@ -42,8 +43,8 @@ class Photo(annuairedata.Data) :
 
                 elif self.__tablename__ == "entree" :
                         de = "de l'"
- 
-                else :     
+
+                else :
                         de = "de"
 
                 self.__listechamps__.append("legende")
@@ -53,7 +54,7 @@ class Photo(annuairedata.Data) :
                 self.__tablename__ = "photo" + self.__tablename__
 
         def transfere_fichier(self, taille, mogrify) :
-                """Stocke le fichier sur le disque et lance la commande mogrify appropriée"""
+                """Stocke le fichier sur le disque et lance la commande mogrify appropriÃ©e"""
                 fout = open(taille, "w")
                 fout.write(self.__form__["fichier_photo"].value)
                 fout.close()
@@ -63,7 +64,7 @@ class Photo(annuairedata.Data) :
 
         def retour(self) :
                 if not self.__form__.has_key("referer") :
-                        prog = annuaireconf.script_location("mod" + self.__tablename__)   
+                        prog = annuaireconf.script_location("mod" + self.__tablename__)
                 else :
                         prog = self.__form__["referer"].value
                 self.__doc__.script('parent.bas.location = "' + prog + '?action=Chercher&' + self.__make_url__(self.__listechamps__) + '"')
@@ -90,7 +91,7 @@ class Photo(annuairedata.Data) :
                 #
                 # pas de confirmation pour les photos: pas la peine a mon avis
                 # on commence par effacer les fichiers concernes
-                fname = "I" + self.__form__["identifiant"].value 
+                fname = "I" + self.__form__["identifiant"].value
 
                 fname = fname + os.sep + self.__form__["idphoto"].value
 
@@ -108,7 +109,7 @@ class Photo(annuairedata.Data) :
                 self.retour()
 
         def creer(self) :
-                # on commence par créer le répertoire destination s'il n'existe pas déjà
+                # on commence par crÃ©er le repertoire destination s'il n'existe pas dÃ©jÃ 
                 try :
                         i  = "I" + self.__form__["identifiant"].value
                         rep = annuaireconf.image_fullname(i)
@@ -116,7 +117,7 @@ class Photo(annuairedata.Data) :
                                 os.mkdir(rep, 0755)
 
                 except OSError, msg:
-                        annuaireconf.fatalerror_message("Impossible de créer le répertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
+                        annuaireconf.fatalerror_message("Impossible de crÃ©er le rÃ©pertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
 
                 #
                 idphoto = self.get_nextval()
@@ -125,8 +126,8 @@ class Photo(annuairedata.Data) :
                 big = fname + ".jpeg"
                 normale = fname + ".tiff"
 
-                # on insère maintenant la photo dans la base
-                # mais seulement si le chargement des images a fonctionné
+                # on insÃ¨re maintenant la photo dans la base
+                # mais seulement si le chargement des images a fonctionnÃ©
                 try :
                         t = self.__form__["taille"].value
                         t = "mogrify_" + t
@@ -134,7 +135,7 @@ class Photo(annuairedata.Data) :
                         self.transfere_fichier(small, annuaireconf.mogrify_small)
                         self.transfere_fichier(big, getattr(annuaireconf, t))
                 except :
-                        annuaireconf.fatalerror_message("Impossible de transférer la photo " + fname)
+                        annuaireconf.fatalerror_message("Impossible de transferer la photo " + fname)
 
                 self.__db__.query(self.make_insert_query({ "idphoto": idphoto }))
                 self.retour()

@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # 2003 Rachel Vaudron
-# recupere les images d'un cd pour les insérer dasn la base
+# recupere les images d'un cd pour les inserer dasn la base
 
 import sys
 import os
@@ -11,7 +11,7 @@ import database
 import archeoconf
 
 def transfere_fichier(infile, taille, mogrify) :
-        """Stocke le fichier sur le disque et lance la commande mogrify appropriée"""
+        """Stocke le fichier sur le disque et lance la commande mogrify appropriÃ©e"""
         inf = open(infile, "rb")
         fout = open(taille, "wb")
         fout.write(inf.read())
@@ -22,7 +22,7 @@ def transfere_fichier(infile, taille, mogrify) :
                 raise "Erreur"
 
 def creer_image(z = "", n = "", b = "") :
-        # on commence par créer le répertoire destination s'il n'existe pas déjà
+        # on commence par crÃ©er le repertoire destination s'il n'existe pas dÃ©jÃ 
         (zone, numero, bis) = (z, n, b)
         try :
                 z = "Z" + z
@@ -37,12 +37,12 @@ def creer_image(z = "", n = "", b = "") :
                                 os.mkdir(rep, 0755)
 
                 if b :
-                        b = "B" + b 
+                        b = "B" + b
                         rep = archeoconf.image_fullname(z + os.sep + n + os.sep + b)
                         if not os.path.isdir(rep) :
                                 os.mkdir(rep, 0755)
         except OSError, msg:
-                sys.stderr.write("Impossible de créer le répertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
+                sys.stderr.write("Impossible de crÃ©er le repertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
 
         #
         idphoto = db.query("select nextval('seq_photoindustrie');").dictresult()[0]['nextval']
@@ -51,25 +51,25 @@ def creer_image(z = "", n = "", b = "") :
         big = fname + ".jpeg"
         normale = fname + ".tiff"
 
-        # on insère maintenant la photo dans la base
-        # mais seulement si le chargement des images a fonctionné
+        # on insÃ¨re maintenant la photo dans la base
+        # mais seulement si le chargement des images a fonctionnÃ©
         try :
                 transfere_fichier("tempo.tiff", normale, archeoconf.mogrify_normale)
                 transfere_fichier("tempo.tiff", small, archeoconf.mogrify_small)
                 transfere_fichier("tempo.tiff", big, archeoconf.mogrify_Moyenne)
-                
+
                 req = "INSERT INTO photoindustrie(idphoto, zone, numero, bis) VALUES (" + db.quote(idphoto, "decimal") + ", " + db.quote(zone, "text") + ", " + db.quote(numero, "decimal") + ", " + db.quote(bis, "text") + ");"
                 print(req)
                 #db.query(req)
                 print idphoto
                 sys.stdout.flush()
         except :
-                sys.stderr.write("Impossible de transférer la photo [%s]\n"  % (fname))
+                sys.stderr.write("Impossible de transferer la photo [%s]\n"  % (fname))
                 sys.stderr.flush()
-                        
+
 def parcours(param, dirname, names) :
         (db, sf) = param
-        sf.write("") 
+        sf.write("")
 
         for filename in names :
                 #print filename
@@ -77,13 +77,13 @@ def parcours(param, dirname, names) :
                         fichier = os.path.join(dirname, filename)
                         print("filename : ", filename)
                         if os.path.isfile(fichier) :
-                                
+
                                 # on decoupe le nom du fichier en z,n,b
                                 sf.write("[%s]\n" % (filename))
                                 fields = string.split(filename, " ")
-                                
+
                                 z = fields[0]
-                                
+
                                 if len(fields) == 3:
                                         n = fields[2][:-4]
                                         if string.find(filename, "bis"):
@@ -92,9 +92,9 @@ def parcours(param, dirname, names) :
                                         else:
                                                 n = fields[2][:-4] #sauf les 4 derniers caracteres
                                                 b = "--"
-                                                
-                                        print ("zone:",z, " numero:",n, " bis:",b) 
-                                        requete = "SELECT count(*) FROM industrie WHERE zone=%s AND numero=%s AND bis=%s;" % (db.quote(z,"text"), db.quote(n,"decimal"), db.quote(b, "text")) 
+
+                                        print ("zone:",z, " numero:",n, " bis:",b)
+                                        requete = "SELECT count(*) FROM industrie WHERE zone=%s AND numero=%s AND bis=%s;" % (db.quote(z,"text"), db.quote(n,"decimal"), db.quote(b, "text"))
                                         resultat = db.query(requete).dictresult()
                                         if len(resultat) :
                                                 #on insere la nouvelle photo dans la table photofigure
@@ -102,20 +102,20 @@ def parcours(param, dirname, names) :
                                                 creer_image(z,n,b)
                                                 #else :
                                                 #        sys.stderr.write("erreur sur [%s]\n" % fichier)
-                                        else :          
+                                        else :
                                                         sf.write("[%s] => [%s %s %s %s] pas de parent\n" % (fichier, z, n,b))
-                                
+
                                 else:
                                         sf.write("[%s] => non recupere\n" % (fichier, z, n,b))
-                                
+
 
 
 db = database.DataBase(database = "lazaret", username = "rachel", debuglevel = 0)
 
 
 sf = open("sansparent.lst", "w")
-#sf.write("Liste des fichiers n'ayant pas de face correspondante\n") 
-#sf.write("-----------------------------------------------------\n\n") 
+#sf.write("Liste des fichiers n'ayant pas de face correspondante\n")
+#sf.write("-----------------------------------------------------\n\n")
 os.path.walk("/cdrom", parcours, (db, sf))
 sf.close()
 

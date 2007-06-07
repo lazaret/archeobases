@@ -1,5 +1,7 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
+#
+
 import os
 import string
 import annuaireconf
@@ -78,7 +80,7 @@ class Entree(annuairedata.Data) :
                 afficheclefs.champ_liste(self, "type_entree", "type_entree", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
                 self.__doc__.pop()
-                
+
 
 ##############################################################################################################################
 #                                               METHODES
@@ -99,7 +101,7 @@ class Entree(annuairedata.Data) :
                         return 0
 
         def creer(self) :
-                # si l'objet n'existe pas dÈj‡ alors on la crÈe, sinon on refuse
+                # si l'objet n'existe pas d√©j√† alors on la cr√©e, sinon on refuse
                 if self.exist(["identifiant"]) :
                         return (-1, { "identifiant" : None})
                 else :

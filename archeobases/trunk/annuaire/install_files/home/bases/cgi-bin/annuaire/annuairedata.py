@@ -1,5 +1,6 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
+#
 #archeo - (c) 1999      Jerome ALET <alet@unice.fr>
 #                  1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
@@ -25,7 +26,7 @@ class Data :
                         pluriel= 's'
 
                 t = t + pluriel
-               
+
                 if parent == "bas" :
                         self.__doc__ = annuaireconf.Bas("Saisie" + t, "Saisie" + t)
                         self.__form__ = cgi.FieldStorage()
@@ -33,7 +34,7 @@ class Data :
                         self.__parent__ = self.__tablename__ # est son propre parent
                         #self.__couleur__ = self.__color__
                 else :
-                        # si ca ne vaut pas "bas" on considËre que c'est
+                        # si ca ne vaut pas "bas" on consid√®re que c'est
                         # une instance de la classe "parent"
                         # donc on simule l'heritage
                         self.__doc__ = parent.getcurdoc()
@@ -85,18 +86,18 @@ class Data :
                 if hasattr(self, fieldname + "_form_to_base") :
 #### pb si texte dans champs numeriques
                         value = getattr(self, fieldname + "_form_to_base")(value)
-                try :        
+                try :
                         value = self.__db__.quote(value, self.__champs__[fieldname]["type"])
                         return value
-                except ValueError, msg :        
+                except ValueError, msg :
                         annuaireconf.fatalerror_message("Texte saisi dans le champ de type numerique %s : %s" % (fieldname, msg))
 
 
 ####################################################################
-#                CrÈe un WHERE en fct de la liste de champs en param
+#                Cree un WHERE en fct de la liste de champs en param
 ####################################################################
         def __createwhere__(self, fields) :
-                """CrÈe une clause WHERE en fonction de la liste de champs passee en paramËtre"""
+                """Cree une clause WHERE en fonction de la liste de champs passee en parametre"""
                 if fields != None :
                         where = " WHERE "
                         for field in fields :
@@ -119,7 +120,7 @@ class Data :
 #               VERIFIE QUE LES CHAMPS OBLIGATOIRES SONT REMPLIS
 ##################################################################
         def __verify_mandatory__(self) :
-                """VÈrifie que les champs obligatoires sont bien remplis, et sinon affiche une boite d'alerte"""
+                """Verifie que les champs obligatoires sont bien remplis, et sinon affiche une boite d'alerte"""
                 not_ok = 0
                 for champ in self.__champs__.keys() :
                         try :
@@ -136,7 +137,7 @@ class Data :
                                                         not_ok = not_ok + 1
                                                         self.__doc__.script('alert("Le champ ' + champ + ' a un contenu invalide [%s])' % v)
                         except AttributeError, msg :
-                                annuaireconf.fatalerror_message("Erreur sur la vÈrification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
+                                annuaireconf.fatalerror_message("Erreur sur la v√©rification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
                 return not_ok
 
 #######################################################################
@@ -264,14 +265,14 @@ class Data :
                         return 0
 
         def get_records(self, primarykeys = None, table = None) :
-                """Renvoie les enregistrements correspondant ‡ la liste des clefs passÈe en paramËtre"""
+                """Renvoie les enregistrements correspondant √† la liste des clefs pass√©e en param√®tre"""
                 if table == None :
                         table = self.__tablename__
                 res = self.__db__.query("SELECT * FROM " + table + self.__createwhere__(primarykeys) + ";")
                 return res.dictresult()
 
         def count_records(self, liste_champs = None, table = None):
-                """Renvoie le compte d'enregistrements correspondant ‡ la liste des champs passes en parametre"""
+                """Renvoie le compte d'enregistrements correspondant √† la liste des champs passes en parametre"""
                 if table ==None :
                         table = self.__tablename__
                 cpt = self.__db__.query( "SELECT count(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
@@ -282,10 +283,10 @@ class Data :
                 if table == None :
                         table = self.__tablename__
                 return self.__db__.query("DELETE FROM " + table + self.__createwhere__(primarykeys) + ";")
- 
+
         def make_update_query(self, primarykeys, table = None):
                 """Calcule la requete de mise a jour"""
-                # TODO: vÈrifier les valeurs des champs avant toute mise ‡ jour
+                #TODO: v√©rifier les valeurs des champs avant toute mise √† jour
                 if table == None :
                         table = self.__tablename__
                 query = "UPDATE " + table + " SET "
@@ -293,7 +294,7 @@ class Data :
                         #
                         # attention, dans cette annuaire on ne peut pas modifier
                         # les clefs primaires, donc on optimise en n'ajoutant
-                        # aucune de celles-ci ‡ la requete de mise ‡ jour.
+                        # aucune de celles-ci a la requete de mise a jour.
                         # si on veut l'autoriser, il faut enlever le if ci-dessous
                         if champ not in primarykeys :
                                 #query = query + champ + "=" + string.upper(self.__getfield__(champ)) + ", "
@@ -327,16 +328,16 @@ class Data :
                         self.__doc__.log_message("c: [%s] ===> [%s]" % (champ, v))
                         if self.exist_table_controle(champ) and self.__champs__[champ]["longueur"] != 0 :
                                 #if (self.__champs__[champ]["longueur"] and self.__champs__[champ]["longueur"]!=0) or self.__tablename == "photofaune" or self.__tablename == "photoindutrie":
-                                if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ 
+                                if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ
                                         ####TODO VERIFIER #####ATTENTION
                                         query = query + v + ", " # alors on verifie que la valeur cherchee s'y trouve bien
-                                        
-                                elif v : 
+
+                                elif v :
                                         annuaireconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide !" %(v, champ))
                                         return None
                                 #else :
                                         #annuaireconf.fatalerror_message("La valeur saisie dans le champ %s est invalide" % champ)
-                                        
+
                         else:
                                 query = query + v + ", "
                 query = query[:-2] + ");"
@@ -408,7 +409,7 @@ class Data :
                                         elif p == "nucleus":
                                                 self.dessine_lien(("Nucleus"), annuaireconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), annuaireconf.lien_parent_bgcolor)
                                         elif p == "galet_amenage":
-                                                self.dessine_lien(("Galets amÈnagÈs"), annuaireconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), annuaireconf.lien_parent_bgcolor)
+                                                self.dessine_lien(("Galets am√©nag√©s"), annuaireconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), annuaireconf.lien_parent_bgcolor)
                                         elif p == "fracture_faune":
                                                 self.dessine_lien(("Fractures faune"), annuaireconf.script_location("mod" + p) + "?" + urllib.urlencode(dico), annuaireconf.lien_parent_bgcolor)
                                         else:
@@ -435,7 +436,7 @@ class Data :
                                                 self.dessine_lien(("Nucleus"), annuaireconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), annuaireconf.lien_enfant_bgcolor)
 
                                         elif enfant == "galet_amenage":
-                                                self.dessine_lien(("Galets amÈnagÈs"), annuaireconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), annuaireconf.lien_enfant_bgcolor)
+                                                self.dessine_lien(("Galets am√©nag√©s"), annuaireconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), annuaireconf.lien_enfant_bgcolor)
 
                                         else:
                                                 pluriel = ''
@@ -500,7 +501,7 @@ class Data :
                                         val = self.__db__.quote(vc, self.__champs__[c]["type"])
                                         w = w + "(" + c + " = " + val + ") AND "
                                 except ValueError :
-                                        self.__doc__.script('alert("OpÈration interdite !!!")')
+                                        self.__doc__.script('alert("Op√©ration interdite !!!")')
                         elif penreg and penreg.has_key(c) :
                                 val = self.__db__.quote(penreg[c], self.__champs__[c]["type"])
                                 w = w + "(" + c + " = " + val + ") AND "
@@ -540,7 +541,7 @@ class Data :
                                         val = self.__db__.quote(vc, self.__champs__[c]["type"])
                                         w = w + "(" + c + " ~* " + val + ") AND "
                                 except ValueError :
-                                        self.__doc__.script('alert("OpÈration interdite !!!")')
+                                        self.__doc__.script('alert("Op√©ration interdite !!!")')
                         elif penreg and penreg.has_key(c) :
                                 val = self.__db__.quote(penreg[c], self.__champs__[c]["type"])
                                 w = w + "(" + c + " ~* " + val + ") AND "
@@ -630,7 +631,7 @@ class Data :
                                         #self.__doc__.pop()
                                         #self.formulaire_hook(penreg = penreg)
                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
-                                        
+
                 ################# CHERCHER+ #########
 
                 elif self.__form__.has_key("action") and ((self.__form__["action"].value == "ChercherPlus")) :
@@ -674,7 +675,7 @@ class Data :
 
                 elif self.have_primarykeys(primarykeys) :
                         #
-                        # si le champ action existe alors on veut supprimer ou modifier ou crÈer
+                        # si le champ action existe alors on veut supprimer ou modifier ou creer
                         if self.__form__.has_key("action") :
 
                                 #################### MODIFIER ####################
@@ -683,10 +684,10 @@ class Data :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -697,7 +698,7 @@ class Data :
                                 ################## SUPPRIMER #########################
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
-                                                # il reste des enregistrements dans d'autres tables qui dÈpendent de celui-ci
+                                                # il reste des enregistrements dans d'autres tables qui d√©pendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
                                                 #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -712,15 +713,15 @@ class Data :
                                 elif self.__form__["action"].value == "Creer" :
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
-                                                
+
                                                 if retour == -1:
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         if not parent :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 elif retour == -2:
-                                                        self.__doc__.script("""alert("Enregistrement impossible ‡ crÈer car il n'a aucun parent !!!")""")
+                                                        self.__doc__.script("""alert("Enregistrement impossible √† cr√©er car il n'a aucun parent !!!")""")
                                                         if not parent :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
@@ -742,7 +743,7 @@ class Data :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
- 
+
                                 elif self.__form__["action"].value != self.__new_record__ :
                                         annuaireconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
@@ -754,34 +755,34 @@ class Data :
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
-                                # mais ce n'est pas grave, on fait "gÈnÈrique"
+                                # mais ce n'est pas grave, on fait "g√©n√©rique"
                                 enregs = self.get_records(primarykeys)
                                 if len(enregs) :
                                         for enreg in enregs :
                                                 self.formulaire_hook(enreg, penreg = penreg)
                                 else :
-                                        annuaireconf.log_message("Tentative d'accËs ‡ un enregistrement d'identifiant inexistant")
+                                        annuaireconf.log_message("Tentative d'acc√®s √† un enregistrement d'identifiant inexistant")
                                         self.formulaire_hook(penreg = penreg)
                 else :
                         # je me demande ce qui reste execute dans ce qui est ci-dessous
                         # il est grand temps de faire le menage !!!
                         #
                         #
-                        # si le champ action existe alors on veut crÈer ou avoir un formulaire vide
+                        # si le champ action existe alors on veut cr√©er ou avoir un formulaire vide
                         if self.__form__.has_key("action") :
                                 if self.__form__["action"].value == "Creer" :
                                         # toutes les clefs primaires ne sont pas remplies, on ne
-                                        # vient ici (code dupliquÈ) que pour que les messages d'erreur adÈquats s'affichent
+                                        # vient ici (code dupliqu√©) que pour que les messages d'erreur ad√©quats s'affichent
                                         # en effet verify_mandatory devrait tomber tout le temps en erreur car les clefs
                                         # primaires sont aussi des champs obligatoires (sinon y'a un bleme)
                                         # dans l'avenir mettre tout ca sous forme de fonction
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour :
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.formulaire_hook(penreg)
                                                 else :
-                                                        # tout c'est bien passÈ
+                                                        # tout c'est bien pass√©
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -799,10 +800,10 @@ class Data :
                                         annuaireconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook(penreg = penreg)
                         else :
-                                # sinon affichage de l'Ècran de saisie vide
+                                # sinon affichage de l'√©cran de saisie vide
                                 self.formulaire_hook(penreg = penreg)
 
-                # si c'est une table "mere" (ex: roche")                                
+                # si c'est une table "mere" (ex: roche")
                 # on sort le document
                 if self.__parent__ == self.__tablename__ :
                         self.__doc__.output()
@@ -912,8 +913,8 @@ class Data :
                 self.__doc__.font(size=annuaireconf.font_size)
                 libelle = libelle + ": "
                 self.__doc__.insert_text(libelle)
-                self.__doc__.pop() 
-                
+                self.__doc__.pop()
+
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
@@ -1085,17 +1086,17 @@ class Data :
                                         self.formulaire_hook(penreg = penreg)
                 elif self.have_primarykeys(primarykeys) :
                         #
-                        # si le champ action existe alors on veut supprimer ou modifier ou crÈer
+                        # si le champ action existe alors on veut supprimer ou modifier ou cr√©er
                         if self.__form__.has_key("action") :
                                 if self.__form__["action"].value == "Modifier" :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1104,7 +1105,7 @@ class Data :
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
-                                                # il reste des enregistrements dans d'autres tables qui dÈpendent de celui-ci
+                                                # il reste des enregistrements dans d'autres tables qui d√©pendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
                                                 #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1118,19 +1119,19 @@ class Data :
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour == -1:
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         if not parent :
                                                                 self.formulaire_hook_parametre(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 elif retour == -2:
-                                                        self.__doc__.script("""alert("Enregistrement impossible ‡ crÈer car il n'a aucun parent !!!")""")
+                                                        self.__doc__.script("""alert("Enregistrement impossible √† cr√©er car il n'a aucun parent !!!")""")
                                                         if not parent :
                                                                 self.formulaire_hook_parametre(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
-                                                        # tout c'est bien passÈ, on rÈaffiche la liste
+                                                        # tout c'est bien pass√©, on r√©affiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1150,34 +1151,34 @@ class Data :
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
-                                # mais ce n'est pas grave, on fait "gÈnÈrique"
+                                # mais ce n'est pas grave, on fait "g√©n√©rique"
                                 enregs = self.get_records(primarykeys)
                                 if len(enregs) :
                                         for enreg in enregs :
                                                 self.formulaire_hook_parametre(enreg, penreg = penreg)
                                 else :
-                                        annuaireconf.log_message("Tentative d'accËs ‡ un enregistrement d'identifiant inexistant")
+                                        annuaireconf.log_message("Tentative d'acc√®s √† un enregistrement d'identifiant inexistant")
                                         self.formulaire_hook_parametre(penreg = penreg)
                 else :
                         # je me demande ce qui reste execute dans ce qui est ci-dessous
                         # il est grand temps de faire le menage !!!
                         #
                         #
-                        # si le champ action existe alors on veut crÈer ou avoir un formulaire vide
+                        # si le champ action existe alors on veut cr√©er ou avoir un formulaire vide
                         if self.__form__.has_key("action") :
                                 if self.__form__["action"].value == "Creer" :
                                         # toutes les clefs primaires ne sont pas remplies, on ne
-                                        # vient ici (code dupliquÈ) que pour que les messages d'erreur adÈquats s'affichent
+                                        # vient ici (code dupliqu√©) que pour que les messages d'erreur ad√©quats s'affichent
                                         # en effet verify_mandatory devrait tomber tout le temps en erreur car les clefs
                                         # primaires sont aussi des champs obligatoires (sinon y'a un bleme)
                                         # dans l'avenir mettre tout ca sous forme de fonction
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
                                                 if retour :
-                                                        self.__doc__.script('alert("Enregistrement dÈj‡ existant !!!")')
+                                                        self.__doc__.script('alert("Enregistrement d√©j√† existant !!!")')
                                                         self.formulaire_hook_parametre(penreg)
                                                 else :
-                                                        # tout c'est bien passÈ
+                                                        # tout c'est bien pass√©
                                                         # et on passe en modif sur l'enregistrement courant
                                                         #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
@@ -1192,10 +1193,10 @@ class Data :
                                         annuaireconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook_parametre(penreg = penreg)
                         else :
-                                # sinon affichage de l'Ècran de saisie vide
+                                # sinon affichage de l'√©cran de saisie vide
                                 self.formulaire_hook_parametre(penreg = penreg)
 
-                # si c'est une table "mere" (ex: roche")                                
+                # si c'est une table "mere" (ex: roche")
                 # on sort le document
                 if self.__parent__ == self.__tablename__ :
                         self.__doc__.output()

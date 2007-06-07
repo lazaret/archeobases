@@ -1,5 +1,6 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
+#
 # Fichier de configuration
 #
 # Archeo - (c)  1999 Jerome ALET
@@ -11,12 +12,12 @@
 
 import string
 
-#### Début de la partie configurable ####
+#### Debut de la partie configurable ####
 
 #
 # nom de l'application
-author_name  = "Rachel VAUDRON"
-author_email = "rachel@lazaret.unice.fr"
+author_name  = "Rachel Vaudron & Bertrand Lecervoisier"
+author_email = "root@lazaret.unice.fr"
 
 #
 # commandes popur changer la taille des images
@@ -33,11 +34,11 @@ copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
 #
-# Couleurs de fond des trois parties de l'écran ou None
-menu_bgcolor   = "#EAEAEA" 
-gauche_bgcolor = "#EAEAEA" 
-bas_bgcolor    = "#EAEAEA" 
-bas1_bgcolor   = "#A3B3C4" #96ADC4" 
+# Couleurs de fond des trois parties de l'ecran ou None
+menu_bgcolor   = "#EAEAEA"
+gauche_bgcolor = "#EAEAEA"
+bas_bgcolor    = "#EAEAEA"
+bas1_bgcolor   = "#A3B3C4" #96ADC4"
 bas2_bgcolor   = "#FFF8CE"
 bas3_bgcolor   = "#F3EEEE"
 bas4_bgcolor   = "#E1DCD6"
@@ -45,13 +46,13 @@ lien_parent_bgcolor = "#FF0000" #JAUNE
 lien_enfant_bgcolor = "#3333FF" #ROUGE
 
 #
-# Images de fond des trois parties de l'écran ou None
+# Images de fond des trois parties de l'ecran ou None
 menu_background   = "#FFFFFF"#"logo_lazaret.jpg"#"spirebleue.jpg"#"spirale.jpg"
 gauche_background = "#FFFFFF"#"logo_lazaret_grave.jpg"#"spirebleue.jpg"#"spirale.jpg"
 bas_background    = "#FFFFFF"#logo_lazaret_clair_moyen.jpg"#"spirebleue.jpg"#"spirale.jpg"
 
 #
-# couleurs de fond des formulaires de chaque partie de l'écran
+# couleurs de fond des formulaires de chaque partie de l'ecran
 menuform_bgcolor      = "#96ADC4"
 basform_bgcolorleft   = "#FFFFCC" #jaune partie centrale du formulaire
 basform_bgcolorright  = "#DFDFDF"#CCCAE5" #gris menu_droite
@@ -77,7 +78,7 @@ font_size = -1
 #### Fin de la partie configurable ####
 
 #
-# Rien ne devrait être modifié après cette ligne
+# Rien ne devrait Ãªtre modifie aprÃ¨s cette ligne
 import sys
 import os
 import time
@@ -163,13 +164,13 @@ if base_courante not in config["bases"].keys() :
 if (utilisateur_courant not in config["bases"][base_courante]["admins"]) \
    and (utilisateur_courant not in config["bases"][base_courante]["users"]) \
    and (utilisateur_courant not in config["bases"][base_courante]["visitors"]) :
-        fatalerror_message("Accès non autorisé !!!")
+        fatalerror_message("AccÃ¨s non autorisÃ© !!!")
 
 # Quels sont les superutilisateurs de cette base ?
 superusers   = config["bases"][base_courante]["admins"]
 
 #
-# Emplacement des programmes et données de l'application
+# Emplacement des programmes et donnÃ©es de l'application
 app_location      = "/cgi-bin/annuaire/"
 decors_location   = "/annuaire/decors/"
 images_location   =  "/annuaire/" + base_courante + "/image/"
@@ -177,7 +178,7 @@ images_directory  =  os.path.join(config["docpath"], "annuaire", base_courante, 
 help_location     = "/annuaire/manuel/"
 manuel_location   = "/annuaire/manuel"
 lexique_location  = "/annuaire/lexique"
-site_location     = "/annuaire/site/" + base_courante +".html"  
+site_location     = "/annuaire/site/" + base_courante +".html"
 #
 # Fonction qui renvoie l'url complete d'un script
 def script_location(script) :
@@ -216,7 +217,7 @@ def get_imagesize(filename) :
                 s = image.size
                 image.fp.close()
         except IOError, msg:
-                log_message("Problème d'accès au fichier %s : %s" % (filename, msg))
+                log_message("ProblÃ¨me d'accÃ¨s au fichier %s : %s" % (filename, msg))
                 s = 0,0
         return s
 
@@ -241,7 +242,7 @@ def getparent() :
                         return p
 
 #
-# Classes spécifiques
+# Classes specifiques
 class AnnuaireDataBase(database.DataBase) :
         def __init__(self, username = utilisateur_courant, debuglevel = 1) :
                 database.DataBase.__init__(self, database = base_courante, username = username, debuglevel = debuglevel)

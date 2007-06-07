@@ -48,18 +48,24 @@ Si c'est la première installation de l'application sur le serveur:
         cp /cdrom/cgi/prog_ecran/* /home/bases/archeo/cgi-bin
         chmod +x /home/bases/cgi-bin/archeo/*py
 
-        Faire les liens symboliques dans /usr/lib/cgi-bin
+        Faire les liens symboliques dans /usr/lib/cgi-bin (Debian)
         -------------------------------------------------
         mkdir -p /usr/lib/cgi-bin
-        ln -s /home/bases/archeo/cgi-bin /usr/lib/cgi-bin/archeo
-        ln -s /home/bases/archeo/cgi-bin/archeo.py /usr/lib/cgi-bin/
+        ln -s /home/bases/cgi-bin/archeo /usr/lib/cgi-bin/archeo
+        ln -s /home/bases/cgi-bin/archeo/archeo.py /usr/lib/cgi-bin/
+
+
+        Faire les liens symboliques dans /srv/www/cgi-bin (Red hat)
+        -------------------------------------------------
+        ln -s /home/bases/cgi-bin/archeo /srv/www/cgi-bin/archeo
+        ln -s /home/bases/cgi-bin/archeo/archeo.py /srv/www/cgi-bin/
 
 
         Copier le fichier exemple archeo.conf et le modifier
         ----------------------------------------------------
         cp /cdrom/cgi/archeo.conf /etc/
 
-        Créer le fichier d'authentification et 
+        Créer le fichier d'authentification et
         les mots de passe des utilisateurs de la base
         ---------------------------------------------
         cd /home/bases
@@ -87,29 +93,29 @@ Sinon:
         ----------------------------------------------------
         mkdir -p /home/bases/archeo/ma_base/images
         chown -R www-data.www-data /home/bases/archeo/ma_base/images
-        
+
 6- Reinjection des données dans la nouvelle base
 ================================================
 En théorie, il suffit de lancer le script script.py qui lui même lance tous les programmes de réinjection, mais il ne fonctionne pas dans tous les cas.
 En pratique, pour l'instant, il vaut mieux lancer les programmes du répertoire prog_recup_donnees l'un après l'autre. Il faudra modifier ces programmes en mettant eventuellement les champs qui n'existaient pas dans l'ancienne base en commentaire, en modifiant éventuellement les numéros des champs qui seront mis entre quotes avec l'instruction db.quote, et enfin en modifiant la liste des champs dans le INSERT.
-Il faudra bien recuperer les tables dans le bon ordre, c'est a dire lancer le programme tobjet.py avant les programmes tfaune et tindustrie...  
+Il faudra bien recuperer les tables dans le bon ordre, c'est a dire lancer le programme tobjet.py avant les programmes tfaune et tindustrie...
 
 # RECUPERATION DU CONTENU DE LA BASE
 #===================================
         Placer tous les fichiers textes de récupération de l'ancienne base dans le répertoire /home/vases/donnees avec un ftp vers l'ancien serveur.
-          
+
            Recuperation du carnet
            ----------------------
            /home/recuperation/prog_recup_donnees/tobjet.py ma_base < /donnees/robjet.txt >./erreurs/robjet.erreur"
 
            Récupération de la faune
-           ------------------------        
+           ------------------------
            /home/recuperation/prog_recup_donnees/tfaune.py ma_base < ./donnees/rfaune.txt > /home/bases.erreurs/rfaune.erreur
            /home/recuperation/prog_recup_donnees/ttrace.py ma_base < ./donnees/rtrace.txt > /home/bases/erreurs/rtrace.erreur
            /home/recuperation/prog_recup_donnees/tmesure.py ma_base < ./donnees/rmesure.txt > /home/bases/erreurs/rmesure.erreur
            /home/recuperation/prog_recup_donnees/tdent.py ma_base < ./donnees/rmdent.txt > /home/bases/erreurs/rmdent.erreur
            /home/recuperation/prog_recup_donnees/tmicro.py ma_base < ./donnees/rmicro.txt > /home/bases/erreurs/rmicro.erreur
-           
+
            Récupération de l'industrie
            ---------------------------
            /home/recuperation/prog_recup_donnees/toutil.py ma_base < ./donnees/routil.txt > /home/bases/erreurs/routil.erreur
@@ -139,14 +145,14 @@ Il existe deux solutions:
 * pour les bases nouvelles ou bien corrigées en fonction des nouveaux lexiques:
 ------------------------------------------------------------------------------
         récupération des valeurs du lexique (industrie seulement pour l'instant).
-        /home/bases/prog_recup_controles/liste_ind.py < /home/bases/liste-industrie.txt  
+        /home/bases/prog_recup_controles/liste_ind.py < /home/bases/liste-industrie.txt
 
 * pour les autres bases
 -----------------------
         récupération de la liste des valeurs déjà existantes dans la base.
         /cdrom/prog_recup_controles/recup_controle.py
 
-8- Les utilitaires 
+8- Les utilitaires
 ==================
 
 Les utilitaires sont peu nombreux pour l'instant.
@@ -154,6 +160,6 @@ Les utilitaires sont peu nombreux pour l'instant.
 archeo_passwd.py: permet de changer les mots de passe de l'une des bases.
 
 archeo_update_base.py: permet d'effectuer des requêtes sur toutes les bases simultanément. Ce programme est essentiellement utile lors de modifications de structure et est exclusivement réservé à la personne qui centralise l'appliaction..
- 
+
 
 

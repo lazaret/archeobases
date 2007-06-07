@@ -12,6 +12,7 @@
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 import os
 import cgi
 import urllib
@@ -19,7 +20,7 @@ import annuaireconf
 import afficheclefs
 import annuairedata
 
-doc = annuaireconf.Bas("Modification des param�tres", "Modification d'une zone")
+doc = annuaireconf.Bas("Modification des paramètres", "Modification d'une zone")
 db = annuaireconf.ArcheoDataBase()
 form = cgi.FieldStorage()
 doc.br()

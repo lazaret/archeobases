@@ -41,7 +41,7 @@ page.td(align = "center")
 page.br()
 page.br()
 
-page.button(name="controle_entree", value="Modifier les contrôles",onclick='parent.bas.location="' + annuaireconf.script_location("modcontrole_entree") + '"')
+page.button(name="controle_entree", value="Modifier les contrÃ´les",onclick='parent.bas.location="' + annuaireconf.script_location("modcontrole_entree") + '"')
 #page.button(name="controle_fiche", value="Fiche",onclick='parent.bas.location="' + annuaireconf.script_location("modcontrole_fiche") + '"')
 #page.button(name="controle_adresse", value="Adresse",onclick='parent.bas.location="' + annuaireconf.script_location("modcontrole_adresse") + '"')
 page.pop()

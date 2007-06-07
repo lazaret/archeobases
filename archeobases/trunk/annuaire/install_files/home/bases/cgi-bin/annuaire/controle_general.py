@@ -29,33 +29,33 @@ class PageRequete(annuaireconf.Bas) :
                 self.td(align="center")
 
                 self.table(border = "2")
-                
+
                 self.tr(bgcolor = coultete)
-                self.td(align="center")         
+                self.td(align="center")
                 self.form(method = "POST", action = annuaireconf.script_location("modcontrole_general"))
                 doc.liste_general(param)
                 self.pop()
-       
+
         def liste_general(self,  param):
                 self.push()
                 self.table(border = "2", width = "100%")
-                
+
                 self.push()
                 self.tr()
                 self.th(string.capitalize(param), align = "center", valign = "middle", bgcolor = annuaireconf.basform_bgcolorbottom, colspan=2)
                 self.pop()
                 self.tr()
                 self.td(align = "center")
-                
-                # liste des param 
+
+                # liste des param
                 query  = "SELECT " + param + ", description  FROM controle_" + param + ";"
                 #
                 # on recupere la liste des valeurs du param
-                res = db.query(query).dictresult()             
+                res = db.query(query).dictresult()
                 if len(res) :
                         self.select_multiple(name = param, size = 5)
                         res.sort()
-                        
+
                         for enreg in res :
                                 if enreg["description"] == None:
                                         val = enreg[param]
@@ -64,13 +64,13 @@ class PageRequete(annuaireconf.Bas) :
                                 if not val :
                                        val = "&nbsp;"
                                 self.option(val, value = enreg[param])
-                else :        
+                else :
                         self.p()
-                        if param in ["civilite","association", "cotisation"] : 
+                        if param in ["civilite","association", "cotisation"] :
                                 self.font("Aucune "+ param +" saisie", color = "red")
-                        else:   
+                        else:
                                 self.font("Aucun "+ param +" saisi", color = "red")
-                self.pop()            
+                self.pop()
 
                 self.br()
                 self.insert_text("Nouvelle valeur: ")
@@ -86,7 +86,7 @@ class PageRequete(annuaireconf.Bas) :
 
 
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
-doc = PageRequete("Modification des contrôles", "Modification des contrôles")
+doc = PageRequete("Modification des contrÃ´les", "Modification des contrÃ´les")
 db = annuaireconf.AnnuaireDataBase()
 if form.has_key("champ") :
         param = form["champ"].value

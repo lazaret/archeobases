@@ -1,4 +1,4 @@
 AuthUserFile /home/bases/auth/authentification
-AuthName "Mont Bego: Accès Restreint"
+AuthName "Mont Bego: Acces Restreint"
 AuthType Basic
 Require valid-user

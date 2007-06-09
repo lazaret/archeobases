@@ -38,7 +38,7 @@ class DataBase :
 			self.__database = pg.connect(host = host, dbname = database, user = username)
 			if self.__debuglevel > 0 :
 				self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
-		except pg.error, msg :
+		except pg.Error, msg :
 			self.fatal_message("Unable to connect to Host [%s] DataBase [%s] Username [%s] ==> [%s]" % (host, database, username, msg))
 
 	def log_message(self, msg, level) :
@@ -72,7 +72,7 @@ class DataBase :
 				self.sql_message(q)
 			try :
 				return self.__database.query(q)
-			except pg.error, msg:
+			except pg.Error, msg:
 				if msg and (msg[-1] == '\n') :
 					msg = msg[:-1]
 				self.__database.query("ROLLBACK;")	# auto rollback

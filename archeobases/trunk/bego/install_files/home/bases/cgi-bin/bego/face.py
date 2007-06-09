@@ -62,11 +62,11 @@ class Face(begodata.Data) :
                         "largeur"      : { "type" : "decimal", "default" : 0, "mandatory" : 0 }, \
                         "couleur"      : { "type" : "text"   , "default" : "", "mandatory" : 0 }, \
                         "aspect"       : { "type" : "text"   , "default" : "", "mandatory" : 0 }, \
-                        "decrochement" : { "type" : "text"   , "default" : "f", "mandatory" : 0 }, \
-                        "fissure"      : { "type" : "text"   , "default" : "f", "mandatory" : 0 }, \
-                        "microflore"   : { "type" : "text"   , "default" : "f", "mandatory" : 0 }, \
-                        "nodule"       : { "type" : "text"   , "default" : "f", "mandatory" : 0 }, \
-                        "trou"         : { "type" : "text"   , "default" : "f", "mandatory" : 0 }, \
+                        "decrochement" : { "type" : "bool"   , "default" : "f", "mandatory" : 0 }, \
+                        "fissure"      : { "type" : "bool"   , "default" : "f", "mandatory" : 0 }, \
+                        "microflore"   : { "type" : "bool"   , "default" : "f", "mandatory" : 0 }, \
+                        "nodule"       : { "type" : "bool"   , "default" : "f", "mandatory" : 0 }, \
+                        "trou"         : { "type" : "bool"   , "default" : "f", "mandatory" : 0 }, \
                         "erosion"      : { "type" : "text"   , "default" : "f", "mandatory" : 0 }, \
                         "desquamation" : { "type" : "text"   , "default" : "", "mandatory" : 0 }, \
                         "direction"    : { "type" : "text"   , "default" : "", "mandatory" : 0 }, \
@@ -201,31 +201,34 @@ class Face(begodata.Data) :
                 self.__doc__.pop()
                 self.__doc__.pop()
 
+
         def decrochement_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Eléments naturels:", size=begoconf.font_size)
+                self.__doc__.font("Eléments naturels :", size=begoconf.font_size)
                 self.__doc__.pop()
 
 
                 self.__doc__.push()
-                self.__doc__.td(valign = "middle", align="left")
+                self.__doc__.td(align = "left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
 
                 if enreg != None :
-                        if enreg["decrochement"] == 't':
-                                self.__doc__.checkbox_checked(name = "decrochement")
-                        else :
-                                self.__doc__.checkbox(name = "decrochement") # 'f' ou vide
+                    if enreg["decrochement"] == 't':
+                        self.__doc__.checkbox_checked(name = "decrochement")
+                    else :
+                        self.__doc__.checkbox(name = "decrochement") # 'f' ou vide
+                        #self.__doc__.option("decrochement", value = 'f')
                 else :
-                        self.__doc__.checkbox(name = "decrochement")         # 'f' est la valeur par defaut
+                    self.__doc__.checkbox(name = "decrochement")         # 'f' est la valeur par defaut
 
                 self.__doc__.insert_text("Décrochement")
 
                 self.__doc__.pop()
+
 
         def fissure_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -281,7 +284,7 @@ class Face(begodata.Data) :
                 else :
                         self.__doc__.checkbox(name = "nodule")         # 'f' est la valeur par defaut
 
-                self.__doc__.insert_text("nodule")
+                self.__doc__.insert_text("Nodule")
 
                 self.__doc__.pop()
 
@@ -301,8 +304,6 @@ class Face(begodata.Data) :
                 self.__doc__.insert_text("Trou")
                 self.__doc__.pop()
                 self.__doc__.pop()
-
-
 
 
         def erosion_base_to_form(self, enreg, penreg = None) :

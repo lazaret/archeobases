@@ -60,8 +60,8 @@ import string
 #
 # nom de l'application
 app_name     = "bego"
-author_name  = "Rachel VAUDRON"
-author_email = "rachel@cleo.unice.fr"
+author_name  = "Rachel Vaudron & Bertrand Lecervoisier"
+author_email = "root@lazaret.unice.fr"
 username     = "alet"
 superusers   = [ "superbego" ]
 
@@ -249,12 +249,17 @@ def copyright(doc) :
 
 #
 # Classes spécifiques
+
+# Definition de la base de donnée
 class BegoDataBase(database.DataBase) :
+#        def __init__(self, username = "bego", debuglevel = 0) :
+#                database.DataBase.__init__(self, database = "bego", username = username, debuglevel = debuglevel)
         def __init__(self, username = "bego", debuglevel = 0) :
-                database.DataBase.__init__(self, database = "bego", username = username, debuglevel = debuglevel)
+            database.DataBase.__init__(self, database = "Mont_Bégo", username = username, debuglevel = debuglevel) # changer "Mont_bégo" pour changer le nom de la base de donnée
 
         def fatal_message(self, msg) :
                 fatalerror_message(msg)
+
 
 class Main(jahtml.CGI_document) :
         def __init__(self, titre) :

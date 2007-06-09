@@ -1,6 +1,9 @@
 This is "archeobases-bego" a part of the Archeobases project from the Lazaret archaeological laboratory.
 
-Annuaire is a set of Python script and a PostgreSQL database used to maintain a directory of related peoples. (This is very related to our personal usage, you may see firts about LDAP if your whant to maintain a people directory).
+Bego is a set of Python script and a PostgreSQL database used to maintain our Mont Bégo database.
+This script is very related to the Mont Bégo studies and a lot of fields database drop-down menus are predefined under the scripts.
+We have futures project to change the database and the script for a more "universal one" who can be used on other external rock engraving sites like the Mont Bego, Fos Coa, Valcamonica. But this is a very long-term project as this need first to work on the different study methods used.
+
 
 You can see the last news about Archeobases project at our Trac page :
 http://lazaret.unice.fr/opensource/

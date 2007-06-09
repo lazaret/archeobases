@@ -163,9 +163,9 @@ class Roche(begodata.Data) :
                 self.__doc__.font(size=begoconf.font_size)
 
                 if enreg != None :
-                        self.__doc__.text(name = "x", value = enreg["x"], size = 7, maxlength = 7)
+                        self.__doc__.text(name = "x", value = enreg["x"], size = 10, maxlength = 10)
                 else :
-                        self.__doc__.text(name = "x", size = "7", maxlength = "7", value = "")
+                        self.__doc__.text(name = "x", size = "10", maxlength = "10", value = "")
                 self.__doc__.pop()
 
 
@@ -175,9 +175,9 @@ class Roche(begodata.Data) :
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.insert_text("y:")
                 if enreg != None :
-                        self.__doc__.text(name = "y", value = enreg["y"], size = 7, maxlength = 7)
+                        self.__doc__.text(name = "y", value = enreg["y"], size = 10, maxlength = 10)
                 else :
-                        self.__doc__.text(name = "y", size = "7", maxlength = "7", value = "")
+                        self.__doc__.text(name = "y", size = "10", maxlength = "10", value = "")
                 self.__doc__.pop()
 
         def z_base_to_form(self, enreg, penreg = None) :

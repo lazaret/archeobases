@@ -67,7 +67,11 @@ else :
                 x.push()
                 x.p()
                 x.select(name = "base")
-                for base in config["bases"].keys() :
+                # on cree une liste à partir du dictionnaire 'config'
+                liste_bases = config["bases"].keys()
+                # on trie la liste
+                liste_bases.sort()
+                for base in liste_bases :
                         x.option(base, value=base)
                 x.pop()
                 x.p()

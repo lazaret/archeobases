@@ -1,7 +1,7 @@
-#! /usr/bin/env python
+#!  /usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
+# Archeo  - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
 #
 # You're welcome to redistribute this software under the
@@ -12,14 +12,41 @@
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: requetes.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
+# $Id: requetes.py,v 1.13 2002/11/04 08:17:48 jerome Exp $
 #
 # $Log: requetes.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
+# Revision 1.13  2002/11/04 08:17:48  jerome
+# Plus besoin de &nbsp; en mode simplifié
 #
-# Revision 1.3  2000/05/27 13:59:04  jerome
-# Integration du message de Log
+# Revision 1.12  2002/11/04 00:00:55  jerome
+# Petit bug de sortie
+#
+# Revision 1.11  2002/11/03 23:38:41  jerome
+# Problème de type
+#
+# Revision 1.10  2002/11/03 23:34:34  jerome
+# L'affichage de la requête avait été désactivé...
+#
+# Revision 1.9  2002/11/03 23:26:13  jerome
+# Grosse optimisation.
+# Certaines fonctionnalités (lien sur les champs) sont désormais désactivées.
+#
+# Revision 1.8  2002/09/16 11:27:56  rachel
+# modification des boutons+ajout de zabs=zref+zrela
+# ----------------------------------------------------------------------
+#
+# Revision 1.6  2002/01/10 21:32:40  jerome
+# Debuggage de pas mal de merdouilles
+#
+# Revision 1.5  2001/11/16 14:03:27  rachel
+# *** empty log message ***
+#
+# Revision 1.3  2001/07/05 15:29:33  rachel
+# plein de modifs
+#
+# Revision 1.2  2001/03/20 19:59:51  jerome
+# Ajout des tags CVS Id et Log
+#
 #
 #
 import sys
@@ -40,7 +67,7 @@ simplifie = "Simplifié"
 telecharget = "Texte + Tabs"
 telechargev = "Texte + Virgules"
 liste_affichage = [ simplifie, elabore, telecharget, telechargev ]
-affichage_default = elabore
+affichage_default = simplifie
 
 def cherche_requete(db, nom) :
         resultat = db.query("SELECT * FROM requete WHERE nomrequete = " + db.quote(nom, "text"))
@@ -49,6 +76,7 @@ def cherche_requete(db, nom) :
                 return resultat[0]
 
 def display_field(doc, form, pkeys, champ, lgmax, enreg) :
+        """Cette fonction ne sert plus à rien, sauf comme aide mémoire."""
         link = None
         if champ in pkeys :
                 if (champ == "coderequete") :
@@ -69,15 +97,14 @@ def display_field(doc, form, pkeys, champ, lgmax, enreg) :
                         else :
                                 table = champ
                         link = begoconf.script_location("mod" + table) + '?' + urllib.urlencode(dico)
-
         value = enreg[champ]
         if type(value) == type("") :
                 if value != "" :
                         if form["presentation"].value != simplifie :
                                 doc.push()
-                                doc.td(bgcolor="#FFFFCC")
+                                doc.td(bgcolor=begoconf.bas_bgcolor)#"#E1DCD6")#"#FFFFCC")
                                 if link :
-                                        doc.a(value, href = link)
+                                       doc.a(value, href = link)
                                 else :
                                         doc.insert_text(value)
                                 doc.pop()
@@ -86,13 +113,13 @@ def display_field(doc, form, pkeys, champ, lgmax, enreg) :
                                 doc.insert_text(value + "&nbsp;" * (lgmax - lg + 1))
                 else :
                         if form["presentation"].value != simplifie :
-                                doc.td("&nbsp;", bgcolor="#FFFFCC")
+                                doc.td("&nbsp;", bgcolor=begoconf.bas_bgcolor)#"#FFFFCC")
                         else :
                                 doc.insert_text("&nbsp;" * (lgmax + 1))
         else :
                 if form["presentation"].value != simplifie :
                         doc.push()
-                        doc.td(align="right", bgcolor="#FFFFCC")
+                        doc.td(align="right", bgcolor=begoconf.bas_bgcolor)#"#FFFFCC")
                         if link :
                                 doc.a(`value`, href = link)
                         else :
@@ -110,7 +137,7 @@ class PageRequete(begoconf.Bas) :
                 self.table(border = "10")
                 self.push()
                 self.tr( bgcolor = coultete )
-                self.th("Saisissez votre requète")
+                self.th("Saisissez votre requête")
                 self.pop()
                 self.tr(bgcolor = coultete)
                 self.td(align="center")
@@ -153,7 +180,7 @@ class PageRequete(begoconf.Bas) :
                 self.pop()
                 dico = { "requete" : "SELECT nomrequete,coderequete FROM requete ORDER BY nomrequete ASC;", "presentation" : elabore }
                 self.td(align = "center", valign = "middle")
-                self.a("Liste des Requètes", href = self.script_name() + '?' + urllib.urlencode(dico))
+                self.a("Liste des Requêtes", href = self.script_name() + '?' + urllib.urlencode(dico))
                 self.br()
                 self.a("Aide", href = begoconf.help_location, target = "top")
                 self.pop()
@@ -179,8 +206,8 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                        begoconf.log_message("La requète s'est terminée sans problème", level = "info")
-                        break   # Requète terminée sans problème
+                        begoconf.log_message("La requete s'est terminee sans probleme", level = "info")
+                        break   # Requête terminée sans problème
                 else :
                         if parent.isAlive() :
                                 heure_courante = time.time()
@@ -201,7 +228,7 @@ def mixed_part_handler(parent, indicateur, timer) :
                                 part.insert_text("\n--" + endpart)
                                 part.output()
                         else :
-                                begoconf.log_message("La requète est tombée en erreur", level = "notice")
+                                begoconf.log_message("La requête est tombée en erreur", level = "notice")
         sys.exit(0)
 
 master = None
@@ -211,12 +238,13 @@ max_timer = 30.0                # 30 secondes
 endpart = "rachelvaudron"
 
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
-doc=PageRequete("Requètes SQL", "Requètes SQL")
+doc=PageRequete("Requêtes SQL", "Requêtes SQL")
 ruser = doc.remote_user()
-if ruser in begoconf.superusers :
-        db = begoconf.BegoDataBase(username = "user_query", debuglevel = 1) #MODIF: restriction des droits
+if ruser:# in begoconf.superusers :
+        db = begoconf.BegoDataBase(debuglevel = 1)
         if (not form.has_key("nomrequete")) and (not form.has_key("requete")) :
-                doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC")
+                doc.ecran_requetes(begoconf.bas_bgcolor,begoconf.bas_bgcolor,begoconf.bas_bgcolor,begoconf.bas_bgcolor,begoconf.bas_bgcolor)
+                #doc.ecran_requetes(begoconf.bas_bgcolor,"#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC")
         else :
                 if form.has_key("nomrequete") and not form.has_key("lue") :
                         nomrequete = string.strip(string.lower(form["nomrequete"].value))
@@ -237,14 +265,15 @@ if ruser in begoconf.superusers :
                                                 quequette = res["coderequete"]
                                                 nomrequete = res["nomrequete"]
                                         else :
-                                                begoconf.fatalerror_message("La requète %s n'existe pas" % form["nomrequete"].value)
+                                                begoconf.fatalerror_message("La requête %s n'existe pas" % form["nomrequete"].value)
                         else :
                                 quequette = ""
                         doc.set_redirect(doc.script_name() + '?' + urllib.urlencode({"requete" : quequette, "nomrequete" : nomrequete, "presentation" : form["presentation"].value, "lue": 1 }))
                 elif form.has_key("requete") :
                         quequette = string.strip(string.replace(form["requete"].value, "\r", ""))
-                        doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", requete = quequette)
-
+                        #doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", requete = quequette)
+                        doc.ecran_requetes(begoconf.bas_bgcolor,begoconf.bas_bgcolor,begoconf.bas_bgcolor,begoconf.bas_bgcolor,begoconf.bas_bgcolor, requete = quequette)
+                        
                         # la premiere alerte doit etre lancee assez tot pour
                         # que l'utilisateur ne s'impatiente pas
                         # mais assez tard pour qu'une erreur sur la requete ait ete recuperee
@@ -255,37 +284,12 @@ if ruser in begoconf.superusers :
                                 rendezvous = threading.Event()
                                 threading.Thread(target = mixed_part_handler, kwargs = { "parent" : threading.currentThread(), "indicateur" : rendezvous, "timer" : premier_timer}).start()
                         resultat = db.query(quequette)
-                        if (resultat != None) and string.upper(quequette[:6]) == "SELECT" :
+                        if (resultat != None) and (type(resultat) != type(0)) :
                                 doc.div(align="center")
-                                resultat = resultat.dictresult()
-                                if len(resultat) :
-                                        # attention: on a ajouté ici des champs de la table requete afin d'avoir un traitement
-                                        # generique, c'est degueulasse et IL FAUDRA le réécrire !!!
-                                        entetes = ["secteur", "zone", "groupe", "roche", "face", "figure", "association", "nomrequete", "coderequete"]
-                                        maliste = []
-                                        for champ in entetes :
-                                                if resultat[0].has_key(champ) :
-                                                        maliste.append(champ)
-
-                                        # on recupere la liste des clefs primaires presentes
-                                        primarykeys = maliste[0:]
-
-                                        for champ in resultat[0].keys() :
-                                                if maliste.count(champ) == 0 :
-                                                        maliste.append(champ)
-
-                                        lgchamps = {}
-                                        for champ in maliste :
-                                                lgchamps[champ] = len(champ)
-                                        for enregistrement in resultat :
-                                                for champ in maliste :
-                                                        val = enregistrement[champ]
-                                                        if type(val) != type("") :
-                                                                val = `val`
-                                                        lg = len(val)
-                                                        if lgchamps[champ] < lg :
-                                                                lgchamps[champ] = lg
-
+                                nbrecords = resultat.ntuples()
+                                if nbrecords :
+                                        liste_champs = resultat.listfields()
+                                        liste_valeurs = resultat.getresult()
                                         if form["presentation"].value[:5] == "Texte" :
                                                 #
                                                 # on le fait en non bufferise pour ne pas avoir de timeout.
@@ -293,7 +297,6 @@ if ruser in begoconf.superusers :
                                                 # peut permettre de traiter de GROS volumes, mais le
                                                 # mode entierement bufferise provoquerai un timeout
                                                 doc = jahtml.CGI_document(content_type = "text/montbego")
-
                                                 if form["presentation"].value == telechargev :
                                                         separateur = ','
                                                 else :
@@ -301,72 +304,75 @@ if ruser in begoconf.superusers :
 
                                                 # on sort l'entete
                                                 texte = ""
-                                                for champ in maliste :
+                                                for champ in liste_champs :
                                                         texte = texte + champ + separateur
                                                 doc.insert_text(texte[:-1])
 
                                                 # puis les enregistrements
-                                                for enregistrement in resultat :
+                                                for enregistrement in liste_valeurs :
                                                         texte = ""
-                                                        for champ in maliste :
-                                                                texte = texte + repr(enregistrement[champ]) + separateur
-                                                                #if type(enregistrement[champ]) == type("") :
-                                                                #        texte = texte + enregistrement[champ] + separateur
-                                                                #else :
-                                                                #        texte = texte + `enregistrement[champ]` + separateur
+                                                        for valeur in enregistrement :
+                                                                texte = texte + repr(valeur) + separateur
                                                         doc.insert_text(texte[:-1])
                                                 if master :
                                                         doc.insert_text("\n--" + endpart + "--\n")
                                         else :
-                                                nbrecords = len(resultat)
                                                 if nbrecords > 1 :
                                                         esse = 's'
                                                 else :
                                                         esse = ''
                                                 doc.font(`nbrecords` + " enregistrement%s trouvé%s" % (esse, esse), color="red")
-
+                                                
                                                 if form["presentation"].value != simplifie:
-                                                        doc.table(border = "1", lines = len(resultat) + 1, cols = len(resultat[0].keys()))
+                                                        doc.table(border = "1", lines = nbrecords + 1, cols = len(liste_champs))
                                                         doc.push()
                                                         doc.tr()
-                                                        for champ in maliste :
-                                                                doc.th(champ, bgcolor="#CCFFFF")
+                                                        for champ in liste_champs :
+                                                                doc.th(champ, bgcolor=begoconf.bas3_bgcolor) #"#CCFFFF")
                                                         doc.pop()
+                                                        for enregistrement in liste_valeurs :
+                                                                line = ""
+                                                                for i in range(len(liste_champs)) :
+                                                                        value = enregistrement[i]
+                                                                        if type(value) == type("") :
+                                                                                align = "left"
+                                                                        else :        
+                                                                                align = "right"
+                                                                        line = line + '<td align="%s" bgcolor="%s">%s</td>\n' % (align, begoconf.bas_bgcolor, str(value))
+                                                                doc.insert_text("<tr>%s</tr>\n" % line)
                                                 else :
+                                                        indice_champs = {}
+                                                        for champ in liste_champs :
+                                                                indice_champs[champ] = resultat.fieldnum(champ)
+                                                        longueur_champs = {}
+                                                        for champ in liste_champs :
+                                                                longueur_champs[champ] = max([len(champ)] + map(lambda x: len(str(x[indice_champs[champ]])), liste_valeurs))
+
                                                         doc.br()
                                                         doc.pre()
                                                         ligne = ""
-                                                        lgligne = 0
-                                                        for champ in maliste :
-                                                                ligne = ligne + champ + "&nbsp;" * (lgchamps[champ] - len(champ) + 1)
-                                                                lgligne = lgligne + lgchamps[champ] + 1
-                                                        doc.insert_text(ligne + "\n")
-                                                        doc.insert_text('-' * (lgligne - 1) + "\n")
-
-                                                for enregistrement in resultat:
-                                                        if form["presentation"].value != simplifie:
-                                                                doc.push()
-                                                                doc.tr()
-
-                                                        for champ in maliste:
-                                                                display_field(doc, form, primarykeys, champ, lgchamps[champ], enregistrement)
-
-                                                        if form["presentation"].value != simplifie:
-                                                                doc.pop()
-                                                        else :
-                                                                #
-                                                                # c'est plus facile pour voir le source de la page HTML
-                                                                # et en plus ca passe à la ligne si affichage simplifié
-                                                                doc.insert_text("\n")
+                                                        for champ in liste_champs :
+                                                                ligne = ligne + champ + " " * (longueur_champs[champ] - len(champ) + 1)
+                                                        doc.insert_text("%s\n%s\n" % (ligne, '-' * len(ligne)))
+                                                        for enregistrement in liste_valeurs :
+                                                                line = ""
+                                                                for i in range(len(liste_champs)) :
+                                                                        value = str(enregistrement[i])
+                                                                        lg = len(value)
+                                                                        lgmax = longueur_champs[liste_champs[i]]
+                                                                        line = line + value + (" " * (lgmax - lg + 1))
+                                                                doc.insert_text(line + "\n")
                                 else :
                                         doc.font("Aucun enregistrement ne correspond", color="red")
                         else:
                                 doc.push()
                                 doc.pre()
-                                doc.insert_text("Résultat de la requète: " + `resultat`)
+                                doc.insert_text("Résultat de la requête: " + `resultat`)
                                 doc.pop()
                         if havethreads :
                                 rendezvous.set()
         doc.output()
 else:
         begoconf.fatalerror_message("Vous n'avez pas l'autorisation d'accèder à cet écran")
+
+

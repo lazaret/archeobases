@@ -105,6 +105,14 @@ bas_bgcolor    = "#FFFFFF"      #E1DCD6"
 menu_background   = "#FFFFFF"   #haut.jpg" #"fond10.jpg"#rach1clairhuile2.jpg"
 gauche_background = "#FFFFFF"   #haut.jpg" #rach1clairhuile2.jpg"
 bas_background    = "#FFFFFF"   #bas.jpg" #"fond10.jpg"#bas.jpg"
+bas1_bgcolor   = "#B8AF80"   #"#FFFFE1" #JAUNE PALE
+bas2_bgcolor   = "#CFC4BE"#"#A19B9B"    #"#CEFFF8" #BLEU CIEL"#E5FFFF"
+bas3_bgcolor   = "#F3EEEE"      #"#FFEDFF"      #ROSE PALE
+bas4_bgcolor   = "#E1DCD6"#"#F3EEEE"#"#A19B9B"#""#E4DFD0"#"#988D86"     #"#FFE5CB"      #COQUILLE PALE
+lien_parent_bgcolor = "#FF0000" #JAUNE
+lien_enfant_bgcolor = "#3333FF" #ROUGE
+
+
 
 #
 # couleurs de fond des formulaires de chaque partie de l'écran

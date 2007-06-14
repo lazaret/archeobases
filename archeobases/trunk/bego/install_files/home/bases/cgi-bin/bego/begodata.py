@@ -37,6 +37,10 @@ class Data :
                 t = " des " + string.capitalize(self.__tablename__)
                 if t[-1] != 's' :
                         t = t + 's'
+                if self.__tablename__ == "figure":
+                        t = " des Figures protohistoriques"
+                if self.__tablename__ == "historique":
+                        t = " des Gravures historiques"
 
                 if parent == "bas" :
                         self.__doc__ = begoconf.Bas("Saisie" + t, "Saisie" + t)
@@ -52,6 +56,9 @@ class Data :
                         self.__db__ = parent.getcurdb()
                         self.__parent__ = parent.gettablename()
 
+##################################################################
+#                       LISTE DES CLEFS DU PARENT
+##################################################################
         def __clefsparent__(self) :
                 if hasattr(self, "__vraiparent__") :
                         if not hasattr(self, "__parentkeys__") :
@@ -73,20 +80,37 @@ class Data :
                 else :
                         return ""
 
+##################################################################
+#       Renvoie la valeur d'un champ pour l'ecrire dans la base
+##################################################################
         def __getfield__(self, fieldname) :
                 """Renvoie la valeur d'un champ pour l'ecrire dans la base"""
-                if self.__form__.has_key(fieldname) :
-                        # le champ existe dans le formulaire
-                        value = self.__form__[fieldname].value
+                if self.__form__.has_key(fieldname) and string.strip(str(self.__form__[fieldname].value)) :
+                    # le champ existe dans le formulaire
+                    value = self.__form__[fieldname].value
                 else :
-                        # le champ n'est pas dans le formulaire => valeur par defaut
+                    # le champ est vide ou n'est pas dans le formulaire => valeur par defaut
+                    # si il existe une valeur par defaut
+                    if self.__champs__[fieldname].has_key("default") :
                         value = self.__champs__[fieldname]["default"]
+                    else :
+                        value = None
+
 
                 # transforme si besoin la valeur du champ pour l'ecrire dans la base
                 if hasattr(self, fieldname + "_form_to_base") :
-                        value = getattr(self, fieldname + "_form_to_base")(value)
-                return self.__db__.quote(value, self.__champs__[fieldname]["type"])
+#### pb si texte dans champs numeriques
+                    value = getattr(self, fieldname + "_form_to_base")(value)
+                try :
+                    value = self.__db__.quote(value, self.__champs__[fieldname]["type"])
+                    return value
+                except ValueError, msg :
+                    begoconf.fatalerror_message("Texte saisi dans le champ de type numerique %s : %s" % (fieldname, msg))
 
+
+####################################################################
+#                Crée un WHERE en fct de la liste de champs en param
+####################################################################
         def __createwhere__(self, fields) :
                 """Crée une clause WHERE en fonction de la liste de champs passee en paramètre"""
                 if fields != None :
@@ -104,43 +128,56 @@ class Data :
                                 else :
                                         test = "="
                                 where = where + paren + field + test + self.__getfield__(field) + ") AND "
-                                aumoinsun = 1
+                                #aumoinsun = 1
                         return where[:-5]       # on supprime le dernier " AND "
                 else :
                         return ""
 
+###################################################################
+#               VERIFIE QUE LES CHAMPS OBLIGATOIRES SONT REMPLIS
+##################################################################
         def __verify_mandatory__(self) :
                 """Vérifie que les champs obligatoires sont bien remplis, et sinon affiche une boite d'alerte"""
                 not_ok = 0
                 for champ in self.__champs__.keys() :
                         try :
-                                if self.__champs__[champ]["mandatory"] :
-                                        if not (self.__form__.has_key(champ) and (string.strip(self.__form__[champ].value) != "")) :
-                                                not_ok = not_ok + 1
-                                                self.__doc__.script('alert("Champ ' + champ + ' obligatoire !!!")')
+                                if self.__champs__[champ]["mandatory"] and (not (self.__form__.has_key(champ) and (string.strip(self.__form__[champ].value) != ""))) :
+                                        not_ok = not_ok + 1
+                                        self.__doc__.script('alert("Champ ' + champ + ' obligatoire !!!")')
+                                else :
+                                        if self.__form__.has_key(champ) :
+                                                v = self.__form__[champ].value
                                         else :
-                                                if hasattr(self, champ + "_verify") :
-                                                        if getattr(self, champ + "_verify")(self.__form__[champ].value) :
-                                                                not_ok = not_ok + 1
-                                                                self.__doc__.script('alert("Le champ ' + champ + ' a un contenu invalide !!!")')
+                                                v = None
+                                        if hasattr(self, champ + "_verify") :
+                                                if getattr(self, champ + "_verify")(champ, v) :
+                                                        not_ok = not_ok + 1
+                                                        self.__doc__.script('alert("Le champ ' + champ + ' a un contenu invalide [%s])' % v)
                         except AttributeError, msg :
                                 begoconf.fatalerror_message("Erreur sur la vérification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
                 return not_ok
+
+#######################################################################
+#                               FORM GENERIQUE
+#######################################################################
 
         def __formgenerique__(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td( bgcolor = begoconf.basform_bgcolorleft, width = "85%")
                 self.__doc__.div(align="center")
-                self.__doc__.table(border = "0", cellpadding = "0", cellspacing = "0")
+                self.__doc__.table(border = "0", cellpadding = "0", cellspacing = "3")
 
                 for champ in self.__ordrechamps__ :
                         if hasattr(self, champ + "_base_to_form") :
                                 getattr(self, champ + "_base_to_form")(enreg, penreg)
                 self.__doc__.pop()
 
+#########################################################################
+#                               MENU PARTIE DROITE
+#########################################################################
         def __menugenerique__(self, enreg, penreg = None) :
                 self.__doc__.push()
-                self.__doc__.td(bgcolor = begoconf.basform_bgcolorright, valign = "Middle", align = "center")
+                self.__doc__.td(bgcolor = begoconf.basform_bgcolorright, valign = "top", align = "center")
                 self.__doc__.font(size = begoconf.font_size)
                 if enreg != None :
                         self.__doc__.submit(name = "action", value = "Modifier")
@@ -154,12 +191,18 @@ class Data :
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Chercher")
                         self.__doc__.pop()
+                        self.__doc__.push()
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Créer")
-                        self.__doc__.br()
+                        self.__doc__.pop()
+                        #self.__doc__.br()
+                        self.__doc__.push()
+                        self.__doc__.p()
                         self.__doc__.reset(value = "R-à-Zéro")
+                        self.__doc__.pop()
                 self.__doc__.pop()
 
+###########################################################################
         def getcurdoc(self) :
                 return self.__doc__
 
@@ -196,6 +239,14 @@ class Data :
                         table = self.__tablename__
                 res = self.__db__.query("SELECT * FROM " + table + self.__createwhere__(primarykeys) + ";")
                 return res.dictresult()
+
+        def count_records(self, liste_champs = None, table = None):
+                """Renvoie le compte d'enregistrements correspondant à la liste des champs passes en parametre"""
+                if table ==None :
+                        table = self.__tablename__
+                cpt = self.__db__.query( "SELECT count(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
+                cpt = cpt.dictresult()
+                return (cpt["count"])
 
         def delete_records(self, primarykeys, table = None) :
                 if table == None :
@@ -243,11 +294,21 @@ class Data :
                 query = query[:-2] + ");"
                 return query
 
+        def dessine_lien(self,message,lien,couleur = "yellow") :
+                self.__doc__.push()
+                self.__doc__.a(href = lien)
+                self.__doc__.font(message, style="color:%s;" % couleur)
+                self.__doc__.pop()
+
+
+#################################################################################
+#                               FORMULAIRE HOOK
+#################################################################################
         def formulaire_hook(self, enreg = None, current = 0, maximum = 0, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")
+                self.__doc__.table(border = "4", cellpadding = "4", cellspacing = "4")
 
                 if enreg :
                         self.__doc__.push()
@@ -280,11 +341,19 @@ class Data :
 
                         self.__doc__.br()
                         self.__doc__.font(size = begoconf.font_size)
-                        if self.__vraiparent__ != None :
+
+
+                        if hasattr(self, "__listeparents__"):
+                                self.__doc__.font(size = begoconf.font_size, style="color:%s;" % begoconf.bas1_bgcolor)
                                 dico = { "action" : "Chercher" }
                                 for clef in self.__clefsparent__() :
                                         dico[clef] = enreg[clef]
-                                self.__doc__.a(string.capitalize(self.__vraiparent__), href = begoconf.script_location("mod" + self.__vraiparent__) + "?" + urllib.urlencode(dico))
+                                for parent in self.__listeparents__ :
+                                        self.__doc__.insert_text("&nbsp;" * 5)
+                                        pluriel = ''
+                                        if parent[-1] != 's' :
+                                                pluriel = 's'
+                                        self.dessine_lien((string.capitalize(parent) + pluriel), begoconf.script_location("mod" + parent) + "?" + urllib.urlencode(dico), begoconf.lien_parent_bgcolor)
 
                         if hasattr(self, "__listenfants__") :
                                 dico = { "action" : "Chercher" }
@@ -292,9 +361,18 @@ class Data :
                                         dico[clef] = enreg[clef]
                                 for enfant in self.__listenfants__ :
                                         self.__doc__.insert_text("&nbsp;" * 5)
-                                        self.__doc__.a(string.capitalize(enfant) + 's', href = begoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico))
 
+                                        if enfant == "figure":
+                                                self.dessine_lien(("Figures protohistoriques"), begoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), begoconf.lien_enfant_bgcolor)
+                                        elif enfant == "historique":
+                                                self.dessine_lien(("Gravures historiques"), begoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), begoconf.lien_enfant_bgcolor)
+                                        else:
+                                                pluriel = ''
+                                                if enfant[-1] != 's' :
+                                                        pluriel = 's'
+                                                self.dessine_lien((string.capitalize(enfant) + pluriel), begoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), begoconf.lien_enfant_bgcolor)
                         self.__doc__.pop()
+
 
 
                 self.__doc__.push()
@@ -313,14 +391,28 @@ class Data :
                                                         getattr(self, f)(enreg, penreg)
                 self.__doc__.pop()
 
-        def compte_theme(self,  nom_champs, critere, enreg) :
-                nb = self.__db__.query("SELECT COUNT(*) FROM figure WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + " AND face = " + self.__db__.quote(enreg["face"], "text") + " AND " +  nom_champs  + " LIKE " + self.__db__.quote(critere, "text") + ";" )
-                nb = nb.dictresult()
-                nb = nb[0]["count"]
-                self.__doc__.font(size=begoconf.font_size)
-                self.__doc__.insert_text(`nb`)
-                return nb
+# commenté par bertrand, apparement ne sert à rien #####
+        #def compte_theme(self,  nom_champs, critere, enreg) :
+        #        nb = self.__db__.query("SELECT COUNT(*) FROM figure WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + " AND face = " + self.__db__.quote(enreg["face"], "text") + " AND " +  nom_champs  + " LIKE " + self.__db__.quote(critere, "text") + ";" )
+        #        nb = nb.dictresult()
+        #        nb = nb[0]["count"]
+        #        self.__doc__.font(size=begoconf.font_size)
+        #        self.__doc__.insert_text(`nb`)
+        #        return nb
 
+
+###############################################################################
+#                       HAVE PRIMARY KEYS
+###############################################################################
+        def have_primarykeys(self, pkeys) :
+                for pk in pkeys :
+                        if not self.__form__.has_key(pk) :
+                                return 0
+                return 1
+
+################################################################################
+#                       RECHERCHE COMPLETE
+################################################################################
         def recherche_complete(self, table = None, penreg = None) :
                 if table == None :
                         table = self.__tablename__
@@ -343,8 +435,11 @@ class Data :
                                 vc = self.__form__[c].value
                                 if hasattr(self, c + "_form_to_base") :
                                         vc = getattr(self, c + "_form_to_base")(vc)
-                                val = self.__db__.quote(vc, self.__champs__[c]["type"])
-                                w = w + "(" + c + " = " + val + ") AND "
+                                try:
+                                        val = self.__db__.quote(vc, self.__champs__[c]["type"])
+                                        w = w + "(" + c + " = " + val + ") AND "
+                                except ValueError :
+                                        self.__doc__.script('alert("Opération interdite !!!")')
                         elif penreg and penreg.has_key(c) :
                                 val = self.__db__.quote(penreg[c], self.__champs__[c]["type"])
                                 w = w + "(" + c + " = " + val + ") AND "
@@ -355,16 +450,22 @@ class Data :
                 res = self.__db__.query(q)
                 return res.dictresult()
 
-        def have_primarykeys(self, pkeys) :
-                for pk in pkeys :
-                        if not self.__form__.has_key(pk) :
-                                return 0
-                return 1
+# commente par bertrand, doublon avec une fonction déja definie plus haut
+        #def have_primarykeys(self, pkeys) :
+        #        for pk in pkeys :
+        #                if not self.__form__.has_key(pk) :
+        #                        return 0
+        #        return 1
 
-        def traite_saisie(self, primarykeys, parent = None, penreg = None) :
+################################################################################
+#                       TRAITE SAISIE
+################################################################################
+        def traite_saisie(self, primarykeys, parent = None, sup = None, penreg = None) :
                 if not parent :
                         parent = self.__tablename__
-                if self.__form__.has_key("action") and (self.__form__["action"].value == "Chercher") :
+                ################# CHERCHER / CHERCHER LIEN #########
+
+                if self.__form__.has_key("action") and (self.__form__["action"].value == "Chercher"):
                         enregs = self.recherche_complete(penreg = penreg)
                         lg = len(enregs)
                         if lg :
@@ -372,17 +473,23 @@ class Data :
                                 for enreg in enregs :
                                         self.formulaire_hook(enreg, current = i, maximum = lg - 1, penreg = penreg)
                                         i = i + 1
-                        else :
+                        elif (self.__form__["action"].value == "Chercher"):
+                                begoconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
                                         self.__doc__.font("Aucun enregistrement trouvé", color = "red")
                                         self.__doc__.pop()
                                         self.formulaire_hook(penreg = penreg)
+
+
+
                 elif self.have_primarykeys(primarykeys) :
                         #
                         # si le champ action existe alors on veut supprimer ou modifier ou créer
                         if self.__form__.has_key("action") :
+
+                                #################### MODIFIER ####################
                                 if self.__form__["action"].value == "Modifier" :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
@@ -398,6 +505,8 @@ class Data :
                                         else :
                                                 #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+
+                                ################## SUPPRIMER #########################
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
@@ -409,10 +518,13 @@ class Data :
                                                 if not parent :
                                                         self.formulaire_hook(penreg = penreg)
                                                 else :
-                                                        self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+                                                        self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent)+ '"')# + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+
+                                ################## CREER #############################
                                 elif self.__form__["action"].value == "Créer" :
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
+
                                                 if retour == -1:
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         if not parent :
@@ -425,16 +537,24 @@ class Data :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
-                                                else :
-                                                        # tout c'est bien passé, on réaffiche la liste
+                                                elif retour == -3:
+                                                        begoconf.fatalerror_message("La zone saisie est inconnue")
+                                                elif retour == 1 :
                                                         # et on passe en modif sur l'enregistrement courant
                                                         # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+                                                else:
+                                                        self.__doc__.script('alert("valeur inexistante pour le champ" + champ )')
+                                                        if not parent :
+                                                                self.formulaire_hook(penreg = penreg)
+                                                        else :
+                                                                self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         if not parent :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+
                                 elif self.__form__["action"].value != self.__new_record__ :
                                         begoconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
@@ -479,6 +599,7 @@ class Data :
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook(penreg = penreg)
+                                ##################### NOUVEAU #################
                                 elif self.__form__["action"].value == self.__new_record__ :
                                         if not parent :
                                                 self.formulaire_hook(penreg = penreg)
@@ -499,3 +620,4 @@ class Data :
                         #
                         # sinon on ajoute en plus un formulaire vide pour pouvoir ajouter
                         self.formulaire_hook(penreg = penreg)
+

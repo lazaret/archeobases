@@ -58,6 +58,7 @@ class Association(begodata.Data) :
                         "disposition"         : { "type" : "text", "default" : "", "mandatory" : 0 }
                     }
 
+        __listeparents__  = ["zone", "roche", "face"]
         __listeclefs__ = ["zone", "groupe", "roche", "face", "association"]
         __vraiparent__ = "face"
 
@@ -79,20 +80,21 @@ class Association(begodata.Data) :
         def zone_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
-                afficheclefs.display_zone(self.__doc__, enreg, penreg)
+                afficheclefs.display_zone(self, enreg, penreg)
 
         def groupe_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_groupe(self.__doc__, enreg, penreg)
+                afficheclefs.display_groupe(self, enreg, penreg)
 
         def roche_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_roche(self.__doc__, enreg, penreg)
+                afficheclefs.display_roche(self, enreg, penreg)
 
         def face_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_face(self.__doc__, enreg, penreg)
+                afficheclefs.display_face(self, enreg, penreg)
 
         def association_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.display_association(self.__doc__, enreg, penreg)
                 self.__doc__.pop()
+                afficheclefs.ajoute_ligne(self, "100%", "1", "8", "6")
 
 
         def type_base_to_form(self, enreg, penreg = None) :

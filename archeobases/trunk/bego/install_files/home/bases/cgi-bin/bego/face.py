@@ -78,8 +78,8 @@ class Face(begodata.Data) :
         #
         # liste des tables enfants
         __listenfants__ = [ "figure", "historique", "association"]
+        __listeparents__ = ["zone", "roche"]
         __listeclefs__ = ["zone", "groupe", "roche", "face"]
-
         __vraiparent__ = "roche"
 
 
@@ -100,17 +100,19 @@ class Face(begodata.Data) :
         def zone_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
-                afficheclefs.display_zone(self.__doc__, enreg, penreg)
+                afficheclefs.display_zone(self, enreg, penreg)
 
         def groupe_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_groupe(self.__doc__, enreg, penreg)
+                afficheclefs.display_groupe(self, enreg, penreg)
 
         def roche_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_roche(self.__doc__, enreg, penreg)
+            afficheclefs.display_roche(self, enreg, penreg)
+
 
         def face_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_face(self.__doc__, enreg, penreg)
+                afficheclefs.display_face(self, enreg, penreg)
                 self.__doc__.pop()
+                afficheclefs.ajoute_ligne(self, "100%", "1", "8", "4")
 
         def longueur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -118,12 +120,12 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Dimensions de la face:", size=begoconf.font_size)
+                self.__doc__.font("Dimensions de la face : ", size=begoconf.font_size)
                 self.__doc__.pop()
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                self.__doc__.insert_text("Longueur en cm:")
+                self.__doc__.insert_text("Longueur en cm : ")
                 if enreg != None :
                         self.__doc__.text(name = "longueur", value = enreg["longueur"], size = 6, maxlength = 6)
                 else :
@@ -131,14 +133,18 @@ class Face(begodata.Data) :
                 self.__doc__.pop()
 
         def largeur_base_to_form(self, enreg, penreg = None) :
+
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Largeur en cm:", size=begoconf.font_size)
+                self.__doc__.font("Largeur en cm : ", size=begoconf.font_size)
                 self.__doc__.font(size=begoconf.font_size)
+                self.__doc__.push()
+                self.__doc__.td()
                 if enreg != None :
                         self.__doc__.text(name = "largeur", value = enreg["largeur"], size = 6, maxlength = 6)
                 else :
                         self.__doc__.text(name = "largeur", size = "6", maxlength = "6", value = "")
+                self.__doc__.pop()
                 self.__doc__.pop()
                 self.__doc__.pop()
 
@@ -161,7 +167,7 @@ class Face(begodata.Data) :
         def forme_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Forme de la face:", size=begoconf.font_size)
+                self.__doc__.font("Forme de la face : ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -177,7 +183,7 @@ class Face(begodata.Data) :
                 self.__doc__.tr()
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Couleur:", size=begoconf.font_size)
+                self.__doc__.font("Couleur : ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -190,7 +196,7 @@ class Face(begodata.Data) :
         def aspect_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Aspect de la surface:",size=begoconf.font_size )
+                self.__doc__.font("Aspect de la surface : ",size=begoconf.font_size )
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -200,6 +206,7 @@ class Face(begodata.Data) :
                 afficheclefs.liste_deroulante(self.__doc__,  "aspect", listeaspects, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()
+                afficheclefs.ajoute_ligne_vide(self, "8", "4")
 
 
         def decrochement_base_to_form(self, enreg, penreg = None) :
@@ -208,9 +215,8 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Eléments naturels :", size=begoconf.font_size)
+                self.__doc__.font("Eléments naturels : ", size=begoconf.font_size)
                 self.__doc__.pop()
-
 
                 self.__doc__.push()
                 self.__doc__.td(align = "left", valign="middle")
@@ -271,7 +277,6 @@ class Face(begodata.Data) :
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.pop()
 
-
                 self.__doc__.push()
                 self.__doc__.td(valign = "middle", align="left")
                 self.__doc__.font(size=begoconf.font_size)
@@ -285,7 +290,6 @@ class Face(begodata.Data) :
                         self.__doc__.checkbox(name = "nodule")         # 'f' est la valeur par defaut
 
                 self.__doc__.insert_text("Nodule")
-
                 self.__doc__.pop()
 
         def trou_base_to_form(self, enreg, penreg = None) :
@@ -304,6 +308,7 @@ class Face(begodata.Data) :
                 self.__doc__.insert_text("Trou")
                 self.__doc__.pop()
                 self.__doc__.pop()
+                afficheclefs.ajoute_ligne_vide(self, "8", "4")
 
 
         def erosion_base_to_form(self, enreg, penreg = None) :
@@ -313,7 +318,7 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.u()
-                self.__doc__.font("Etat de conservation:", size=begoconf.font_size)
+                self.__doc__.font("Etat de conservation : ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -328,7 +333,7 @@ class Face(begodata.Data) :
         def desquamation_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Desquamation: ",size=begoconf.font_size )
+                self.__doc__.font("Desquamation : ",size=begoconf.font_size )
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -346,7 +351,7 @@ class Face(begodata.Data) :
 
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Direction et inclinaison:", size=begoconf.font_size)
+                self.__doc__.font("Direction et inclinaison : ", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -370,7 +375,7 @@ class Face(begodata.Data) :
         def orientation_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Orientation:",size=begoconf.font_size )
+                self.__doc__.font("Orientation : ",size=begoconf.font_size )
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -402,7 +407,7 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.caption()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.b("Thèmes:")
+                        self.__doc__.b("Thèmes :")
                         self.__doc__.pop()
 ################################################
                         id = self.__db__.query("SELECT identite FROM figure WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + " AND face = " + self.__db__.quote(enreg["face"], "text") + ";" )
@@ -504,28 +509,28 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Corniforme: ")
+                        self.__doc__.insert_text("Corniforme : ")
                         self.__doc__.insert_text(nbcorniforme)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Poignards: ")
+                        self.__doc__.insert_text("Poignards : ")
                         self.__doc__.insert_text(nbpoignard)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Hallebardes: ")
+                        self.__doc__.insert_text("Hallebardes : ")
                         self.__doc__.insert_text(nbhallebarde)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Haches: ")
+                        self.__doc__.insert_text("Haches : ")
                         self.__doc__.insert_text(nbhache)
                         self.__doc__.pop()
                         self.__doc__.pop()
@@ -537,28 +542,28 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Antropomorphes: ")
+                        self.__doc__.insert_text("Antropomorphes : ")
                         self.__doc__.insert_text(nbhomme)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Attelages: ")
+                        self.__doc__.insert_text("Attelages : ")
                         self.__doc__.insert_text(nbattelage)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Fig géo composées: ")
+                        self.__doc__.insert_text("Fig géo composées : ")
                         self.__doc__.insert_text(nbgeocomp)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Barres: ")
+                        self.__doc__.insert_text("Barres : ")
                         self.__doc__.insert_text(nbbarre)
                         self.__doc__.pop()
                         self.__doc__.pop()
@@ -569,28 +574,28 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Cercles: ")
+                        self.__doc__.insert_text("Cercles : ")
                         self.__doc__.insert_text(nbcercle)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Rectangles: ")
+                        self.__doc__.insert_text("Rectangles : ")
                         self.__doc__.insert_text(nbrectangle)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Spirales: ")
+                        self.__doc__.insert_text("Spirales : ")
                         self.__doc__.insert_text(nbspirale)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Croix: ")
+                        self.__doc__.insert_text("Croix : ")
                         self.__doc__.insert_text(nbcroix)
                         self.__doc__.pop()
                         self.__doc__.pop()
@@ -601,28 +606,28 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Rouelles: ")
+                        self.__doc__.insert_text("Rouelles : ")
                         self.__doc__.insert_text(nbrouelle)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Réticulés: ")
+                        self.__doc__.insert_text("Réticulés : ")
                         self.__doc__.insert_text(nbreticule)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Réticulé à appendice: ")
+                        self.__doc__.insert_text("Réticulé à appendice : ")
                         self.__doc__.insert_text(nbreticulea)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Plages rectangulaires: ")
+                        self.__doc__.insert_text("Plages rectangulaires : ")
                         self.__doc__.insert_text(nbplager)
                         self.__doc__.pop()
                         self.__doc__.pop()
@@ -633,28 +638,28 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Lignes sinueuses: ")
+                        self.__doc__.insert_text("Lignes sinueuses : ")
                         self.__doc__.insert_text(nbsinueuse)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Zig-Zag: ")
+                        self.__doc__.insert_text("Zig-Zag : ")
                         self.__doc__.insert_text(nbzigzag)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Groupes de cupules: ")
+                        self.__doc__.insert_text("Groupes de cupules : ")
                         self.__doc__.insert_text(nbgroupe)
                         self.__doc__.pop()
 
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Plages de cupules: ")
+                        self.__doc__.insert_text("Plages de cupules : ")
                         self.__doc__.insert_text(nbplage)
                         self.__doc__.pop()
                         self.__doc__.pop()
@@ -666,7 +671,7 @@ class Face(begodata.Data) :
                         self.__doc__.push()
                         self.__doc__.td()
                         self.__doc__.font(size=begoconf.font_size)
-                        self.__doc__.insert_text("Autres: ")
+                        self.__doc__.insert_text("Autres : ")
                         totaltheme = nbcorniforme + nbpoignard + nbhallebarde + nbhache + nbhomme + nbattelage + nbgeocomp + nbbarre + nbcercle +nbrectangle + nbspirale + nbcroix + nbrouelle + nbreticule + nbreticulea + nbplager + nbsinueuse + nbzigzag + nbgroupe + nbplage
                         nbautre = len(id) - totaltheme
                         self.__doc__.insert_text(nbautre)

@@ -85,8 +85,8 @@ class Roche(begodata.Data) :
         #
         # liste des tables enfants
         __listenfants__ = [ "face", "figure", "historique", "association"]
+        __listeparents__  = ["zone"]
         __listeclefs__ = ["zone", "groupe", "roche"]
-
         __vraiparent__ = "zone"
 
         #
@@ -118,22 +118,22 @@ class Roche(begodata.Data) :
         def zone_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
-                afficheclefs.display_zone(self.__doc__, enreg, penreg)
+                afficheclefs.display_zone(self, enreg, penreg)
 
         def groupe_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_groupe(self.__doc__, enreg, penreg)
+                afficheclefs.display_groupe(self, enreg, penreg)
 
         def roche_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_roche(self.__doc__, enreg, penreg)
-                self.__doc__.pop()
-
+            afficheclefs.display_roche(self, enreg, penreg)
+            self.__doc__.pop()
+            afficheclefs.ajoute_ligne(self, "100%", "1", "8", "5")
 
         def nom_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
 
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
-                self.__doc__.font("Nom:", size=begoconf.font_size)
+                self.__doc__.font("Nom :", size=begoconf.font_size)
                 self.__doc__.pop()
 
                 self.__doc__.push()
@@ -290,9 +290,9 @@ class Roche(begodata.Data) :
                 self.__doc__.td()
                 self.__doc__.pop()
 
-                self.__doc__.push()
-                self.__doc__.td()
-                self.__doc__.pop()
+                #self.__doc__.push()
+                #self.__doc__.td()
+                #self.__doc__.pop()
 
                 self.__doc__.push()
                 self.__doc__.td()
@@ -329,9 +329,10 @@ class Roche(begodata.Data) :
                 self.__doc__.td()
                 self.__doc__.pop()
 
-                self.__doc__.push()
-                self.__doc__.td()
-                self.__doc__.pop()
+                #self.__doc__.push()
+                #self.__doc__.td()
+                #self.__doc__.pop()
+
                 self.__doc__.push()
                 self.__doc__.td()
                 self.__doc__.pop()

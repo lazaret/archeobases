@@ -102,7 +102,7 @@ class Zone(begodata.Data) :
                 self.__doc__.pop()
 
         def zone_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_zone(self.__doc__, enreg, penreg)
+                afficheclefs.display_zone(self, enreg, penreg)
                 self.__doc__.pop()
 
         def groupes_base_to_form(self, enreg, penreg = None) :

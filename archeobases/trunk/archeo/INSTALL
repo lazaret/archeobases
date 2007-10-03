@@ -11,4 +11,8 @@ Resume :
 2) Place "install_files" under the /home/base directory
 3) Give read-write access to this files to the Apache user (usaly www or wwwrun)
 4) Create the necessary symbolic links
+
+> ln -s /home/base/cgi-bin/archeo /srv/www/cgi-bin
+> ln -s /home/base/cgi-bin/archeo/archeo.py /srv/www/cgi-bin/archeo.py
+
 5) manage right for Apache and the database

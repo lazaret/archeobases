@@ -108,7 +108,7 @@ class Data :
                         t = " des fractures sur faune"
                 if self.__tablename__=="outil":
                         t = " du Petit outillage"
-               
+
                 if parent == "bas" :
                         self.__doc__ = archeoconf.Bas("Saisie" + t, "Saisie" + t)
                         self.__form__ = cgi.FieldStorage()
@@ -168,10 +168,10 @@ class Data :
                 if hasattr(self, fieldname + "_form_to_base") :
 #### pb si texte dans champs numeriques
                         value = getattr(self, fieldname + "_form_to_base")(value)
-                try :        
+                try :
                         value = self.__db__.quote(value, self.__champs__[fieldname]["type"])
                         return value
-                except ValueError, msg :        
+                except ValueError, msg :
                         archeoconf.fatalerror_message("Texte saisi dans le champ de type numerique %s : %s" % (fieldname, msg))
 
 
@@ -230,7 +230,7 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.td( bgcolor = self.__color__, width = "85%")
                 self.__doc__.div(align="center")
-                self.__doc__.table(border = "0", width="100%", cellpadding 
+                self.__doc__.table(border = "0", width="100%", cellpadding
 = "0", cellspacing = "0", column="7", )
 
                 for champ in self.__ordrechamps__ :
@@ -296,6 +296,7 @@ class Data :
                 return res[0]["nextval"]
 
         def exist(self, champs, table = None) :
+                """Teste si un enregistrement existe avec la valeur value pour le champ field, renvoie le nbre d'enregistrements concernes, ou 0 sinon"""
                 if table == None :
                         table = self.__tablename__
 
@@ -362,7 +363,7 @@ class Data :
                 if table == None :
                         table = self.__tablename__
                 return self.__db__.query("DELETE FROM " + table + self.__createwhere__(primarykeys) + ";")
- 
+
         def make_update_query(self, primarykeys, table = None):
                 """Calcule la requete de mise a jour"""
                 # TODO: vérifier les valeurs des champs avant toute mise à jour
@@ -379,7 +380,6 @@ class Data :
                                 query = query + champ + "=" + string.upper(self.__getfield__(champ)) + ", "
                 query = query[:-2] + self.__createwhere__(primarykeys) + ";"
                 return query
-
 
         def make_insert_query(self, primarykeys, table = None) :
                 """Calcule la requete d'insertion"""
@@ -400,21 +400,22 @@ class Data :
                         else :
                                 query = query + `primarykeys[primarykey]`
                         query = query + ", "
+
                 for champ in self.__listechamps__ :
                         v = string.upper(self.__getfield__(champ))
                         self.__doc__.log_message("c: [%s] ===> [%s]" % (champ, v))
                         if self.exist_table_controle(champ) and self.__champs__[champ]["longueur"] != 0 :
                                 #if (self.__champs__[champ]["longueur"] and self.__champs__[champ]["longueur"]!=0) or self.__tablename == "photofaune" or self.__tablename == "photoindutrie":
-                                if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ 
+                                if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ
                                         ####TODO VERIFIER #####ATTENTION
                                         query = query + v + ", " # alors on verifie que la valeur cherchee s'y trouve bien
-                                        
-                                elif v : 
+
+                                elif v :
                                         archeoconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide !" %(v, champ))
                                         return None
                                 #else :
                                         #archeoconf.fatalerror_message("La valeur saisie dans le champ %s est invalide" % champ)
-                                        
+
                         else:
                                 query = query + v + ", "
                 query = query[:-2] + ");"
@@ -625,12 +626,12 @@ class Data :
                 res = self.__db__.query(q)
                 return res.dictresult()
 
-        def have_primarykeys(self, pkeys) :
-                for pk in pkeys :
-                        if not self.__form__.has_key(pk) :
-                                return 0
-                return 1
-
+# commente par bertrand, doublon avec une fonction déja definie plus haut
+        #def have_primarykeys(self, pkeys) :
+        #        for pk in pkeys :
+        #                if not self.__form__.has_key(pk) :
+        #                        return 0
+        #        return 1
 
 
 
@@ -730,7 +731,7 @@ class Data :
                                 elif self.__form__["action"].value == "Créer" :
                                         if not self.__verify_mandatory__() :
                                                 (retour, pkeys) = self.creer()
-                                                
+
                                                 if retour == -1:
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         if not parent :
@@ -760,7 +761,7 @@ class Data :
                                                                 self.formulaire_hook(penreg = penreg)
                                                         else :
                                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
- 
+
                                 elif self.__form__["action"].value != self.__new_record__ :
                                         archeoconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
@@ -820,7 +821,7 @@ class Data :
                                 # sinon affichage de l'écran de saisie vide
                                 self.formulaire_hook(penreg = penreg)
 
-                # si c'est une table "mere" (ex: roche")                                
+                # si c'est une table "mere" (ex: roche")
                 # on sort le document
                 if self.__parent__ == self.__tablename__ :
                         self.__doc__.output()
@@ -930,8 +931,8 @@ class Data :
                 self.__doc__.font(size=archeoconf.font_size)
                 libelle = libelle + ": "
                 self.__doc__.insert_text(libelle)
-                self.__doc__.pop() 
-                
+                self.__doc__.pop()
+
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
@@ -1213,7 +1214,7 @@ class Data :
                                 # sinon affichage de l'écran de saisie vide
                                 self.formulaire_hook_parametre(penreg = penreg)
 
-                # si c'est une table "mere" (ex: roche")                                
+                # si c'est une table "mere" (ex: roche")
                 # on sort le document
                 if self.__parent__ == self.__tablename__ :
                         self.__doc__.output()

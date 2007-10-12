@@ -70,7 +70,7 @@ class Face(begodata.Data) :
                         "erosion"      : { "type" : "text"   , "default" : "f", "mandatory" : 0 }, \
                         "desquamation" : { "type" : "text"   , "default" : "", "mandatory" : 0 }, \
                         "direction"    : { "type" : "text"   , "default" : "", "mandatory" : 0 }, \
-                        "inclinaison"  : { "type" : "decimal", "default" : 0, "mandatory" : 0 }, \
+                        "inclinaison"  : { "type" : "decimal", "default" : "", "mandatory" : 0 }, \
                         "orientation"  : { "type" : "text"   , "default" : "", "mandatory" : 0 }, \
                         "nbthemes"     : { "type" : "decimal", "default" : "", "mandatory" : 0},
                     }

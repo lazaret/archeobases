@@ -12,7 +12,8 @@ Resume :
 3) Give read-write access to this files to the Apache user (usaly www or wwwrun)
 4) Create the necessary symbolic links
 
-> ln -s /home/base/cgi-bin/archeo /srv/www/cgi-bin
-> ln -s /home/base/cgi-bin/archeo/archeo.py /srv/www/cgi-bin/archeo.py
+> ln -s /home/bases/cgi-bin/archeo /srv/www/cgi-bin
+> ln -s /home/bases/cgi-bin/archeo/archeo.py /srv/www/cgi-bin/archeo.py
+> ln -s /home/bases/archeo /srv/www/htdocs/archeo
 
 5) manage right for Apache and the database

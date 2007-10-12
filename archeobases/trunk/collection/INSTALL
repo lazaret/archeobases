@@ -12,7 +12,8 @@ Resume :
 3) Give read-write access to this files to the Apache user (usaly www or wwwrun)
 4) Create the necessary symbolic links
 
-> ln -s /home/base/cgi-bin/collection /srv/www/cgi-bin
-> ln -s /home/base/cgi-bin/collection/collection.py /srv/www/cgi-bin/collection.py
+> ln -s /home/bases/cgi-bin/collection /srv/www/cgi-bin
+> ln -s /home/bases/cgi-bin/collection/collection.py /srv/www/cgi-bin/collection.py
+> ln -s /home/bases/collection /srv/www/htdocs/collection
 
 5) manage right for apache and the database

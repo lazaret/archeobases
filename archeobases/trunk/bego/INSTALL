@@ -12,7 +12,8 @@ Resume :
 3) Give read-write access to this files to the Apache user (usaly www or wwwrun)
 4) Create the necessary symbolic links
 
-> ln -s /home/base/cgi-bin/bego /srv/www/cgi-bin
-> ln -s /home/base/cgi-bin/bego/bego.py /srv/www/cgi-bin/bego.py
+> ln -s /home/bases/cgi-bin/bego /srv/www/cgi-bin/bego
+> ln -s /home/bases/cgi-bin/bego/bego.py /srv/www/cgi-bin/bego.py
+> ln -s /home/bases/bego /srv/www/htdocs/bego
 
 5) manage right for apache and the database

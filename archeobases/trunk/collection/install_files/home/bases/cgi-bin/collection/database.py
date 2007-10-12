@@ -29,7 +29,7 @@ __version__ = "1.1"
 # logiciel serveur WEB (teste uniquement avec Apache).
 class DataBase :
         __database  = None
-        __debuglevel = 0
+        __debuglevel = 0 # mettre à 1 pour le debug
 
         def __init__(self, host = None, database = None, username = None, debuglevel = 0) :
                 self.set_debug(debuglevel)
@@ -38,7 +38,7 @@ class DataBase :
                         if self.__debuglevel > 0 :
                                 self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
                         self.query("SET CLIENT_ENCODING TO 'UTF-8';")
-                except pg.error, msg :
+                except pg.Error, msg :
                         self.fatal_message("Unable to connect to Host [%s] DataBase [%s] Username [%s] ==> [%s]" % (host, database, username, msg))
 
         def log_message(self, msg, level) :
@@ -51,6 +51,8 @@ class DataBase :
                 return message
 
         def sql_message(self, msg) :
+            """affiche les requettes SQL dans les logs Apache si le niveau de debug est supperieur à 0"""
+            if self.__debuglevel > 0 :
                 return self.log_message(msg, level = "sql")
 
         def error_message(self, msg) :
@@ -72,7 +74,7 @@ class DataBase :
                                 self.sql_message(q)
                         try :
                                 return self.__database.query(q)
-                        except pg.error, msg:
+                        except pg.Error, msg:
                                 if msg and (msg[-1] == '\n') :
                                         msg = msg[:-1]
                                 self.__database.query("ROLLBACK;")      # auto rollback

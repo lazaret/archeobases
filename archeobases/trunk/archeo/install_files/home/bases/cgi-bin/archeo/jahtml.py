@@ -49,7 +49,7 @@ class Html_document:
 #	sys.stderr.write("WARNING: The jahtml.Html_document() class shouldn't be used anymore.\n")
 #	sys.stderr.write("Use jaxml.HTML_document() instead, and modify your programs according to the new API.\n")
 #	sys.stderr.write("Download jaxml now from: http://cortex.unice.fr/~jerome/jaxml/\n")
-	sys.stderr.flush()
+#	sys.stderr.flush()
 
     def __calculate_args__(self, modifier, value) :
 	if value != None :
@@ -339,7 +339,7 @@ class Html_document:
 		## If SOFTWARE is modified to produce derivative works, such modified
 		## SOFTWARE should be clearly marked, so as not to confuse it with the
 		## version available from LANL.
-	"""   
+	"""
 	if type(file) == type("") :
 	    if (file != "-") and (file != "") :
 		inf = open(file, "r")

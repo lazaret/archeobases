@@ -47,10 +47,11 @@ class Html_document:
         self.__pushed__ = []
         self.__position__ = 0
         self.__indentstring__ = " "
-        sys.stderr.write("WARNING: The jahtml.Html_document() class shouldn't be used anymore.\n")
-        sys.stderr.write("Use jaxml.HTML_document() instead, and modify your programs according to the new API.\n")
-        sys.stderr.write("Download jaxml now from: http://cortex.unice.fr/~jerome/jaxml/\n")
-        sys.stderr.flush()
+# Warning descativé pour eclaircir les logs apache (bertrand)
+#	sys.stderr.write("WARNING: The jahtml.Html_document() class shouldn't be used anymore.\n")
+#	sys.stderr.write("Use jaxml.HTML_document() instead, and modify your programs according to the new API.\n")
+#	sys.stderr.write("Download jaxml now from: http://cortex.unice.fr/~jerome/jaxml/\n")
+#	sys.stderr.flush()
 
     def __calculate_args__(self, modifier, value) :
         if value != None :

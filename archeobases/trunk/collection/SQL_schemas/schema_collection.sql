@@ -611,6 +611,18 @@ GRANT SELECT ON TABLE materiel TO visiteurcollection;
 
 
 --
+-- Name: anthropologie; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE anthropologie FROM PUBLIC;
+REVOKE ALL ON TABLE anthropologie FROM postgres;
+GRANT ALL ON TABLE anthropologie TO postgres;
+GRANT ALL ON TABLE anthropologie TO collection;
+GRANT ALL ON TABLE anthropologie TO supercollection;
+GRANT SELECT ON TABLE anthropologie TO visiteurcollection;
+
+
+--
 -- Name: association; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -623,6 +635,18 @@ GRANT SELECT ON TABLE association TO visiteurcollection;
 
 
 --
+-- Name: audio_video; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE audio_video FROM PUBLIC;
+REVOKE ALL ON TABLE audio_video FROM postgres;
+GRANT ALL ON TABLE audio_video TO postgres;
+GRANT ALL ON TABLE audio_video TO collection;
+GRANT ALL ON TABLE audio_video TO supercollection;
+GRANT SELECT ON TABLE audio_video TO visiteurcollection;
+
+
+--
 -- Name: biblio; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -632,6 +656,18 @@ GRANT ALL ON TABLE biblio TO postgres;
 GRANT ALL ON TABLE biblio TO collection;
 GRANT ALL ON TABLE biblio TO supercollection;
 GRANT SELECT ON TABLE biblio TO visiteurcollection;
+
+
+--
+-- Name: carte; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE carte FROM PUBLIC;
+REVOKE ALL ON TABLE carte FROM postgres;
+GRANT ALL ON TABLE carte TO postgres;
+GRANT ALL ON TABLE carte TO collection;
+GRANT ALL ON TABLE carte TO supercollection;
+GRANT SELECT ON TABLE carte TO visiteurcollection;
 
 
 --
@@ -803,6 +839,66 @@ GRANT SELECT ON TABLE controle_m_type_support TO visiteurcollection;
 
 
 --
+-- Name: dessin; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE dessin FROM PUBLIC;
+REVOKE ALL ON TABLE dessin FROM postgres;
+GRANT ALL ON TABLE dessin TO postgres;
+GRANT ALL ON TABLE dessin TO collection;
+GRANT ALL ON TABLE dessin TO supercollection;
+GRANT SELECT ON TABLE dessin TO visiteurcollection;
+
+
+--
+-- Name: faune_comparaison; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE faune_comparaison FROM PUBLIC;
+REVOKE ALL ON TABLE faune_comparaison FROM postgres;
+GRANT ALL ON TABLE faune_comparaison TO postgres;
+GRANT ALL ON TABLE faune_comparaison TO collection;
+GRANT ALL ON TABLE faune_comparaison TO supercollection;
+GRANT SELECT ON TABLE faune_comparaison TO visiteurcollection;
+
+
+--
+-- Name: moulage_objet; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE moulage_objet FROM PUBLIC;
+REVOKE ALL ON TABLE moulage_objet FROM postgres;
+GRANT ALL ON TABLE moulage_objet TO postgres;
+GRANT ALL ON TABLE moulage_objet TO collection;
+GRANT ALL ON TABLE moulage_objet TO supercollection;
+GRANT SELECT ON TABLE moulage_objet TO visiteurcollection;
+
+
+--
+-- Name: moulage_sol; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE moulage_sol FROM PUBLIC;
+REVOKE ALL ON TABLE moulage_sol FROM postgres;
+GRANT ALL ON TABLE moulage_sol TO postgres;
+GRANT ALL ON TABLE moulage_sol TO collection;
+GRANT ALL ON TABLE moulage_sol TO supercollection;
+GRANT SELECT ON TABLE moulage_sol TO visiteurcollection;
+
+
+--
+-- Name: releve; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE releve FROM PUBLIC;
+REVOKE ALL ON TABLE releve FROM postgres;
+GRANT ALL ON TABLE releve TO postgres;
+GRANT ALL ON TABLE releve TO collection;
+GRANT ALL ON TABLE releve TO supercollection;
+GRANT SELECT ON TABLE releve TO visiteurcollection;
+
+
+--
 -- Name: requete; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -811,6 +907,42 @@ REVOKE ALL ON TABLE requete FROM postgres;
 GRANT ALL ON TABLE requete TO postgres;
 GRANT ALL ON TABLE requete TO collection;
 GRANT ALL ON TABLE requete TO supercollection;
+
+
+--
+-- Name: scan; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE scan FROM PUBLIC;
+REVOKE ALL ON TABLE scan FROM postgres;
+GRANT ALL ON TABLE scan TO postgres;
+GRANT ALL ON TABLE scan TO collection;
+GRANT ALL ON TABLE scan TO supercollection;
+GRANT SELECT ON TABLE scan TO visiteurcollection;
+
+
+--
+-- Name: sepulture; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE sepulture FROM PUBLIC;
+REVOKE ALL ON TABLE sepulture FROM postgres;
+GRANT ALL ON TABLE sepulture TO postgres;
+GRANT ALL ON TABLE sepulture TO collection;
+GRANT ALL ON TABLE sepulture TO supercollection;
+GRANT SELECT ON TABLE sepulture TO visiteurcollection;
+
+
+--
+-- Name: vue; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE vue FROM PUBLIC;
+REVOKE ALL ON TABLE vue FROM postgres;
+GRANT ALL ON TABLE vue TO postgres;
+GRANT ALL ON TABLE vue TO collection;
+GRANT ALL ON TABLE vue TO supercollection;
+GRANT SELECT ON TABLE vue TO visiteurcollection;
 
 
 --

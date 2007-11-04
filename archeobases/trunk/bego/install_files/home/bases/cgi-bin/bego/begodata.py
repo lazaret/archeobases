@@ -3,6 +3,7 @@
 #
 # montbego - (c) 1999      Jerome ALET <alet@unice.fr>
 #                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+#                2007 Bertrand Lecervoisier
 #
 # You're welcome to redistribute this software under the
 # terms of the GNU General Public Licence version 2.0
@@ -149,10 +150,14 @@ class Data :
                                                 v = self.__form__[champ].value
                                         else :
                                                 v = None
-                                        if hasattr(self, champ + "_verify") :
-                                                if getattr(self, champ + "_verify")(champ, v) :
-                                                        not_ok = not_ok + 1
-                                                        self.__doc__.script('alert("Le champ ' + champ + ' a un contenu invalide [%s])' % v)
+                                        #commenté : apparement le test ne fonctionne pas avec les coordonnées Lambert
+                                        #une erreur SQL se produit tout de même si un champ est mal rempli
+                                        #ce qui permet de desactiver ce test
+                                        #
+                                        #if hasattr(self, champ + "_verify") :
+                                        #       if getattr(self, champ + "_verify")(champ, v) :
+                                        #                not_ok = not_ok + 1
+                                        #                self.__doc__.script('alert("Le champ ' + champ + ' a un contenu invalide [%s])' % v)
                         except AttributeError, msg :
                                 begoconf.fatalerror_message("Erreur sur la vérification du champ obligatoire %s : %s [%s]" % (champ, msg, self.__form__[champ]))
                 return not_ok

@@ -72,9 +72,9 @@ class Materiel(collectiondata.Data) :
                         "m_periode_geologique"  : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
 
-                        "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_bibliographie"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_mots_clefs"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
+                        "m_bibliographie"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
+                        "m_mots_clefs"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 150 , "memory" : 0 }, \
 
                         "m_numero_individu"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_groupe"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -90,10 +90,10 @@ class Materiel(collectiondata.Data) :
                         "m_nom_commun"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_age_individu"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_sexe_individu"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
-                        "m_donnees_individu"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_donnees_individu"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 200 , "memory" : 0 }, \
                         "m_representation_squel": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
-                        "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_observations_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
+                        "m_observations_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
                         "m_nature"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date_modif"          : { "type" : "date", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_saisie"        : { "type" : "date", "mandatory" : 0 , "longueur" : 10}, \

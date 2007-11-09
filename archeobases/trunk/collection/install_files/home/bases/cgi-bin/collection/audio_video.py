@@ -33,11 +33,11 @@ class Audio_video(collectiondata.Data) :
                         "m_type_materiel"       : { "type" : "text", "default" : "AUDIO_VIDEO",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_etagere"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
-                        "m_nom_familier"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
+                        "m_titre"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 200 , "memory" : 0 }, \
+                        "m_auteur"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
-                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_support"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
-                        "m_edition"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
+                        "m_edition"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_diffusion"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 6 , "memory" : 0 }, \
                         "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
@@ -52,14 +52,14 @@ class Audio_video(collectiondata.Data) :
         __vraiparent__    = "audio_video"
 
         # liste des seuls champs que l'on veut pouvoir modifier
-        __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_familier","m_date", \
-                           "m_support","m_edition","m_diffusion","m_duree", \
+        __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_etagere","m_titre", \
+                           "m_auteur","m_date","m_support","m_edition","m_diffusion","m_duree", \
                            "m_observations","m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
-        __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_familier","m_date", \
-                           "m_support","m_edition","m_diffusion","m_duree", \
-                           "m_observations","m_mots_clefs","m_nombre_exemplaires","m_date_modif","liens"]
+        __ordrechamps__ =["identifiant","m_type_materiel","m_type_support","m_etagere","m_titre", \
+                           "m_auteur","m_date","m_support","m_edition","m_diffusion","m_duree", \
+                           "m_observations","m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         __orderby__ = " ORDER BY identifiant ASC;"
 
@@ -111,9 +111,14 @@ class Audio_video(collectiondata.Data) :
                 afficheclefs.champ_liste( self, "m_type_support", "Type Support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
-        def m_nom_familier_base_to_form(self, enreg, penreg = None) :
+        def m_titre_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_familier", "Nom Familier", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_titre", "Titre", 2, 80, 5, " ", enreg, penreg)
+                self.__doc__.pop()
+
+        def m_auteur_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie_area(self, "m_auteur", "Auteur(s)", 2, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_base_to_form(self, enreg, penreg = None) :
@@ -121,14 +126,9 @@ class Audio_video(collectiondata.Data) :
                 afficheclefs.champ_saisie(self, "m_date", "Date", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
-        def m_inventeur_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_inventeur", "Auteur", 20, 20, " ", enreg, penreg)
-                self.__doc__.pop()
-
         def m_observations_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_support_base_to_form(self, enreg, penreg = None) :
@@ -138,12 +138,12 @@ class Audio_video(collectiondata.Data) :
 
         def m_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_edition", "Edition/Production", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_edition", "Edition/Production", 30, 30, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_diffusion_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_diffusion", "Diffusion", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_diffusion", "Diffusion", 30, 30, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_duree_base_to_form(self, enreg, penreg = None) :
@@ -153,7 +153,7 @@ class Audio_video(collectiondata.Data) :
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :

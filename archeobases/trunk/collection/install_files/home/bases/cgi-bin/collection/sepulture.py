@@ -44,8 +44,6 @@ class Sepulture(collectiondata.Data) :
                         "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_individu"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 3 , "memory" : 0 }, \
                         "m_depot_original"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
-                        "m_genre"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
-                        "m_espece"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
                         "m_date_decouverte"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4, "memory" : 0 }, \
@@ -68,14 +66,14 @@ class Sepulture(collectiondata.Data) :
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_familier","m_nom_site", \
                            "m_age_absolu","m_ville","m_pays","m_individu", \
-                           "m_depot_original","m_genre","m_espece","m_description_anatomique","m_date_decouverte","m_inventeur", \
+                           "m_depot_original","m_description_anatomique","m_date_decouverte","m_inventeur", \
                            "m_nature","m_origine","m_date_acquisition","m_depot_moule","m_observations", \
                            "m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
         __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_familier","m_nom_site", \
                            "m_age_absolu","m_ville","m_pays","m_individu", \
-                           "m_depot_original","m_genre","m_espece","m_description_anatomique","m_date_decouverte","m_inventeur", \
+                           "m_depot_original","m_description_anatomique","m_date_decouverte","m_inventeur", \
                            "m_nature","m_origine","m_date_acquisition","m_depot_moule","m_observations", \
                            "m_mots_clefs","m_nombre_exemplaires","m_date_modif","m_saisie","liens"]
 
@@ -162,16 +160,6 @@ class Sepulture(collectiondata.Data) :
         def m_depot_original_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_depot_original", "Dépôt original", 50, 50, " ", enreg, penreg)
-                self.__doc__.pop()
-
-        def m_genre_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_genre", "Genre", 20, 20, " ", enreg, penreg)
-                self.__doc__.pop()
-
-        def m_espece_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_espece", "Espèce", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_description_anatomique_base_to_form(self, enreg, penreg = None) :

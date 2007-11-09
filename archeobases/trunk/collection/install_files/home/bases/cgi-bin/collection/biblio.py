@@ -58,7 +58,7 @@ class Biblio(collectiondata.Data) :
                         "b_langue_resume" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30}, \
                         "b_etablissement" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100}, \
                         "b_description"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500}, \
-                        "b_isbn"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15}, \
+                        "b_isbn"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20}, \
                         "b_issn"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15}, \
                         "b_resume"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500}, \
                         "b_mots_clefs"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300}, \
@@ -251,7 +251,7 @@ class Biblio(collectiondata.Data) :
 
         def b_isbn_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_isbn", "ISBN", 15, 15, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_isbn", "ISBN", 20, 20, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_issn_base_to_form(self, enreg, penreg = None) :

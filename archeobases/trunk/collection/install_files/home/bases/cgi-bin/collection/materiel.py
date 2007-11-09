@@ -14,7 +14,7 @@
 
 
 # modifier m_numero_individu en m_individu
-# ajouter m_ville, m_groupe, m_nom_scientifique, m_holotype_espece
+# ajouter m_groupe, m_nom_scientifique, m_holotype_espece
 
 import os
 import string
@@ -63,9 +63,9 @@ class Materiel(collectiondata.Data) :
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_localite"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_commune"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_ville"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_region"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_ville"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
+                        "m_region"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
+                        "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_date_decouverte"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_periode_culturelle"  : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -311,7 +311,7 @@ class Materiel(collectiondata.Data) :
 
         def m_ville_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_ville", "Ville", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_ville", "Ville", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_commune_base_to_form(self, enreg, penreg = None) :
@@ -321,12 +321,12 @@ class Materiel(collectiondata.Data) :
 
         def m_region_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_region", "Région", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_region", "Région", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_pays_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_pays", "Pays", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_pays", "Pays", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :

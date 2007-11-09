@@ -49,8 +49,8 @@ class Faune_comparaison(collectiondata.Data) :
                         "m_sexe_individu"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_donnees_individu"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_representation_squel": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
-                        "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
-                        "m_observations_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
+                        "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
+                        "m_observations_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
                         "m_nature"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_numero_inventaire"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \

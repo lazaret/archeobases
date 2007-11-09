@@ -35,7 +35,7 @@ class Anthropologie(collectiondata.Data) :
         __champs__ = {
                         "identifiant"           : { "type" : "text",   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
                         "m_type_materiel"       : { "type" : "text", "default" : "ANTHROPOLOGIE",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
-                        "m_type_support"        : { "type" : "text", "default" : "MOULAGE-ANTHROPOLOGIE",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
+                        "m_type_support"        : { "type" : "text", "default" : "MOULAGE_ANTHROPOLOGIE",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_groupe"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_etagere"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_nom_commun"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
@@ -217,13 +217,13 @@ class Anthropologie(collectiondata.Data) :
 
         def m_synonymes_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_synonymes", "Synonyme(s)", 100, 100, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_synonymes", "Synonyme(s)", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_description_anatomique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie_area(self, "m_description_anatomique", "Desc. anatomique", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_description_anatomique", "Desc. anatomique", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
@@ -265,17 +265,17 @@ class Anthropologie(collectiondata.Data) :
 
         def m_observations_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_bibliographie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_bibliographie", "Bibliographie", 5, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_bibliographie", "Bibliographie", 5, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots clefs", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots clefs", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :

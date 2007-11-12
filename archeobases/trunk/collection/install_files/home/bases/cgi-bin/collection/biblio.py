@@ -47,13 +47,13 @@ class Biblio(collectiondata.Data) :
                         "b_ville_edition"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15}, \
                         "b_dir_pub"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100}, \
                         "b_annee"         : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 9}, \
-                        "b_mois"          : { "type" : "text", "defaut" : "",  "mandatory" : 0 , "longueur" : 30}, \
+                        "b_mois"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30}, \
                         "b_nombre_volume" : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
-                        "b_numero"        : { "type" : "int", "mandatory" : 0 , "longueur" : 4}, \
-                        "b_volume"        : { "type" : "int", "mandatory" : 0 , "longueur" : 4}, \
-                        "b_tome"          : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
-                        "b_serie"         : { "type" : "text", "mandatory" : 0 , "longueur" : 2}, \
-                        "b_fascicule"     : { "type" : "int",  "mandatory" : 0 , "longueur" : 3}, \
+                        "b_numero"        : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 4}, \
+                        "b_volume"        : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 4}, \
+                        "b_tome"          : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 4}, \
+                        "b_serie"         : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 4}, \
+                        "b_fascicule"     : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 4}, \
                         "b_langue_document" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0}, \
                         "b_langue_resume" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30}, \
                         "b_etablissement" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100}, \
@@ -211,17 +211,17 @@ class Biblio(collectiondata.Data) :
 
         def b_tome_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_tome", "Tome", 3, 3, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_tome", "Tome", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_serie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_serie", "Série", 2, 2, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_serie", "Série", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_fascicule_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_fascicule", "Fascicule", 3, 3, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_fascicule", "Fascicule", 4, 4, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_langue_document_base_to_form(self, enreg, penreg = None) :

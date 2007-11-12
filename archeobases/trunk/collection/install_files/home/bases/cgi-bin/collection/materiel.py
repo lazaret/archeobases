@@ -52,7 +52,9 @@ class Materiel(collectiondata.Data) :
                         "m_support"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_dimensions"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_echelle"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_largeur_coupe"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_scan_epaisseur_coupe": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
+                        "m_scan_nb_coupes"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
+                        "m_scan_nb_plans_coupes": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
 
                         "m_batiment"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_meuble"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
@@ -110,7 +112,8 @@ class Materiel(collectiondata.Data) :
         __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nombre_exemplaires","m_numero_inventaire", \
                         "m_titre","m_donnateur","m_depot_original", "m_auteur","m_date","m_date_acquisition","m_editeur", \
                         "m_edition","m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
-                        "m_largeur_coupe","m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
+                        "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes", \
+                        "m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
                         "m_nom_site", "m_localite","m_ville","m_commune","m_region","m_pays","m_inventeur", \
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
@@ -125,7 +128,8 @@ class Materiel(collectiondata.Data) :
         __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nombre_exemplaires","m_numero_inventaire", \
                         "m_titre","m_donnateur","m_depot_original", "m_auteur","m_date","m_date_acquisition","m_editeur", \
                         "m_edition","m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
-                        "m_largeur_coupe","m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
+                        "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes",\
+                        "m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
                         "m_nom_site", "m_localite","m_ville","m_commune","m_region","m_pays","m_inventeur", \
                         "m_date_decouverte","m_periode_culturelle","m_periode_geologique","m_age_absolu", \
                         "m_observations","m_bibliographie","m_mots_clefs","m_numero_individu", \
@@ -265,9 +269,19 @@ class Materiel(collectiondata.Data) :
                 afficheclefs.champ_saisie(self, "m_echelle", "Echelle", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
-        def m_largeur_coupe_base_to_form(self, enreg, penreg = None) :
+        def m_scan_epaisseur_coupe_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_largeur_coupe", "Epaisseur coupe", 15, 15, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_scan_epaisseur_coupe", "Epaisseur coupe", 12, 12, " ", enreg, penreg)
+                self.__doc__.pop()
+
+        def m_scan_nb_coupes_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie(self, "m_scan_nb_coupes", "Nb. de coupes", 12, 12, " ", enreg, penreg)
+                self.__doc__.pop()
+
+        def m_scan_nb_plans_coupes_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie(self, "m_scan_nb_plans_coupes", "Nb. de plans de coupes", 12, 12, " ", enreg, penreg)
                 self.__doc__.pop()
 
         ######### PARTIE LOCALISATION

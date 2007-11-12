@@ -46,7 +46,7 @@ class Biblio(collectiondata.Data) :
                         "b_maison_edition": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 60}, \
                         "b_ville_edition"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15}, \
                         "b_dir_pub"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100}, \
-                        "b_annee"         : { "type" : "int", "mandatory" : 0 , "longueur" : 4}, \
+                        "b_annee"         : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 9}, \
                         "b_mois"          : { "type" : "text", "defaut" : "",  "mandatory" : 0 , "longueur" : 30}, \
                         "b_nombre_volume" : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
                         "b_numero"        : { "type" : "int", "mandatory" : 0 , "longueur" : 4}, \
@@ -186,7 +186,7 @@ class Biblio(collectiondata.Data) :
 
         def b_annee_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "b_annee", "Année", 4, 4, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "b_annee", "Année", 9, 9, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_mois_base_to_form(self, enreg, penreg = None) :

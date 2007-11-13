@@ -50,7 +50,7 @@ page.td(align = "center", valign = "center")
 page.push()
 cpt = 0
 for chaine in ("b_type_biblio","b_langue_document","m_type_materiel","m_batiment","m_piece","m_classe","m_ordre","m_famille","m_genre","m_espece", \
-                "m_sexe_individu","m_representation_squel","m_nature","m_type_support","m_etagere"):
+                "m_sexe_individu","m_representation_squel","m_nature","m_type_support","m_etagere", "m_moul_orig"):
 #f_epins
         if (cpt == 6 ) :
                 page.pop()

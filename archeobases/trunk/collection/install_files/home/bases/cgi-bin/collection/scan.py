@@ -37,7 +37,7 @@ class Scan(collectiondata.Data) :
                         "identifiant"           : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
                         "m_type_materiel"       : { "type" : "text", "default" : "CT-SCAN",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
-                        "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
+                        "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_numero_inventaire"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
                         "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
@@ -136,7 +136,7 @@ class Scan(collectiondata.Data) :
 
         def m_nom_fossile_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_fossile", "Nom du fossile", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_fossile", "Nom du fossile", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
@@ -187,7 +187,7 @@ class Scan(collectiondata.Data) :
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_inventeur", "Lieu du scan", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_inventeur", "Lieu du scan", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nature_base_to_form(self, enreg, penreg = None) :

@@ -69,7 +69,7 @@ class Materiel(collectiondata.Data) :
                         "m_ville"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_region"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
-                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_date_decouverte"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_periode_culturelle"  : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_periode_geologique"  : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -88,7 +88,7 @@ class Materiel(collectiondata.Data) :
                         "m_espece"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_holotype_espece"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_nom_familier"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
-                        "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
+                        "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_synonymes"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_nom_commun"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_age_individu"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -351,7 +351,7 @@ class Materiel(collectiondata.Data) :
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_inventeur", "Inventeur", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_inventeur", "Inventeur", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
@@ -433,7 +433,7 @@ class Materiel(collectiondata.Data) :
 
         def m_nom_fossile_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_fossile", "Nom du fossile", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_fossile", "Nom du fossile", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_synonymes_base_to_form(self, enreg, penreg = None) :

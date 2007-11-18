@@ -47,7 +47,7 @@ class Sepulture(collectiondata.Data) :
                         "m_individu"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 3 , "memory" : 0 }, \
                         "m_depot_original"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
                         "m_date_decouverte"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
-                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4, "memory" : 0 }, \
+                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40, "memory" : 0 }, \
                         "m_origine"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_date_acquisition"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_depot_moule"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
@@ -181,7 +181,7 @@ class Sepulture(collectiondata.Data) :
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_inventeur", "Inventeur", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_inventeur", "Inventeur", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_origine_base_to_form(self, enreg, penreg = None) :

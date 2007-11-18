@@ -49,7 +49,7 @@ class Scan(collectiondata.Data) :
                         "m_synonymes"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100 , "memory" : 0 }, \
                         "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
                         "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4, "memory" : 0 }, \
-                        "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
+                        "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
                         "m_nature"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
                         "m_scan_epaisseur_coupe": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
                         "m_scan_nb_coupes"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
@@ -197,7 +197,7 @@ class Scan(collectiondata.Data) :
 
         def m_date_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_date", "Date du scan", 4, 4, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date", "Date du scan", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_scan_epaisseur_coupe_base_to_form(self, enreg, penreg = None) :

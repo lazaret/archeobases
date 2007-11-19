@@ -37,7 +37,7 @@ class Audio_video(collectiondata.Data) :
                         "m_auteur"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_support"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
-                        "m_edition"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
+                        "m_editeur"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_diffusion"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 6 , "memory" : 0 }, \
                         "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
@@ -53,12 +53,12 @@ class Audio_video(collectiondata.Data) :
 
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_etagere","m_titre", \
-                           "m_auteur","m_date","m_support","m_edition","m_diffusion","m_duree", \
+                           "m_auteur","m_date","m_support","m_editeur","m_diffusion","m_duree", \
                            "m_observations","m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
         __ordrechamps__ =["identifiant","m_type_materiel","m_type_support","m_etagere","m_titre", \
-                           "m_auteur","m_date","m_support","m_edition","m_diffusion","m_duree", \
+                           "m_auteur","m_date","m_support","m_editeur","m_diffusion","m_duree", \
                            "m_observations","m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
 
         __orderby__ = " ORDER BY identifiant ASC;"
@@ -136,9 +136,9 @@ class Audio_video(collectiondata.Data) :
                 afficheclefs.champ_saisie(self, "m_support", "Support", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
 
-        def m_edition_base_to_form(self, enreg, penreg = None) :
+        def m_editeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_edition", "Edition/Production", 30, 30, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_editeur", "Editeur / Production", 30, 30, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_diffusion_base_to_form(self, enreg, penreg = None) :

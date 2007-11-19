@@ -45,7 +45,7 @@ class Materiel(collectiondata.Data) :
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date_acquisition"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_editeur"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_edition"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
+                        #"m_edition"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_date_edition"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_diffusion"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -112,7 +112,7 @@ class Materiel(collectiondata.Data) :
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nombre_exemplaires","m_numero_inventaire", \
                         "m_titre","m_donnateur","m_depot_original", "m_auteur","m_date","m_date_acquisition","m_editeur", \
-                        "m_edition","m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
+                        "m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
                         "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes", "m_moul_orig", \
                         "m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
                         "m_nom_site", "m_localite","m_ville","m_commune","m_region","m_pays","m_inventeur", \
@@ -128,7 +128,7 @@ class Materiel(collectiondata.Data) :
         # liste des champs dans leur ordre de saisie
         __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nombre_exemplaires","m_numero_inventaire", \
                         "m_titre","m_donnateur","m_depot_original", "m_auteur","m_date","m_date_acquisition","m_editeur", \
-                        "m_edition","m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
+                        "m_date_edition","m_diffusion","m_duree","m_support", "m_dimensions","m_echelle", \
                         "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes", "m_moul_orig", \
                         "m_batiment","m_piece","m_meuble","m_etagere","m_tiroir", \
                         "m_nom_site", "m_localite","m_ville","m_commune","m_region","m_pays","m_inventeur", \
@@ -235,10 +235,10 @@ class Materiel(collectiondata.Data) :
                 afficheclefs.champ_saisie(self, "m_editeur", "Éditeur", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
-        def m_edition_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_edition", "Édition/Production", 30, 30, " ", enreg, penreg)
-                self.__doc__.pop()
+        #def m_edition_base_to_form(self, enreg, penreg = None) :
+        #        self.__doc__.push()
+        #        afficheclefs.champ_saisie(self, "m_edition", "Édition/Production", 30, 30, " ", enreg, penreg)
+        #        self.__doc__.pop()
 
         def m_date_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()

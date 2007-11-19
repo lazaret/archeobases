@@ -156,7 +156,7 @@ class Carte(collectiondata.Data) :
                         self.__doc__.push()
                         afficheclefs.champ_saisie(self,"m_date_modif", "Modif le", 10, 20, " ", enreg, penreg)
                         self.__doc__.pop()
-                self.__doc__.pop()
+                #self.__doc__.pop()
 
         def m_saisie_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:

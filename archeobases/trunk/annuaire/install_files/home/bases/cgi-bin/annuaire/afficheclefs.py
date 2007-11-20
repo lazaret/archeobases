@@ -114,7 +114,7 @@ def champ_liste(objet, nom_champ, libelle, enreg, penreg, titre,dontchange = Non
         objet.__doc__.td(align="left")
         objet.__doc__.font(size=annuaireconf.font_size)
 
-        query = "SELECT *  FROM controle_" + nom_champ + ";"
+        query = "SELECT * FROM controle_" + nom_champ + ";"
         res = objet.__db__.query(query).dictresult()
         liste ={}
         for ctrl in res:
@@ -141,7 +141,7 @@ def champ_nliste(objet, nom_champ, libelle, enreg, penreg, titre, colonne, dontc
         objet.__doc__.td(align="right", colspan = colonne)
         objet.__doc__.font(libelle, size=annuaireconf.font_size)
         objet.__doc__.font(size=annuaireconf.font_size)
-        query = "SELECT *  FROM controle_" + nom_champ + ";"
+        query = "SELECT * FROM controle_" + nom_champ + ";"
         res = objet.__db__.query(query).dictresult()
         liste ={}
         for ctrl in res:
@@ -373,7 +373,7 @@ def display_type(objet, nom_champ, enreg, penreg = None, alignement = "right", c
         objet.__doc__.font(size=annuaireconf.font_size)
         objet.__doc__.insert_text("  Type ")
 
-        query = "SELECT *  FROM controle_" + nom_champ + " ;"
+        query = "SELECT * FROM controle_" + nom_champ + " ;"
         res = objet.__db__.query(query).dictresult()
         liste_types ={}
         for ctrl_type in res:

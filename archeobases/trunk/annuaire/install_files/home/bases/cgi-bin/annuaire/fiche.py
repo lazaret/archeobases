@@ -34,13 +34,13 @@ class Fiche(annuairedata.Data) :
                         "type_entree" : { "type" : "text", "default" : "",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "type_personne"  : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "civilite"       : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
-                        "titre"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20, "memory" : 1 }, \
-                        "nom"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30, "memory" : 1 }, \
-                        "prenom"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20, "memory" : 1 }, \
-                        "nationalite"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20, "memory" : 1 }, \
+                        "titre"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20, "memory" : 0 }, \
+                        "nom"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30, "memory" : 0 }, \
+                        "prenom"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20, "memory" : 0 }, \
+                        "nationalite"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20, "memory" : 0 }, \
                         "date_naissance" : { "type" : "date", "mandatory" : 0 , "longueur" : 10}, \
-                        "fonction"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50, "memory" : 1 }, \
-                        "specialite"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50, "memory" : 1 }, \
+                        "fonction"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50, "memory" : 0 }, \
+                        "specialite"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50, "memory" : 0 }, \
                         "commentaire"    : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 0},
                         "association"    : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "numero_adherent": { "type" : "int", "mandatory" : 0 , "longueur" : 6 }, \
@@ -114,8 +114,7 @@ class Fiche(annuairedata.Data) :
         def civilite_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "civilite", "Civilite",
-enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "civilite", "Civilite", enreg, penreg, " ", dontchange = 0)
 
         def titre_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "titre", "Titre", 20, 20, "", enreg, penreg)

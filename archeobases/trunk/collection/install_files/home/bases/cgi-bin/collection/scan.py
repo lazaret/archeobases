@@ -36,7 +36,7 @@ class Scan(collectiondata.Data) :
         __champs__ = {
                         "identifiant"           : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
                         "m_type_materiel"       : { "type" : "text", "default" : "CT-SCAN",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
-                        "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
+                        "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 1 }, \
                         "m_nom_fossile"         : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_numero_inventaire"   : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
@@ -48,11 +48,11 @@ class Scan(collectiondata.Data) :
                         "m_espece"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_synonymes"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100 , "memory" : 0 }, \
                         "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
-                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4, "memory" : 0 }, \
+                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40, "memory" : 0 }, \
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
                         "m_nature"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
                         "m_scan_epaisseur_coupe": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
-                        "m_scan_nb_coupes"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
+                        "m_scan_nb_coupes"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
                         "m_scan_nb_plans_coupes": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 12 , "memory" : 0 }, \
                         "m_moul_orig"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
@@ -75,11 +75,11 @@ class Scan(collectiondata.Data) :
                            "m_nombre_exemplaires", "m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
-        __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_fossile","m_nom_site","m_numero_inventaire", \
+        __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_site","m_nom_fossile","m_numero_inventaire", \
                            "m_age_absolu","m_ville","m_pays","m_individu","m_genre","m_espece", \
-                           "m_description_anatomique","m_inventeur","m_nature","m_date","m_scan_epaisseur_coupe", \
-                           "m_scan_nb_coupes", "m_scan_nb_plans_coupes", "m_moul_orig", "m_observations", \
-                           "m_mots_clefs","m_nombre_exemplaires", "m_date_modif", "m_saisie","liens"]
+                           "m_description_anatomique","m_inventeur","m_nature","m_date", \
+                           "m_moul_orig","m_scan_nb_plans_coupes","m_scan_epaisseur_coupe","m_scan_nb_coupes", \
+                           "m_observations","m_mots_clefs","m_nombre_exemplaires", "m_date_modif", "m_saisie","liens"]
 
 
         __orderby__ = " ORDER BY identifiant ASC;"
@@ -207,7 +207,7 @@ class Scan(collectiondata.Data) :
 
         def m_scan_nb_coupes_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_scan_nb_coupes", "Nb. de coupes", 12, 12, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_scan_nb_coupes", "Nb. de coupes", 15, 15, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_scan_nb_plans_coupes_base_to_form(self, enreg, penreg = None) :

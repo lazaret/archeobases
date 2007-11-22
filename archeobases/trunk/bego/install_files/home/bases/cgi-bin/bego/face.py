@@ -357,7 +357,8 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                listedirections={"N":"N","NE":"NE","E":"E","SE":"SE","S":"S","SO":"SO","O":"O","NO":"NO"}
+                #listedirections={"N":"N","NE":"NE","E":"E","SE":"SE","S":"S","SO":"SO","O":"O","NO":"NO"}
+                listedirections={"N":"N","NE":"NE","E":"E","SE":"SE","S":"S","SW":"SW","W":"W","NW":"NW"}
                 afficheclefs.liste_deroulante(self.__doc__,  "direction", listedirections, enreg)
                 #self.__doc__.pop()
 
@@ -381,7 +382,9 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                listeorientations={"NS":"NS","EO":"EO","NESO":"NESO","NOSE":"NOSE"}
+                #Modifié pour ajouter des direction "inversées" à la demande des utilisateurs
+                #listeorientations={"NS":"NS","EO":"EO","NESO":"NESO","NOSE":"NOSE"}
+                listeorientations={"NS":"NS","SN":"SN","EW":"EW","WE":"WE","NESW":"NESW","SWNE":"SWNE","SENW":"SENW"}
                 afficheclefs.liste_deroulante(self.__doc__,  "orientation", listeorientations, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()

@@ -44,11 +44,11 @@ class Materiel(collectiondata.Data) :
                         "m_auteur"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date_acquisition"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
-                        "m_editeur"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_editeur"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100 , "memory" : 0 }, \
                         #"m_edition"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_date_edition"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_diffusion"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
-                        "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
+                        "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
                         "m_support"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_dimensions"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_echelle"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
@@ -232,7 +232,7 @@ class Materiel(collectiondata.Data) :
 
         def m_editeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_editeur", "Éditeur", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_editeur", "Éditeur", 100, 100, " ", enreg, penreg)
                 self.__doc__.pop()
 
         #def m_edition_base_to_form(self, enreg, penreg = None) :
@@ -252,7 +252,7 @@ class Materiel(collectiondata.Data) :
 
         def m_duree_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_duree", "Durée", 80, 80, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_duree", "Durée", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_support_base_to_form(self, enreg, penreg = None) :

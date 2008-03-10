@@ -56,7 +56,8 @@ page.push()
 page.tr()
 page.td(align = "center")
 
-bouton(page, "requetes", "sql")
+if collectionconf.utilisateur_courant not in collectionconf.visitorusers :
+        bouton(page, "requetes", "sql")
 if collectionconf.utilisateur_courant in collectionconf.superusers :
         bouton(page, "controle", "controles")
 page.a("Aide", href = collectionconf.site_location, target = "_top")

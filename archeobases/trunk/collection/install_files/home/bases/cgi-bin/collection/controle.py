@@ -41,8 +41,10 @@ page.td(align = "center")
 
 page.br()
 page.br()
-
-page.button(name="controle_collection", value="Modifier les contrôles",onclick='parent.bas.location="' + collectionconf.script_location("modcontrole_collection") + '"')
+if collectionconf.utilisateur_courant in collectionconf.superusers :
+    page.button(name="controle_collection", value="Modifier les contrôles",onclick='parent.bas.location="' + collectionconf.script_location("modcontrole_collection") + '"')
+else :
+    collectionconf.fatalerror_message("Vous n'avez pas l'autorisation d'accèder à cet écran")
 page.pop()
 page.output()
 

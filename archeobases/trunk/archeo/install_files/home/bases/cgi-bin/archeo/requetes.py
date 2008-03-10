@@ -312,7 +312,7 @@ if ruser:# in archeoconf.superusers :
                                                 for enregistrement in liste_valeurs :
                                                         texte = ""
                                                         for valeur in enregistrement :
-                                                                texte = texte + repr(valeur) + separateur
+                                                                texte = texte + str(valeur) + separateur
                                                         doc.insert_text(texte[:-1])
                                                 if master :
                                                         doc.insert_text("\n--" + endpart + "--\n")

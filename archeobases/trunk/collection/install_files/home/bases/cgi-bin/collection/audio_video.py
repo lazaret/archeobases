@@ -37,9 +37,9 @@ class Audio_video(collectiondata.Data) :
                         "m_auteur"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_support"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
-                        "m_editeur"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
+                        "m_editeur"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100 , "memory" : 0 }, \
                         "m_diffusion"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
-                        "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 6 , "memory" : 0 }, \
+                        "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \
                         "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
                         "m_mots_clefs"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 150 , "memory" : 0 }, \
                         "m_nombre_exemplaires"  : { "type" : "int",  "mandatory" : 0 , "longueur" : 2 , "memory" : 0 }, \
@@ -138,7 +138,7 @@ class Audio_video(collectiondata.Data) :
 
         def m_editeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_editeur", "Editeur / Production", 30, 30, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_editeur", "Editeur / Production", 100, 100, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_diffusion_base_to_form(self, enreg, penreg = None) :
@@ -148,7 +148,7 @@ class Audio_video(collectiondata.Data) :
 
         def m_duree_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_duree", "Duree", 6, 6, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_duree", "Duree", 10, 10, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :

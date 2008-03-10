@@ -165,13 +165,18 @@ base_courante = getBase()
 if base_courante not in config["bases"].keys() :
         fatalerror_message("Base temporairement inaccessible : travaux en cours...")
 
-if (utilisateur_courant not in config["bases"][base_courante]["admins"]) \
-   and (utilisateur_courant not in config["bases"][base_courante]["users"]) \
-   and (utilisateur_courant not in config["bases"][base_courante]["visitors"]) :
-        fatalerror_message("Accès non autorisé !!!")
-
 # Quels sont les superutilisateurs de cette base ?
 superusers   = config["bases"][base_courante]["admins"]
+####### Ajouté par bertrand ... gestion des droits vraiment nase ...
+# quel est l'utilisateur normal (ajout/supression/modif) ?
+normalusers = config["bases"][base_courante]["users"]
+# Qui est le visiteur (voir seulement les données) ?
+visitorusers = config["bases"][base_courante]["visitors"]
+
+if utilisateur_courant not in superusers \
+   and utilisateur_courant not in normalusers \
+   and utilisateur_courant not in visitorusers :
+        fatalerror_message("Accès non autorisé !!!")
 
 #
 # Emplacement des programmes et données de l'application
@@ -260,8 +265,13 @@ class Main(jahtml.CGI_document) :
                 self.default_header(titre)
 
         def dessine_cadre(self, menu, bas) :
-                ruser = utilisateur_courant
-                if (ruser not in config["bases"][base_courante]["admins"]) and (ruser not in config["bases"][base_courante]["users"]) :
+                if utilisateur_courant not in superusers \
+                and utilisateur_courant not in normalusers \
+                and utilisateur_courant not in visitorusers :
+                #ruser = utilisateur_courant
+                #if (ruser not in config["bases"][base_courante]["admins"]) \
+                #and (ruser not in config["bases"][base_courante]["users"]) \
+                #and (ruser not in config["bases"][base_courante]["visitors"]) :
                         self.set_redirect(script_location("bas"))
                 else :
                         self.frameset(rows="120,*", border="0")

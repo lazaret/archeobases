@@ -204,7 +204,7 @@ endpart = "rachelvaudron"
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
 doc=PageRequete("Requêtes SQL", "Requêtes SQL")
 ruser = doc.remote_user()
-if ruser:# in collectionconf.superusers :
+if ruser not in collectionconf.visitorusers :
         db = collectionconf.CollectionDataBase(debuglevel = 1)
         if (not form.has_key("nomrequete")) and (not form.has_key("requete")) :
                 doc.ecran_requetes(collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor,collectionconf.bas1_bgcolor)

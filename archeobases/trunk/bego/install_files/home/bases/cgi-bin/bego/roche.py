@@ -72,7 +72,7 @@ class Roche(begodata.Data) :
                         "z"           : { "type" : "decimal", "default" : 0,   "mandatory" : 0 }, \
                         "longueur"    : { "type" : "decimal", "default" : "0", "mandatory" : 0 }, \
                         "largeur"     : { "type" : "decimal", "default" : "0", "mandatory" : 0 }, \
-                        "epaisseur"   : { "type" : "decimal", "default" : "0", "mandatory" : 0 }, \
+                        "epaisseur"   : { "type" : "decimal", "default" : "", "mandatory" : 0 }, \
                         "nature"      : { "type" : "text",    "default" : "",  "mandatory" : 0 }, \
                         "type"        : { "type" : "text",    "default" : "",  "mandatory" : 0 }, \
                         "orientation" : { "type" : "text",    "default" : "",  "mandatory" : 0 }, \
@@ -141,9 +141,9 @@ class Roche(begodata.Data) :
                 self.__doc__.font(size=begoconf.font_size)
 
                 if enreg != None :
-                        self.__doc__.text(name = "nom", size = "50", maxlength = "50", value = enreg["nom"])
+                        self.__doc__.text(name = "nom", size = "60", maxlength = "60", value = enreg["nom"])
                 else :
-                        self.__doc__.text(name = "identite", size = "50", maxlength = "50", value = "")
+                        self.__doc__.text(name = "nom", size = "60", maxlength = "60", value = "")
                 self.__doc__.pop()
                 self.__doc__.pop()
 
@@ -282,7 +282,7 @@ class Roche(begodata.Data) :
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
 
-                listeorientation={"NS":"NS","EO":"EO","NESO":"NESO","NOSE":"NOSE"}
+                listeorientation={"NS":"NS","EW":"EW","NESW":"NESW","NWSE":"NWSE"}
                 afficheclefs.liste_deroulante(self.__doc__, "orientation", listeorientation, enreg)
 
         def remarquable_base_to_form(self, enreg, penreg = None) :

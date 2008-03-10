@@ -189,7 +189,7 @@ class Face(begodata.Data) :
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
-                listecouleurs={"B Blanc":"B","G Gris":"G","VE VErt":"VE","O Orange":"O","BR BRun":"BR","R Rouge":"R","VI VIolet":"VI","GO Gris Orangé":"GO","GR Gris Rouge":"GR","GVE Gris VErt":"GVE","GVI Gris VIolet":"GVI"}
+                listecouleurs={"B Blanc":"B","G Gris":"G","VE VErt":"VE","O Orange":"O","BR BRun":"BR","RO ROse":"RO","R Rouge":"R","VI VIolet":"VI","GO Gris Orangé":"GO","GR Gris Rouge":"GR","GVE Gris VErt":"GVE","GVI Gris VIolet":"GVI"}
                 afficheclefs.liste_deroulante(self.__doc__,  "couleur", listecouleurs, enreg)
                 self.__doc__.pop()
 
@@ -384,7 +384,7 @@ class Face(begodata.Data) :
                 self.__doc__.font(size=begoconf.font_size)
                 #Modifié pour ajouter des direction "inversées" à la demande des utilisateurs
                 #listeorientations={"NS":"NS","EO":"EO","NESO":"NESO","NOSE":"NOSE"}
-                listeorientations={"NS":"NS","SN":"SN","EW":"EW","WE":"WE","NESW":"NESW","SWNE":"SWNE","SENW":"SENW"}
+                listeorientations={"NS":"NS","SN":"SN","EW":"EW","WE":"WE","NWSE":"NWSE","NESW":"NESW","SWNE":"SWNE","SENW":"SENW"}
                 afficheclefs.liste_deroulante(self.__doc__,  "orientation", listeorientations, enreg)
                 self.__doc__.pop()
                 self.__doc__.pop()

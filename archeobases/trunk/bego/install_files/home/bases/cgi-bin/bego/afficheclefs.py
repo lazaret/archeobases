@@ -158,7 +158,7 @@ def display_roche(objet, enreg, penreg = None, alignement = "right") :
         objet.__doc__.insert_text(val)
         objet.__doc__.hidden(name = "roche", value = val)
     else:
-        objet.__doc__.text(name = "roche", size = "6", maxlength = "6")
+        objet.__doc__.text(name = "roche", size = "10", maxlength = "10")
     objet.__doc__.pop()
 
 

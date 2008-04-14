@@ -284,7 +284,7 @@ class Menu(jahtml.CGI_document) :
         def __init__(self, titre) :
                 jahtml.CGI_document.__init__(self)
                 self.default_header(titre)
-                self.body(bgcolor = menu_bgcolor, background = decor_location(menu_background))
+                self.body(bgcolor = menu_bgcolor, background = menu_background)
                 self.push()
                 self.div(align = "center")
 #                self.img(src = decor_location("logo_lazaret_transparent.jpg"), alt= "Collection", border=0)
@@ -294,7 +294,7 @@ class Controle(jahtml.CGI_document) :
         def __init__(self, titre) :
                 jahtml.CGI_document.__init__(self)
                 self.default_header(titre)
-                self.body(bgcolor = menu_bgcolor, background = decor_location(menu_background))
+                self.body(bgcolor = menu_bgcolor, background = menu_background)
                 self.push()
                 self.div(align = "center")
                 self.pop()
@@ -304,7 +304,7 @@ class Bas(jahtml.CGI_document) :
                 jahtml.CGI_document.__init__(self)
                 self.set_indentstring("")
                 self.default_header(titre)
-                self.body(bgcolor = bas_bgcolor, background = decor_location(bas_background))
+                self.body(bgcolor = bas_bgcolor, background = bas_background)
                 if soustitre != "" :
                         self.push()
                         self.div(align = "center")

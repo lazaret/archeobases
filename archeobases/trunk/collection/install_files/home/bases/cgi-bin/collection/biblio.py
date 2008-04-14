@@ -130,8 +130,8 @@ class Biblio(collectiondata.Data) :
                 self.__doc__.push()
                 self.__doc__.td()
                 self.__doc__.insert_text(" ")
-                #self.__doc__.pop()
-                afficheclefs.display_identifiant(self, enreg, penreg, 1)
+                # lenghtmax -> longueur maximale de la clef unique 'identifiant'
+                afficheclefs.display_identifiant(self, enreg, penreg, 1, lenghtmax =15)
                 self.__doc__.pop()
 
 ################################### En entrée ###########################

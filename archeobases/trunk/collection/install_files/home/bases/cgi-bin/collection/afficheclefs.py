@@ -308,7 +308,7 @@ def ajoute_ligne(objet, largeur, epaisseur, hauteur, nb) :
 ###################################
         # DISPLAY IDENTIFIANT
 ###################################
-def display_identifiant(objet, enreg, penreg = None, inc = 0, alignement = "left", col=1) :
+def display_identifiant(objet, enreg, penreg = None, inc = 0, lenghtmax =20, alignement = "left", col=1) :
         objet.__doc__.push()
         objet.__doc__.td(align=alignement, valign="middle", border="2", colspan=col, width="80")
         objet.__doc__.b()
@@ -324,26 +324,25 @@ def display_identifiant(objet, enreg, penreg = None, inc = 0, alignement = "left
                 if (objet.__form__["action"].value == "Nouveau" or objet.__form__["action"].value == "Nouvel" or objet.__form__["action"].value == "Nouvelle"):
                         if inc:
                                 try :
-                                        objet.__doc__.text(name = "identifiant", value = val, size = 20, maxlength = 40)
+                                        objet.__doc__.text(name = "identifiant", value = val, size = 20, maxlength = lenghtmax)
                                 except ValueError,msg :
                                         # ne devrait pas se produire
                                         collectionconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
                         else:
                                 try :
-                                        objet.__doc__.text(name = "identifiant", value = val, size = 20, maxlength = 15)
+                                        objet.__doc__.text(name = "identifiant", value = val, size = 20, maxlength = lenghtmax)
                                 except ValueError,msg :
                                         # ne devrait pas se produire
                                         collectionconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
                 elif (objet.__form__["action"].value == "Compter") :
-                #elif (objet.__form__["action"].value == "Chercher") or (objet.__form__["action"].value == "Compter") :
-                        objet.__doc__.text(name = "identifiant", value = val, size = 20, maxlength = 40)
+                        objet.__doc__.text(name = "identifiant", value = val, size = 20, maxlength = lenghtmax)
                 elif val :
                         objet.__doc__.insert_text(val)
                         objet.__doc__.hidden(name = "identifiant", value = val)
                 else :
-                        objet.__doc__.text(name = "identifiant", size = "20",maxlength = "40")
+                        objet.__doc__.text(name = "identifiant", size = 20, maxlength = lenghtmax)
         else :
-                objet.__doc__.text(name = "identifiant", size = "20",maxlength="40")
+                objet.__doc__.text(name = "identifiant", size = 20, maxlength=lenghtmax)
         objet.__doc__.pop()
 
 

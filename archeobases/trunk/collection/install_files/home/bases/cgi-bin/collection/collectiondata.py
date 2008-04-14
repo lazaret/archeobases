@@ -31,7 +31,6 @@ class Data :
                         self.__form__ = cgi.FieldStorage()
                         self.__db__ = collectionconf.CollectionDataBase()
                         self.__parent__ = self.__tablename__ # est son propre parent
-                        #self.__couleur__ = self.__color__
                 else :
                         # si ca ne vaut pas "bas" on considère que c'est
                         # une instance de la classe "parent"
@@ -60,7 +59,8 @@ class Data :
                         rebuiltform = {}
                         for f in fields :
                                 if self.__form__.has_key(f) :
-                                        rebuiltform[f] = self.__form__[f].value
+                                    # Modifie par bertrand , clef primaire(s) en majuscule
+                                    rebuiltform[f] = string.upper(self.__form__[f].value)
                         return urllib.urlencode(rebuiltform)
                 else :
                         return ""
@@ -71,11 +71,16 @@ class Data :
         def __getfield__(self, fieldname) :
                 """Renvoie la valeur d'un champ pour l'ecrire dans la base"""
                 if self.__form__.has_key(fieldname) and string.strip(str(self.__form__[fieldname].value)) :
-                        # le champ existe dans le formulaire
-                        value = self.__form__[fieldname].value
+                    # le champ existe dans le formulaire
+                        if fieldname == "identifiant" :
+                            # Mise de l'identifiant en majuscule
+                            value = string.upper(self.__form__[fieldname].value)
+                        else :
+                            # Les autres champs ne sont pas en majuscules
+                            value = self.__form__[fieldname].value
                 else :
-                        # le champ est vide ou n'est pas dans le formulaire => valeur par defaut
-                        # si il existe une valeur par defaut
+                    # le champ est vide ou n'est pas dans le formulaire => valeur par defaut
+                    # si il existe une valeur par defaut
                         if self.__champs__[fieldname].has_key("default") :
                                 value = self.__champs__[fieldname]["default"]
                         else :
@@ -252,8 +257,6 @@ class Data :
                         return 1
                 if table == None :
                         table = self.__tablename__
-
-                #query = "SELECT COUNT(*) FROM controle_%s WHERE %s=%s;" % (champ, champ, valeur)#MODIF MAJstring.upper(valeur))
                 query = "SELECT COUNT(*) FROM controle_%s WHERE %s=%s;" % (champ, champ, valeur)
                 res = self.__db__.query(query)
                 res = res.dictresult()
@@ -319,7 +322,6 @@ class Data :
                         # aucune de celles-ci à la requete de mise à jour.
                         # si on veut l'autoriser, il faut enlever le if ci-dessous
                         if champ not in primarykeys :
-                                # MODIF MAJ query = query + champ + "=" + string.upper(self.__getfield__(champ)) + ", "
                                 query = query + champ + "=" + (self.__getfield__(champ)) + ", "
                 query = query[:-2] + self.__createwhere__(primarykeys) + ";"
                 return query
@@ -345,11 +347,8 @@ class Data :
                                 query = query + `primarykeys[primarykey]`
                         query = query + ", "
                 for champ in self.__listechamps__ :
-                        #v = string.upper(self.__getfield__(champ))
                         v = (self.__getfield__(champ))
-                        self.__doc__.log_message("c: [%s] ===> [%s]" % (champ, v))
                         if self.exist_table_controle(champ) and self.__champs__[champ]["longueur"] != 0 :
-                                #if (self.__champs__[champ]["longueur"] and self.__champs__[champ]["longueur"]!=0) or self.__tablename == "photofaune" or self.__tablename == "photoindutrie":
                                 if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ
                                         ####TODO VERIFIER #####ATTENTION
                                         query = query + v + ", " # alors on verifie que la valeur cherchee s'y trouve bien
@@ -705,7 +704,6 @@ class Data :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
@@ -921,7 +919,7 @@ class Data :
                 self.__doc__.pop()
 
 ############################### CHAMP SAISIE TABLE ##############################
-        def champ_saisie_table(self, nom_table, liste_clefs, nom_champ, libelle,longueur, maxlongueur, titre, enreg, penreg):
+        def champ_saisie_table(self, nom_table, liste_clefs, nom_champ, libelle, longueur, maxlongueur, titre, enreg, penreg):
                 if titre != "":
                         self.__doc__.tr(align="right")
                         self.__doc__.push()
@@ -941,13 +939,13 @@ class Data :
                 self.__doc__.td(align="left", valign="middle")
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
                 if enreg != None :
-                        self.__doc__.insert_text(valeur)#contenu)#name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
+                        self.__doc__.insert_text(valeur)
                 else :
                         self.__doc__.text(name = nom_champ, size = longueur, maxlength = maxlongueur, value = "")
                 self.__doc__.pop()
 
 
-        def champ_nsaisie_table(self, nom_table, liste_clefs, nom_champ, libelle,longueur, maxlongueur, titre, col, enreg, penreg):
+        def champ_nsaisie_table(self, nom_table, liste_clefs, nom_champ, libelle, longueur, maxlongueur, titre, col, enreg, penreg):
                 if titre != "":
                         self.__doc__.tr(align="right")
                         self.__doc__.push()
@@ -964,7 +962,7 @@ class Data :
 
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
                 if enreg != None :
-                        self.__doc__.insert_text(valeur)#contenu)#name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
+                        self.__doc__.insert_text(valeur)
                 else :
                         self.__doc__.text(name = nom_champ, size = longueur, maxlength = maxlongueur, value = "")
                 self.__doc__.pop()

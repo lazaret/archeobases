@@ -35,7 +35,7 @@ class Biblio(collectiondata.Data) :
         #
         # tous les champs de la table proprietaire
         __champs__ = {
-                        "identifiant"     : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
+                        "identifiant"     : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 15, "memory" : 1}, \
                         "b_type_biblio"   : { "type" : "text", "default" : "",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "b_indice"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20}, \
                         "b_titre_ouvrage" : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 200}, \
@@ -109,6 +109,7 @@ class Biblio(collectiondata.Data) :
         def champ_verify(self, fieldname, value) :
                 # si la longueur de la valeur issue du formulaire est > a la longueur
                 # definie dans l'attribut longueur des champs
+                ##### NOTE je ne sais pas trop pourquoi Rachel a mis ce *2
                 if  (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"]*2)) :
                         return -1       # erreur
                 else :

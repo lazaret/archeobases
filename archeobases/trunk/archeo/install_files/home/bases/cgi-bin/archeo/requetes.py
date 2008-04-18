@@ -243,7 +243,7 @@ ruser = doc.remote_user()
 if ruser:# in archeoconf.superusers :
         db = archeoconf.ArcheoDataBase(debuglevel = 1)
         if (not form.has_key("nomrequete")) and (not form.has_key("requete")) :
-                doc.ecran_requetes(archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor)
+                doc.ecran_requetes(archeoconf.bas_bgcolor,archeoconf.bas1_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor)
                 #doc.ecran_requetes(archeoconf.bas_bgcolor,"#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC")
         else :
                 if form.has_key("nomrequete") and not form.has_key("lue") :
@@ -272,7 +272,7 @@ if ruser:# in archeoconf.superusers :
                 elif form.has_key("requete") :
                         quequette = string.strip(string.replace(form["requete"].value, "\r", ""))
                         #doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", requete = quequette)
-                        doc.ecran_requetes(archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor, requete = quequette)
+                        doc.ecran_requetes(archeoconf.bas_bgcolor,archeoconf.bas1_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor, requete = quequette)
                         
                         # la premiere alerte doit etre lancee assez tot pour
                         # que l'utilisateur ne s'impatiente pas

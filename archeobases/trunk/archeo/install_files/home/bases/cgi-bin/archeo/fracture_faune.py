@@ -26,7 +26,7 @@ class Fracture_Faune(archeodata.Data) :
         # le nom de la table
         __tablename__ = "fracture_faune"
         __new_record__ = "Nouvelle"
-        __color__ = archeoconf.bas_bgcolor
+        __color__ = archeoconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
         __champs__ = { 

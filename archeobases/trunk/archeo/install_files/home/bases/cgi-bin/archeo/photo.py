@@ -33,7 +33,7 @@ import archeodata
 class Photo(archeodata.Data) :
         #
         # les champs minimum de la table photoxx
-        __color__ = archeoconf.bas_bgcolor
+        __color__ = archeoconf.bas1_bgcolor
         __champs__ = { \
                         "idphoto" : { "type" : "seq", "default": "nextval('seq_idphoto')", "mandatory" : 1, "longueur" : 0}, \
                         "zone"    : { "type" : "text", "default": 0, "mandatory" : 1 ,"longueur" : 0}, \

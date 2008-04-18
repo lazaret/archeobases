@@ -63,7 +63,7 @@ page.br()
 page.td(align = "center", valign = "center")
 page.push()
 cpt = 0
-for chaine in ("i_forme_galet", "i_matiere","i_objet","i_patine","i_dpatine","i_alteration", "i_encroutement","i_pmycellium","i_eolisation","i_lustrage","i_roulage","i_action","i_desilicification","i_support"):
+for chaine in ("i_forme_galet", "i_support_originel", "i_objet", "i_matiere", "i_support", "i_patine", "i_dpatine", "i_alteration", "i_desilicification", "i_encroutement", "i_pmycellium", "i_action", "i_eolisation","i_lustrage","i_roulage"):
         if (cpt == 6 ) :
                 page.pop()
                 page.push()

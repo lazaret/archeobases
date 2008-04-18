@@ -61,22 +61,22 @@ class Industrie(archeodata.Data) :
         # le nom de la table
         __tablename__ = "industrie"
         __new_record__ = "Nouvelle"
-        __color__ = archeoconf.bas_bgcolor
+        __color__ = archeoconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
         __champs__ = { 
                         "zone"              : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
                         "numero"            : { "type" : "int", "default" : 0, "mandatory" : 1 , "longueur" : 6, "memory" : 1}, \
                         "bis"               : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
-                        "i_oa"              : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 3 }, \
-                        "i_ob"              : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 3 }, \
-                        "i_oc"              : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 3 }, \
-                        "i_poids"           : { "type" : "int", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
-                        "i_forme_galet"          : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
-                        "i_matiere"          : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
+                        "i_oa"              : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 3}, \
+                        "i_ob"              : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 3}, \
+                        "i_oc"              : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 3}, \
+                        "i_poids"           : { "type" : "int", "default" : 0, "mandatory" : 0, "longueur" : 5}, \
+                        "i_forme_galet"     : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
+                        "i_support_originel": { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
+                        "i_matiere"         : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "i_objet"           : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
-                        #"i_etat"           : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
-                        "i_patine"          : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 0 }, \
+                        "i_patine"          : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "i_dpatine"         : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "i_alteration"      : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "i_encroutement"    : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
@@ -84,10 +84,10 @@ class Industrie(archeodata.Data) :
                         "i_eolisation"      : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "i_lustrage"        : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "i_roulage"         : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
-                        "i_action"          : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur": 0}, \
+                        "i_action"          : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
                         "i_desilicification": { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0}, \
-                        "i_support"         : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 5},  
-                        "i_observation"     : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 0},  
+                        "i_support"         : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 5},
+                        "i_observation"     : { "type" : "text", "default" : "", "mandatory" : 0, "longueur" : 0},
                         }
         #
         # liste des tables enfants
@@ -99,11 +99,11 @@ class Industrie(archeodata.Data) :
         
         #
         # liste des seuls champs que l'on veut pouvoir modifier
-        __listechamps__ = ["zone", "numero", "bis", "i_poids", "i_matiere", "i_support", "i_objet" , "i_patine", "i_dpatine", "i_alteration", "i_encroutement", "i_pmycellium", "i_eolisation", "i_lustrage", "i_roulage", "i_action", "i_desilicification", "i_oa", "i_ob", "i_oc", "i_forme_galet", "i_observation"]
+        __listechamps__ = ["zone", "numero", "bis", "i_poids", "i_matiere", "i_support", "i_objet" , "i_patine", "i_dpatine", "i_alteration", "i_encroutement", "i_pmycellium", "i_eolisation", "i_lustrage", "i_roulage", "i_action", "i_desilicification", "i_oa", "i_ob", "i_oc", "i_forme_galet", "i_support_originel", "i_observation"]
 
         #
         # liste des champs dans leur ordre de saisie
-        __ordrechamps__ = ["zone", "numero", "bis", "nature", "x", "y", "zrelatif", "zabsolu", "zreference", "ensemble", "niveau", "sol", "couche", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "oa", "ob", "oc", "i_poids" , "i_forme_galet","i_objet", "i_matiere", "i_support","i_patine", "i_dpatine", "i_alteration", "i_desilicification", "i_encroutement", "i_pmycellium",  "i_action","i_eolisation", "i_lustrage", "i_roulage","i_observation", "composite"]
+        __ordrechamps__ = ["zone", "numero", "bis", "nature", "x", "y", "zrelatif", "zabsolu", "zreference", "ensemble", "niveau", "sol", "couche", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "oa", "ob", "oc", "i_poids" , "i_forme_galet", "i_support_originel", "i_objet", "i_matiere", "i_support","i_patine", "i_dpatine", "i_alteration", "i_desilicification", "i_encroutement", "i_pmycellium",  "i_action","i_eolisation", "i_lustrage", "i_roulage","i_observation", "composite"]
         __orderby__ = " ORDER BY zone, numero, bis ASC;"
 
         #
@@ -264,7 +264,7 @@ class Industrie(archeodata.Data) :
                 afficheclefs.champ_saisie(self, "i_ob", "Ob", 6, 20, "", enreg, penreg)
 
         def oc_base_to_form(self, enreg, penreg = None) :
-                liste_clefs = ["zone", "numero", "bis"]                
+                liste_clefs = ["zone", "numero", "bis"]
                 afficheclefs.champ_saisie(self, "i_oc", "Oc", 6, 20, "", enreg, penreg)
                 self.__doc__.pop()
 
@@ -274,6 +274,9 @@ class Industrie(archeodata.Data) :
 
         def i_forme_galet_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "i_forme_galet", "forme gal", enreg, penreg, "", dontchange = 0)
+
+        def i_support_originel_base_to_form(self, enreg, penreg = None) :
+                afficheclefs.champ_liste( self, "i_support_originel", "support orig.", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
 #
         def i_objet_base_to_form(self, enreg, penreg = None) :
@@ -313,7 +316,7 @@ class Industrie(archeodata.Data) :
 #
         def i_action_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "i_action", "action", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "i_action", "action thermique", enreg, penreg, " ", dontchange = 0)
                 
         def i_eolisation_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "i_eolisation", "eolisation", enreg, penreg, "", dontchange = 0)

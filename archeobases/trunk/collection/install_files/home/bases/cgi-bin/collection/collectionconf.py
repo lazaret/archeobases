@@ -38,7 +38,7 @@ copyright_font_size = "-3"
 
 #
 # Couleurs de fond des trois parties de l'écran ou None
-menu_bgcolor   = "#EAEAEA"
+menu_bgcolor   = "#FFFFFF"
 gauche_bgcolor = "#EAEAEA"
 bas_bgcolor    = "#EAEAEA"
 bas1_bgcolor   = "#A3B3C4" #96ADC4"

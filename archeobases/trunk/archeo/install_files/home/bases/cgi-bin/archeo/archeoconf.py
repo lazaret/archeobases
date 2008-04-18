@@ -84,10 +84,10 @@ copyright_font_size = "-3"
 
 #
 # Couleurs de fond des trois parties de l'écran ou None
-menu_bgcolor   = "#FFFFFF" #GRIS
+menu_bgcolor   = "#FFFFFF"
 gauche_bgcolor = "#E1DCD6"#"#CCCCCC" #GRIS menu carnet
-bas_bgcolor    = "#E1DCD6"#"#CCCCCC" #GRIS
-bas1_bgcolor   = "#B8AF80"   #"#FFFFE1" #JAUNE PALE
+bas_bgcolor    = "#FFFFFF"#"#CCCCCC" #GRIS
+bas1_bgcolor   = "#E1DCD6"   #"#FFFFE1" #JAUNE PALE
 bas2_bgcolor   = "#CFC4BE"#"#A19B9B"    #"#CEFFF8" #BLEU CIEL"#E5FFFF"
 bas3_bgcolor   = "#F3EEEE"      #"#FFEDFF"      #ROSE PALE
 bas4_bgcolor   = "#E1DCD6"#"#F3EEEE"#"#A19B9B"#""#E4DFD0"#"#988D86"     #"#FFE5CB"      #COQUILLE PALE
@@ -97,8 +97,8 @@ lien_enfant_bgcolor = "#3333FF" #ROUGE
 #
 # Images de fond des trois parties de l'écran ou None
 menu_background   = "#FFFFFF"#"logo_lazaret.jpg"#"spirebleue.jpg"#"spirale.jpg"
-gauche_background = "logo_lazaret_grave.jpg"#"spirebleue.jpg"#"spirale.jpg"
-bas_background    = "logo_lazaret_clair_moyen.jpg"#"spirebleue.jpg"#"spirale.jpg"
+gauche_background = "#FFFFFF"#"spirebleue.jpg"#"spirale.jpg"
+bas_background    = "#FFFFFF"#"spirebleue.jpg"#"spirale.jpg"
 
 #
 # couleurs de fond des formulaires de chaque partie de l'écran

@@ -50,41 +50,43 @@ page.tr()
 
 page.push()
 page.td()
-page.table(border= "0")# , bgcolor = collectionconf.menu_bgcolor)
+page.table(border= "0")
 page.form(method="POST")
 page.push()
 page.tr()
 page.td(align = "center")
+bouton(page, "modbiblio", "bibliographie") #1
+bouton(page, "modmateriel", "materiel") #2
+bouton(page, "modanthropologie", "anthropologie") #3
+bouton(page, "modfaune_comparaison", "faune_comparaison") #4
+bouton(page, "modmoulages", "moulages") #5
+bouton(page, "modscan", "scan") #6
+bouton(page, "modaudio_video", "audio_video") #7
+bouton(page, "modvue", "vue") #8
+page.pop()
+
+page.tr()
+page.td(align = "center")
+bouton(page, "moddessin", "dessin") #9
+bouton(page, "modreleve", "releve") #10
+bouton(page, "modcarte", "carte") #11
+
+bouton(page, "modassociation", "association") #12
 
 if collectionconf.utilisateur_courant not in collectionconf.visitorusers :
-        bouton(page, "requetes", "sql")
+        bouton(page, "requetes", "sql") #13
 if collectionconf.utilisateur_courant in collectionconf.superusers :
-        bouton(page, "controle", "controles")
-page.a("Aide", href = collectionconf.site_location, target = "_top")
-page.a("Déconnexion", href =  "/cgi-bin/collection.py?base=aucune", target = "_top")
+        bouton(page, "controle", "controles") #14
+
+page.push()
+page.a(href = collectionconf.site_location, target = "_top")
+page.img(src=collectionconf.decors_location + "aide.jpg", border=0) #15
+page.pop()
+page.push()
+page.a(href =  "/cgi-bin/collection.py?base=aucune", target = "_top")
+page.img(src=collectionconf.decors_location + "deconnexion.jpg", border=0) #16
 page.pop()
 
-page.tr()
-page.td(align = "center")
-bouton(page, "modbiblio", "bibliographie")
-bouton(page, "modassociation", "association")
-bouton(page, "modmateriel", "materiel")
-bouton(page, "modanthropologie", "anthropologie")
-bouton(page, "modfaune_comparaison", "faune_comparaison")
-bouton(page, "modsepulture", "sepulture")
-page.pop()
-
-page.tr()
-page.td(align = "center")
-bouton(page, "modmoulage_sol", "moulage_sol")
-bouton(page, "modmoulage_objet", "moulage_objet")
-bouton(page, "modscan", "scan")
-bouton(page, "modaudio_video", "audio_video")
-bouton(page, "modvue", "vue")
-bouton(page, "moddessin", "dessin")
-bouton(page, "modreleve", "releve")
-bouton(page, "modcarte", "carte")
-page.pop()
 
 petit_logo(page, collectionconf.petit_logo_bas, collectionconf.petit_logo_bas_link)
 

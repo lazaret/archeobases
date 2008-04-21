@@ -14,8 +14,8 @@
 
 
 import collectionconf
-import moulage_objet
+import moulages
 
 
-moulage_objet.Moulage_objet("bas").traite_saisie(["identifiant"])
+moulages.Moulages("bas").traite_saisie(["identifiant"])
 

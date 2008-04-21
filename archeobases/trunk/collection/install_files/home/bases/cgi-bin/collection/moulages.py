@@ -21,38 +21,37 @@ import afficheclefs
 import re
 
 
-## Moulage_sol class
+## Moulage_objet class
 #
 
-class Moulage_sol(collectiondata.Data) :
+class Moulages(collectiondata.Data) :
         #
         # le nom de la table
-        __tablename__ = "moulage_sol"
+        __tablename__ = "moulages"
         __new_record__ = "Nouveau"
         __color__ = collectionconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
         __champs__ = {
                         "identifiant"           : { "type" : "text", "default" : 0,   "mandatory" : 1 , "longueur" : 20, "memory" : 1}, \
-                        "m_type_materiel"       : { "type" : "text", "default" : "MOULAGE_SOL",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
+                        "m_type_materiel"       : { "type" : "text", "default" : "",  "mandatory" : 1 , "longueur" : 0 , "memory" : 1 }, \
                         "m_type_support"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
-                        "m_etagere"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_nom_familier"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
                         "m_nom_site"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_age_absolu"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
-                        "m_ville"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 20 , "memory" : 0 }, \
+                        "m_ville"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
+                        "m_region"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
                         "m_pays"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40 , "memory" : 0 }, \
+                        "m_periode_culturelle"  : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_individu"            : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 3 , "memory" : 0 }, \
                         "m_depot_original"      : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
                         "m_description_anatomique": { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 300 , "memory" : 0 }, \
                         "m_date_decouverte"     : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
-                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4, "memory" : 0 }, \
-                        "m_nature"              : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 15 , "memory" : 0 }, \
-                        "m_origine"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
+                        "m_inventeur"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 40, "memory" : 0 }, \
+                        "m_origine"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
                         "m_date_acquisition"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 4 , "memory" : 0 }, \
                         "m_depot_moule"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 50 , "memory" : 0 }, \
                         "m_observations"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
-                        "m_bibliographie"       : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 500 , "memory" : 0 }, \
                         "m_mots_clefs"          : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 150 , "memory" : 0 }, \
                         "m_nombre_exemplaires"  : { "type" : "int",  "mandatory" : 0 , "longueur" : 2 , "memory" : 0 }, \
                         "m_date_modif"          : { "type" : "date", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
@@ -62,27 +61,27 @@ class Moulage_sol(collectiondata.Data) :
         # liste des tables enfants
         __listenfants__   = []
         __listeclefs__    = ["identifiant"]
-        __vraiparent__    = "moulage_sol"
+        __vraiparent__    = "moulages"
 
         # liste des seuls champs que l'on veut pouvoir modifier
-        __listechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_familier","m_nom_site", \
-                           "m_age_absolu","m_ville","m_pays","m_individu", \
-                           "m_depot_original","m_description_anatomique","m_date_decouverte","m_inventeur", \
-                           "m_nature","m_origine","m_date_acquisition","m_depot_moule","m_observations", \
-                           "m_mots_clefs","m_nombre_exemplaires","m_date_modif"]
+        __listechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_nom_familier", "m_nom_site", \
+                           "m_age_absolu", "m_ville", "m_region", "m_pays", "m_periode_culturelle", "m_individu", \
+                           "m_depot_original", "m_description_anatomique", "m_date_decouverte", "m_inventeur", \
+                           "m_origine", "m_date_acquisition", "m_depot_moule", "m_observations", \
+                           "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif"]
 
         # liste des champs dans leur ordre de saisie
-        __ordrechamps__ = ["identifiant","m_type_materiel","m_type_support","m_nom_familier","m_nom_site", \
-                           "m_age_absolu","m_ville","m_pays","m_individu", \
-                           "m_depot_original","m_description_anatomique","m_date_decouverte","m_inventeur", \
-                           "m_nature","m_origine","m_date_acquisition","m_depot_moule","m_observations", \
-                           "m_mots_clefs","m_nombre_exemplaires","m_date_modif","m_saisie","liens"]
+        __ordrechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_nom_familier", "m_nom_site", \
+                           "m_age_absolu", "m_ville", "m_region", "m_pays", "m_periode_culturelle", "m_individu", \
+                           "m_depot_original", "m_description_anatomique", "m_date_decouverte", "m_inventeur", \
+                           "m_origine", "m_date_acquisition", "m_depot_moule", "m_observations", \
+                           "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif", "m_saisie", "liens"]
 
         __orderby__ = " ORDER BY identifiant ASC;"
 
         #
         # liste des formulaires supplementaires
-        __formsupp__ = []#"photomateriel"]
+        __formsupp__ = []
 
         def identifiant_verify(self, fieldname, value) :
                 if (value == '') or self.champ_verify(fieldname, value) :
@@ -112,7 +111,7 @@ class Moulage_sol(collectiondata.Data) :
                 self.__doc__.push()
                 self.__doc__.td()
                 self.__doc__.insert_text(" ")
-                afficheclefs.display_identifiant(self, enreg, penreg, 1)
+                afficheclefs.display_identifiant(self, enreg, penreg, 1, lenghtmax =15)
                 self.__doc__.pop()
 
 ################################### En entrée ###########################
@@ -120,12 +119,12 @@ class Moulage_sol(collectiondata.Data) :
         def m_type_materiel_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_liste( self, "m_type_materiel", "Type materiel", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_materiel", "Type de materiel", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_type_support_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_type_support", "Type support", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_liste( self, "m_type_support", "Type de support", enreg, penreg, " ", dontchange = 0)
                 self.__doc__.pop()
 
         def m_nom_familier_base_to_form(self, enreg, penreg = None) :
@@ -135,7 +134,7 @@ class Moulage_sol(collectiondata.Data) :
 
         def m_nom_site_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nom_site", "Site", 40, 40, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nom_site", "Nom du site", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_age_absolu_base_to_form(self, enreg, penreg = None) :
@@ -145,12 +144,22 @@ class Moulage_sol(collectiondata.Data) :
 
         def m_ville_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_ville", "Ville", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_ville", "Ville", 40, 40, " ", enreg, penreg)
+                self.__doc__.pop()
+
+        def m_region_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie(self, "m_region", "Région", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_pays_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_pays", "Pays", 20, 20, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_pays", "Pays", 40, 40, " ", enreg, penreg)
+                self.__doc__.pop()
+
+        def m_periode_culturelle_base_to_form(self, enreg, penreg = None) :
+                self.__doc__.push()
+                afficheclefs.champ_saisie(self, "m_periode_culturelle", "Période culturelle", 80, 80, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_individu_base_to_form(self, enreg, penreg = None) :
@@ -166,29 +175,24 @@ class Moulage_sol(collectiondata.Data) :
         def m_description_anatomique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie_area(self, "m_description_anatomique", "Description", 3, 80, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_description_anatomique", "Description anatomique", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_decouverte_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date découverte", 4, 4, "DECOUVERTE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_date_decouverte", "Date de découverte", 4, 4, "DECOUVERTE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_inventeur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_inventeur", "Inventeur", 20, 20, " ", enreg, penreg)
-                self.__doc__.pop()
-
-        def m_nature_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()
-                afficheclefs.champ_liste( self, "m_nature", "Nature", enreg, penreg, " ", dontchange = 0)
+                afficheclefs.champ_saisie(self, "m_inventeur", "Inventeur", 40, 40, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_origine_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie(self, "m_origine", "Origine moulage", 50, 50, "MOULAGE", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_origine", "Origine du moulage", 50, 50, "MOULAGE", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_acquisition_base_to_form(self, enreg, penreg = None) :
@@ -203,7 +207,7 @@ class Moulage_sol(collectiondata.Data) :
 
         def m_observations_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 80, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
@@ -213,7 +217,7 @@ class Moulage_sol(collectiondata.Data) :
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb d'exemplaires sup", 6, 6, " ", enreg, penreg)
+                afficheclefs.champ_saisie(self, "m_nombre_exemplaires", "Nb. d'exemplaires sup.", 2, 2, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_modif_base_to_form(self, enreg, penreg = None) :
@@ -261,8 +265,6 @@ class Moulage_sol(collectiondata.Data) :
                                 self.__doc__.push()
                                 self.__doc__.td(clign = "center", colspan="3")
                                 self.__doc__.font(size=collectionconf.font_size)
-                                #self.__doc__.insert_text(valeur[k]['identifiant_2'])
-                                #valeur['identifiant_2'] = enreg['identifiant']
                                 dico['identifiant'] = valeur[k]['identifiant_2']
                                 #TOTO: faire requete pour connaitre le nom de la table correspondante
                                 query_count_biblio = "SELECT COUNT(*) FROM biblio WHERE identifiant=" \
@@ -373,7 +375,7 @@ class Moulage_sol(collectiondata.Data) :
 ##############################################################################
 
         def modifier(self) :
-                """Met a jour le moulage_sol courant"""
+                """Met a jour le moulage_objet courant"""
                 self.__db__.query(self.make_update_query(["identifiant"],"materiel"))
                 i = self.__form__["identifiant"].value
                 update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
@@ -381,10 +383,7 @@ class Moulage_sol(collectiondata.Data) :
                 return 0
 
         def supprimer(self) :
-               # s'il existe des figures ou des photos sur ce moulage_sol on refuse la suppression
-                #if self.exist(["identifiant"], table = "l") :
-                #        return -1
-                #else :
+               # s'il existe des figures ou des photos sur ce moulage_objet on refuse la suppression
                 i = self.__form__["identifiant"].value
                 delete_association = "DELETE FROM association WHERE identifiant_1='" + i + "';"
                 self.__db__.query(delete_association)
@@ -399,17 +398,17 @@ class Moulage_sol(collectiondata.Data) :
                 except :
                         collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
 
-                # on efface le moulage_sol
+                # on efface le moulage_objet
                 self.delete_records(["identifiant"],"materiel")
                 return 0
 
         def creer(self) :
-                # si le moulage_sol n'existe pas déjà alors on la crée, sinon on refuse
+                # si le moulage_objet n'existe pas déjà alors on la crée, sinon on refuse
                 if self.exist(["identifiant"], table = "materiel") :
                         primarykeys = { "identifiant": None}
                         return (-1, primarykeys)
                 else :
-                        # on insère maintenant le moulage_sol dans la base
+                        # on insère maintenant le moulage_objet dans la base
                         i = self.__form__["identifiant"].value
                         self.__db__.query(self.make_insert_query({},"materiel"))
                         primarykeys = { "identifiant" : i}

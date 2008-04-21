@@ -292,7 +292,7 @@ class Menu(jahtml.CGI_document) :
                 self.body(bgcolor = menu_bgcolor, background = decor_location(menu_background))
                 self.push()
                 self.div(align = "center")
-                self.img(src = decor_location("logobego.gif"), alt="Mont Bego", border=0)
+                self.img(src = decor_location("logo_bego.jpg"), alt="Mont Bego", border=0)
                 self.pop()
 
 class Bas(jahtml.CGI_document) :

@@ -32,7 +32,7 @@ mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160
 
 #
 # Message de copyright
-copyright_msg       = "Archeobases-Collection &copy; 2006-2007 " + author_name
+copyright_msg       = "Archeobases-Collection &copy; 2006-2008 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
@@ -40,28 +40,28 @@ copyright_font_size = "-3"
 # Couleurs de fond des trois parties de l'écran ou None
 menu_bgcolor   = "#FFFFFF"
 gauche_bgcolor = "#EAEAEA"
-bas_bgcolor    = "#EAEAEA"
-bas1_bgcolor   = "#A3B3C4" #96ADC4"
+bas_bgcolor    = "#FFFFFF" # arrière plan de la partie basse
+bas1_bgcolor   = "#DDFFCC" # partie centrale du formulaire du bas
 bas2_bgcolor   = "#FFF8CE"
 bas3_bgcolor   = "#F3EEEE"
 bas4_bgcolor   = "#E1DCD6"
-lien_parent_bgcolor = "#FF0000" #JAUNE
-lien_enfant_bgcolor = "#3333FF" #ROUGE
+lien_parent_bgcolor = "#FF0000"
+lien_enfant_bgcolor = "#3333FF"
 
 #
 # Images de fond des trois parties de l'écran ou None
-menu_background   = "#FFFFFF"#"logo_lazaret.jpg"#"spirebleue.jpg"#"spirale.jpg"
-gauche_background = "#FFFFFF"#"logo_lazaret_grave.jpg"#"spirebleue.jpg"#"spirale.jpg"
-bas_background    = "#FFFFFF"#logo_lazaret_clair_moyen.jpg"#"spirebleue.jpg"#"spirale.jpg"
+menu_background   = None
+gauche_background = None
+bas_background    = None
 
 #
 # couleurs de fond des formulaires de chaque partie de l'écran
 menuform_bgcolor      = "#96ADC4"
-basform_bgcolorleft   = "#FFFFCC" #jaune partie centrale du formulaire
-basform_bgcolorright  = "#DFDFDF"#CCCAE5" #gris menu_droite
-basform_bgcolormiddle = "#DDDDDD"#F1E560" #gris   marron-vert"#BOCCAF"#"#DAC2C7"
+basform_bgcolorleft   = "#FFFFCC"
+basform_bgcolorright  = "#CCFF99" # menu de droite des formulaires
+basform_bgcolormiddle = "#DDDDDD" #
 basform_bgcolorbottom = "#CCCCCC"
-basform_bgcolorcenter = "#CCCCCC" #vert "#EDFOA4" # jaune
+basform_bgcolorcenter = "#CCCCCC" #
 
 #
 # Logos

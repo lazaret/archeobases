@@ -18,7 +18,6 @@ import collectiondata
 import sys
 import string
 import cgi
-#import cgifuncs
 import os
 
 
@@ -34,12 +33,6 @@ def getCharsetPreference() :
     charsets = os.environ.get("HTTP_ACCEPT_CHARSET", "UTF-8")
     charsets = [l.strip().split(';')[0] for l in charsets.split(",")]
     return charsets[0]
-
-
-#cgi.test()
-#
-# Fonctions pour afficher les clefs toujours de la meme maniere
-#
 
 
 def form_to_enreg(form) :

@@ -436,7 +436,7 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")#, bgcolor=archeoconf.menu_bgcolor)
+                self.__doc__.table(border = "2", cellpadding = "5", cellspacing = "5")#, bgcolor=archeoconf.menu_bgcolor)
 
                 if enreg :
                         self.__doc__.push()

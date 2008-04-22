@@ -78,36 +78,36 @@ mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160
 
 #
 # Message de copyright
-copyright_msg       = "ARCHEO &copy; 2000-2006 " + author_name
+copyright_msg       = "ARCHEO &copy; 2000-2008 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
 #
 # Couleurs de fond des trois parties de l'écran ou None
 menu_bgcolor   = "#FFFFFF"
-gauche_bgcolor = "#E1DCD6"#"#CCCCCC" #GRIS menu carnet
-bas_bgcolor    = "#FFFFFF"#"#CCCCCC" #GRIS
-bas1_bgcolor   = "#E1DCD6"   #"#FFFFE1" #JAUNE PALE
-bas2_bgcolor   = "#CFC4BE"#"#A19B9B"    #"#CEFFF8" #BLEU CIEL"#E5FFFF"
-bas3_bgcolor   = "#F3EEEE"      #"#FFEDFF"      #ROSE PALE
-bas4_bgcolor   = "#E1DCD6"#"#F3EEEE"#"#A19B9B"#""#E4DFD0"#"#988D86"     #"#FFE5CB"      #COQUILLE PALE
-lien_parent_bgcolor = "#FF0000" #JAUNE
-lien_enfant_bgcolor = "#3333FF" #ROUGE
+gauche_bgcolor = "#E1DCD6" #
+bas_bgcolor    = "#FFFFFF" #
+bas1_bgcolor   = "#E1DCD6" #
+bas2_bgcolor   = "#CFC4BE" #
+bas3_bgcolor   = "#F3EEEE" #
+bas4_bgcolor   = "#E1DCD6" #
+lien_parent_bgcolor = "#FF0000" #
+lien_enfant_bgcolor = "#3333FF" #
 
 #
 # Images de fond des trois parties de l'écran ou None
-menu_background   = "#FFFFFF"#"logo_lazaret.jpg"#"spirebleue.jpg"#"spirale.jpg"
-gauche_background = "#FFFFFF"#"spirebleue.jpg"#"spirale.jpg"
-bas_background    = "#FFFFFF"#"spirebleue.jpg"#"spirale.jpg"
+menu_background   = None
+gauche_background = None
+bas_background    = None
 
 #
 # couleurs de fond des formulaires de chaque partie de l'écran
-menuform_bgcolor      = "#CCCAE5" #violet
-basform_bgcolorleft   = "#FFFFCC" #jaune partie centrale du formulaire
-basform_bgcolorright  = "#DFDFDF"#CCCAE5" #gris menu_droite
-basform_bgcolormiddle = "#DDDDDD"#F1E560" #gris   marron-vert"#BOCCAF"#"#DAC2C7"
+menuform_bgcolor      = "#CCCAE5" #
+basform_bgcolorleft   = "#FFFFCC" #
+basform_bgcolorright  = "#DFDFDF" # menu_droite
+basform_bgcolormiddle = "#DDDDDD" #
 basform_bgcolorbottom = "#CCCCCC"
-basform_bgcolorcenter = "#CCCCCC" #vert "#EDFOA4" # jaune
+basform_bgcolorcenter = "#CCCCCC" #
 
 #
 # Logos
@@ -210,13 +210,19 @@ base_courante = getBase()
 if base_courante not in config["bases"].keys() :
         fatalerror_message("Base temporairement inaccessible : travaux en cours...")
 
-if (utilisateur_courant not in config["bases"][base_courante]["admins"]) \
-   and (utilisateur_courant not in config["bases"][base_courante]["users"]) \
-   and (utilisateur_courant not in config["bases"][base_courante]["visitors"]) :
-        fatalerror_message("Accès non autorisé !!!")
-
 # Quels sont les superutilisateurs de cette base ?
 superusers   = config["bases"][base_courante]["admins"]
+####### Ajouté par bertrand ... gestion des droits vraiment nase ...
+# quel est l'utilisateur normal (ajout/supression/modif) ?
+normalusers = config["bases"][base_courante]["users"]
+# Qui est le visiteur (voir seulement les données) ?
+visitorusers = config["bases"][base_courante]["visitors"]
+
+if utilisateur_courant not in superusers \
+   and utilisateur_courant not in normalusers \
+   and utilisateur_courant not in visitorusers :
+        fatalerror_message("Accès non autorisé !!!")
+
 
 #
 # Emplacement des programmes et données de l'application
@@ -305,8 +311,9 @@ class Main(jahtml.CGI_document) :
                 self.default_header(titre)
 
         def dessine_cadre(self, menu, bas) :
-                ruser = utilisateur_courant
-                if (ruser not in config["bases"][base_courante]["admins"]) and (ruser not in config["bases"][base_courante]["users"]) :
+                if utilisateur_courant not in superusers \
+                and utilisateur_courant not in normalusers \
+                and utilisateur_courant not in visitorusers :
                         self.set_redirect(script_location("bas"))
                 else :
                         self.frameset(rows="120,*", border="0")
@@ -314,6 +321,7 @@ class Main(jahtml.CGI_document) :
                         self.frame(name="menu", src=menu, scrolling="no")
                         self.pop()
                         self.frame(name="bas", src=bas)
+
 
 class Menu(jahtml.CGI_document) :
         def __init__(self, titre) :

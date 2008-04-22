@@ -57,13 +57,11 @@ page.push()
 page.tr()
 page.td(align = "center")
 
-#page.push()
-#page.a(href='parent.bas.location="'+ archeoconf.script_location("modcarnet")        + '"')
-#page.img(src=archeoconf.decors_location + "carnet.jpg", border=0) 
-#page.pop()
 
 bouton(page, "modcarnet", "carnet")
-bouton(page, "requetes", "sql")
+
+if archeoconf.utilisateur_courant not in archeoconf.visitorusers :
+        bouton(page, "requetes", "sql") #13
 
 if archeoconf.utilisateur_courant in archeoconf.superusers :
         bouton(page, "controle", "controles")

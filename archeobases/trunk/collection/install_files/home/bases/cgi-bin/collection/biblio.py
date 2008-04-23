@@ -147,17 +147,17 @@ class Biblio(collectiondata.Data) :
 
         def b_titre_ouvrage_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_titre_ouvrage", "Titre de l'ouvrage", 2, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_titre_ouvrage", "Titre de l'ouvrage", 2, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_auteur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_auteur", "Auteur(s)", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_auteur", "Auteur(s)", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_titre_article_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_titre_article", "Titre de l'article", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_titre_article", "Titre de l'article", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_titre_periodique_base_to_form(self, enreg, penreg = None) :
@@ -242,7 +242,7 @@ class Biblio(collectiondata.Data) :
 
         def b_description_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_description", "Description", 5, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_description", "Description", 5, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def nb_exemplaires_base_to_form(self, enreg, penreg = None) :
@@ -262,12 +262,12 @@ class Biblio(collectiondata.Data) :
 
         def b_resume_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_resume", "Résumé", 5, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_resume", "Résumé", 5, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "b_mots_clefs", "Mots clefs", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "b_mots_clefs", "Mots clefs", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def b_url_base_to_form(self, enreg, penreg = None) :

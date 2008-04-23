@@ -172,7 +172,7 @@ class Vue(collectiondata.Data) :
         def m_description_anatomique_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                afficheclefs.champ_saisie_area(self, "m_description_anatomique", "Description", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_description_anatomique", "Description", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_date_base_to_form(self, enreg, penreg = None) :
@@ -197,12 +197,12 @@ class Vue(collectiondata.Data) :
 
         def m_observations_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_observations", "Observations", 2, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_mots_clefs_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 100, 5, " ", enreg, penreg)
+                afficheclefs.champ_saisie_area(self, "m_mots_clefs", "Mots Clefs", 3, 80, 5, " ", enreg, penreg)
                 self.__doc__.pop()
 
         def m_nombre_exemplaires_base_to_form(self, enreg, penreg = None) :

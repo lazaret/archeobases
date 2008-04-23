@@ -98,7 +98,7 @@ class PageRequete(collectionconf.Bas) :
         def ecran_requetes(self, coulfond, coultete, coulhaut, coulpartie, coulmenu, requete = "") :
                 self.center()
                 self.push()
-                self.table(border = "10")
+                self.table(border = 1, cellpadding = 0, cellspacing =5)
                 self.push()
                 self.tr( bgcolor = coultete )
                 self.th("Saisissez votre requête")

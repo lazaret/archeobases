@@ -15,7 +15,6 @@
 
 import collectionconf
 import biblio
-#cgi.test()
 
-biblio.Biblio("bas").traite_saisie(["identifiant"])#, parent = collectionconf.getparent())
+biblio.Biblio("bas").traite_saisie(["identifiant"])
 

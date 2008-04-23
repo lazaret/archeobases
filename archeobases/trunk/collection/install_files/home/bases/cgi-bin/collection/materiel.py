@@ -45,7 +45,6 @@ class Materiel(collectiondata.Data) :
                         "m_date"                : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 0 , "memory" : 0 }, \
                         "m_date_acquisition"    : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_editeur"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 100 , "memory" : 0 }, \
-                        #"m_edition"             : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_date_edition"        : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 80 , "memory" : 0 }, \
                         "m_diffusion"           : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 30 , "memory" : 0 }, \
                         "m_duree"               : { "type" : "text", "default" : "",  "mandatory" : 0 , "longueur" : 10 , "memory" : 0 }, \

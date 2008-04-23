@@ -92,7 +92,8 @@ def main(arguments) :
             mustclose = 1
         try :
             try :
-                champs = infile.readline().strip().split(",")
+                separateur_donnees = ","
+                champs = infile.readline().strip().split(separateur_donnees)
                 indicechamps = {}
                 for i in range(len(champs)) :
                     indicechamps[champs[i]] = i
@@ -110,7 +111,7 @@ def main(arguments) :
                 lines = infile.readlines()
                 for indice in range(len(lines)) :
                     line = lines[indice]
-                    valeurs = line.strip().split(",")
+                    valeurs = line.strip().split(separateur_donnees)
                     if len(valeurs) != len(champs) :
                         continue # saute la ligne invalide
 

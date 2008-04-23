@@ -20,18 +20,9 @@ import collectionconf
 import afficheclefs
 import collectiondata
 
-#cgi.test()
-
-#def liste_multiple(doc, nom, valeurs, param) :
-#        doc.push()
-#        doc.select_multiple(name = nom, size = 4 )
-#        for a in valeurs :
-#                doc.option(a[param], value = a[param])
-#        doc.pop()
 
 def enlever(database, form, liste, param) :
         query = "DELETE FROM controle_" + param + " WHERE "
-        #string.split(liste)
         for a in liste :
                 query = query + param + " = %s OR " % (database.quote(a,"text"))
         query = query[:-4] + ";"
@@ -47,11 +38,14 @@ def recupere_liste(nomliste) :
         return liste
 
 def ajouter(database, form, param) :
-        query   = "INSERT INTO controle_" + param + " (" + param + ",description) VALUES ('" + form["modif_param"].value + "','" + form["modif_description"].value + "');"
+        modif_param = database.quote(form["modif_param"].value, "text")
+        modif_description = database.quote(form["modif_description"].value, "text")
+        query   = "INSERT INTO controle_" + param + " (" + param + ",description) VALUES (" + modif_param + "," + modif_description + ");"
         return database.query(query)
 
 def ajouter_param(database, form, param) :
-        query   = "INSERT INTO controle_" + param + " (" + param + ") VALUES ('" + form["modif_param"].value + "');"
+        modif_param = database.quote(form["modif_param"].value, "text")
+        query   = "INSERT INTO controle_" + param + " (" + param + ") VALUES (" + modif_param + ");"
         return database.query(query)
 
 

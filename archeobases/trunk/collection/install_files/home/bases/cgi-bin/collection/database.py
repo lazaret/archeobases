@@ -29,13 +29,12 @@ __version__ = "1.1"
 # logiciel serveur WEB (teste uniquement avec Apache).
 class DataBase :
         __database  = None
-        __debuglevel = 0 # mettre à 1 pour le debug
+        __debuglevel = False # mettre à True pour le debug
 
         def __init__(self, host = None, database = None, username = None, debuglevel = 0) :
-                self.set_debug(debuglevel)
                 try :
                         self.__database = pg.connect(host = host, dbname = database, user = username)
-                        if self.__debuglevel > 0 :
+                        if self.__debuglevel :
                                 self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
                         self.query("SET CLIENT_ENCODING TO 'UTF-8';")
                 except pg.Error, msg :
@@ -52,7 +51,7 @@ class DataBase :
 
         def sql_message(self, msg) :
             """affiche les requettes SQL dans les logs Apache si le niveau de debug est supperieur à 0"""
-            if self.__debuglevel > 0 :
+            if self.__debuglevel :
                 return self.log_message(msg, level = "sql")
 
         def error_message(self, msg) :
@@ -62,15 +61,14 @@ class DataBase :
                 self.log_message(msg, "fatal")
                 sys.exit(-1)
 
-        def set_debug(self, debuglevel) :
-                self.__debuglevel = debuglevel
-
         def quote(self, field, typ) :
+            # met le champs entre apostrophes et gère les appostrophes au sein d'une chiane
+            # par exemple L'arnaque est transformé en  'L''arnaque'
                 return pg._quote(field, typ)
 
         def query(self, q) :
                 if self.__database != None :
-                        if self.__debuglevel > 0 :
+                        if self.__debuglevel :
                                 self.sql_message(q)
                         try :
                                 return self.__database.query(q)

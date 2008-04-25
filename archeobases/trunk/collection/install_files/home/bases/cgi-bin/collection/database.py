@@ -62,7 +62,7 @@ class DataBase :
                 sys.exit(-1)
 
         def quote(self, field, typ) :
-            # met le champs entre apostrophes et gère les appostrophes au sein d'une chiane
+            # met le champs entre apostrophes et gère les appostrophes au sein d'une chaine
             # par exemple L'arnaque est transformé en  'L''arnaque'
                 return pg._quote(field, typ)
 

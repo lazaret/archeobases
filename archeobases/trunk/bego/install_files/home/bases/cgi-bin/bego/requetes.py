@@ -27,6 +27,7 @@ import time
 import string
 import cgi
 import urllib
+import csv
 try :
         import threading
         havethreads = 1
@@ -37,10 +38,10 @@ import jahtml
 
 elabore = "Elaboré"
 simplifie = "Simplifié"
-telecharget = "Texte + Tabs"
-telechargev = "Texte + Virgules"
-liste_affichage = [ simplifie, elabore, telecharget, telechargev ]
+telechargecsv = "Texte format CSV"
+liste_affichage = [ simplifie, elabore, telechargecsv ]
 affichage_default = elabore
+
 
 def cherche_requete(db, nom) :
         resultat = db.query("SELECT * FROM requete WHERE nomrequete = " + db.quote(nom, "text"))
@@ -107,7 +108,7 @@ class PageRequete(begoconf.Bas) :
         def ecran_requetes(self, coulfond, coultete, coulhaut, coulpartie, coulmenu, requete = "") :
                 self.center()
                 self.push()
-                self.table(border = "10")
+                self.table(border = 1, cellpadding = 0, cellspacing =5)
                 self.push()
                 self.tr( bgcolor = coultete )
                 self.th("Saisissez votre requête")
@@ -179,7 +180,7 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                        begoconf.log_message("La requète s'est terminée sans problème", level = "info")
+                        begoconf.log_message("La requete s'est terminee sans probleme", level = "info")
                         break   # Requète terminée sans problème
                 else :
                         if parent.isAlive() :
@@ -201,7 +202,7 @@ def mixed_part_handler(parent, indicateur, timer) :
                                 part.insert_text("\n--" + endpart)
                                 part.output()
                         else :
-                                begoconf.log_message("La requète est tombée en erreur", level = "notice")
+                                begoconf.log_message("La requete est tombee en erreur", level = "notice")
         sys.exit(0)
 
 master = None
@@ -286,37 +287,29 @@ if ruser in begoconf.superusers :
                                                         if lgchamps[champ] < lg :
                                                                 lgchamps[champ] = lg
 
-                                        if form["presentation"].value[:5] == "Texte" :
-                                                #
-                                                # on le fait en non bufferise pour ne pas avoir de timeout.
-                                                # en effet, l'option d'ecriture des donnees dans un fichier
-                                                # peut permettre de traiter de GROS volumes, mais le
-                                                # mode entierement bufferise provoquerai un timeout
-                                                doc = jahtml.CGI_document(content_type = "text/montbego")
-
-                                                if form["presentation"].value == telechargev :
-                                                        separateur = ','
-                                                else :
-                                                        separateur = '\t'
-
-                                                # on sort l'entete
-                                                texte = ""
+                                        if form["presentation"].value == telechargecsv :
+                                        # export au format CSV
+                                            csv.register_dialect("csvrfc", quotechar = '"', doublequote = True, quoting=csv.QUOTE_ALL)
+                                            # CSV all quoted, delimited by double quotes with quote escaped
+                                            # We quote all in collection because we can have comas, retur line insisde fields
+                                            # see RFC-4180 CVS format section 2.7
+                                            csv_file = open("/home/bases/bego/resultat_requete.csv", "wb")
+                                            csvwriter = csv.writer(csv_file, dialect="csvrfc")
+                                            #write the first row
+                                            csvwriter.writerow(maliste)
+                                            for enregistrement in resultat :
+                                                begoconf.log_message(enregistrement)
+                                                row =[] # liste
                                                 for champ in maliste :
-                                                        texte = texte + champ + separateur
-                                                doc.insert_text(texte[:-1])
+                                                    row.append(enregistrement[champ])
 
-                                                # puis les enregistrements
-                                                for enregistrement in resultat :
-                                                        texte = ""
-                                                        for champ in maliste :
-                                                                texte = texte + repr(enregistrement[champ]) + separateur
-                                                                #if type(enregistrement[champ]) == type("") :
-                                                                #        texte = texte + enregistrement[champ] + separateur
-                                                                #else :
-                                                                #        texte = texte + `enregistrement[champ]` + separateur
-                                                        doc.insert_text(texte[:-1])
-                                                if master :
-                                                        doc.insert_text("\n--" + endpart + "--\n")
+                                                #for row in resultat :
+                                                #    #write each rows
+                                                csvwriter.writerow(row)
+                                            csv_file.close()
+                                            doc = jahtml.CGI_document(content_type = "text/csv;")
+                                            doc.set_redirect("/bego/resultat_requete.csv")
+
                                         else :
                                                 nbrecords = len(resultat)
                                                 if nbrecords > 1 :

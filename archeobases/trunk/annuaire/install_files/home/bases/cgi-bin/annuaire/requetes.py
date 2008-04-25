@@ -1,23 +1,24 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Annuaire  - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Annuaire - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
+
 import sys
 import time
 import string
 import cgi
 import urllib
+import csv
 try :
         import threading
         havethreads = 1
@@ -28,9 +29,8 @@ import jahtml
 
 elabore = "Elaboré"
 simplifie = "Simplifié"
-telecharget = "Texte + Tabs"
-telechargev = "Texte + Virgules"
-liste_affichage = [ simplifie, elabore, telecharget, telechargev ]
+telechargecsv = "Texte format CSV"
+liste_affichage = [ simplifie, elabore, telechargecsv ]
 affichage_default = simplifie
 
 def cherche_requete(db, nom) :
@@ -39,66 +39,12 @@ def cherche_requete(db, nom) :
         if len(resultat) == 1 :
                 return resultat[0]
 
-def display_field(doc, form, pkeys, champ, lgmax, enreg) :
-        """Cette fonction ne sert plus à rien, sauf comme aide mémoire."""
-        link = None
-        if champ in pkeys :
-                if (champ == "coderequete") :
-                        dico = { "requete" : enreg["coderequete"], "presentation" : form["presentation"].value, "lue" : 1 }
-                        if enreg.has_key("nomrequete") :
-                                dico["nomrequete"] = enreg["nomrequete"]
-                        link = doc.script_name() + '?' + urllib.urlencode(dico)
-                elif champ != "nomrequete" :
-                        dico = { "action" : "Chercher" }
-                        for nom_champ in pkeys :
-                                dico[nom_champ] = enreg[nom_champ]
-                                if nom_champ == champ :
-                                        break
-                        if (champ == "secteur") :
-                                table = "zone"
-                        elif (champ == "groupe") :
-                                table = "roche"
-                        else :
-                                table = champ
-                        link = annuaireconf.script_location("mod" + table) + '?' + urllib.urlencode(dico)
-        value = enreg[champ]
-        if type(value) == type("") :
-                if value != "" :
-                        if form["presentation"].value != simplifie :
-                                doc.push()
-                                doc.td(bgcolor=annuaireconf.bas1_bgcolor)#"#E1DCD6")#"#FFFFCC")
-                                if link :
-                                       doc.a(value, href = link)
-                                else :
-                                        doc.insert_text(value)
-                                doc.pop()
-                        else :
-                                lg = len(value)
-                                doc.insert_text(value + "&nbsp;" * (lgmax - lg + 1))
-                else :
-                        if form["presentation"].value != simplifie :
-                                doc.td("&nbsp;", bgcolor=annuaireconf.bas1_bgcolor)#"#FFFFCC")
-                        else :
-                                doc.insert_text("&nbsp;" * (lgmax + 1))
-        else :
-                if form["presentation"].value != simplifie :
-                        doc.push()
-                        doc.td(align="right", bgcolor=annuaireconf.bas1_bgcolor)#"#FFFFCC")
-                        if link :
-                                doc.a(`value`, href = link)
-                        else :
-                                doc.insert_text(`value`)
-                        doc.pop()
-                else :
-                        value = `value`
-                        lg = len(value)
-                        doc.insert_text(value + "&nbsp;" * (lgmax - lg + 1))
 
 class PageRequete(annuaireconf.Bas) :
         def ecran_requetes(self, coulfond, coultete, coulhaut, coulpartie, coulmenu, requete = "") :
                 self.center()
                 self.push()
-                self.table(border = "10")
+                self.table(border = 1, cellpadding = 0, cellspacing =5)
                 self.push()
                 self.tr( bgcolor = coultete )
                 self.th("Saisissez votre requête")
@@ -123,7 +69,7 @@ class PageRequete(annuaireconf.Bas) :
                 self.tr()
                 self.push()
                 self.td()
-                self.insert_text("Affichage:")
+                self.insert_text("Affichage :")
                 self.push()
                 self.select(name = "presentation")
                 if form.has_key("presentation") :
@@ -170,7 +116,8 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                        annuaireconf.log_message("La requête s'est terminée sans problème", level = "info")
+                    #if database.Database.__debuglevel :
+                        annuaireconf.log_message("La requete s'est terminée sans probleme", level = "info")
                         break   # Requête terminée sans problème
                 else :
                         if parent.isAlive() :
@@ -192,7 +139,7 @@ def mixed_part_handler(parent, indicateur, timer) :
                                 part.insert_text("\n--" + endpart)
                                 part.output()
                         else :
-                                annuaireconf.log_message("La requête est tombée en erreur", level = "notice")
+                                annuaireconf.log_message("La requete est tombee en erreur", level = "error")
         sys.exit(0)
 
 master = None
@@ -204,11 +151,10 @@ endpart = "rachelvaudron"
 form=cgi.FieldStorage()   #recupere tous les param passes par le script precedent
 doc=PageRequete("Requêtes SQL", "Requêtes SQL")
 ruser = doc.remote_user()
-if ruser:# in annuaireconf.superusers :
+if ruser not in annuaireconf.visitorusers :
         db = annuaireconf.AnnuaireDataBase(debuglevel = 1)
         if (not form.has_key("nomrequete")) and (not form.has_key("requete")) :
                 doc.ecran_requetes(annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor)
-                #doc.ecran_requetes(annuaireconf.bas1_bgcolor,"#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC")
         else :
                 if form.has_key("nomrequete") and not form.has_key("lue") :
                         nomrequete = string.strip(string.lower(form["nomrequete"].value))
@@ -235,7 +181,6 @@ if ruser:# in annuaireconf.superusers :
                         doc.set_redirect(doc.script_name() + '?' + urllib.urlencode({"requete" : quequette, "nomrequete" : nomrequete, "presentation" : form["presentation"].value, "lue": 1 }))
                 elif form.has_key("requete") :
                         quequette = string.strip(string.replace(form["requete"].value, "\r", ""))
-                        #doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", requete = quequette)
                         doc.ecran_requetes(annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor,annuaireconf.bas1_bgcolor, requete = quequette)
 
                         # la premiere alerte doit etre lancee assez tot pour
@@ -252,9 +197,24 @@ if ruser:# in annuaireconf.superusers :
                                 doc.div(align="center")
                                 nbrecords = resultat.ntuples()
                                 if nbrecords :
-                                        liste_champs = resultat.listfields()
-                                        liste_valeurs = resultat.getresult()
-                                        if form["presentation"].value[:5] == "Texte" :
+                                        liste_champs = resultat.listfields() # un tuple
+                                        liste_valeurs = resultat.getresult() # un tuple de listes
+                                        if form["presentation"].value == telechargecsv :
+                                        # export au format CSV
+                                            csv.register_dialect("csvrfc", quotechar = '"', doublequote = True, quoting=csv.QUOTE_ALL)
+                                            # CSV all quoted, delimited by double quotes with quote escaped
+                                            # We quote all in annuaire because we can have comas, retur line insisde fields
+                                            # see RFC-4180 CVS format section 2.7
+                                            csv_file = open("/home/bases/annuaire/resultat_requete.csv", "wb")
+                                            csvwriter = csv.writer(csv_file, dialect="csvrfc")
+                                            #write the first row
+                                            csvwriter.writerow(liste_champs)
+                                            for row in liste_valeurs :
+                                                #write each rows
+                                                csvwriter.writerow(row)
+                                            csv_file.close()
+                                            doc = jahtml.CGI_document(content_type = "text/csv;")
+                                            doc.set_redirect("/annuaire/resultat_requete.csv")
                                                 #
                                                 # on le fait en non bufferise pour ne pas avoir de timeout.
                                                 # en effet, l'option d'ecriture des donnees dans un fichier
@@ -262,22 +222,22 @@ if ruser:# in annuaireconf.superusers :
                                                 # mode entierement bufferise provoquerai un timeout
 
                                                 # export en utf8 avec champs séparés par des guillemets doubles
-                                                doc = jahtml.CGI_document(content_type = "text/montannuaire")
-                                                if form["presentation"].value == telechargev :
-                                                        separateur = '","'
-                                                else :
-                                                        separateur = '"\t"'
+                                                #doc = jahtml.CGI_document(content_type = "text/csv;charset=utf-8")
+                                                #if form["presentation"].value == telechargev :
+                                                #        separateur = '","'
+                                                #else :
+                                                #        separateur = '"\t"'
 
                                                 # on sort l'entete
-                                                doc.insert_text('"' + separateur.join(liste_champs) + '"')
+                                                #doc.insert_text('"' + separateur.join(liste_champs) + '"')
 
                                                 # puis les enregistrements
-                                                for enregistrement in liste_valeurs :
-                                                        # doc.insert_text(unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("iso-8859-15"))
-                                                        doc.insert_text('"' + unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8") + '"')
-                                                if master :
-                                                        doc.insert_text("\n--" + endpart + "--\n")
+                                                #for enregistrement in liste_valeurs :
+                                                #        doc.insert_text('"' + unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8") + '"')
+                                                #if master :
+                                                #        doc.insert_text("\n--" + endpart + "--\n")
                                         else :
+                                        # affichage HTML du résultat
                                                 if nbrecords > 1 :
                                                         esse = 's'
                                                 else :
@@ -289,7 +249,7 @@ if ruser:# in annuaireconf.superusers :
                                                         doc.push()
                                                         doc.tr()
                                                         for champ in liste_champs :
-                                                                doc.th(champ, bgcolor=annuaireconf.bas1_bgcolor) #"#CCFFFF")
+                                                                doc.th(champ, bgcolor=annuaireconf.bas1_bgcolor)
                                                         doc.pop()
                                                         for enregistrement in liste_valeurs :
                                                                 line = ""

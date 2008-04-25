@@ -96,6 +96,10 @@ def main(arguments) :
                 champs = infile.readline().strip().split(separateur_donnees)
                 indicechamps = {}
                 for i in range(len(champs)) :
+                    v = champs[i]
+                    if (v.startswith('"') and v.endswith('"')) or \
+                       (v.startswith("'") and v.endswith("'")) :
+                        champs[i] = v[1:-1]
                     indicechamps[champs[i]] = i
                 izone = indicechamps["zone"]
                 inumero = indicechamps["numero"]

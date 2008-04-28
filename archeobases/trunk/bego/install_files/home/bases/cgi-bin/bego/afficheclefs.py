@@ -1,27 +1,17 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: afficheclefs.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
-#
-# $Log: afficheclefs.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.5  2000/05/27 13:58:56  jerome
-# Integration du message de Log
-#
-#
+
 
 import begoconf
 
@@ -180,6 +170,28 @@ def display_face(objet, enreg, penreg = None, alignement = "right") :
     else :
         liste_deroulante(objet.__doc__, "face", listeface, enreg, dontchange = 1)
     objet.__doc__.pop()
+
+
+def display_face_2(objet, enreg, penreg = None, alignement = "right") :
+    # utilisé dans les figures, on veut pouvoir changer le face
+    objet.__doc__.push()
+    objet.__doc__.td(align=alignement, valign="middle", border="0")
+    objet.__doc__.b()
+    objet.__doc__.font(size=begoconf.font_size)
+    objet.__doc__.insert_text("Face : ")
+    listeface = {}
+    for lettre in range(ord('a'), ord('z') + 1) :
+        listeface[chr(lettre)] = chr(lettre)
+    if penreg and penreg.has_key("face"):
+        liste_deroulante(objet.__doc__, "face", listeface, penreg)
+    elif objet.__form__.has_key("action") and (objet.__form__["action"].value == "Chercher") and objet.__form__.has_key("face") and enreg == None:
+        val = objet.__form__["face"].value
+        objet.__doc__.select(name = "face") #crée l'objet liste deroulante
+        objet.__doc__.option(val, value = val) #affiche la valeur dans la liste
+    else :
+        liste_deroulante(objet.__doc__, "face", listeface, enreg)
+    objet.__doc__.pop()
+
 
 def display_association(doc, enreg, penreg = None, alignement = "right") :
         doc.push()

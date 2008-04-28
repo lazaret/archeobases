@@ -1,12 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-#archeo- (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -19,8 +18,8 @@ import annuairedata
 import sys
 import string
 import cgi
-#cgi.test()
-#
+
+
 # Fonctions pour afficher les clefs toujours de la meme maniere
 #
 
@@ -104,7 +103,6 @@ def champ_liste(objet, nom_champ, libelle, enreg, penreg, titre,dontchange = Non
                 objet.__doc__.u()
                 objet.__doc__.font(titre, size=annuaireconf.font_size)
                 objet.__doc__.pop()
-                #objet.__doc__.td()
 
         objet.__doc__.push()
         objet.__doc__.td(align="left", width="40")
@@ -118,10 +116,7 @@ def champ_liste(objet, nom_champ, libelle, enreg, penreg, titre,dontchange = Non
         res = objet.__db__.query(query).dictresult()
         liste ={}
         for ctrl in res:
-                #if (not ctrl["description"]) or (len(ctrl["description"]) >10):
                 liste[ctrl[nom_champ]] = ctrl[nom_champ]
-         #       else:
-         #               liste[ctrl[nom_champ] + " " + ctrl["description"]]= ctrl[nom_champ]
         liste_deroulante(objet, nom_champ, liste, getval(objet, nom_champ, enreg, penreg), dontchange = 0)
         objet.__doc__.pop()
 
@@ -136,7 +131,6 @@ def champ_nliste(objet, nom_champ, libelle, enreg, penreg, titre, colonne, dontc
                         objet.__doc__.u()
                         objet.__doc__.font(titre, size=annuaireconf.font_size)
                         objet.__doc__.pop()
-                        #objet.__doc__.td()
         objet.__doc__.push()
         objet.__doc__.td(align="right", colspan = colonne)
         objet.__doc__.font(libelle, size=annuaireconf.font_size)
@@ -145,10 +139,7 @@ def champ_nliste(objet, nom_champ, libelle, enreg, penreg, titre, colonne, dontc
         res = objet.__db__.query(query).dictresult()
         liste ={}
         for ctrl in res:
-                #if (not ctrl["description"]) or (len(ctrl["description"])>10):
                 liste[ctrl[nom_champ]] = ctrl[nom_champ]
-        #        else:
-        #                liste[ctrl[nom_champ] + " " + ctrl["description"]]= ctrl[nom_champ]
         liste_deroulante(objet, nom_champ, liste, getval(objet, nom_champ, enreg, penreg), dontchange = 0)
         objet.__doc__.pop()
 
@@ -174,7 +165,6 @@ def champ_saisie(objet, nom_champ, libelle,longueur, maxlongueur, titre, enreg, 
                 objet.__doc__.u()
                 objet.__doc__.font(titre, size=annuaireconf.font_size)
                 objet.__doc__.pop()
-                #objet.__doc__.td()
         objet.__doc__.push()
         objet.__doc__.td(align="left", valign="middle", width="40")
         objet.__doc__.font(size=annuaireconf.font_size)
@@ -212,7 +202,6 @@ def champ_nsaisie(objet, nom_champ, libelle,longueur, maxlongueur, titre, colonn
                 objet.__doc__.u()
                 objet.__doc__.font(titre, size=annuaireconf.font_size)
                 objet.__doc__.pop()
-                #objet.__doc__.td()
         objet.__doc__.push()
         objet.__doc__.td(align="right", valign="middle", colspan=colonne)
         objet.__doc__.font(size=annuaireconf.font_size)
@@ -289,7 +278,6 @@ def display_identifiant(objet, enreg, penreg = None, inc = 0, alignement = "left
                                         # ne devrait pas se produire
                                         annuaireconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
                 elif (objet.__form__["action"].value == "Compter") :
-                #elif (objet.__form__["action"].value == "Chercher") or (objet.__form__["action"].value == "Compter") :
                         objet.__doc__.text(name = "identifiant", value = val, size = 6, maxlength = 40)
                 elif val :
                         objet.__doc__.insert_text(val)
@@ -316,25 +304,13 @@ def display_x_ordre(objet, nom_champ, imin, imax, enreg, penreg = None, aligneme
         except ValueError :
             pass
 
-        #indice=1
-        #if not val:
-        #        val=0
         for i in range(imin, imax) :
                 listeordres[i] = i
-
-        #for i in range(imin, imax):
-         #       tmp= listeordres[i]
-          #      listeordres[i] = listeordres[imax -i]
-           #     listeordres[imax -i] = tmp
 
         if objet.__form__.has_key("action"):
                 if ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Chercher")):
                         liste_deroulante(objet, nom_champ, listeordres, val, dontchange = change)
                 elif (objet.__form__["action"].value == "Nouveau") or (objet.__form__["action"].value == "Nouvel") or (objet.__form__["action"].value == "Nouvelle"):
-                        #for i in range(imin, imax):
-                        #        if val == listeordres[i]:
-                        #                indice = i + 1
-                        #liste_deroulante(objet, nom_champ, listeordres,  listeordres[indice]) #ajouter+1
                         liste_deroulante(objet, nom_champ, listeordres,  val+1) #ajouter+1
                 else :
                         liste_deroulante(objet, nom_champ, listeordres, val )
@@ -351,8 +327,6 @@ def display_x_rang(objet, nom_champ, n, enreg, penreg = None, alignement = "righ
         objet.__doc__.b()
         objet.__doc__.font(size=annuaireconf.font_size)
         objet.__doc__.insert_text("  Rang ")
-        #listeordres = {"1":"1","2":"2","3":"3","4":"4","5":"5","6":"6","7":"7","8":"8","9":"9","10":"10","11":"11","12":"12","13":"13","14":"14","15":"15","16":"16","17":"17","18":"18","19":"19","20":"20","21":"21","22":"22","23":"23","24":"24","25":"25","26":"26","27":"27","28":"28","29":"29","30":"30"}
-        #listeordres = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"]
         listeordres = {}
         for i in range(1, int(n)+1) :
                 listeordres.update({i : str(i)})
@@ -377,10 +351,7 @@ def display_type(objet, nom_champ, enreg, penreg = None, alignement = "right", c
         res = objet.__db__.query(query).dictresult()
         liste_types ={}
         for ctrl_type in res:
-##                 if not ctrl_type["description"]:
                 liste_types[ctrl_type[nom_champ]] = ctrl_type[nom_champ]
-##                 else:
-##                         liste_types[ctrl_type[nom_champ] + " " + ctrl_type["description"]] = ctrl[nom_champ]
 
 
         if objet.__form__.has_key("action") and ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Nouveau") or (objet.__form__["action"].value == "Nouvel") or (objet.__form__["action"].value == "Nouvelle")or (objet.__form__["action"].value == "Chercher")) :

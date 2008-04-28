@@ -1,14 +1,17 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Fichier de configuration
-#
-# Archeo - (c)  1999 Jerome ALET
-#                       2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
+
 
 import string
 
@@ -29,7 +32,7 @@ mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160
 
 #
 # Message de copyright
-copyright_msg       = "ANNUAIRE &copy; 2006 " + author_name
+copyright_msg       = "ANNUAIRE &copy; 2008 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
@@ -38,27 +41,27 @@ copyright_font_size = "-3"
 menu_bgcolor   = "#EAEAEA"
 gauche_bgcolor = "#EAEAEA"
 bas_bgcolor    = "#EAEAEA"
-bas1_bgcolor   = "#A3B3C4" #96ADC4"
+bas1_bgcolor   = "#A3B3C4"
 bas2_bgcolor   = "#FFF8CE"
 bas3_bgcolor   = "#F3EEEE"
 bas4_bgcolor   = "#E1DCD6"
-lien_parent_bgcolor = "#FF0000" #JAUNE
-lien_enfant_bgcolor = "#3333FF" #ROUGE
+lien_parent_bgcolor = "#FF0000"
+lien_enfant_bgcolor = "#3333FF"
 
 #
 # Images de fond des trois parties de l'ecran ou None
-menu_background   = "#FFFFFF"#"logo_lazaret.jpg"#"spirebleue.jpg"#"spirale.jpg"
-gauche_background = "#FFFFFF"#"logo_lazaret_grave.jpg"#"spirebleue.jpg"#"spirale.jpg"
-bas_background    = "#FFFFFF"#logo_lazaret_clair_moyen.jpg"#"spirebleue.jpg"#"spirale.jpg"
+menu_background   = "#FFFFFF"
+gauche_background = "#FFFFFF"
+bas_background    = "#FFFFFF"
 
 #
 # couleurs de fond des formulaires de chaque partie de l'ecran
 menuform_bgcolor      = "#96ADC4"
-basform_bgcolorleft   = "#FFFFCC" #jaune partie centrale du formulaire
-basform_bgcolorright  = "#DFDFDF"#CCCAE5" #gris menu_droite
-basform_bgcolormiddle = "#DDDDDD"#F1E560" #gris   marron-vert"#BOCCAF"#"#DAC2C7"
+basform_bgcolorleft   = "#FFFFCC"
+basform_bgcolorright  = "#DFDFDF"
+basform_bgcolormiddle = "#DDDDDD"
 basform_bgcolorbottom = "#CCCCCC"
-basform_bgcolorcenter = "#CCCCCC" #vert "#EDFOA4" # jaune
+basform_bgcolorcenter = "#CCCCCC"
 
 #
 # Logos
@@ -273,7 +276,6 @@ class Menu(jahtml.CGI_document) :
                 self.body(bgcolor = menu_bgcolor, background = decor_location(menu_background))
                 self.push()
                 self.div(align = "center")
-#                self.img(src = decor_location("logo_lazaret_transparent.jpg"), alt= "Annuaire", border=0)
                 self.pop()
 
 class Controle(jahtml.CGI_document) :

@@ -1,22 +1,23 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-#archeo - (c) 1999      Jerome ALET <alet@unice.fr>
-#                  1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
+
 import string
 import cgi
 import urllib
 import annuaireconf
+
 
 class Data :
         def __init__(self, parent) :
@@ -32,7 +33,6 @@ class Data :
                         self.__form__ = cgi.FieldStorage()
                         self.__db__ = annuaireconf.AnnuaireDataBase()
                         self.__parent__ = self.__tablename__ # est son propre parent
-                        #self.__couleur__ = self.__color__
                 else :
                         # si ca ne vaut pas "bas" on considère que c'est
                         # une instance de la classe "parent"
@@ -169,8 +169,6 @@ class Data :
                         if self.__parent__ == self.__tablename__ :
                                 self.__doc__.br()
                                 self.__doc__.submit(name = "action", value = self.__new_record__)
-                        #self.__doc__.br()
-                        #self.__doc__.submit(name = "action", value = self.__new_record__)
                 else :
                         self.__doc__.push()
                         self.__doc__.p()
@@ -188,7 +186,6 @@ class Data :
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Creer")
                         self.__doc__.pop()
-                        #self.__doc__.br()
                         self.__doc__.push()
                         self.__doc__.p()
                         self.__doc__.reset(value = "R-a-Zero")
@@ -231,7 +228,6 @@ class Data :
                 if table == None :
                         table = self.__tablename__
 
-                #query = "SELECT COUNT(*) FROM controle_%s WHERE %s=%s;" % (champ, champ, string.upper(valeur))
                 query = "SELECT COUNT(*) FROM controle_%s WHERE %s=%s;" % (champ, champ, valeur)
                 res = self.__db__.query(query)
                 res = res.dictresult()
@@ -297,7 +293,6 @@ class Data :
                         # aucune de celles-ci a la requete de mise a jour.
                         # si on veut l'autoriser, il faut enlever le if ci-dessous
                         if champ not in primarykeys :
-                                #query = query + champ + "=" + string.upper(self.__getfield__(champ)) + ", "
                                 query = query + champ + "=" + (self.__getfield__(champ)) + ", "
                 query = query[:-2] + self.__createwhere__(primarykeys) + ";"
                 return query
@@ -323,11 +318,9 @@ class Data :
                                 query = query + `primarykeys[primarykey]`
                         query = query + ", "
                 for champ in self.__listechamps__ :
-                        #v = string.upper(self.__getfield__(champ))
                         v = (self.__getfield__(champ))
                         self.__doc__.log_message("c: [%s] ===> [%s]" % (champ, v))
                         if self.exist_table_controle(champ) and self.__champs__[champ]["longueur"] != 0 :
-                                #if (self.__champs__[champ]["longueur"] and self.__champs__[champ]["longueur"]!=0) or self.__tablename == "photofaune" or self.__tablename == "photoindutrie":
                                 if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ
                                         ####TODO VERIFIER #####ATTENTION
                                         query = query + v + ", " # alors on verifie que la valeur cherchee s'y trouve bien
@@ -335,8 +328,6 @@ class Data :
                                 elif v :
                                         annuaireconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide !" %(v, champ))
                                         return None
-                                #else :
-                                        #annuaireconf.fatalerror_message("La valeur saisie dans le champ %s est invalide" % champ)
 
                         else:
                                 query = query + v + ", "
@@ -358,7 +349,7 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")#, bgcolor=annuaireconf.menu_bgcolor)
+                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")
 
                 if enreg :
                         self.__doc__.push()
@@ -391,7 +382,6 @@ class Data :
 
                         self.__doc__.br()
                         self.__doc__.font(size = annuaireconf.font_size)
-#                        if self.__vraiparent__ != None :
                         if hasattr(self, "__listeparents__"):
                                 self.__doc__.font(size = annuaireconf.font_size, style="color:%s;" % annuaireconf.bas1_bgcolor)
                                 dico = { "action" : "ChercherLien" }
@@ -399,7 +389,6 @@ class Data :
                                         dico[clef] = enreg[clef]
                                 for p in self.__listeparents__ :
                                         self.__doc__.insert_text("&nbsp;" * 5)
-                                #parent = self.__vraiparent__
                                         pluriel = ''
                                         if p[-1] != 's' :
                                                 pluriel = 's'
@@ -625,11 +614,6 @@ class Data :
                         elif (self.__form__["action"].value == "ChercherLien"):
                                 annuaireconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
-                                        #self.__doc__.push()
-                                        #self.__doc__.div(align = "center")
-                                        #self.__doc__.font("La il faudrait afficher la le debut de la clef", color = "red")
-                                        #self.__doc__.pop()
-                                        #self.formulaire_hook(penreg = penreg)
                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                 ################# CHERCHER+ #########
@@ -662,7 +646,6 @@ class Data :
                                         self.__doc__.div(align = "center")
                                         self.__doc__.font("Aucun enregistrement trouve", color = "red")
                                         self.__doc__.pop()
-                                        #self.formulaire_hook(penreg = penreg)
                         else :
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
@@ -682,17 +665,14 @@ class Data :
                                 if self.__form__["action"].value == "Modifier" :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
-                                                        # l'utilisateur tente de dupliquer un enregistrement
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
+                                                        # l'utilisateur tente de dupliquer un enregistrement + '"')
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                                 ################## SUPPRIMER #########################
@@ -700,14 +680,13 @@ class Data :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                 # la suppression a bien eu lieu
                                                 if not parent :
                                                         self.formulaire_hook(penreg = penreg)
                                                 else :
-                                                        self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent)+ '"')# + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+                                                        self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent)+ '"')
 
                                 ################## CREER #############################
                                 elif self.__form__["action"].value == "Creer" :
@@ -730,7 +709,6 @@ class Data :
                                                         annuaireconf.fatalerror_message("La zone saisie est inconnue")
                                                 elif retour == 1 :
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else:
                                                         self.__doc__.script('alert("valeur inexistante pour le champ" + champ )')
@@ -748,10 +726,7 @@ class Data :
                                         annuaireconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
                                 else :
-                                        #if not parent :
                                         self.formulaire_hook(penreg = penreg)
-                                        #else :
-                                        #        annuaireconf.fatalerror_message("On ne devrait pas arriver ici: %s %s" % (self.__new_record__, self.__tablename__))
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
@@ -784,7 +759,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook(penreg = penreg)
@@ -795,7 +769,6 @@ class Data :
                                         else :
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
-                                                #self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 else :
                                         annuaireconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook(penreg = penreg)
@@ -831,11 +804,7 @@ class Data :
                 if titre != "":
                         self.__doc__.tr(align = "right")
                         self.__doc__.push()
-                        #self.__doc__.td(align="left")
-                        #self.__doc__.u()
-                        #self.__doc__.font(titre, size=annuaireconf.font_size)
                         self.__doc__.pop()
-                        #self.__doc__.td()
 
                 self.__doc__.push()
                 self.__doc__.td(align="right")
@@ -907,7 +876,6 @@ class Data :
                         self.__doc__.u()
                         self.__doc__.font(titre, size=annuaireconf.font_size)
                         self.__doc__.pop()
-                        #self.__doc__.td()
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font(size=annuaireconf.font_size)
@@ -919,7 +887,7 @@ class Data :
                 self.__doc__.td(align="left", valign="middle")
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
                 if enreg != None :
-                        self.__doc__.insert_text(valeur)#contenu)#name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
+                        self.__doc__.insert_text(valeur)
                 else :
                         self.__doc__.text(name = nom_champ, size = longueur, maxlength = maxlongueur, value = "")
                 self.__doc__.pop()
@@ -942,7 +910,7 @@ class Data :
 
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
                 if enreg != None :
-                        self.__doc__.insert_text(valeur)#contenu)#name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
+                        self.__doc__.insert_text(valeur)
                 else :
                         self.__doc__.text(name = nom_champ, size = longueur, maxlength = maxlongueur, value = "")
                 self.__doc__.pop()
@@ -958,7 +926,7 @@ class Data :
                         self.__doc__.pop()
                         self.__doc__.td()
                 self.__doc__.push()
-                #self.__doc__.td(align="right", valign="middle")
+
                 self.__doc__.font(size=annuaireconf.font_size)
 
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
@@ -985,10 +953,6 @@ class Data :
                                 self.__doc__.br()
                                 self.__doc__.submit(name = "action", value = self.__new_record__)
                 else :
-                        #self.__doc__.push()
-                        #self.__doc__.p()
-                        #self.__doc__.submit(name = "action", value = "Chercher")
-                        #self.__doc__.pop()
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Creer")
                         self.__doc__.br()
@@ -999,12 +963,12 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")#, bgcolor=annuaireconf.menu_bgcolor)
+                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")
 
                 if enreg :
                         self.__doc__.push()
                         self.__doc__.tr()
-                        self.__doc__.td(colspan = 2, valign="middle", align="center")#, color=annuaireconf.menu_bgcolor)
+                        self.__doc__.td(colspan = 2, valign="middle", align="center")
                         self.__doc__.font(size = annuaireconf.font_size)
 
                         if maximum :
@@ -1092,22 +1056,18 @@ class Data :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                 # la suppression a bien eu lieu
@@ -1133,7 +1093,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         if not parent :
@@ -1144,10 +1103,7 @@ class Data :
                                         annuaireconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook_parametre(penreg = penreg)
                                 else :
-                                        #if not parent :
                                         self.formulaire_hook_parametre(penreg = penreg)
-                                        #else :
-                                        #        annuaireconf.fatalerror_message("On ne devrait pas arriver ici: %s %s" % (self.__new_record__, self.__tablename__))
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
@@ -1180,7 +1136,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + annuaireconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook_parametre(penreg = penreg)

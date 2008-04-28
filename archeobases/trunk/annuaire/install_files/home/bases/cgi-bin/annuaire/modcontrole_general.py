@@ -1,16 +1,17 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Annuaire - (c) 2006 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import os
 import cgi
@@ -19,14 +20,6 @@ import annuaireconf
 import afficheclefs
 import annuairedata
 
-#cgi.test()
-
-#def liste_multiple(doc, nom, valeurs, param) :
-#        doc.push()
-#        doc.select_multiple(name = nom, size = 4 )
-#        for a in valeurs :
-#                doc.option(a[param], value = a[param])
-#        doc.pop()
 
 def enlever(database, form, liste, param) :
         query = "DELETE FROM controle_" + param + " WHERE "
@@ -84,11 +77,8 @@ elif form["action"].value == "AJOUTER" :
                 dico = { "champ" : param }
                 doc.set_redirect(annuaireconf.script_location("controle_general") + "?" + urllib.urlencode(dico))
                 annuaireconf.log_message("Rien a rajouter", level = "info")
-#                doc.set_redirect(annuaireconf.script_location("controle_general"))
         else :
-                #ajouter(db, form, param)
                 annuaireconf.log_message("Rien a rajouter", level = "info")
-                #doc.set_redirect(annuaireconf.script_location("controle_general"))
                 dico = { "champ" : param }
                 doc.set_redirect(annuaireconf.script_location("controle_general") + "?" + urllib.
 urlencode(dico))

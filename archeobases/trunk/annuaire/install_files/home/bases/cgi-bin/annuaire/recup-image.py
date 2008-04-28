@@ -1,14 +1,25 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# 2003 Rachel Vaudron
-# recupere les images d'un cd pour les inserer dasn la base
+# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+
+# recupere les images d'un cd pour les inserer dans la base
+
 
 import sys
 import os
 import string
 import database
 import archeoconf
+
 
 def transfere_fichier(infile, taille, mogrify) :
         """Stocke le fichier sur le disque et lance la commande mogrify appropriée"""
@@ -60,7 +71,6 @@ def creer_image(z = "", n = "", b = "") :
 
                 req = "INSERT INTO photoindustrie(idphoto, zone, numero, bis) VALUES (" + db.quote(idphoto, "decimal") + ", " + db.quote(zone, "text") + ", " + db.quote(numero, "decimal") + ", " + db.quote(bis, "text") + ");"
                 print(req)
-                #db.query(req)
                 print idphoto
                 sys.stdout.flush()
         except :
@@ -72,7 +82,6 @@ def parcours(param, dirname, names) :
         sf.write("")
 
         for filename in names :
-                #print filename
                 if (string.find(filename,"Locus") == -1) and (string.find(filename,"LAZARET") == -1):
                         fichier = os.path.join(dirname, filename)
                         print("filename : ", filename)
@@ -98,10 +107,7 @@ def parcours(param, dirname, names) :
                                         resultat = db.query(requete).dictresult()
                                         if len(resultat) :
                                                 #on insere la nouvelle photo dans la table photofigure
-                                                #if not os.system('zcat <"%s" >%s' % (fichier, "tempo.tiff")) :
                                                 creer_image(z,n,b)
-                                                #else :
-                                                #        sys.stderr.write("erreur sur [%s]\n" % fichier)
                                         else :
                                                         sf.write("[%s] => [%s %s %s %s] pas de parent\n" % (fichier, z, n,b))
 
@@ -114,8 +120,6 @@ db = database.DataBase(database = "lazaret", username = "rachel", debuglevel = 0
 
 
 sf = open("sansparent.lst", "w")
-#sf.write("Liste des fichiers n'ayant pas de face correspondante\n")
-#sf.write("-----------------------------------------------------\n\n")
 os.path.walk("/cdrom", parcours, (db, sf))
 sf.close()
 

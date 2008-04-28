@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Annuaire - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -26,6 +26,7 @@ except :
         havethreads = 0
 import annuaireconf
 import jahtml
+
 
 elabore = "Elaboré"
 simplifie = "Simplifié"
@@ -215,27 +216,6 @@ if ruser not in annuaireconf.visitorusers :
                                             csv_file.close()
                                             doc = jahtml.CGI_document(content_type = "text/csv;")
                                             doc.set_redirect("/annuaire/resultat_requete.csv")
-                                                #
-                                                # on le fait en non bufferise pour ne pas avoir de timeout.
-                                                # en effet, l'option d'ecriture des donnees dans un fichier
-                                                # peut permettre de traiter de GROS volumes, mais le
-                                                # mode entierement bufferise provoquerai un timeout
-
-                                                # export en utf8 avec champs séparés par des guillemets doubles
-                                                #doc = jahtml.CGI_document(content_type = "text/csv;charset=utf-8")
-                                                #if form["presentation"].value == telechargev :
-                                                #        separateur = '","'
-                                                #else :
-                                                #        separateur = '"\t"'
-
-                                                # on sort l'entete
-                                                #doc.insert_text('"' + separateur.join(liste_champs) + '"')
-
-                                                # puis les enregistrements
-                                                #for enregistrement in liste_valeurs :
-                                                #        doc.insert_text('"' + unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8") + '"')
-                                                #if master :
-                                                #        doc.insert_text("\n--" + endpart + "--\n")
                                         else :
                                         # affichage HTML du résultat
                                                 if nbrecords > 1 :

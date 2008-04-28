@@ -1,49 +1,25 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: zone.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
-#
-# $Log: zone.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.6  2000/06/30 07:02:39  rachel
-# modifs effectuees pdt un long laps de temps sans reseau ...
-#
-# Revision 1.5  2000/05/30 15:24:09  rachel
-# ajout de champs dans bego.sql concerant le type d'association et
-# la description d'elements naturels
-# mise de taille moyenne par defaut dans photo
-# modif de roche pour que remarquable fonctionne
-# modif de zone ?
-# modif de face ( ajout des elements naturels, et du contenu de direction
-# modif de figure modif style, dimension, direction=orientation
-#
-# Revision 1.3  2000/05/28 17:01:16  jerome
-# Mise en place des liens parents/enfants et suppression (par test uniquement,
-# le code reste en place) de l'affichage complet tel qu'il existait avant
-#
-# Revision 1.2  2000/05/27 13:59:06  jerome
-# Integration du message de Log
-#
-#
+
+
 import os
 import string
 import urllib
 import begoconf
 import begodata
 import afficheclefs
+
 
 class Zone(begodata.Data) :
         #
@@ -93,7 +69,6 @@ class Zone(begodata.Data) :
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.insert_text("Secteur")
-                #self.__doc__.b("Secteur:")
                 secteurs = ["Merveilles", "Fontanalba", "Vallaurette", "Valmasque", "Sainte Marie", "Vei del Bouc", "Sabion"]
                 listesecteurs = {}
                 for s in secteurs :
@@ -110,7 +85,6 @@ class Zone(begodata.Data) :
                 self.__doc__.tr()
                 self.__doc__.push()
                 self.__doc__.td(align="left", valign="middle", border="2")
-                #self.__doc__.b()
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.insert_text("Nombre de groupes: ")
                 listegroupes = {}
@@ -122,7 +96,6 @@ class Zone(begodata.Data) :
                         afficheclefs.liste_deroulante(self.__doc__, "groupes", listegroupes, enreg, dontchange = 0)
                 self.__doc__.pop()
                 self.__doc__.pop()
-               # self.__doc__.pop()
 
         def remarquable_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
@@ -169,8 +142,6 @@ class Zone(begodata.Data) :
                                 self.__doc__.pop()
                                 self.__doc__.pop()
                         else :
-                                #self.__doc__.push()
-                                #self.__doc__.tr()
 
                                 self.__doc__.push()
                                 self.__doc__.table(border = 0, width = "100%")
@@ -180,8 +151,6 @@ class Zone(begodata.Data) :
                                 self.__doc__.font(color = "red", size=begoconf.font_size)
                                 self.__doc__.insert_text("Aucune roche remarquable")
                                 self.__doc__.pop()
-                                #self.__doc__.pop()
-                #self.__doc__.pop()
 
 
 ################################################################################################################
@@ -250,9 +219,9 @@ class Zone(begodata.Data) :
                                 self.__doc__.submit(name = "action", value = "Modifier")
                                 self.__doc__.pop()
 
-##############################################################################################################################
+############################################################################################################################
 #                                               PHOTOS
-##############################################################################################################################
+############################################################################################################################
 
         def liste_photozones(self, enreg) :
                 resp = self.__db__.query("SELECT * FROM photozone WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " ORDER BY idphoto ASC;")
@@ -331,9 +300,9 @@ class Zone(begodata.Data) :
         def photozones(self, enreg, penreg = None) :
                 self.menu_photozones(enreg, begoconf.basform_bgcolormiddle, self.liste_photozones)
 
-##############################################################################################################################
+############################################################################################################################
 #                                               METHODES
-##############################################################################################################################
+############################################################################################################################
 
         def modifier(self) :
                 """Met a jour la zone courante"""

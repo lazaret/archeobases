@@ -1,37 +1,23 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
-#                2007 Bertrand Lecervoisier
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: begodata.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
-#
-# $Log: begodata.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.4  2000/05/28 17:01:14  jerome
-# Mise en place des liens parents/enfants et suppression (par test uniquement,
-# le code reste en place) de l'affichage complet tel qu'il existait avant
-#
-# Revision 1.3  2000/05/27 13:58:57  jerome
-# Integration du message de Log
-#
-#
+
 
 import string
 import cgi
 import urllib
 import begoconf
+
 
 class Data :
         def __init__(self, parent) :
@@ -129,7 +115,6 @@ class Data :
                                 else :
                                         test = "="
                                 where = where + paren + field + test + self.__getfield__(field) + ") AND "
-                                #aumoinsun = 1
                         return where[:-5]       # on supprime le dernier " AND "
                 else :
                         return ""
@@ -200,7 +185,6 @@ class Data :
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Créer")
                         self.__doc__.pop()
-                        #self.__doc__.br()
                         self.__doc__.push()
                         self.__doc__.p()
                         self.__doc__.reset(value = "R-à-Zéro")
@@ -396,15 +380,6 @@ class Data :
                                                         getattr(self, f)(enreg, penreg)
                 self.__doc__.pop()
 
-# commenté par bertrand, apparement ne sert à rien #####
-        #def compte_theme(self,  nom_champs, critere, enreg) :
-        #        nb = self.__db__.query("SELECT COUNT(*) FROM figure WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + " AND face = " + self.__db__.quote(enreg["face"], "text") + " AND " +  nom_champs  + " LIKE " + self.__db__.quote(critere, "text") + ";" )
-        #        nb = nb.dictresult()
-        #        nb = nb[0]["count"]
-        #        self.__doc__.font(size=begoconf.font_size)
-        #        self.__doc__.insert_text(`nb`)
-        #        return nb
-
 
 ###############################################################################
 #                       HAVE PRIMARY KEYS
@@ -455,12 +430,6 @@ class Data :
                 res = self.__db__.query(q)
                 return res.dictresult()
 
-# commente par bertrand, doublon avec une fonction déja definie plus haut
-        #def have_primarykeys(self, pkeys) :
-        #        for pk in pkeys :
-        #                if not self.__form__.has_key(pk) :
-        #                        return 0
-        #        return 1
 
 ################################################################################
 #                       TRAITE SAISIE
@@ -499,16 +468,13 @@ class Data :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                                 ################## SUPPRIMER #########################
@@ -516,14 +482,13 @@ class Data :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                 # la suppression a bien eu lieu
                                                 if not parent :
                                                         self.formulaire_hook(penreg = penreg)
                                                 else :
-                                                        self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent)+ '"')# + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+                                                        self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent)+ '"')
 
                                 ################## CREER #############################
                                 elif self.__form__["action"].value == "Créer" :
@@ -546,7 +511,6 @@ class Data :
                                                         begoconf.fatalerror_message("La zone saisie est inconnue")
                                                 elif retour == 1 :
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else:
                                                         self.__doc__.script('alert("valeur inexistante pour le champ" + champ )')
@@ -564,10 +528,7 @@ class Data :
                                         begoconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
                                 else :
-                                        #if not parent :
                                         self.formulaire_hook(penreg = penreg)
-                                        #else :
-                                        #        begoconf.fatalerror_message("On ne devrait pas arriver ici: %s %s" % (self.__new_record__, self.__tablename__))
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
@@ -600,7 +561,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + begoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook(penreg = penreg)

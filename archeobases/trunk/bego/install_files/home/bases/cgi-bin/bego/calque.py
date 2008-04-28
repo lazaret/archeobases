@@ -1,12 +1,24 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
+
 
 import sys
 import os
 import string
 import database
 import begoconf
+
 
 def transfere_fichier(infile, taille, mogrify) :
         """Stocke le fichier sur le disque et lance la commande mogrify appropriee"""
@@ -110,7 +122,6 @@ def parcours(param, dirname, names) :
 
                                 # on remplace les petites lettres par @petite lettre
                                 for i in grec.keys():
-                                        #print roche,i,grec[i]
                                         if string.find(roche, 'bis') < 0:
                                                 roche = string.replace(roche,i,grec[i])
 

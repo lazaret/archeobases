@@ -1,48 +1,24 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999	   Jerome ALET <alet@unice.fr>
-#		 1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: photo.py,v 1.5 2000/11/09 14:56:34 jerome Exp $
-#
-# $Log: photo.py,v $
-# Revision 1.5  2000/11/09 14:56:34  jerome
-# Rien, juste un test pour cvs_notify
-#
-# Revision 1.4	2000/11/09 14:53:24  jerome
-# Rien, juste un test pour cvs_notify
-#
-# Revision 1.3	2000/11/09 14:52:39  jerome
-# rien
-#
-# Revision 1.2	2000/11/09 14:26:54  rachel
-# Rien
-#
-# Revision 1.1.1.1  2000/11/06 08:33:17	 jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.5	2000/09/11 21:04:37  jerome
-# Ajout du stockage de l'image originale en .tiff
-# Finitions du prog de recuperation des images de Graziella
-#
-# Revision 1.4	2000/05/27 13:59:04  jerome
-# Integration du message de Log
-#
-#
+
+
 import os
 import string
 import cgi
 import begoconf
 import begodata
+
 
 class Photo(begodata.Data) :
 	#
@@ -153,7 +129,6 @@ class Photo(begodata.Data) :
 		# alors il faut decommenter la ligne suivante
 		# et commenter les 2 suivantes
 		# sinon la modification est effectuee mais rien n'est reaffiche.
-		# self.retour()
 		self.__doc__.do_nothing()
 		self.__doc__.output()
 

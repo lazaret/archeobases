@@ -1,5 +1,16 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
+#
+# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
 
 # version 1.0 Jerome Allet
 # version 1.1 Bertrand lecervoisier -> Passage à l'UTF-8
@@ -23,6 +34,7 @@ except ImportError :
     pass
 else :
     psyco.profile()
+
 
 # calcule la position du centre de l'objet
 # dans le document final.
@@ -345,7 +357,7 @@ def mainForCGI() :
     # first retrieve all variables :
     variables = [ ("auteur", "text", str), ("titre", "text", str), ("soustitre", "text", str),
                  ("typetrace", "text", str, True), ("papier", "text", str, True),
-                 ("orientation", "text", str, True), ("marge", "text", str, "True"),
+                 ("orientation", "text", str, True), ("marge", "text", str, True  ),
                  ("echelle", "text", float, True), ("xmontrerechelle", "bool", bool), ("ymontrerechelle", "bool", bool),
                  ("legende", "text", str), ("xmontrergrille", "bool", bool), ("xalignergraduation", "bool", bool),
                  ("ymontrergrille", "bool", bool), ("yalignergraduation", "bool", bool),
@@ -368,7 +380,7 @@ def mainForCGI() :
         if form.has_key(varname) :
             if vartype == "bool" :
                 value = form[varname].value
-                if value in [0, 0.0, "0", "OFF", "FALSE", False] :
+                if value in [0, 0.0, "0", "OFF", "off", "FALSE", False] :
                     varvalues[varname] = False
                 else :
                     varvalues[varname] = True
@@ -431,11 +443,11 @@ def mainForCGI() :
         os.chdir(directory)
         tempdir = directory.split(os.sep)[-1]
         url = urlparse.urlunsplit((scheme, netloc, "%s/genmap-work/%s" % (subdir, tempdir), query, fragment))
-        configpyname = os.path.join(directory, "configuration")
+        configpyname = os.path.join(directory, "configuration.txt")
         erreursname = os.path.join(directory, "erreurs.html")
         resultname = os.path.join(directory, "resultat.pdf")
         configpy = open(configpyname, "w")
-        configpy.write("# -*- coding: ISO-8859-15 -*-\n# Ne pas modifier la ligne ci-dessus\n\n")
+        configpy.write("# -*- coding: UTF-8 -*-\n# Ne pas modifier la ligne ci-dessus\n\n")
         for variable in variables :
             try :
                 (varname, vartype, varconv, mandatory) = variable
@@ -484,8 +496,8 @@ def mainForCGI() :
 
         doc._push()
         doc.li()
-        doc._text("Fichier de configuration :")
-        doc.a("%s/configuration" % url, href="%s/configuration" % url, target="_new")
+        doc._text("Fichier de configuration de Genmap :")
+        doc.a("%s/configuration.txt" % url, href="%s/configuration.txt" % url, target="_new")
         doc._pop()
 
         doc._push()

@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -76,11 +76,8 @@ elif form["action"].value == "AJOUTER" :
                 dico = { "champ" : param }
                 doc.set_redirect(collectionconf.script_location("controle_general") + "?" + urllib.urlencode(dico))
                 collectionconf.log_message("Rien a rajouter", level = "info")
-#                doc.set_redirect(collectionconf.script_location("controle_general"))
         else :
-                #ajouter(db, form, param)
                 collectionconf.log_message("Rien a rajouter", level = "info")
-                #doc.set_redirect(collectionconf.script_location("controle_general"))
                 dico = { "champ" : param }
                 doc.set_redirect(collectionconf.script_location("controle_general") + "?" + urllib.
 urlencode(dico))

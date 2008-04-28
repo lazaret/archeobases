@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -21,6 +21,7 @@ import os
 import string
 import database
 import archeoconf
+
 
 def transfere_fichier(infile, taille, mogrify) :
         """Stocke le fichier sur le disque et lance la commande mogrify appropriée"""
@@ -110,10 +111,7 @@ def parcours(param, dirname, names) :
                                         resultat = db.query(requete).dictresult()
                                         if len(resultat) :
                                                 #on insere la nouvelle photo dans la table photofigure
-                                                #if not os.system('zcat <"%s" >%s' % (fichier, "tempo.tiff")) :
                                                 creer_image(z,n,b)
-                                                #else :
-                                                #        sys.stderr.write("erreur sur [%s]\n" % fichier)
                                         else :
                                                         sf.write("[%s] => [%s %s %s %s] pas de parent\n" % (fichier, z, n,b))
 
@@ -126,12 +124,6 @@ db = database.DataBase(database = "lazaret", username = "rachel", debuglevel = 0
 
 
 sf = open("sansparent.lst", "w")
-#sf.write("Liste des fichiers n'ayant pas de face correspondante\n")
-#sf.write("-----------------------------------------------------\n\n")
 os.path.walk("/cdrom", parcours, (db, sf))
 sf.close()
-
-
-
-
 

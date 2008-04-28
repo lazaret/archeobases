@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -11,6 +11,7 @@
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import string
 import cgi
@@ -356,8 +357,6 @@ class Data :
                                 elif v :
                                         collectionconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide !" %(v, champ))
                                         return None
-                                #else :
-                                        #collectionconf.fatalerror_message("La valeur saisie dans le champ %s est invalide" % champ)
 
                         else:
                                 query = query + v + ", "
@@ -379,7 +378,7 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "1", cellpadding = "5", cellspacing = "5")#, bgcolor=collectionconf.menu_bgcolor)
+                self.__doc__.table(border = "1", cellpadding = "5", cellspacing = "5")
 
                 if enreg :
                         self.__doc__.push()
@@ -412,7 +411,6 @@ class Data :
 
                         self.__doc__.br()
                         self.__doc__.font(size = collectionconf.font_size)
-#                        if self.__vraiparent__ != None :
                         if hasattr(self, "__listeparents__"):
                                 self.__doc__.font(size = collectionconf.font_size, style="color:%s;" % collectionconf.bas1_bgcolor)
                                 dico = { "action" : "ChercherLien" }
@@ -420,7 +418,6 @@ class Data :
                                         dico[clef] = enreg[clef]
                                 for p in self.__listeparents__ :
                                         self.__doc__.insert_text("&nbsp;" * 5)
-                                #parent = self.__vraiparent__
                                         pluriel = ''
                                         if p[-1] != 's' :
                                                 pluriel = 's'
@@ -645,12 +642,7 @@ class Data :
 
                         elif (self.__form__["action"].value == "ChercherLien"):
                                 collectionconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
-                                if self.__parent__ == self.__tablename__ :
-                                        #self.__doc__.push()
-                                        #self.__doc__.div(align = "center")
-                                        #self.__doc__.font("La il faudrait afficher la le debut de la clef", color = "red")
-                                        #self.__doc__.pop()
-                                        #self.formulaire_hook(penreg = penreg)
+                                if self.__parent__ == self.__tablename__ :g)
                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                 ################# CHERCHER+ #########
@@ -683,7 +675,6 @@ class Data :
                                         self.__doc__.div(align = "center")
                                         self.__doc__.font("Aucun enregistrement trouvé", color = "red")
                                         self.__doc__.pop()
-                                        #self.formulaire_hook(penreg = penreg)
                         else :
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
@@ -709,10 +700,8 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                                 ################## SUPPRIMER #########################
@@ -720,14 +709,13 @@ class Data :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                 # la suppression a bien eu lieu
                                                 if not parent :
                                                         self.formulaire_hook(penreg = penreg)
                                                 else :
-                                                        self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent)+ '"')# + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+                                                        self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent)+ '"')
 
                                 ################## CREER #############################
                                 elif self.__form__["action"].value == "Créer" :
@@ -750,7 +738,6 @@ class Data :
                                                         collectionconf.fatalerror_message("La zone saisie est inconnue")
                                                 elif retour == 1 :
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else:
                                                         self.__doc__.script('alert("valeur inexistante pour le champ" + champ )')
@@ -767,11 +754,8 @@ class Data :
                                 elif self.__form__["action"].value != self.__new_record__ :
                                         collectionconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
-                                else :
-                                        #if not parent :
+                                else 
                                         self.formulaire_hook(penreg = penreg)
-                                        #else :
-                                        #        collectionconf.fatalerror_message("On ne devrait pas arriver ici: %s %s" % (self.__new_record__, self.__tablename__))
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
@@ -804,7 +788,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook(penreg = penreg)
@@ -815,7 +798,6 @@ class Data :
                                         else :
                                                 self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
-                                                #self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 else :
                                         collectionconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook(penreg = penreg)
@@ -851,11 +833,7 @@ class Data :
                 if titre != "":
                         self.__doc__.tr(align = "right")
                         self.__doc__.push()
-                        #self.__doc__.td(align="left")
-                        #self.__doc__.u()
-                        #self.__doc__.font(titre, size=collectionconf.font_size)
                         self.__doc__.pop()
-                        #self.__doc__.td()
 
                 self.__doc__.push()
                 self.__doc__.td(align="right")
@@ -927,7 +905,6 @@ class Data :
                         self.__doc__.u()
                         self.__doc__.font(titre, size=collectionconf.font_size)
                         self.__doc__.pop()
-                        #self.__doc__.td()
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font(size=collectionconf.font_size)
@@ -978,7 +955,6 @@ class Data :
                         self.__doc__.pop()
                         self.__doc__.td()
                 self.__doc__.push()
-                #self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font(size=collectionconf.font_size)
 
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
@@ -1005,10 +981,6 @@ class Data :
                                 self.__doc__.br()
                                 self.__doc__.submit(name = "action", value = self.__new_record__)
                 else :
-                        #self.__doc__.push()
-                        #self.__doc__.p()
-                        #self.__doc__.submit(name = "action", value = "Chercher")
-                        #self.__doc__.pop()
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Créer")
                         self.__doc__.br()
@@ -1019,12 +991,12 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")#, bgcolor=collectionconf.menu_bgcolor)
+                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")
 
                 if enreg :
                         self.__doc__.push()
                         self.__doc__.tr()
-                        self.__doc__.td(colspan = 2, valign="middle", align="center")#, color=collectionconf.menu_bgcolor)
+                        self.__doc__.td(colspan = 2, valign="middle", align="center")
                         self.__doc__.font(size = collectionconf.font_size)
 
                         if maximum :
@@ -1112,22 +1084,18 @@ class Data :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                 # la suppression a bien eu lieu
@@ -1153,7 +1121,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         if not parent :
@@ -1164,10 +1131,7 @@ class Data :
                                         collectionconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook_parametre(penreg = penreg)
                                 else :
-                                        #if not parent :
                                         self.formulaire_hook_parametre(penreg = penreg)
-                                        #else :
-                                        #        collectionconf.fatalerror_message("On ne devrait pas arriver ici: %s %s" % (self.__new_record__, self.__tablename__))
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
@@ -1200,7 +1164,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook_parametre(penreg = penreg)

@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -12,6 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
+
 import os
 import string
 import collectionconf
@@ -19,6 +20,7 @@ import collectiondata
 import afficheclefs
 import re
 import urllib
+
 
 class Carte(collectiondata.Data) :
         #
@@ -65,7 +67,7 @@ class Carte(collectiondata.Data) :
 
         #
         # liste des formulaires supplementaires
-        __formsupp__ = []#"photomateriel"]
+        __formsupp__ = []
 
         def identifiant_verify(self, fieldname, value) :
                 if (value == '') or self.champ_verify(fieldname, value) :
@@ -205,8 +207,6 @@ class Carte(collectiondata.Data) :
                                 self.__doc__.push()
                                 self.__doc__.td(clign = "center", colspan="3")
                                 self.__doc__.font(size=collectionconf.font_size)
-                                #self.__doc__.insert_text(valeur[k]['identifiant_2'])
-                                #valeur['identifiant_2'] = enreg['identifiant']
                                 dico['identifiant'] = valeur[k]['identifiant_2']
                                 #TOTO: faire requete pour connaitre le nom de la table correspondante
                                 query_count_biblio = "SELECT COUNT(*) FROM biblio WHERE identifiant=" \
@@ -326,9 +326,6 @@ class Carte(collectiondata.Data) :
 
         def supprimer(self) :
                # s'il existe des figures ou des photos sur ce carte on refuse la suppression
-                #if self.exist(["identifiant"], table = "l") :
-                #        return -1
-                #else :
                 i = self.__form__["identifiant"].value
                 delete_association = "DELETE FROM association WHERE identifiant_1='" + i + "';"
                 self.__db__.query(delete_association)

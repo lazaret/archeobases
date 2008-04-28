@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -50,7 +50,7 @@ page.push()
 cpt = 0
 for chaine in ("b_type_biblio","b_langue_document","m_type_materiel","m_batiment","m_piece","m_classe","m_ordre","m_famille","m_genre","m_espece", \
                 "m_sexe_individu","m_representation_squel","m_nature","m_type_support","m_etagere", "m_moul_orig"):
-#f_epins
+
         if (cpt == 6 ) :
                 page.pop()
                 page.push()

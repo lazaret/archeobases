@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -13,9 +13,6 @@
 #
 
 
-# modifier m_numero_individu en m_individu
-# ajouter m_groupe, m_nom_scientifique, m_holotype_espece
-
 import os
 import string
 import collectionconf
@@ -23,6 +20,7 @@ import collectiondata
 import afficheclefs
 import re
 import urllib
+
 
 class Materiel(collectiondata.Data) :
         #
@@ -143,7 +141,7 @@ class Materiel(collectiondata.Data) :
 
         #
         # liste des formulaires supplementaires
-        __formsupp__ = []#"photomateriel"]
+        __formsupp__ = []
 
         def identifiant_verify(self, fieldname, value) :
                 if (value == '') or self.champ_verify(fieldname, value) :
@@ -233,11 +231,6 @@ class Materiel(collectiondata.Data) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "m_editeur", "Éditeur", 100, 100, " ", enreg, penreg)
                 self.__doc__.pop()
-
-        #def m_edition_base_to_form(self, enreg, penreg = None) :
-        #        self.__doc__.push()
-        #        afficheclefs.champ_saisie(self, "m_edition", "Édition/Production", 30, 30, " ", enreg, penreg)
-        #        self.__doc__.pop()
 
         def m_date_edition_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -525,8 +518,6 @@ class Materiel(collectiondata.Data) :
                                 self.__doc__.push()
                                 self.__doc__.td(clign = "center", colspan="3")
                                 self.__doc__.font(size=collectionconf.font_size)
-                                #self.__doc__.insert_text(valeur[k]['identifiant_2'])
-                                #valeur['identifiant_2'] = enreg['identifiant']
                                 dico['identifiant'] = valeur[k]['identifiant_2']
                                 #TOTO: faire requete pour connaitre le nom de la table correspondante
                                 query_count_biblio = "SELECT COUNT(*) FROM biblio WHERE identifiant=" \
@@ -645,9 +636,6 @@ class Materiel(collectiondata.Data) :
 
         def supprimer(self) :
                 # s'il existe des figures ou des photos sur ce materiel on refuse la suppression
-                #if self.exist(["identifiant"], table = "photomateriel") :
-                #        return -1
-                #else :
                         i = "I" + self.__form__["identifiant"].value
                         rr = collectionconf.image_fullname(i)
                         try :

@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -15,7 +15,7 @@
 
 import collectionconf
 import association
-#cgi.test()
 
-association.Association("bas").traite_saisie(["identifiant_1","identifiant_2"])#, parent = collectionconf.getparent())
+
+association.Association("bas").traite_saisie(["identifiant_1","identifiant_2"])
 

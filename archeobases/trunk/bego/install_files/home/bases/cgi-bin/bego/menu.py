@@ -1,33 +1,20 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: menu.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
-#
-# $Log: menu.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.7  2000/05/29 15:09:42  rachel
-# cation pour permettre un ordre des figures dans les associations.
-# le menu est modifie pour permettre l'affichage de l'album et de la presentation en up
-#
-# Revision 1.6  2000/05/27 13:58:59  jerome
-# Integration du message de Log
-#
-#
+
 
 import begoconf
+
 
 def petit_logo(page, logo, lien) :
         if logo != None :
@@ -36,6 +23,12 @@ def petit_logo(page, logo, lien) :
                 page.a(href = lien, target = "_top")
                 page.img(src = begoconf.decor_location(logo), border = "0")
                 page.pop()
+
+def bouton(page, module, image) :
+        page.push()
+        page.a(href=begoconf.script_location(module), target="bas")
+        page.img(src=begoconf.decors_location + image + ".png", border=0)
+        page.pop()
 
 page = begoconf.Menu("Menu")
 
@@ -47,39 +40,31 @@ petit_logo(page, begoconf.petit_logo_gauche, begoconf.petit_logo_gauche_link)
 
 page.push()
 page.td()
-page.table(border= "0")# , bgcolor = begoconf.menu_bgcolor)
+page.table(border= "0")
 page.form(method="POST")
 page.push()
 page.tr()
-page.td()
-page.button(name="menu", value="Zones",        onclick='parent.bas.location="' + begoconf.script_location("modzone")        + '"')
-page.button(name="menu", value="Roches",       onclick='parent.bas.location="' + begoconf.script_location("modroche")       + '"')
-page.button(name="menu", value="Faces",        onclick='parent.bas.location="' + begoconf.script_location("modface")        + '"')
-page.button(name="menu", value="Figures protohistoriques",      onclick='parent.bas.location="' + begoconf.script_location("modfigure")      + '"')
-page.button(name="menu", value="Gravures historiques",      onclick='parent.bas.location="' + begoconf.script_location("modhistorique")      + '"')
-page.button(name="menu", value="Associations", onclick='parent.bas.location="' + begoconf.script_location("modassociation") + '"')
+page.td(align = "center")
+bouton(page, "modzone", "zones")
+bouton(page, "modroche", "roches")
+bouton(page, "modface", "faces")
+bouton(page, "modfigure", "figuresprotohistoriques")
+bouton(page, "modhistorique", "gravureshistoriques")
+bouton(page, "modassociation", "associations")
 page.pop()
 page.tr()
 page.td(align = "center")
 if page.remote_user() in begoconf.superusers :
-        page.button(name="menu", value="Parametres", onclick='parent.bas.location="' + begoconf.script_location("parametre") + '"')
-        page.button(name="menu", value="SQL",        onclick='parent.bas.location="' + begoconf.script_location("requetes")   + '"')
+    bouton(page, "requetes", "sql")
+    bouton(page, "parametre", "parametres")
 
-#page.a("Album", href =  begoconf.album_location , target = "top")
-page.a("Présentation", href =  begoconf.help_general_location , target = "top")
-#page.button(name="menu", value="Album", onclick='parent.location="' + begoconf.album_location + '"')
-#page.button(name="menu", value="Aide", onclick='parent.location="' + begoconf.help_general_location + '"')
+page.a(href = begoconf.help_general_location, target = "_top")
+page.img(src=begoconf.decors_location + "aide.png", border=0)
 
 page.pop()
 
 petit_logo(page, begoconf.petit_logo_bas, begoconf.petit_logo_bas_link)
 
 page.output()
-
-
-
-
-
-
 
 

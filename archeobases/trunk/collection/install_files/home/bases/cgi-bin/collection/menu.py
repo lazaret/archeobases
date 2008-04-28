@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -17,6 +17,7 @@ import collectionconf
 import database
 import urllib
 
+
 def petit_logo(page, logo, lien) :
         if logo != None :
                 page.push()
@@ -29,12 +30,10 @@ def petit_logo(page, logo, lien) :
 def bouton(page, module, image) :
         page.push()
         page.a(href=collectionconf.script_location(module), target="bas")
-        #page.a(href="'parent.bas.location=%s'"  %collectionconf.script_location(module))
         page.img(src=collectionconf.decors_location + image + ".jpg", border=0)
         page.pop()
 
 page = collectionconf.Menu("Menu")
-"""page.button(name="menu", value="Entree",onclick='parent.bas.location="'+ collectionconf.script_location("modentree")        + '"')"""
 
 nombase = collectionconf.getBase()
 
@@ -55,36 +54,36 @@ page.form(method="POST")
 page.push()
 page.tr()
 page.td(align = "center")
-bouton(page, "modbiblio", "bibliographie") #1
-bouton(page, "modmateriel", "materiel") #2
-bouton(page, "modanthropologie", "anthropologie") #3
-bouton(page, "modfaune_comparaison", "faune_comparaison") #4
-bouton(page, "modmoulages", "moulages") #5
-bouton(page, "modscan", "scan") #6
-bouton(page, "modaudio_video", "audio_video") #7
-bouton(page, "modvue", "vue") #8
+bouton(page, "modbiblio", "bibliographie")
+bouton(page, "modmateriel", "materiel")
+bouton(page, "modanthropologie", "anthropologie")
+bouton(page, "modfaune_comparaison", "faune_comparaison")
+bouton(page, "modmoulages", "moulages")
+bouton(page, "modscan", "scan")
+bouton(page, "modaudio_video", "audio_video")
+bouton(page, "modvue", "vue")
 page.pop()
 
 page.tr()
 page.td(align = "center")
-bouton(page, "moddessin", "dessin") #9
-bouton(page, "modreleve", "releve") #10
-bouton(page, "modcarte", "carte") #11
+bouton(page, "moddessin", "dessin")
+bouton(page, "modreleve", "releve")
+bouton(page, "modcarte", "carte")
 
-bouton(page, "modassociation", "association") #12
+bouton(page, "modassociation", "association")
 
 if collectionconf.utilisateur_courant not in collectionconf.visitorusers :
-        bouton(page, "requetes", "sql") #13
+        bouton(page, "requetes", "sql")
 if collectionconf.utilisateur_courant in collectionconf.superusers :
-        bouton(page, "controle", "controles") #14
+        bouton(page, "controle", "controles")
 
 page.push()
 page.a(href = collectionconf.site_location, target = "_top")
-page.img(src=collectionconf.decors_location + "aide.jpg", border=0) #15
+page.img(src=collectionconf.decors_location + "aide.jpg", border=0)
 page.pop()
 page.push()
 page.a(href =  "/cgi-bin/collection.py?base=aucune", target = "_top")
-page.img(src=collectionconf.decors_location + "deconnexion.jpg", border=0) #16
+page.img(src=collectionconf.decors_location + "deconnexion.jpg", border=0)
 page.pop()
 
 

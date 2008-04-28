@@ -27,11 +27,13 @@ except :
 import collectionconf
 import jahtml
 
+
 elabore = "Elaboré"
 simplifie = "Simplifié"
 telechargecsv = "Texte format CSV"
 liste_affichage = [ simplifie, elabore, telechargecsv ]
 affichage_default = simplifie
+
 
 def cherche_requete(db, nom) :
         resultat = db.query("SELECT * FROM requete WHERE nomrequete = " + db.quote(nom, "text"))

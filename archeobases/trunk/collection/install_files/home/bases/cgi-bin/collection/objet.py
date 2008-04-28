@@ -1,7 +1,7 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/
 #
 # You're welcome to redistribute this software under the
@@ -12,12 +12,14 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
+
 import os
 import string
 import collectionconf
 import collectiondata
 import biblio
 import afficheclefs
+
 
 class Objet(collectiondata.Data) :
         #
@@ -67,8 +69,6 @@ class Objet(collectiondata.Data) :
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
                         return -1       # erreur
-                #elif  (value != None) and (len() : TODO verifier le type de l'enregistrement
-                        #return -1      # erreur
                 else:
                         return 0
 
@@ -120,7 +120,4 @@ class Objet(collectiondata.Data) :
                         self.__db__.query(requete)
                         primarykeys = { "identifiant" : i }
                         return (1, primarykeys)
-
-
-
 

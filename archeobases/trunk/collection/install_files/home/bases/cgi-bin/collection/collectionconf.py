@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -14,6 +14,7 @@
 
 import string
 import urllib
+
 
 #### Début de la partie configurable ####
 
@@ -59,9 +60,9 @@ bas_background    = None
 menuform_bgcolor      = "#96ADC4"
 basform_bgcolorleft   = "#FFFFCC"
 basform_bgcolorright  = "#CCFF99" # menu de droite des formulaires
-basform_bgcolormiddle = "#DDDDDD" #
+basform_bgcolormiddle = "#DDDDDD"
 basform_bgcolorbottom = "#CCCCCC"
-basform_bgcolorcenter = "#CCCCCC" #
+basform_bgcolorcenter = "#CCCCCC"
 
 #
 # Logos
@@ -268,10 +269,6 @@ class Main(jahtml.CGI_document) :
                 if utilisateur_courant not in superusers \
                 and utilisateur_courant not in normalusers \
                 and utilisateur_courant not in visitorusers :
-                #ruser = utilisateur_courant
-                #if (ruser not in config["bases"][base_courante]["admins"]) \
-                #and (ruser not in config["bases"][base_courante]["users"]) \
-                #and (ruser not in config["bases"][base_courante]["visitors"]) :
                         self.set_redirect(script_location("bas"))
                 else :
                         self.frameset(rows="120,*", border="0")
@@ -287,7 +284,6 @@ class Menu(jahtml.CGI_document) :
                 self.body(bgcolor = menu_bgcolor, background = menu_background)
                 self.push()
                 self.div(align = "center")
-#                self.img(src = decor_location("logo_lazaret_transparent.jpg"), alt= "Collection", border=0)
                 self.pop()
 
 class Controle(jahtml.CGI_document) :

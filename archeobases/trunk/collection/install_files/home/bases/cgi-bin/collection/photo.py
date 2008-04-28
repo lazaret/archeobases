@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -18,6 +18,7 @@ import string
 import cgi
 import collectionconf
 import collectiondata
+
 
 class Photo(collectiondata.Data) :
         #
@@ -84,7 +85,6 @@ class Photo(collectiondata.Data) :
                 # alors il faut decommenter la ligne suivante
                 # et commenter les 2 suivantes
                 # sinon la modification est effectuee mais rien n'est reaffiche.
-                # self.retour()
                 self.__doc__.do_nothing()
                 self.__doc__.output()
 

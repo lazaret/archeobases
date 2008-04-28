@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -11,6 +11,7 @@
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import os
 import re
@@ -22,9 +23,6 @@ import afficheclefs
 import collectionconf
 import collectiondata
 
-
-## Biblio class -
-#
 
 class Biblio(collectiondata.Data) :
         #
@@ -325,8 +323,6 @@ class Biblio(collectiondata.Data) :
                                 self.__doc__.push()
                                 self.__doc__.td(clign = "center", colspan="3")
                                 self.__doc__.font(size=collectionconf.font_size)
-                                #self.__doc__.insert_text(valeur[k]['identifiant_2'])
-                                #valeur['identifiant_2'] = enreg['identifiant']
                                 dico['identifiant'] = valeur[k]['identifiant_2']
                                 #TOTO: faire requete pour connaitre le nom de la table correspondante
                                 query_count_biblio = "SELECT COUNT(*) FROM biblio WHERE identifiant=" \

@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -19,6 +19,7 @@ import cgi
 import collectionconf
 import photo
 import afficheclefs
+
 
 photo = photo.Photo("bas","fiche")
 f = photo.getcurform()
@@ -45,7 +46,6 @@ if f.has_key("action") :
                 page.tr()
                 dico = afficheclefs.form_to_enreg(f)
                 afficheclefs.display_zone(photo.__db__, page, dico)
-                # afficheclefs.display_zone(page, dico)
                 afficheclefs.display_numero(page, dico)
                 afficheclefs.display_bis(photo.__db__, page, dico)
                 nbcols = 3
@@ -97,10 +97,3 @@ if f.has_key("action") :
                 page.output()
         else :
                 collectionconf.log_message("%s: Action [%s] inconnue" % (photo.getcurdoc().script_name(), f["action"].value))
-
-
-
-
-
-
-

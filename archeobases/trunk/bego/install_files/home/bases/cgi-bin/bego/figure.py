@@ -115,8 +115,11 @@ class Figure(begodata.Data) :
         def roche_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.display_roche(self, enreg, penreg)
 
+# cas particulier on peut changer la face d'une figure !
         def face_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.display_face(self, enreg, penreg)
+                afficheclefs.display_face_2(self, enreg, penreg)
+
+
 
         def figure_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.display_figure(self.__doc__, enreg, penreg)
@@ -702,7 +705,8 @@ class Figure(begodata.Data) :
 
         def modifier(self) :
                 """Met a jour la figure courante"""
-                self.__db__.query(self.make_update_query(["zone", "groupe", "roche", "face", "figure"]))
+                # face pas dans les clefs primaires car on veut pouvoir la changer facilement
+                self.__db__.query(self.make_update_query(["zone", "groupe", "roche", "figure"]))
                 return 0
 
         def supprimer(self) :

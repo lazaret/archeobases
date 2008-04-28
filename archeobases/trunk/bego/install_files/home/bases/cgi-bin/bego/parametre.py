@@ -1,30 +1,17 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: parametre.py,v 1.1.1.1 2000/11/06 08:33:18 jerome Exp $
-#
-# $Log: parametre.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:18  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.9  2000/06/30 07:02:39  rachel
-# modifs effectuees pdt un long laps de temps sans reseau ...
-#
-# Revision 1.8  2000/05/27 13:59:03  jerome
-# Integration du message de Log
-#
-#
+
 
 import sys
 import time
@@ -32,6 +19,7 @@ import string
 import cgi
 import urllib
 import begoconf
+
 
 class PageRequete(begoconf.Bas) :
         def ecran_requetes(self, coulfond, coultete, coulhaut, coulpartie, coulmenu, param) :

@@ -1,48 +1,24 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
-##
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# -*- coding: UTF-8 -*-
+#
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: figure.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
-#
-# $Log: figure.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.9  2000/06/30 07:02:38  rachel
-# modifs effectuees pdt un long laps de temps sans reseau ...
-#
-# Revision 1.8  2000/05/30 15:24:08  rachel
-# ajout de champs dans bego.sql concerant le type d'association et
-# la description d'elements naturels
-# mise de taille moyenne par defaut dans photo
-# modif de roche pour que remarquable fonctionne
-# modif de zone ?
-# modif de face ( ajout des elements naturels, et du contenu de direction
-# modif de figure modif style, dimension, direction=orientation
-#
-# Revision 1.7  2000/05/28 17:01:15  jerome
-# Mise en place des liens parents/enfants et suppression (par test uniquement,
-# le code reste en place) de l'affichage complet tel qu'il existait avant
-#
-# Revision 1.6  2000/05/27 13:58:58  jerome
-# Integration du message de Log
-#
-#
+
+
 import os
 import string
 import begoconf
 import begodata
 import afficheclefs
+
 
 class Figure(begodata.Data) :
         #
@@ -157,12 +133,9 @@ class Figure(begodata.Data) :
 
                 if enreg != None :
                         self.__doc__.text(name = "identite", size = "15", maxlength = "15", value = enreg["identite"])
-                        #self.__doc__.insert_text(enreg["identite"])
-                        #self.__doc__.hidden(name = "identite", value = enreg["identite"])
                 else :
                         self.__doc__.text(name = "identite", size = "15", maxlength = "15", value = "")
                 self.__doc__.pop()
-#                self.__doc__.pop()
 
         def conti_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -753,13 +726,4 @@ class Figure(begodata.Data) :
                                 self.__db__.query(self.make_insert_query({ }))
                                 primarykeys = { "zone" : z, "groupe" : g, "roche" : r, "face" : f, "figure" : fg }
                                 return (0, primarykeys)
-
-
-
-
-
-
-
-
-
 

@@ -1,59 +1,26 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: roche.py,v 1.5 2000/11/15 11:01:29 jerome Exp $
-#
-# $Log: roche.py,v $
-# Revision 1.5  2000/11/15 11:01:29  jerome
-# Rien
-#
-# Revision 1.4  2000/11/15 10:51:17  jerome
-# Rien
-#
-# Revision 1.3  2000/11/15 10:20:23  jerome
-# Rien
-#
-# Revision 1.2  2000/11/15 10:10:40  jerome
-# Rien
-#
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.7  2000/05/30 15:24:09  rachel
-# ajout de champs dans bego.sql concerant le type d'association et
-# la description d'elements naturels
-# mise de taille moyenne par defaut dans photo
-# modif de roche pour que remarquable fonctionne
-# modif de zone ?
-# modif de face ( ajout des elements naturels, et du contenu de direction
-# modif de figure modif style, dimension, direction=orientation
-#
-# Revision 1.6  2000/05/28 17:01:15  jerome
-# Mise en place des liens parents/enfants et suppression (par test uniquement,
-# le code reste en place) de l'affichage complet tel qu'il existait avant
-#
-# Revision 1.5  2000/05/27 13:59:04  jerome
-# Integration du message de Log
-#
-#
+
+
 import os
 import string
 import begoconf
 import begodata
 import face
 import afficheclefs
-#import cgi
+
+
 class Roche(begodata.Data) :
         #
         # le nom de la table
@@ -233,7 +200,6 @@ class Roche(begodata.Data) :
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font("Epaisseur:", size=begoconf.font_size)
                 self.__doc__.font(size=begoconf.font_size)
-                #self.__doc__.insert_text("Epaisseur:")
                 if enreg != None :
                         self.__doc__.text(name = "epaisseur", value = enreg["epaisseur"], size = 6, maxlength = 6)
                 else :
@@ -290,10 +256,6 @@ class Roche(begodata.Data) :
                 self.__doc__.td()
                 self.__doc__.pop()
 
-                #self.__doc__.push()
-                #self.__doc__.td()
-                #self.__doc__.pop()
-
                 self.__doc__.push()
                 self.__doc__.td()
                 self.__doc__.pop()
@@ -329,10 +291,6 @@ class Roche(begodata.Data) :
                 self.__doc__.td()
                 self.__doc__.pop()
 
-                #self.__doc__.push()
-                #self.__doc__.td()
-                #self.__doc__.pop()
-
                 self.__doc__.push()
                 self.__doc__.td()
                 self.__doc__.pop()
@@ -366,8 +324,6 @@ class Roche(begodata.Data) :
 
                         self.__doc__.push()
                         self.__doc__.td(align="right", valign="middle", colspan = "3")
-                        #self.__doc__.insert_text("&nbsp;")
-                        #self.__doc__.pop()
                         self.__doc__.td(align="left", valign="middle")
                         self.__doc__.font(size=begoconf.font_size)
 
@@ -567,7 +523,4 @@ class Roche(begodata.Data) :
                                 self.__db__.query(self.make_insert_query({ }))
                                 primarykeys = { "zone" : z, "groupe" : g, "roche" : r }
                                 return (0, primarykeys)
-
-
-
 

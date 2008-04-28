@@ -1,44 +1,25 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: association.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
-#
-# $Log: association.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.5  2000/06/30 07:02:37  rachel
-# modifs effectuees pdt un long laps de temps sans reseau ...
-#
-# Revision 1.4  2000/05/29 15:09:41  rachel
-# cation pour permettre un ordre des figures dans les associations.
-# le menu est modifie pour permettre l'affichage de l'album et de la presentation en up
-#
-# Revision 1.3  2000/05/28 17:01:13  jerome
-# Mise en place des liens parents/enfants et suppression (par test uniquement,
-# le code reste en place) de l'affichage complet tel qu'il existait avant
-#
-# Revision 1.2  2000/05/27 13:58:56  jerome
-# Integration du message de Log
-#
-#
+
+
 import os
 import string
 import urllib
 import begoconf
 import begodata
 import afficheclefs
+
 
 class Association(begodata.Data) :
         #
@@ -205,9 +186,9 @@ class Association(begodata.Data) :
                         self.liste_figures_assoc(enreg)
                         self.__doc__.pop()
 
-#########################################################################################################################################
+############################################################################################################################
 #                                                       PHOTOS
-########################################################################################################################################
+############################################################################################################################
 
         def liste_photoassociation(self, enreg) :
                 resp = self.__db__.query("SELECT * FROM photoassociation WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + " AND face = " + self.__db__.quote(enreg["face"], "text") + " AND association = " + self.__db__.quote(enreg["association"], "decimal")  + " ORDER BY idphoto ASC;")
@@ -294,9 +275,9 @@ class Association(begodata.Data) :
         def photoassociation(self, enreg, penreg = None) :
                 self.menu_photoassociation(enreg, begoconf.basform_bgcolormiddle, self.liste_photoassociation)
 
-##################################################################################################################################
+############################################################################################################################
 #                                               PRINCIPAL
-##################################################################################################################################
+############################################################################################################################
 
 
         def modifier(self) :

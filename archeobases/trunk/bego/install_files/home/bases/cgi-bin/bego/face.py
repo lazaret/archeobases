@@ -1,39 +1,17 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: face.py,v 1.1.1.1 2000/11/06 08:33:17 jerome Exp $
-#
-# $Log: face.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:17  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.9  2000/05/30 15:24:07  rachel
-# ajout de champs dans bego.sql concerant le type d'association et
-# la description d'elements naturels
-# mise de taille moyenne par defaut dans photo
-# modif de roche pour que remarquable fonctionne
-# modif de zone ?
-# modif de face ( ajout des elements naturels, et du contenu de direction
-# modif de figure modif style, dimension, direction=orientation
-#
-# Revision 1.8  2000/05/28 17:01:14  jerome
-# Mise en place des liens parents/enfants et suppression (par test uniquement,
-# le code reste en place) de l'affichage complet tel qu'il existait avant
-#
-# Revision 1.7  2000/05/27 13:58:58  jerome
-# Integration du message de Log
-#
+
 
 import os
 import string
@@ -42,6 +20,7 @@ import begodata
 import figure
 import afficheclefs
 import re
+
 
 class Face(begodata.Data) :
         #
@@ -227,7 +206,6 @@ class Face(begodata.Data) :
                         self.__doc__.checkbox_checked(name = "decrochement")
                     else :
                         self.__doc__.checkbox(name = "decrochement") # 'f' ou vide
-                        #self.__doc__.option("decrochement", value = 'f')
                 else :
                     self.__doc__.checkbox(name = "decrochement")         # 'f' est la valeur par defaut
 
@@ -790,9 +768,9 @@ class Face(begodata.Data) :
         def photoface(self, enreg, penreg = None) :
                 self.menu_photoface(enreg, begoconf.basform_bgcolormiddle, self.liste_photoface)
 
-##############################################################################################################################
+############################################################################################################################
 #                                       LIEN AVEC L'ECRAN FIGURE
-##############################################################################################################################
+############################################################################################################################
         def figures(self, enreg, penreg = None) :
                 if enreg != None :
                         self.__doc__.push()
@@ -803,9 +781,9 @@ class Face(begodata.Data) :
                         figure.Figure(self).traite_saisie(["zone", "groupe", "roche", "face", "figure"], parent = self.__tablename__, penreg = penreg)
                         self.__doc__.pop()
 
-##############################################################################################################################
+############################################################################################################################
 #                                               METHODES
-##############################################################################################################################
+############################################################################################################################
 
         def modifier(self) :
                 """Met a jour la face courante"""

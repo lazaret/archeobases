@@ -1,43 +1,24 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: modzone_acces.py,v 1.1.1.1 2000/11/06 08:33:18 jerome Exp $
-#
-# $Log: modzone_acces.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:18  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.10  2000/05/30 07:39:00  rachel
-# modif de l'ecran de saisie modzone_acces pour qu'il ressemble a l'ecran
-# modfigassoc
-# zone.py: rien
-# ---------------------------------------------------------------------
-#
-# Revision 1.9  2000/05/29 15:09:43  rachel
-# cation pour permettre un ordre des figures dans les associations.
-# le menu est modifie pour permettre l'affichage de l'album et de la presentation en up
-#
-# Revision 1.8  2000/05/27 13:59:03  jerome
-# Integration du message de Log
-#
-#
+
 
 import cgi
 import string
 import urllib
 import begoconf
 import afficheclefs
+
 
 def liste_multiple(doc, nom, valeurs, param) :
         doc.push()
@@ -187,8 +168,6 @@ if form.has_key("action") :
                         begoconf.log_message("%s: Action %s non reconnue" % (doc.script_name(), form["action"].value), level = "info")
                         doc.set_redirect(begoconf.script_location("modzone") + urlretour)
 else :
-        #begoconf.fatalerror_message("Aucune action à effectuer !")
-        #begoconf.fatalerror_message("y a un bleme !")
         cgi.test()
 
 doc.output()

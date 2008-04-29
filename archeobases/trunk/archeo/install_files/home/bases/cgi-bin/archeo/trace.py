@@ -1,24 +1,25 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-#
+
+
 import os
 import string
 import archeoconf
 import archeodata
 import afficheclefs
 import re
+
 
 class Trace(archeodata.Data) :
         #
@@ -120,10 +121,6 @@ class Trace(archeodata.Data) :
         def zone_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
-                #self.__doc__.push()
-                #self.__doc__.td()
-                #self.__doc__.insert_text(" ")
-                #self.__doc__.pop()
                 afficheclefs.display_zone( self, enreg, penreg)
 
         def numero_base_to_form(self, enreg, penreg = None) :
@@ -407,6 +404,4 @@ class Trace(archeodata.Data) :
                                 self.__db__.query(self.make_insert_query({ }))
                                 primarykeys = { "zone" : z, "numero" : n, "bis" : b, "t_ensemble" : e}
                                 return (0, primarykeys)
-
-
 

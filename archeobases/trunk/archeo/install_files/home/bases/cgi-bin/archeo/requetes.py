@@ -1,53 +1,15 @@
-#!  /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo  - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
-#
-# $Id: requetes.py,v 1.13 2002/11/04 08:17:48 jerome Exp $
-#
-# $Log: requetes.py,v $
-# Revision 1.13  2002/11/04 08:17:48  jerome
-# Plus besoin de &nbsp; en mode simplifié
-#
-# Revision 1.12  2002/11/04 00:00:55  jerome
-# Petit bug de sortie
-#
-# Revision 1.11  2002/11/03 23:38:41  jerome
-# Problème de type
-#
-# Revision 1.10  2002/11/03 23:34:34  jerome
-# L'affichage de la requête avait été désactivé...
-#
-# Revision 1.9  2002/11/03 23:26:13  jerome
-# Grosse optimisation.
-# Certaines fonctionnalités (lien sur les champs) sont désormais désactivées.
-#
-# Revision 1.8  2002/09/16 11:27:56  rachel
-# modification des boutons+ajout de zabs=zref+zrela
-# ----------------------------------------------------------------------
-#
-# Revision 1.6  2002/01/10 21:32:40  jerome
-# Debuggage de pas mal de merdouilles
-#
-# Revision 1.5  2001/11/16 14:03:27  rachel
-# *** empty log message ***
-#
-# Revision 1.3  2001/07/05 15:29:33  rachel
-# plein de modifs
-#
-# Revision 1.2  2001/03/20 19:59:51  jerome
-# Ajout des tags CVS Id et Log
-#
-#
 #
 
 
@@ -65,11 +27,13 @@ except :
 import archeoconf
 import jahtml
 
+
 elabore = "Elaboré"
 simplifie = "Simplifié"
 telechargecsv = "Texte format CSV"
 liste_affichage = [ simplifie, elabore, telechargecsv ]
 affichage_default = simplifie
+
 
 def cherche_requete(db, nom) :
         resultat = db.query("SELECT * FROM requete WHERE nomrequete = " + db.quote(nom, "text"))
@@ -154,7 +118,6 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                    #if database.Database.__debuglevel :
                         archeoconf.log_message("La requete s'est terminée sans probleme", level = "info")
                         break   # Requête terminée sans problème
                 else :
@@ -253,27 +216,6 @@ if ruser not in archeoconf.visitorusers :
                                             csv_file.close()
                                             doc = jahtml.CGI_document(content_type = "text/csv;")
                                             doc.set_redirect("/archeo/resultat_requete.csv")
-                                                #
-                                                # on le fait en non bufferise pour ne pas avoir de timeout.
-                                                # en effet, l'option d'ecriture des donnees dans un fichier
-                                                # peut permettre de traiter de GROS volumes, mais le
-                                                # mode entierement bufferise provoquerai un timeout
-
-                                                # export en utf8 avec champs séparés par des guillemets doubles
-                                                #doc = jahtml.CGI_document(content_type = "text/csv;charset=utf-8")
-                                                #if form["presentation"].value == telechargev :
-                                                #        separateur = '","'
-                                                #else :
-                                                #        separateur = '"\t"'
-
-                                                # on sort l'entete
-                                                #doc.insert_text('"' + separateur.join(liste_champs) + '"')
-
-                                                # puis les enregistrements
-                                                #for enregistrement in liste_valeurs :
-                                                #        doc.insert_text('"' + unicode(separateur.join([str(v) for v in enregistrement]), "utf-8").encode("utf-8") + '"')
-                                                #if master :
-                                                #        doc.insert_text("\n--" + endpart + "--\n")
                                         else :
                                         # affichage HTML du résultat
                                                 if nbrecords > 1 :
@@ -333,5 +275,4 @@ if ruser not in archeoconf.visitorusers :
         doc.output()
 else:
         archeoconf.fatalerror_message("Vous n'avez pas l'autorisation d'accèder à cet écran")
-
 

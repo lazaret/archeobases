@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -71,10 +72,8 @@ for ligne in lignes:
                 existe = existe.dictresult()
 		
                 verify2 = "select * from stigmate where zone=" + new[0]+ " and numero =" + new[1] + " and bis=" + new[2] + " and s_ordre=" + new[3] + ";"                 
-		#print("verify2", verify2)
                 existe2 = db.query(verify2)
                 existe2 = existe2.dictresult()
-                #print  len(existe2)
 
                 if not existe :
                         print "I   => pas de parent: ",(string.join(new, ','))
@@ -82,12 +81,10 @@ for ligne in lignes:
                         print "I  => doublon: ",(string.join(new, ','))
 		        update="UPDATE stigmate SET s_composite = " + new[4]+ " , s_simple= " + new[5]+ ", s_support= " + new[6]+ ", s_roche= " + new[7]+ ", s_geometrie= " + new[8]+ ", s_alteration= " + new[9]+ ", s_concretion= " + new[10]+ ", s_longueur= " + new[11]+ ", s_largeur= " + new[12]+ ", s_epaisseur= " + new[13]+ ",s_poids = " + new[14]+ ",s_plan= " + new[15]+ ", s_dessin= " + new[16]+ ", s_coupe= " + new[17]+ ", s_photo = " + new[18]+ ",s_analyse = " + new[19]+ " WHERE zone = " + new[0] + " and numero = " + new[1] + " and bis = " + new[2] + " and s_ordre = " + new[3] +";"
                 	db.query(update)
-			#print "update", update
 		elif new[0] != 'null' and new[1] != 'null' and new[2] != 'null' and new[3] != 'null':
 		        insert="INSERT INTO stigmate (zone , numero , bis , s_ordre, s_composite, s_simple, s_support, s_roche, s_geometrie, s_alteration, s_concretion, s_longueur, s_largeur, s_epaisseur,s_poids, s_plan, s_dessin, s_coupe, s_photo, s_analyse) VALUES ("
 			insert = insert+string.join(new, ', ')
 			insert = insert + ");"
-			#print "insert", (insert)
 			db.query(insert)
 
 			print l, insert
@@ -95,8 +92,4 @@ for ligne in lignes:
 			cpt = cpt + 1
 
 print (cpt, " objets inseres")
-
-
-#db.query("VACUUM;")
-
 

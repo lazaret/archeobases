@@ -1,9 +1,9 @@
-New in 1.0:
 
-* Changes :
+* Changes in 1.1
+  - UTF-8 support
 
-  - Add a few txt files to the core distribution
 
-  - Rename the project from "archeo" to "archeobases-archeo" sub-project
-
+* Changes in 1.0:
+  - Add a few text files to the core distribution
+  - Rename the project from "collection" to "archeobases-archeo" sub-project
   - Create the new trunk from previous works of Rachel Vaudron

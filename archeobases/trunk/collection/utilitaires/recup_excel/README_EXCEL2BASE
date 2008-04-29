@@ -1,4 +1,4 @@
-a utiliser de la façon suivante:
+a utiliser de la faÃ§on suivante:
 
 ./excel2base collection <fichier_donnees.csv.utf8 > erreurs.txt
 
@@ -9,7 +9,7 @@ ATTENTION:
 
 => leur dire d'eviter de mettre des 
         ; dans les fichiers excel
-        des textes sur plusieurs lignes (ce qui génère les champs " ")
+        des textes sur plusieurs lignes (ce qui genere les champs " ")
         des dates de type AAAA-AAAA
         
 

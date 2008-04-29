@@ -1,65 +1,25 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-#
-# $Id: nonos.py,v 1.9 2001/11/16 15:09:07 rachel Exp $
-#
-# $Log: nonos.py,v $
-# Revision 1.9  2001/11/16 15:09:07  rachel
-# divers modifs
-#
-# Revision 1.8  2001/11/09 15:25:39  rachel
-# *** empty log message ***
-#
-# Revision 1.7  2001/11/09 08:32:38  rachel
-# tout plein de modifs pdt que CVS ne fonctionnait pas
-#
-# Revision 1.6  2001/07/18 15:07:20  rachel
-# plein de modifs
-#
-# Revision 1.5  2001/07/17 14:02:28  rachel
-# modif des ecrans existants
-#
-# Revision 1.4  2001/07/10 13:45:47  rachel
-# pleins de modifs: nouveau+1 ok, lien vers enfants ok
-#
-# Revision 1.3  2001/07/05 15:29:31  rachel
-# plein de modifs
-#
-# Revision 1.2  2001/06/01 08:28:18  rachel
-# petites modifs pour entre autres permettre de verouiler les champs de la clef. Le nouveau+1 fonctionne pour le carnet mais il pose pb pour les autres ecrans ou les champs ne sont pas memorise(essais faits sur faune)
-#
-# Revision 1.1  2001/05/29 15:22:53  rachel
-# ajout de trois ecran :mesure des os, mesure des dent, microfaune
-#
-# Revision 1.10  2001/04/05 09:44:33  rachel
-# remise en place des modfis pour le +1 qui fonctionne.
-# de plus les listes et le champ numeros sont bien en dontchange =0 lors de nouveau comptage ou bien recherche.
-# il doit falloir que je generalise pour que cela s'applique a tous les chmaps.
-# il faut aussi que je fasse les modifs pour les liens ainsi que popur les chmaps a memoriser.
-#
-# Revision 1.9  2001/03/20 19:59:50  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
+
 import os
 import string
 import archeoconf
 import archeodata
 import afficheclefs
 import re
+
 
 class Nonos(archeodata.Data) :
         #
@@ -215,7 +175,6 @@ class Nonos(archeodata.Data) :
 ##############
         def o_m1_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                #afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
                 afficheclefs.champ_saisie(self, "o_m1", "M1", 5, 20," ", enreg,  penreg)
         def o_m2_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "o_m2", "M2", 5, 20,"", enreg,  penreg)
@@ -379,6 +338,5 @@ class Nonos(archeodata.Data) :
                                 self.__db__.query(self.make_insert_query({ }))
                                 primarykeys = { "zone" : z, "numero" : n, "bis" : b, "o_serie" : s,}
                                 return (0, primarykeys)
-
 
 

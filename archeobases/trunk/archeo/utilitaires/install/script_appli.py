@@ -1,8 +1,8 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Archeobases-Archeo - (c) 2000-2007 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
-# http://lazaret.unice.fr/opensource/
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
 # terms of the GNU General Public Licence version 2
@@ -40,9 +40,6 @@ if string.upper(premiere) == "O":
 
 	os.system("mkdir -p /home/bases/archeo/decors")
 	os.system("cp -R /cdrom/decors/* /home/bases/archeo/")
-
-#	os.system("mkdir -p /home/bases/archeo/help")
-#	os.system("cp -R /cdrom/help/* /home/bases/archeo/")
 
 	os.system("mkdir -p /home/bases/archeo/lexique")
 	os.system("cp -R /cdrom/help/* /home/bases/archeo/")
@@ -82,7 +79,4 @@ else:
 
 os.system("mkdir /home/bases/archeo/%s/images"%nom_base)
 os.system("chown -R www-data.www-data /home/bases/archeo/%s/images"%nom_base)
-
-
-
 

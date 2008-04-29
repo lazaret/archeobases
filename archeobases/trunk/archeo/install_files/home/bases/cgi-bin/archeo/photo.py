@@ -1,29 +1,18 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-#
-# $Id: photo.py,v 1.4 2001/07/05 15:29:33 rachel Exp $
-#
-# $Log: photo.py,v $
-# Revision 1.4  2001/07/05 15:29:33  rachel
-# plein de modifs
-#
-# Revision 1.3  2001/03/20 19:59:51  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
+
 import os
 import string
 import cgi
@@ -97,7 +86,6 @@ class Photo(archeodata.Data) :
                 # alors il faut decommenter la ligne suivante
                 # et commenter les 2 suivantes
                 # sinon la modification est effectuee mais rien n'est reaffiche.
-                # self.retour()
                 self.__doc__.do_nothing()
                 self.__doc__.output()
 

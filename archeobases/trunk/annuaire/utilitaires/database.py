@@ -1,35 +1,26 @@
-#! /usr/bin/python
-# database.py - (c) 1999 Jerome ALET <alet@unice.fr>
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
+#
+# Annuaire - (c) 2006-2008 LDLP (Laboratoire DÃ©partemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: database.py,v 1.2 2001/03/20 19:59:31 jerome Exp $
-#
-#
-# $Id: database.py,v 1.2 2001/03/20 19:59:31 jerome Exp $
-#
-# $Log: database.py,v $
-# Revision 1.2  2001/03/20 19:59:31  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
 
 import sys
 import os
 import time
 import pg
 
-__version__ = "1.0"
 
 #
-# Définition d'une classe d'accès à une base de données PostrgreSQL sous Python
+# Definition d'une classe d'acces a une base de donnees PostrgreSQL sous Python
 # Cette classe encapsule les fonctions importantes du modules Pg et ajoute
 # la possibilite de tracer toutes les requetes en les envoyant sur stderr.
 # Dans le cas de l'utilisation de cette classe dans un script CGI alors les

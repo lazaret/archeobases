@@ -1,26 +1,17 @@
-#! /usr/local/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# montbego - (c) 1999	   Jerome ALET <alet@unice.fr>
-#		 1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Mont Bego - (c) 1999-2008 LDLP (Laboratoire DÃ©partemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: troche.py,v 1.1.1.1 2000/11/06 08:33:18 jerome Exp $
-#
-# $Log: troche.py,v $
-# Revision 1.1.1.1  2000/11/06 08:33:18  jerome
-# Reintroduction dans CVS apres modifs
-#
-# Revision 1.2	2000/05/27 13:59:06  jerome
-# Intégration du message de Log
-#
-#
+
 
 import sys
 import string
@@ -29,7 +20,7 @@ sys.path.append("../cgi")
 import database
 
 db = database.DataBase(database="bego", username = "bego")
-######### avant d'inserer les rcohes, il faut créer les zones ##########
+######### avant d'inserer les rcohes, il faut creer les zones ##########
 for i in range (0, 23):
 	zone = "INSERT INTO zone(zone) VALUES(" + db.quote(i, "text") + ");"
         db.query(zone)
@@ -75,5 +66,4 @@ for ligne in lignes:
 		print l, insert
 
 db.query("VACUUM;")
-
 

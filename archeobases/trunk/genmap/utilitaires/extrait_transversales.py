@@ -1,5 +1,16 @@
 #! /usr/bin/env python
-# -*- coding: ISO-8859-15 -*-
+# -*- coding: UTF-8 -*-
+#
+# Genmap - (c) 2004-2008 LDLP (Laboratoire DÃ©partemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
 
 
 import sys
@@ -29,7 +40,7 @@ if __name__ == "__main__" :
         try :
             db = pg.connect(dbname=ma_base, user="postgres")
         except :    
-            sys.stderr.write("Impossible de se connecter à la base %s\n" % ma_base)
+            sys.stderr.write("Impossible de se connecter Ã  la base %s\n" % ma_base)
         
         for zone in range(zone_min, zone_max) :
             print "Extraction zone %s..." % zone
@@ -45,10 +56,10 @@ if __name__ == "__main__" :
                         try :
                             float(field)
                         except :    
-                            # Chaine ou None (NULL), stocké en tant que 'None'
+                            # Chaine ou None (NULL), stocke en tant que 'None'
                             v = "'%s'" % field
                         else :    
-                            # Numérique entier ou flottant
+                            # Numerique entier ou flottant
                             v = str(field)
                         champs.append(v)
                     fichier.write("%s\n" % string.join(champs, ","))

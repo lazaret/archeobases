@@ -1,94 +1,23 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-#archeo - (c) 1999      Jerome ALET <alet@unice.fr>
-#                  1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-#
-# $Id: archeodata.py,v 1.37 2002/09/16 14:23:00 rachel Exp $
-#
-# $Log: archeodata.py,v $
-# Revision 1.37  2002/09/16 14:23:00  rachel
-# i dernieres modifs
-#
-# ----------------------------------------------------------------------
-#
-# Revision 1.36  2002/07/09 23:10:40  jerome
-# Message
-#
-# Revision 1.35  2002/07/09 22:14:18  jerome
-# *** empty log message ***
-#
-# Revision 1.34  2002/07/08 16:42:07  jerome
-# Select count(*) n'a pas besoin de order by...
-#
-# Revision 1.33  2002/07/08 16:37:23  jerome
-# Bien sur si on oublie le count(*)...
-#
-# Revision 1.32  2002/07/08 16:36:31  jerome
-# SELECT count(*) pour compter, ça va mieux !
-#
-# Revision 1.31  2002/07/08 16:32:51  rachel
-# Dernieres modifs
-#
-# Revision 1.30  2002/01/10 21:32:37  jerome
-# Debuggage de pas mal de merdouilles
-#
-# Revision 1.29  2001/12/21 14:42:09  rachel
-# dernieres modifs
-#
-# Revision 1.28  2001/11/16 14:03:26  rachel
-# *** empty log message ***
-#
-# Revision 1.27  2001/11/09 15:25:37  rachel
-# *** empty log message ***
-#
-# Revision 1.26  2001/11/09 08:32:32  rachel
-# tout plein de modifs pdt que CVS ne fonctionnait pas
-#
-# Revision 1.25  2001/07/18 15:07:16  rachel
-# plein de modifs
-#
-# Revision 1.24  2001/07/17 14:02:25  rachel
-# modif des ecrans existants
-#
-# Revision 1.23  2001/07/10 13:45:44  rachel
-# pleins de modifs: nouveau+1 ok, lien vers enfants ok
-#
-# Revision 1.22  2001/07/06 13:28:44  rachel
-# *** empty log message ***
-#
-# Revision 1.21  2001/07/05 15:29:08  rachel
-# plein de modifs
-#
-# Revision 1.20  2001/05/29 22:11:02  jerome
-# Correction de beaucoup de bugs que l'on n'avait pas pu decouvrir avant
-# a cause du blocage sur le champ "numero"
-#
-# Revision 1.19  2001/04/05 09:44:26  rachel
-# remise en place des modfis pour le +1 qui fonctionne.
-# de plus les listes et le champ numeros sont bien en dontchange =0 lors de nouveau comptage ou bien recherche.
-# il doit falloir que je generalise pour que cela s'applique a tous les chmaps.
-# il faut aussi que je fasse les modifs pour les liens ainsi que popur les chmaps a memoriser.
-#
-# Revision 1.18  2001/03/20 19:59:27  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
 
 import string
 import cgi
 import urllib
 import archeoconf
+
 
 class Data :
         def __init__(self, parent) :
@@ -114,7 +43,6 @@ class Data :
                         self.__form__ = cgi.FieldStorage()
                         self.__db__ = archeoconf.ArcheoDataBase()
                         self.__parent__ = self.__tablename__ # est son propre parent
-                        #self.__couleur__ = self.__color__
                 else :
                         # si ca ne vaut pas "bas" on considère que c'est
                         # une instance de la classe "parent"
@@ -252,8 +180,6 @@ class Data :
                         if self.__parent__ == self.__tablename__ :
                                 self.__doc__.br()
                                 self.__doc__.submit(name = "action", value = self.__new_record__)
-                        #self.__doc__.br()
-                        #self.__doc__.submit(name = "action", value = self.__new_record__)
                 else :
                         self.__doc__.push()
                         self.__doc__.p()
@@ -267,7 +193,6 @@ class Data :
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Créer")
                         self.__doc__.pop()
-                        #self.__doc__.br()
                         self.__doc__.push()
                         self.__doc__.p()
                         self.__doc__.reset(value = "R-à-Zéro")
@@ -405,7 +330,6 @@ class Data :
                         v = string.upper(self.__getfield__(champ))
                         self.__doc__.log_message("c: [%s] ===> [%s]" % (champ, v))
                         if self.exist_table_controle(champ) and self.__champs__[champ]["longueur"] != 0 :
-                                #if (self.__champs__[champ]["longueur"] and self.__champs__[champ]["longueur"]!=0) or self.__tablename == "photofaune" or self.__tablename == "photoindutrie":
                                 if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ
                                         ####TODO VERIFIER #####ATTENTION
                                         query = query + v + ", " # alors on verifie que la valeur cherchee s'y trouve bien
@@ -413,8 +337,6 @@ class Data :
                                 elif v :
                                         archeoconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide !" %(v, champ))
                                         return None
-                                #else :
-                                        #archeoconf.fatalerror_message("La valeur saisie dans le champ %s est invalide" % champ)
 
                         else:
                                 query = query + v + ", "
@@ -436,7 +358,7 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "2", cellpadding = "5", cellspacing = "5")#, bgcolor=archeoconf.menu_bgcolor)
+                self.__doc__.table(border = "2", cellpadding = "5", cellspacing = "5")
 
                 if enreg :
                         self.__doc__.push()
@@ -477,7 +399,6 @@ class Data :
                                         dico[clef] = enreg[clef]
                                 for p in self.__listeparents__ :
                                         self.__doc__.insert_text("&nbsp;" * 5)
-                                #parent = self.__vraiparent__
                                         pluriel = ''
                                         if p[-1] != 's' :
                                                 pluriel = 's'
@@ -523,7 +444,6 @@ class Data :
                                                         self.dessine_lien((string.capitalize(enfant) + pluriel), archeoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
 
                         self.__doc__.pop()
-
 
                 self.__doc__.push()
                 self.__doc__.tr()
@@ -626,14 +546,6 @@ class Data :
                 res = self.__db__.query(q)
                 return res.dictresult()
 
-# commente par bertrand, doublon avec une fonction déja definie plus haut
-        #def have_primarykeys(self, pkeys) :
-        #        for pk in pkeys :
-        #                if not self.__form__.has_key(pk) :
-        #                        return 0
-        #        return 1
-
-
 
 ################################################################################
 #                       TRAITE SAISIE
@@ -663,11 +575,6 @@ class Data :
                         elif (self.__form__["action"].value == "ChercherLien"):
                                 archeoconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
-                                        #self.__doc__.push()
-                                        #self.__doc__.div(align = "center")
-                                        #self.__doc__.font("La il faudrait afficher la le debut de la clef", color = "red")
-                                        #self.__doc__.pop()
-                                        #self.formulaire_hook(penreg = penreg)
                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                 #####################COMPTER################
@@ -680,7 +587,6 @@ class Data :
                                         self.__doc__.div(align = "center")
                                         self.__doc__.font("Aucun enregistrement trouvé", color = "red")
                                         self.__doc__.pop()
-                                        #self.formulaire_hook(penreg = penreg)
                         else :
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
@@ -701,16 +607,12 @@ class Data :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
-                                                        # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                                 ################## SUPPRIMER #########################
@@ -718,14 +620,13 @@ class Data :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                 # la suppression a bien eu lieu
                                                 if not parent :
                                                         self.formulaire_hook(penreg = penreg)
                                                 else :
-                                                        self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent)+ '"')# + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
+                                                        self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent)+ '"')
 
                                 ################## CREER #############################
                                 elif self.__form__["action"].value == "Créer" :
@@ -748,7 +649,6 @@ class Data :
                                                         archeoconf.fatalerror_message("La zone saisie est inconnue")
                                                 elif retour == 1 :
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else:
                                                         self.__doc__.script('alert("valeur inexistante pour le champ" + champ )')
@@ -766,10 +666,7 @@ class Data :
                                         archeoconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
                                 else :
-                                        #if not parent :
                                         self.formulaire_hook(penreg = penreg)
-                                        #else :
-                                        #        archeoconf.fatalerror_message("On ne devrait pas arriver ici: %s %s" % (self.__new_record__, self.__tablename__))
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
@@ -802,7 +699,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook(penreg = penreg)
@@ -813,7 +709,6 @@ class Data :
                                         else :
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
-                                                #self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 else :
                                         archeoconf.log_message("Action [" + self.__form__["action"].value + "] non reconnue")
                                         self.formulaire_hook(penreg = penreg)
@@ -849,11 +744,7 @@ class Data :
                 if titre != "":
                         self.__doc__.tr(align = "right")
                         self.__doc__.push()
-                        #self.__doc__.td(align="left")
-                        #self.__doc__.u()
-                        #self.__doc__.font(titre, size=archeoconf.font_size)
                         self.__doc__.pop()
-                        #self.__doc__.td()
 
                 self.__doc__.push()
                 self.__doc__.td(align="right")
@@ -925,7 +816,6 @@ class Data :
                         self.__doc__.u()
                         self.__doc__.font(titre, size=archeoconf.font_size)
                         self.__doc__.pop()
-                        #self.__doc__.td()
                 self.__doc__.push()
                 self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font(size=archeoconf.font_size)
@@ -937,7 +827,7 @@ class Data :
                 self.__doc__.td(align="left", valign="middle")
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
                 if enreg != None :
-                        self.__doc__.insert_text(valeur)#contenu)#name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
+                        self.__doc__.insert_text(valeur)
                 else :
                         self.__doc__.text(name = nom_champ, size = longueur, maxlength = maxlongueur, value = "")
                 self.__doc__.pop()
@@ -960,7 +850,7 @@ class Data :
 
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
                 if enreg != None :
-                        self.__doc__.insert_text(valeur)#contenu)#name = nom_champ, value = valeur, size = longueur, maxlength = maxlongueur)
+                        self.__doc__.insert_text(valeur)
                 else :
                         self.__doc__.text(name = nom_champ, size = longueur, maxlength = maxlongueur, value = "")
                 self.__doc__.pop()
@@ -976,7 +866,6 @@ class Data :
                         self.__doc__.pop()
                         self.__doc__.td()
                 self.__doc__.push()
-                #self.__doc__.td(align="right", valign="middle")
                 self.__doc__.font(size=archeoconf.font_size)
 
                 valeur = self.recupere_valeur( nom_table, nom_champ, liste_clefs, enreg)
@@ -1003,10 +892,6 @@ class Data :
                                 self.__doc__.br()
                                 self.__doc__.submit(name = "action", value = self.__new_record__)
                 else :
-                        #self.__doc__.push()
-                        #self.__doc__.p()
-                        #self.__doc__.submit(name = "action", value = "Chercher")
-                        #self.__doc__.pop()
                         self.__doc__.p()
                         self.__doc__.submit(name = "action", value = "Créer")
                         self.__doc__.br()
@@ -1017,12 +902,12 @@ class Data :
                 self.__doc__.push()
                 self.__doc__.div(align="center")
 
-                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")#, bgcolor=archeoconf.menu_bgcolor)
+                self.__doc__.table(border = "5", cellpadding = "5", cellspacing = "5")
 
                 if enreg :
                         self.__doc__.push()
                         self.__doc__.tr()
-                        self.__doc__.td(colspan = 2, valign="middle", align="center")#, color=archeoconf.menu_bgcolor)
+                        self.__doc__.td(colspan = 2, valign="middle", align="center")
                         self.__doc__.font(size = archeoconf.font_size)
 
                         if maximum :
@@ -1110,22 +995,18 @@ class Data :
                                         if not self.__verify_mandatory__() :
                                                 if self.modifier() :
                                                         # l'utilisateur tente de dupliquer un enregistrement
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('alert("Enregistrement déjà existant !!!")')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                 elif self.__form__["action"].value == "Supprimer" :
                                         if self.supprimer() :
                                                 # il reste des enregistrements dans d'autres tables qui dépendent de celui-ci
                                                 self.__doc__.script('alert("Suppression impossible !!!")')
-                                                #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                 self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                 # la suppression a bien eu lieu
@@ -1151,7 +1032,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé, on réaffiche la liste
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        # self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         if not parent :
@@ -1162,10 +1042,7 @@ class Data :
                                         archeoconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook_parametre(penreg = penreg)
                                 else :
-                                        #if not parent :
                                         self.formulaire_hook_parametre(penreg = penreg)
-                                        #else :
-                                        #        archeoconf.fatalerror_message("On ne devrait pas arriver ici: %s %s" % (self.__new_record__, self.__tablename__))
                         else :
                                 #
                                 # la requete ne doit retourner qu'un enregistrement sinon la base est pourrie
@@ -1198,7 +1075,6 @@ class Data :
                                                 else :
                                                         # tout c'est bien passé
                                                         # et on passe en modif sur l'enregistrement courant
-                                                        #self.__doc__.script('parent.bas.location = "' + self.__doc__.script_name() + '?' + self.__make_url__(primarykeys) + '"')
                                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
                                         else :
                                                         self.formulaire_hook_parametre(penreg = penreg)

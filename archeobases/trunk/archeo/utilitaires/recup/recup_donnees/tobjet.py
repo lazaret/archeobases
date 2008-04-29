@@ -1,15 +1,15 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
-# the Free Software Foundation's WEB site http://www.sf.org
+# the Free Software Foundation's WEB site http://www.fsf.org
 #
 
 import sys
@@ -23,7 +23,6 @@ cpt=0
 lignes = sys.stdin.readlines()
 
 l = 0           
-#zone=[]
 for ligne in lignes:
         ligne = string.strip(ligne[:-1])
         l = l + 1
@@ -39,15 +38,12 @@ for ligne in lignes:
                 titi=champs[0]
                 
                 if champs[0] in ['1/8','1Q','3-25','3435','3A','5224','I4','est','G3','I2','ISF','N']:
-                        #print champs[0]
                         champs[0] = ''
                 else:
                         if titi[1:] == 'Q':
                                 champs[1] = titi[1:]
-#                               #print titi[1:],'=>',champs[1]
                         if champs[0] == 'ND':
                                 champs[0]='IND'
-                        #print "long",len(zone)
                                                 
 
                         
@@ -77,18 +73,15 @@ for ligne in lignes:
                 datetrouve = an + '-' + mois + '-' + jour
                 if datetrouve == '****-**-**':
                         datetrouve= 'null'
-                #print datetrouve
                 nouveaux.append(datetrouve)# #27 trouve
                 nouveaux.append(champs[19])#6  #7 ensemble
                 nouveaux.append(champs[20])#7  #8 niveau
                 nouveaux.append(champs[21])#4  #5 carre
                 nouveaux.append(champs[22])#5  #6 souscarre
-#                nouveaux.append(champs[23])# localite
 
                 for i in range(0, len(nouveaux)) :
 
                        if i  in [0,2,3,4,5,6,12,13,14,19,20,21,22] :
-#23
                                nouveaux[i] = db.quote(string.upper(nouveaux[i]), "text")
 
                        elif i in [18] and nouveaux[i]!= 'null':
@@ -100,8 +93,6 @@ for ligne in lignes:
                 existe = db.query(verify)
 
                 existe = existe.dictresult()
-
-                #print  len(existe)
 
                 if existe :
 
@@ -125,64 +116,6 @@ for ligne in lignes:
                         except:
                                 print("probleme avec :", insert)
                         cpt=cpt+1
-
-                        #print(cpt)
-
-#db.query("VACUUM;")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,34 +1,17 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo - (c) 1999      Jerome ALET <alet@unice.fr>
-#                   1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: controle_general.py,v 1.5 2002/01/10 21:32:39 jerome Exp $
-#
-# $Log: controle_general.py,v $
-# Revision 1.5  2002/01/10 21:32:39  jerome
-# Debuggage de pas mal de merdouilles
-#
-# Revision 1.4  2001/11/16 14:03:26  rachel
-# *** empty log message ***
-#
-# Revision 1.3  2001/07/05 15:29:11  rachel
-# plein de modifs
-#
-# Revision 1.2  2001/03/20 19:59:30  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
 
 import sys
 import time
@@ -109,14 +92,11 @@ db = archeoconf.ArcheoDataBase()
 if form.has_key("champ") :
         param = form["champ"].value
         doc.ecran_requetes(archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor,archeoconf.bas_bgcolor, param)
-        #doc.ecran_requetes("#CCCCCC","#CCFFFF","#FFFFCC","#CCCCCC","#FFFFCC", param)
 else :
         s = "Contenu du formulaire:\n"
         for k in form.keys() :
                 s = s + "%s = %s\n" % (k, form[k].value)
         archeoconf.fatalerror_message(s)
-
-#param = form["champ"].value
 
 doc.output()
 

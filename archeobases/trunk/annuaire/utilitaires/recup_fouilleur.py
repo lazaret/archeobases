@@ -1,15 +1,17 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Annuaire - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Annuaire - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import sys
 import string
@@ -49,7 +51,6 @@ for ligne in lignes:
                         
                
                         for i in range(0, len(new_fiche)) :
-                                #new_fiche[i] = db.quote(string.upper(new_fiche[i]), "text")
                                 new_fiche[i] = db.quote(new_fiche[i], "text")
                         
                         for i in range(0, len(new_adresse)) :
@@ -69,7 +70,6 @@ for ligne in lignes:
                 if not existe:
                         identifiant = cpt+2000
                         new_fiche.append(str(identifiant))
-                        #print new_fiche
                         insert_fiche ="INSERT INTO fiche (titre,prenom,nom,commentaire,type_entree,type_personne,identifiant) VALUES ("
                         insert_fiche = insert_fiche + string.join(new_fiche, ', ')
                         insert_fiche = insert_fiche + ");"
@@ -84,20 +84,10 @@ for ligne in lignes:
                                 db.query(insert_adresse)
                         except:
                                 print ("probleme ligne", insert)
-                        #print(insert_fiche)
-                        #print(insert_adresse)
                         
                         cpt=cpt +1
                 else:
                         print("Enregistrement deja existant:",champs[0], " ",champs[1], " ",champs[2])
                         
 print(cpt, "fouilleurs inseres")
-
-
-
-#db.query("VACUUM;")
-
-
-
-
 

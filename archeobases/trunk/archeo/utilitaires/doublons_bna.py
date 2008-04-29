@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-#                2005 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -32,19 +33,15 @@ ligne_prec = ""
 
 lignes = sys.stdin.readlines()
 for ligne in lignes:
-        #print "ligne d'origine", ligne
         ligne = string.strip(ligne[:-1])
         if (ligne != ""):
             if (ligne[:1] == "\""):
                 if (ligne_prec !=""):
-			#print "1"
 			print ligne_prec
 			ligne_prec=""
 			z_prec=0
-		#print"2"	
 		print ligne
             else:
-                #print "2bis"
                 champs = ligne.split(',')
                 x = champs[0]
                 z = champs[1]
@@ -53,9 +50,7 @@ for ligne in lignes:
                 else:
                     if (ligne_prec != "" ):  
                         print ligne_prec
-			#print "3Bis"
                     ligne_prec = ""
-		    #print "4"
                     print ligne
                     z_prec = z
                     cpt = cpt +1

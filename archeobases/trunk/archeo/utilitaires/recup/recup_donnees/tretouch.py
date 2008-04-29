@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -73,10 +74,8 @@ for ligne in lignes:
                 existe = existe.dictresult()
 		
                 verify2 = "select * from retouche where zone=" + new[0]+ " and numero =" + new[1] + " and bis=" + new[2] + " and r_ordre=" + new[3] + ";"                 
-		#print("verify2", verify2)
                 existe2 = db.query(verify2)
                 existe2 = existe2.dictresult()
-                #print  len(existe2)
 
                 if not existe :
                         print "I   => pas de parent: ",(string.join(new, ','))
@@ -89,13 +88,5 @@ for ligne in lignes:
 		        insert="INSERT INTO retouche (zone , numero , bis , r_ordre , r_type , r_obliquite , r_denticulation , r_cas, r_dimension , r_association , r_superposition , r_extremite ,r_bord , r_extension , r_frequence , r_ecrasement , r_lustrage ,r_utilisation,  r_strie , r_origine , r_destination , r_sens , r_tranchant , r_relation) VALUES ("
 			insert = insert+string.join(new, ', ')
 			insert = insert + ");"
-			#print(insert)
 			db.query(insert)
-
-			#print l, insert
-
-
-
-#db.query("VACUUM;")
-
 

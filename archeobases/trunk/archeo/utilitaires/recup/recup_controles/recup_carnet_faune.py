@@ -1,16 +1,17 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire D√©partemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import sys
 import string
@@ -44,7 +45,7 @@ dico_controle = {"carnet":liste_carnet, \
                  "fracture_faune":liste_fracture_faune,\
                  
                  }
-action = raw_input("Souhaitez-vous RÅÈcupÅÈrer la liste des valeurs possibles pour chaque champs de cette base ou Effacer les controles existants? R/E  ")
+action = raw_input("Souhaitez-vous R√©cup√©rer la liste des valeurs possibles pour chaque champs de cette base ou Effacer les controles existants? R/E  ")
 
 for d in dico_controle.keys():
         
@@ -67,12 +68,4 @@ for d in dico_controle.keys():
                         req = "DELETE FROM controle_" + c + ";"
                         print(req)
                         db.query(req)
-
-
-
-
-
-
-
-
 

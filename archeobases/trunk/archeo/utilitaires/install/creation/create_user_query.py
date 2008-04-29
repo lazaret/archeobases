@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c)  1999-2003 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -24,7 +25,7 @@ sys.path.append("../cgi")
 # RECUPERATION DU NOM DE LA NOUVELLE BASE ET CONNEXION A template1
 #=================================================================
 
-nom_base = raw_input('Nom de la base sur laquelle vous souhaitez cr�er les droits:')
+nom_base = raw_input('Nom de la base sur laquelle vous souhaitez créer les droits:')
 db = database.DataBase(database=nom_base, username = "postgres")
 
 print(" CREATION DES DROITS SUR LES TABLES DE LA BASE")

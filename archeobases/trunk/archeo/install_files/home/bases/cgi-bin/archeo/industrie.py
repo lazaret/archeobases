@@ -1,50 +1,17 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-#
-# $Id: industrie.py,v 1.22 2002/07/08 16:32:55 rachel Exp $
-#
-# $Log: industrie.py,v $
-# Revision 1.22  2002/07/08 16:32:55  rachel
-# Dernieres modifs
-#
-# Revision 1.21  2002/01/14 11:15:17  rachel
-# modif pour changer l'arborescence industrie->eclat->outil en ind->eclat et ind->outil
-#
-# Revision 1.20  2001/07/18 15:07:18  rachel
-# plein de modifs
-#
-# Revision 1.19  2001/07/10 13:45:46  rachel
-# pleins de modifs: nouveau+1 ok, lien vers enfants ok
-#
-# Revision 1.18  2001/07/05 15:29:15  rachel
-# plein de modifs
-#
-# Revision 1.17  2001/04/05 15:27:45  rachel
-# je sais ce que c'est tous ces fichiers
-#
-# Revision 1.16  2001/04/05 09:44:32  rachel
-# remise en place des modfis pour le +1 qui fonctionne.
-# de plus les listes et le champ numeros sont bien en dontchange =0 lors de nouveau comptage ou bien recherche.
-# il doit falloir que je generalise pour que cela s'applique a tous les chmaps.
-# il faut aussi que je fasse les modifs pour les liens ainsi que popur les chmaps a memoriser.
-#
-# Revision 1.15  2001/03/20 19:59:35  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
 
 import os
 import string
@@ -55,6 +22,7 @@ import re
 import retouche
 import stigmate
 import fracture_industrie
+
 
 class Industrie(archeodata.Data) :
         #
@@ -353,24 +321,12 @@ class Industrie(archeodata.Data) :
                         self.__doc__.pop()      
         
                         if total:
-                                #self.__doc__.push()
-                                #afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-                                #self.__doc__.tr(align="center")
-                                #self.__doc__.push()
-                                #self.__doc__.td(colspan = "4")
-                                #self.__doc__.insert_text(total)
-                                #if total > 1:
-                                #       self.__doc__.insert_text(" Composites")
-                                #else :
-                                        #self.__doc__.insert_text(" Composite")
-                                #self.__doc__.pop()     
                                 self.__doc__.tr(align="center")
                                 self.__doc__.insert_text("Code composite:")
                                 self.__doc__.insert_text("à calculer")
                                 self.__doc__.tr(align="center")
                                 self.__doc__.td(colspan="4")
                                 self.__doc__.table(border = "5", cellspading = "0", cellspacing = "0", bgcolor = archeoconf.basform_bgcolorright )
-                                #self.__doc__.caption("Composites")
                                 self.__doc__.th("N° Ordre")
                                 self.__doc__.th("Code outil")
 
@@ -576,7 +532,3 @@ class Industrie(archeodata.Data) :
                                 self.__db__.query(self.make_insert_query({ }))
                                 primarykeys = { "zone" : z, "numero" : n, "bis" : b}
                                 return (0, primarykeys)
-
-
-
-

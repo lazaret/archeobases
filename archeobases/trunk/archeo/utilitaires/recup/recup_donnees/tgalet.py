@@ -1,16 +1,17 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import sys
 import string
@@ -37,9 +38,7 @@ for ligne in lignes:
                 new_eg = []
                 new_en = []
                 new_n  = []
-                ##print("type:", champs[5])
                 if champs[5] !='' and (champs[5][0] == "N"):
-                        ##print("nucleus:", champs[5], "--", champs[5][0])
         #########################################
         #                       NUCLEUS
         #########################################
@@ -60,7 +59,6 @@ for ligne in lignes:
                                 elif new_n[i]!= '-' or new_n[i]!='99':
                                         new_n[i] = db.quote(new_n[i], "")
                         verify = "select * from industrie where zone=" + new_n[0]+ " and numero =" + new_n[1] + " and bis=" + new_n[2] + ";"
-                        #print(verify)                    
                         existe = db.query(verify)
                         existe = existe.dictresult()
                         verify2 = "select * from nucleus where zone=" + new_n[0]+ " and numero =" + new_n[1] + " and bis=" + new_n[2] + " and n_ordre = 1;"                 
@@ -76,11 +74,9 @@ for ligne in lignes:
                                 insert = insert+string.join(new_n, ', ')
                                 insert = insert + ");"
                                 db.query(insert)
-                                #print (insert)
 
                                 where = " WHERE zone = " + new_n[0] + " AND numero=" + new_n[1] + " AND bis=" + new_n[2] +";"
                                 update = "update industrie set i_objet='NUC' " + where
-                                #print(update)
                                 db.query (update)
 
                 ####################################################
@@ -90,8 +86,6 @@ for ligne in lignes:
                         new_en.append(champs[1])  #1 numero
                         new_en.append(champs[2])  # bis
                         new_en.append(1)          # ordre
-                        #new_en.append(champs[17]) # profondeur 
-                        #new_en.append(champs[18]) # obliquite  
                         new_en.append(champs[27]) # Lg  
                         new_en.append(champs[28]) #  lg 
                         new_en.append(champs[29]) #  obliquite 
@@ -132,7 +126,6 @@ for ligne in lignes:
              ##############################
              #       GALET
              ##############################
-                     ##print("==========", champs[3])
                      new_ga.append(champs[0])  #0 zone
                      new_ga.append(champs[1])  #1 numero
                      new_ga.append(champs[2])  # bis
@@ -177,14 +170,11 @@ for ligne in lignes:
                              insert="INSERT INTO galet_amenage (zone, numero, bis,ga_ordre,ga_type, ga_facture, ga_qualite, ga_nba, ga_nbb, ga_nbp, ga_forme, ga_arete, ga_orientation, ga_obliquite ,ga_retouche) VALUES ("
                              insert = insert+string.join(new_ga, ', ')
                              insert = insert + ");"
-#                            ##print("______",insert)
                              db.query(insert)
                              
                              where = " WHERE zone = " + new_ga[0] + " AND numero=" + new_ga[1] + " AND bis=" + new_ga[2] +";"
-                             
-                             #print(new_ga[4])
+
                              type = db.quote(champs[5],"text")
-                             #print("typ",type)
                              if type in ("'DEB'","'DGAL'","'G3'"):
                                      insert="insert into eclat(zone, numero, bis, e_code) values (" + new_ga[0] + "," + new_ga[1] + "," + new_ga[2] + "," + type + ");"
                                      update = "update industrie set i_objet='DEB' " + where
@@ -192,40 +182,30 @@ for ligne in lignes:
                                      delete2 ="delete from galet_amenage " + where
                                      try:
                                             db.query(insert)
-                                            #print(insert)
                                             db.query(update)
-                                            #print(update)
                                             db.query(delete1)
-                                            #print(delete1)
                                             db.query(delete2)
-                                            #print(delete2)
                                      except:
                                             print("doublon eclat")
                              elif type == "'GALF'":
                                      update = "update industrie set i_objet='GALF' " + where
                                      db.query(update)
-                                     #print(update)
 
                              elif champs[5][:1] =='I':
                                      update = "update industrie set i_objet='GAM' " + where
                                      db.query(update)
-                                     #print(update)
 
                              elif type =="'PERC'":
                                      update = "update industrie set i_objet='PERC' " + where
                                      db.query(update)
-                                     #print(update)
 
                              elif type =="'RET'":
                                      update = "update industrie set i_objet='RET' " + where
                                      db.query(update)
-                                     #print(update)
 
                              elif champs[5][:1] =='V':
                                      update = "update industrie set i_objet='GAM' " + where
                                      db.query(update)
-                                     #print(update)
-
 
 
              ##############################
@@ -241,12 +221,10 @@ for ligne in lignes:
                      new_eg.append(champs[15]) # 6longueur
                      new_eg.append(champs[16]) # profil
                      new_eg.append(champs[17]) # profondeur
-                     #new_eg.append(champs[18]) # obliquite
                      new_eg.append(champs[19]) # extemite
                      new_eg.append(champs[20]) # proeminence
                      new_eg.append(champs[22]) # sens
                      new_eg.append(champs[23]) # support
-                     ##print(champs[23])
                      new_eg.append(champs[24]) # localisation
                      new_eg.append(champs[25]) # situation
                      new_eg.append(champs[26]) # epaisseur  
@@ -280,7 +258,6 @@ for ligne in lignes:
                              insert = insert+string.join(new_eg, ', ')
                              insert = insert + ");"
                              db.query(insert)
-                             ##print(l, insert)
                 
                              where2 = " WHERE zone = " + new_ga[0] + " AND numero=" + new_ga[1] + " AND bis=" + new_ga[2] + " AND eg_ordre=" + new_eg[3]
                              

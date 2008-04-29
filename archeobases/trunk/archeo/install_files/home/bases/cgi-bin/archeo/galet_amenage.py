@@ -1,50 +1,17 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-#
-# $Id: galet_amenage.py,v 1.18 2002/07/08 16:32:54 rachel Exp $
-#
-# $Log: galet_amenage.py,v $
-# Revision 1.18  2002/07/08 16:32:54  rachel
-# Dernieres modifs
-#
-# Revision 1.17  2002/01/14 16:16:29  rachel
-# *** empty log message ***
-#
-# Revision 1.16  2001/11/09 15:25:38  rachel
-# *** empty log message ***
-#
-# Revision 1.15  2001/11/09 08:32:35  rachel
-# tout plein de modifs pdt que CVS ne fonctionnait pas
-#
-# Revision 1.14  2001/07/10 13:45:45  rachel
-# pleins de modifs: nouveau+1 ok, lien vers enfants ok
-#
-# Revision 1.13  2001/07/05 15:29:14  rachel
-# plein de modifs
-#
-# Revision 1.12  2001/04/05 09:44:31  rachel
-# remise en place des modfis pour le +1 qui fonctionne.
-# de plus les listes et le champ numeros sont bien en dontchange =0 lors de nouveau comptage ou bien recherche.
-# il doit falloir que je generalise pour que cela s'applique a tous les chmaps.
-# il faut aussi que je fasse les modifs pour les liens ainsi que popur les chmaps a memoriser.
-#
-# Revision 1.11  2001/03/20 19:59:34  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
 
 import os
 import string
@@ -56,6 +23,7 @@ import enlevement_galet
 import retouche
 import stigmate
 import fracture_industrie
+
 
 class Galet_amenage(archeodata.Data) :
         #
@@ -143,7 +111,6 @@ class Galet_amenage(archeodata.Data) :
         __ordrechamps__ = ["zone", "numero", "bis","ga_ordre","ga_type", "ga_facture", "ga_qualite", "ga_nba", "ga_nbb", "ga_nbp","ga_forme", "ga_arete", "ga_orientation", "ga_obliquite","ga_retouche", "ga_relation", "ga_cha", "ga_chb", "ga_chc", "ga_chd", "ga_che", "ga_chde", "ga_chf","ga_chg" ,"ga_chh",  "ga_chi", "ga_chj", "ga_chk", "ga_chna", "ga_chnb", "ga_chl", "ga_chm", "ga_cho", "ga_chp", "ga_chq" , "ga_chqq", "ga_chr", "ga_chrg", "ga_chrd", "ga_chrr", "ga_chs", "ga_cht", "ga_chu", "ga_chw1", "ga_chw2", "ga_chv1" , "ga_chv2", "ga_chv3", "ga_chx", "ga_chxx","ga_chy",  "ga_chyy", "ga_chz1", "ga_chz2", "ga_chz3", "ga_chz4"]
 
 
-
         __orderby__ = " ORDER BY zone, numero, bis ASC;"
 
         #
@@ -173,7 +140,6 @@ class Galet_amenage(archeodata.Data) :
                         return -1
                 else :
                         return 0
-
 
         def champ_verify(self, fieldname, value) :
                 # si la longueur de la valeur issue du formulaire est > a la longueur
@@ -288,7 +254,6 @@ class Galet_amenage(archeodata.Data) :
         def ga_chg_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie_area(self, "ga_chg", "CHg", 2, 35, 3, "Formule", enreg, penreg)
-                #afficheclefs.champ_saisie(self, "ga_chg", "CHg", 75, 75, "Formule", enreg, penreg)
                 self.__doc__.pop()
 ##
         def ga_chh_base_to_form(self, enreg, penreg = None) :

@@ -1,18 +1,17 @@
-#! /usr/bin/python
-import urllib
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# a uiliser comme suit:
+# a utiliser comme suit:
 # ./recup_biblio collection < recup_excel.csv
 
 # Correspondance EndNote <=> table biblio de la collection
@@ -36,10 +35,12 @@ import urllib
 #       series          serie
 #       edition         edition
 # TODO: voir si adresse = ville edition
+
 import sys
 import string
-
+import urllib
 sys.path.append("../cgi")
+
 
 lignes = sys.stdin.readlines()
 Liste_clefs = ['publication_type','publication_title','publication_year','publication_month','author',
@@ -47,17 +48,10 @@ Liste_clefs = ['publication_type','publication_title','publication_year','public
                 'volume','number','pages','series','edition','editor','publisher','chapter','booktitle', \
                'school','institution','adress','isbn','description','keywords','indice','abstract','authors']
                
-enregistrements = []                     
-#liste_clefs = []
+enregistrements = []
 cpt = 0
 new_biblio = []
 for ligne in lignes:
-        #ligne = string.strip(ligne[:-1])
-        #print "ligne:", ligne
-        #ligne = unicode(ligne,'UTF-8')
-        #print "ligne unicode:", ligne
-        #ligne.encode('ISO-8859-15')
-        #print "ligne encode:", ligne
         if ligne:
                 #s'il y a un # en debut de ligne, il s'agit d'une nouvelle biblio
                 if (ligne[0] == '#' and len(new_biblio)>0):
@@ -82,8 +76,6 @@ for ligne in lignes:
                                 
                                 valeur = ligne[indice_2:]
                                 valeur = string.strip(valeur)
-                                #valeur = valeur[:-1]
-                                #valeur = valeur[1:]
                                 new_biblio.append(valeur)
                                 
 print "nombre d'enregistrements: ",cpt

@@ -1,35 +1,20 @@
-#! /usr/bin/python
-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
-
 # You're welcome to redistribute this software under the
-
-# terms of the GNU General Public Licence version 2.0
-
-# or, at your option, any higher version.
-
+# terms of the GNU General Public Licence version 2
 #
-
 # You can read the complete GNU GPL in the file COPYING
-
 # which should come along with this software, or visit
-
 # the Free Software Foundation's WEB site http://www.fsf.org
-
 #
-
-
-
 
 
 import sys
-
 import string
-
 
 
 sys.path.append("../cgi")
@@ -37,10 +22,7 @@ sys.path.append("../cgi")
 import database
 
 
-
 db = database.DataBase(database=sys.argv[1], username = "postgres")
-
-
 
 
 
@@ -62,11 +44,8 @@ for ligne in lignes:
 
                 for i in range(0,len(champs)) :
 
-                        #print(champs[i])
-
                         champs[i] = string.replace(champs[i], "0.00" , "0")
 
-                        #print(champs[i])
 
                         champs[i] = string.strip(champs[i])
 
@@ -122,9 +101,6 @@ for ligne in lignes:
 
                                 new_dent[i] = db.quote(string.upper(new_dent[i]), "text")
 
-                        #elif new_dent[i]!= '-':
-
-                         #       new_dent[i] = db.quote(new_dent[i], "")
 
                 verify = "select * from faune where zone=" + new_dent[0]+ " and numero =" + new_dent[1] + " and bis=" + new_dent[2] + ";"                 
 
@@ -157,22 +133,4 @@ for ligne in lignes:
                         insert = insert+string.join(new_dent, ', ')
 
                         insert = insert + ");"
-
-                        #db.query(insert)
-
-                        #print(insert)
-
-
-
-
-
-
-
-
-
-#db.query("VACUUM;")
-
-
-
-
 

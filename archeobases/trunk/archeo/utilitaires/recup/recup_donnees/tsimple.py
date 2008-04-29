@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -48,16 +49,12 @@ for ligne in lignes:
                         champs[5]=='BECENCCTT'
                 if champs[5] == 'CHUB':
                         champs[5]='CHBU'
-                        #print("CHBU",champs[5])
                 if champs[5] == 'PEE1':
                         champs[5]=='PEC'
-                        #print("pec",champs[5])
                 if champs[5] == 'PEE1':
                         champs[5]=='PEC'
-                        #print("pec",champs[5])
                 if champs[5] in ('D2','D3'):
                         champs[5]=='DEB'
-                        #print("d2 d3",champs[5])
                 
 
                 new.append(champs[6])  # type
@@ -88,16 +85,12 @@ for ligne in lignes:
                 existe = existe.dictresult()
                 
                 verify2 = "select * from outil where zone=" + new[0]+ " and numero =" + new[1] + " and bis=" + new[2] + " and o_ordre=" + new[3] + ";"                 
-                #print("verify2", verify2)
                 existe2 = db.query(verify2)
                 existe2 = existe2.dictresult()
-                #print  len(existe2)
 
                 if not existe :
-                        #print "I   => pas de parent: ",(string.join(new, ','))
                         pass
                 elif existe2:
-                        #print "I  => doublon: ",(string.join(new, ','))
                         pass
                         
                 if new[0] != 'null' and new[1] != 'null' and new[2] != 'null' and new[3] != 'null':
@@ -111,8 +104,6 @@ for ligne in lignes:
                                 print(insert)
                         except:
                                 pass
-                        #print l, insert
-
 
 
 #####################

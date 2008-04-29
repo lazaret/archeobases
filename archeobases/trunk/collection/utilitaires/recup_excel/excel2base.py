@@ -1,18 +1,20 @@
-#! /usr/bin/python
-#
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
-# Collection - (c) 2006 Rachel VAUDRON <rachel@lazaret.unice.fr>
+#
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-# a uiliser comme suit:
+
+# usage:
 # ./recup_biblio collection < fichier_recup_excel.csv
+
 
 import sys
 import string
@@ -31,19 +33,15 @@ l = 0
 
 for ligne in lignes:
         ligne = string.strip(ligne[:-1])
-        #ligne = unicode(ligne, "UTF-8")
-        
-        #ligne.encode("UTF-8")
+
         l = l + 1
         champs = string.split(ligne, ";")
         for i in range(0,len(champs)) :
-                #print ligne
                 champs[i] = string.strip(champs[i])
                 new_objet = []
                 new_biblio  = []
                 if (len(champs) == 11):
                         
-                        #print "longueur OK ",len(champs)
                         new_biblio.append('DRET-BIB-' + champs[0])  #identifiant
                         new_biblio.append('TIRE_A_PART')  #type_biblio
                         new_biblio.append(champs[1])  #indice
@@ -52,16 +50,13 @@ for ligne in lignes:
                         new_biblio.append(champs[4])  #mots-clefs
                         new_biblio.append(champs[5])  #revue
                         new_biblio.append(champs[6])  #volume => description
-                        #print "type du champs: ", type(champs[7])
                         if (champs[7] <'1800' or champs[7] > '2010'):
-                                #print "annee str",champs[6]        
                                 champs[7] = '0'
                         new_biblio.append(champs[7])  #annee
                         new_biblio.append(champs[8])  #pages  
                         new_biblio.append(champs[9])  #nombre_exemplaire
                         new_biblio.append(champs[10])  #langue
                         new_biblio.append('ESSAI_INSERTION_TAP')         #resume  
-                        #new_biblio.append("")         #description  
                         
                         for i in range(0, len(new_biblio)):                
                                 new_biblio[i] = db.quote((new_biblio[i]), "text")
@@ -71,7 +66,6 @@ for ligne in lignes:
         try:
                 delete = "DELETE FROM biblio WHERE identifiant=" + new_biblio[0] + ";"
                 delete = delete.encode("UTF-8")  
-                #db.query(delete)
         except:
                 print "erreur delete"
                         
@@ -95,20 +89,10 @@ for ligne in lignes:
                         insert_biblio = insert_biblio + ");"
                         
                         try:        
-                                #insert_biblio = insert_biblio.encode("UTF-8")
-                                #print insert_biblio
                                 db.query(insert_biblio)
                                 cpt_ok =cpt_ok + 1
                         except:        
                                 print ("probleme ligne", insert_biblio)
 print(cpt, " doublons")
 print(cpt_ok, " OK")
-
-
-
-#db.query("VACUUM;")
-
-
-
-
 

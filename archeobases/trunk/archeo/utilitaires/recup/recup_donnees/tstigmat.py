@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -71,10 +72,8 @@ for ligne in lignes:
                 existe = existe.dictresult()
 		
                 verify2 = "select * from stigmate where zone=" + new[0]+ " and numero =" + new[1] + " and bis=" + new[2] + " and s_ordre=" + new[3] + ";"                 
-		#print("verify2", verify2)
                 existe2 = db.query(verify2)
                 existe2 = existe2.dictresult()
-                #print  len(existe2)
 
                 if not existe :
                         print "I   => pas de parent: ",(string.join(new, ','))
@@ -87,16 +86,9 @@ for ligne in lignes:
 		        insert="INSERT INTO stigmate (zone , numero , bis , s_ordre, s_composite, s_simple, s_support, s_roche, s_geometrie, s_alteration, s_concretion, s_longueur, s_largeur, s_epaisseur,s_poids, s_plan, s_dessin, s_coupe, s_photo, s_analyse) VALUES ("
 			insert = insert+string.join(new, ', ')
 			insert = insert + ");"
-			#print(insert)
 			db.query(insert)
-
-			#print l, insert
 
 			cpt = cpt + 1
 
 print (cpt, " objets inseres")
-
-
-#db.query("VACUUM;")
-
 

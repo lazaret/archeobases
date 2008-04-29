@@ -1,65 +1,20 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Fichier de configuration
-#
-# Archeo - (c)  1999 Jerome ALET
-#               2000 Rachel VAUDRON <rachel@cleo.unice.fr>
-#		2006 Bertrand Lecervoisier
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
 #
-# $Id: archeoconf.py,v 1.19 2002/09/16 11:27:54 rachel Exp $
-#
-# $Log: archeoconf.py,v $
-# Revision 1.19  2002/09/16 11:27:54  rachel
-# modification des boutons+ajout de zabs=zref+zrela
-# ----------------------------------------------------------------------
-#
-# Revision 1.21 Debugages mineurs + mail admin
-# Revision 1.2 2006/11/01 Passage en unicode
 
-# Revision 1.18  2002/07/08 16:43:58  jerome
-# chaine d'indentation reduite à la portion congrue
-#
-# Revision 1.17  2002/03/04 08:23:49  jerome
-# Legere correction dans les chemins
-#
-# Revision 1.16  2002/03/04 00:16:48  jerome
-# Ajout d'un fichier de configuration à placer dans /etc
-# Ajout d'un programme préliminaire à placer dans /cgi-bin (un lien symbolique
-# est parfait) : ce programme permet de choisir la base en fonction de
-# /etc/archeo.conf et de positionner un cookie correspondant à cette base.
-# plein de contrôles ont été ajoutés pour plus de sécurité.
-#
-# Revision 1.15  2002/01/14 11:15:16  rachel
-# modif pour changer l'arborescence industrie->eclat->outil en ind->eclat et ind->outil
-#
-# Revision 1.14  2002/01/10 21:32:37  jerome
-# Debuggage de pas mal de merdouilles
-#
-# Revision 1.13  2001/11/16 14:03:25  rachel
-# *** empty log message ***
-#
-# Revision 1.12  2001/11/09 15:25:37  rachel
-# *** empty log message ***
-#
-# Revision 1.11  2001/11/09 08:32:32  rachel
-# tout plein de modifs pdt que CVS ne fonctionnait pas
-#
-# Revision 1.10  2001/07/05 15:29:08  rachel
-# plein de modifs
-#
-# Revision 1.9  2001/03/20 19:59:26  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
 
 import string
+
 
 #### Début de la partie configurable ####
 
@@ -330,7 +285,6 @@ class Menu(jahtml.CGI_document) :
                 self.body(bgcolor = menu_bgcolor, background = decor_location(menu_background))
                 self.push()
                 self.div(align = "center")
-#                self.img(src = decor_location("logo_lazaret_transparent.jpg"), alt= "Archeo", border=0)
                 self.pop()
 
 class Controle(jahtml.CGI_document) :

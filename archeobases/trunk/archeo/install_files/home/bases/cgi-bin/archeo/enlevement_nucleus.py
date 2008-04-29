@@ -1,6 +1,17 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
+
 
 import os
 import string
@@ -8,6 +19,7 @@ import archeoconf
 import archeodata
 import afficheclefs
 import re
+
 
 class Enlevement_Nucleus(archeodata.Data) :
         #
@@ -135,7 +147,6 @@ class Enlevement_Nucleus(archeodata.Data) :
 
         def en_longueur_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
-                #afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 afficheclefs.champ_saisie(self, "en_longueur", "longueur", 3, 20, " ", enreg, penreg)
 
         def en_largeur_base_to_form(self, enreg, penreg = None) :

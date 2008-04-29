@@ -1,7 +1,18 @@
 #! /usr/bin/env python
+# -*- coding: UTF-8 -*-
+#
+# Mont Bego - (c) 1999-2008 LDLP (Laboratoire DÃ©partemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
 
-# 2003 Rachel Vaudron
-# recupere les images d'un cd pour les insérer dasn la base
+# recupere les images d'un cd pour les inserer dasn la base
 
 import sys
 import os
@@ -10,7 +21,7 @@ import database
 import archeoconf
 
 def transfere_fichier(infile, taille, mogrify) :
-        """Stocke le fichier sur le disque et lance la commande mogrify appropriée"""
+        """Stocke le fichier sur le disque et lance la commande mogrify appropriee"""
         inf = open(infile, "rb")
         fout = open(taille, "wb")
         fout.write(inf.read())
@@ -21,7 +32,7 @@ def transfere_fichier(infile, taille, mogrify) :
 		raise "Erreur"
 
 def creer_image(z = "", n = "", b = "") :
-        # on commence par créer le répertoire destination s'il n'existe pas déjà
+        # on commence par creer le repertoire destination s'il n'existe pas deja
         (zone, numero, bis, face) = (z, n, b)
         try :
                 z = "Z" + z
@@ -41,7 +52,7 @@ def creer_image(z = "", n = "", b = "") :
                         if not os.path.isdir(rep) :
                                 os.mkdir(rep, 0755)
         except OSError, msg:
-                sys.stderr.write("Impossible de créer le répertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
+                sys.stderr.write("Impossible de crÃ©er le rÃ©pertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
 
         #
         idphoto = db.query("select nextval('seq_photoindustrie');").dictresult()[0]['nextval']
@@ -50,8 +61,8 @@ def creer_image(z = "", n = "", b = "") :
         big = fname + ".jpeg"
         normale = fname + ".tiff"
 
-        # on insère maintenant la photo dans la base
-        # mais seulement si le chargement des images a fonctionné
+        # on insere maintenant la photo dans la base
+        # mais seulement si le chargement des images a fonctionne
         try :
                 transfere_fichier("tempo.tiff", normale, archeoconf.mogrify_normale)
                 transfere_fichier("tempo.tiff", small, archeoconf.mogrify_small)
@@ -62,7 +73,7 @@ def creer_image(z = "", n = "", b = "") :
                 print idphoto
 		sys.stdout.flush()
         except :
-                sys.stderr.write("Impossible de transférer la photo [%s]\n"  % (fname))
+                sys.stderr.write("Impossible de transfï¿½rer la photo [%s]\n"  % (fname))
 		sys.stderr.flush()
                         
 def parcours(param, dirname, names) :
@@ -88,30 +99,6 @@ def parcours(param, dirname, names) :
 					bis = "--"
 
                                 print ("zone:",z, " numero:",n, " bis:",b) 
-##                                 requete = "SELECT face FROM figure WHERE zone=%s AND groupe=%s AND roche=%s AND figure=%s;" % (db.quote(zone,"decimal"), db.quote(groupe,"decimal"), db.quote(roche,"text"), db.quote(figure,"text")) 
-##                                 resultat = db.query(requete).dictresult()
-##                                 if len(resultat) :
-##                                         face = resultat[0]["face"]
-##                                         #on insere la nouvelle photo dans la table photofigure
-##                                         if not os.system('zcat <"%s" >%s' % (fichier, "tempo.tiff")) :
-##                                                 creer_image(zone, groupe, roche, face, figure)
-##                                         else :
-##                                                 sys.stderr.write("erreur sur [%s]\n" % fichier)
-##                                 else :          
-##                                         sf.write("[%s] => [%s %s %s %s]\n" % (fichier, zone, groupe, roche, figure))
 
-
-
-## db = database.DataBase(database = "bego", username = "bego", debuglevel = 0)
-
-
-#sf = open("sansface.lst", "w")
-#sf.write("Liste des fichiers n'ayant pas de face correspondante\n") 
-#sf.write("-----------------------------------------------------\n\n") 
 os.path.walk("/cdrom", parcours, (db, sf))
 sf.close()
-
-
-
-
-

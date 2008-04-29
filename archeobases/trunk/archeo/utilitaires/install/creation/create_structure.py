@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c)  1999-2003 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire DÃ©partemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -20,9 +21,8 @@ import database
 sys.path.append("../cgi")
 
 
-print("AVERTISSEMENT: placez-vous dans le répertoire où est votre schema_archeo.sql")
+print("AVERTISSEMENT: placez-vous dans le repertoire ou est votre schema_archeo.sql")
 
-#os.system("mount /cdrom")
 
 # RECUPERATION DU NOM DE LA NOUVELLE BASE ET CONNEXION A template1
 #=================================================================
@@ -58,13 +58,11 @@ db = database.DataBase(database=nom_base, username = "postgres")
 recup_table = "SELECT relname FROM pg_class WHERE relname NOT LIKE 'pg%' AND relname NOT LIKE 'controle_%' AND relname NOT LIKE 'seq_%' AND relname NOT LIKE '%pkey';"
 res_table = db.query(recup_table).dictresult()
 for i in range( 1, len(res_table)):
-        #print(res_table[i]["relname"])
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM super" + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM " + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM visiteur" + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM public" + ";")
         grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"   
-        #print(grant_super)
         db.query(grant_super)
 
         grant_normal = "GRANT ALL ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"       
@@ -97,5 +95,3 @@ for i in range( 1, len(res_table)):
 
         grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public"+ nom_base + ";"
 	db.query(grant_public)
-		
-

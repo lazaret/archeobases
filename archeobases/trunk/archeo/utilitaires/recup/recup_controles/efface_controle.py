@@ -1,16 +1,17 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire D√©partemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import sys
 import string
@@ -56,8 +57,6 @@ liste_outil = ["o_code", "o_retouche","o_orientation","o_origine","o_destination
 
 liste_galet_amenage = ["ga_type","ga_facture","ga_qualite","ga_forme","ga_arete","ga_orientation","ga_retouche","ga_obliquite"]
 
-#"ga_longueur_generale", "ga_profil", "ga_profondeur", "ga_extremite", "ga_proeminence", "ga_sens", "ga_localisation", "ga_situation", "ga_epaisseur"]
-
 liste_enlevement_galet = ["eg_longueur_generale", "eg_profil", "eg_profondeur", "eg_extremite", "eg_proeminence", "eg_sens", "eg_situation", "eg_epaisseur"]
 
 liste_nucleus = ["n_type", "n_epuisement"]
@@ -94,7 +93,7 @@ dico_controle = {"carnet":liste_carnet, \
 		 "hachereau":liste_hachereau,\
 		 
 		 }
-action = raw_input("Souhaitez-vous RÅÈcupÅÈrer la liste des valeurs possibles pour chaque champs de cette base ou Effacer les controles existants? R/E  ")
+action = raw_input("Souhaitez-vous R√©cup√©rer la liste des valeurs possibles pour chaque champs de cette base ou Effacer les controles existants? R/E  ")
 
 for d in dico_controle.keys():
 	
@@ -117,12 +116,3 @@ for d in dico_controle.keys():
        			req = "DELETE FROM controle_" + c + ";"
 			print(req)
 			db.query(req)
-
-
-
-
-
-
-
-
-

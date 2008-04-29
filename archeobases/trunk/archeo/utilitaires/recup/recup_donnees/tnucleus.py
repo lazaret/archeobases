@@ -1,11 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -57,7 +57,6 @@ for ligne in lignes:
                 verify = "select * from nucleus where zone=" + new[0]+ " and numero =" + new[1] + " and bis=" + new[2] + " and n_ordre =1;"                 
                 existe = db.query(verify)
                 existe = existe.dictresult()
-                #print  len(existe)
 
                 liste = ["n_cortotal","n_corfacea", "n_corfaceb", "n_dirtotal", "n_dirfacea", "n_dirfaceb","n_formule","n_nbplan", "n_rotation"]
                 if not existe :

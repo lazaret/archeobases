@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -31,9 +32,7 @@ for ligne in lignes:
                 champs = string.split(ligne, ",")
 		
                 for i in range(0,len(champs)) :
-			#print(champs[i])
 			champs[i] = string.replace(champs[i], "0.00" , "0")
-			#print(champs[i])
                         champs[i] = string.strip(champs[i])
                         if champs[i] == '-':
                                 champs[i] = ''
@@ -72,7 +71,6 @@ for ligne in lignes:
                 verify2 = "select * from trace where zone=" + new_trace[0]+ " and numero =" + new_trace[1] + " and bis=" + new_trace[2] + " and t_ensemble=" + new_trace[3] + ";"                 
                 existe2 = db.query(verify2)
                 existe2 = existe2.dictresult()
-                #print  len(existe2)
                 if  not existe :
                         print "I   => pas de parent: ",(string.join(new_trace, ','))
 		elif existe2:
@@ -83,10 +81,7 @@ for ligne in lignes:
                         insert = insert+string.join(new_trace, ', ')
                 	insert = insert + ");"
                 	db.query(insert)
-			#print(insert)
 			cpt = cpt + 1
-
-#print (cpt, " objets inseres")
 
 
 db.query("VACUUM;")

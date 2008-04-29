@@ -1,17 +1,25 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
+#
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
 #
 # Génération de planches d'étiquettes
 # Usage :  ./etiquettes.py  prefix  mincount  maxcount  >fichier.pdf\n")
+
+
 import sys
 from cStringIO import StringIO
 
-
-#from reportlab.extensions.common import *
-#from reportlab.extensions import code128
-
-from reportlab.graphics.barcode import * #modifié le 25-01-2007
-from reportlab.graphics.barcode import code128 #modifie le 25-01-2005
+from reportlab.graphics.barcode import *
+from reportlab.graphics.barcode import code128
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont

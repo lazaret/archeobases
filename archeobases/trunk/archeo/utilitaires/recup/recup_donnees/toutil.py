@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -66,7 +67,6 @@ for ligne in lignes:
                 new_industrie.append(champs[34]) #16 action
 
                 new_industrie.append(champs[35]) #17 eolisation
-		#print("LUSTRAGE", champs[35])
 
                 new_industrie.append(champs[36]) #18 LUSTRAGE
 
@@ -81,10 +81,8 @@ for ligne in lignes:
                 existe = db.query(verify)
                 existe = existe.dictresult()
                 verify2 = "select * from industrie where zone=" + new_industrie[0]+ " and numero =" + new_industrie[1] + " and bis=" + new_industrie[2] + ";"                 
-		#print("verify2", verify2)
                 existe2 = db.query(verify2)
                 existe2 = existe2.dictresult()
-                #print  len(existe2)
                 if not existe :
                         print "I   => pas de parent: ",(string.join(new_industrie, ','))
 		elif existe2:
@@ -97,7 +95,6 @@ for ligne in lignes:
 
 ################# ECLAT ##################################
 		if champs[13]:
-			#print (champs[13])
                 	new_eclat.append(champs[0]) #0  #0 zone
                 	new_eclat.append(champs[1]) #1  #1 numero
                 	new_eclat.append(champs[2]) #2  #2 bis
@@ -127,14 +124,11 @@ for ligne in lignes:
                 	verify = "select * from industrie where zone=" + new_eclat[0]+ " and numero =" + new_eclat[1] + " and bis=" + new_eclat[2] + ";"                 
                 	existe = db.query(verify2)
                 	existe = existe.dictresult()
-                	#print  len(existe)
-
 
 
 	                verify2 = "select * from eclat where zone=" + new_industrie[0]+ " and numero =" + new_industrie[1] + " and bis=" + new_industrie[2] + ";"                 
                 	existe2 = db.query(verify2)
                 	existe2 = existe2.dictresult()
-                	#print  len(existe2)
                 	if not existe :
                         	print "E  ===> pas de parent ",(string.join(new_eclat, ','))
 			elif existe2:
@@ -145,13 +139,6 @@ for ligne in lignes:
                 		insert = insert + ");"
 				if champs[15]!='null':
                 			db.query(insert)
-               				#print(l, insert)
 				else:
 					print("c'est pas un eclat")
-
-
-
-
-#db.query("VACUUM;")
-
 

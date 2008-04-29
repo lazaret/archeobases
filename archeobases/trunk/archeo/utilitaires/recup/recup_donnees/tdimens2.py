@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -99,12 +100,7 @@ for ligne in lignes:
                                 update = update + liste[i] + "=" + new[i+4] + "," 
                         update  = update[:-1] + " WHERE zone = " + new[0] + " AND numero = " + champs[1] +  " AND bis = " + new[2] + ";"
                         db.query(update)
-                        #print l,update
 
                 else:
                         print "!!!!!!!!!!! ",(string.join(new, ','))
-
-
-#db.query("VACUUM;")
-
 

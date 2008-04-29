@@ -1,32 +1,18 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
-#
-# $Id: modcontrole_general.py,v 1.4 2002/01/10 21:32:39 jerome Exp $
-#
-# $Log: modcontrole_general.py,v $
-# Revision 1.4  2002/01/10 21:32:39  jerome
-# Debuggage de pas mal de merdouilles
-#
-# Revision 1.3  2001/07/05 15:29:22  rachel
-# plein de modifs
-#
-# Revision 1.2  2001/03/20 19:59:42  jerome
-# Ajout des tags CVS Id et Log
-#
-#
-#
+
+
 import os
 import cgi
 import urllib
@@ -34,14 +20,6 @@ import archeoconf
 import afficheclefs
 import archeodata
 
-#cgi.test()
-
-#def liste_multiple(doc, nom, valeurs, param) :
-#        doc.push()
-#        doc.select_multiple(name = nom, size = 4 )
-#        for a in valeurs :
-#                doc.option(a[param], value = a[param])
-#        doc.pop()
 
 def enlever(database, form, liste, param) :
         query = "DELETE FROM controle_" + param + " WHERE "
@@ -54,7 +32,7 @@ def enlever(database, form, liste, param) :
 def recupere_liste(nomliste) :
         liste = []
         if type(form[nomliste]) == type([]) : # plusieurs options sélectionnées 
-                for a in form[nomliste] :                    
+                for a in form[nomliste] :
                         liste.append(a.value)
         else :
                 liste.append(form[nomliste].value)
@@ -99,11 +77,8 @@ elif form["action"].value == "AJOUTER" :
                 dico = { "champ" : param }
                 doc.set_redirect(archeoconf.script_location("controle_general") + "?" + urllib.urlencode(dico))
                 archeoconf.log_message("Rien a rajouter", level = "info")
-#                doc.set_redirect(archeoconf.script_location("controle_general"))
         else :
-                #ajouter(db, form, param)
                 archeoconf.log_message("Rien a rajouter", level = "info")
-                #doc.set_redirect(archeoconf.script_location("controle_general"))
                 dico = { "champ" : param }
                 doc.set_redirect(archeoconf.script_location("controle_general") + "?" + urllib.
 urlencode(dico))
@@ -112,6 +87,3 @@ else :
         archeoconf.fatalerror_message("Aucune action à effectuer !")
 
 doc.output()
-
-
-

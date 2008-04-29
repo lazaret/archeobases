@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Annuaire - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Annuaire - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -19,7 +19,6 @@ import time
 import pg
 import urllib
 
-__version__ = "1.0"
 
 #
 # Définition d'une classe d'accès à une base de données PostrgreSQL sous Python

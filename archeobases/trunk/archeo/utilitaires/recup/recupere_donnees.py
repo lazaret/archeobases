@@ -1,10 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c)  1999-2003 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -38,16 +39,8 @@ print("RECUPERATION DE RFAUNE TERMINEE")
 
 
 print("RECUPERATION DE RMESURE EN COURS")
-#os.system ("./prog_recup/tmesure.py %s < ./donnees/rmesure.txt &>2 ./erreurs/rmesure.erreur"%nom_base)
 print("RECUPERATION DE RMESURE DES OS TERMINEE")
-        
-#print("RECUPERATION DE RMDENT EN COURS")
-#os.system ("./prog_recup/tdent.py %s < ./donnees/rmdent.txt > ./erreurs/rmdent.erreur"%nom_base)
-#print("RECUPERATION DE RMDENT TERMINEE")
 
-#print("RECUPERATION DE RMICRO EN COURS")
-#os.system ("./prog_recup/tmicro.py %s < ./donnees/rmicro.txt > ./erreurs/rmicro.erreur"%nom_base)
-#print("RECUPERATION DE RMICRO TERMINEE")
 
 print("RECUPERATION DES RTRACE SUR OS EN COURS")
 os.system ("./prog_recup/ttrace.py %s < ./donnees/rtrace.txt > ./erreurs/rtrace.erreur"%nom_base)
@@ -75,10 +68,6 @@ print("RECUPERATION DE RSTIGMAT EN COURS")
 os.system ("./prog_recup/tstigmat.py %s < ./donnees/rstigmat.txt > ./erreurs/rstigmat.erreur"%nom_base)
 print("RECUPERATION DE RSTIGMAT TERMINEE")
 
-#print("RECUPERATION DE RSTIGMA2 EN COURS")
-#os.system ("./prog_recup/tstigma2.py %s < ./donnees/rstigma2.txt > ./erreurs/rstigma2.erreur"%nom_base)
-#print("RECUPERATION DE RSTIGMA2 TERMINEE")
-
 print("RECUPERATION DE REXTREMI EN COURS")
 os.system ("./prog_recup/textremi.py %s < ./donnees/rextremi.txt > ./erreurs/rextremi.erreur"%nom_base)
 print("RECUPERATION DE REXTREMI TERMINEE")
@@ -97,20 +86,6 @@ print("RECUPERATION DE RDIMENS TERMINEE")
 print("RECUPERATION DE RDIMENS2 EN COURS")
 os.system ("./prog_recup/tdimens2.py %s < ./donnees/rdimens2.txt > ./erreurs/rdimens2.erreur"%nom_base)
 print("RECUPERATION DE RDIMENS2 TERMINEE")
-
-
-#print("RECUPERATION DE RBIFACE EN COURS")
-#os.system ("./prog_recup/tbiface.py %s < ./donnees/rbiface.txt > ./erreurs/rbiface.erreur"%nom_base)
-#print("RECUPERATION DE RBIFACE TERMINEE")
-
-#print("RECUPERATION DE RHACHEREAU EN COURS")
-#os.system ("./prog_recup/t.py %s < ./donnees/r.txt > ./erreurs/r.erreur"%nom_base)
-#print("RECUPERATION DE R TERMINEE")
-
-#print("RECUPERATION DE R EN COURS")
-#os.system ("./prog_recup/t.py %s < ./donnees/r.txt > ./erreurs/r.erreur"%nom_base)
-#print("RECUPERATION DE R TERMINEE")
-
  
 db = database.DataBase(database=nom_base, username = "postgres")
 db.query("UPDATE carnet SET zabsolu = zrelatif + zreference;")

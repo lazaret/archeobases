@@ -1,15 +1,17 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import sys
 import string
@@ -30,10 +32,7 @@ for ligne in lignes:
         if (ligne != "") and (ligne[:4] != "ffid") and (ligne[:6] != "------")  :
                 champs = string.split(ligne, ",")
                 for i in range(0,len(champs)) :
-                        #print(champs[i])
                         champs[i] = string.replace(champs[i], "0.00" , "0")
-
-                        #print(champs[i])
 
                         champs[i] = string.strip(champs[i])
 
@@ -55,11 +54,7 @@ for ligne in lignes:
                         new_faune.append(champs[4])  #4  #3 l
                         new_faune.append(champs[5])  #5  #3 e
                         
-                        #print champs[6] 
                         champs[6] = string.replace(champs[6], ".", "") 
-                        #print champs[6] 
-                        #if string.find(champs[6],"."):
-                        #        string.replace(champs[6],'.','')
                         new_faune.append(champs[6])  #6  #3 poids
                         
                         new_faune.append(champs[7]) #7  #5 oss
@@ -100,7 +95,6 @@ for ligne in lignes:
                         new_faune.append(champs[42]) #31
                         new_faune.append(champs[43]) #32
                         new_faune.append(champs[44]) #33
-               #         new_faune.append(champs[45]) #34
                
                         for i in range(0, len(new_faune)) :
                                 if i  not in [1,3,4,5,6] :
@@ -114,8 +108,6 @@ for ligne in lignes:
                         verify2 = "select * from faune where zone=" + new_faune[0]+ " and numero =" + new_faune[1] + " and bis=" + new_faune[2] + ";"                 
                         existe2 = db.query(verify2)
                         existe2 = existe2.dictresult()
-
-                #print  len(existe2)
 
                         if  not existe :
 
@@ -139,12 +131,4 @@ for ligne in lignes:
                         print ("probleme champs", champs[0], " ",champs[1], " ",champs[2])
                         
 print(cpt, "faunes inserees")
-
-
-
-#db.query("VACUUM;")
-
-
-
-
 

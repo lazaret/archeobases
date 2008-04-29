@@ -1,11 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# archeo - (c) 2003 Rachel VAUDRON <rachel@lazaret.unice.fr>
-
+# Archeo - (c) 2003-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
@@ -44,7 +44,6 @@ for ligne in lignes:
                 new.append(champs[5])  # type
                 new.append(champs[6])  # percussion
                 new.append(champs[7])  # mode
-                #new.append(champs[8])  # support
                 new.append(champs[9])  # tranchant
                 new.append(champs[10])  # anciennete
 
@@ -60,10 +59,8 @@ for ligne in lignes:
                 existe = existe.dictresult()
                 
                 verify2 = "select * from fracture_industrie where zone=" + new[0]+ " and numero =" + new[1] + " and bis=" + new[2] + " and fi_ordre=" + new[3] + ";"                 
-                ##print("verify2", verify2)
                 existe2 = db.query(verify2)
-                existe2 = existe2.dictresult()
-                ##print  len(existe2)
+                existe2 = existe2.dictresult())
 
                 if not existe :
                         print "I   => pas de parent: ",(string.join(new, ','))
@@ -77,13 +74,5 @@ for ligne in lignes:
 # , fi_support
                         insert = insert+string.join(new, ', ')
                         insert = insert + ");"
-                        #print(insert)
                         db.query(insert)
-
-                        #print l, insert
-
-
-
-#db.query("VACUUM;")
-
 

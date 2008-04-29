@@ -1,17 +1,17 @@
-#! /usr/bin/python
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
+# -*- coding: UTF-8 -*-
 #
-# Archeo   - (c) 1999      Jerome ALET <alet@unice.fr>
-#                1999-2000 Rachel VAUDRON <rachel@cleo.unice.fr>
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
-# terms of the GNU General Public Licence version 2.0
-# or, at your option, any higher version.
+# terms of the GNU General Public Licence version 2
 #
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
+
 
 import os
 import string
@@ -140,79 +140,11 @@ class Faune(archeodata.Data) :
                 else :
                         return 0
 
-##         def champ_verify(self, fieldname, value) :
-##                 #si le champ doit etre controle alors on verifie si la valeur
-##                 #existe bien dans la liste des valeurs possibles
-##                 self.__doc__.log_message("champ: %s   valeur: %s" % (fieldname, value))
-##                 if fieldname in self.__controle_saisie__:        
-##                         if not (value and string.strip(value)) :
-##                                 return 0
-##                         else:        
-##                                 query = "SELECT * FROM controle_" + fieldname + ";"
-##                                 res = self.__db__.query(query)
-##                                 res = res.dictresult()
-
-##                              if res and (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]):
-##                                      return 0
-##                              else:
-##                                      return -1
-                               
-##                 else:      
-##                         #si la longueur de la valeur issue du formulaire est > a la longueur
-##                         #definie dans l'attribut longueur des champs
-##                         if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
-##                                return -1       # erreur
-##                         else :          
-##                                return 0
-                                                                    
-##         def champ_verify(self, fieldname, value) :
-##                 #si le champ doit etre controle alors on verifie si la valeur
-##                 #existe bien dans la liste des valeurs possibles
-##                 self.__doc__.log_message("champ: %s   valeur: %s" % (fieldname, value))
-##                 if fieldname in self.__controle_saisie__:        
-##                         if not (value and string.strip(value)) :
-##                                 return 0
-##                         else:        
-##                                 query = "SELECT * FROM controle_" + fieldname + ";"
-##                                 res = self.__db__.query(query)
-##                                 res = res.dictresult()
-##                                 ok = 0
-##                                 if len(res):
-##                                         for ctrl in res:
-##                                                 if value == ctrl[fieldname]:
-##                                                         ok = 1
-##                                         if not ok:                
-##                                                 return -1
-##                                         else:
-##                                                 return 0
-##                                 else:
-##                                         if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
-##                                                 return -1       # erreur
-##                                         else:
-##                                                 return 0
-##                 else:      
-##                         #si la longueur de la valeur issue du formulaire est > a la longueur
-##                         #definie dans l'attribut longueur des champs
-##                         if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
-##                                return -1       # erreur
-##                         else :          
-##                                return 0
-                                                                    
-##         def champ_verify_old(self, fieldname, value) :
-##                 # si la longueur de la valeur issue du formulaire est > a la longueur
-##                 # definie dans l'attribut longueur des champs
-##                 if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
-##                         return -1       # erreur
-##                 else :          
-##                         return 0
-
         def champ_verify(self, fieldname, value) :
                 # si la longueur de la valeur issue du formulaire est > a la longueur
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
                         return -1       # erreur
-                #elif  (value != None) and (len() : TODO verifier le type de l'enregistrement
-                        #return -1      # erreur
                 else:
                         return 0
 
@@ -241,7 +173,6 @@ class Faune(archeodata.Data) :
                 afficheclefs.display_zone(self, enreg, penreg,col=2)
 
         def numero_base_to_form(self, enreg, penreg = None) :
-                #afficheclefs.display_numero_faune(self, enreg, penreg, 1,col=2)
                 afficheclefs.display_numero(self, enreg, penreg, 1,col=2)
 
         def bis_base_to_form(self, enreg, penreg = None) :
@@ -261,19 +192,7 @@ class Faune(archeodata.Data) :
                 if enreg != None:
                         liste_clefs = ["zone", "numero", "bis"]
                         self.champ_nsaisie_table("carnet",  liste_clefs, "couche", "couche", 3, 20, "", 2, enreg, penreg)
-##                         self.__doc__.pop()
-                        
-##         def orientation_base_to_form(self, enreg, penreg = None) :
-##                 if enreg != None:
-##                         self.__doc__.push()
-##                         liste_clefs = ["zone", "numero", "bis"]
-##                         self.champ_nliste_table("carnet", liste_clefs, "orientation", "orientation", enreg, penreg, " ", dontchange = None)
-                        
-##         def pendage_base_to_form(self, enreg, penreg = None) :
-##                 if enreg != None:
-##                         liste_clefs = ["zone", "numero", "bis"]
-##                         self.champ_nliste_table("carnet", liste_clefs, "pendage", "pendage", enreg, penreg, "", dontchange = None)
-                        
+
         def sol_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         liste_clefs = ["zone", "numero", "bis"]
@@ -325,7 +244,6 @@ class Faune(archeodata.Data) :
                         self.__doc__.text(name = "f_saisie", value = enreg["f_saisie"], size = 3, maxlength = 20)
                         self.__doc__.pop()
 
-       
 
 ################################### En entrée ###########################
         def f_longueur_base_to_form(self, enreg, penreg = None) :
@@ -347,18 +265,14 @@ class Faune(archeodata.Data) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_classe", "classe", 20, 35, "Détermination", 2, enreg, penreg)
-                #afficheclefs.champ_nsaisie_determination(self, "classe","genre","classe",25, 35, "Détermination", 2, enreg, penreg)
-                #afficheclefs.champ_nliste(self, "f_classe", "classe", enreg, penreg, "Détermination",2, dontchange = 0)
 
         def f_ordre_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_ordre", "ordre", 20, 35, "", 2, enreg, penreg)
-                #afficheclefs.champ_nsaisie_determination(self, "or","genre","ordre",25, 35, "", 2, enreg, penreg)
                 self.__doc__.pop()
         ########
         def f_famille_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_famille", "famille", 20, 35, " ", 2, enreg, penreg)
-                #afficheclefs.champ_nsaisie_determination(self, "famille","genre","famille", 20, 35, " ", 2,enreg, penreg)
 
         def f_ssfamille_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_ssfamille", "ssfamille", 20, 35, "", 2, enreg, penreg)
@@ -408,19 +322,15 @@ class Faune(archeodata.Data) :
                 self.__doc__.pop()
         #######
         def f_lateralite_base_to_form(self, enreg, penreg = None) :
-                #self.__doc__.push()
                 afficheclefs.champ_nliste(self, "f_lateralite", "latéralité", enreg, penreg, "", "2", dontchange = 0)
-                #self.__doc__.pop()
                 self.__doc__.pop()
         ######
         def f_stserie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_stserie", "série dentaire", 46, 46, "Fragmentation", 4, enreg, penreg)
-                #self.__doc__.pop()
         
         #######
         def f_fragge_base_to_form(self, enreg, penreg = None) :
-                #self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_fragge", "générale", 12, 30, "", 3, enreg, penreg)
                 self.__doc__.pop()
         
@@ -444,30 +354,15 @@ class Faune(archeodata.Data) :
                 
         def f_taille_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste( self, "f_taille", "taille", enreg, penreg, "", 2,dontchange = 0)
-                #self.__doc__.pop()
+
         #######
         def f_agecl_base_to_form(self, enreg, penreg = None) :
-                #self.__doc__.push()
                 afficheclefs.champ_nliste(self, "f_agecl", "classe âge", enreg, penreg, "", "2", dontchange = 0)
                 
         def f_agest_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_agest", "estimation", 6, 20, "", 1, enreg, penreg)
                 self.__doc__.pop()
-        
-        #######modifier pour mettre reellement auteur dans la base
-                
-##         def f_sreference_base_to_form(self, enreg, penreg = None) :
-##                 self.__doc__.push()
-##                 afficheclefs.champ_nsaisie(self, "f_reference", "réference", 15, 20, "", 1, enreg, penreg)
-                
-##         def f_stdent_base_to_form(self, enreg, penreg = None) :
-##                 self.__doc__.push()
-##                 afficheclefs.champ_nsaisie(self, "f_stdent", "vers ecran dent", 2, 20, " ", 1, enreg, penreg)
-##         def f_reference_base_to_form(self, enreg, penreg = None) :
-##                 afficheclefs.champ_nsaisie(self, "f_reference", "référence", 2, 20, "", 1, enreg, penreg)
-##                 self.__doc__.pop()
-                
-                
+
         #######
         def f_association_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -487,19 +382,16 @@ class Faune(archeodata.Data) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 afficheclefs.champ_nliste(self, "f_couleur", "couleur os", enreg, penreg, "Etat physique", 1, dontchange = 0)
-                #self.__doc__.pop()
+
          #######
         def f_caltype_base_to_form(self, enreg, penreg = None) :
-                #self.__doc__.push()
                 afficheclefs.champ_nliste(self, "f_caltype", "type calci", enreg, penreg, "", 2, dontchange = 0)
                 
         def f_calcouleur_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_calcouleur", "couleur calci", enreg, penreg, "", 2, dontchange = 0)
-                #self.__doc__.pop()
                 
          #######
         def f_concretion_base_to_form(self, enreg, penreg = None) :
-                #self.__doc__.push()
                 afficheclefs.champ_nliste(self, "f_concretion", "concrétion", enreg, penreg, "", 2, dontchange = 0)
                 self.__doc__.pop()
                 
@@ -509,11 +401,10 @@ class Faune(archeodata.Data) :
 
         def f_fossilisation_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_fossilisation", "fossilisation", enreg, penreg, "", 2, dontchange = 0)
-                #self.__doc__.pop()
+
                 
          #######
         def f_coraspect_base_to_form(self, enreg, penreg = None) :
-                #self.__doc__.push()
                 afficheclefs.champ_nliste(self, "f_coraspect", "aspect cortex", enreg, penreg, "", 2, dontchange = 0)
                 
         def f_corfissure_base_to_form(self, enreg, penreg = None) :
@@ -526,7 +417,6 @@ class Faune(archeodata.Data) :
                 
          #######
         def f_typedos_base_to_form(self, enreg, penreg = None) :
-#                afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
                 afficheclefs.champ_nliste(self, "f_typedos", "type d'os", enreg, penreg, "Les indét", 2, dontchange = 0)
 
@@ -551,12 +441,8 @@ class Faune(archeodata.Data) :
         def f_agent_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_agent", "agent", 7, 20, "Dommages", 1, enreg, penreg)
-                #self.__doc__.pop()
          #######
         def f_pelote_base_to_form(self, enreg, penreg = None) :
-#               afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
-                #self.__doc__.push()
-                #afficheclefs.champ_nliste(self, "f_pelote", "pelote", enreg, penreg, "Action:", 1, dontchange = 0)
                 afficheclefs.champ_nliste(self, "f_pelote", "pelote", enreg, penreg, "", 2, dontchange = 0)
 
         def f_coprolithe_base_to_form(self, enreg, penreg = None) :
@@ -596,7 +482,6 @@ class Faune(archeodata.Data) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "5", "7") 
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self,"f_saisie", "Fiche saisie le", 10, 20, " ", 2, enreg, penreg)
-
 
          #######
 
@@ -722,9 +607,6 @@ class Faune(archeodata.Data) :
                 o = string.upper(self.__getfield__("f_ordre"))
                 f = string.upper(self.__getfield__("f_famille"))
                 g = string.upper(self.__getfield__("f_genre"))
-                        
-                #if !(self.exist_controle(champ, v)): #si la valeur n'est pas dans la table controle de ce champ 
-                #        archeoconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide !" %(v, champ))
                 update_genre = ""
                 if g != "''" :
                         recup = "SELECT * FROM remonte_genre WHERE genre=%s;" % g
@@ -753,7 +635,6 @@ class Faune(archeodata.Data) :
 
         def modifier(self) :
                 """Met a jour la faune courante"""
-                #self.__db__.query(self.make_update_query_determination(["zone", "numero", "bis"]))
                 self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
                 self.remonte_determination(["zone", "numero", "bis"])
                 return 0
@@ -802,12 +683,4 @@ class Faune(archeodata.Data) :
                                         self.remonte_determination(["zone", "numero", "bis"])
                                         primarykeys = { "zone" : z, "numero" : n, "bis" : b}
                                         return (0, primarykeys)
-
-
-
-
-
-
-
-
 

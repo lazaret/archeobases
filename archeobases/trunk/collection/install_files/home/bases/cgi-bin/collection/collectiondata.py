@@ -229,7 +229,6 @@ class Data :
         def exist(self, champs, table = None) :
                 if table == None :
                         table = self.__tablename__
-
                 query = "SELECT COUNT(*) FROM " + table + self.__createwhere__(champs) + ";"
                 res = self.__db__.query(query)
                 res = res.dictresult()
@@ -248,7 +247,6 @@ class Data :
                 query = query + " UNION "
                 query = query + "(SELECT COUNT(*) FROM association WHERE identifiant_1 = " + valeur2
                 query = query + " AND identifiant_2= " + valeur1 + ");"
-
                 res = self.__db__.query(query)
                 res = res.dictresult()
                 return res[0]["count"]
@@ -592,8 +590,8 @@ class Data :
                                         val = self.__db__.quote(self.__form__[c].value, fauxtype)
                                         w = w + "(" + c + " = " + val + ") AND "
                                 else:
-                                        val = (self.__form__[c].value)
-                                        w = w + "(" + c  + " " + val + ") AND "
+                                        val = self.__db__.quote(self.__form__[c].value, fauxtype)
+                                        w = w + "(" + c  + " = " + val + ") AND "
                         elif penreg and penreg.has_key(c) :
                                 if self.exist_table(c, table = "controle_" + c) :
                                         val = self.__db__.quote(self.__form__[c].value, fauxtype)
@@ -632,7 +630,6 @@ class Data :
                                         self.formulaire_hook(enreg, current = i, maximum = lg - 1, penreg = penreg)
                                         i = i + 1
                         elif (self.__form__["action"].value == "Chercher"):
-                                collectionconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
@@ -641,8 +638,7 @@ class Data :
                                         self.formulaire_hook(penreg = penreg)
 
                         elif (self.__form__["action"].value == "ChercherLien"):
-                                collectionconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
-                                if self.__parent__ == self.__tablename__ :g)
+                                if self.__parent__ == self.__tablename__ :
                                         self.__doc__.script('parent.bas.location = "' + collectionconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 
                 ################# CHERCHER+ #########
@@ -656,7 +652,6 @@ class Data :
                                         self.formulaire_hook(enreg, current = i, maximum = lg - 1, penreg = penreg)
                                         i = i + 1
                         elif (self.__form__["action"].value == "ChercherPlus"):
-                                collectionconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
@@ -754,7 +749,7 @@ class Data :
                                 elif self.__form__["action"].value != self.__new_record__ :
                                         collectionconf.log_message("Action " + self.__form__["action"].value + " non reconnue")
                                         self.formulaire_hook(penreg = penreg)
-                                else 
+                                else :
                                         self.formulaire_hook(penreg = penreg)
                         else :
                                 #

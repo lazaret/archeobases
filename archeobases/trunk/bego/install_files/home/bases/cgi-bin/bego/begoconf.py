@@ -27,6 +27,10 @@ username     = "alet"
 superusers   = [ "superbego" ]
 
 #
+# mode debug
+debug = False
+
+#
 # commandes popur changer la taille des images
 
 mogrify_normale  = '/usr/bin/mogrify -format tiff -quality 100'
@@ -111,6 +115,8 @@ import jahtml
 import database
 import Image
 
+utilisateur_courant = os.environ.get("REMOTE_USER", None)
+
 #
 # Fonction qui renvoie l'url complete d'un script
 def script_location(script) :
@@ -139,13 +145,13 @@ def decor_location(image) :
 # Fonction qui renvoie l'heure courante sous forme texte
 def heurecourante() :
         return time.asctime(time.localtime(time.time()))
+
 #
 # Fonction de sortie des messages d'erreur non fatale
 def log_message(msg, level = "error") :
-        if os.environ.has_key("REMOTE_USER") :
-                message = "[%s] [%s] [%s] %s\n" % (heurecourante(), level, os.environ["REMOTE_USER"], msg)
-        else :
-                message = "[%s] [%s] %s\n" % (time.asctime(time.localtime(time.time())), level, msg)
+    """ Affiche un message de log si le mode debug est activé ou si le message est de type 'error' """
+    if debug or level =="error" :
+        message = "[%s] [%s] %s\n" % (level, utilisateur_courant, msg)
         sys.stderr.write(message)
         sys.stderr.flush()
         return message
@@ -153,6 +159,7 @@ def log_message(msg, level = "error") :
 #
 # Fonction de sortie des messages d'erreur fatale
 def fatalerror_message(msg) :
+        log_message(msg, "error")
         page = jahtml.CGI_document()
         page.default_header("ERREUR")
         page.body(bgcolor = "white")
@@ -221,7 +228,7 @@ def copyright(doc) :
 
 # Definition de la base de donnée
 class BegoDataBase(database.DataBase) :
-        def __init__(self, username = "bego", debuglevel = 0) :
+        def __init__(self, username = "bego", debuglevel = debug) :
             database.DataBase.__init__(self, database = "Mont_Bégo", username = username, debuglevel = debuglevel) # changer "Mont_bego" pour changer le nom de la base de donnée
 
         def fatal_message(self, msg) :

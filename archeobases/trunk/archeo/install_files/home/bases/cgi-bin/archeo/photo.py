@@ -62,7 +62,7 @@ class Photo(archeodata.Data) :
                 fout.write(self.__form__["fichier_photo"].value)
                 fout.close()
                 cmd = mogrify + ' "' + taille + '" >/dev/null'
-                archeoconf.log_message(cmd, level = "notice")
+                archeoconf.log_message(cmd, level = "debug")
                 os.system(cmd)
 
         def retour(self) :

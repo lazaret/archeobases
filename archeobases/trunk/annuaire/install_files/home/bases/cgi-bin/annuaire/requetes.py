@@ -118,7 +118,7 @@ def mixed_part_handler(parent, indicateur, timer) :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
                     #if database.Database.__debuglevel :
-                        annuaireconf.log_message("La requete s'est terminée sans probleme", level = "info")
+                        collectionconf.log_message("La requete s'est terminée sans probleme", level = "debug")
                         break   # Requête terminée sans problème
                 else :
                         if parent.isAlive() :
@@ -140,7 +140,7 @@ def mixed_part_handler(parent, indicateur, timer) :
                                 part.insert_text("\n--" + endpart)
                                 part.output()
                         else :
-                                annuaireconf.log_message("La requete est tombee en erreur", level = "error")
+                                collectionconf.log_message("La requete est tombee en erreur", level = "error")
         sys.exit(0)
 
 master = None

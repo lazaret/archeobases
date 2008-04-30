@@ -328,7 +328,6 @@ class Data :
 
                 for champ in self.__listechamps__ :
                         v = string.upper(self.__getfield__(champ))
-                        self.__doc__.log_message("c: [%s] ===> [%s]" % (champ, v))
                         if self.exist_table_controle(champ) and self.__champs__[champ]["longueur"] != 0 :
                                 if self.exist_controle(champ, v): #si la valeur est bien dans la table controle de ce champ
                                         ####TODO VERIFIER #####ATTENTION
@@ -564,7 +563,6 @@ class Data :
                                         self.formulaire_hook(enreg, current = i, maximum = lg - 1, penreg = penreg)
                                         i = i + 1
                         elif (self.__form__["action"].value == "Chercher"):
-                                archeoconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")
@@ -573,7 +571,6 @@ class Data :
                                         self.formulaire_hook(penreg = penreg)
 
                         elif (self.__form__["action"].value == "ChercherLien"):
-                                archeoconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.script('parent.bas.location = "' + archeoconf.script_location("mod" + parent) + '?action=Chercher&' + self.__make_url__(primarykeys) + '"')
 

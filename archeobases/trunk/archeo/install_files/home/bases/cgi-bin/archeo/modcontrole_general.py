@@ -23,7 +23,6 @@ import archeodata
 
 def enlever(database, form, liste, param) :
         query = "DELETE FROM controle_" + param + " WHERE "
-        #string.split(liste)
         for a in liste :
                 query = query + param + " = %s OR " % (database.quote(a,"text"))
         query = query[:-4] + ";"        

@@ -118,8 +118,7 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                    #if database.Database.__debuglevel :
-                        collectionconf.log_message("La requete s'est terminée sans probleme", level = "info")
+                        collectionconf.log_message("La requete s'est terminée sans probleme", level = "debug")
                         break   # Requête terminée sans problème
                 else :
                         if parent.isAlive() :

@@ -24,6 +24,10 @@ author_name  = "Laboratoire Départemental de Prehistoire du Lazaret"
 author_email = "opensource@lazaret.unice.fr"
 
 #
+# mode debug
+debug = False
+
+#
 # commandes popur changer la taille des images
 mogrify_normale  = '/usr/bin/mogrify -format tiff -quality 100'
 mogrify_Grande  = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "1280>x1280>" -quality 75'
@@ -108,7 +112,9 @@ def heurecourante() :
 #
 # Fonction de sortie des messages d'erreur non fatale
 def log_message(msg, level = "error") :
-        message = "[%s] [%s] [%s] %s\n" % (heurecourante(), level, utilisateur_courant, msg)
+    """ Affiche un message de log si le mode debug est activé ou si le message est de type 'error' """
+    if debug or level =="error" :
+        message = "[%s] [%s] %s\n" % (level, utilisateur_courant, msg)
         sys.stderr.write(message)
         sys.stderr.flush()
         return message
@@ -116,7 +122,7 @@ def log_message(msg, level = "error") :
 #
 # Fonction de sortie des messages d'erreur fatale
 def fatalerror_message(msg) :
-        log_message(msg)
+        log_message(msg, "error")
         page = jahtml.CGI_document()
         page.default_header("ERREUR")
         page.body(bgcolor = "white")
@@ -227,7 +233,7 @@ def get_imagesize(filename) :
                 s = image.size
                 image.fp.close()
         except IOError, msg:
-                log_message("Problème d'accès au fichier %s : %s" % (filename, msg))
+                log_message("Problème d'accès au fichier %s : %s" % (filename, msg), "error")
                 s = 0,0
         return s
 
@@ -254,7 +260,7 @@ def getparent() :
 #
 # Classes spécifiques
 class CollectionDataBase(database.DataBase) :
-        def __init__(self, username = utilisateur_courant, debuglevel = 1) :
+        def __init__(self, username = utilisateur_courant, debuglevel = debug) :
                 database.DataBase.__init__(self, database = base_courante, username = username, debuglevel = debuglevel)
 
         def fatal_message(self, msg) :

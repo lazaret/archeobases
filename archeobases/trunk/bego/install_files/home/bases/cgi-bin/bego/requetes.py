@@ -172,7 +172,7 @@ def mixed_part_handler(parent, indicateur, timer) :
         while parent.isAlive() :
                 indicateur.wait(timeout = timer)
                 if indicateur.isSet() :
-                        begoconf.log_message("La requete s'est terminee sans probleme", level = "info")
+                        begoconf.log_message("La requete s'est terminee sans probleme", level = "debug")
                         break   # Requète terminée sans problème
                 else :
                         if parent.isAlive() :
@@ -194,7 +194,7 @@ def mixed_part_handler(parent, indicateur, timer) :
                                 part.insert_text("\n--" + endpart)
                                 part.output()
                         else :
-                                begoconf.log_message("La requete est tombee en erreur", level = "notice")
+                                begoconf.log_message("La requete est tombee en erreur", level = "error")
         sys.exit(0)
 
 master = None
@@ -290,13 +290,9 @@ if ruser in begoconf.superusers :
                                             #write the first row
                                             csvwriter.writerow(maliste)
                                             for enregistrement in resultat :
-                                                begoconf.log_message(enregistrement)
                                                 row =[] # liste
                                                 for champ in maliste :
                                                     row.append(enregistrement[champ])
-
-                                                #for row in resultat :
-                                                #    #write each rows
                                                 csvwriter.writerow(row)
                                             csv_file.close()
                                             doc = jahtml.CGI_document(content_type = "text/csv;")

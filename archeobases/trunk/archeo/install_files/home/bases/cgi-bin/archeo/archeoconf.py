@@ -24,6 +24,10 @@ author_name  = "Rachel Vaudron & Bertrand Lecervoisier"
 author_email = "root@lazaret.unice.fr"
 
 #
+# mode debug
+debug = False
+
+#
 # commandes popur changer la taille des images
 mogrify_normale  = '/usr/bin/mogrify -format tiff -quality 100'
 mogrify_Grande  = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "1280>x1280>" -quality 75'
@@ -99,6 +103,7 @@ def copyright(doc) :
         doc.div(align = "center")
         doc.font(size = copyright_font_size)
         doc.a(copyright_msg, href = copyright_link)
+        
 #
 # Fonction qui renvoie l'heure courante sous forme texte
 def heurecourante() :
@@ -107,15 +112,18 @@ def heurecourante() :
 #
 # Fonction de sortie des messages d'erreur non fatale
 def log_message(msg, level = "error") :
-        message = "[%s] [%s] [%s] %s\n" % (heurecourante(), level, utilisateur_courant, msg)
+    """ Affiche un message de log si le mode debug est activé ou si le message est de type 'error' """
+    if debug or level =="error" :
+        message = "[%s] [%s] %s\n" % (level, utilisateur_courant, msg)
         sys.stderr.write(message)
         sys.stderr.flush()
         return message
 
+
 #
 # Fonction de sortie des messages d'erreur fatale
 def fatalerror_message(msg) :
-        log_message(msg)
+        log_message(msg, "error")
         page = jahtml.CGI_document()
         page.default_header("ERREUR")
         page.body(bgcolor = "white")
@@ -254,7 +262,7 @@ def getparent() :
 #
 # Classes spécifiques
 class ArcheoDataBase(database.DataBase) :
-        def __init__(self, username = utilisateur_courant, debuglevel = 1) :
+        def __init__(self, username = utilisateur_courant, debuglevel = debug) :
                 database.DataBase.__init__(self, database = base_courante, username = username, debuglevel = debuglevel)
 
         def fatal_message(self, msg) :

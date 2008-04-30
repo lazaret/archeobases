@@ -17,9 +17,7 @@ import sys
 import os
 import time
 import pg
-import urllib
 
-__version__ = "1.1"
 
 #
 # Définition d'une classe d'accès à une base de données PostrgreSQL sous Python
@@ -31,9 +29,10 @@ __version__ = "1.1"
 
 class DataBase :
         __database  = None
-        __debuglevel = False # mettre à True pour le debug
+        __debuglevel = False # Modifier collectionconf.py pour configurer le mode debug
 
-        def __init__(self, host = None, database = None, username = None, debuglevel = 0) :
+        def __init__(self, host = None, database = None, username = None, debuglevel = False) :
+                self.set_debug(debuglevel)
                 try :
                         self.__database = pg.connect(host = host, dbname = database, user = username)
                         if self.__debuglevel :
@@ -44,15 +43,15 @@ class DataBase :
 
         def log_message(self, msg, level) :
                 if os.environ.has_key("REMOTE_USER") :
-                        message = "[%s] [%s] [%s] %s\n" % (time.asctime(time.localtime(time.time())), level, os.environ["REMOTE_USER"], msg)
+                        message = "[%s] [%s] %s\n" % (level, os.environ["REMOTE_USER"], msg)
                 else :
-                        message = "[%s] [%s] %s\n" % (time.asctime(time.localtime(time.time())), level, msg)
+                        message = "[%s] %s\n" % (level, msg)
                 sys.stderr.write(message)
                 sys.stderr.flush()
                 return message
 
         def sql_message(self, msg) :
-            """affiche les requettes SQL dans les logs Apache si le niveau de debug est supperieur à 0"""
+            """affiche les requettes SQL dans les logs Apache si le niveau de debug est True"""
             if self.__debuglevel :
                 return self.log_message(msg, level = "sql")
 
@@ -63,6 +62,9 @@ class DataBase :
                 self.log_message(msg, "fatal")
                 sys.exit(-1)
 
+        def set_debug(self, debuglevel) :
+                self.__debuglevel = debuglevel
+
         def quote(self, field, typ) :
             # met le champs entre apostrophes et gère les appostrophes au sein d'une chaine
             # par exemple L'arnaque est transformé en  'L''arnaque'
@@ -70,8 +72,7 @@ class DataBase :
 
         def query(self, q) :
                 if self.__database != None :
-                        if self.__debuglevel :
-                                self.sql_message(q)
+                        self.sql_message(q)
                         try :
                                 return self.__database.query(q)
                         except pg.Error, msg:

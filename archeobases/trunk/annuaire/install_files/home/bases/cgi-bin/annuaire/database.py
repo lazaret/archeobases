@@ -17,7 +17,6 @@ import sys
 import os
 import time
 import pg
-import urllib
 
 
 #
@@ -27,15 +26,16 @@ import urllib
 # Dans le cas de l'utilisation de cette classe dans un script CGI alors les
 # messages d'erreurs et de trace sont recuperables dans le fichier de log du
 # logiciel serveur WEB (teste uniquement avec Apache).
+
 class DataBase :
         __database  = None
-        __debuglevel = 0 # mettre à 1 pour le debug
+        __debuglevel = False # mettre à True pour le debug
 
-        def __init__(self, host = None, database = None, username = None, debuglevel = 0) :
+        def __init__(self, host = None, database = None, username = None, debuglevel = False) :
                 self.set_debug(debuglevel)
                 try :
                         self.__database = pg.connect(host = host, dbname = database, user = username)
-                        if self.__debuglevel > 0 :
+                        if self.__debuglevel :
                                 self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
                         self.query("SET CLIENT_ENCODING TO 'UTF-8';")
                 except pg.Error, msg :
@@ -43,16 +43,16 @@ class DataBase :
 
         def log_message(self, msg, level) :
                 if os.environ.has_key("REMOTE_USER") :
-                        message = "[%s] [%s] [%s] %s\n" % (time.asctime(time.localtime(time.time())), level, os.environ["REMOTE_USER"], msg)
+                        message = "[%s] [%s] %s\n" % (level, os.environ["REMOTE_USER"], msg)
                 else :
-                        message = "[%s] [%s] %s\n" % (time.asctime(time.localtime(time.time())), level, msg)
+                        message = "[%s] %s\n" % (level, msg)
                 sys.stderr.write(message)
                 sys.stderr.flush()
                 return message
 
         def sql_message(self, msg) :
             """affiche les requettes SQL dans les logs Apache si le niveau de debug est supperieur à 0"""
-            if self.__debuglevel > 0 :
+            if self.__debuglevel :
                 return self.log_message(msg, level = "sql")
 
         def error_message(self, msg) :
@@ -66,12 +66,13 @@ class DataBase :
                 self.__debuglevel = debuglevel
 
         def quote(self, field, typ) :
+            # met le champs entre apostrophes et gère les appostrophes au sein d'une chaine
+            # par exemple L'arnaque est transformé en  'L''arnaque'
                 return pg._quote(field, typ)
 
         def query(self, q) :
                 if self.__database != None :
-                        if self.__debuglevel > 0 :
-                                self.sql_message(q)
+                        self.sql_message(q)
                         try :
                                 return self.__database.query(q)
                         except pg.Error, msg:
@@ -81,3 +82,4 @@ class DataBase :
                                 self.fatal_message("%s ==>> [%s]" % (q, msg))
                 else :
                         self.error_message("No DataBase connection available")
+

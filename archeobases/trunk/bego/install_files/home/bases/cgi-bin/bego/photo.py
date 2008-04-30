@@ -98,7 +98,7 @@ class Photo(begodata.Data) :
 		fout.write(self.__form__["fichier_photo"].value)
 		fout.close()
 		cmd = mogrify + ' "' + taille + '" >/dev/null'
-		begoconf.log_message(cmd, level = "notice")
+		begoconf.log_message(cmd, level = "debug")
 		os.system(cmd)
 
 	def retour(self) :

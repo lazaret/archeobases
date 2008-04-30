@@ -61,7 +61,7 @@ class Photo(collectiondata.Data) :
                 fout.write(self.__form__["fichier_photo"].value)
                 fout.close()
                 cmd = mogrify + ' "' + taille + '" >/dev/null'
-                collectionconf.log_message(cmd, level = "notice")
+                collectionconf.log_message(cmd, level = "debug")
                 os.system(cmd)
 
         def retour(self) :

@@ -1,4 +1,0 @@
-AuthUserFile /home/bases/auth/authentification
-AuthName "Application Archéo: Accès Restreint"
-AuthType Basic
-Require valid-user

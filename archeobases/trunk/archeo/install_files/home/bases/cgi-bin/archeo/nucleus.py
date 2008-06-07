@@ -37,7 +37,7 @@ class Nucleus(archeodata.Data) :
                         "zone"          : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
                         "numero"        : { "type" : "decimal", "default" : 0, "mandatory" : 1 , "longueur" : 6, "memory" : 1}, \
                         "bis"           : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
-                        "n_ordre"      : { "type" : "int", "default" : 0, "mandatory" : 1 , "longueur" : 2, "memory" : 1}, \
+                        "n_ordre"       : { "type" : "int", "default" : 0, "mandatory" : 1 , "longueur" : 2, "memory" : 1}, \
                         "n_type"        : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "n_nbplan"      : { "type" : "decimal", "mandatory" : 0 , "longueur" : 3}, \
                         "n_nba"         : { "type" : "decimal", "mandatory" : 0 , "longueur" : 3}, \
@@ -50,11 +50,11 @@ class Nucleus(archeodata.Data) :
                         "n_dirprofil"   : { "type" : "decimal", "mandatory" : 0 , "longueur" : 3}, \
                         "n_formule"     : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "n_rotation"    : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
-                        "n_cortotal"    : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
-                        "n_corfacea"    : { "type" : "decimal", "mandatory" : 0 , "longueur" : 3 }, \
+                        "n_cortotal"    : { "type" : "decimal", "mandatory" : 0 , "longueur" : 0}, \
+                        "n_corfacea"    : { "type" : "decimal", "mandatory" : 0 , "longueur" : 3}, \
                         "n_corfaceb"    : { "type" : "decimal", "mandatory" : 0 , "longueur" : 3}, \
                         "n_corprofil"   : { "type" : "decimal","mandatory" : 0 , "longueur" : 3}, \
-                        "n_epuisement"  : { "type" : "int", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
+                        "n_epuisement"  : { "type" : "int", "default" : 0, "mandatory" : 0 , "longueur" : 0}, \
                 
                       }
         #

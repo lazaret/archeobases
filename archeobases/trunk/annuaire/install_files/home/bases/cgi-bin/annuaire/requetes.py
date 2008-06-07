@@ -235,6 +235,8 @@ if ruser not in annuaireconf.visitorusers :
                                                                 line = ""
                                                                 for i in range(len(liste_champs)) :
                                                                         value = enregistrement[i]
+                                                                        if str(value) == "None":
+                                                                            value =""
                                                                         if type(value) == type("") :
                                                                                 align = "left"
                                                                         else :
@@ -259,6 +261,8 @@ if ruser not in annuaireconf.visitorusers :
                                                                 line = ""
                                                                 for i in range(len(liste_champs)) :
                                                                         value = str(enregistrement[i])
+                                                                        if str(value) == "None":
+                                                                            value =""
                                                                         lg = len(value)
                                                                         lgmax = longueur_champs[liste_champs[i]]
                                                                         line = line + value + (" " * (lgmax - lg + 1))

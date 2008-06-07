@@ -35,7 +35,7 @@ class Association(begodata.Data) :
                         "roche"               : { "type" : "text", "default" : "", "mandatory" : 1 }, \
                         "face"                : { "type" : "text", "default" : "", "mandatory" : 1 }, \
                         "association"         : { "type" : "decimal", "default" : "", "mandatory" : 1 },\
-			"type"		      : { "type" : "text", "default" : "", "mandatory" : 0 },\
+                        "type"                : { "type" : "text", "default" : "", "mandatory" : 0 },\
                         "disposition"         : { "type" : "text", "default" : "", "mandatory" : 0 }
                     }
 

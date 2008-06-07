@@ -67,9 +67,9 @@ bas_bgcolor    = "#FFFFFF"
 
 #
 # Images de fond des trois parties de l'écran ou None
-menu_background   = "#FFFFFF"
-gauche_background = "#FFFFFF"
-bas_background    = "#FFFFFF"
+menu_background   = None
+gauche_background = None
+bas_background    = None
 bas1_bgcolor   = "#B8AF80"
 bas2_bgcolor   = "#CFC4BE"
 bas3_bgcolor   = "#F3EEEE"

@@ -278,7 +278,7 @@ class Data :
 
         def count_records(self, liste_champs = None, table = None):
                 """Renvoie le compte d'enregistrements correspondant à la liste des champs passes en parametre"""
-                if table ==None :
+                if table == None :
                         table = self.__tablename__
                 cpt = self.__db__.query( "SELECT count(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
                 cpt = cpt.dictresult()
@@ -532,7 +532,7 @@ class Data :
                                         w = w + "(" + c + " = " + val + ") AND "
                                 else:
                                         val = (self.__form__[c].value)
-                                        w = w + "(" + c  + " " + val + ") AND "
+                                        w = w + "(" + c  + " = " + val + ") AND "
                         elif penreg and penreg.has_key(c) :
                                 if self.exist_table(c, table = "controle_" + c) :
                                         val = self.__db__.quote(self.__form__[c].value, fauxtype)

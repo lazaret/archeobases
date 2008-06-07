@@ -448,7 +448,6 @@ class Data :
                                         self.formulaire_hook(enreg, current = i, maximum = lg - 1, penreg = penreg)
                                         i = i + 1
                         elif (self.__form__["action"].value == "Chercher"):
-                                begoconf.log_message("table: %s, parent: %s, pkeys: %s, penreg: %s, form: %s" % (self.__tablename__, self.__parent__, primarykeys, repr(penreg), repr(self.__form__)))
                                 if self.__parent__ == self.__tablename__ :
                                         self.__doc__.push()
                                         self.__doc__.div(align = "center")

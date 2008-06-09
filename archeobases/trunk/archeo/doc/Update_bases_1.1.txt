@@ -1,0 +1,96 @@
+Transfert depuis la version 1.0 vers la version 1.1
+
+1) créer la base dans phpPgAdmin de cambrien (interclassement UTF8)
+2) crer les utilisateurs correspondants à la base par exemple "lazaret" ; "superlazaret" ; "visiteurlazaret"
+Pour le bego crer les utilisateurs : "bego", "superbego" & "user_query"
+
+-A faire dans PhpPgAdmin > Roles
+-Ou via sql pour les nom trop long :
+> su postgres
+> pgsql
+> CREATE ROLE visiteurzafarraya;
+> ALTER ROLE visiteurzafarraya WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN VALID UNTIL 'infinity';
+
+
+
+3) sur l'ancien serveur en tant qu'utilisateur postgres faire une sauvegarde de la base :
+|su postgres
+| cd /home/postgres
+|pg_dump base_de_donnees > base.sql
+par exemple :
+|pg_dump lazaret > lazaret.sql
+(le fichier est sauvé sous /home/postgresql)
+Si cela ne fonctionne pas passer par phpPgAdmin "dump tructure & datas" + "send"
+
+Il est parfois necessaire de remplacer les données de type date par exemple :
+
+
+CREATE TABLE "biblio" (
+   "identifiant" text NOT NULL,
+   "b_saisie" date DEFAULT 'now'::text,
+   CONSTRAINT "biblio_pkey" PRIMARY KEY ("identifiant")
+);
+
+à remplacer par
+
+CREATE TABLE "biblio" (
+   "identifiant" text NOT NULL,
+   "b_saisie" date DEFAULT date('now'::text),
+   CONSTRAINT "biblio_pkey" PRIMARY KEY ("identifiant")
+);
+
+Pour faire une sauvegarde des données seulement :
+| pg_dump -a base_de_donnees > base.sql
+
+Penser à transformer le fichiers SQL obtenus en fichiers au format UTF-8 si besoin à l'aide de iconv :
+> iconv -f ISO-8859-1 -t utf-8 base.sql > base.sql.utf8
+
+4) eventuellement remplacer tout les "rachel" par "postgres" dans le fichier sql (avec kate)
+5) importer le fichier.sql quelque part sur le nouveau serveur
+dans le repertoire de postgres -> /var/lib/pgsql
+6) en tant qu'utilisateur postgres importer la base :
+| psql base_de_donnees < base.sql
+par exemple
+|psql lazaret < lazaret.sql
+7) faire la maintenace/optimisation de base :
+| psql base_de_donnees
+| base_de_donnees=# VACUUM FULL ANALYZE;
+puis les indexes
+| \q
+| reindexdb base_de_donnees
+
+puis refaire la même chose via phpPgAdmin table par table
+
+TODO : verif max_relation et max pag cf http://www.desknow.com/kb/idx/12/061/article/
+
+8) créer et importer le dossier des images (pour les bases "archeo"
+mkdir /home/bases/archeo/base_de_donnees
+mkdir /home/bases/archeo/base_de_donnees/images
+<- copier coller les images puis
+chown -R wwwrun:www /home/bases/archeo/base_de_donnees
+
+9) ajouter la base dans /etc/archeo.conf
+10) eventuellement modifier le fichier /home/bases/auth/authentification (à l'aide de la commande htpasswd2)
+| htpasswd2 fichier.temp utilisateur
+
+11) Masquer la base sur l'ancien serveur dans /etc/archeo.conf
+
+12) Eventuellement créer une redirection depuis l'ancien serveur vers le nouveau
+
+
+13) Si il manque la 'table controle_responsable_fouille'
+utiliser la requette suivante, en pensant à mettre à jour les bon privilèges en fonction du nom de la base
+
+
+CREATE TABLE "controle_responsable_fouille" (
+	"responsable_fouille" text NOT NULL,
+	"description" text,
+	Constraint "controle_responsable_fouil_pkey" Primary Key ("responsable_fouille")
+);
+
+REVOKE ALL on "controle_responsable_fouille" from PUBLIC;
+GRANT SELECT on "controle_responsable_fouille" from PUBLIC;
+GRANT ALL on "controle_responsable_fouille" to "postgres";
+GRANT ALL on "controle_responsable_fouille" to "superarma";
+GRANT SELECT on "controle_responsable_fouille" to "arma";
+GRANT SELECT on "controle_responsable_fouille" to "visiteurarma";

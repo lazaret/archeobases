@@ -89,24 +89,34 @@ CREATE TABLE materiel (
     m_date text,
     m_date_acquisition text,
     m_numero_individu text,
-    m_largeur_coupe text,
+    m_scan_epaisseur_coupe text,
     m_support text,
     m_edition text,
     m_diffusion text,
     m_dimension text,
     m_saisie date DEFAULT date('now'::text),
-    m_depot_moule text
+    m_depot_moule text,
+    m_scan_nb_coupes text,
+    m_scan_nb_plans_coupes text,
+    m_moul_orig text
 );
 
 
 ALTER TABLE public.materiel OWNER TO postgres;
 
 --
+-- Name: COLUMN materiel.m_moul_orig; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN materiel.m_moul_orig IS 'Moulage ou original';
+
+
+--
 -- Name: anthropologie; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW anthropologie AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'ANTHROPOLOGIE'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule, materiel.m_scan_nb_coupes, materiel.m_scan_nb_plans_coupes, materiel.m_moul_orig FROM materiel WHERE (materiel.m_type_materiel = 'ANTHROPOLOGIE'::text);
 
 
 ALTER TABLE public.anthropologie OWNER TO postgres;
@@ -128,7 +138,7 @@ ALTER TABLE public.association OWNER TO postgres;
 --
 
 CREATE VIEW audio_video AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'AUDIO_VIDEO'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'AUDIO_VIDEO'::text);
 
 
 ALTER TABLE public.audio_video OWNER TO postgres;
@@ -149,14 +159,14 @@ CREATE TABLE biblio (
     b_maison_edition text,
     b_ville_edition text,
     b_dir_pub text,
-    b_annee integer,
+    b_annee text,
     b_mois text,
     b_nombre_volume integer,
     b_serie text,
-    b_fascicule integer,
-    b_tome integer,
-    b_numero integer,
-    b_volume integer,
+    b_fascicule text,
+    b_tome text,
+    b_numero text,
+    b_volume text,
     b_langue_document text,
     b_langue_resume text,
     b_etablissement text,
@@ -179,7 +189,7 @@ ALTER TABLE public.biblio OWNER TO postgres;
 --
 
 CREATE VIEW carte AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'CARTE'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'CARTE'::text);
 
 
 ALTER TABLE public.carte OWNER TO postgres;
@@ -267,6 +277,18 @@ CREATE TABLE controle_m_genre (
 
 
 ALTER TABLE public.controle_m_genre OWNER TO postgres;
+
+--
+-- Name: controle_m_moul_orig; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_m_moul_orig (
+    m_moul_orig text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_m_moul_orig OWNER TO postgres;
 
 --
 -- Name: controle_m_nature; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -357,7 +379,7 @@ ALTER TABLE public.controle_m_type_support OWNER TO postgres;
 --
 
 CREATE VIEW dessin AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'DESSIN'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'DESSIN'::text);
 
 
 ALTER TABLE public.dessin OWNER TO postgres;
@@ -367,7 +389,7 @@ ALTER TABLE public.dessin OWNER TO postgres;
 --
 
 CREATE VIEW faune_comparaison AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'FAUNE_COMPARAISON'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'FAUNE_COMPARAISON'::text);
 
 
 ALTER TABLE public.faune_comparaison OWNER TO postgres;
@@ -377,7 +399,7 @@ ALTER TABLE public.faune_comparaison OWNER TO postgres;
 --
 
 CREATE VIEW moulage_objet AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'MOULAGE_OBJET'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'MOULAGE_OBJET'::text);
 
 
 ALTER TABLE public.moulage_objet OWNER TO postgres;
@@ -387,17 +409,27 @@ ALTER TABLE public.moulage_objet OWNER TO postgres;
 --
 
 CREATE VIEW moulage_sol AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'MOULAGE_SOL'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'MOULAGE_SOL'::text);
 
 
 ALTER TABLE public.moulage_sol OWNER TO postgres;
+
+--
+-- Name: moulages; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW moulages AS
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel ~~ 'MOULAGE%'::text);
+
+
+ALTER TABLE public.moulages OWNER TO postgres;
 
 --
 -- Name: releve; Type: VIEW; Schema: public; Owner: postgres
 --
 
 CREATE VIEW releve AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'RELEVE'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'RELEVE'::text);
 
 
 ALTER TABLE public.releve OWNER TO postgres;
@@ -419,7 +451,7 @@ ALTER TABLE public.requete OWNER TO postgres;
 --
 
 CREATE VIEW scan AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'CT-SCAN'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe, materiel.m_scan_nb_coupes, materiel.m_scan_nb_plans_coupes, materiel.m_moul_orig, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'CT-SCAN'::text);
 
 
 ALTER TABLE public.scan OWNER TO postgres;
@@ -429,7 +461,7 @@ ALTER TABLE public.scan OWNER TO postgres;
 --
 
 CREATE VIEW sepulture AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'SEPULTURE'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'MOULAGE_SEPULTURE'::text);
 
 
 ALTER TABLE public.sepulture OWNER TO postgres;
@@ -439,7 +471,7 @@ ALTER TABLE public.sepulture OWNER TO postgres;
 --
 
 CREATE VIEW vue AS
-    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'VUE'::text);
+    SELECT materiel.identifiant, materiel.m_type_materiel, materiel.m_numero_inventaire, materiel.m_nom_site, materiel.m_localite, materiel.m_commune, materiel.m_region, materiel.m_pays, materiel.m_nom_commun, materiel.m_inventeur, materiel.m_donnateur, materiel.m_depot_original, materiel.m_date_decouverte, materiel.m_periode_culturelle, materiel.m_periode_geologique, materiel.m_age_absolu, materiel.m_date_copie, materiel.m_individu, materiel.m_classe, materiel.m_ordre, materiel.m_famille, materiel.m_genre, materiel.m_espece, materiel.m_nom_familier, materiel.m_synonymes, materiel.m_age_individu, materiel.m_sexe_individu, materiel.m_donnees_individu, materiel.m_representation_squel, materiel.m_description_anatomique, materiel.m_observations_anatomique, materiel.m_nature, materiel.m_observations, materiel.m_bibliographie, materiel.m_mots_clefs, materiel.m_type_support, materiel.m_auteur, materiel.m_titre, materiel.m_editeur, materiel.m_date_edition, materiel.m_duree, materiel.m_dimensions, materiel.m_echelle, materiel.m_piece, materiel.m_meuble, materiel.m_tiroir, materiel.m_etagere, materiel.m_nombre_exemplaires, materiel.m_date_modif, materiel.m_batiment, materiel.m_groupe, materiel.m_ville, materiel.m_nom_fossile, materiel.m_holotype_espece, materiel.m_origine, materiel.m_date, materiel.m_date_acquisition, materiel.m_numero_individu, materiel.m_scan_epaisseur_coupe AS m_largeur_coupe, materiel.m_support, materiel.m_edition, materiel.m_diffusion, materiel.m_dimension, materiel.m_saisie, materiel.m_depot_moule FROM materiel WHERE (materiel.m_type_materiel = 'VUE'::text);
 
 
 ALTER TABLE public.vue OWNER TO postgres;
@@ -514,6 +546,14 @@ ALTER TABLE ONLY controle_m_famille
 
 ALTER TABLE ONLY controle_m_genre
     ADD CONSTRAINT controle_m_genre_pkey PRIMARY KEY (m_genre);
+
+
+--
+-- Name: controle_m_moul_orig_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controle_m_moul_orig
+    ADD CONSTRAINT controle_m_moul_orig_pkey PRIMARY KEY (m_moul_orig);
 
 
 --
@@ -755,6 +795,18 @@ GRANT SELECT ON TABLE controle_m_genre TO visiteurcollection;
 
 
 --
+-- Name: controle_m_moul_orig; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_m_moul_orig FROM PUBLIC;
+REVOKE ALL ON TABLE controle_m_moul_orig FROM postgres;
+GRANT ALL ON TABLE controle_m_moul_orig TO postgres;
+GRANT SELECT ON TABLE controle_m_moul_orig TO collection;
+GRANT ALL ON TABLE controle_m_moul_orig TO supercollection;
+GRANT SELECT ON TABLE controle_m_moul_orig TO visiteurcollection;
+
+
+--
 -- Name: controle_m_nature; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -887,6 +939,18 @@ GRANT SELECT ON TABLE moulage_sol TO visiteurcollection;
 
 
 --
+-- Name: moulages; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE moulages FROM PUBLIC;
+REVOKE ALL ON TABLE moulages FROM postgres;
+GRANT ALL ON TABLE moulages TO postgres;
+GRANT ALL ON TABLE moulages TO supercollection;
+GRANT ALL ON TABLE moulages TO collection;
+GRANT SELECT ON TABLE moulages TO visiteurcollection;
+
+
+--
 -- Name: releve; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -928,8 +992,8 @@ GRANT SELECT ON TABLE scan TO visiteurcollection;
 REVOKE ALL ON TABLE sepulture FROM PUBLIC;
 REVOKE ALL ON TABLE sepulture FROM postgres;
 GRANT ALL ON TABLE sepulture TO postgres;
-GRANT ALL ON TABLE sepulture TO collection;
 GRANT ALL ON TABLE sepulture TO supercollection;
+GRANT ALL ON TABLE sepulture TO collection;
 GRANT SELECT ON TABLE sepulture TO visiteurcollection;
 
 

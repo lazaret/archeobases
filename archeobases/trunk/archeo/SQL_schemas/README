@@ -1,2 +1,2 @@
-dump_shema_base_1 -> Base nue sans contrôles
-dump_shema_base_1 -> Base nue avec un certain nombre de contrôles
+schema_archeo -> Base nue sans contrôles
+schema_archeo_controles -> Base nue avec un certain nombre de contrôles par defaut

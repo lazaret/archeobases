@@ -102,6 +102,8 @@ Il faudra bien recuperer les tables dans le bon ordre, c'est a dire lancer le pr
 
 # RECUPERATION DU CONTENU DE LA BASE
 #===================================
+Pour récuperer les données depuis une base UNIFY
+
         Placer tous les fichiers textes de récupération de l'ancienne base dans le répertoire /home/vases/donnees avec un ftp vers l'ancien serveur.
 
            Recuperation du carnet

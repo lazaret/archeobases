@@ -3820,7 +3820,6 @@ CREATE TABLE enlevement_biface (
     eb_obliquite integer,
     eb_corde integer,
     eb_fleche integer,
-    old_eb_tranche integer,
     eb_tranche text
 );
 
@@ -12567,7 +12566,7 @@ COPY eclat ("zone", numero, bis, e_code, e_debitage, e_section_long, e_section_t
 -- Data for Name: enlevement_biface; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY enlevement_biface (bis, "zone", numero, eb_rang, eb_longueur, eb_largeur, eb_obliquite, eb_corde, eb_fleche, old_eb_tranche, eb_tranche) FROM stdin;
+COPY enlevement_biface (bis, "zone", numero, eb_rang, eb_longueur, eb_largeur, eb_obliquite, eb_corde, eb_fleche, eb_tranche) FROM stdin;
 \.
 
 

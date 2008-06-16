@@ -60,7 +60,7 @@ CREATE TABLE biface (
     b_long2 integer,
     b_long3 integer,
     b_lar4 integer,
-    b_lar5 integer,
+    b_l5 integer,
     b_e1 integer,
     b_e2 integer,
     b_poids integer,
@@ -124,9 +124,6 @@ CREATE TABLE biface (
     b_bo2a integer,
     b_bo2b integer,
     b_bo integer,
-    b_bo3 integer,
-    b_bo3a integer,
-    b_bo3b integer,
     b_p1 integer,
     b_p2 integer,
     b_bp1 integer,
@@ -146,12 +143,17 @@ CREATE TABLE biface (
     b_bu integer,
     b_bu1a integer,
     b_bu2a integer,
-    b_bua integer,
+    b_ua integer,
     b_bg text,
     b_ntf text,
     b_bo1 integer,
     b_bo2 integer,
-    b_support text
+    b_support text,
+    b_bo3 integer,
+    b_bua integer,
+    b_bo3b integer,
+    b_bo3a integer,
+    b_lar5 integer
 );
 
 
@@ -209,9 +211,9 @@ CREATE TABLE carnet (
     epaisseur integer,
     trouve date,
     saisie date DEFAULT date('now'::text),
-    responsable_fouille text,
+    latitude text,
     longitude text,
-    latitude text
+    responsable_fouille text
 );
 
 
@@ -804,6 +806,18 @@ CREATE TABLE controle_c_motnat (
 
 
 ALTER TABLE public.controle_c_motnat OWNER TO postgres;
+
+--
+-- Name: controle_c_ordre; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_c_ordre (
+    c_ordre text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_c_ordre OWNER TO postgres;
 
 --
 -- Name: controle_c_palyno; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -1454,6 +1468,18 @@ CREATE TABLE controle_f_complement (
 ALTER TABLE public.controle_f_complement OWNER TO postgres;
 
 --
+-- Name: controle_f_composite; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_f_composite (
+    f_composite text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_f_composite OWNER TO postgres;
+
+--
 -- Name: controle_f_concretion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1682,6 +1708,18 @@ CREATE TABLE controle_f_lateralite (
 ALTER TABLE public.controle_f_lateralite OWNER TO postgres;
 
 --
+-- Name: controle_f_mode; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_f_mode (
+    f_mode text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_f_mode OWNER TO postgres;
+
+--
 -- Name: controle_f_moulage; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1740,6 +1778,18 @@ CREATE TABLE controle_f_pelote (
 
 
 ALTER TABLE public.controle_f_pelote OWNER TO postgres;
+
+--
+-- Name: controle_f_percussion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_f_percussion (
+    f_percussion text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_f_percussion OWNER TO postgres;
 
 --
 -- Name: controle_f_photo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -1908,6 +1958,30 @@ CREATE TABLE controle_f_traitement (
 
 
 ALTER TABLE public.controle_f_traitement OWNER TO postgres;
+
+--
+-- Name: controle_f_tranchant; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_f_tranchant (
+    f_tranchant text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_f_tranchant OWNER TO postgres;
+
+--
+-- Name: controle_f_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_f_type (
+    f_type text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_f_type OWNER TO postgres;
 
 --
 -- Name: controle_f_typedos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -2462,18 +2536,6 @@ CREATE TABLE controle_h_symetrie (
 ALTER TABLE public.controle_h_symetrie OWNER TO postgres;
 
 --
--- Name: controle_h_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE controle_h_type (
-    h_type text NOT NULL,
-    description text
-);
-
-
-ALTER TABLE public.controle_h_type OWNER TO postgres;
-
---
 -- Name: controle_i_action; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -2718,8 +2780,8 @@ ALTER TABLE public.controle_n_cortotal OWNER TO postgres;
 --
 
 CREATE TABLE controle_n_epuisement (
-    n_epuisement text NOT NULL,
-    description text
+    n_epuisement integer NOT NULL,
+    descripion text
 );
 
 
@@ -2928,18 +2990,6 @@ CREATE TABLE controle_o_serie (
 
 
 ALTER TABLE public.controle_o_serie OWNER TO postgres;
-
---
--- Name: controle_o_sserie; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE controle_o_sserie (
-    o_sserie text NOT NULL,
-    description text
-);
-
-
-ALTER TABLE public.controle_o_sserie OWNER TO postgres;
 
 --
 -- Name: controle_orientation; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -3602,6 +3652,18 @@ CREATE TABLE controle_zone (
 ALTER TABLE public.controle_zone OWNER TO postgres;
 
 --
+-- Name: controlec__forme; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controlec__forme (
+    c_forme text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controlec__forme OWNER TO postgres;
+
+--
 -- Name: coprolithe; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3758,7 +3820,7 @@ CREATE TABLE enlevement_biface (
     eb_obliquite integer,
     eb_corde integer,
     eb_fleche integer,
-    eb_tranche integer
+    eb_tranche text
 );
 
 
@@ -3941,6 +4003,7 @@ CREATE TABLE fracture_industrie (
     fi_mode text,
     fi_anciennete text,
     fi_localisation text,
+    old_support text,
     fi_relation text
 );
 
@@ -3973,6 +4036,7 @@ CREATE TABLE galet_amenage (
     ga_che integer,
     ga_chde integer,
     ga_chf text,
+    old_ga_chg integer,
     ga_chh integer,
     ga_chi integer,
     ga_chj integer,
@@ -4106,6 +4170,7 @@ CREATE TABLE hachereau (
     h_hyx integer,
     h_hf integer,
     h_ntf integer,
+    old_h_de2 integer,
     h_hde2 integer
 );
 
@@ -4138,6 +4203,7 @@ CREATE TABLE industrie (
     i_roulage text,
     i_action text,
     i_desilicification text,
+    old_support text,
     i_observation text,
     i_support text
 );
@@ -4470,6 +4536,19 @@ CREATE TABLE retouche (
 ALTER TABLE public.retouche OWNER TO postgres;
 
 --
+-- Name: seq_bord; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE seq_bord
+    INCREMENT BY 1
+    MAXVALUE 2147483647
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_bord OWNER TO postgres;
+
+--
 -- Name: seq_photocoprolithe; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4501,7 +4580,6 @@ ALTER TABLE public.seq_photofaune OWNER TO postgres;
 --
 
 CREATE SEQUENCE seq_photoindustrie
-    START WITH 1
     INCREMENT BY 1
     MAXVALUE 2147483647
     NO MINVALUE
@@ -5044,6 +5122,14 @@ ALTER TABLE ONLY controle_c_motnat
 
 
 --
+-- Name: controle_c_ordre_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controle_c_ordre
+    ADD CONSTRAINT controle_c_ordre_pkey PRIMARY KEY (c_ordre);
+
+
+--
 -- Name: controle_c_palyno_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5476,6 +5562,14 @@ ALTER TABLE ONLY controle_f_complement
 
 
 --
+-- Name: controle_f_composite_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controle_f_composite
+    ADD CONSTRAINT controle_f_composite_pkey PRIMARY KEY (f_composite);
+
+
+--
 -- Name: controle_f_concretion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5628,6 +5722,14 @@ ALTER TABLE ONLY controle_f_lateralite
 
 
 --
+-- Name: controle_f_mode_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controle_f_mode
+    ADD CONSTRAINT controle_f_mode_pkey PRIMARY KEY (f_mode);
+
+
+--
 -- Name: controle_f_moulage_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -5665,6 +5767,14 @@ ALTER TABLE ONLY controle_f_pathologie
 
 ALTER TABLE ONLY controle_f_pelote
     ADD CONSTRAINT controle_f_pelote_pkey PRIMARY KEY (f_pelote);
+
+
+--
+-- Name: controle_f_percussion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controle_f_percussion
+    ADD CONSTRAINT controle_f_percussion_pkey PRIMARY KEY (f_percussion);
 
 
 --
@@ -5777,6 +5887,22 @@ ALTER TABLE ONLY controle_f_tissu
 
 ALTER TABLE ONLY controle_f_traitement
     ADD CONSTRAINT controle_f_traitement_pkey PRIMARY KEY (f_traitement);
+
+
+--
+-- Name: controle_f_tranchant_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controle_f_tranchant
+    ADD CONSTRAINT controle_f_tranchant_pkey PRIMARY KEY (f_tranchant);
+
+
+--
+-- Name: controle_f_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controle_f_type
+    ADD CONSTRAINT controle_f_type_pkey PRIMARY KEY (f_type);
 
 
 --
@@ -6140,14 +6266,6 @@ ALTER TABLE ONLY controle_h_symetrie
 
 
 --
--- Name: controle_h_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY controle_h_type
-    ADD CONSTRAINT controle_h_type_pkey PRIMARY KEY (h_type);
-
-
---
 -- Name: controle_i_action_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -6449,14 +6567,6 @@ ALTER TABLE ONLY controle_o_sens
 
 ALTER TABLE ONLY controle_o_serie
     ADD CONSTRAINT controle_o_serie_pkey PRIMARY KEY (o_serie);
-
-
---
--- Name: controle_o_sserie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY controle_o_sserie
-    ADD CONSTRAINT controle_o_sserie_pkey PRIMARY KEY (o_sserie);
 
 
 --
@@ -6900,6 +7010,14 @@ ALTER TABLE ONLY controle_zone
 
 
 --
+-- Name: controlec__forme_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY controlec__forme
+    ADD CONSTRAINT controlec__forme_pkey PRIMARY KEY (c_forme);
+
+
+--
 -- Name: coprolithe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -6937,6 +7055,14 @@ ALTER TABLE ONLY enlevement_biface
 
 ALTER TABLE ONLY enlevement_galet
     ADD CONSTRAINT enlevement_galet_pkey PRIMARY KEY ("zone", numero, bis, ga_ordre, eg_rang);
+
+
+--
+-- Name: enlevement_nucleus_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY enlevement_nucleus
+    ADD CONSTRAINT enlevement_nucleus_pkey PRIMARY KEY ("zone", numero, bis, n_ordre, en_rang);
 
 
 --
@@ -7116,43 +7242,63 @@ ALTER TABLE ONLY usure_dent
 
 
 --
--- Name: RI_ConstraintTrigger_209445; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: index_carnet_numero; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON faune
-    FROM carnet
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'faune', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+CREATE INDEX index_carnet_numero ON carnet USING btree (numero);
 
 
 --
--- Name: RI_ConstraintTrigger_209446; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: index_faune_numero; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON carnet
-    FROM faune
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'faune', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+CREATE INDEX index_faune_numero ON faune USING btree (numero);
 
 
 --
--- Name: RI_ConstraintTrigger_209447; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: index_faune_zone; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON carnet
-    FROM faune
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'faune', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+CREATE INDEX index_faune_zone ON faune USING btree ("zone");
 
 
 --
--- Name: RI_ConstraintTrigger_209448; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: index_industrie_numero; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_industrie_numero ON industrie USING btree (numero);
+
+
+--
+-- Name: index_industrie_zone; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_industrie_zone ON industrie USING btree ("zone");
+
+
+--
+-- Name: index_x_carnet; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_x_carnet ON carnet USING btree (x);
+
+
+--
+-- Name: index_y_carnet; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_y_carnet ON carnet USING btree (y);
+
+
+--
+-- Name: index_zone_carnet; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_zone_carnet ON carnet USING btree ("zone");
+
+
+--
+-- Name: RI_ConstraintTrigger_230538; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7164,7 +7310,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209449; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230539; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7176,7 +7322,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209450; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230540; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7188,7 +7334,43 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209451; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230541; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON photofaune
+    FROM faune
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'photofaune', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230542; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON faune
+    FROM photofaune
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'photofaune', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230543; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON faune
+    FROM photofaune
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'photofaune', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230544; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7200,7 +7382,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209452; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230545; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7212,7 +7394,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209453; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230546; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7224,7 +7406,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209454; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230547; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7236,7 +7418,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209455; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230548; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7248,7 +7430,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209456; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230549; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7260,7 +7442,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209457; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230550; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7272,7 +7454,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209458; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230551; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7284,7 +7466,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209459; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230552; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7296,7 +7478,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209460; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230553; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7308,7 +7490,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209461; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230554; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7320,7 +7502,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209462; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230555; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7332,223 +7514,43 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209463; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230556; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON coprolithe
-    FROM carnet
+    AFTER INSERT OR UPDATE ON phototrace
+    FROM trace
     NOT DEFERRABLE INITIALLY IMMEDIATE
     FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'coprolithe', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'phototrace', 'trace', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 't_ensemble', 't_ensemble');
 
 
 --
--- Name: RI_ConstraintTrigger_209464; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230557; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON carnet
-    FROM coprolithe
+    AFTER DELETE ON trace
+    FROM phototrace
     NOT DEFERRABLE INITIALLY IMMEDIATE
     FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'coprolithe', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'phototrace', 'trace', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 't_ensemble', 't_ensemble');
 
 
 --
--- Name: RI_ConstraintTrigger_209465; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230558; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON carnet
-    FROM coprolithe
+    AFTER UPDATE ON trace
+    FROM phototrace
     NOT DEFERRABLE INITIALLY IMMEDIATE
     FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'coprolithe', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'phototrace', 'trace', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 't_ensemble', 't_ensemble');
 
 
 --
--- Name: RI_ConstraintTrigger_209466; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON photocoprolithe
-    FROM faune
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'photocoprolithe', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209467; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON faune
-    FROM photocoprolithe
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'photocoprolithe', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209468; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON faune
-    FROM photocoprolithe
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'photocoprolithe', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209469; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON industrie
-    FROM carnet
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'industrie', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209470; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON carnet
-    FROM industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'industrie', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209471; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON carnet
-    FROM industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'industrie', 'carnet', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209472; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON retouche
-    FROM industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'retouche', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209473; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON industrie
-    FROM retouche
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'retouche', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209474; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON industrie
-    FROM retouche
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'retouche', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209475; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON fracture_industrie
-    FROM industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'fracture_industrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209476; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON industrie
-    FROM fracture_industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'fracture_industrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209477; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON industrie
-    FROM fracture_industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'fracture_industrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209478; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON stigmate
-    FROM industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'stigmate', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209479; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON industrie
-    FROM stigmate
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'stigmate', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209480; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON industrie
-    FROM stigmate
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'stigmate', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209481; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230559; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7560,7 +7562,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209482; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230560; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7572,7 +7574,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209483; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230561; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7584,151 +7586,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209484; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON bord
-    FROM eclat
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'bord', 'eclat', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209485; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON eclat
-    FROM bord
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'bord', 'eclat', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209486; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON eclat
-    FROM bord
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'bord', 'eclat', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209487; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON outil
-    FROM industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'outil', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209488; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON industrie
-    FROM outil
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'outil', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209489; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON industrie
-    FROM outil
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'outil', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209490; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON galet_amenage
-    FROM industrie
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'galet_amenage', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209491; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON industrie
-    FROM galet_amenage
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'galet_amenage', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209492; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON industrie
-    FROM galet_amenage
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'galet_amenage', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209493; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON enlevement_galet
-    FROM galet_amenage
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'enlevement_galet', 'galet_amenage', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'ga_ordre', 'ga_ordre');
-
-
---
--- Name: RI_ConstraintTrigger_209494; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON galet_amenage
-    FROM enlevement_galet
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'enlevement_galet', 'galet_amenage', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'ga_ordre', 'ga_ordre');
-
-
---
--- Name: RI_ConstraintTrigger_209495; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON galet_amenage
-    FROM enlevement_galet
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'enlevement_galet', 'galet_amenage', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'ga_ordre', 'ga_ordre');
-
-
---
--- Name: RI_ConstraintTrigger_209496; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230562; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7740,7 +7598,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209497; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230563; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7752,7 +7610,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209498; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230564; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7764,43 +7622,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209499; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER INSERT OR UPDATE ON enlevement_biface
-    FROM biface
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'enlevement_biface', 'biface', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209500; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER DELETE ON biface
-    FROM enlevement_biface
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'enlevement_biface', 'biface', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209501; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE CONSTRAINT TRIGGER "<unnamed>"
-    AFTER UPDATE ON biface
-    FROM enlevement_biface
-    NOT DEFERRABLE INITIALLY IMMEDIATE
-    FOR EACH ROW
-    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'enlevement_biface', 'biface', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
-
-
---
--- Name: RI_ConstraintTrigger_209502; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230565; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7812,7 +7634,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209503; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230566; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7824,7 +7646,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209504; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230567; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7836,7 +7658,367 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209505; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230568; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON photoindustrie
+    FROM industrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'photoindustrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230569; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON industrie
+    FROM photoindustrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'photoindustrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230570; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON industrie
+    FROM photoindustrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'photoindustrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230571; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON stigmate
+    FROM industrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'stigmate', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230572; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON industrie
+    FROM stigmate
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'stigmate', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230573; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON industrie
+    FROM stigmate
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'stigmate', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230574; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON fracture_industrie
+    FROM industrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'fracture_industrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230575; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON industrie
+    FROM fracture_industrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'fracture_industrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230576; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON industrie
+    FROM fracture_industrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'fracture_industrie', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230577; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON bord
+    FROM eclat
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'bord', 'eclat', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230578; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON eclat
+    FROM bord
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'bord', 'eclat', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230579; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON eclat
+    FROM bord
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'bord', 'eclat', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230580; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON galet_amenage
+    FROM industrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'galet_amenage', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230581; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON industrie
+    FROM galet_amenage
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'galet_amenage', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230582; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON industrie
+    FROM galet_amenage
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'galet_amenage', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230583; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON enlevement_galet
+    FROM galet_amenage
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'enlevement_galet', 'galet_amenage', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'ga_ordre', 'ga_ordre');
+
+
+--
+-- Name: RI_ConstraintTrigger_230584; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON galet_amenage
+    FROM enlevement_galet
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'enlevement_galet', 'galet_amenage', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'ga_ordre', 'ga_ordre');
+
+
+--
+-- Name: RI_ConstraintTrigger_230585; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON galet_amenage
+    FROM enlevement_galet
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'enlevement_galet', 'galet_amenage', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'ga_ordre', 'ga_ordre');
+
+
+--
+-- Name: RI_ConstraintTrigger_230588; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON photocoprolithe
+    FROM coprolithe
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'photocoprolithe', 'coprolithe', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230589; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON coprolithe
+    FROM photocoprolithe
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'photocoprolithe', 'coprolithe', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230590; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON coprolithe
+    FROM photocoprolithe
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'photocoprolithe', 'coprolithe', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230591; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON fracture_faune
+    FROM faune
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'fracture_faune', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230592; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON faune
+    FROM fracture_faune
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'fracture_faune', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230593; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON faune
+    FROM fracture_faune
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'fracture_faune', 'faune', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230594; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON retouche
+    FROM industrie
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'retouche', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230595; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON industrie
+    FROM retouche
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'retouche', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230596; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON industrie
+    FROM retouche
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'retouche', 'industrie', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230597; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON enlevement_biface
+    FROM biface
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'enlevement_biface', 'biface', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230598; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON biface
+    FROM enlevement_biface
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'enlevement_biface', 'biface', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230599; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON biface
+    FROM enlevement_biface
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'enlevement_biface', 'biface', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis');
+
+
+--
+-- Name: RI_ConstraintTrigger_230600; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7848,7 +8030,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209506; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230601; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7860,7 +8042,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209507; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230602; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7872,7 +8054,43 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209508; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230603; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER INSERT OR UPDATE ON enlevement_nucleus
+    FROM nucleus
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_check_ins"('<unnamed>', 'enlevement_nucleus', 'nucleus', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'n_ordre', 'n_ordre');
+
+
+--
+-- Name: RI_ConstraintTrigger_230604; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER DELETE ON nucleus
+    FROM enlevement_nucleus
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_del"('<unnamed>', 'enlevement_nucleus', 'nucleus', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'n_ordre', 'n_ordre');
+
+
+--
+-- Name: RI_ConstraintTrigger_230605; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE CONSTRAINT TRIGGER "<unnamed>"
+    AFTER UPDATE ON nucleus
+    FROM enlevement_nucleus
+    NOT DEFERRABLE INITIALLY IMMEDIATE
+    FOR EACH ROW
+    EXECUTE PROCEDURE "RI_FKey_noaction_upd"('<unnamed>', 'enlevement_nucleus', 'nucleus', 'UNSPECIFIED', 'zone', 'zone', 'numero', 'numero', 'bis', 'bis', 'n_ordre', 'n_ordre');
+
+
+--
+-- Name: RI_ConstraintTrigger_230606; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7884,7 +8102,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209509; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230607; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7896,7 +8114,7 @@ CREATE CONSTRAINT TRIGGER "<unnamed>"
 
 
 --
--- Name: RI_ConstraintTrigger_209510; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: RI_ConstraintTrigger_230608; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
 CREATE CONSTRAINT TRIGGER "<unnamed>"
@@ -7924,10 +8142,10 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 REVOKE ALL ON TABLE biface FROM PUBLIC;
 REVOKE ALL ON TABLE biface FROM postgres;
 GRANT ALL ON TABLE biface TO postgres;
+GRANT ALL ON TABLE biface TO lazaret;
+GRANT ALL ON TABLE biface TO superlazaret;
+GRANT SELECT ON TABLE biface TO visiteurlazaret;
 GRANT SELECT ON TABLE biface TO PUBLIC;
-GRANT ALL ON TABLE biface TO superamata;
-GRANT ALL ON TABLE biface TO amata;
-GRANT SELECT ON TABLE biface TO visiteuramata;
 
 
 --
@@ -7937,10 +8155,9 @@ GRANT SELECT ON TABLE biface TO visiteuramata;
 REVOKE ALL ON TABLE bord FROM PUBLIC;
 REVOKE ALL ON TABLE bord FROM postgres;
 GRANT ALL ON TABLE bord TO postgres;
-GRANT SELECT ON TABLE bord TO PUBLIC;
-GRANT ALL ON TABLE bord TO superamata;
-GRANT ALL ON TABLE bord TO amata;
-GRANT SELECT ON TABLE bord TO visiteuramata;
+GRANT ALL ON TABLE bord TO lazaret;
+GRANT ALL ON TABLE bord TO superlazaret;
+GRANT SELECT ON TABLE bord TO visiteurlazaret;
 
 
 --
@@ -7950,10 +8167,9 @@ GRANT SELECT ON TABLE bord TO visiteuramata;
 REVOKE ALL ON TABLE carnet FROM PUBLIC;
 REVOKE ALL ON TABLE carnet FROM postgres;
 GRANT ALL ON TABLE carnet TO postgres;
-GRANT SELECT ON TABLE carnet TO PUBLIC;
-GRANT ALL ON TABLE carnet TO superamata;
-GRANT ALL ON TABLE carnet TO amata;
-GRANT SELECT ON TABLE carnet TO visiteuramata;
+GRANT ALL ON TABLE carnet TO lazaret;
+GRANT ALL ON TABLE carnet TO superlazaret;
+GRANT SELECT ON TABLE carnet TO visiteurlazaret;
 
 
 --
@@ -7964,9 +8180,8 @@ REVOKE ALL ON TABLE controle_b_amenagement_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amenagement_bord FROM postgres;
 GRANT ALL ON TABLE controle_b_amenagement_bord TO postgres;
 GRANT SELECT ON TABLE controle_b_amenagement_bord TO PUBLIC;
-GRANT ALL ON TABLE controle_b_amenagement_bord TO superamata;
-GRANT SELECT ON TABLE controle_b_amenagement_bord TO amata;
-GRANT SELECT ON TABLE controle_b_amenagement_bord TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_amenagement_bord TO lazaret;
+GRANT ALL ON TABLE controle_b_amenagement_bord TO superlazaret;
 
 
 --
@@ -7976,10 +8191,8 @@ GRANT SELECT ON TABLE controle_b_amenagement_bord TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_amenagement_distal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amenagement_distal FROM postgres;
 GRANT ALL ON TABLE controle_b_amenagement_distal TO postgres;
-GRANT SELECT ON TABLE controle_b_amenagement_distal TO PUBLIC;
-GRANT ALL ON TABLE controle_b_amenagement_distal TO superamata;
-GRANT SELECT ON TABLE controle_b_amenagement_distal TO amata;
-GRANT SELECT ON TABLE controle_b_amenagement_distal TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_amenagement_distal TO lazaret;
+GRANT ALL ON TABLE controle_b_amenagement_distal TO superlazaret;
 
 
 --
@@ -7989,10 +8202,8 @@ GRANT SELECT ON TABLE controle_b_amenagement_distal TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_amincissement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amincissement FROM postgres;
 GRANT ALL ON TABLE controle_b_amincissement TO postgres;
-GRANT SELECT ON TABLE controle_b_amincissement TO PUBLIC;
-GRANT ALL ON TABLE controle_b_amincissement TO superamata;
-GRANT SELECT ON TABLE controle_b_amincissement TO amata;
-GRANT SELECT ON TABLE controle_b_amincissement TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_amincissement TO lazaret;
+GRANT ALL ON TABLE controle_b_amincissement TO superlazaret;
 
 
 --
@@ -8002,10 +8213,8 @@ GRANT SELECT ON TABLE controle_b_amincissement TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_arete FROM postgres;
 GRANT ALL ON TABLE controle_b_arete TO postgres;
-GRANT SELECT ON TABLE controle_b_arete TO PUBLIC;
-GRANT ALL ON TABLE controle_b_arete TO superamata;
-GRANT SELECT ON TABLE controle_b_arete TO amata;
-GRANT SELECT ON TABLE controle_b_arete TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_arete TO lazaret;
+GRANT ALL ON TABLE controle_b_arete TO superlazaret;
 
 
 --
@@ -8015,10 +8224,8 @@ GRANT SELECT ON TABLE controle_b_arete TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_base FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_base FROM postgres;
 GRANT ALL ON TABLE controle_b_base TO postgres;
-GRANT SELECT ON TABLE controle_b_base TO PUBLIC;
-GRANT ALL ON TABLE controle_b_base TO superamata;
-GRANT SELECT ON TABLE controle_b_base TO amata;
-GRANT SELECT ON TABLE controle_b_base TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_base TO lazaret;
+GRANT ALL ON TABLE controle_b_base TO superlazaret;
 
 
 --
@@ -8028,10 +8235,8 @@ GRANT SELECT ON TABLE controle_b_base TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_bifaciale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bifaciale FROM postgres;
 GRANT ALL ON TABLE controle_b_bifaciale TO postgres;
-GRANT SELECT ON TABLE controle_b_bifaciale TO PUBLIC;
-GRANT ALL ON TABLE controle_b_bifaciale TO superamata;
-GRANT SELECT ON TABLE controle_b_bifaciale TO amata;
-GRANT SELECT ON TABLE controle_b_bifaciale TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_bifaciale TO lazaret;
+GRANT ALL ON TABLE controle_b_bifaciale TO superlazaret;
 
 
 --
@@ -8041,10 +8246,8 @@ GRANT SELECT ON TABLE controle_b_bifaciale TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_bilaterale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bilaterale FROM postgres;
 GRANT ALL ON TABLE controle_b_bilaterale TO postgres;
-GRANT SELECT ON TABLE controle_b_bilaterale TO PUBLIC;
-GRANT ALL ON TABLE controle_b_bilaterale TO superamata;
-GRANT SELECT ON TABLE controle_b_bilaterale TO amata;
-GRANT SELECT ON TABLE controle_b_bilaterale TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_bilaterale TO lazaret;
+GRANT ALL ON TABLE controle_b_bilaterale TO superlazaret;
 
 
 --
@@ -8054,10 +8257,8 @@ GRANT SELECT ON TABLE controle_b_bilaterale TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_biseau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_biseau FROM postgres;
 GRANT ALL ON TABLE controle_b_biseau TO postgres;
-GRANT SELECT ON TABLE controle_b_biseau TO PUBLIC;
-GRANT ALL ON TABLE controle_b_biseau TO superamata;
-GRANT SELECT ON TABLE controle_b_biseau TO amata;
-GRANT SELECT ON TABLE controle_b_biseau TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_biseau TO lazaret;
+GRANT ALL ON TABLE controle_b_biseau TO superlazaret;
 
 
 --
@@ -8067,10 +8268,8 @@ GRANT SELECT ON TABLE controle_b_biseau TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bord FROM postgres;
 GRANT ALL ON TABLE controle_b_bord TO postgres;
-GRANT SELECT ON TABLE controle_b_bord TO PUBLIC;
-GRANT ALL ON TABLE controle_b_bord TO superamata;
-GRANT SELECT ON TABLE controle_b_bord TO amata;
-GRANT SELECT ON TABLE controle_b_bord TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_bord TO lazaret;
+GRANT ALL ON TABLE controle_b_bord TO superlazaret;
 
 
 --
@@ -8080,10 +8279,8 @@ GRANT SELECT ON TABLE controle_b_bord TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_code FROM postgres;
 GRANT ALL ON TABLE controle_b_code TO postgres;
-GRANT SELECT ON TABLE controle_b_code TO PUBLIC;
-GRANT ALL ON TABLE controle_b_code TO superamata;
-GRANT SELECT ON TABLE controle_b_code TO amata;
-GRANT SELECT ON TABLE controle_b_code TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_code TO lazaret;
+GRANT ALL ON TABLE controle_b_code TO superlazaret;
 
 
 --
@@ -8093,10 +8290,8 @@ GRANT SELECT ON TABLE controle_b_code TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_dat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat FROM postgres;
 GRANT ALL ON TABLE controle_b_dat TO postgres;
-GRANT SELECT ON TABLE controle_b_dat TO PUBLIC;
-GRANT ALL ON TABLE controle_b_dat TO superamata;
-GRANT SELECT ON TABLE controle_b_dat TO amata;
-GRANT SELECT ON TABLE controle_b_dat TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_dat TO lazaret;
+GRANT ALL ON TABLE controle_b_dat TO superlazaret;
 
 
 --
@@ -8106,10 +8301,8 @@ GRANT SELECT ON TABLE controle_b_dat TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_dat1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat1 FROM postgres;
 GRANT ALL ON TABLE controle_b_dat1 TO postgres;
-GRANT SELECT ON TABLE controle_b_dat1 TO PUBLIC;
-GRANT ALL ON TABLE controle_b_dat1 TO superamata;
-GRANT SELECT ON TABLE controle_b_dat1 TO amata;
-GRANT SELECT ON TABLE controle_b_dat1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_dat1 TO lazaret;
+GRANT ALL ON TABLE controle_b_dat1 TO superlazaret;
 
 
 --
@@ -8119,10 +8312,8 @@ GRANT SELECT ON TABLE controle_b_dat1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_dat2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat2 FROM postgres;
 GRANT ALL ON TABLE controle_b_dat2 TO postgres;
-GRANT SELECT ON TABLE controle_b_dat2 TO PUBLIC;
-GRANT ALL ON TABLE controle_b_dat2 TO superamata;
-GRANT SELECT ON TABLE controle_b_dat2 TO amata;
-GRANT SELECT ON TABLE controle_b_dat2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_dat2 TO lazaret;
+GRANT ALL ON TABLE controle_b_dat2 TO superlazaret;
 
 
 --
@@ -8132,10 +8323,8 @@ GRANT SELECT ON TABLE controle_b_dat2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_distale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_distale FROM postgres;
 GRANT ALL ON TABLE controle_b_distale TO postgres;
-GRANT SELECT ON TABLE controle_b_distale TO PUBLIC;
-GRANT ALL ON TABLE controle_b_distale TO superamata;
-GRANT SELECT ON TABLE controle_b_distale TO amata;
-GRANT SELECT ON TABLE controle_b_distale TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_distale TO lazaret;
+GRANT ALL ON TABLE controle_b_distale TO superlazaret;
 
 
 --
@@ -8145,10 +8334,8 @@ GRANT SELECT ON TABLE controle_b_distale TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_enlevement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_enlevement FROM postgres;
 GRANT ALL ON TABLE controle_b_enlevement TO postgres;
-GRANT SELECT ON TABLE controle_b_enlevement TO PUBLIC;
-GRANT ALL ON TABLE controle_b_enlevement TO superamata;
-GRANT SELECT ON TABLE controle_b_enlevement TO amata;
-GRANT SELECT ON TABLE controle_b_enlevement TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_enlevement TO lazaret;
+GRANT ALL ON TABLE controle_b_enlevement TO superlazaret;
 
 
 --
@@ -8158,10 +8345,8 @@ GRANT SELECT ON TABLE controle_b_enlevement TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_extension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_extension FROM postgres;
 GRANT ALL ON TABLE controle_b_extension TO postgres;
-GRANT SELECT ON TABLE controle_b_extension TO PUBLIC;
-GRANT ALL ON TABLE controle_b_extension TO superamata;
-GRANT SELECT ON TABLE controle_b_extension TO amata;
-GRANT SELECT ON TABLE controle_b_extension TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_extension TO lazaret;
+GRANT ALL ON TABLE controle_b_extension TO superlazaret;
 
 
 --
@@ -8171,10 +8356,8 @@ GRANT SELECT ON TABLE controle_b_extension TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_extremite FROM postgres;
 GRANT ALL ON TABLE controle_b_extremite TO postgres;
-GRANT SELECT ON TABLE controle_b_extremite TO PUBLIC;
-GRANT ALL ON TABLE controle_b_extremite TO superamata;
-GRANT SELECT ON TABLE controle_b_extremite TO amata;
-GRANT SELECT ON TABLE controle_b_extremite TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_extremite TO lazaret;
+GRANT ALL ON TABLE controle_b_extremite TO superlazaret;
 
 
 --
@@ -8184,10 +8367,8 @@ GRANT SELECT ON TABLE controle_b_extremite TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_facture FROM postgres;
 GRANT ALL ON TABLE controle_b_facture TO postgres;
-GRANT SELECT ON TABLE controle_b_facture TO PUBLIC;
-GRANT ALL ON TABLE controle_b_facture TO superamata;
-GRANT SELECT ON TABLE controle_b_facture TO amata;
-GRANT SELECT ON TABLE controle_b_facture TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_facture TO lazaret;
+GRANT ALL ON TABLE controle_b_facture TO superlazaret;
 
 
 --
@@ -8197,10 +8378,8 @@ GRANT SELECT ON TABLE controle_b_facture TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_meplat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_meplat FROM postgres;
 GRANT ALL ON TABLE controle_b_meplat TO postgres;
-GRANT SELECT ON TABLE controle_b_meplat TO PUBLIC;
-GRANT ALL ON TABLE controle_b_meplat TO superamata;
-GRANT SELECT ON TABLE controle_b_meplat TO amata;
-GRANT SELECT ON TABLE controle_b_meplat TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_meplat TO lazaret;
+GRANT ALL ON TABLE controle_b_meplat TO superlazaret;
 
 
 --
@@ -8210,10 +8389,8 @@ GRANT SELECT ON TABLE controle_b_meplat TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_retouche FROM postgres;
 GRANT ALL ON TABLE controle_b_retouche TO postgres;
-GRANT SELECT ON TABLE controle_b_retouche TO PUBLIC;
-GRANT ALL ON TABLE controle_b_retouche TO superamata;
-GRANT SELECT ON TABLE controle_b_retouche TO amata;
-GRANT SELECT ON TABLE controle_b_retouche TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_retouche TO lazaret;
+GRANT ALL ON TABLE controle_b_retouche TO superlazaret;
 
 
 --
@@ -8223,10 +8400,8 @@ GRANT SELECT ON TABLE controle_b_retouche TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_support FROM postgres;
 GRANT ALL ON TABLE controle_b_support TO postgres;
-GRANT SELECT ON TABLE controle_b_support TO PUBLIC;
-GRANT ALL ON TABLE controle_b_support TO superamata;
-GRANT SELECT ON TABLE controle_b_support TO amata;
-GRANT SELECT ON TABLE controle_b_support TO visiteuramata;
+GRANT ALL ON TABLE controle_b_support TO lazaret;
+GRANT ALL ON TABLE controle_b_support TO superlazaret;
 
 
 --
@@ -8236,10 +8411,8 @@ GRANT SELECT ON TABLE controle_b_support TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_surface FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_surface FROM postgres;
 GRANT ALL ON TABLE controle_b_surface TO postgres;
-GRANT SELECT ON TABLE controle_b_surface TO PUBLIC;
-GRANT ALL ON TABLE controle_b_surface TO superamata;
-GRANT SELECT ON TABLE controle_b_surface TO amata;
-GRANT SELECT ON TABLE controle_b_surface TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_surface TO lazaret;
+GRANT ALL ON TABLE controle_b_surface TO superlazaret;
 
 
 --
@@ -8249,10 +8422,8 @@ GRANT SELECT ON TABLE controle_b_surface TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_symetrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_symetrie FROM postgres;
 GRANT ALL ON TABLE controle_b_symetrie TO postgres;
-GRANT SELECT ON TABLE controle_b_symetrie TO PUBLIC;
-GRANT ALL ON TABLE controle_b_symetrie TO superamata;
-GRANT SELECT ON TABLE controle_b_symetrie TO amata;
-GRANT SELECT ON TABLE controle_b_symetrie TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_symetrie TO lazaret;
+GRANT ALL ON TABLE controle_b_symetrie TO superlazaret;
 
 
 --
@@ -8262,10 +8433,8 @@ GRANT SELECT ON TABLE controle_b_symetrie TO visiteuramata;
 REVOKE ALL ON TABLE controle_b_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_type FROM postgres;
 GRANT ALL ON TABLE controle_b_type TO postgres;
-GRANT SELECT ON TABLE controle_b_type TO PUBLIC;
-GRANT ALL ON TABLE controle_b_type TO superamata;
-GRANT SELECT ON TABLE controle_b_type TO amata;
-GRANT SELECT ON TABLE controle_b_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_b_type TO lazaret;
+GRANT ALL ON TABLE controle_b_type TO superlazaret;
 
 
 --
@@ -8275,10 +8444,8 @@ GRANT SELECT ON TABLE controle_b_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_bis FROM PUBLIC;
 REVOKE ALL ON TABLE controle_bis FROM postgres;
 GRANT ALL ON TABLE controle_bis TO postgres;
-GRANT SELECT ON TABLE controle_bis TO PUBLIC;
-GRANT ALL ON TABLE controle_bis TO superamata;
-GRANT SELECT ON TABLE controle_bis TO amata;
-GRANT SELECT ON TABLE controle_bis TO visiteuramata;
+GRANT SELECT ON TABLE controle_bis TO lazaret;
+GRANT ALL ON TABLE controle_bis TO superlazaret;
 
 
 --
@@ -8288,10 +8455,8 @@ GRANT SELECT ON TABLE controle_bis TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_alteration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_alteration FROM postgres;
 GRANT ALL ON TABLE controle_c_alteration TO postgres;
-GRANT SELECT ON TABLE controle_c_alteration TO PUBLIC;
-GRANT ALL ON TABLE controle_c_alteration TO superamata;
-GRANT SELECT ON TABLE controle_c_alteration TO amata;
-GRANT SELECT ON TABLE controle_c_alteration TO visiteuramata;
+GRANT ALL ON TABLE controle_c_alteration TO superlazaret;
+GRANT SELECT ON TABLE controle_c_alteration TO lazaret;
 
 
 --
@@ -8301,10 +8466,8 @@ GRANT SELECT ON TABLE controle_c_alteration TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_altnat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_altnat FROM postgres;
 GRANT ALL ON TABLE controle_c_altnat TO postgres;
-GRANT SELECT ON TABLE controle_c_altnat TO PUBLIC;
-GRANT ALL ON TABLE controle_c_altnat TO superamata;
-GRANT SELECT ON TABLE controle_c_altnat TO amata;
-GRANT SELECT ON TABLE controle_c_altnat TO visiteuramata;
+GRANT ALL ON TABLE controle_c_altnat TO superlazaret;
+GRANT SELECT ON TABLE controle_c_altnat TO lazaret;
 
 
 --
@@ -8314,10 +8477,7 @@ GRANT SELECT ON TABLE controle_c_altnat TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_autre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_autre FROM postgres;
 GRANT ALL ON TABLE controle_c_autre TO postgres;
-GRANT SELECT ON TABLE controle_c_autre TO PUBLIC;
-GRANT ALL ON TABLE controle_c_autre TO superamata;
-GRANT SELECT ON TABLE controle_c_autre TO amata;
-GRANT SELECT ON TABLE controle_c_autre TO visiteuramata;
+GRANT ALL ON TABLE controle_c_autre TO superlazaret;
 
 
 --
@@ -8327,10 +8487,8 @@ GRANT SELECT ON TABLE controle_c_autre TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_consistance FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_consistance FROM postgres;
 GRANT ALL ON TABLE controle_c_consistance TO postgres;
-GRANT SELECT ON TABLE controle_c_consistance TO PUBLIC;
-GRANT ALL ON TABLE controle_c_consistance TO superamata;
-GRANT SELECT ON TABLE controle_c_consistance TO amata;
-GRANT SELECT ON TABLE controle_c_consistance TO visiteuramata;
+GRANT ALL ON TABLE controle_c_consistance TO superlazaret;
+GRANT SELECT ON TABLE controle_c_consistance TO lazaret;
 
 
 --
@@ -8340,10 +8498,8 @@ GRANT SELECT ON TABLE controle_c_consistance TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_couleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_couleur FROM postgres;
 GRANT ALL ON TABLE controle_c_couleur TO postgres;
-GRANT SELECT ON TABLE controle_c_couleur TO PUBLIC;
-GRANT ALL ON TABLE controle_c_couleur TO superamata;
-GRANT SELECT ON TABLE controle_c_couleur TO amata;
-GRANT SELECT ON TABLE controle_c_couleur TO visiteuramata;
+GRANT ALL ON TABLE controle_c_couleur TO superlazaret;
+GRANT SELECT ON TABLE controle_c_couleur TO lazaret;
 
 
 --
@@ -8353,10 +8509,7 @@ GRANT SELECT ON TABLE controle_c_couleur TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_element FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_element FROM postgres;
 GRANT ALL ON TABLE controle_c_element TO postgres;
-GRANT SELECT ON TABLE controle_c_element TO PUBLIC;
-GRANT ALL ON TABLE controle_c_element TO superamata;
-GRANT SELECT ON TABLE controle_c_element TO amata;
-GRANT SELECT ON TABLE controle_c_element TO visiteuramata;
+GRANT ALL ON TABLE controle_c_element TO superlazaret;
 
 
 --
@@ -8366,10 +8519,8 @@ GRANT SELECT ON TABLE controle_c_element TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_ext1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_ext1 FROM postgres;
 GRANT ALL ON TABLE controle_c_ext1 TO postgres;
-GRANT SELECT ON TABLE controle_c_ext1 TO PUBLIC;
-GRANT ALL ON TABLE controle_c_ext1 TO superamata;
-GRANT SELECT ON TABLE controle_c_ext1 TO amata;
-GRANT SELECT ON TABLE controle_c_ext1 TO visiteuramata;
+GRANT ALL ON TABLE controle_c_ext1 TO superlazaret;
+GRANT SELECT ON TABLE controle_c_ext1 TO lazaret;
 
 
 --
@@ -8379,10 +8530,8 @@ GRANT SELECT ON TABLE controle_c_ext1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_ext2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_ext2 FROM postgres;
 GRANT ALL ON TABLE controle_c_ext2 TO postgres;
-GRANT SELECT ON TABLE controle_c_ext2 TO PUBLIC;
-GRANT ALL ON TABLE controle_c_ext2 TO superamata;
-GRANT SELECT ON TABLE controle_c_ext2 TO amata;
-GRANT SELECT ON TABLE controle_c_ext2 TO visiteuramata;
+GRANT ALL ON TABLE controle_c_ext2 TO superlazaret;
+GRANT SELECT ON TABLE controle_c_ext2 TO lazaret;
 
 
 --
@@ -8392,10 +8541,7 @@ GRANT SELECT ON TABLE controle_c_ext2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_extremite FROM postgres;
 GRANT ALL ON TABLE controle_c_extremite TO postgres;
-GRANT SELECT ON TABLE controle_c_extremite TO PUBLIC;
-GRANT ALL ON TABLE controle_c_extremite TO superamata;
-GRANT SELECT ON TABLE controle_c_extremite TO amata;
-GRANT SELECT ON TABLE controle_c_extremite TO visiteuramata;
+GRANT ALL ON TABLE controle_c_extremite TO superlazaret;
 
 
 --
@@ -8405,10 +8551,7 @@ GRANT SELECT ON TABLE controle_c_extremite TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_famille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_famille FROM postgres;
 GRANT ALL ON TABLE controle_c_famille TO postgres;
-GRANT SELECT ON TABLE controle_c_famille TO PUBLIC;
-GRANT ALL ON TABLE controle_c_famille TO superamata;
-GRANT SELECT ON TABLE controle_c_famille TO amata;
-GRANT SELECT ON TABLE controle_c_famille TO visiteuramata;
+GRANT ALL ON TABLE controle_c_famille TO superlazaret;
 
 
 --
@@ -8418,10 +8561,8 @@ GRANT SELECT ON TABLE controle_c_famille TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_forme FROM postgres;
 GRANT ALL ON TABLE controle_c_forme TO postgres;
-GRANT SELECT ON TABLE controle_c_forme TO PUBLIC;
-GRANT ALL ON TABLE controle_c_forme TO superamata;
-GRANT SELECT ON TABLE controle_c_forme TO amata;
-GRANT SELECT ON TABLE controle_c_forme TO visiteuramata;
+GRANT ALL ON TABLE controle_c_forme TO lazaret;
+GRANT ALL ON TABLE controle_c_forme TO superlazaret;
 
 
 --
@@ -8431,10 +8572,7 @@ GRANT SELECT ON TABLE controle_c_forme TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_genre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_genre FROM postgres;
 GRANT ALL ON TABLE controle_c_genre TO postgres;
-GRANT SELECT ON TABLE controle_c_genre TO PUBLIC;
-GRANT ALL ON TABLE controle_c_genre TO superamata;
-GRANT SELECT ON TABLE controle_c_genre TO amata;
-GRANT SELECT ON TABLE controle_c_genre TO visiteuramata;
+GRANT ALL ON TABLE controle_c_genre TO superlazaret;
 
 
 --
@@ -8444,10 +8582,8 @@ GRANT SELECT ON TABLE controle_c_genre TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_granulometrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_granulometrie FROM postgres;
 GRANT ALL ON TABLE controle_c_granulometrie TO postgres;
-GRANT SELECT ON TABLE controle_c_granulometrie TO PUBLIC;
-GRANT ALL ON TABLE controle_c_granulometrie TO superamata;
-GRANT SELECT ON TABLE controle_c_granulometrie TO amata;
-GRANT SELECT ON TABLE controle_c_granulometrie TO visiteuramata;
+GRANT ALL ON TABLE controle_c_granulometrie TO superlazaret;
+GRANT SELECT ON TABLE controle_c_granulometrie TO lazaret;
 
 
 --
@@ -8457,10 +8593,8 @@ GRANT SELECT ON TABLE controle_c_granulometrie TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_incl1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl1 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl1 TO postgres;
-GRANT SELECT ON TABLE controle_c_incl1 TO PUBLIC;
-GRANT ALL ON TABLE controle_c_incl1 TO superamata;
-GRANT SELECT ON TABLE controle_c_incl1 TO amata;
-GRANT SELECT ON TABLE controle_c_incl1 TO visiteuramata;
+GRANT ALL ON TABLE controle_c_incl1 TO superlazaret;
+GRANT SELECT ON TABLE controle_c_incl1 TO lazaret;
 
 
 --
@@ -8470,10 +8604,7 @@ GRANT SELECT ON TABLE controle_c_incl1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_incl2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl2 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl2 TO postgres;
-GRANT SELECT ON TABLE controle_c_incl2 TO PUBLIC;
-GRANT ALL ON TABLE controle_c_incl2 TO superamata;
-GRANT SELECT ON TABLE controle_c_incl2 TO amata;
-GRANT SELECT ON TABLE controle_c_incl2 TO visiteuramata;
+GRANT ALL ON TABLE controle_c_incl2 TO superlazaret;
 
 
 --
@@ -8483,10 +8614,8 @@ GRANT SELECT ON TABLE controle_c_incl2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_incl3 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl3 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl3 TO postgres;
-GRANT SELECT ON TABLE controle_c_incl3 TO PUBLIC;
-GRANT ALL ON TABLE controle_c_incl3 TO superamata;
-GRANT SELECT ON TABLE controle_c_incl3 TO amata;
-GRANT SELECT ON TABLE controle_c_incl3 TO visiteuramata;
+GRANT ALL ON TABLE controle_c_incl3 TO superlazaret;
+GRANT SELECT ON TABLE controle_c_incl3 TO lazaret;
 
 
 --
@@ -8496,10 +8625,7 @@ GRANT SELECT ON TABLE controle_c_incl3 TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_inclusion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_inclusion FROM postgres;
 GRANT ALL ON TABLE controle_c_inclusion TO postgres;
-GRANT SELECT ON TABLE controle_c_inclusion TO PUBLIC;
-GRANT ALL ON TABLE controle_c_inclusion TO superamata;
-GRANT SELECT ON TABLE controle_c_inclusion TO amata;
-GRANT SELECT ON TABLE controle_c_inclusion TO visiteuramata;
+GRANT ALL ON TABLE controle_c_inclusion TO superlazaret;
 
 
 --
@@ -8509,10 +8635,8 @@ GRANT SELECT ON TABLE controle_c_inclusion TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_lame FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_lame FROM postgres;
 GRANT ALL ON TABLE controle_c_lame TO postgres;
-GRANT SELECT ON TABLE controle_c_lame TO PUBLIC;
-GRANT ALL ON TABLE controle_c_lame TO superamata;
-GRANT SELECT ON TABLE controle_c_lame TO amata;
-GRANT SELECT ON TABLE controle_c_lame TO visiteuramata;
+GRANT ALL ON TABLE controle_c_lame TO superlazaret;
+GRANT SELECT ON TABLE controle_c_lame TO lazaret;
 
 
 --
@@ -8522,10 +8646,7 @@ GRANT SELECT ON TABLE controle_c_lame TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_liant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_liant FROM postgres;
 GRANT ALL ON TABLE controle_c_liant TO postgres;
-GRANT SELECT ON TABLE controle_c_liant TO PUBLIC;
-GRANT ALL ON TABLE controle_c_liant TO superamata;
-GRANT SELECT ON TABLE controle_c_liant TO amata;
-GRANT SELECT ON TABLE controle_c_liant TO visiteuramata;
+GRANT ALL ON TABLE controle_c_liant TO superlazaret;
 
 
 --
@@ -8535,10 +8656,8 @@ GRANT SELECT ON TABLE controle_c_liant TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_macroreste FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_macroreste FROM postgres;
 GRANT ALL ON TABLE controle_c_macroreste TO postgres;
-GRANT SELECT ON TABLE controle_c_macroreste TO PUBLIC;
-GRANT ALL ON TABLE controle_c_macroreste TO superamata;
-GRANT SELECT ON TABLE controle_c_macroreste TO amata;
-GRANT SELECT ON TABLE controle_c_macroreste TO visiteuramata;
+GRANT ALL ON TABLE controle_c_macroreste TO superlazaret;
+GRANT SELECT ON TABLE controle_c_macroreste TO lazaret;
 
 
 --
@@ -8548,10 +8667,8 @@ GRANT SELECT ON TABLE controle_c_macroreste TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_mif FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_mif FROM postgres;
 GRANT ALL ON TABLE controle_c_mif TO postgres;
-GRANT SELECT ON TABLE controle_c_mif TO PUBLIC;
-GRANT ALL ON TABLE controle_c_mif TO superamata;
-GRANT SELECT ON TABLE controle_c_mif TO amata;
-GRANT SELECT ON TABLE controle_c_mif TO visiteuramata;
+GRANT ALL ON TABLE controle_c_mif TO superlazaret;
+GRANT SELECT ON TABLE controle_c_mif TO lazaret;
 
 
 --
@@ -8561,10 +8678,8 @@ GRANT SELECT ON TABLE controle_c_mif TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_motcou FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motcou FROM postgres;
 GRANT ALL ON TABLE controle_c_motcou TO postgres;
-GRANT SELECT ON TABLE controle_c_motcou TO PUBLIC;
-GRANT ALL ON TABLE controle_c_motcou TO superamata;
-GRANT SELECT ON TABLE controle_c_motcou TO amata;
-GRANT SELECT ON TABLE controle_c_motcou TO visiteuramata;
+GRANT ALL ON TABLE controle_c_motcou TO superlazaret;
+GRANT SELECT ON TABLE controle_c_motcou TO lazaret;
 
 
 --
@@ -8574,10 +8689,8 @@ GRANT SELECT ON TABLE controle_c_motcou TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_motif FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motif FROM postgres;
 GRANT ALL ON TABLE controle_c_motif TO postgres;
-GRANT SELECT ON TABLE controle_c_motif TO PUBLIC;
-GRANT ALL ON TABLE controle_c_motif TO superamata;
-GRANT SELECT ON TABLE controle_c_motif TO amata;
-GRANT SELECT ON TABLE controle_c_motif TO visiteuramata;
+GRANT ALL ON TABLE controle_c_motif TO superlazaret;
+GRANT SELECT ON TABLE controle_c_motif TO lazaret;
 
 
 --
@@ -8587,10 +8700,8 @@ GRANT SELECT ON TABLE controle_c_motif TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_motnat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motnat FROM postgres;
 GRANT ALL ON TABLE controle_c_motnat TO postgres;
-GRANT SELECT ON TABLE controle_c_motnat TO PUBLIC;
-GRANT ALL ON TABLE controle_c_motnat TO superamata;
-GRANT SELECT ON TABLE controle_c_motnat TO amata;
-GRANT SELECT ON TABLE controle_c_motnat TO visiteuramata;
+GRANT ALL ON TABLE controle_c_motnat TO superlazaret;
+GRANT SELECT ON TABLE controle_c_motnat TO lazaret;
 
 
 --
@@ -8600,10 +8711,8 @@ GRANT SELECT ON TABLE controle_c_motnat TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_palyno FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_palyno FROM postgres;
 GRANT ALL ON TABLE controle_c_palyno TO postgres;
-GRANT SELECT ON TABLE controle_c_palyno TO PUBLIC;
-GRANT ALL ON TABLE controle_c_palyno TO superamata;
-GRANT SELECT ON TABLE controle_c_palyno TO amata;
-GRANT SELECT ON TABLE controle_c_palyno TO visiteuramata;
+GRANT ALL ON TABLE controle_c_palyno TO superlazaret;
+GRANT SELECT ON TABLE controle_c_palyno TO lazaret;
 
 
 --
@@ -8613,10 +8722,7 @@ GRANT SELECT ON TABLE controle_c_palyno TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_parasito FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_parasito FROM postgres;
 GRANT ALL ON TABLE controle_c_parasito TO postgres;
-GRANT SELECT ON TABLE controle_c_parasito TO PUBLIC;
-GRANT ALL ON TABLE controle_c_parasito TO superamata;
-GRANT SELECT ON TABLE controle_c_parasito TO amata;
-GRANT SELECT ON TABLE controle_c_parasito TO visiteuramata;
+GRANT ALL ON TABLE controle_c_parasito TO superlazaret;
 
 
 --
@@ -8626,10 +8732,7 @@ GRANT SELECT ON TABLE controle_c_parasito TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_retrecissement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_retrecissement FROM postgres;
 GRANT ALL ON TABLE controle_c_retrecissement TO postgres;
-GRANT SELECT ON TABLE controle_c_retrecissement TO PUBLIC;
-GRANT ALL ON TABLE controle_c_retrecissement TO superamata;
-GRANT SELECT ON TABLE controle_c_retrecissement TO amata;
-GRANT SELECT ON TABLE controle_c_retrecissement TO visiteuramata;
+GRANT ALL ON TABLE controle_c_retrecissement TO superlazaret;
 
 
 --
@@ -8639,10 +8742,8 @@ GRANT SELECT ON TABLE controle_c_retrecissement TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_sediment FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_sediment FROM postgres;
 GRANT ALL ON TABLE controle_c_sediment TO postgres;
-GRANT SELECT ON TABLE controle_c_sediment TO PUBLIC;
-GRANT ALL ON TABLE controle_c_sediment TO superamata;
-GRANT SELECT ON TABLE controle_c_sediment TO amata;
-GRANT SELECT ON TABLE controle_c_sediment TO visiteuramata;
+GRANT ALL ON TABLE controle_c_sediment TO superlazaret;
+GRANT SELECT ON TABLE controle_c_sediment TO lazaret;
 
 
 --
@@ -8652,10 +8753,8 @@ GRANT SELECT ON TABLE controle_c_sediment TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_vol FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_vol FROM postgres;
 GRANT ALL ON TABLE controle_c_vol TO postgres;
-GRANT SELECT ON TABLE controle_c_vol TO PUBLIC;
-GRANT ALL ON TABLE controle_c_vol TO superamata;
-GRANT SELECT ON TABLE controle_c_vol TO amata;
-GRANT SELECT ON TABLE controle_c_vol TO visiteuramata;
+GRANT ALL ON TABLE controle_c_vol TO superlazaret;
+GRANT SELECT ON TABLE controle_c_vol TO lazaret;
 
 
 --
@@ -8665,10 +8764,8 @@ GRANT SELECT ON TABLE controle_c_vol TO visiteuramata;
 REVOKE ALL ON TABLE controle_c_volext FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_volext FROM postgres;
 GRANT ALL ON TABLE controle_c_volext TO postgres;
-GRANT SELECT ON TABLE controle_c_volext TO PUBLIC;
-GRANT ALL ON TABLE controle_c_volext TO superamata;
-GRANT SELECT ON TABLE controle_c_volext TO amata;
-GRANT SELECT ON TABLE controle_c_volext TO visiteuramata;
+GRANT ALL ON TABLE controle_c_volext TO superlazaret;
+GRANT SELECT ON TABLE controle_c_volext TO lazaret;
 
 
 --
@@ -8678,10 +8775,8 @@ GRANT SELECT ON TABLE controle_c_volext TO visiteuramata;
 REVOKE ALL ON TABLE controle_carre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_carre FROM postgres;
 GRANT ALL ON TABLE controle_carre TO postgres;
-GRANT SELECT ON TABLE controle_carre TO PUBLIC;
-GRANT ALL ON TABLE controle_carre TO superamata;
-GRANT SELECT ON TABLE controle_carre TO amata;
-GRANT SELECT ON TABLE controle_carre TO visiteuramata;
+GRANT SELECT ON TABLE controle_carre TO lazaret;
+GRANT ALL ON TABLE controle_carre TO superlazaret;
 
 
 --
@@ -8691,10 +8786,8 @@ GRANT SELECT ON TABLE controle_carre TO visiteuramata;
 REVOKE ALL ON TABLE controle_d_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_d_serie FROM postgres;
 GRANT ALL ON TABLE controle_d_serie TO postgres;
-GRANT SELECT ON TABLE controle_d_serie TO PUBLIC;
-GRANT ALL ON TABLE controle_d_serie TO superamata;
-GRANT SELECT ON TABLE controle_d_serie TO amata;
-GRANT SELECT ON TABLE controle_d_serie TO visiteuramata;
+GRANT SELECT ON TABLE controle_d_serie TO lazaret;
+GRANT ALL ON TABLE controle_d_serie TO superlazaret;
 
 
 --
@@ -8704,10 +8797,8 @@ GRANT SELECT ON TABLE controle_d_serie TO visiteuramata;
 REVOKE ALL ON TABLE controle_d_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_d_type FROM postgres;
 GRANT ALL ON TABLE controle_d_type TO postgres;
-GRANT SELECT ON TABLE controle_d_type TO PUBLIC;
-GRANT ALL ON TABLE controle_d_type TO superamata;
-GRANT SELECT ON TABLE controle_d_type TO amata;
-GRANT SELECT ON TABLE controle_d_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_d_type TO lazaret;
+GRANT ALL ON TABLE controle_d_type TO superlazaret;
 
 
 --
@@ -8717,10 +8808,8 @@ GRANT SELECT ON TABLE controle_d_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_bulbe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_bulbe FROM postgres;
 GRANT ALL ON TABLE controle_e_bulbe TO postgres;
-GRANT SELECT ON TABLE controle_e_bulbe TO PUBLIC;
-GRANT ALL ON TABLE controle_e_bulbe TO superamata;
-GRANT SELECT ON TABLE controle_e_bulbe TO amata;
-GRANT SELECT ON TABLE controle_e_bulbe TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_bulbe TO lazaret;
+GRANT ALL ON TABLE controle_e_bulbe TO superlazaret;
 
 
 --
@@ -8730,10 +8819,8 @@ GRANT SELECT ON TABLE controle_e_bulbe TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_carene FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_carene FROM postgres;
 GRANT ALL ON TABLE controle_e_carene TO postgres;
-GRANT SELECT ON TABLE controle_e_carene TO PUBLIC;
-GRANT ALL ON TABLE controle_e_carene TO superamata;
-GRANT SELECT ON TABLE controle_e_carene TO amata;
-GRANT SELECT ON TABLE controle_e_carene TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_carene TO lazaret;
+GRANT ALL ON TABLE controle_e_carene TO superlazaret;
 
 
 --
@@ -8743,10 +8830,8 @@ GRANT SELECT ON TABLE controle_e_carene TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_charniere FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_charniere FROM postgres;
 GRANT ALL ON TABLE controle_e_charniere TO postgres;
-GRANT SELECT ON TABLE controle_e_charniere TO PUBLIC;
-GRANT ALL ON TABLE controle_e_charniere TO superamata;
-GRANT SELECT ON TABLE controle_e_charniere TO amata;
-GRANT SELECT ON TABLE controle_e_charniere TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_charniere TO lazaret;
+GRANT ALL ON TABLE controle_e_charniere TO superlazaret;
 
 
 --
@@ -8756,10 +8841,8 @@ GRANT SELECT ON TABLE controle_e_charniere TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_code FROM postgres;
 GRANT ALL ON TABLE controle_e_code TO postgres;
-GRANT SELECT ON TABLE controle_e_code TO PUBLIC;
-GRANT ALL ON TABLE controle_e_code TO superamata;
-GRANT SELECT ON TABLE controle_e_code TO amata;
-GRANT SELECT ON TABLE controle_e_code TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_code TO lazaret;
+GRANT ALL ON TABLE controle_e_code TO superlazaret;
 
 
 --
@@ -8769,10 +8852,8 @@ GRANT SELECT ON TABLE controle_e_code TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_cone FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_cone FROM postgres;
 GRANT ALL ON TABLE controle_e_cone TO postgres;
-GRANT SELECT ON TABLE controle_e_cone TO PUBLIC;
-GRANT ALL ON TABLE controle_e_cone TO superamata;
-GRANT SELECT ON TABLE controle_e_cone TO amata;
-GRANT SELECT ON TABLE controle_e_cone TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_cone TO lazaret;
+GRANT ALL ON TABLE controle_e_cone TO superlazaret;
 
 
 --
@@ -8782,10 +8863,8 @@ GRANT SELECT ON TABLE controle_e_cone TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_contour FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_contour FROM postgres;
 GRANT ALL ON TABLE controle_e_contour TO postgres;
-GRANT SELECT ON TABLE controle_e_contour TO PUBLIC;
-GRANT ALL ON TABLE controle_e_contour TO superamata;
-GRANT SELECT ON TABLE controle_e_contour TO amata;
-GRANT SELECT ON TABLE controle_e_contour TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_contour TO lazaret;
+GRANT ALL ON TABLE controle_e_contour TO superlazaret;
 
 
 --
@@ -8795,10 +8874,8 @@ GRANT SELECT ON TABLE controle_e_contour TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_debitage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_debitage FROM postgres;
 GRANT ALL ON TABLE controle_e_debitage TO postgres;
-GRANT SELECT ON TABLE controle_e_debitage TO PUBLIC;
-GRANT ALL ON TABLE controle_e_debitage TO superamata;
-GRANT SELECT ON TABLE controle_e_debitage TO amata;
-GRANT SELECT ON TABLE controle_e_debitage TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_debitage TO lazaret;
+GRANT ALL ON TABLE controle_e_debitage TO superlazaret;
 
 
 --
@@ -8808,10 +8885,8 @@ GRANT SELECT ON TABLE controle_e_debitage TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_enlevement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_enlevement FROM postgres;
 GRANT ALL ON TABLE controle_e_enlevement TO postgres;
-GRANT SELECT ON TABLE controle_e_enlevement TO PUBLIC;
-GRANT ALL ON TABLE controle_e_enlevement TO superamata;
-GRANT SELECT ON TABLE controle_e_enlevement TO amata;
-GRANT SELECT ON TABLE controle_e_enlevement TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_enlevement TO lazaret;
+GRANT ALL ON TABLE controle_e_enlevement TO superlazaret;
 
 
 --
@@ -8821,10 +8896,8 @@ GRANT SELECT ON TABLE controle_e_enlevement TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_epi FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_epi FROM postgres;
 GRANT ALL ON TABLE controle_e_epi TO postgres;
-GRANT SELECT ON TABLE controle_e_epi TO PUBLIC;
-GRANT ALL ON TABLE controle_e_epi TO superamata;
-GRANT SELECT ON TABLE controle_e_epi TO amata;
-GRANT SELECT ON TABLE controle_e_epi TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_epi TO lazaret;
+GRANT ALL ON TABLE controle_e_epi TO superlazaret;
 
 
 --
@@ -8834,10 +8907,8 @@ GRANT SELECT ON TABLE controle_e_epi TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_onde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_onde FROM postgres;
 GRANT ALL ON TABLE controle_e_onde TO postgres;
-GRANT SELECT ON TABLE controle_e_onde TO PUBLIC;
-GRANT ALL ON TABLE controle_e_onde TO superamata;
-GRANT SELECT ON TABLE controle_e_onde TO amata;
-GRANT SELECT ON TABLE controle_e_onde TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_onde TO lazaret;
+GRANT ALL ON TABLE controle_e_onde TO superlazaret;
 
 
 --
@@ -8847,10 +8918,8 @@ GRANT SELECT ON TABLE controle_e_onde TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_parasite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_parasite FROM postgres;
 GRANT ALL ON TABLE controle_e_parasite TO postgres;
-GRANT SELECT ON TABLE controle_e_parasite TO PUBLIC;
-GRANT ALL ON TABLE controle_e_parasite TO superamata;
-GRANT SELECT ON TABLE controle_e_parasite TO amata;
-GRANT SELECT ON TABLE controle_e_parasite TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_parasite TO lazaret;
+GRANT ALL ON TABLE controle_e_parasite TO superlazaret;
 
 
 --
@@ -8860,10 +8929,8 @@ GRANT SELECT ON TABLE controle_e_parasite TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_secondaire FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_secondaire FROM postgres;
 GRANT ALL ON TABLE controle_e_secondaire TO postgres;
-GRANT SELECT ON TABLE controle_e_secondaire TO PUBLIC;
-GRANT ALL ON TABLE controle_e_secondaire TO superamata;
-GRANT SELECT ON TABLE controle_e_secondaire TO amata;
-GRANT SELECT ON TABLE controle_e_secondaire TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_secondaire TO lazaret;
+GRANT ALL ON TABLE controle_e_secondaire TO superlazaret;
 
 
 --
@@ -8873,10 +8940,8 @@ GRANT SELECT ON TABLE controle_e_secondaire TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_section_long FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_section_long FROM postgres;
 GRANT ALL ON TABLE controle_e_section_long TO postgres;
-GRANT SELECT ON TABLE controle_e_section_long TO PUBLIC;
-GRANT ALL ON TABLE controle_e_section_long TO superamata;
-GRANT SELECT ON TABLE controle_e_section_long TO amata;
-GRANT SELECT ON TABLE controle_e_section_long TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_section_long TO lazaret;
+GRANT ALL ON TABLE controle_e_section_long TO superlazaret;
 
 
 --
@@ -8886,10 +8951,8 @@ GRANT SELECT ON TABLE controle_e_section_long TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_section_trans FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_section_trans FROM postgres;
 GRANT ALL ON TABLE controle_e_section_trans TO postgres;
-GRANT SELECT ON TABLE controle_e_section_trans TO PUBLIC;
-GRANT ALL ON TABLE controle_e_section_trans TO superamata;
-GRANT SELECT ON TABLE controle_e_section_trans TO amata;
-GRANT SELECT ON TABLE controle_e_section_trans TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_section_trans TO lazaret;
+GRANT ALL ON TABLE controle_e_section_trans TO superlazaret;
 
 
 --
@@ -8899,10 +8962,8 @@ GRANT SELECT ON TABLE controle_e_section_trans TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_strie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_strie FROM postgres;
 GRANT ALL ON TABLE controle_e_strie TO postgres;
-GRANT SELECT ON TABLE controle_e_strie TO PUBLIC;
-GRANT ALL ON TABLE controle_e_strie TO superamata;
-GRANT SELECT ON TABLE controle_e_strie TO amata;
-GRANT SELECT ON TABLE controle_e_strie TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_strie TO lazaret;
+GRANT ALL ON TABLE controle_e_strie TO superlazaret;
 
 
 --
@@ -8912,10 +8973,8 @@ GRANT SELECT ON TABLE controle_e_strie TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_talon FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_talon FROM postgres;
 GRANT ALL ON TABLE controle_e_talon TO postgres;
-GRANT SELECT ON TABLE controle_e_talon TO PUBLIC;
-GRANT ALL ON TABLE controle_e_talon TO superamata;
-GRANT SELECT ON TABLE controle_e_talon TO amata;
-GRANT SELECT ON TABLE controle_e_talon TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_talon TO lazaret;
+GRANT ALL ON TABLE controle_e_talon TO superlazaret;
 
 
 --
@@ -8925,10 +8984,8 @@ GRANT SELECT ON TABLE controle_e_talon TO visiteuramata;
 REVOKE ALL ON TABLE controle_e_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_type FROM postgres;
 GRANT ALL ON TABLE controle_e_type TO postgres;
-GRANT SELECT ON TABLE controle_e_type TO PUBLIC;
-GRANT ALL ON TABLE controle_e_type TO superamata;
-GRANT SELECT ON TABLE controle_e_type TO amata;
-GRANT SELECT ON TABLE controle_e_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_e_type TO lazaret;
+GRANT ALL ON TABLE controle_e_type TO superlazaret;
 
 
 --
@@ -8938,10 +8995,8 @@ GRANT SELECT ON TABLE controle_e_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_element FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_element FROM postgres;
 GRANT ALL ON TABLE controle_eg_element TO postgres;
-GRANT SELECT ON TABLE controle_eg_element TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_element TO superamata;
-GRANT SELECT ON TABLE controle_eg_element TO amata;
-GRANT SELECT ON TABLE controle_eg_element TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_element TO lazaret;
+GRANT ALL ON TABLE controle_eg_element TO superlazaret;
 
 
 --
@@ -8951,10 +9006,8 @@ GRANT SELECT ON TABLE controle_eg_element TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_epaisseur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_epaisseur FROM postgres;
 GRANT ALL ON TABLE controle_eg_epaisseur TO postgres;
-GRANT SELECT ON TABLE controle_eg_epaisseur TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_epaisseur TO superamata;
-GRANT SELECT ON TABLE controle_eg_epaisseur TO amata;
-GRANT SELECT ON TABLE controle_eg_epaisseur TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_epaisseur TO lazaret;
+GRANT ALL ON TABLE controle_eg_epaisseur TO superlazaret;
 
 
 --
@@ -8964,10 +9017,8 @@ GRANT SELECT ON TABLE controle_eg_epaisseur TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_extremite FROM postgres;
 GRANT ALL ON TABLE controle_eg_extremite TO postgres;
-GRANT SELECT ON TABLE controle_eg_extremite TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_extremite TO superamata;
-GRANT SELECT ON TABLE controle_eg_extremite TO amata;
-GRANT SELECT ON TABLE controle_eg_extremite TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_extremite TO lazaret;
+GRANT ALL ON TABLE controle_eg_extremite TO superlazaret;
 
 
 --
@@ -8977,10 +9028,8 @@ GRANT SELECT ON TABLE controle_eg_extremite TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_longueur_generale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_longueur_generale FROM postgres;
 GRANT ALL ON TABLE controle_eg_longueur_generale TO postgres;
-GRANT SELECT ON TABLE controle_eg_longueur_generale TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_longueur_generale TO superamata;
-GRANT SELECT ON TABLE controle_eg_longueur_generale TO amata;
-GRANT SELECT ON TABLE controle_eg_longueur_generale TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_longueur_generale TO lazaret;
+GRANT ALL ON TABLE controle_eg_longueur_generale TO superlazaret;
 
 
 --
@@ -8990,10 +9039,8 @@ GRANT SELECT ON TABLE controle_eg_longueur_generale TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_proeminence FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_proeminence FROM postgres;
 GRANT ALL ON TABLE controle_eg_proeminence TO postgres;
-GRANT SELECT ON TABLE controle_eg_proeminence TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_proeminence TO superamata;
-GRANT SELECT ON TABLE controle_eg_proeminence TO amata;
-GRANT SELECT ON TABLE controle_eg_proeminence TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_proeminence TO lazaret;
+GRANT ALL ON TABLE controle_eg_proeminence TO superlazaret;
 
 
 --
@@ -9003,10 +9050,8 @@ GRANT SELECT ON TABLE controle_eg_proeminence TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_profil FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_profil FROM postgres;
 GRANT ALL ON TABLE controle_eg_profil TO postgres;
-GRANT SELECT ON TABLE controle_eg_profil TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_profil TO superamata;
-GRANT SELECT ON TABLE controle_eg_profil TO amata;
-GRANT SELECT ON TABLE controle_eg_profil TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_profil TO lazaret;
+GRANT ALL ON TABLE controle_eg_profil TO superlazaret;
 
 
 --
@@ -9016,10 +9061,8 @@ GRANT SELECT ON TABLE controle_eg_profil TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_eg_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_eg_profondeur TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_profondeur TO superamata;
-GRANT SELECT ON TABLE controle_eg_profondeur TO amata;
-GRANT SELECT ON TABLE controle_eg_profondeur TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_profondeur TO lazaret;
+GRANT ALL ON TABLE controle_eg_profondeur TO superlazaret;
 
 
 --
@@ -9029,10 +9072,8 @@ GRANT SELECT ON TABLE controle_eg_profondeur TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_sens FROM postgres;
 GRANT ALL ON TABLE controle_eg_sens TO postgres;
-GRANT SELECT ON TABLE controle_eg_sens TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_sens TO superamata;
-GRANT SELECT ON TABLE controle_eg_sens TO amata;
-GRANT SELECT ON TABLE controle_eg_sens TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_sens TO lazaret;
+GRANT ALL ON TABLE controle_eg_sens TO superlazaret;
 
 
 --
@@ -9042,10 +9083,8 @@ GRANT SELECT ON TABLE controle_eg_sens TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_situation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_situation FROM postgres;
 GRANT ALL ON TABLE controle_eg_situation TO postgres;
-GRANT SELECT ON TABLE controle_eg_situation TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_situation TO superamata;
-GRANT SELECT ON TABLE controle_eg_situation TO amata;
-GRANT SELECT ON TABLE controle_eg_situation TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_situation TO lazaret;
+GRANT ALL ON TABLE controle_eg_situation TO superlazaret;
 
 
 --
@@ -9055,10 +9094,8 @@ GRANT SELECT ON TABLE controle_eg_situation TO visiteuramata;
 REVOKE ALL ON TABLE controle_eg_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_support FROM postgres;
 GRANT ALL ON TABLE controle_eg_support TO postgres;
-GRANT SELECT ON TABLE controle_eg_support TO PUBLIC;
-GRANT ALL ON TABLE controle_eg_support TO superamata;
-GRANT SELECT ON TABLE controle_eg_support TO amata;
-GRANT SELECT ON TABLE controle_eg_support TO visiteuramata;
+GRANT SELECT ON TABLE controle_eg_support TO lazaret;
+GRANT ALL ON TABLE controle_eg_support TO superlazaret;
 
 
 --
@@ -9068,10 +9105,8 @@ GRANT SELECT ON TABLE controle_eg_support TO visiteuramata;
 REVOKE ALL ON TABLE controle_en_direction FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_direction FROM postgres;
 GRANT ALL ON TABLE controle_en_direction TO postgres;
-GRANT SELECT ON TABLE controle_en_direction TO PUBLIC;
-GRANT ALL ON TABLE controle_en_direction TO superamata;
-GRANT SELECT ON TABLE controle_en_direction TO amata;
-GRANT SELECT ON TABLE controle_en_direction TO visiteuramata;
+GRANT SELECT ON TABLE controle_en_direction TO lazaret;
+GRANT ALL ON TABLE controle_en_direction TO superlazaret;
 
 
 --
@@ -9081,10 +9116,8 @@ GRANT SELECT ON TABLE controle_en_direction TO visiteuramata;
 REVOKE ALL ON TABLE controle_en_dptimpact FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_dptimpact FROM postgres;
 GRANT ALL ON TABLE controle_en_dptimpact TO postgres;
-GRANT SELECT ON TABLE controle_en_dptimpact TO PUBLIC;
-GRANT ALL ON TABLE controle_en_dptimpact TO superamata;
-GRANT SELECT ON TABLE controle_en_dptimpact TO amata;
-GRANT SELECT ON TABLE controle_en_dptimpact TO visiteuramata;
+GRANT SELECT ON TABLE controle_en_dptimpact TO lazaret;
+GRANT ALL ON TABLE controle_en_dptimpact TO superlazaret;
 
 
 --
@@ -9094,10 +9127,8 @@ GRANT SELECT ON TABLE controle_en_dptimpact TO visiteuramata;
 REVOKE ALL ON TABLE controle_en_frappe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_frappe FROM postgres;
 GRANT ALL ON TABLE controle_en_frappe TO postgres;
-GRANT SELECT ON TABLE controle_en_frappe TO PUBLIC;
-GRANT ALL ON TABLE controle_en_frappe TO superamata;
-GRANT SELECT ON TABLE controle_en_frappe TO amata;
-GRANT SELECT ON TABLE controle_en_frappe TO visiteuramata;
+GRANT SELECT ON TABLE controle_en_frappe TO lazaret;
+GRANT ALL ON TABLE controle_en_frappe TO superlazaret;
 
 
 --
@@ -9107,10 +9138,8 @@ GRANT SELECT ON TABLE controle_en_frappe TO visiteuramata;
 REVOKE ALL ON TABLE controle_en_inclinaison FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_inclinaison FROM postgres;
 GRANT ALL ON TABLE controle_en_inclinaison TO postgres;
-GRANT SELECT ON TABLE controle_en_inclinaison TO PUBLIC;
-GRANT ALL ON TABLE controle_en_inclinaison TO superamata;
-GRANT SELECT ON TABLE controle_en_inclinaison TO amata;
-GRANT SELECT ON TABLE controle_en_inclinaison TO visiteuramata;
+GRANT SELECT ON TABLE controle_en_inclinaison TO lazaret;
+GRANT ALL ON TABLE controle_en_inclinaison TO superlazaret;
 
 
 --
@@ -9120,10 +9149,8 @@ GRANT SELECT ON TABLE controle_en_inclinaison TO visiteuramata;
 REVOKE ALL ON TABLE controle_en_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_en_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_en_obliquite TO PUBLIC;
-GRANT ALL ON TABLE controle_en_obliquite TO superamata;
-GRANT SELECT ON TABLE controle_en_obliquite TO amata;
-GRANT SELECT ON TABLE controle_en_obliquite TO visiteuramata;
+GRANT SELECT ON TABLE controle_en_obliquite TO lazaret;
+GRANT ALL ON TABLE controle_en_obliquite TO superlazaret;
 
 
 --
@@ -9133,10 +9160,8 @@ GRANT SELECT ON TABLE controle_en_obliquite TO visiteuramata;
 REVOKE ALL ON TABLE controle_en_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_en_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_en_profondeur TO PUBLIC;
-GRANT ALL ON TABLE controle_en_profondeur TO superamata;
-GRANT SELECT ON TABLE controle_en_profondeur TO amata;
-GRANT SELECT ON TABLE controle_en_profondeur TO visiteuramata;
+GRANT SELECT ON TABLE controle_en_profondeur TO lazaret;
+GRANT ALL ON TABLE controle_en_profondeur TO superlazaret;
 
 
 --
@@ -9146,10 +9171,8 @@ GRANT SELECT ON TABLE controle_en_profondeur TO visiteuramata;
 REVOKE ALL ON TABLE controle_ensemble FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ensemble FROM postgres;
 GRANT ALL ON TABLE controle_ensemble TO postgres;
-GRANT SELECT ON TABLE controle_ensemble TO PUBLIC;
-GRANT ALL ON TABLE controle_ensemble TO superamata;
-GRANT SELECT ON TABLE controle_ensemble TO amata;
-GRANT SELECT ON TABLE controle_ensemble TO visiteuramata;
+GRANT SELECT ON TABLE controle_ensemble TO lazaret;
+GRANT ALL ON TABLE controle_ensemble TO superlazaret;
 
 
 --
@@ -9159,10 +9182,8 @@ GRANT SELECT ON TABLE controle_ensemble TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_affespece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_affespece FROM postgres;
 GRANT ALL ON TABLE controle_f_affespece TO postgres;
-GRANT SELECT ON TABLE controle_f_affespece TO PUBLIC;
-GRANT ALL ON TABLE controle_f_affespece TO superamata;
-GRANT SELECT ON TABLE controle_f_affespece TO amata;
-GRANT SELECT ON TABLE controle_f_affespece TO visiteuramata;
+GRANT ALL ON TABLE controle_f_affespece TO lazaret;
+GRANT ALL ON TABLE controle_f_affespece TO superlazaret;
 
 
 --
@@ -9172,10 +9193,8 @@ GRANT SELECT ON TABLE controle_f_affespece TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_affgenre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_affgenre FROM postgres;
 GRANT ALL ON TABLE controle_f_affgenre TO postgres;
-GRANT SELECT ON TABLE controle_f_affgenre TO PUBLIC;
-GRANT ALL ON TABLE controle_f_affgenre TO superamata;
-GRANT SELECT ON TABLE controle_f_affgenre TO amata;
-GRANT SELECT ON TABLE controle_f_affgenre TO visiteuramata;
+GRANT ALL ON TABLE controle_f_affgenre TO lazaret;
+GRANT ALL ON TABLE controle_f_affgenre TO superlazaret;
 
 
 --
@@ -9185,10 +9204,8 @@ GRANT SELECT ON TABLE controle_f_affgenre TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_agecl FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agecl FROM postgres;
 GRANT ALL ON TABLE controle_f_agecl TO postgres;
-GRANT SELECT ON TABLE controle_f_agecl TO PUBLIC;
-GRANT ALL ON TABLE controle_f_agecl TO superamata;
-GRANT SELECT ON TABLE controle_f_agecl TO amata;
-GRANT SELECT ON TABLE controle_f_agecl TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_agecl TO lazaret;
+GRANT ALL ON TABLE controle_f_agecl TO superlazaret;
 
 
 --
@@ -9198,10 +9215,8 @@ GRANT SELECT ON TABLE controle_f_agecl TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_agent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agent FROM postgres;
 GRANT ALL ON TABLE controle_f_agent TO postgres;
-GRANT SELECT ON TABLE controle_f_agent TO PUBLIC;
-GRANT ALL ON TABLE controle_f_agent TO superamata;
-GRANT SELECT ON TABLE controle_f_agent TO amata;
-GRANT SELECT ON TABLE controle_f_agent TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_agent TO lazaret;
+GRANT ALL ON TABLE controle_f_agent TO superlazaret;
 
 
 --
@@ -9211,23 +9226,8 @@ GRANT SELECT ON TABLE controle_f_agent TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_agest FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agest FROM postgres;
 GRANT ALL ON TABLE controle_f_agest TO postgres;
-GRANT SELECT ON TABLE controle_f_agest TO PUBLIC;
-GRANT ALL ON TABLE controle_f_agest TO superamata;
-GRANT SELECT ON TABLE controle_f_agest TO amata;
-GRANT SELECT ON TABLE controle_f_agest TO visiteuramata;
-
-
---
--- Name: controle_f_ancien_oss; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE controle_f_ancien_oss FROM PUBLIC;
-REVOKE ALL ON TABLE controle_f_ancien_oss FROM postgres;
-GRANT ALL ON TABLE controle_f_ancien_oss TO postgres;
-GRANT SELECT ON TABLE controle_f_ancien_oss TO PUBLIC;
-GRANT ALL ON TABLE controle_f_ancien_oss TO superamata;
-GRANT SELECT ON TABLE controle_f_ancien_oss TO amata;
-GRANT SELECT ON TABLE controle_f_ancien_oss TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_agest TO lazaret;
+GRANT ALL ON TABLE controle_f_agest TO superlazaret;
 
 
 --
@@ -9237,10 +9237,8 @@ GRANT SELECT ON TABLE controle_f_ancien_oss TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_association FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_association FROM postgres;
 GRANT ALL ON TABLE controle_f_association TO postgres;
-GRANT SELECT ON TABLE controle_f_association TO PUBLIC;
-GRANT ALL ON TABLE controle_f_association TO superamata;
-GRANT SELECT ON TABLE controle_f_association TO amata;
-GRANT SELECT ON TABLE controle_f_association TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_association TO lazaret;
+GRANT ALL ON TABLE controle_f_association TO superlazaret;
 
 
 --
@@ -9250,10 +9248,8 @@ GRANT SELECT ON TABLE controle_f_association TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_calcouleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_calcouleur FROM postgres;
 GRANT ALL ON TABLE controle_f_calcouleur TO postgres;
-GRANT SELECT ON TABLE controle_f_calcouleur TO PUBLIC;
-GRANT ALL ON TABLE controle_f_calcouleur TO superamata;
-GRANT SELECT ON TABLE controle_f_calcouleur TO amata;
-GRANT SELECT ON TABLE controle_f_calcouleur TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_calcouleur TO lazaret;
+GRANT ALL ON TABLE controle_f_calcouleur TO superlazaret;
 
 
 --
@@ -9263,10 +9259,8 @@ GRANT SELECT ON TABLE controle_f_calcouleur TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_caltype FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_caltype FROM postgres;
 GRANT ALL ON TABLE controle_f_caltype TO postgres;
-GRANT SELECT ON TABLE controle_f_caltype TO PUBLIC;
-GRANT ALL ON TABLE controle_f_caltype TO superamata;
-GRANT SELECT ON TABLE controle_f_caltype TO amata;
-GRANT SELECT ON TABLE controle_f_caltype TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_caltype TO lazaret;
+GRANT ALL ON TABLE controle_f_caltype TO superlazaret;
 
 
 --
@@ -9276,10 +9270,8 @@ GRANT SELECT ON TABLE controle_f_caltype TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_classe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_classe FROM postgres;
 GRANT ALL ON TABLE controle_f_classe TO postgres;
-GRANT SELECT ON TABLE controle_f_classe TO PUBLIC;
-GRANT ALL ON TABLE controle_f_classe TO superamata;
-GRANT SELECT ON TABLE controle_f_classe TO amata;
-GRANT SELECT ON TABLE controle_f_classe TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_classe TO lazaret;
+GRANT ALL ON TABLE controle_f_classe TO superlazaret;
 
 
 --
@@ -9289,10 +9281,19 @@ GRANT SELECT ON TABLE controle_f_classe TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_complement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_complement FROM postgres;
 GRANT ALL ON TABLE controle_f_complement TO postgres;
-GRANT SELECT ON TABLE controle_f_complement TO PUBLIC;
-GRANT ALL ON TABLE controle_f_complement TO superamata;
-GRANT SELECT ON TABLE controle_f_complement TO amata;
-GRANT SELECT ON TABLE controle_f_complement TO visiteuramata;
+GRANT ALL ON TABLE controle_f_complement TO lazaret;
+GRANT ALL ON TABLE controle_f_complement TO superlazaret;
+
+
+--
+-- Name: controle_f_composite; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_f_composite FROM PUBLIC;
+REVOKE ALL ON TABLE controle_f_composite FROM postgres;
+GRANT ALL ON TABLE controle_f_composite TO postgres;
+GRANT SELECT ON TABLE controle_f_composite TO lazaret;
+GRANT ALL ON TABLE controle_f_composite TO superlazaret;
 
 
 --
@@ -9302,10 +9303,8 @@ GRANT SELECT ON TABLE controle_f_complement TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_concretion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_concretion FROM postgres;
 GRANT ALL ON TABLE controle_f_concretion TO postgres;
-GRANT SELECT ON TABLE controle_f_concretion TO PUBLIC;
-GRANT ALL ON TABLE controle_f_concretion TO superamata;
-GRANT SELECT ON TABLE controle_f_concretion TO amata;
-GRANT SELECT ON TABLE controle_f_concretion TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_concretion TO lazaret;
+GRANT ALL ON TABLE controle_f_concretion TO superlazaret;
 
 
 --
@@ -9315,10 +9314,8 @@ GRANT SELECT ON TABLE controle_f_concretion TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_conservation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_conservation FROM postgres;
 GRANT ALL ON TABLE controle_f_conservation TO postgres;
-GRANT SELECT ON TABLE controle_f_conservation TO PUBLIC;
-GRANT ALL ON TABLE controle_f_conservation TO superamata;
-GRANT SELECT ON TABLE controle_f_conservation TO amata;
-GRANT SELECT ON TABLE controle_f_conservation TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_conservation TO lazaret;
+GRANT ALL ON TABLE controle_f_conservation TO superlazaret;
 
 
 --
@@ -9328,10 +9325,8 @@ GRANT SELECT ON TABLE controle_f_conservation TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_coprolithe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_coprolithe FROM postgres;
 GRANT ALL ON TABLE controle_f_coprolithe TO postgres;
-GRANT SELECT ON TABLE controle_f_coprolithe TO PUBLIC;
-GRANT ALL ON TABLE controle_f_coprolithe TO superamata;
-GRANT SELECT ON TABLE controle_f_coprolithe TO amata;
-GRANT SELECT ON TABLE controle_f_coprolithe TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_coprolithe TO lazaret;
+GRANT ALL ON TABLE controle_f_coprolithe TO superlazaret;
 
 
 --
@@ -9341,10 +9336,8 @@ GRANT SELECT ON TABLE controle_f_coprolithe TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_coraspect FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_coraspect FROM postgres;
 GRANT ALL ON TABLE controle_f_coraspect TO postgres;
-GRANT SELECT ON TABLE controle_f_coraspect TO PUBLIC;
-GRANT ALL ON TABLE controle_f_coraspect TO superamata;
-GRANT SELECT ON TABLE controle_f_coraspect TO amata;
-GRANT SELECT ON TABLE controle_f_coraspect TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_coraspect TO lazaret;
+GRANT ALL ON TABLE controle_f_coraspect TO superlazaret;
 
 
 --
@@ -9354,10 +9347,8 @@ GRANT SELECT ON TABLE controle_f_coraspect TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_corfissure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_corfissure FROM postgres;
 GRANT ALL ON TABLE controle_f_corfissure TO postgres;
-GRANT SELECT ON TABLE controle_f_corfissure TO PUBLIC;
-GRANT ALL ON TABLE controle_f_corfissure TO superamata;
-GRANT SELECT ON TABLE controle_f_corfissure TO amata;
-GRANT SELECT ON TABLE controle_f_corfissure TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_corfissure TO lazaret;
+GRANT ALL ON TABLE controle_f_corfissure TO superlazaret;
 
 
 --
@@ -9367,10 +9358,8 @@ GRANT SELECT ON TABLE controle_f_corfissure TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_couleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_couleur FROM postgres;
 GRANT ALL ON TABLE controle_f_couleur TO postgres;
-GRANT SELECT ON TABLE controle_f_couleur TO PUBLIC;
-GRANT ALL ON TABLE controle_f_couleur TO superamata;
-GRANT SELECT ON TABLE controle_f_couleur TO amata;
-GRANT SELECT ON TABLE controle_f_couleur TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_couleur TO lazaret;
+GRANT ALL ON TABLE controle_f_couleur TO superlazaret;
 
 
 --
@@ -9380,10 +9369,8 @@ GRANT SELECT ON TABLE controle_f_couleur TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_datation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_datation FROM postgres;
 GRANT ALL ON TABLE controle_f_datation TO postgres;
-GRANT SELECT ON TABLE controle_f_datation TO PUBLIC;
-GRANT ALL ON TABLE controle_f_datation TO superamata;
-GRANT SELECT ON TABLE controle_f_datation TO amata;
-GRANT SELECT ON TABLE controle_f_datation TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_datation TO lazaret;
+GRANT ALL ON TABLE controle_f_datation TO superlazaret;
 
 
 --
@@ -9393,10 +9380,8 @@ GRANT SELECT ON TABLE controle_f_datation TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_description FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_description FROM postgres;
 GRANT ALL ON TABLE controle_f_description TO postgres;
-GRANT SELECT ON TABLE controle_f_description TO PUBLIC;
-GRANT ALL ON TABLE controle_f_description TO superamata;
-GRANT SELECT ON TABLE controle_f_description TO amata;
-GRANT SELECT ON TABLE controle_f_description TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_description TO lazaret;
+GRANT ALL ON TABLE controle_f_description TO superlazaret;
 
 
 --
@@ -9406,10 +9391,8 @@ GRANT SELECT ON TABLE controle_f_description TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_dessin FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_dessin FROM postgres;
 GRANT ALL ON TABLE controle_f_dessin TO postgres;
-GRANT SELECT ON TABLE controle_f_dessin TO PUBLIC;
-GRANT ALL ON TABLE controle_f_dessin TO superamata;
-GRANT SELECT ON TABLE controle_f_dessin TO amata;
-GRANT SELECT ON TABLE controle_f_dessin TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_dessin TO lazaret;
+GRANT ALL ON TABLE controle_f_dessin TO superlazaret;
 
 
 --
@@ -9419,10 +9402,8 @@ GRANT SELECT ON TABLE controle_f_dessin TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_eclat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_eclat FROM postgres;
 GRANT ALL ON TABLE controle_f_eclat TO postgres;
-GRANT SELECT ON TABLE controle_f_eclat TO PUBLIC;
-GRANT ALL ON TABLE controle_f_eclat TO superamata;
-GRANT SELECT ON TABLE controle_f_eclat TO amata;
-GRANT SELECT ON TABLE controle_f_eclat TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_eclat TO lazaret;
+GRANT ALL ON TABLE controle_f_eclat TO superlazaret;
 
 
 --
@@ -9432,10 +9413,8 @@ GRANT SELECT ON TABLE controle_f_eclat TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_espece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_espece FROM postgres;
 GRANT ALL ON TABLE controle_f_espece TO postgres;
-GRANT SELECT ON TABLE controle_f_espece TO PUBLIC;
-GRANT ALL ON TABLE controle_f_espece TO superamata;
-GRANT SELECT ON TABLE controle_f_espece TO amata;
-GRANT SELECT ON TABLE controle_f_espece TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_espece TO lazaret;
+GRANT ALL ON TABLE controle_f_espece TO superlazaret;
 
 
 --
@@ -9445,10 +9424,8 @@ GRANT SELECT ON TABLE controle_f_espece TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_famille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_famille FROM postgres;
 GRANT ALL ON TABLE controle_f_famille TO postgres;
-GRANT SELECT ON TABLE controle_f_famille TO PUBLIC;
-GRANT ALL ON TABLE controle_f_famille TO superamata;
-GRANT SELECT ON TABLE controle_f_famille TO amata;
-GRANT SELECT ON TABLE controle_f_famille TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_famille TO lazaret;
+GRANT ALL ON TABLE controle_f_famille TO superlazaret;
 
 
 --
@@ -9458,10 +9435,8 @@ GRANT SELECT ON TABLE controle_f_famille TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_fossilisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fossilisation FROM postgres;
 GRANT ALL ON TABLE controle_f_fossilisation TO postgres;
-GRANT SELECT ON TABLE controle_f_fossilisation TO PUBLIC;
-GRANT ALL ON TABLE controle_f_fossilisation TO superamata;
-GRANT SELECT ON TABLE controle_f_fossilisation TO amata;
-GRANT SELECT ON TABLE controle_f_fossilisation TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_fossilisation TO lazaret;
+GRANT ALL ON TABLE controle_f_fossilisation TO superlazaret;
 
 
 --
@@ -9471,10 +9446,8 @@ GRANT SELECT ON TABLE controle_f_fossilisation TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_fragde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fragde FROM postgres;
 GRANT ALL ON TABLE controle_f_fragde TO postgres;
-GRANT SELECT ON TABLE controle_f_fragde TO PUBLIC;
-GRANT ALL ON TABLE controle_f_fragde TO superamata;
-GRANT SELECT ON TABLE controle_f_fragde TO amata;
-GRANT SELECT ON TABLE controle_f_fragde TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_fragde TO lazaret;
+GRANT ALL ON TABLE controle_f_fragde TO superlazaret;
 
 
 --
@@ -9484,10 +9457,8 @@ GRANT SELECT ON TABLE controle_f_fragde TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_fragge FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fragge FROM postgres;
 GRANT ALL ON TABLE controle_f_fragge TO postgres;
-GRANT SELECT ON TABLE controle_f_fragge TO PUBLIC;
-GRANT ALL ON TABLE controle_f_fragge TO superamata;
-GRANT SELECT ON TABLE controle_f_fragge TO amata;
-GRANT SELECT ON TABLE controle_f_fragge TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_fragge TO lazaret;
+GRANT ALL ON TABLE controle_f_fragge TO superlazaret;
 
 
 --
@@ -9497,10 +9468,8 @@ GRANT SELECT ON TABLE controle_f_fragge TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_genre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_genre FROM postgres;
 GRANT ALL ON TABLE controle_f_genre TO postgres;
-GRANT SELECT ON TABLE controle_f_genre TO PUBLIC;
-GRANT ALL ON TABLE controle_f_genre TO superamata;
-GRANT SELECT ON TABLE controle_f_genre TO amata;
-GRANT SELECT ON TABLE controle_f_genre TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_genre TO lazaret;
+GRANT ALL ON TABLE controle_f_genre TO superlazaret;
 
 
 --
@@ -9510,10 +9479,8 @@ GRANT SELECT ON TABLE controle_f_genre TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_icirconference FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_icirconference FROM postgres;
 GRANT ALL ON TABLE controle_f_icirconference TO postgres;
-GRANT SELECT ON TABLE controle_f_icirconference TO PUBLIC;
-GRANT ALL ON TABLE controle_f_icirconference TO superamata;
-GRANT SELECT ON TABLE controle_f_icirconference TO amata;
-GRANT SELECT ON TABLE controle_f_icirconference TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_icirconference TO lazaret;
+GRANT ALL ON TABLE controle_f_icirconference TO superlazaret;
 
 
 --
@@ -9523,10 +9490,8 @@ GRANT SELECT ON TABLE controle_f_icirconference TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_ilongueur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ilongueur FROM postgres;
 GRANT ALL ON TABLE controle_f_ilongueur TO postgres;
-GRANT SELECT ON TABLE controle_f_ilongueur TO PUBLIC;
-GRANT ALL ON TABLE controle_f_ilongueur TO superamata;
-GRANT SELECT ON TABLE controle_f_ilongueur TO amata;
-GRANT SELECT ON TABLE controle_f_ilongueur TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_ilongueur TO lazaret;
+GRANT ALL ON TABLE controle_f_ilongueur TO superlazaret;
 
 
 --
@@ -9536,10 +9501,19 @@ GRANT SELECT ON TABLE controle_f_ilongueur TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_lateralite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_lateralite FROM postgres;
 GRANT ALL ON TABLE controle_f_lateralite TO postgres;
-GRANT SELECT ON TABLE controle_f_lateralite TO PUBLIC;
-GRANT ALL ON TABLE controle_f_lateralite TO superamata;
-GRANT SELECT ON TABLE controle_f_lateralite TO amata;
-GRANT SELECT ON TABLE controle_f_lateralite TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_lateralite TO lazaret;
+GRANT ALL ON TABLE controle_f_lateralite TO superlazaret;
+
+
+--
+-- Name: controle_f_mode; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_f_mode FROM PUBLIC;
+REVOKE ALL ON TABLE controle_f_mode FROM postgres;
+GRANT ALL ON TABLE controle_f_mode TO postgres;
+GRANT SELECT ON TABLE controle_f_mode TO lazaret;
+GRANT ALL ON TABLE controle_f_mode TO superlazaret;
 
 
 --
@@ -9549,10 +9523,8 @@ GRANT SELECT ON TABLE controle_f_lateralite TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_moulage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_moulage FROM postgres;
 GRANT ALL ON TABLE controle_f_moulage TO postgres;
-GRANT SELECT ON TABLE controle_f_moulage TO PUBLIC;
-GRANT ALL ON TABLE controle_f_moulage TO superamata;
-GRANT SELECT ON TABLE controle_f_moulage TO amata;
-GRANT SELECT ON TABLE controle_f_moulage TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_moulage TO lazaret;
+GRANT ALL ON TABLE controle_f_moulage TO superlazaret;
 
 
 --
@@ -9562,10 +9534,8 @@ GRANT SELECT ON TABLE controle_f_moulage TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ordre FROM postgres;
 GRANT ALL ON TABLE controle_f_ordre TO postgres;
-GRANT SELECT ON TABLE controle_f_ordre TO PUBLIC;
-GRANT ALL ON TABLE controle_f_ordre TO superamata;
-GRANT SELECT ON TABLE controle_f_ordre TO amata;
-GRANT SELECT ON TABLE controle_f_ordre TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_ordre TO lazaret;
+GRANT ALL ON TABLE controle_f_ordre TO superlazaret;
 
 
 --
@@ -9575,10 +9545,8 @@ GRANT SELECT ON TABLE controle_f_ordre TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_oxyde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_oxyde FROM postgres;
 GRANT ALL ON TABLE controle_f_oxyde TO postgres;
-GRANT SELECT ON TABLE controle_f_oxyde TO PUBLIC;
-GRANT ALL ON TABLE controle_f_oxyde TO superamata;
-GRANT SELECT ON TABLE controle_f_oxyde TO amata;
-GRANT SELECT ON TABLE controle_f_oxyde TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_oxyde TO lazaret;
+GRANT ALL ON TABLE controle_f_oxyde TO superlazaret;
 
 
 --
@@ -9588,10 +9556,8 @@ GRANT SELECT ON TABLE controle_f_oxyde TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_pathologie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_pathologie FROM postgres;
 GRANT ALL ON TABLE controle_f_pathologie TO postgres;
-GRANT SELECT ON TABLE controle_f_pathologie TO PUBLIC;
-GRANT ALL ON TABLE controle_f_pathologie TO superamata;
-GRANT SELECT ON TABLE controle_f_pathologie TO amata;
-GRANT SELECT ON TABLE controle_f_pathologie TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_pathologie TO lazaret;
+GRANT ALL ON TABLE controle_f_pathologie TO superlazaret;
 
 
 --
@@ -9601,10 +9567,19 @@ GRANT SELECT ON TABLE controle_f_pathologie TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_pelote FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_pelote FROM postgres;
 GRANT ALL ON TABLE controle_f_pelote TO postgres;
-GRANT SELECT ON TABLE controle_f_pelote TO PUBLIC;
-GRANT ALL ON TABLE controle_f_pelote TO superamata;
-GRANT SELECT ON TABLE controle_f_pelote TO amata;
-GRANT SELECT ON TABLE controle_f_pelote TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_pelote TO lazaret;
+GRANT ALL ON TABLE controle_f_pelote TO superlazaret;
+
+
+--
+-- Name: controle_f_percussion; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_f_percussion FROM PUBLIC;
+REVOKE ALL ON TABLE controle_f_percussion FROM postgres;
+GRANT ALL ON TABLE controle_f_percussion TO postgres;
+GRANT SELECT ON TABLE controle_f_percussion TO lazaret;
+GRANT ALL ON TABLE controle_f_percussion TO superlazaret;
 
 
 --
@@ -9614,10 +9589,8 @@ GRANT SELECT ON TABLE controle_f_pelote TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_photo FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_photo FROM postgres;
 GRANT ALL ON TABLE controle_f_photo TO postgres;
-GRANT SELECT ON TABLE controle_f_photo TO PUBLIC;
-GRANT ALL ON TABLE controle_f_photo TO superamata;
-GRANT SELECT ON TABLE controle_f_photo TO amata;
-GRANT SELECT ON TABLE controle_f_photo TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_photo TO lazaret;
+GRANT ALL ON TABLE controle_f_photo TO superlazaret;
 
 
 --
@@ -9627,10 +9600,8 @@ GRANT SELECT ON TABLE controle_f_photo TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_reference FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_reference FROM postgres;
 GRANT ALL ON TABLE controle_f_reference TO postgres;
-GRANT SELECT ON TABLE controle_f_reference TO PUBLIC;
-GRANT ALL ON TABLE controle_f_reference TO superamata;
-GRANT SELECT ON TABLE controle_f_reference TO amata;
-GRANT SELECT ON TABLE controle_f_reference TO visiteuramata;
+GRANT ALL ON TABLE controle_f_reference TO lazaret;
+GRANT ALL ON TABLE controle_f_reference TO superlazaret;
 
 
 --
@@ -9640,10 +9611,8 @@ GRANT SELECT ON TABLE controle_f_reference TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_responsable FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_responsable FROM postgres;
 GRANT ALL ON TABLE controle_f_responsable TO postgres;
-GRANT SELECT ON TABLE controle_f_responsable TO PUBLIC;
-GRANT ALL ON TABLE controle_f_responsable TO superamata;
-GRANT SELECT ON TABLE controle_f_responsable TO amata;
-GRANT SELECT ON TABLE controle_f_responsable TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_responsable TO lazaret;
+GRANT ALL ON TABLE controle_f_responsable TO superlazaret;
 
 
 --
@@ -9653,10 +9622,8 @@ GRANT SELECT ON TABLE controle_f_responsable TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_restauration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_restauration FROM postgres;
 GRANT ALL ON TABLE controle_f_restauration TO postgres;
-GRANT SELECT ON TABLE controle_f_restauration TO PUBLIC;
-GRANT ALL ON TABLE controle_f_restauration TO superamata;
-GRANT SELECT ON TABLE controle_f_restauration TO amata;
-GRANT SELECT ON TABLE controle_f_restauration TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_restauration TO lazaret;
+GRANT ALL ON TABLE controle_f_restauration TO superlazaret;
 
 
 --
@@ -9666,10 +9633,8 @@ GRANT SELECT ON TABLE controle_f_restauration TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_saisie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_saisie FROM postgres;
 GRANT ALL ON TABLE controle_f_saisie TO postgres;
-GRANT SELECT ON TABLE controle_f_saisie TO PUBLIC;
-GRANT ALL ON TABLE controle_f_saisie TO superamata;
-GRANT SELECT ON TABLE controle_f_saisie TO amata;
-GRANT SELECT ON TABLE controle_f_saisie TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_saisie TO lazaret;
+GRANT ALL ON TABLE controle_f_saisie TO superlazaret;
 
 
 --
@@ -9679,10 +9644,8 @@ GRANT SELECT ON TABLE controle_f_saisie TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_sauvefrag FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_sauvefrag FROM postgres;
 GRANT ALL ON TABLE controle_f_sauvefrag TO postgres;
-GRANT SELECT ON TABLE controle_f_sauvefrag TO PUBLIC;
-GRANT ALL ON TABLE controle_f_sauvefrag TO superamata;
-GRANT SELECT ON TABLE controle_f_sauvefrag TO amata;
-GRANT SELECT ON TABLE controle_f_sauvefrag TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_sauvefrag TO lazaret;
+GRANT ALL ON TABLE controle_f_sauvefrag TO superlazaret;
 
 
 --
@@ -9692,10 +9655,8 @@ GRANT SELECT ON TABLE controle_f_sauvefrag TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_sexe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_sexe FROM postgres;
 GRANT ALL ON TABLE controle_f_sexe TO postgres;
-GRANT SELECT ON TABLE controle_f_sexe TO PUBLIC;
-GRANT ALL ON TABLE controle_f_sexe TO superamata;
-GRANT SELECT ON TABLE controle_f_sexe TO amata;
-GRANT SELECT ON TABLE controle_f_sexe TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_sexe TO lazaret;
+GRANT ALL ON TABLE controle_f_sexe TO superlazaret;
 
 
 --
@@ -9705,10 +9666,8 @@ GRANT SELECT ON TABLE controle_f_sexe TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_ssespece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ssespece FROM postgres;
 GRANT ALL ON TABLE controle_f_ssespece TO postgres;
-GRANT SELECT ON TABLE controle_f_ssespece TO PUBLIC;
-GRANT ALL ON TABLE controle_f_ssespece TO superamata;
-GRANT SELECT ON TABLE controle_f_ssespece TO amata;
-GRANT SELECT ON TABLE controle_f_ssespece TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_ssespece TO lazaret;
+GRANT ALL ON TABLE controle_f_ssespece TO superlazaret;
 
 
 --
@@ -9718,10 +9677,8 @@ GRANT SELECT ON TABLE controle_f_ssespece TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_ssfamille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ssfamille FROM postgres;
 GRANT ALL ON TABLE controle_f_ssfamille TO postgres;
-GRANT SELECT ON TABLE controle_f_ssfamille TO PUBLIC;
-GRANT ALL ON TABLE controle_f_ssfamille TO superamata;
-GRANT SELECT ON TABLE controle_f_ssfamille TO amata;
-GRANT SELECT ON TABLE controle_f_ssfamille TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_ssfamille TO lazaret;
+GRANT ALL ON TABLE controle_f_ssfamille TO superlazaret;
 
 
 --
@@ -9731,10 +9688,8 @@ GRANT SELECT ON TABLE controle_f_ssfamille TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_stdent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_stdent FROM postgres;
 GRANT ALL ON TABLE controle_f_stdent TO postgres;
-GRANT SELECT ON TABLE controle_f_stdent TO PUBLIC;
-GRANT ALL ON TABLE controle_f_stdent TO superamata;
-GRANT SELECT ON TABLE controle_f_stdent TO amata;
-GRANT SELECT ON TABLE controle_f_stdent TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_stdent TO lazaret;
+GRANT ALL ON TABLE controle_f_stdent TO superlazaret;
 
 
 --
@@ -9744,10 +9699,8 @@ GRANT SELECT ON TABLE controle_f_stdent TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_stserie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_stserie FROM postgres;
 GRANT ALL ON TABLE controle_f_stserie TO postgres;
-GRANT SELECT ON TABLE controle_f_stserie TO PUBLIC;
-GRANT ALL ON TABLE controle_f_stserie TO superamata;
-GRANT SELECT ON TABLE controle_f_stserie TO amata;
-GRANT SELECT ON TABLE controle_f_stserie TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_stserie TO lazaret;
+GRANT ALL ON TABLE controle_f_stserie TO superlazaret;
 
 
 --
@@ -9757,10 +9710,8 @@ GRANT SELECT ON TABLE controle_f_stserie TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_taille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_taille FROM postgres;
 GRANT ALL ON TABLE controle_f_taille TO postgres;
-GRANT SELECT ON TABLE controle_f_taille TO PUBLIC;
-GRANT ALL ON TABLE controle_f_taille TO superamata;
-GRANT SELECT ON TABLE controle_f_taille TO amata;
-GRANT SELECT ON TABLE controle_f_taille TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_taille TO lazaret;
+GRANT ALL ON TABLE controle_f_taille TO superlazaret;
 
 
 --
@@ -9770,10 +9721,8 @@ GRANT SELECT ON TABLE controle_f_taille TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_tissu FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_tissu FROM postgres;
 GRANT ALL ON TABLE controle_f_tissu TO postgres;
-GRANT SELECT ON TABLE controle_f_tissu TO PUBLIC;
-GRANT ALL ON TABLE controle_f_tissu TO superamata;
-GRANT SELECT ON TABLE controle_f_tissu TO amata;
-GRANT SELECT ON TABLE controle_f_tissu TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_tissu TO lazaret;
+GRANT ALL ON TABLE controle_f_tissu TO superlazaret;
 
 
 --
@@ -9783,10 +9732,30 @@ GRANT SELECT ON TABLE controle_f_tissu TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_traitement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_traitement FROM postgres;
 GRANT ALL ON TABLE controle_f_traitement TO postgres;
-GRANT SELECT ON TABLE controle_f_traitement TO PUBLIC;
-GRANT ALL ON TABLE controle_f_traitement TO superamata;
-GRANT SELECT ON TABLE controle_f_traitement TO amata;
-GRANT SELECT ON TABLE controle_f_traitement TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_traitement TO lazaret;
+GRANT ALL ON TABLE controle_f_traitement TO superlazaret;
+
+
+--
+-- Name: controle_f_tranchant; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_f_tranchant FROM PUBLIC;
+REVOKE ALL ON TABLE controle_f_tranchant FROM postgres;
+GRANT ALL ON TABLE controle_f_tranchant TO postgres;
+GRANT SELECT ON TABLE controle_f_tranchant TO lazaret;
+GRANT ALL ON TABLE controle_f_tranchant TO superlazaret;
+
+
+--
+-- Name: controle_f_type; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_f_type FROM PUBLIC;
+REVOKE ALL ON TABLE controle_f_type FROM postgres;
+GRANT ALL ON TABLE controle_f_type TO postgres;
+GRANT SELECT ON TABLE controle_f_type TO lazaret;
+GRANT ALL ON TABLE controle_f_type TO superlazaret;
 
 
 --
@@ -9796,10 +9765,8 @@ GRANT SELECT ON TABLE controle_f_traitement TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_typedos FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typedos FROM postgres;
 GRANT ALL ON TABLE controle_f_typedos TO postgres;
-GRANT SELECT ON TABLE controle_f_typedos TO PUBLIC;
-GRANT ALL ON TABLE controle_f_typedos TO superamata;
-GRANT SELECT ON TABLE controle_f_typedos TO amata;
-GRANT SELECT ON TABLE controle_f_typedos TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_typedos TO lazaret;
+GRANT ALL ON TABLE controle_f_typedos TO superlazaret;
 
 
 --
@@ -9809,10 +9776,8 @@ GRANT SELECT ON TABLE controle_f_typedos TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_typos1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos1 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos1 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos1 TO PUBLIC;
-GRANT ALL ON TABLE controle_f_typos1 TO superamata;
-GRANT SELECT ON TABLE controle_f_typos1 TO amata;
-GRANT SELECT ON TABLE controle_f_typos1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_typos1 TO lazaret;
+GRANT ALL ON TABLE controle_f_typos1 TO superlazaret;
 
 
 --
@@ -9822,10 +9787,8 @@ GRANT SELECT ON TABLE controle_f_typos1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_typos2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos2 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos2 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos2 TO PUBLIC;
-GRANT ALL ON TABLE controle_f_typos2 TO superamata;
-GRANT SELECT ON TABLE controle_f_typos2 TO amata;
-GRANT SELECT ON TABLE controle_f_typos2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_typos2 TO lazaret;
+GRANT ALL ON TABLE controle_f_typos2 TO superlazaret;
 
 
 --
@@ -9835,10 +9798,8 @@ GRANT SELECT ON TABLE controle_f_typos2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_typos3 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos3 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos3 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos3 TO PUBLIC;
-GRANT ALL ON TABLE controle_f_typos3 TO superamata;
-GRANT SELECT ON TABLE controle_f_typos3 TO amata;
-GRANT SELECT ON TABLE controle_f_typos3 TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_typos3 TO lazaret;
+GRANT ALL ON TABLE controle_f_typos3 TO superlazaret;
 
 
 --
@@ -9848,10 +9809,8 @@ GRANT SELECT ON TABLE controle_f_typos3 TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_typos4 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos4 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos4 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos4 TO PUBLIC;
-GRANT ALL ON TABLE controle_f_typos4 TO superamata;
-GRANT SELECT ON TABLE controle_f_typos4 TO amata;
-GRANT SELECT ON TABLE controle_f_typos4 TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_typos4 TO lazaret;
+GRANT ALL ON TABLE controle_f_typos4 TO superlazaret;
 
 
 --
@@ -9861,10 +9820,8 @@ GRANT SELECT ON TABLE controle_f_typos4 TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_typos5 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos5 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos5 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos5 TO PUBLIC;
-GRANT ALL ON TABLE controle_f_typos5 TO superamata;
-GRANT SELECT ON TABLE controle_f_typos5 TO amata;
-GRANT SELECT ON TABLE controle_f_typos5 TO visiteuramata;
+GRANT SELECT ON TABLE controle_f_typos5 TO lazaret;
+GRANT ALL ON TABLE controle_f_typos5 TO superlazaret;
 
 
 --
@@ -9874,10 +9831,8 @@ GRANT SELECT ON TABLE controle_f_typos5 TO visiteuramata;
 REVOKE ALL ON TABLE controle_f_typos6 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos6 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos6 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos6 TO PUBLIC;
-GRANT ALL ON TABLE controle_f_typos6 TO superamata;
-GRANT SELECT ON TABLE controle_f_typos6 TO amata;
-GRANT SELECT ON TABLE controle_f_typos6 TO visiteuramata;
+GRANT ALL ON TABLE controle_f_typos6 TO lazaret;
+GRANT ALL ON TABLE controle_f_typos6 TO superlazaret;
 
 
 --
@@ -9887,10 +9842,8 @@ GRANT SELECT ON TABLE controle_f_typos6 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_angle1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_angle1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_angle1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_angle1 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_angle1 TO superamata;
-GRANT SELECT ON TABLE controle_ff_angle1 TO amata;
-GRANT SELECT ON TABLE controle_ff_angle1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_angle1 TO lazaret;
+GRANT ALL ON TABLE controle_ff_angle1 TO superlazaret;
 
 
 --
@@ -9900,10 +9853,8 @@ GRANT SELECT ON TABLE controle_ff_angle1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_angle2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_angle2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_angle2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_angle2 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_angle2 TO superamata;
-GRANT SELECT ON TABLE controle_ff_angle2 TO amata;
-GRANT SELECT ON TABLE controle_ff_angle2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_angle2 TO lazaret;
+GRANT ALL ON TABLE controle_ff_angle2 TO superlazaret;
 
 
 --
@@ -9913,10 +9864,8 @@ GRANT SELECT ON TABLE controle_ff_angle2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_aspect1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_aspect1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_aspect1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_aspect1 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_aspect1 TO superamata;
-GRANT SELECT ON TABLE controle_ff_aspect1 TO amata;
-GRANT SELECT ON TABLE controle_ff_aspect1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_aspect1 TO lazaret;
+GRANT ALL ON TABLE controle_ff_aspect1 TO superlazaret;
 
 
 --
@@ -9926,10 +9875,8 @@ GRANT SELECT ON TABLE controle_ff_aspect1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_aspect2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_aspect2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_aspect2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_aspect2 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_aspect2 TO superamata;
-GRANT SELECT ON TABLE controle_ff_aspect2 TO amata;
-GRANT SELECT ON TABLE controle_ff_aspect2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_aspect2 TO lazaret;
+GRANT ALL ON TABLE controle_ff_aspect2 TO superlazaret;
 
 
 --
@@ -9939,10 +9886,8 @@ GRANT SELECT ON TABLE controle_ff_aspect2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_localisation1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_localisation1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_localisation1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_localisation1 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_localisation1 TO superamata;
-GRANT SELECT ON TABLE controle_ff_localisation1 TO amata;
-GRANT SELECT ON TABLE controle_ff_localisation1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_localisation1 TO lazaret;
+GRANT ALL ON TABLE controle_ff_localisation1 TO superlazaret;
 
 
 --
@@ -9952,10 +9897,8 @@ GRANT SELECT ON TABLE controle_ff_localisation1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_localisation2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_localisation2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_localisation2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_localisation2 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_localisation2 TO superamata;
-GRANT SELECT ON TABLE controle_ff_localisation2 TO amata;
-GRANT SELECT ON TABLE controle_ff_localisation2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_localisation2 TO lazaret;
+GRANT ALL ON TABLE controle_ff_localisation2 TO superlazaret;
 
 
 --
@@ -9965,10 +9908,8 @@ GRANT SELECT ON TABLE controle_ff_localisation2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_morphologie1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_morphologie1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_morphologie1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_morphologie1 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_morphologie1 TO superamata;
-GRANT SELECT ON TABLE controle_ff_morphologie1 TO amata;
-GRANT SELECT ON TABLE controle_ff_morphologie1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_morphologie1 TO lazaret;
+GRANT ALL ON TABLE controle_ff_morphologie1 TO superlazaret;
 
 
 --
@@ -9978,10 +9919,8 @@ GRANT SELECT ON TABLE controle_ff_morphologie1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_morphologie2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_morphologie2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_morphologie2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_morphologie2 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_morphologie2 TO superamata;
-GRANT SELECT ON TABLE controle_ff_morphologie2 TO amata;
-GRANT SELECT ON TABLE controle_ff_morphologie2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_morphologie2 TO lazaret;
+GRANT ALL ON TABLE controle_ff_morphologie2 TO superlazaret;
 
 
 --
@@ -9991,10 +9930,8 @@ GRANT SELECT ON TABLE controle_ff_morphologie2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_non1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_non1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_non1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_non1 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_non1 TO superamata;
-GRANT SELECT ON TABLE controle_ff_non1 TO amata;
-GRANT SELECT ON TABLE controle_ff_non1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_non1 TO lazaret;
+GRANT ALL ON TABLE controle_ff_non1 TO superlazaret;
 
 
 --
@@ -10004,10 +9941,8 @@ GRANT SELECT ON TABLE controle_ff_non1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_non2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_non2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_non2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_non2 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_non2 TO superamata;
-GRANT SELECT ON TABLE controle_ff_non2 TO amata;
-GRANT SELECT ON TABLE controle_ff_non2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_non2 TO lazaret;
+GRANT ALL ON TABLE controle_ff_non2 TO superlazaret;
 
 
 --
@@ -10017,10 +9952,8 @@ GRANT SELECT ON TABLE controle_ff_non2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_profil1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_profil1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_profil1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_profil1 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_profil1 TO superamata;
-GRANT SELECT ON TABLE controle_ff_profil1 TO amata;
-GRANT SELECT ON TABLE controle_ff_profil1 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_profil1 TO lazaret;
+GRANT ALL ON TABLE controle_ff_profil1 TO superlazaret;
 
 
 --
@@ -10030,10 +9963,8 @@ GRANT SELECT ON TABLE controle_ff_profil1 TO visiteuramata;
 REVOKE ALL ON TABLE controle_ff_profil2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_profil2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_profil2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_profil2 TO PUBLIC;
-GRANT ALL ON TABLE controle_ff_profil2 TO superamata;
-GRANT SELECT ON TABLE controle_ff_profil2 TO amata;
-GRANT SELECT ON TABLE controle_ff_profil2 TO visiteuramata;
+GRANT SELECT ON TABLE controle_ff_profil2 TO lazaret;
+GRANT ALL ON TABLE controle_ff_profil2 TO superlazaret;
 
 
 --
@@ -10043,10 +9974,8 @@ GRANT SELECT ON TABLE controle_ff_profil2 TO visiteuramata;
 REVOKE ALL ON TABLE controle_fi_mode FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_mode FROM postgres;
 GRANT ALL ON TABLE controle_fi_mode TO postgres;
-GRANT SELECT ON TABLE controle_fi_mode TO PUBLIC;
-GRANT ALL ON TABLE controle_fi_mode TO superamata;
-GRANT SELECT ON TABLE controle_fi_mode TO amata;
-GRANT SELECT ON TABLE controle_fi_mode TO visiteuramata;
+GRANT SELECT ON TABLE controle_fi_mode TO lazaret;
+GRANT ALL ON TABLE controle_fi_mode TO superlazaret;
 
 
 --
@@ -10056,10 +9985,8 @@ GRANT SELECT ON TABLE controle_fi_mode TO visiteuramata;
 REVOKE ALL ON TABLE controle_fi_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_ordre FROM postgres;
 GRANT ALL ON TABLE controle_fi_ordre TO postgres;
-GRANT SELECT ON TABLE controle_fi_ordre TO PUBLIC;
-GRANT ALL ON TABLE controle_fi_ordre TO superamata;
-GRANT SELECT ON TABLE controle_fi_ordre TO amata;
-GRANT SELECT ON TABLE controle_fi_ordre TO visiteuramata;
+GRANT SELECT ON TABLE controle_fi_ordre TO lazaret;
+GRANT ALL ON TABLE controle_fi_ordre TO superlazaret;
 
 
 --
@@ -10069,10 +9996,8 @@ GRANT SELECT ON TABLE controle_fi_ordre TO visiteuramata;
 REVOKE ALL ON TABLE controle_fi_percussion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_percussion FROM postgres;
 GRANT ALL ON TABLE controle_fi_percussion TO postgres;
-GRANT SELECT ON TABLE controle_fi_percussion TO PUBLIC;
-GRANT ALL ON TABLE controle_fi_percussion TO superamata;
-GRANT SELECT ON TABLE controle_fi_percussion TO amata;
-GRANT SELECT ON TABLE controle_fi_percussion TO visiteuramata;
+GRANT SELECT ON TABLE controle_fi_percussion TO lazaret;
+GRANT ALL ON TABLE controle_fi_percussion TO superlazaret;
 
 
 --
@@ -10082,10 +10007,8 @@ GRANT SELECT ON TABLE controle_fi_percussion TO visiteuramata;
 REVOKE ALL ON TABLE controle_fi_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_type FROM postgres;
 GRANT ALL ON TABLE controle_fi_type TO postgres;
-GRANT SELECT ON TABLE controle_fi_type TO PUBLIC;
-GRANT ALL ON TABLE controle_fi_type TO superamata;
-GRANT SELECT ON TABLE controle_fi_type TO amata;
-GRANT SELECT ON TABLE controle_fi_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_fi_type TO lazaret;
+GRANT ALL ON TABLE controle_fi_type TO superlazaret;
 
 
 --
@@ -10095,10 +10018,8 @@ GRANT SELECT ON TABLE controle_fi_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_arete FROM postgres;
 GRANT ALL ON TABLE controle_ga_arete TO postgres;
-GRANT SELECT ON TABLE controle_ga_arete TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_arete TO superamata;
-GRANT SELECT ON TABLE controle_ga_arete TO amata;
-GRANT SELECT ON TABLE controle_ga_arete TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_arete TO lazaret;
+GRANT ALL ON TABLE controle_ga_arete TO superlazaret;
 
 
 --
@@ -10108,10 +10029,8 @@ GRANT SELECT ON TABLE controle_ga_arete TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_chf FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_chf FROM postgres;
 GRANT ALL ON TABLE controle_ga_chf TO postgres;
-GRANT SELECT ON TABLE controle_ga_chf TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_chf TO superamata;
-GRANT SELECT ON TABLE controle_ga_chf TO amata;
-GRANT SELECT ON TABLE controle_ga_chf TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_chf TO lazaret;
+GRANT ALL ON TABLE controle_ga_chf TO superlazaret;
 
 
 --
@@ -10121,10 +10040,8 @@ GRANT SELECT ON TABLE controle_ga_chf TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_facture FROM postgres;
 GRANT ALL ON TABLE controle_ga_facture TO postgres;
-GRANT SELECT ON TABLE controle_ga_facture TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_facture TO superamata;
-GRANT SELECT ON TABLE controle_ga_facture TO amata;
-GRANT SELECT ON TABLE controle_ga_facture TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_facture TO lazaret;
+GRANT ALL ON TABLE controle_ga_facture TO superlazaret;
 
 
 --
@@ -10134,10 +10051,8 @@ GRANT SELECT ON TABLE controle_ga_facture TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_forme FROM postgres;
 GRANT ALL ON TABLE controle_ga_forme TO postgres;
-GRANT SELECT ON TABLE controle_ga_forme TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_forme TO superamata;
-GRANT SELECT ON TABLE controle_ga_forme TO amata;
-GRANT SELECT ON TABLE controle_ga_forme TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_forme TO lazaret;
+GRANT ALL ON TABLE controle_ga_forme TO superlazaret;
 
 
 --
@@ -10147,10 +10062,8 @@ GRANT SELECT ON TABLE controle_ga_forme TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_ga_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_ga_obliquite TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_obliquite TO superamata;
-GRANT SELECT ON TABLE controle_ga_obliquite TO amata;
-GRANT SELECT ON TABLE controle_ga_obliquite TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_obliquite TO lazaret;
+GRANT ALL ON TABLE controle_ga_obliquite TO superlazaret;
 
 
 --
@@ -10160,10 +10073,8 @@ GRANT SELECT ON TABLE controle_ga_obliquite TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_orientation FROM postgres;
 GRANT ALL ON TABLE controle_ga_orientation TO postgres;
-GRANT SELECT ON TABLE controle_ga_orientation TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_orientation TO superamata;
-GRANT SELECT ON TABLE controle_ga_orientation TO amata;
-GRANT SELECT ON TABLE controle_ga_orientation TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_orientation TO lazaret;
+GRANT ALL ON TABLE controle_ga_orientation TO superlazaret;
 
 
 --
@@ -10173,10 +10084,8 @@ GRANT SELECT ON TABLE controle_ga_orientation TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_qualite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_qualite FROM postgres;
 GRANT ALL ON TABLE controle_ga_qualite TO postgres;
-GRANT SELECT ON TABLE controle_ga_qualite TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_qualite TO superamata;
-GRANT SELECT ON TABLE controle_ga_qualite TO amata;
-GRANT SELECT ON TABLE controle_ga_qualite TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_qualite TO lazaret;
+GRANT ALL ON TABLE controle_ga_qualite TO superlazaret;
 
 
 --
@@ -10186,10 +10095,8 @@ GRANT SELECT ON TABLE controle_ga_qualite TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_retouche FROM postgres;
 GRANT ALL ON TABLE controle_ga_retouche TO postgres;
-GRANT SELECT ON TABLE controle_ga_retouche TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_retouche TO superamata;
-GRANT SELECT ON TABLE controle_ga_retouche TO amata;
-GRANT SELECT ON TABLE controle_ga_retouche TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_retouche TO lazaret;
+GRANT ALL ON TABLE controle_ga_retouche TO superlazaret;
 
 
 --
@@ -10199,10 +10106,8 @@ GRANT SELECT ON TABLE controle_ga_retouche TO visiteuramata;
 REVOKE ALL ON TABLE controle_ga_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_type FROM postgres;
 GRANT ALL ON TABLE controle_ga_type TO postgres;
-GRANT SELECT ON TABLE controle_ga_type TO PUBLIC;
-GRANT ALL ON TABLE controle_ga_type TO superamata;
-GRANT SELECT ON TABLE controle_ga_type TO amata;
-GRANT SELECT ON TABLE controle_ga_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_ga_type TO lazaret;
+GRANT ALL ON TABLE controle_ga_type TO superlazaret;
 
 
 --
@@ -10212,10 +10117,8 @@ GRANT SELECT ON TABLE controle_ga_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_amenagement_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_amenagement_bord FROM postgres;
 GRANT ALL ON TABLE controle_h_amenagement_bord TO postgres;
-GRANT SELECT ON TABLE controle_h_amenagement_bord TO PUBLIC;
-GRANT ALL ON TABLE controle_h_amenagement_bord TO superamata;
-GRANT SELECT ON TABLE controle_h_amenagement_bord TO amata;
-GRANT SELECT ON TABLE controle_h_amenagement_bord TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_amenagement_bord TO lazaret;
+GRANT ALL ON TABLE controle_h_amenagement_bord TO superlazaret;
 
 
 --
@@ -10225,10 +10128,8 @@ GRANT SELECT ON TABLE controle_h_amenagement_bord TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_amenagement_distal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_amenagement_distal FROM postgres;
 GRANT ALL ON TABLE controle_h_amenagement_distal TO postgres;
-GRANT SELECT ON TABLE controle_h_amenagement_distal TO PUBLIC;
-GRANT ALL ON TABLE controle_h_amenagement_distal TO superamata;
-GRANT SELECT ON TABLE controle_h_amenagement_distal TO amata;
-GRANT SELECT ON TABLE controle_h_amenagement_distal TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_amenagement_distal TO lazaret;
+GRANT ALL ON TABLE controle_h_amenagement_distal TO superlazaret;
 
 
 --
@@ -10238,10 +10139,8 @@ GRANT SELECT ON TABLE controle_h_amenagement_distal TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_arete FROM postgres;
 GRANT ALL ON TABLE controle_h_arete TO postgres;
-GRANT SELECT ON TABLE controle_h_arete TO PUBLIC;
-GRANT ALL ON TABLE controle_h_arete TO superamata;
-GRANT SELECT ON TABLE controle_h_arete TO amata;
-GRANT SELECT ON TABLE controle_h_arete TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_arete TO lazaret;
+GRANT ALL ON TABLE controle_h_arete TO superlazaret;
 
 
 --
@@ -10251,10 +10150,8 @@ GRANT SELECT ON TABLE controle_h_arete TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_base FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_base FROM postgres;
 GRANT ALL ON TABLE controle_h_base TO postgres;
-GRANT SELECT ON TABLE controle_h_base TO PUBLIC;
-GRANT ALL ON TABLE controle_h_base TO superamata;
-GRANT SELECT ON TABLE controle_h_base TO amata;
-GRANT SELECT ON TABLE controle_h_base TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_base TO lazaret;
+GRANT ALL ON TABLE controle_h_base TO superlazaret;
 
 
 --
@@ -10264,10 +10161,8 @@ GRANT SELECT ON TABLE controle_h_base TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_bilaterale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_bilaterale FROM postgres;
 GRANT ALL ON TABLE controle_h_bilaterale TO postgres;
-GRANT SELECT ON TABLE controle_h_bilaterale TO PUBLIC;
-GRANT ALL ON TABLE controle_h_bilaterale TO superamata;
-GRANT SELECT ON TABLE controle_h_bilaterale TO amata;
-GRANT SELECT ON TABLE controle_h_bilaterale TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_bilaterale TO lazaret;
+GRANT ALL ON TABLE controle_h_bilaterale TO superlazaret;
 
 
 --
@@ -10277,10 +10172,8 @@ GRANT SELECT ON TABLE controle_h_bilaterale TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_biseau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_biseau FROM postgres;
 GRANT ALL ON TABLE controle_h_biseau TO postgres;
-GRANT SELECT ON TABLE controle_h_biseau TO PUBLIC;
-GRANT ALL ON TABLE controle_h_biseau TO superamata;
-GRANT SELECT ON TABLE controle_h_biseau TO amata;
-GRANT SELECT ON TABLE controle_h_biseau TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_biseau TO lazaret;
+GRANT ALL ON TABLE controle_h_biseau TO superlazaret;
 
 
 --
@@ -10290,10 +10183,8 @@ GRANT SELECT ON TABLE controle_h_biseau TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_bord FROM postgres;
 GRANT ALL ON TABLE controle_h_bord TO postgres;
-GRANT SELECT ON TABLE controle_h_bord TO PUBLIC;
-GRANT ALL ON TABLE controle_h_bord TO superamata;
-GRANT SELECT ON TABLE controle_h_bord TO amata;
-GRANT SELECT ON TABLE controle_h_bord TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_bord TO lazaret;
+GRANT ALL ON TABLE controle_h_bord TO superlazaret;
 
 
 --
@@ -10303,10 +10194,8 @@ GRANT SELECT ON TABLE controle_h_bord TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_distale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_distale FROM postgres;
 GRANT ALL ON TABLE controle_h_distale TO postgres;
-GRANT SELECT ON TABLE controle_h_distale TO PUBLIC;
-GRANT ALL ON TABLE controle_h_distale TO superamata;
-GRANT SELECT ON TABLE controle_h_distale TO amata;
-GRANT SELECT ON TABLE controle_h_distale TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_distale TO lazaret;
+GRANT ALL ON TABLE controle_h_distale TO superlazaret;
 
 
 --
@@ -10316,10 +10205,8 @@ GRANT SELECT ON TABLE controle_h_distale TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_extension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_extension FROM postgres;
 GRANT ALL ON TABLE controle_h_extension TO postgres;
-GRANT SELECT ON TABLE controle_h_extension TO PUBLIC;
-GRANT ALL ON TABLE controle_h_extension TO superamata;
-GRANT SELECT ON TABLE controle_h_extension TO amata;
-GRANT SELECT ON TABLE controle_h_extension TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_extension TO lazaret;
+GRANT ALL ON TABLE controle_h_extension TO superlazaret;
 
 
 --
@@ -10329,10 +10216,8 @@ GRANT SELECT ON TABLE controle_h_extension TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_facture FROM postgres;
 GRANT ALL ON TABLE controle_h_facture TO postgres;
-GRANT SELECT ON TABLE controle_h_facture TO PUBLIC;
-GRANT ALL ON TABLE controle_h_facture TO superamata;
-GRANT SELECT ON TABLE controle_h_facture TO amata;
-GRANT SELECT ON TABLE controle_h_facture TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_facture TO lazaret;
+GRANT ALL ON TABLE controle_h_facture TO superlazaret;
 
 
 --
@@ -10342,10 +10227,8 @@ GRANT SELECT ON TABLE controle_h_facture TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_meplat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_meplat FROM postgres;
 GRANT ALL ON TABLE controle_h_meplat TO postgres;
-GRANT SELECT ON TABLE controle_h_meplat TO PUBLIC;
-GRANT ALL ON TABLE controle_h_meplat TO superamata;
-GRANT SELECT ON TABLE controle_h_meplat TO amata;
-GRANT SELECT ON TABLE controle_h_meplat TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_meplat TO lazaret;
+GRANT ALL ON TABLE controle_h_meplat TO superlazaret;
 
 
 --
@@ -10355,10 +10238,8 @@ GRANT SELECT ON TABLE controle_h_meplat TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_retouche FROM postgres;
 GRANT ALL ON TABLE controle_h_retouche TO postgres;
-GRANT SELECT ON TABLE controle_h_retouche TO PUBLIC;
-GRANT ALL ON TABLE controle_h_retouche TO superamata;
-GRANT SELECT ON TABLE controle_h_retouche TO amata;
-GRANT SELECT ON TABLE controle_h_retouche TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_retouche TO lazaret;
+GRANT ALL ON TABLE controle_h_retouche TO superlazaret;
 
 
 --
@@ -10368,10 +10249,8 @@ GRANT SELECT ON TABLE controle_h_retouche TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_surface FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_surface FROM postgres;
 GRANT ALL ON TABLE controle_h_surface TO postgres;
-GRANT SELECT ON TABLE controle_h_surface TO PUBLIC;
-GRANT ALL ON TABLE controle_h_surface TO superamata;
-GRANT SELECT ON TABLE controle_h_surface TO amata;
-GRANT SELECT ON TABLE controle_h_surface TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_surface TO lazaret;
+GRANT ALL ON TABLE controle_h_surface TO superlazaret;
 
 
 --
@@ -10381,23 +10260,8 @@ GRANT SELECT ON TABLE controle_h_surface TO visiteuramata;
 REVOKE ALL ON TABLE controle_h_symetrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_symetrie FROM postgres;
 GRANT ALL ON TABLE controle_h_symetrie TO postgres;
-GRANT SELECT ON TABLE controle_h_symetrie TO PUBLIC;
-GRANT ALL ON TABLE controle_h_symetrie TO superamata;
-GRANT SELECT ON TABLE controle_h_symetrie TO amata;
-GRANT SELECT ON TABLE controle_h_symetrie TO visiteuramata;
-
-
---
--- Name: controle_h_type; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE controle_h_type FROM PUBLIC;
-REVOKE ALL ON TABLE controle_h_type FROM postgres;
-GRANT ALL ON TABLE controle_h_type TO postgres;
-GRANT SELECT ON TABLE controle_h_type TO PUBLIC;
-GRANT ALL ON TABLE controle_h_type TO superamata;
-GRANT SELECT ON TABLE controle_h_type TO amata;
-GRANT SELECT ON TABLE controle_h_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_h_symetrie TO lazaret;
+GRANT ALL ON TABLE controle_h_symetrie TO superlazaret;
 
 
 --
@@ -10407,10 +10271,8 @@ GRANT SELECT ON TABLE controle_h_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_action FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_action FROM postgres;
 GRANT ALL ON TABLE controle_i_action TO postgres;
-GRANT SELECT ON TABLE controle_i_action TO PUBLIC;
-GRANT ALL ON TABLE controle_i_action TO superamata;
-GRANT SELECT ON TABLE controle_i_action TO amata;
-GRANT SELECT ON TABLE controle_i_action TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_action TO lazaret;
+GRANT ALL ON TABLE controle_i_action TO superlazaret;
 
 
 --
@@ -10420,10 +10282,8 @@ GRANT SELECT ON TABLE controle_i_action TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_alteration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_alteration FROM postgres;
 GRANT ALL ON TABLE controle_i_alteration TO postgres;
-GRANT SELECT ON TABLE controle_i_alteration TO PUBLIC;
-GRANT ALL ON TABLE controle_i_alteration TO superamata;
-GRANT SELECT ON TABLE controle_i_alteration TO amata;
-GRANT SELECT ON TABLE controle_i_alteration TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_alteration TO lazaret;
+GRANT ALL ON TABLE controle_i_alteration TO superlazaret;
 
 
 --
@@ -10433,10 +10293,8 @@ GRANT SELECT ON TABLE controle_i_alteration TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_desilicification FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_desilicification FROM postgres;
 GRANT ALL ON TABLE controle_i_desilicification TO postgres;
-GRANT SELECT ON TABLE controle_i_desilicification TO PUBLIC;
-GRANT ALL ON TABLE controle_i_desilicification TO superamata;
-GRANT SELECT ON TABLE controle_i_desilicification TO amata;
-GRANT SELECT ON TABLE controle_i_desilicification TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_desilicification TO lazaret;
+GRANT ALL ON TABLE controle_i_desilicification TO superlazaret;
 
 
 --
@@ -10446,10 +10304,8 @@ GRANT SELECT ON TABLE controle_i_desilicification TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_dpatine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_dpatine FROM postgres;
 GRANT ALL ON TABLE controle_i_dpatine TO postgres;
-GRANT SELECT ON TABLE controle_i_dpatine TO PUBLIC;
-GRANT ALL ON TABLE controle_i_dpatine TO superamata;
-GRANT SELECT ON TABLE controle_i_dpatine TO amata;
-GRANT SELECT ON TABLE controle_i_dpatine TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_dpatine TO lazaret;
+GRANT ALL ON TABLE controle_i_dpatine TO superlazaret;
 
 
 --
@@ -10459,10 +10315,8 @@ GRANT SELECT ON TABLE controle_i_dpatine TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_encroutement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_encroutement FROM postgres;
 GRANT ALL ON TABLE controle_i_encroutement TO postgres;
-GRANT SELECT ON TABLE controle_i_encroutement TO PUBLIC;
-GRANT ALL ON TABLE controle_i_encroutement TO superamata;
-GRANT SELECT ON TABLE controle_i_encroutement TO amata;
-GRANT SELECT ON TABLE controle_i_encroutement TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_encroutement TO lazaret;
+GRANT ALL ON TABLE controle_i_encroutement TO superlazaret;
 
 
 --
@@ -10472,10 +10326,8 @@ GRANT SELECT ON TABLE controle_i_encroutement TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_eolisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_eolisation FROM postgres;
 GRANT ALL ON TABLE controle_i_eolisation TO postgres;
-GRANT SELECT ON TABLE controle_i_eolisation TO PUBLIC;
-GRANT ALL ON TABLE controle_i_eolisation TO superamata;
-GRANT SELECT ON TABLE controle_i_eolisation TO amata;
-GRANT SELECT ON TABLE controle_i_eolisation TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_eolisation TO lazaret;
+GRANT ALL ON TABLE controle_i_eolisation TO superlazaret;
 
 
 --
@@ -10485,10 +10337,8 @@ GRANT SELECT ON TABLE controle_i_eolisation TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_forme_galet FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_forme_galet FROM postgres;
 GRANT ALL ON TABLE controle_i_forme_galet TO postgres;
-GRANT SELECT ON TABLE controle_i_forme_galet TO PUBLIC;
-GRANT ALL ON TABLE controle_i_forme_galet TO superamata;
-GRANT SELECT ON TABLE controle_i_forme_galet TO amata;
-GRANT SELECT ON TABLE controle_i_forme_galet TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_forme_galet TO lazaret;
+GRANT ALL ON TABLE controle_i_forme_galet TO superlazaret;
 
 
 --
@@ -10498,10 +10348,8 @@ GRANT SELECT ON TABLE controle_i_forme_galet TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_i_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_i_lustrage TO PUBLIC;
-GRANT ALL ON TABLE controle_i_lustrage TO superamata;
-GRANT SELECT ON TABLE controle_i_lustrage TO amata;
-GRANT SELECT ON TABLE controle_i_lustrage TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_lustrage TO lazaret;
+GRANT ALL ON TABLE controle_i_lustrage TO superlazaret;
 
 
 --
@@ -10511,10 +10359,8 @@ GRANT SELECT ON TABLE controle_i_lustrage TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_matiere FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_matiere FROM postgres;
 GRANT ALL ON TABLE controle_i_matiere TO postgres;
-GRANT SELECT ON TABLE controle_i_matiere TO PUBLIC;
-GRANT ALL ON TABLE controle_i_matiere TO superamata;
-GRANT SELECT ON TABLE controle_i_matiere TO amata;
-GRANT SELECT ON TABLE controle_i_matiere TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_matiere TO lazaret;
+GRANT ALL ON TABLE controle_i_matiere TO superlazaret;
 
 
 --
@@ -10524,10 +10370,8 @@ GRANT SELECT ON TABLE controle_i_matiere TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_objet FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_objet FROM postgres;
 GRANT ALL ON TABLE controle_i_objet TO postgres;
-GRANT SELECT ON TABLE controle_i_objet TO PUBLIC;
-GRANT ALL ON TABLE controle_i_objet TO superamata;
-GRANT SELECT ON TABLE controle_i_objet TO amata;
-GRANT SELECT ON TABLE controle_i_objet TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_objet TO lazaret;
+GRANT ALL ON TABLE controle_i_objet TO superlazaret;
 
 
 --
@@ -10537,10 +10381,8 @@ GRANT SELECT ON TABLE controle_i_objet TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_patine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_patine FROM postgres;
 GRANT ALL ON TABLE controle_i_patine TO postgres;
-GRANT SELECT ON TABLE controle_i_patine TO PUBLIC;
-GRANT ALL ON TABLE controle_i_patine TO superamata;
-GRANT SELECT ON TABLE controle_i_patine TO amata;
-GRANT SELECT ON TABLE controle_i_patine TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_patine TO lazaret;
+GRANT ALL ON TABLE controle_i_patine TO superlazaret;
 
 
 --
@@ -10550,10 +10392,8 @@ GRANT SELECT ON TABLE controle_i_patine TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_pmycellium FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_pmycellium FROM postgres;
 GRANT ALL ON TABLE controle_i_pmycellium TO postgres;
-GRANT SELECT ON TABLE controle_i_pmycellium TO PUBLIC;
-GRANT ALL ON TABLE controle_i_pmycellium TO superamata;
-GRANT SELECT ON TABLE controle_i_pmycellium TO amata;
-GRANT SELECT ON TABLE controle_i_pmycellium TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_pmycellium TO lazaret;
+GRANT ALL ON TABLE controle_i_pmycellium TO superlazaret;
 
 
 --
@@ -10563,10 +10403,8 @@ GRANT SELECT ON TABLE controle_i_pmycellium TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_roulage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_roulage FROM postgres;
 GRANT ALL ON TABLE controle_i_roulage TO postgres;
-GRANT SELECT ON TABLE controle_i_roulage TO PUBLIC;
-GRANT ALL ON TABLE controle_i_roulage TO superamata;
-GRANT SELECT ON TABLE controle_i_roulage TO amata;
-GRANT SELECT ON TABLE controle_i_roulage TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_roulage TO lazaret;
+GRANT ALL ON TABLE controle_i_roulage TO superlazaret;
 
 
 --
@@ -10576,10 +10414,8 @@ GRANT SELECT ON TABLE controle_i_roulage TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_support FROM postgres;
 GRANT ALL ON TABLE controle_i_support TO postgres;
-GRANT SELECT ON TABLE controle_i_support TO PUBLIC;
-GRANT ALL ON TABLE controle_i_support TO superamata;
-GRANT SELECT ON TABLE controle_i_support TO amata;
-GRANT SELECT ON TABLE controle_i_support TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_support TO lazaret;
+GRANT ALL ON TABLE controle_i_support TO superlazaret;
 
 
 --
@@ -10589,10 +10425,8 @@ GRANT SELECT ON TABLE controle_i_support TO visiteuramata;
 REVOKE ALL ON TABLE controle_i_support_originel FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_support_originel FROM postgres;
 GRANT ALL ON TABLE controle_i_support_originel TO postgres;
-GRANT SELECT ON TABLE controle_i_support_originel TO PUBLIC;
-GRANT ALL ON TABLE controle_i_support_originel TO superamata;
-GRANT SELECT ON TABLE controle_i_support_originel TO amata;
-GRANT SELECT ON TABLE controle_i_support_originel TO visiteuramata;
+GRANT SELECT ON TABLE controle_i_support_originel TO lazaret;
+GRANT ALL ON TABLE controle_i_support_originel TO superlazaret;
 
 
 --
@@ -10602,10 +10436,8 @@ GRANT SELECT ON TABLE controle_i_support_originel TO visiteuramata;
 REVOKE ALL ON TABLE controle_localite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_localite FROM postgres;
 GRANT ALL ON TABLE controle_localite TO postgres;
-GRANT SELECT ON TABLE controle_localite TO PUBLIC;
-GRANT ALL ON TABLE controle_localite TO superamata;
-GRANT SELECT ON TABLE controle_localite TO amata;
-GRANT SELECT ON TABLE controle_localite TO visiteuramata;
+GRANT SELECT ON TABLE controle_localite TO lazaret;
+GRANT ALL ON TABLE controle_localite TO superlazaret;
 
 
 --
@@ -10615,10 +10447,8 @@ GRANT SELECT ON TABLE controle_localite TO visiteuramata;
 REVOKE ALL ON TABLE controle_locus FROM PUBLIC;
 REVOKE ALL ON TABLE controle_locus FROM postgres;
 GRANT ALL ON TABLE controle_locus TO postgres;
-GRANT SELECT ON TABLE controle_locus TO PUBLIC;
-GRANT ALL ON TABLE controle_locus TO superamata;
-GRANT SELECT ON TABLE controle_locus TO amata;
-GRANT SELECT ON TABLE controle_locus TO visiteuramata;
+GRANT SELECT ON TABLE controle_locus TO lazaret;
+GRANT ALL ON TABLE controle_locus TO superlazaret;
 
 
 --
@@ -10628,10 +10458,8 @@ GRANT SELECT ON TABLE controle_locus TO visiteuramata;
 REVOKE ALL ON TABLE controle_mf_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_mf_serie FROM postgres;
 GRANT ALL ON TABLE controle_mf_serie TO postgres;
-GRANT SELECT ON TABLE controle_mf_serie TO PUBLIC;
-GRANT ALL ON TABLE controle_mf_serie TO superamata;
-GRANT SELECT ON TABLE controle_mf_serie TO amata;
-GRANT SELECT ON TABLE controle_mf_serie TO visiteuramata;
+GRANT SELECT ON TABLE controle_mf_serie TO lazaret;
+GRANT ALL ON TABLE controle_mf_serie TO superlazaret;
 
 
 --
@@ -10641,10 +10469,8 @@ GRANT SELECT ON TABLE controle_mf_serie TO visiteuramata;
 REVOKE ALL ON TABLE controle_mf_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_mf_type FROM postgres;
 GRANT ALL ON TABLE controle_mf_type TO postgres;
-GRANT SELECT ON TABLE controle_mf_type TO PUBLIC;
-GRANT ALL ON TABLE controle_mf_type TO superamata;
-GRANT SELECT ON TABLE controle_mf_type TO amata;
-GRANT SELECT ON TABLE controle_mf_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_mf_type TO lazaret;
+GRANT ALL ON TABLE controle_mf_type TO superlazaret;
 
 
 --
@@ -10654,10 +10480,8 @@ GRANT SELECT ON TABLE controle_mf_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_n_cortotal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_cortotal FROM postgres;
 GRANT ALL ON TABLE controle_n_cortotal TO postgres;
-GRANT SELECT ON TABLE controle_n_cortotal TO PUBLIC;
-GRANT ALL ON TABLE controle_n_cortotal TO superamata;
-GRANT SELECT ON TABLE controle_n_cortotal TO amata;
-GRANT SELECT ON TABLE controle_n_cortotal TO visiteuramata;
+GRANT SELECT ON TABLE controle_n_cortotal TO lazaret;
+GRANT ALL ON TABLE controle_n_cortotal TO superlazaret;
 
 
 --
@@ -10667,10 +10491,9 @@ GRANT SELECT ON TABLE controle_n_cortotal TO visiteuramata;
 REVOKE ALL ON TABLE controle_n_epuisement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_epuisement FROM postgres;
 GRANT ALL ON TABLE controle_n_epuisement TO postgres;
-GRANT SELECT ON TABLE controle_n_epuisement TO PUBLIC;
-GRANT ALL ON TABLE controle_n_epuisement TO superamata;
-GRANT SELECT ON TABLE controle_n_epuisement TO amata;
-GRANT SELECT ON TABLE controle_n_epuisement TO visiteuramata;
+GRANT ALL ON TABLE controle_n_epuisement TO lazaret;
+GRANT ALL ON TABLE controle_n_epuisement TO superlazaret;
+GRANT SELECT ON TABLE controle_n_epuisement TO visiteurlazaret;
 
 
 --
@@ -10680,10 +10503,8 @@ GRANT SELECT ON TABLE controle_n_epuisement TO visiteuramata;
 REVOKE ALL ON TABLE controle_n_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_forme FROM postgres;
 GRANT ALL ON TABLE controle_n_forme TO postgres;
-GRANT SELECT ON TABLE controle_n_forme TO PUBLIC;
-GRANT ALL ON TABLE controle_n_forme TO superamata;
-GRANT SELECT ON TABLE controle_n_forme TO amata;
-GRANT SELECT ON TABLE controle_n_forme TO visiteuramata;
+GRANT SELECT ON TABLE controle_n_forme TO lazaret;
+GRANT ALL ON TABLE controle_n_forme TO superlazaret;
 
 
 --
@@ -10693,10 +10514,8 @@ GRANT SELECT ON TABLE controle_n_forme TO visiteuramata;
 REVOKE ALL ON TABLE controle_n_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_orientation FROM postgres;
 GRANT ALL ON TABLE controle_n_orientation TO postgres;
-GRANT SELECT ON TABLE controle_n_orientation TO PUBLIC;
-GRANT ALL ON TABLE controle_n_orientation TO superamata;
-GRANT SELECT ON TABLE controle_n_orientation TO amata;
-GRANT SELECT ON TABLE controle_n_orientation TO visiteuramata;
+GRANT SELECT ON TABLE controle_n_orientation TO lazaret;
+GRANT ALL ON TABLE controle_n_orientation TO superlazaret;
 
 
 --
@@ -10706,10 +10525,8 @@ GRANT SELECT ON TABLE controle_n_orientation TO visiteuramata;
 REVOKE ALL ON TABLE controle_n_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_type FROM postgres;
 GRANT ALL ON TABLE controle_n_type TO postgres;
-GRANT SELECT ON TABLE controle_n_type TO PUBLIC;
-GRANT ALL ON TABLE controle_n_type TO superamata;
-GRANT SELECT ON TABLE controle_n_type TO amata;
-GRANT SELECT ON TABLE controle_n_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_n_type TO lazaret;
+GRANT ALL ON TABLE controle_n_type TO superlazaret;
 
 
 --
@@ -10719,10 +10536,8 @@ GRANT SELECT ON TABLE controle_n_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_nature FROM PUBLIC;
 REVOKE ALL ON TABLE controle_nature FROM postgres;
 GRANT ALL ON TABLE controle_nature TO postgres;
-GRANT SELECT ON TABLE controle_nature TO PUBLIC;
-GRANT ALL ON TABLE controle_nature TO superamata;
-GRANT SELECT ON TABLE controle_nature TO amata;
-GRANT SELECT ON TABLE controle_nature TO visiteuramata;
+GRANT SELECT ON TABLE controle_nature TO lazaret;
+GRANT ALL ON TABLE controle_nature TO superlazaret;
 
 
 --
@@ -10732,10 +10547,8 @@ GRANT SELECT ON TABLE controle_nature TO visiteuramata;
 REVOKE ALL ON TABLE controle_niveau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_niveau FROM postgres;
 GRANT ALL ON TABLE controle_niveau TO postgres;
-GRANT SELECT ON TABLE controle_niveau TO PUBLIC;
-GRANT ALL ON TABLE controle_niveau TO superamata;
-GRANT SELECT ON TABLE controle_niveau TO amata;
-GRANT SELECT ON TABLE controle_niveau TO visiteuramata;
+GRANT SELECT ON TABLE controle_niveau TO lazaret;
+GRANT ALL ON TABLE controle_niveau TO superlazaret;
 
 
 --
@@ -10745,10 +10558,8 @@ GRANT SELECT ON TABLE controle_niveau TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_chronologie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_chronologie FROM postgres;
 GRANT ALL ON TABLE controle_o_chronologie TO postgres;
-GRANT SELECT ON TABLE controle_o_chronologie TO PUBLIC;
-GRANT ALL ON TABLE controle_o_chronologie TO superamata;
-GRANT SELECT ON TABLE controle_o_chronologie TO amata;
-GRANT SELECT ON TABLE controle_o_chronologie TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_chronologie TO lazaret;
+GRANT ALL ON TABLE controle_o_chronologie TO superlazaret;
 
 
 --
@@ -10758,10 +10569,8 @@ GRANT SELECT ON TABLE controle_o_chronologie TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_code FROM postgres;
 GRANT ALL ON TABLE controle_o_code TO postgres;
-GRANT SELECT ON TABLE controle_o_code TO PUBLIC;
-GRANT ALL ON TABLE controle_o_code TO superamata;
-GRANT SELECT ON TABLE controle_o_code TO amata;
-GRANT SELECT ON TABLE controle_o_code TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_code TO lazaret;
+GRANT ALL ON TABLE controle_o_code TO superlazaret;
 
 
 --
@@ -10771,10 +10580,8 @@ GRANT SELECT ON TABLE controle_o_code TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_destination FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_destination FROM postgres;
 GRANT ALL ON TABLE controle_o_destination TO postgres;
-GRANT SELECT ON TABLE controle_o_destination TO PUBLIC;
-GRANT ALL ON TABLE controle_o_destination TO superamata;
-GRANT SELECT ON TABLE controle_o_destination TO amata;
-GRANT SELECT ON TABLE controle_o_destination TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_destination TO lazaret;
+GRANT ALL ON TABLE controle_o_destination TO superlazaret;
 
 
 --
@@ -10784,10 +10591,8 @@ GRANT SELECT ON TABLE controle_o_destination TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_etat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_etat FROM postgres;
 GRANT ALL ON TABLE controle_o_etat TO postgres;
-GRANT SELECT ON TABLE controle_o_etat TO PUBLIC;
-GRANT ALL ON TABLE controle_o_etat TO superamata;
-GRANT SELECT ON TABLE controle_o_etat TO amata;
-GRANT SELECT ON TABLE controle_o_etat TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_etat TO lazaret;
+GRANT ALL ON TABLE controle_o_etat TO superlazaret;
 
 
 --
@@ -10797,10 +10602,8 @@ GRANT SELECT ON TABLE controle_o_etat TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_forme FROM postgres;
 GRANT ALL ON TABLE controle_o_forme TO postgres;
-GRANT SELECT ON TABLE controle_o_forme TO PUBLIC;
-GRANT ALL ON TABLE controle_o_forme TO superamata;
-GRANT SELECT ON TABLE controle_o_forme TO amata;
-GRANT SELECT ON TABLE controle_o_forme TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_forme TO lazaret;
+GRANT ALL ON TABLE controle_o_forme TO superlazaret;
 
 
 --
@@ -10810,10 +10613,8 @@ GRANT SELECT ON TABLE controle_o_forme TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_localisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_localisation FROM postgres;
 GRANT ALL ON TABLE controle_o_localisation TO postgres;
-GRANT SELECT ON TABLE controle_o_localisation TO PUBLIC;
-GRANT ALL ON TABLE controle_o_localisation TO superamata;
-GRANT SELECT ON TABLE controle_o_localisation TO amata;
-GRANT SELECT ON TABLE controle_o_localisation TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_localisation TO lazaret;
+GRANT ALL ON TABLE controle_o_localisation TO superlazaret;
 
 
 --
@@ -10823,10 +10624,8 @@ GRANT SELECT ON TABLE controle_o_localisation TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_ordre FROM postgres;
 GRANT ALL ON TABLE controle_o_ordre TO postgres;
-GRANT SELECT ON TABLE controle_o_ordre TO PUBLIC;
-GRANT ALL ON TABLE controle_o_ordre TO superamata;
-GRANT SELECT ON TABLE controle_o_ordre TO amata;
-GRANT SELECT ON TABLE controle_o_ordre TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_ordre TO lazaret;
+GRANT ALL ON TABLE controle_o_ordre TO superlazaret;
 
 
 --
@@ -10836,10 +10635,8 @@ GRANT SELECT ON TABLE controle_o_ordre TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_orientation FROM postgres;
 GRANT ALL ON TABLE controle_o_orientation TO postgres;
-GRANT SELECT ON TABLE controle_o_orientation TO PUBLIC;
-GRANT ALL ON TABLE controle_o_orientation TO superamata;
-GRANT SELECT ON TABLE controle_o_orientation TO amata;
-GRANT SELECT ON TABLE controle_o_orientation TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_orientation TO lazaret;
+GRANT ALL ON TABLE controle_o_orientation TO superlazaret;
 
 
 --
@@ -10849,10 +10646,8 @@ GRANT SELECT ON TABLE controle_o_orientation TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_origine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_origine FROM postgres;
 GRANT ALL ON TABLE controle_o_origine TO postgres;
-GRANT SELECT ON TABLE controle_o_origine TO PUBLIC;
-GRANT ALL ON TABLE controle_o_origine TO superamata;
-GRANT SELECT ON TABLE controle_o_origine TO amata;
-GRANT SELECT ON TABLE controle_o_origine TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_origine TO lazaret;
+GRANT ALL ON TABLE controle_o_origine TO superlazaret;
 
 
 --
@@ -10862,10 +10657,8 @@ GRANT SELECT ON TABLE controle_o_origine TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_retouche FROM postgres;
 GRANT ALL ON TABLE controle_o_retouche TO postgres;
-GRANT SELECT ON TABLE controle_o_retouche TO PUBLIC;
-GRANT ALL ON TABLE controle_o_retouche TO superamata;
-GRANT SELECT ON TABLE controle_o_retouche TO amata;
-GRANT SELECT ON TABLE controle_o_retouche TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_retouche TO lazaret;
+GRANT ALL ON TABLE controle_o_retouche TO superlazaret;
 
 
 --
@@ -10875,10 +10668,8 @@ GRANT SELECT ON TABLE controle_o_retouche TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_sens FROM postgres;
 GRANT ALL ON TABLE controle_o_sens TO postgres;
-GRANT SELECT ON TABLE controle_o_sens TO PUBLIC;
-GRANT ALL ON TABLE controle_o_sens TO superamata;
-GRANT SELECT ON TABLE controle_o_sens TO amata;
-GRANT SELECT ON TABLE controle_o_sens TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_sens TO lazaret;
+GRANT ALL ON TABLE controle_o_sens TO superlazaret;
 
 
 --
@@ -10888,23 +10679,8 @@ GRANT SELECT ON TABLE controle_o_sens TO visiteuramata;
 REVOKE ALL ON TABLE controle_o_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_serie FROM postgres;
 GRANT ALL ON TABLE controle_o_serie TO postgres;
-GRANT SELECT ON TABLE controle_o_serie TO PUBLIC;
-GRANT ALL ON TABLE controle_o_serie TO superamata;
-GRANT SELECT ON TABLE controle_o_serie TO amata;
-GRANT SELECT ON TABLE controle_o_serie TO visiteuramata;
-
-
---
--- Name: controle_o_sserie; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE controle_o_sserie FROM PUBLIC;
-REVOKE ALL ON TABLE controle_o_sserie FROM postgres;
-GRANT ALL ON TABLE controle_o_sserie TO postgres;
-GRANT SELECT ON TABLE controle_o_sserie TO PUBLIC;
-GRANT ALL ON TABLE controle_o_sserie TO superamata;
-GRANT SELECT ON TABLE controle_o_sserie TO amata;
-GRANT SELECT ON TABLE controle_o_sserie TO visiteuramata;
+GRANT SELECT ON TABLE controle_o_serie TO lazaret;
+GRANT ALL ON TABLE controle_o_serie TO superlazaret;
 
 
 --
@@ -10914,10 +10690,8 @@ GRANT SELECT ON TABLE controle_o_sserie TO visiteuramata;
 REVOKE ALL ON TABLE controle_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_orientation FROM postgres;
 GRANT ALL ON TABLE controle_orientation TO postgres;
-GRANT SELECT ON TABLE controle_orientation TO PUBLIC;
-GRANT ALL ON TABLE controle_orientation TO superamata;
-GRANT SELECT ON TABLE controle_orientation TO amata;
-GRANT SELECT ON TABLE controle_orientation TO visiteuramata;
+GRANT SELECT ON TABLE controle_orientation TO lazaret;
+GRANT ALL ON TABLE controle_orientation TO superlazaret;
 
 
 --
@@ -10927,10 +10701,8 @@ GRANT SELECT ON TABLE controle_orientation TO visiteuramata;
 REVOKE ALL ON TABLE controle_pendage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_pendage FROM postgres;
 GRANT ALL ON TABLE controle_pendage TO postgres;
-GRANT SELECT ON TABLE controle_pendage TO PUBLIC;
-GRANT ALL ON TABLE controle_pendage TO superamata;
-GRANT SELECT ON TABLE controle_pendage TO amata;
-GRANT SELECT ON TABLE controle_pendage TO visiteuramata;
+GRANT SELECT ON TABLE controle_pendage TO lazaret;
+GRANT ALL ON TABLE controle_pendage TO superlazaret;
 
 
 --
@@ -10940,10 +10712,8 @@ GRANT SELECT ON TABLE controle_pendage TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_association FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_association FROM postgres;
 GRANT ALL ON TABLE controle_r_association TO postgres;
-GRANT SELECT ON TABLE controle_r_association TO PUBLIC;
-GRANT ALL ON TABLE controle_r_association TO superamata;
-GRANT SELECT ON TABLE controle_r_association TO amata;
-GRANT SELECT ON TABLE controle_r_association TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_association TO lazaret;
+GRANT ALL ON TABLE controle_r_association TO superlazaret;
 
 
 --
@@ -10953,10 +10723,8 @@ GRANT SELECT ON TABLE controle_r_association TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_bord FROM postgres;
 GRANT ALL ON TABLE controle_r_bord TO postgres;
-GRANT SELECT ON TABLE controle_r_bord TO PUBLIC;
-GRANT ALL ON TABLE controle_r_bord TO superamata;
-GRANT SELECT ON TABLE controle_r_bord TO amata;
-GRANT SELECT ON TABLE controle_r_bord TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_bord TO lazaret;
+GRANT ALL ON TABLE controle_r_bord TO superlazaret;
 
 
 --
@@ -10966,10 +10734,8 @@ GRANT SELECT ON TABLE controle_r_bord TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_cas FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_cas FROM postgres;
 GRANT ALL ON TABLE controle_r_cas TO postgres;
-GRANT SELECT ON TABLE controle_r_cas TO PUBLIC;
-GRANT ALL ON TABLE controle_r_cas TO superamata;
-GRANT SELECT ON TABLE controle_r_cas TO amata;
-GRANT SELECT ON TABLE controle_r_cas TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_cas TO lazaret;
+GRANT ALL ON TABLE controle_r_cas TO superlazaret;
 
 
 --
@@ -10979,10 +10745,8 @@ GRANT SELECT ON TABLE controle_r_cas TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_denticulation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_denticulation FROM postgres;
 GRANT ALL ON TABLE controle_r_denticulation TO postgres;
-GRANT SELECT ON TABLE controle_r_denticulation TO PUBLIC;
-GRANT ALL ON TABLE controle_r_denticulation TO superamata;
-GRANT SELECT ON TABLE controle_r_denticulation TO amata;
-GRANT SELECT ON TABLE controle_r_denticulation TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_denticulation TO lazaret;
+GRANT ALL ON TABLE controle_r_denticulation TO superlazaret;
 
 
 --
@@ -10992,10 +10756,8 @@ GRANT SELECT ON TABLE controle_r_denticulation TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_destination FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_destination FROM postgres;
 GRANT ALL ON TABLE controle_r_destination TO postgres;
-GRANT SELECT ON TABLE controle_r_destination TO PUBLIC;
-GRANT ALL ON TABLE controle_r_destination TO superamata;
-GRANT SELECT ON TABLE controle_r_destination TO amata;
-GRANT SELECT ON TABLE controle_r_destination TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_destination TO lazaret;
+GRANT ALL ON TABLE controle_r_destination TO superlazaret;
 
 
 --
@@ -11005,10 +10767,8 @@ GRANT SELECT ON TABLE controle_r_destination TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_dimension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_dimension FROM postgres;
 GRANT ALL ON TABLE controle_r_dimension TO postgres;
-GRANT SELECT ON TABLE controle_r_dimension TO PUBLIC;
-GRANT ALL ON TABLE controle_r_dimension TO superamata;
-GRANT SELECT ON TABLE controle_r_dimension TO amata;
-GRANT SELECT ON TABLE controle_r_dimension TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_dimension TO lazaret;
+GRANT ALL ON TABLE controle_r_dimension TO superlazaret;
 
 
 --
@@ -11018,10 +10778,8 @@ GRANT SELECT ON TABLE controle_r_dimension TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_ecrasement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_ecrasement FROM postgres;
 GRANT ALL ON TABLE controle_r_ecrasement TO postgres;
-GRANT SELECT ON TABLE controle_r_ecrasement TO PUBLIC;
-GRANT ALL ON TABLE controle_r_ecrasement TO superamata;
-GRANT SELECT ON TABLE controle_r_ecrasement TO amata;
-GRANT SELECT ON TABLE controle_r_ecrasement TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_ecrasement TO lazaret;
+GRANT ALL ON TABLE controle_r_ecrasement TO superlazaret;
 
 
 --
@@ -11031,10 +10789,8 @@ GRANT SELECT ON TABLE controle_r_ecrasement TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_extremite FROM postgres;
 GRANT ALL ON TABLE controle_r_extremite TO postgres;
-GRANT SELECT ON TABLE controle_r_extremite TO PUBLIC;
-GRANT ALL ON TABLE controle_r_extremite TO superamata;
-GRANT SELECT ON TABLE controle_r_extremite TO amata;
-GRANT SELECT ON TABLE controle_r_extremite TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_extremite TO lazaret;
+GRANT ALL ON TABLE controle_r_extremite TO superlazaret;
 
 
 --
@@ -11044,10 +10800,8 @@ GRANT SELECT ON TABLE controle_r_extremite TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_frequence FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_frequence FROM postgres;
 GRANT ALL ON TABLE controle_r_frequence TO postgres;
-GRANT SELECT ON TABLE controle_r_frequence TO PUBLIC;
-GRANT ALL ON TABLE controle_r_frequence TO superamata;
-GRANT SELECT ON TABLE controle_r_frequence TO amata;
-GRANT SELECT ON TABLE controle_r_frequence TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_frequence TO lazaret;
+GRANT ALL ON TABLE controle_r_frequence TO superlazaret;
 
 
 --
@@ -11057,10 +10811,8 @@ GRANT SELECT ON TABLE controle_r_frequence TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_r_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_r_lustrage TO PUBLIC;
-GRANT ALL ON TABLE controle_r_lustrage TO superamata;
-GRANT SELECT ON TABLE controle_r_lustrage TO amata;
-GRANT SELECT ON TABLE controle_r_lustrage TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_lustrage TO lazaret;
+GRANT ALL ON TABLE controle_r_lustrage TO superlazaret;
 
 
 --
@@ -11070,10 +10822,8 @@ GRANT SELECT ON TABLE controle_r_lustrage TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_r_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_r_obliquite TO PUBLIC;
-GRANT ALL ON TABLE controle_r_obliquite TO superamata;
-GRANT SELECT ON TABLE controle_r_obliquite TO amata;
-GRANT SELECT ON TABLE controle_r_obliquite TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_obliquite TO lazaret;
+GRANT ALL ON TABLE controle_r_obliquite TO superlazaret;
 
 
 --
@@ -11083,10 +10833,8 @@ GRANT SELECT ON TABLE controle_r_obliquite TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_ordre FROM postgres;
 GRANT ALL ON TABLE controle_r_ordre TO postgres;
-GRANT SELECT ON TABLE controle_r_ordre TO PUBLIC;
-GRANT ALL ON TABLE controle_r_ordre TO superamata;
-GRANT SELECT ON TABLE controle_r_ordre TO amata;
-GRANT SELECT ON TABLE controle_r_ordre TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_ordre TO lazaret;
+GRANT ALL ON TABLE controle_r_ordre TO superlazaret;
 
 
 --
@@ -11096,10 +10844,8 @@ GRANT SELECT ON TABLE controle_r_ordre TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_origine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_origine FROM postgres;
 GRANT ALL ON TABLE controle_r_origine TO postgres;
-GRANT SELECT ON TABLE controle_r_origine TO PUBLIC;
-GRANT ALL ON TABLE controle_r_origine TO superamata;
-GRANT SELECT ON TABLE controle_r_origine TO amata;
-GRANT SELECT ON TABLE controle_r_origine TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_origine TO lazaret;
+GRANT ALL ON TABLE controle_r_origine TO superlazaret;
 
 
 --
@@ -11109,10 +10855,8 @@ GRANT SELECT ON TABLE controle_r_origine TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_sens FROM postgres;
 GRANT ALL ON TABLE controle_r_sens TO postgres;
-GRANT SELECT ON TABLE controle_r_sens TO PUBLIC;
-GRANT ALL ON TABLE controle_r_sens TO superamata;
-GRANT SELECT ON TABLE controle_r_sens TO amata;
-GRANT SELECT ON TABLE controle_r_sens TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_sens TO lazaret;
+GRANT ALL ON TABLE controle_r_sens TO superlazaret;
 
 
 --
@@ -11122,10 +10866,8 @@ GRANT SELECT ON TABLE controle_r_sens TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_strie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_strie FROM postgres;
 GRANT ALL ON TABLE controle_r_strie TO postgres;
-GRANT SELECT ON TABLE controle_r_strie TO PUBLIC;
-GRANT ALL ON TABLE controle_r_strie TO superamata;
-GRANT SELECT ON TABLE controle_r_strie TO amata;
-GRANT SELECT ON TABLE controle_r_strie TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_strie TO lazaret;
+GRANT ALL ON TABLE controle_r_strie TO superlazaret;
 
 
 --
@@ -11135,10 +10877,8 @@ GRANT SELECT ON TABLE controle_r_strie TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_superposition FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_superposition FROM postgres;
 GRANT ALL ON TABLE controle_r_superposition TO postgres;
-GRANT SELECT ON TABLE controle_r_superposition TO PUBLIC;
-GRANT ALL ON TABLE controle_r_superposition TO superamata;
-GRANT SELECT ON TABLE controle_r_superposition TO amata;
-GRANT SELECT ON TABLE controle_r_superposition TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_superposition TO lazaret;
+GRANT ALL ON TABLE controle_r_superposition TO superlazaret;
 
 
 --
@@ -11148,10 +10888,8 @@ GRANT SELECT ON TABLE controle_r_superposition TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_tranchant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_tranchant FROM postgres;
 GRANT ALL ON TABLE controle_r_tranchant TO postgres;
-GRANT SELECT ON TABLE controle_r_tranchant TO PUBLIC;
-GRANT ALL ON TABLE controle_r_tranchant TO superamata;
-GRANT SELECT ON TABLE controle_r_tranchant TO amata;
-GRANT SELECT ON TABLE controle_r_tranchant TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_tranchant TO lazaret;
+GRANT ALL ON TABLE controle_r_tranchant TO superlazaret;
 
 
 --
@@ -11161,10 +10899,8 @@ GRANT SELECT ON TABLE controle_r_tranchant TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_type FROM postgres;
 GRANT ALL ON TABLE controle_r_type TO postgres;
-GRANT SELECT ON TABLE controle_r_type TO PUBLIC;
-GRANT ALL ON TABLE controle_r_type TO superamata;
-GRANT SELECT ON TABLE controle_r_type TO amata;
-GRANT SELECT ON TABLE controle_r_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_type TO lazaret;
+GRANT ALL ON TABLE controle_r_type TO superlazaret;
 
 
 --
@@ -11174,10 +10910,8 @@ GRANT SELECT ON TABLE controle_r_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_r_utilisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_utilisation FROM postgres;
 GRANT ALL ON TABLE controle_r_utilisation TO postgres;
-GRANT SELECT ON TABLE controle_r_utilisation TO PUBLIC;
-GRANT ALL ON TABLE controle_r_utilisation TO superamata;
-GRANT SELECT ON TABLE controle_r_utilisation TO amata;
-GRANT SELECT ON TABLE controle_r_utilisation TO visiteuramata;
+GRANT SELECT ON TABLE controle_r_utilisation TO lazaret;
+GRANT ALL ON TABLE controle_r_utilisation TO superlazaret;
 
 
 --
@@ -11187,9 +10921,11 @@ GRANT SELECT ON TABLE controle_r_utilisation TO visiteuramata;
 REVOKE ALL ON TABLE controle_responsable_fouille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_responsable_fouille FROM postgres;
 GRANT ALL ON TABLE controle_responsable_fouille TO postgres;
-GRANT ALL ON TABLE controle_responsable_fouille TO superamata;
-GRANT SELECT ON TABLE controle_responsable_fouille TO amata;
-GRANT SELECT ON TABLE controle_responsable_fouille TO visiteuramata;
+GRANT SELECT ON TABLE controle_responsable_fouille TO lazaret;
+GRANT ALL ON TABLE controle_responsable_fouille TO superlazaret;
+GRANT ALL ON TABLE controle_responsable_fouille TO superchoukoutien;
+GRANT SELECT ON TABLE controle_responsable_fouille TO choukoutien;
+GRANT SELECT ON TABLE controle_responsable_fouille TO visiteurchoukoutien;
 
 
 --
@@ -11199,10 +10935,8 @@ GRANT SELECT ON TABLE controle_responsable_fouille TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_localisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_localisation FROM postgres;
 GRANT ALL ON TABLE controle_s_localisation TO postgres;
-GRANT SELECT ON TABLE controle_s_localisation TO PUBLIC;
-GRANT ALL ON TABLE controle_s_localisation TO superamata;
-GRANT SELECT ON TABLE controle_s_localisation TO amata;
-GRANT SELECT ON TABLE controle_s_localisation TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_localisation TO lazaret;
+GRANT ALL ON TABLE controle_s_localisation TO superlazaret;
 
 
 --
@@ -11212,10 +10946,8 @@ GRANT SELECT ON TABLE controle_s_localisation TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_s_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_s_lustrage TO PUBLIC;
-GRANT ALL ON TABLE controle_s_lustrage TO superamata;
-GRANT SELECT ON TABLE controle_s_lustrage TO amata;
-GRANT SELECT ON TABLE controle_s_lustrage TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_lustrage TO lazaret;
+GRANT ALL ON TABLE controle_s_lustrage TO superlazaret;
 
 
 --
@@ -11225,10 +10957,8 @@ GRANT SELECT ON TABLE controle_s_lustrage TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_ordre FROM postgres;
 GRANT ALL ON TABLE controle_s_ordre TO postgres;
-GRANT SELECT ON TABLE controle_s_ordre TO PUBLIC;
-GRANT ALL ON TABLE controle_s_ordre TO superamata;
-GRANT SELECT ON TABLE controle_s_ordre TO amata;
-GRANT SELECT ON TABLE controle_s_ordre TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_ordre TO lazaret;
+GRANT ALL ON TABLE controle_s_ordre TO superlazaret;
 
 
 --
@@ -11238,10 +10968,8 @@ GRANT SELECT ON TABLE controle_s_ordre TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_polissage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_polissage FROM postgres;
 GRANT ALL ON TABLE controle_s_polissage TO postgres;
-GRANT SELECT ON TABLE controle_s_polissage TO PUBLIC;
-GRANT ALL ON TABLE controle_s_polissage TO superamata;
-GRANT SELECT ON TABLE controle_s_polissage TO amata;
-GRANT SELECT ON TABLE controle_s_polissage TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_polissage TO lazaret;
+GRANT ALL ON TABLE controle_s_polissage TO superlazaret;
 
 
 --
@@ -11251,10 +10979,8 @@ GRANT SELECT ON TABLE controle_s_polissage TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_relation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_relation FROM postgres;
 GRANT ALL ON TABLE controle_s_relation TO postgres;
-GRANT SELECT ON TABLE controle_s_relation TO PUBLIC;
-GRANT ALL ON TABLE controle_s_relation TO superamata;
-GRANT SELECT ON TABLE controle_s_relation TO amata;
-GRANT SELECT ON TABLE controle_s_relation TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_relation TO lazaret;
+GRANT ALL ON TABLE controle_s_relation TO superlazaret;
 
 
 --
@@ -11264,10 +10990,8 @@ GRANT SELECT ON TABLE controle_s_relation TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_situation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_situation FROM postgres;
 GRANT ALL ON TABLE controle_s_situation TO postgres;
-GRANT SELECT ON TABLE controle_s_situation TO PUBLIC;
-GRANT ALL ON TABLE controle_s_situation TO superamata;
-GRANT SELECT ON TABLE controle_s_situation TO amata;
-GRANT SELECT ON TABLE controle_s_situation TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_situation TO lazaret;
+GRANT ALL ON TABLE controle_s_situation TO superlazaret;
 
 
 --
@@ -11277,10 +11001,8 @@ GRANT SELECT ON TABLE controle_s_situation TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_sous_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_sous_type FROM postgres;
 GRANT ALL ON TABLE controle_s_sous_type TO postgres;
-GRANT SELECT ON TABLE controle_s_sous_type TO PUBLIC;
-GRANT ALL ON TABLE controle_s_sous_type TO superamata;
-GRANT SELECT ON TABLE controle_s_sous_type TO amata;
-GRANT SELECT ON TABLE controle_s_sous_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_sous_type TO lazaret;
+GRANT ALL ON TABLE controle_s_sous_type TO superlazaret;
 
 
 --
@@ -11290,10 +11012,8 @@ GRANT SELECT ON TABLE controle_s_sous_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_s_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_type FROM postgres;
 GRANT ALL ON TABLE controle_s_type TO postgres;
-GRANT SELECT ON TABLE controle_s_type TO PUBLIC;
-GRANT ALL ON TABLE controle_s_type TO superamata;
-GRANT SELECT ON TABLE controle_s_type TO amata;
-GRANT SELECT ON TABLE controle_s_type TO visiteuramata;
+GRANT SELECT ON TABLE controle_s_type TO lazaret;
+GRANT ALL ON TABLE controle_s_type TO superlazaret;
 
 
 --
@@ -11303,10 +11023,8 @@ GRANT SELECT ON TABLE controle_s_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_sol FROM PUBLIC;
 REVOKE ALL ON TABLE controle_sol FROM postgres;
 GRANT ALL ON TABLE controle_sol TO postgres;
-GRANT SELECT ON TABLE controle_sol TO PUBLIC;
-GRANT ALL ON TABLE controle_sol TO superamata;
-GRANT SELECT ON TABLE controle_sol TO amata;
-GRANT SELECT ON TABLE controle_sol TO visiteuramata;
+GRANT SELECT ON TABLE controle_sol TO lazaret;
+GRANT ALL ON TABLE controle_sol TO superlazaret;
 
 
 --
@@ -11316,10 +11034,8 @@ GRANT SELECT ON TABLE controle_sol TO visiteuramata;
 REVOKE ALL ON TABLE controle_souscarre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_souscarre FROM postgres;
 GRANT ALL ON TABLE controle_souscarre TO postgres;
-GRANT SELECT ON TABLE controle_souscarre TO PUBLIC;
-GRANT ALL ON TABLE controle_souscarre TO superamata;
-GRANT SELECT ON TABLE controle_souscarre TO amata;
-GRANT SELECT ON TABLE controle_souscarre TO visiteuramata;
+GRANT SELECT ON TABLE controle_souscarre TO lazaret;
+GRANT ALL ON TABLE controle_souscarre TO superlazaret;
 
 
 --
@@ -11329,10 +11045,8 @@ GRANT SELECT ON TABLE controle_souscarre TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_agent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_agent FROM postgres;
 GRANT ALL ON TABLE controle_t_agent TO postgres;
-GRANT SELECT ON TABLE controle_t_agent TO PUBLIC;
-GRANT ALL ON TABLE controle_t_agent TO superamata;
-GRANT SELECT ON TABLE controle_t_agent TO amata;
-GRANT SELECT ON TABLE controle_t_agent TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_agent TO lazaret;
+GRANT ALL ON TABLE controle_t_agent TO superlazaret;
 
 
 --
@@ -11342,10 +11056,8 @@ GRANT SELECT ON TABLE controle_t_agent TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_allure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_allure FROM postgres;
 GRANT ALL ON TABLE controle_t_allure TO postgres;
-GRANT SELECT ON TABLE controle_t_allure TO PUBLIC;
-GRANT ALL ON TABLE controle_t_allure TO superamata;
-GRANT SELECT ON TABLE controle_t_allure TO amata;
-GRANT SELECT ON TABLE controle_t_allure TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_allure TO lazaret;
+GRANT ALL ON TABLE controle_t_allure TO superlazaret;
 
 
 --
@@ -11355,10 +11067,8 @@ GRANT SELECT ON TABLE controle_t_allure TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_classe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_classe FROM postgres;
 GRANT ALL ON TABLE controle_t_classe TO postgres;
-GRANT SELECT ON TABLE controle_t_classe TO PUBLIC;
-GRANT ALL ON TABLE controle_t_classe TO superamata;
-GRANT SELECT ON TABLE controle_t_classe TO amata;
-GRANT SELECT ON TABLE controle_t_classe TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_classe TO lazaret;
+GRANT ALL ON TABLE controle_t_classe TO superlazaret;
 
 
 --
@@ -11368,10 +11078,8 @@ GRANT SELECT ON TABLE controle_t_classe TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_dessin FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_dessin FROM postgres;
 GRANT ALL ON TABLE controle_t_dessin TO postgres;
-GRANT SELECT ON TABLE controle_t_dessin TO PUBLIC;
-GRANT ALL ON TABLE controle_t_dessin TO superamata;
-GRANT SELECT ON TABLE controle_t_dessin TO amata;
-GRANT SELECT ON TABLE controle_t_dessin TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_dessin TO lazaret;
+GRANT ALL ON TABLE controle_t_dessin TO superlazaret;
 
 
 --
@@ -11381,10 +11089,8 @@ GRANT SELECT ON TABLE controle_t_dessin TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_direction FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_direction FROM postgres;
 GRANT ALL ON TABLE controle_t_direction TO postgres;
-GRANT SELECT ON TABLE controle_t_direction TO PUBLIC;
-GRANT ALL ON TABLE controle_t_direction TO superamata;
-GRANT SELECT ON TABLE controle_t_direction TO amata;
-GRANT SELECT ON TABLE controle_t_direction TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_direction TO lazaret;
+GRANT ALL ON TABLE controle_t_direction TO superlazaret;
 
 
 --
@@ -11394,10 +11100,8 @@ GRANT SELECT ON TABLE controle_t_direction TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_dstrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_dstrie FROM postgres;
 GRANT ALL ON TABLE controle_t_dstrie TO postgres;
-GRANT SELECT ON TABLE controle_t_dstrie TO PUBLIC;
-GRANT ALL ON TABLE controle_t_dstrie TO superamata;
-GRANT SELECT ON TABLE controle_t_dstrie TO amata;
-GRANT SELECT ON TABLE controle_t_dstrie TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_dstrie TO lazaret;
+GRANT ALL ON TABLE controle_t_dstrie TO superlazaret;
 
 
 --
@@ -11407,10 +11111,8 @@ GRANT SELECT ON TABLE controle_t_dstrie TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_ensemble FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_ensemble FROM postgres;
 GRANT ALL ON TABLE controle_t_ensemble TO postgres;
-GRANT SELECT ON TABLE controle_t_ensemble TO PUBLIC;
-GRANT ALL ON TABLE controle_t_ensemble TO superamata;
-GRANT SELECT ON TABLE controle_t_ensemble TO amata;
-GRANT SELECT ON TABLE controle_t_ensemble TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_ensemble TO lazaret;
+GRANT ALL ON TABLE controle_t_ensemble TO superlazaret;
 
 
 --
@@ -11420,10 +11122,8 @@ GRANT SELECT ON TABLE controle_t_ensemble TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_largeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_largeur FROM postgres;
 GRANT ALL ON TABLE controle_t_largeur TO postgres;
-GRANT SELECT ON TABLE controle_t_largeur TO PUBLIC;
-GRANT ALL ON TABLE controle_t_largeur TO superamata;
-GRANT SELECT ON TABLE controle_t_largeur TO amata;
-GRANT SELECT ON TABLE controle_t_largeur TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_largeur TO lazaret;
+GRANT ALL ON TABLE controle_t_largeur TO superlazaret;
 
 
 --
@@ -11433,10 +11133,8 @@ GRANT SELECT ON TABLE controle_t_largeur TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_locmusc FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_locmusc FROM postgres;
 GRANT ALL ON TABLE controle_t_locmusc TO postgres;
-GRANT SELECT ON TABLE controle_t_locmusc TO PUBLIC;
-GRANT ALL ON TABLE controle_t_locmusc TO superamata;
-GRANT SELECT ON TABLE controle_t_locmusc TO amata;
-GRANT SELECT ON TABLE controle_t_locmusc TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_locmusc TO lazaret;
+GRANT ALL ON TABLE controle_t_locmusc TO superlazaret;
 
 
 --
@@ -11446,10 +11144,8 @@ GRANT SELECT ON TABLE controle_t_locmusc TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_nature FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_nature FROM postgres;
 GRANT ALL ON TABLE controle_t_nature TO postgres;
-GRANT SELECT ON TABLE controle_t_nature TO PUBLIC;
-GRANT ALL ON TABLE controle_t_nature TO superamata;
-GRANT SELECT ON TABLE controle_t_nature TO amata;
-GRANT SELECT ON TABLE controle_t_nature TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_nature TO lazaret;
+GRANT ALL ON TABLE controle_t_nature TO superlazaret;
 
 
 --
@@ -11459,10 +11155,8 @@ GRANT SELECT ON TABLE controle_t_nature TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_phenomene FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_phenomene FROM postgres;
 GRANT ALL ON TABLE controle_t_phenomene TO postgres;
-GRANT SELECT ON TABLE controle_t_phenomene TO PUBLIC;
-GRANT ALL ON TABLE controle_t_phenomene TO superamata;
-GRANT SELECT ON TABLE controle_t_phenomene TO amata;
-GRANT SELECT ON TABLE controle_t_phenomene TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_phenomene TO lazaret;
+GRANT ALL ON TABLE controle_t_phenomene TO superlazaret;
 
 
 --
@@ -11472,10 +11166,8 @@ GRANT SELECT ON TABLE controle_t_phenomene TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_photo FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_photo FROM postgres;
 GRANT ALL ON TABLE controle_t_photo TO postgres;
-GRANT SELECT ON TABLE controle_t_photo TO PUBLIC;
-GRANT ALL ON TABLE controle_t_photo TO superamata;
-GRANT SELECT ON TABLE controle_t_photo TO amata;
-GRANT SELECT ON TABLE controle_t_photo TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_photo TO lazaret;
+GRANT ALL ON TABLE controle_t_photo TO superlazaret;
 
 
 --
@@ -11485,10 +11177,8 @@ GRANT SELECT ON TABLE controle_t_photo TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_t_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_t_profondeur TO PUBLIC;
-GRANT ALL ON TABLE controle_t_profondeur TO superamata;
-GRANT SELECT ON TABLE controle_t_profondeur TO amata;
-GRANT SELECT ON TABLE controle_t_profondeur TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_profondeur TO lazaret;
+GRANT ALL ON TABLE controle_t_profondeur TO superlazaret;
 
 
 --
@@ -11498,10 +11188,8 @@ GRANT SELECT ON TABLE controle_t_profondeur TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_replique FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_replique FROM postgres;
 GRANT ALL ON TABLE controle_t_replique TO postgres;
-GRANT SELECT ON TABLE controle_t_replique TO PUBLIC;
-GRANT ALL ON TABLE controle_t_replique TO superamata;
-GRANT SELECT ON TABLE controle_t_replique TO amata;
-GRANT SELECT ON TABLE controle_t_replique TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_replique TO lazaret;
+GRANT ALL ON TABLE controle_t_replique TO superlazaret;
 
 
 --
@@ -11511,10 +11199,8 @@ GRANT SELECT ON TABLE controle_t_replique TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_section FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_section FROM postgres;
 GRANT ALL ON TABLE controle_t_section TO postgres;
-GRANT SELECT ON TABLE controle_t_section TO PUBLIC;
-GRANT ALL ON TABLE controle_t_section TO superamata;
-GRANT SELECT ON TABLE controle_t_section TO amata;
-GRANT SELECT ON TABLE controle_t_section TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_section TO lazaret;
+GRANT ALL ON TABLE controle_t_section TO superlazaret;
 
 
 --
@@ -11524,10 +11210,8 @@ GRANT SELECT ON TABLE controle_t_section TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_sens FROM postgres;
 GRANT ALL ON TABLE controle_t_sens TO postgres;
-GRANT SELECT ON TABLE controle_t_sens TO PUBLIC;
-GRANT ALL ON TABLE controle_t_sens TO superamata;
-GRANT SELECT ON TABLE controle_t_sens TO amata;
-GRANT SELECT ON TABLE controle_t_sens TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_sens TO lazaret;
+GRANT ALL ON TABLE controle_t_sens TO superlazaret;
 
 
 --
@@ -11537,10 +11221,8 @@ GRANT SELECT ON TABLE controle_t_sens TO visiteuramata;
 REVOKE ALL ON TABLE controle_t_trace FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_trace FROM postgres;
 GRANT ALL ON TABLE controle_t_trace TO postgres;
-GRANT SELECT ON TABLE controle_t_trace TO PUBLIC;
-GRANT ALL ON TABLE controle_t_trace TO superamata;
-GRANT SELECT ON TABLE controle_t_trace TO amata;
-GRANT SELECT ON TABLE controle_t_trace TO visiteuramata;
+GRANT SELECT ON TABLE controle_t_trace TO lazaret;
+GRANT ALL ON TABLE controle_t_trace TO superlazaret;
 
 
 --
@@ -11550,10 +11232,8 @@ GRANT SELECT ON TABLE controle_t_trace TO visiteuramata;
 REVOKE ALL ON TABLE controle_ud_fragmentation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_fragmentation FROM postgres;
 GRANT ALL ON TABLE controle_ud_fragmentation TO postgres;
-GRANT SELECT ON TABLE controle_ud_fragmentation TO PUBLIC;
-GRANT ALL ON TABLE controle_ud_fragmentation TO superamata;
-GRANT SELECT ON TABLE controle_ud_fragmentation TO amata;
-GRANT SELECT ON TABLE controle_ud_fragmentation TO visiteuramata;
+GRANT ALL ON TABLE controle_ud_fragmentation TO lazaret;
+GRANT ALL ON TABLE controle_ud_fragmentation TO superlazaret;
 
 
 --
@@ -11563,10 +11243,8 @@ GRANT SELECT ON TABLE controle_ud_fragmentation TO visiteuramata;
 REVOKE ALL ON TABLE controle_ud_lateralite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_lateralite FROM postgres;
 GRANT ALL ON TABLE controle_ud_lateralite TO postgres;
-GRANT SELECT ON TABLE controle_ud_lateralite TO PUBLIC;
-GRANT ALL ON TABLE controle_ud_lateralite TO superamata;
-GRANT SELECT ON TABLE controle_ud_lateralite TO amata;
-GRANT SELECT ON TABLE controle_ud_lateralite TO visiteuramata;
+GRANT ALL ON TABLE controle_ud_lateralite TO lazaret;
+GRANT ALL ON TABLE controle_ud_lateralite TO superlazaret;
 
 
 --
@@ -11576,10 +11254,8 @@ GRANT SELECT ON TABLE controle_ud_lateralite TO visiteuramata;
 REVOKE ALL ON TABLE controle_ud_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_type FROM postgres;
 GRANT ALL ON TABLE controle_ud_type TO postgres;
-GRANT SELECT ON TABLE controle_ud_type TO PUBLIC;
-GRANT ALL ON TABLE controle_ud_type TO superamata;
-GRANT SELECT ON TABLE controle_ud_type TO amata;
-GRANT SELECT ON TABLE controle_ud_type TO visiteuramata;
+GRANT ALL ON TABLE controle_ud_type TO lazaret;
+GRANT ALL ON TABLE controle_ud_type TO superlazaret;
 
 
 --
@@ -11589,10 +11265,8 @@ GRANT SELECT ON TABLE controle_ud_type TO visiteuramata;
 REVOKE ALL ON TABLE controle_ud_usure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_usure FROM postgres;
 GRANT ALL ON TABLE controle_ud_usure TO postgres;
-GRANT SELECT ON TABLE controle_ud_usure TO PUBLIC;
-GRANT ALL ON TABLE controle_ud_usure TO superamata;
-GRANT SELECT ON TABLE controle_ud_usure TO amata;
-GRANT SELECT ON TABLE controle_ud_usure TO visiteuramata;
+GRANT ALL ON TABLE controle_ud_usure TO lazaret;
+GRANT ALL ON TABLE controle_ud_usure TO superlazaret;
 
 
 --
@@ -11602,10 +11276,8 @@ GRANT SELECT ON TABLE controle_ud_usure TO visiteuramata;
 REVOKE ALL ON TABLE controle_vers FROM PUBLIC;
 REVOKE ALL ON TABLE controle_vers FROM postgres;
 GRANT ALL ON TABLE controle_vers TO postgres;
-GRANT SELECT ON TABLE controle_vers TO PUBLIC;
-GRANT ALL ON TABLE controle_vers TO superamata;
-GRANT SELECT ON TABLE controle_vers TO amata;
-GRANT SELECT ON TABLE controle_vers TO visiteuramata;
+GRANT SELECT ON TABLE controle_vers TO lazaret;
+GRANT ALL ON TABLE controle_vers TO superlazaret;
 
 
 --
@@ -11615,21 +11287,8 @@ GRANT SELECT ON TABLE controle_vers TO visiteuramata;
 REVOKE ALL ON TABLE controle_zone FROM PUBLIC;
 REVOKE ALL ON TABLE controle_zone FROM postgres;
 GRANT ALL ON TABLE controle_zone TO postgres;
-GRANT ALL ON TABLE controle_zone TO superamata;
-GRANT SELECT ON TABLE controle_zone TO amata;
-
-
---
--- Name: coprolithe; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE coprolithe FROM PUBLIC;
-REVOKE ALL ON TABLE coprolithe FROM postgres;
-GRANT ALL ON TABLE coprolithe TO postgres;
-GRANT SELECT ON TABLE coprolithe TO PUBLIC;
-GRANT ALL ON TABLE coprolithe TO superamata;
-GRANT ALL ON TABLE coprolithe TO amata;
-GRANT SELECT ON TABLE coprolithe TO visiteuramata;
+GRANT SELECT ON TABLE controle_zone TO lazaret;
+GRANT ALL ON TABLE controle_zone TO superlazaret;
 
 
 --
@@ -11639,10 +11298,8 @@ GRANT SELECT ON TABLE coprolithe TO visiteuramata;
 REVOKE ALL ON TABLE dent FROM PUBLIC;
 REVOKE ALL ON TABLE dent FROM postgres;
 GRANT ALL ON TABLE dent TO postgres;
-GRANT SELECT ON TABLE dent TO PUBLIC;
-GRANT ALL ON TABLE dent TO superamata;
-GRANT ALL ON TABLE dent TO amata;
-GRANT SELECT ON TABLE dent TO visiteuramata;
+GRANT ALL ON TABLE dent TO lazaret;
+GRANT ALL ON TABLE dent TO superlazaret;
 
 
 --
@@ -11652,10 +11309,8 @@ GRANT SELECT ON TABLE dent TO visiteuramata;
 REVOKE ALL ON TABLE eclat FROM PUBLIC;
 REVOKE ALL ON TABLE eclat FROM postgres;
 GRANT ALL ON TABLE eclat TO postgres;
-GRANT SELECT ON TABLE eclat TO PUBLIC;
-GRANT ALL ON TABLE eclat TO superamata;
-GRANT ALL ON TABLE eclat TO amata;
-GRANT SELECT ON TABLE eclat TO visiteuramata;
+GRANT ALL ON TABLE eclat TO lazaret;
+GRANT ALL ON TABLE eclat TO superlazaret;
 
 
 --
@@ -11666,9 +11321,8 @@ REVOKE ALL ON TABLE enlevement_biface FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_biface FROM postgres;
 GRANT ALL ON TABLE enlevement_biface TO postgres;
 GRANT SELECT ON TABLE enlevement_biface TO PUBLIC;
-GRANT ALL ON TABLE enlevement_biface TO superamata;
-GRANT ALL ON TABLE enlevement_biface TO amata;
-GRANT SELECT ON TABLE enlevement_biface TO visiteuramata;
+GRANT ALL ON TABLE enlevement_biface TO lazaret;
+GRANT ALL ON TABLE enlevement_biface TO superlazaret;
 
 
 --
@@ -11678,10 +11332,9 @@ GRANT SELECT ON TABLE enlevement_biface TO visiteuramata;
 REVOKE ALL ON TABLE enlevement_galet FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_galet FROM postgres;
 GRANT ALL ON TABLE enlevement_galet TO postgres;
-GRANT SELECT ON TABLE enlevement_galet TO PUBLIC;
-GRANT ALL ON TABLE enlevement_galet TO superamata;
-GRANT ALL ON TABLE enlevement_galet TO amata;
-GRANT SELECT ON TABLE enlevement_galet TO visiteuramata;
+GRANT ALL ON TABLE enlevement_galet TO lazaret;
+GRANT ALL ON TABLE enlevement_galet TO superlazaret;
+GRANT SELECT ON TABLE enlevement_galet TO visiteurlazaret;
 
 
 --
@@ -11691,9 +11344,9 @@ GRANT SELECT ON TABLE enlevement_galet TO visiteuramata;
 REVOKE ALL ON TABLE enlevement_nucleus FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_nucleus FROM postgres;
 GRANT ALL ON TABLE enlevement_nucleus TO postgres;
-GRANT ALL ON TABLE enlevement_nucleus TO amata;
-GRANT SELECT ON TABLE enlevement_nucleus TO visiteuramata;
-GRANT ALL ON TABLE enlevement_nucleus TO superamata;
+GRANT ALL ON TABLE enlevement_nucleus TO lazaret;
+GRANT ALL ON TABLE enlevement_nucleus TO superlazaret;
+GRANT SELECT ON TABLE enlevement_nucleus TO visiteurlazaret;
 
 
 --
@@ -11703,9 +11356,9 @@ GRANT ALL ON TABLE enlevement_nucleus TO superamata;
 REVOKE ALL ON TABLE faune FROM PUBLIC;
 REVOKE ALL ON TABLE faune FROM postgres;
 GRANT ALL ON TABLE faune TO postgres;
-GRANT ALL ON TABLE faune TO superamata;
-GRANT ALL ON TABLE faune TO amata;
-GRANT SELECT ON TABLE faune TO visiteuramata;
+GRANT ALL ON TABLE faune TO lazaret;
+GRANT ALL ON TABLE faune TO superlazaret;
+GRANT SELECT ON TABLE faune TO visiteurlazaret;
 
 
 --
@@ -11715,10 +11368,8 @@ GRANT SELECT ON TABLE faune TO visiteuramata;
 REVOKE ALL ON TABLE fracture_faune FROM PUBLIC;
 REVOKE ALL ON TABLE fracture_faune FROM postgres;
 GRANT ALL ON TABLE fracture_faune TO postgres;
-GRANT SELECT ON TABLE fracture_faune TO PUBLIC;
-GRANT ALL ON TABLE fracture_faune TO superamata;
-GRANT ALL ON TABLE fracture_faune TO amata;
-GRANT SELECT ON TABLE fracture_faune TO visiteuramata;
+GRANT ALL ON TABLE fracture_faune TO lazaret;
+GRANT ALL ON TABLE fracture_faune TO superlazaret;
 
 
 --
@@ -11728,10 +11379,8 @@ GRANT SELECT ON TABLE fracture_faune TO visiteuramata;
 REVOKE ALL ON TABLE fracture_industrie FROM PUBLIC;
 REVOKE ALL ON TABLE fracture_industrie FROM postgres;
 GRANT ALL ON TABLE fracture_industrie TO postgres;
-GRANT SELECT ON TABLE fracture_industrie TO PUBLIC;
-GRANT ALL ON TABLE fracture_industrie TO superamata;
-GRANT ALL ON TABLE fracture_industrie TO amata;
-GRANT SELECT ON TABLE fracture_industrie TO visiteuramata;
+GRANT ALL ON TABLE fracture_industrie TO lazaret;
+GRANT ALL ON TABLE fracture_industrie TO superlazaret;
 
 
 --
@@ -11741,10 +11390,8 @@ GRANT SELECT ON TABLE fracture_industrie TO visiteuramata;
 REVOKE ALL ON TABLE galet_amenage FROM PUBLIC;
 REVOKE ALL ON TABLE galet_amenage FROM postgres;
 GRANT ALL ON TABLE galet_amenage TO postgres;
-GRANT SELECT ON TABLE galet_amenage TO PUBLIC;
-GRANT ALL ON TABLE galet_amenage TO superamata;
-GRANT ALL ON TABLE galet_amenage TO amata;
-GRANT SELECT ON TABLE galet_amenage TO visiteuramata;
+GRANT ALL ON TABLE galet_amenage TO lazaret;
+GRANT ALL ON TABLE galet_amenage TO superlazaret;
 
 
 --
@@ -11754,10 +11401,8 @@ GRANT SELECT ON TABLE galet_amenage TO visiteuramata;
 REVOKE ALL ON TABLE hachereau FROM PUBLIC;
 REVOKE ALL ON TABLE hachereau FROM postgres;
 GRANT ALL ON TABLE hachereau TO postgres;
-GRANT SELECT ON TABLE hachereau TO PUBLIC;
-GRANT ALL ON TABLE hachereau TO superamata;
-GRANT ALL ON TABLE hachereau TO amata;
-GRANT SELECT ON TABLE hachereau TO visiteuramata;
+GRANT ALL ON TABLE hachereau TO lazaret;
+GRANT ALL ON TABLE hachereau TO superlazaret;
 
 
 --
@@ -11767,10 +11412,8 @@ GRANT SELECT ON TABLE hachereau TO visiteuramata;
 REVOKE ALL ON TABLE industrie FROM PUBLIC;
 REVOKE ALL ON TABLE industrie FROM postgres;
 GRANT ALL ON TABLE industrie TO postgres;
-GRANT SELECT ON TABLE industrie TO PUBLIC;
-GRANT ALL ON TABLE industrie TO superamata;
-GRANT ALL ON TABLE industrie TO amata;
-GRANT SELECT ON TABLE industrie TO visiteuramata;
+GRANT ALL ON TABLE industrie TO lazaret;
+GRANT ALL ON TABLE industrie TO superlazaret;
 
 
 --
@@ -11780,10 +11423,8 @@ GRANT SELECT ON TABLE industrie TO visiteuramata;
 REVOKE ALL ON TABLE microfaune FROM PUBLIC;
 REVOKE ALL ON TABLE microfaune FROM postgres;
 GRANT ALL ON TABLE microfaune TO postgres;
-GRANT SELECT ON TABLE microfaune TO PUBLIC;
-GRANT ALL ON TABLE microfaune TO superamata;
-GRANT ALL ON TABLE microfaune TO amata;
-GRANT SELECT ON TABLE microfaune TO visiteuramata;
+GRANT ALL ON TABLE microfaune TO lazaret;
+GRANT ALL ON TABLE microfaune TO superlazaret;
 
 
 --
@@ -11793,8 +11434,8 @@ GRANT SELECT ON TABLE microfaune TO visiteuramata;
 REVOKE ALL ON TABLE nucleus FROM PUBLIC;
 REVOKE ALL ON TABLE nucleus FROM postgres;
 GRANT ALL ON TABLE nucleus TO postgres;
-GRANT ALL ON TABLE nucleus TO superamata;
-GRANT ALL ON TABLE nucleus TO amata;
+GRANT ALL ON TABLE nucleus TO lazaret;
+GRANT ALL ON TABLE nucleus TO superlazaret;
 
 
 --
@@ -11804,10 +11445,8 @@ GRANT ALL ON TABLE nucleus TO amata;
 REVOKE ALL ON TABLE os FROM PUBLIC;
 REVOKE ALL ON TABLE os FROM postgres;
 GRANT ALL ON TABLE os TO postgres;
-GRANT SELECT ON TABLE os TO PUBLIC;
-GRANT ALL ON TABLE os TO superamata;
-GRANT ALL ON TABLE os TO amata;
-GRANT SELECT ON TABLE os TO visiteuramata;
+GRANT ALL ON TABLE os TO lazaret;
+GRANT ALL ON TABLE os TO superlazaret;
 
 
 --
@@ -11817,10 +11456,8 @@ GRANT SELECT ON TABLE os TO visiteuramata;
 REVOKE ALL ON TABLE outil FROM PUBLIC;
 REVOKE ALL ON TABLE outil FROM postgres;
 GRANT ALL ON TABLE outil TO postgres;
-GRANT SELECT ON TABLE outil TO PUBLIC;
-GRANT ALL ON TABLE outil TO superamata;
-GRANT ALL ON TABLE outil TO amata;
-GRANT SELECT ON TABLE outil TO visiteuramata;
+GRANT ALL ON TABLE outil TO lazaret;
+GRANT ALL ON TABLE outil TO superlazaret;
 
 
 --
@@ -11830,10 +11467,8 @@ GRANT SELECT ON TABLE outil TO visiteuramata;
 REVOKE ALL ON TABLE photocoprolithe FROM PUBLIC;
 REVOKE ALL ON TABLE photocoprolithe FROM postgres;
 GRANT ALL ON TABLE photocoprolithe TO postgres;
-GRANT SELECT ON TABLE photocoprolithe TO PUBLIC;
-GRANT ALL ON TABLE photocoprolithe TO superamata;
-GRANT ALL ON TABLE photocoprolithe TO amata;
-GRANT SELECT ON TABLE photocoprolithe TO visiteuramata;
+GRANT ALL ON TABLE photocoprolithe TO lazaret;
+GRANT ALL ON TABLE photocoprolithe TO superlazaret;
 
 
 --
@@ -11843,10 +11478,8 @@ GRANT SELECT ON TABLE photocoprolithe TO visiteuramata;
 REVOKE ALL ON TABLE photofaune FROM PUBLIC;
 REVOKE ALL ON TABLE photofaune FROM postgres;
 GRANT ALL ON TABLE photofaune TO postgres;
-GRANT SELECT ON TABLE photofaune TO PUBLIC;
-GRANT ALL ON TABLE photofaune TO superamata;
-GRANT ALL ON TABLE photofaune TO amata;
-GRANT SELECT ON TABLE photofaune TO visiteuramata;
+GRANT ALL ON TABLE photofaune TO lazaret;
+GRANT ALL ON TABLE photofaune TO superlazaret;
 
 
 --
@@ -11856,10 +11489,8 @@ GRANT SELECT ON TABLE photofaune TO visiteuramata;
 REVOKE ALL ON TABLE photoindustrie FROM PUBLIC;
 REVOKE ALL ON TABLE photoindustrie FROM postgres;
 GRANT ALL ON TABLE photoindustrie TO postgres;
-GRANT SELECT ON TABLE photoindustrie TO PUBLIC;
-GRANT ALL ON TABLE photoindustrie TO superamata;
-GRANT ALL ON TABLE photoindustrie TO amata;
-GRANT SELECT ON TABLE photoindustrie TO visiteuramata;
+GRANT ALL ON TABLE photoindustrie TO lazaret;
+GRANT ALL ON TABLE photoindustrie TO superlazaret;
 
 
 --
@@ -11869,10 +11500,8 @@ GRANT SELECT ON TABLE photoindustrie TO visiteuramata;
 REVOKE ALL ON TABLE phototrace FROM PUBLIC;
 REVOKE ALL ON TABLE phototrace FROM postgres;
 GRANT ALL ON TABLE phototrace TO postgres;
-GRANT SELECT ON TABLE phototrace TO PUBLIC;
-GRANT ALL ON TABLE phototrace TO superamata;
-GRANT ALL ON TABLE phototrace TO amata;
-GRANT SELECT ON TABLE phototrace TO visiteuramata;
+GRANT ALL ON TABLE phototrace TO lazaret;
+GRANT ALL ON TABLE phototrace TO superlazaret;
 
 
 --
@@ -11882,10 +11511,8 @@ GRANT SELECT ON TABLE phototrace TO visiteuramata;
 REVOKE ALL ON TABLE remonte_famille FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_famille FROM postgres;
 GRANT ALL ON TABLE remonte_famille TO postgres;
-GRANT SELECT ON TABLE remonte_famille TO PUBLIC;
-GRANT ALL ON TABLE remonte_famille TO superamata;
-GRANT ALL ON TABLE remonte_famille TO amata;
-GRANT SELECT ON TABLE remonte_famille TO visiteuramata;
+GRANT ALL ON TABLE remonte_famille TO lazaret;
+GRANT ALL ON TABLE remonte_famille TO superlazaret;
 
 
 --
@@ -11895,10 +11522,8 @@ GRANT SELECT ON TABLE remonte_famille TO visiteuramata;
 REVOKE ALL ON TABLE remonte_genre FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_genre FROM postgres;
 GRANT ALL ON TABLE remonte_genre TO postgres;
-GRANT SELECT ON TABLE remonte_genre TO PUBLIC;
-GRANT ALL ON TABLE remonte_genre TO superamata;
-GRANT ALL ON TABLE remonte_genre TO amata;
-GRANT SELECT ON TABLE remonte_genre TO visiteuramata;
+GRANT ALL ON TABLE remonte_genre TO lazaret;
+GRANT ALL ON TABLE remonte_genre TO superlazaret;
 
 
 --
@@ -11908,10 +11533,8 @@ GRANT SELECT ON TABLE remonte_genre TO visiteuramata;
 REVOKE ALL ON TABLE remonte_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_ordre FROM postgres;
 GRANT ALL ON TABLE remonte_ordre TO postgres;
-GRANT SELECT ON TABLE remonte_ordre TO PUBLIC;
-GRANT ALL ON TABLE remonte_ordre TO superamata;
-GRANT ALL ON TABLE remonte_ordre TO amata;
-GRANT SELECT ON TABLE remonte_ordre TO visiteuramata;
+GRANT ALL ON TABLE remonte_ordre TO lazaret;
+GRANT ALL ON TABLE remonte_ordre TO superlazaret;
 
 
 --
@@ -11921,7 +11544,8 @@ GRANT SELECT ON TABLE remonte_ordre TO visiteuramata;
 REVOKE ALL ON TABLE requete FROM PUBLIC;
 REVOKE ALL ON TABLE requete FROM postgres;
 GRANT ALL ON TABLE requete TO postgres;
-GRANT ALL ON TABLE requete TO superamata;
+GRANT ALL ON TABLE requete TO lazaret;
+GRANT ALL ON TABLE requete TO superlazaret;
 
 
 --
@@ -11931,10 +11555,19 @@ GRANT ALL ON TABLE requete TO superamata;
 REVOKE ALL ON TABLE retouche FROM PUBLIC;
 REVOKE ALL ON TABLE retouche FROM postgres;
 GRANT ALL ON TABLE retouche TO postgres;
-GRANT SELECT ON TABLE retouche TO PUBLIC;
-GRANT ALL ON TABLE retouche TO superamata;
-GRANT ALL ON TABLE retouche TO amata;
-GRANT SELECT ON TABLE retouche TO visiteuramata;
+GRANT ALL ON TABLE retouche TO lazaret;
+GRANT ALL ON TABLE retouche TO superlazaret;
+
+
+--
+-- Name: seq_bord; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE seq_bord FROM PUBLIC;
+REVOKE ALL ON TABLE seq_bord FROM postgres;
+GRANT ALL ON TABLE seq_bord TO postgres;
+GRANT ALL ON TABLE seq_bord TO lazaret;
+GRANT ALL ON TABLE seq_bord TO superlazaret;
 
 
 --
@@ -11944,7 +11577,30 @@ GRANT SELECT ON TABLE retouche TO visiteuramata;
 REVOKE ALL ON TABLE seq_photofaune FROM PUBLIC;
 REVOKE ALL ON TABLE seq_photofaune FROM postgres;
 GRANT ALL ON TABLE seq_photofaune TO postgres;
-GRANT ALL ON TABLE seq_photofaune TO superamata;
+GRANT ALL ON TABLE seq_photofaune TO lazaret;
+GRANT ALL ON TABLE seq_photofaune TO superlazaret;
+
+
+--
+-- Name: seq_photoindustrie; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE seq_photoindustrie FROM PUBLIC;
+REVOKE ALL ON TABLE seq_photoindustrie FROM postgres;
+GRANT ALL ON TABLE seq_photoindustrie TO postgres;
+GRANT ALL ON TABLE seq_photoindustrie TO lazaret;
+GRANT ALL ON TABLE seq_photoindustrie TO superlazaret;
+
+
+--
+-- Name: seq_phototrace; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE seq_phototrace FROM PUBLIC;
+REVOKE ALL ON TABLE seq_phototrace FROM postgres;
+GRANT ALL ON TABLE seq_phototrace TO postgres;
+GRANT ALL ON TABLE seq_phototrace TO lazaret;
+GRANT ALL ON TABLE seq_phototrace TO superlazaret;
 
 
 --
@@ -11954,10 +11610,8 @@ GRANT ALL ON TABLE seq_photofaune TO superamata;
 REVOKE ALL ON TABLE stigmate FROM PUBLIC;
 REVOKE ALL ON TABLE stigmate FROM postgres;
 GRANT ALL ON TABLE stigmate TO postgres;
-GRANT SELECT ON TABLE stigmate TO PUBLIC;
-GRANT ALL ON TABLE stigmate TO superamata;
-GRANT ALL ON TABLE stigmate TO amata;
-GRANT SELECT ON TABLE stigmate TO visiteuramata;
+GRANT ALL ON TABLE stigmate TO lazaret;
+GRANT ALL ON TABLE stigmate TO superlazaret;
 
 
 --
@@ -11967,10 +11621,8 @@ GRANT SELECT ON TABLE stigmate TO visiteuramata;
 REVOKE ALL ON TABLE trace FROM PUBLIC;
 REVOKE ALL ON TABLE trace FROM postgres;
 GRANT ALL ON TABLE trace TO postgres;
-GRANT SELECT ON TABLE trace TO PUBLIC;
-GRANT ALL ON TABLE trace TO superamata;
-GRANT ALL ON TABLE trace TO amata;
-GRANT SELECT ON TABLE trace TO visiteuramata;
+GRANT ALL ON TABLE trace TO lazaret;
+GRANT ALL ON TABLE trace TO superlazaret;
 
 
 --
@@ -11980,9 +11632,9 @@ GRANT SELECT ON TABLE trace TO visiteuramata;
 REVOKE ALL ON TABLE usure_dent FROM PUBLIC;
 REVOKE ALL ON TABLE usure_dent FROM postgres;
 GRANT ALL ON TABLE usure_dent TO postgres;
-GRANT ALL ON TABLE usure_dent TO superamata;
-GRANT ALL ON TABLE usure_dent TO amata;
-GRANT SELECT ON TABLE usure_dent TO visiteuramata;
+GRANT ALL ON TABLE usure_dent TO lazaret;
+GRANT ALL ON TABLE usure_dent TO superlazaret;
+GRANT SELECT ON TABLE usure_dent TO visiteurlazaret;
 
 
 --

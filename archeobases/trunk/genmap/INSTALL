@@ -20,6 +20,10 @@ by :
 import random
 
 
+You can also find already modified version of this softwares on ou ftp server :
+ftp://cambrien.unice.fr/pub/genmap_prerequistes
+
+
 2) Install the genmap.py into your cgi-bin folder or make a symbolic link to it (change apache rules if necessary).
 
 3) If necessary activate mod_python for apache

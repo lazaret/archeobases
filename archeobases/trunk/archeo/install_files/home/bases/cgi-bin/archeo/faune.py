@@ -30,7 +30,7 @@ class Faune(archeodata.Data) :
         __color__ = archeoconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
-        __champs__ = { 
+        __champs__ = {
                         "zone"              : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
                         "numero"            : { "type" : "int", "default" : 0, "mandatory" : 1 , "longueur" : 6, "memory" : 1}, \
                         "bis"               : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
@@ -102,11 +102,11 @@ class Faune(archeodata.Data) :
         __listeparents__  = ["carnet"]
         __listeclefs__    = ["zone", "numero", "bis"]
         __vraiparent__    = "carnet"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
-        __listechamps__ = ["zone", "numero", "bis", "f_longueur","f_largeur", "f_epaisseur","f_poids","f_classe","f_ordre","f_famille","f_ssfamille","f_affgenre","f_genre","f_affespece","f_espece","f_ssespece","f_typos1","f_typos2","f_typos3","f_typos4","f_typos5","f_typos6", "f_lateralite","f_fragge","f_fragde","f_sauvefrag","f_typedos","f_complement","f_pelote", "f_coprolithe","f_tissu","f_sexe","f_taille","f_agecl","f_agest","f_epins","f_stserie","f_stdent","f_association", "f_pathologie", "f_description","f_couleur","f_caltype","f_calcouleur","f_concretion","f_oxyde","f_fossilisation","f_coraspect","f_corfissure","f_conservation","f_ilongueur","f_icirconference","f_eclat", "f_agent","f_photo","f_dessin","f_traitement","f_datation","f_moulage","f_restauration", "f_responsable"]  
+        __listechamps__ = ["zone", "numero", "bis", "f_longueur","f_largeur", "f_epaisseur","f_poids","f_classe","f_ordre","f_famille","f_ssfamille","f_affgenre","f_genre","f_affespece","f_espece","f_ssespece","f_typos1","f_typos2","f_typos3","f_typos4","f_typos5","f_typos6", "f_lateralite","f_fragge","f_fragde","f_sauvefrag","f_typedos","f_complement","f_pelote", "f_coprolithe","f_tissu","f_sexe","f_taille","f_agecl","f_agest","f_epins","f_stserie","f_stdent","f_association", "f_pathologie", "f_description","f_couleur","f_caltype","f_calcouleur","f_concretion","f_oxyde","f_fossilisation","f_coraspect","f_corfissure","f_conservation","f_ilongueur","f_icirconference","f_eclat", "f_agent","f_photo","f_dessin","f_traitement","f_datation","f_moulage","f_restauration", "f_responsable"]
 
 
         # liste des champs de saisie que l'on souhaite controler
@@ -148,21 +148,21 @@ class Faune(archeodata.Data) :
                 else:
                         return 0
 
-                       
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
                         if self.__champs__[champ]["longueur"] :
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                archeodata.Data.__init__(self, parent)                                        
-        
+                archeodata.Data.__init__(self, parent)
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
-                        if champ in self.__controle_saisie__:        
+                        if champ in self.__controle_saisie__:
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                archeodata.Data.__init__(self, parent)                                        
-        
+                archeodata.Data.__init__(self, parent)
+
         def zone_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
@@ -187,7 +187,7 @@ class Faune(archeodata.Data) :
                         self.__doc__.push()
                         liste_clefs = ["zone", "numero", "bis"]
                         self.champ_nliste_table("carnet", liste_clefs, "nature", "nature", 2, enreg, penreg, "Carnet", dontchange = None)
-                        
+
         def  couche_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         liste_clefs = ["zone", "numero", "bis"]
@@ -198,7 +198,7 @@ class Faune(archeodata.Data) :
                         liste_clefs = ["zone", "numero", "bis"]
                         self.champ_nliste_table("carnet", liste_clefs, "sol", "sol", 2, enreg, penreg, "", dontchange = None)
                         self.__doc__.pop()
-                        
+
         def x_base_to_form(self, enreg, penreg = None) :
                 if enreg != None:
                         self.__doc__.push()
@@ -247,7 +247,7 @@ class Faune(archeodata.Data) :
 
 ################################### En entrée ###########################
         def f_longueur_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7") 
+                afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "f_longueur", "L", 3, 20, "Dimensions", enreg, penreg)
 
@@ -256,11 +256,11 @@ class Faune(archeodata.Data) :
 
         def f_epaisseur_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "f_epaisseur", "e", 3, 20, "", enreg, penreg)
-                
+
         def f_poids_base1_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "f_poids", "p", 5, 20, "", enreg, penreg)
                 self.__doc__.pop()
-                
+
         def f_classe_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
@@ -295,7 +295,7 @@ class Faune(archeodata.Data) :
 
        #
         def f_ssespece_base_to_form(self, enreg, penreg = None) :
-                liste_clefs = ["zone", "numero", "bis"]                
+                liste_clefs = ["zone", "numero", "bis"]
                 afficheclefs.champ_nsaisie(self, "f_ssespece", "ssespece", 15, 35, "", 2, enreg, penreg)
                 self.__doc__.pop()
         ########
@@ -328,37 +328,37 @@ class Faune(archeodata.Data) :
         def f_stserie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_stserie", "série dentaire", 46, 46, "Fragmentation", 4, enreg, penreg)
-        
+
         #######
         def f_fragge_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_fragge", "générale", 12, 30, "", 3, enreg, penreg)
                 self.__doc__.pop()
-        
+
         #######
         def f_fragde_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_fragde", "détaillée", 50, 50, " ", 4, enreg, penreg)
                 self.__doc__.pop()
-        
+
         #######
         def f_sauvefrag_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_sauvefrag", "ancienne", 50, 50, " ", 4, enreg, penreg)
                 self.__doc__.pop()
-        
+
         #######
         def f_sexe_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 self.__doc__.push()
                 afficheclefs.champ_nliste( self, "f_sexe", "sexe", enreg, penreg, "Individu", "1",dontchange = 0)
-                
+
         def f_taille_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste( self, "f_taille", "taille", enreg, penreg, "", 2,dontchange = 0)
 
         #######
         def f_agecl_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_agecl", "classe âge", enreg, penreg, "", "2", dontchange = 0)
-                
+
         def f_agest_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_agest", "estimation", 6, 20, "", 1, enreg, penreg)
                 self.__doc__.pop()
@@ -368,12 +368,12 @@ class Faune(archeodata.Data) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_association", "numero", 4, 20, "Association", 1, enreg, penreg)
                 self.__doc__.pop()
-                
+
         #######
         def f_pathologie_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_liste(self, "f_pathologie", "pathologie", enreg, penreg, "Pathologie", dontchange = 0)
-                
+
         def f_description_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_description", "description", 30, 35, "", 3, enreg, penreg)
                 self.__doc__.pop()
@@ -386,15 +386,15 @@ class Faune(archeodata.Data) :
          #######
         def f_caltype_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_caltype", "type calci", enreg, penreg, "", 2, dontchange = 0)
-                
+
         def f_calcouleur_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_calcouleur", "couleur calci", enreg, penreg, "", 2, dontchange = 0)
-                
+
          #######
         def f_concretion_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_concretion", "concrétion", enreg, penreg, "", 2, dontchange = 0)
                 self.__doc__.pop()
-                
+
         def f_oxyde_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_oxyde", "oxyde", 4, 20, " ", 1, enreg, penreg)
@@ -402,19 +402,19 @@ class Faune(archeodata.Data) :
         def f_fossilisation_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_fossilisation", "fossilisation", enreg, penreg, "", 2, dontchange = 0)
 
-                
+
          #######
         def f_coraspect_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_coraspect", "aspect cortex", enreg, penreg, "", 2, dontchange = 0)
-                
+
         def f_corfissure_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_corfissure", "corfissure", enreg, penreg, "", 4, dontchange = 0)
                 self.__doc__.pop()
-                
+
         def totof_conservation_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_conservation", "conservation", enreg, penreg, "", 1, dontchange = 0)
                 self.__doc__.pop()
-                
+
          #######
         def f_typedos_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
@@ -430,14 +430,14 @@ class Faune(archeodata.Data) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 afficheclefs.champ_nliste(self, "f_ilongueur", "ilongueur", enreg, penreg, "Fractures", 1, dontchange = 0)
-                
+
         def f_icirconference_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_icirconference", "icirconf", enreg, penreg, "", 2, dontchange = 0)
 
         def f_eclat_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_eclat", "éclat", enreg, penreg, "", 2, dontchange = 0)
                 self.__doc__.pop()
-                
+
         def f_agent_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_agent", "agent", 7, 20, "Dommages", 1, enreg, penreg)
@@ -448,26 +448,26 @@ class Faune(archeodata.Data) :
         def f_coprolithe_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nliste(self, "f_coprolithe", "coprolithe", enreg, penreg, "", 2, dontchange = 0)
                 self.__doc__.pop()
-                
+
          #######
         def f_photo_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
                 afficheclefs.champ_nsaisie(self, "f_photo", "photo", 3, 20, "Renseignements", 2, enreg, penreg)
-                
+
         def f_dessin_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_dessin", "dessin", 3, 20, "", 2, enreg, penreg)
-                
+
          #######
         def f_traitement_base_to_form(self, enreg, penreg = None) :
                 #self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_traitement", "traite", 20, 30, "", 3, enreg, penreg)
                 self.__doc__.pop()
-                
+
         def f_datation_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self, "f_datation", "datation", 8, 20, " ", 2, enreg, penreg)
-                
+
          #######
         def f_moulage_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_nsaisie(self, "f_moulage", "moulage", 10, 20, "", 2, enreg, penreg)
@@ -477,9 +477,9 @@ class Faune(archeodata.Data) :
                 afficheclefs.champ_nliste(self, "f_restauration", "gestion", enreg, penreg, "", 2, dontchange = 0)
                 self.__doc__.pop()
          #######
-                
+
         def f_saisie_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.ajoute_ligne(self, "100%", "1", "5", "7") 
+                afficheclefs.ajoute_ligne(self, "100%", "1", "5", "7")
                 self.__doc__.push()
                 afficheclefs.champ_nsaisie(self,"f_saisie", "Fiche saisie le", 10, 20, " ", 2, enreg, penreg)
 
@@ -489,7 +489,7 @@ class Faune(archeodata.Data) :
                 afficheclefs.champ_nliste(self, "f_responsable", "responsable", enreg, penreg, "",2, dontchange = 0)
                 self.__doc__.pop()
                 self.__doc__.pop()
-                
+
 ###############################################################################
 #                                       USURE_DENTS
 ###############################################################################
@@ -554,7 +554,7 @@ class Faune(archeodata.Data) :
                                 self.__doc__.textarea(name = "legende", rows="4", cols="50", wrap="physical")
                                 if photo["legende"] == None:
                                         self.__doc__.insert_text("&nbsp;")
-                                else :  
+                                else :
                                         self.__doc__.insert_text(photo["legende"])
                                 self.__doc__.pop()
 
@@ -611,8 +611,7 @@ class Faune(archeodata.Data) :
                 if g != "''" :
                         recup = "SELECT * FROM remonte_genre WHERE genre=%s;" % g
                         res = self.__db__.query(recup).dictresult()
-                        self.__doc__.log_message("RESSSSSSS: [%s]" % res)
-                        
+
                         if res:
                                 update_genre = ("UPDATE %s SET f_classe =" % table) + self.__db__.quote(res[0]["classe"], "text") + \
                                 ", f_ordre="   + self.__db__.quote(res[0]["ordre"], "text") + \
@@ -626,7 +625,7 @@ class Faune(archeodata.Data) :
                         recup = "SELECT * FROM remonte_famille WHERE famille=%s;" % f
                         res = self.__db__.query(recup).dictresult()
                         update_genre = ("UPDATE %s SET f_classe =" % table) + self.__db__.quote(res[0]["classe"], "text") + ", f_ordre=" + self.__db__.quote(res[0]["ordre"], "text") + "," + ", f_famille=" + self.__db__.quote(res[0]["famille"], "text") + ", f_genre=''"
-                        
+
                 elif o != "''" :
                         recup = "SELECT * FROM remonte_ordre WHERE ordre=%s;" % o
                         res = self.__db__.query(recup).dictresult()

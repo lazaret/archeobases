@@ -1,4 +1,5 @@
-1) As root, install the Python prerequistes : reportlab, pdfmap, whrandom & jaxtml :
+1) As root, install the Python prerequistes :
+reportlab, pdfmap, whrandom & jaxtml :
 
 You can take them from :
 --PDFmap 3.00--

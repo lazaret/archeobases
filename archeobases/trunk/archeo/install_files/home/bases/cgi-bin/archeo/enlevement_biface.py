@@ -29,29 +29,27 @@ class Enlevement_Biface(archeodata.Data) :
         __color__ = archeoconf.bas3_bgcolor
         #
         # tous les champs de la table proprietaire
-        __champs__ = { 
-                        "zone"              : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
-                        "numero"            : { "type" : "int", "default" : 0, "mandatory" : 1 , "longueur" : 6, "memory" : 1}, \
-                        "bis"               : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
-                        "eb_rang"          : { "type" : "text", "default" : "0", "mandatory" : 1 , "longueur" : 1}, \
-                        "eb_longueur"       : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
-                        "eb_largeur"        : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
-                        "eb_obliquite"      : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
-                        "eb_corde"          : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
-                        "eb_fleche"         : { "type" : "int", "mandatory" : 0 , "longueur" : 3}, \
-                        "eb_tranche"        : { "type" : "text", 
-"default" : "","mandatory" : 0 , "longueur" : 8}, \
-                
+        __champs__ = {
+                    "zone"            : { "type" : "text", "default" :  "",  "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
+                    "numero"          : { "type" : "int",  "default" :  0,   "mandatory" : 1 , "longueur" : 6, "memory" : 1}, \
+                    "bis"             : { "type" : "text", "default" :  "",  "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
+                    "eb_rang"         : { "type" : "text", "default" :  "0", "mandatory" : 1 , "longueur" : 1}, \
+                    "eb_longueur"     : { "type" : "int",  "mandatory" : 0 , "longueur" :  3}, \
+                    "eb_largeur"      : { "type" : "int",  "mandatory" : 0 , "longueur" :  3}, \
+                    "eb_obliquite"    : { "type" : "int",  "mandatory" : 0 , "longueur" :  3}, \
+                    "eb_corde"        : { "type" : "int",  "mandatory" : 0 , "longueur" :  3}, \
+                    "eb_fleche"       : { "type" : "int",  "mandatory" : 0 , "longueur" :  3}, \
+                    "eb_tranche"      : { "type" : "text", "default" :   "", "mandatory" : 0 , "longueur" : 8}, \
                       }
         #
         # liste des tables enfants
         __listenfants__ = []
         __listeclefs__ = ["zone", "numero", "bis", "eb_rang"]
         __listeparents__ = ["carnet","biface"]
-        
+
         __vraiparent__ = "biface"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["zone", "numero", "bis", "eb_rang", "eb_longueur", "eb_largeur", "eb_obliquite", "eb_corde", "eb_fleche", "eb_tranche"]
@@ -99,16 +97,16 @@ class Enlevement_Biface(archeodata.Data) :
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
                         return -1       # erreur
-                else :          
+                else :
                         return 0
-                        
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
                         if self.__champs__[champ]["longueur"] :
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                archeodata.Data.__init__(self, parent)                                        
-        
+                archeodata.Data.__init__(self, parent)
+
         def zone_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()

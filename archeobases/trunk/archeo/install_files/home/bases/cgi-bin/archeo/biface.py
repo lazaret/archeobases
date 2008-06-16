@@ -29,7 +29,7 @@ class Biface(archeodata.Data) :
         __color__ = archeoconf.bas1_bgcolor
         #
         # tous les champs de la table proprietaire
-        __champs__ = { 
+        __champs__ = {
                         "zone"          : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 0, "memory" : 1}, \
                         "numero"        : { "type" : "decimal", "default" : 0, "mandatory" : 1 , "longueur" : 6, "memory" : 1}, \
                         "bis"           : { "type" : "text", "default" : "", "mandatory" : 1 , "longueur" : 3, "memory" : 1}, \
@@ -51,7 +51,7 @@ class Biface(archeodata.Data) :
                         "b_bifaciale"   : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "b_arete"       : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "b_retouche"    : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
-                        "b_support"     : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 5},  
+                        "b_support"     : { "type" : "text", "default" : "", "mandatory" : 0, "longueur": 5},
                         "b_long1"  : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
                         "b_long2"  : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
                         "b_long3"  : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
@@ -95,7 +95,7 @@ class Biface(archeodata.Data) :
                         "b_bde2": { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
                         "b_bdet": { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
                         "b_ent" : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
-                        "b_bf"  : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
+                        "b_bf"  : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 2}, \
                         "b_te"  : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
                         "b_bh1" : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
                         "b_bh2" : { "type" : "decimal", "mandatory" : 0 , "longueur" : 5}, \
@@ -146,11 +146,11 @@ class Biface(archeodata.Data) :
                         "b_bu1" : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
                         "b_bu2" : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
                         "b_bu"  : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
-                        "b_bua": { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
+                        "b_bua" : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
                         "b_bu1a": { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
                         "b_bu2a": { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
-                        "b_bua"  : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
-                        "b_bg"  : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
+                        "b_bua" : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
+                        "b_bg"  : { "type" : "text", "default" : "", "mandatory" : 0 , "longueur" : 0}, \
                         "b_ntf" : { "type" : "decimal", "default" : 0, "mandatory" : 0 , "longueur" : 5}, \
         }
         #
@@ -159,15 +159,15 @@ class Biface(archeodata.Data) :
         __listeparents__ =["carnet", "industrie"]
         __listeclefs__ = ["zone", "numero", "bis"]
         __vraiparent__ = "industrie"
-        
-        
+
+
         #
         # liste des seuls champs que l'on veut pouvoir modifier
         __listechamps__ = ["zone", "numero", "bis","b_forme", "b_type", "b_base", "b_surface", "b_enlevement", "b_amenagement_bord", "b_amenagement_distal","b_distale", "b_biseau",  "b_bord", "b_meplat", "b_extension", "b_symetrie", "b_bilaterale", "b_facture", "b_bifaciale", "b_arete", "b_retouche", "b_support", "b_long1", "b_long2", "b_long3", "b_lar1","b_l1a","b_lar2","b_lar3", "b_lar4","b_lar5","b_e1","b_e2","b_poids","b_ind1","b_ind2","b_ind3","b_ind4","b_ind5","b_ind6","b_ind7","b_ind8","b_ind9","b_ind10","b_ind11","b_ind12","b_ind13","b_ind14","b_ind15","b_ind16","b_bc","b_nt","b_dat1","b_dat2","b_dat","b_bd1","b_be1","b_bd2","b_be2","b_1t","b_2t","b_bde1","b_bde2","b_bdet","b_ent","b_bf","b_te","b_bh1","b_bh2","b_bht","b_bi1","b_bi2","b_bit","b_bj1","b_bj2","b_bj","b_bk1","b_bk2","b_bk","b_bna","b_bnb","b_bla","b_blb","b_bla1","b_blb1","b_bl1","b_bla2","b_blb2","b_bl2","b_bo1a","b_bo1b","b_bo1","b_bo2a","b_bo2b","b_bo2","b_bo","b_bo3a","b_bo3b","b_bo3","b_p1","b_p2","b_bp1","b_bp2","b_bq1","b_bq2","b_bq1a","b_bq2a","b_br1","b_br2","b_bv","b_bx","b_by","b_bep","b_bu1","b_bu2","b_bu","b_bu1a","b_bu2a","b_bua","b_bg","b_ntf"]
         #
         # liste des champs dans leur ordre de saisie
         __ordrechamps__ =["zone", "numero", "bis","b_forme", "b_type", "b_base", "b_surface", "b_enlevement", "b_amenagement_bord", "b_amenagement_distal","b_distale", "b_biseau",  "b_bord", "b_meplat", "b_extension", "b_symetrie", "b_bilaterale", "b_facture", "b_bifaciale", "b_arete", "b_retouche", "b_support", "b_long1", "b_long2", "b_long3", "b_lar1","b_l1a","b_lar2","b_lar3", "b_lar4","b_lar5","b_e1","b_e2","b_poids","b_ind1","b_ind2","b_ind3","b_ind4","b_ind5","b_ind6","b_ind7","b_ind8","b_ind9","b_ind10","b_ind11","b_ind12","b_ind13","b_ind14","b_ind15","b_ind16","b_bc","b_nt","b_dat1","b_dat2","b_dat","b_bd1","b_be1","b_bd2","b_be2","b_1t","b_2t","b_bde1","b_bde2","b_bdet","b_ent","b_bf","b_te","b_bh1","b_bh2","b_bht","b_bi1","b_bi2","b_bit","b_bj1","b_bj2","b_bj","b_bk1","b_bk2","b_bk","b_bna","b_bnb","b_bla","b_blb","b_bla1","b_blb1","b_bl1","b_bla2","b_blb2","b_bl2","b_bo1a","b_bo1b","b_bo1","b_bo2a","b_bo2b","b_bo2","b_bo","b_bo3a","b_bo3b","b_bo3","b_p1","b_p2","b_bp1","b_bp2","b_bq1","b_bq2","b_bq1a","b_bq2a","b_br1","b_br2","b_bv","b_bx","b_by","b_bep","b_bu1","b_bu2","b_bu","b_bu1a","b_bu2a","b_bua","b_bg","b_ntf"]
-        
+
 
         __orderby__ = " ORDER BY zone, numero, bis ASC;"
 
@@ -197,16 +197,16 @@ class Biface(archeodata.Data) :
                 # definie dans l'attribut longueur des champs
                 if  (value != None) and (len(value) > self.__champs__[fieldname]["longueur"]) :
                         return -1       # erreur
-                else :          
+                else :
                         return 0
-                        
+
         def __init__(self, parent) :
                 for champ in self.__champs__.keys() :
                         if self.__champs__[champ]["longueur"] :
                                 if not hasattr(self, "%s_verify" % champ) :
                                         setattr(self, "%s_verify" % champ, self.champ_verify)
-                archeodata.Data.__init__(self, parent)                                        
-        
+                archeodata.Data.__init__(self, parent)
+
         def zone_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 self.__doc__.tr()
@@ -229,7 +229,7 @@ class Biface(archeodata.Data) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "b_forme","forme", 6, 20, " ", enreg, penreg)
-        
+
         def b_type_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "b_type","type", 15, 20, "" , enreg, penreg)
 
@@ -251,7 +251,7 @@ class Biface(archeodata.Data) :
 
         def b_amenagement_distal_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_amenagement_distal", "amenag ext.dist", enreg, penreg, "", dontchange = 0)
-        
+
         def b_distale_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_distale", "ext.distale", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
@@ -265,7 +265,7 @@ class Biface(archeodata.Data) :
 
         def b_meplat_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_meplat", "meplat latéral", enreg, penreg, "", dontchange = 0)
-        
+
         def b_extension_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_extension", "extension enlev", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
@@ -276,7 +276,7 @@ class Biface(archeodata.Data) :
 
         def b_bilaterale_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_bilaterale", "sym bilat", enreg, penreg, "", dontchange = 0)
-        
+
         def b_facture_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_facture", "facture bifac", enreg, penreg, "", dontchange = 0)
 
@@ -294,7 +294,7 @@ class Biface(archeodata.Data) :
         def b_support_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_liste( self, "b_support", "support", enreg, penreg, "", dontchange = 0)
                 self.__doc__.pop()
-                
+
 ###########################
         def b_long1_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
@@ -516,7 +516,7 @@ class Biface(archeodata.Data) :
                 self.__doc__.pop()
 ##############################
         def b_bo_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()                
+                self.__doc__.push()
                 afficheclefs.champ_saisie(self, "b_bo","bo", 5, 20, " ", enreg, penreg)
         def b_bo3a_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "b_bo3a","bo3a", 5, 20, "", enreg, penreg)
@@ -527,7 +527,7 @@ class Biface(archeodata.Data) :
                 self.__doc__.pop()
 ###############################
         def b_p1_base_to_form(self, enreg, penreg = None) :
-                self.__doc__.push()                
+                self.__doc__.push()
                 afficheclefs.champ_saisie(self, "b_p1","p1", 5, 20, " ", enreg, penreg)
 
         def b_p2_base_to_form(self, enreg, penreg = None) :
@@ -535,7 +535,7 @@ class Biface(archeodata.Data) :
                 self.__doc__.pop()
 #############################
         def b_bp1_base_to_form(self, enreg, penreg = None) :
-               self.__doc__.push() 
+               self.__doc__.push()
                afficheclefs.champ_saisie(self, "b_bp1","bp1", 5, 20, " ", enreg, penreg)
         def b_bp2_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "b_bp2","bp2", 5, 20, "", enreg, penreg)
@@ -587,16 +587,17 @@ class Biface(archeodata.Data) :
                 afficheclefs.champ_saisie(self, "b_bu2a","bu2a", 5, 20, "", enreg, penreg)
         def b_bua_base_to_form(self, enreg, penreg = None) :
                 afficheclefs.champ_saisie(self, "b_bua","bua", 5, 20, "", enreg, penreg)
-        def b_bg_base_to_form(self, enreg, penreg = None) :
-                afficheclefs.champ_saisie(self, "b_bg","bg", 5, 20, "", enreg, penreg)
                 self.__doc__.pop()
+
+        def b_bg_base_to_form(self, enreg, penreg = None) :
+                afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
+                afficheclefs.champ_saisie_area(self, "b_bg", "bg", 3, 50, 5, "", enreg, penreg)
 
 ###########################
         def b_bntf_base_to_form(self, enreg, penreg = None) :
                 self.__doc__.push()
                 afficheclefs.champ_saisie(self, "b_bntf","bntf", 5, 20, " ", enreg, penreg)
                 self.__doc__.pop()
-
 
 
 ###############################################################################

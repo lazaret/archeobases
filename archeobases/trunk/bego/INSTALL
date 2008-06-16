@@ -17,3 +17,10 @@ Resume :
 > ln -s /home/bases/bego /srv/www/htdocs/bego
 
 5) manage right for apache and the database
+
+
+Prerequistes :
+--------------
+Mogrify binary (part of ImageMagic)
+Python 2.5
+Python module : jahtml (included)

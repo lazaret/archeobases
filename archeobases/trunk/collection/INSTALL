@@ -17,3 +17,8 @@ Resume :
 > ln -s /home/bases/collection /srv/www/htdocs/collection
 
 5) manage right for apache and the database
+
+Prerequistes :
+--------------
+Python 2.5
+Python module : jahtml (included)

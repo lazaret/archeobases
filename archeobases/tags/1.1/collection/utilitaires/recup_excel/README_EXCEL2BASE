@@ -1,0 +1,15 @@
+a utiliser de la façon suivante:
+
+./excel2base collection <fichier_donnees.csv.utf8 > erreurs.txt
+
+ATTENTION:
+- avant de convertir le fichier en csv: remplacer les ; par des ,
+- verifier que dans le fichier.csv des champs entre "" ne contiennent pas des ;
+- les dates soit au format AAAA et non pas AAAA-AAAA (ex: 1970-1971)
+
+=> leur dire d'eviter de mettre des 
+        ; dans les fichiers excel
+        des textes sur plusieurs lignes (ce qui genere les champs " ")
+        des dates de type AAAA-AAAA
+        
+

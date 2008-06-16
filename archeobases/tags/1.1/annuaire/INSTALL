@@ -1,0 +1,19 @@
+Installation Instructions
+*************************
+
+* Complete install instructions under the /doc folder
+
+
+Resume :
+---------
+
+1) Create a PostgreSQL database from the SQL schema
+2) Place "install_files" under the /home/base directory
+3) Give read-write access to this files to the Apache user (usaly www or wwwrun)
+4) Create the necessary symbolic links
+
+> ln -s /home/bases/cgi-bin/annuaire /srv/www/cgi-bin
+> ln -s /home/bases/cgi-bin/annuaire/annuaire.py /srv/www/cgi-bin/annuaire.py
+> ln -s /home/bases/annuaire /srv/www/htdocs/annuaire
+
+5) manage right for apache and the database

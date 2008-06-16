@@ -1,0 +1,10 @@
+Authors of Archeobases-Collection
+
+Bertrand Lecervoisier - Version 1.1 - 2007
+  Bug catching in Python software
+  Fiew database changes
+  UTF-8 support
+
+Rachel Vaudron - Version 1.0 - 2006
+  First version of the Python softwares
+  First version of the database (PostgreSQL)

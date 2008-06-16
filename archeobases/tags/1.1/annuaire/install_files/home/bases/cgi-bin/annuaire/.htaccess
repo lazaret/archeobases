@@ -1,0 +1,4 @@
+AuthUserFile /home/bases/auth/authannuaire
+AuthName "Application Annuaire: Acces Restreint"
+AuthType Basic
+Require valid-user

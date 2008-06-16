@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Interface vers GenMap</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  </head>  
+  <body>
+    <center><h2>Saisie des paramètres du tracé :</h2></center>
+    <hr>
+    <form method="post" enctype="multipart/form-data" action="/cgi-bin/genmap.py" target="new">
+      <h4>Document :</h4>
+      <p>
+        Auteur :
+        <input type="text" size="50" value="" name="auteur" />
+        <br />
+        Titre :
+        <input type="text" size="50" value="" name="titre" />
+        <br />
+        Sous-titre :
+        <input type="text" size="50" value="" name="soustitre" />
+      </p>
+      
+      <p>
+        Type de tracé : 
+        <select name="typetrace">
+          <option value="longitudinal">Longitudinal</option>
+          <option value="transversal">Transversal</option>
+          <option value="plan">Plan</option>
+        </select>
+      </p>  
+      
+      <hr width="33%" />
+      
+      <p>
+        Format : 
+        <select name="papier">
+          <option value="A0" selected="SELECTED">A0</option>
+          <option value="A1">A1</option>
+          <option value="A2">A2</option>
+          <option value="A3">A3</option>
+          <option value="A4">A4</option>
+          <option value="A5">A5</option>
+        </select>
+        
+        Mode :
+        <select name="orientation">
+          <option value="landscape" selected="SELECTED">Paysage</option>
+          <option value="portrait">Portrait</option>
+        </select>
+        
+        Marges :
+        <select name="marge">
+          <option value="1cm">1 cm</option>
+          <option value="2cm">2 cm</option>
+          <option value="3cm" selected="SELECTED">3 cm</option>
+          <option value="4cm">4 cm</option>
+          <option value="5cm">5 cm</option>
+        </select>
+      </p>  
+      
+      <p>
+        Echelle : 
+        <select name="echelle">
+          <option value="1.0">1/1</option>
+          <option value="0.5">1/2</option>
+          <option value="0.2">1/5</option>
+          <option value="0.1" selected="SELECTED">1/10</option>
+          <option value="0.0666666666">1/15</option>
+          <option value="0.05">1/20</option>
+          <option value="0.04">1/25</option>
+          <option value="0.02">1/50</option>
+          <option value="0.01">1/100</option>
+        </select>
+          
+        Montrer échelle Horizontale : 
+        <input type="checkbox" checked="CHECKED" name="xmontrerechelle" />
+        
+        Montrer échelle Verticale : 
+        <input type="checkbox" name="ymontrerechelle" />
+      </p>
+      
+      <hr width="33%" />
+      <h4>Environnement :</h4>
+      
+      <p>
+        Légende :
+        <select name="legende">
+          <option value="ur" selected="SELECTED">en Haut à Droite</option>
+          <option value="br">en Bas à Droite</option>
+          <option value="ul">en Haut à Gauche</option>
+          <option value="bl">en Bas à Gauche</option>
+          <option value="">Aucune</option>
+        </select>
+      </p>  
+      
+      <p>
+        Grille Verticale : 
+        <input type="checkbox" checked="CHECKED" name="xmontrergrille" />
+        Aligner les libellés sur les graduations Verticales : 
+        <input type="checkbox" checked="CHECKED" name="xalignergraduation" />
+        <br />
+        Grille Horizontale :
+        <input type="checkbox" checked="CHECKED" name="ymontrergrille" />
+        Aligner les libellés sur les graduations Horizontale :
+        <input type="checkbox" checked="CHECKED" name="yalignergraduation" />
+        <br />
+        Pas des graduations Verticales : 
+        <input type="text" size="8" name="xpas" value="1.0" />
+        Pas des graduations Horizontales : 
+        <input type="text" size="8" name="ypas" value="1.0" />
+        <br />
+        <font size="-1"><em>Indiquez des valeurs en mètres</em></font>
+      </p>
+      
+      <hr width="33%" />
+      
+      <p>
+        Mode :
+        <select name="detail">
+          <option value="1">Détaillé</option>
+          <option value="0" selected="SELECTED">Combiné</option>
+        </select>
+        
+        Miroir :
+        <input type="checkbox" name="miroir" />
+      </p>  
+      
+      <p>
+        Taille forcée des objets : 
+        <input type="text" name="forcetaille" size="8" /> 
+        <br />
+        <font size="-1"><em>en mètres, ex: 0.02 pour 2 cm, laisser vide pour mettre les objets à l'échelle, par exemple pour un plan</em></font>
+      </p>
+      
+      <hr width="33%" />
+      <h4>Repère :</h4>
+      <p>
+        Origine X :
+        <input type="text" size="10" name="xorigine" />
+        Origine Y :
+        <input type="text" size="10" name="yorigine" />
+        <br />
+        <font size="-1"><em>coordonnées du point en bas à gauche du tracé</em></font>
+        <br />
+        Libellés Horizontaux : 
+        <input type="text" size="100" name="xaxis" value="" /> 
+        <br />
+        <font size="-1"><em>valeurs séparées par des virgules</em></font>
+        <br />
+        Libellés Verticaux : 
+        <input type="text" size="100" name="yaxis" value="" />
+        <br />
+        <font size="-1"><em>valeurs séparées par des virgules</em></font>
+        <br />
+        Rotation :
+        <input type="text" size="6" name="rotation" value="" /> 
+        <br />
+        <font size="-1"><em>position du Nord en degrés antihoraires par rapport à la verticale, ou laisser vide pour les profils</em></font>
+      </p>
+      
+      <hr width="33%" />
+      <h4>Image de fond :</h4>
+      <p>
+        Origine X Image :
+        <input type="text" size="10" name="ximage" />
+        Origine Y Image :
+        <input type="text" size="10" name="yimage" />
+        <br />
+        <font size="-1"><em>coordonnées du point en bas à gauche de l'image</em></font>
+        <br />
+        Largeur Image :
+        <input type="text" size="10" name="largeurimage" />
+        Hauteur Image :
+        <input type="text" size="10" name="hauteurimage" />
+        <br />
+        <font size="-1"><em>largeur et hauteur de l'image en mètres</em></font>
+        <br />
+        Rotation Image :
+        <input type="text" size="6" name="rotationimage" value="" />
+        <br />
+        <font size="-1"><em>rotation de l'image en degrés antihoraires par rapport à la rotation du repère, ou laisser vide</em></font>
+        <br />
+        Fichier Image :
+        <br />
+        <input type="file" size="72" name="imagefond" />
+      </p>
+      
+      <hr width="33%" />
+      <h4>Données :</h4>
+      
+      <p>
+        URL de l'écran carnet :
+        <input type="text" size="50" name="url" value="http://cambrien.unice.fr/cgi-bin/archeo/modcarnet.py" />
+        <br />
+        <font size="-1"><em>Normalement indiquez 'cambrien.unice.fr' (Nice) ou 'tautavel.univ-perp.fr' (Tautavel)</em></font>
+      </p>
+      
+      <hr width="33%" />
+      
+      <p>
+        Fichier de configuration des natures :
+        <br />
+        <input type="file" size="72" name="fichierconfignatures" />
+      </p>
+      
+      <p>
+        Fichier contenant les données extraites de la base :
+        <br />
+        <input type="file" size="72" name="fichierdonnees" />
+      </p>
+
+      <p>
+        Inclure les objets incomplets :
+        <input type="checkbox" checked="checked" name="incomplets" />
+      </p>
+      
+      <p>
+      </p>
+      
+      <p>
+        <input type="submit" value="Envoyer !" />
+      </p>
+      
+    </form>
+  </body>
+</html>  

@@ -1,0 +1,6 @@
+This is "Archeobases-Collection" a part of the Archeobases project from the LDLP (Laboratoire Départemental de Préhistoire du Lazaret).
+
+Collection is a set of Python script and a PostgreSQL database used to maintain a inventory of an archaeological collection.
+
+You can see the last news about Archeobases project at our Trac page :
+http://lazaret.unice.fr/opensource/

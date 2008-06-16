@@ -1,0 +1,9 @@
+* Changes in 1.1
+  - Finish the UTF-8 support to scripts and HTML outputs
+
+
+* Changes in 1.0:
+  - Add a few text files to the core distribution
+  - Rename the project from "collection" to "archeobases-annuaire" sub-project
+  - Create the new trunk from previous works of Rachel Vaudron
+

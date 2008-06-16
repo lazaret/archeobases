@@ -1,0 +1,18 @@
+Authors of Archeo
+
+Bertrand Lecervoisier (2007-)
+  UTF-8 support
+  Bug catching
+
+Rachel Vaudron (2000-2006)
+  First version of the Python softwares
+  New version of the database (PostgreSQL)
+
+Toni Canals
+  Updates of the database on AIX + Unify SQL
+
+Jean Fruitet & Lamine Khaloufi (From ITODYS)
+  Main database structure on AIX + Unify SQL
+
+Jerôme Dive
+  First works on Xenix (Lost sources)

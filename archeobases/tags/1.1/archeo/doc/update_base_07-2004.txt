@@ -1,0 +1,157 @@
+Avant modif
+===========
+faire un pg_dumpall > sauvegarde_totale
+faire pour chaque base un pg_dump -C -d nom_base > sauvegarde_nom_base
+copier ces sauvegardes sur CD et sur une autre machine
+mettre de côté la bande de sauvegarde de la veille après s'être assuré qu'elle a bien fonctionné.
+
+
+Pour effectuer les modifs copier coller les commandes apres avoir tapé psql nom_base .
+Les exécuter une par une et vérifier systématiquement que la commande s'est bien déroulée avant de passer à la suivante sous peine d'être obligé de restaurer la base concernée.
+
+Ajout du champ ordre de la table nucleus:
+========================================
+DROP INDEX nucleus_pkey;
+
+CREATE TABLE "nouv_nucleus" (
+"zone" text NOT NULL,
+"numero" integer NOT NULL,
+"bis" text NOT NULL,
+"n_ordre" integer NOT NULL,
+"n_type" text,
+"n_nbplan" integer,
+"n_nba" integer,
+"n_nbb" integer,
+"n_nbp" integer,
+"n_orientation" text,
+"n_dirtotal" integer,
+"n_dirfacea" integer,
+"n_dirfaceb" integer,
+"n_dirprofil" integer,
+"n_formule" text,
+"n_rotation" text,
+"n_cortotal" integer,
+"n_corfacea" integer,
+"n_corfaceb" integer,
+"n_corprofil" integer,
+
+"n_epuisement" integer,
+Constraint "nucleus_pkey" Primary Key ("zone", "numero", "bis", "n_ordre"), FOREIGN KEY (zone, numero, bis) REFERENCES industrie (zone, numero, bis)
+);
+
+INSERT INTO nouv_nucleus 
+SELECT zone, numero, bis, 1, n_type, n_nbplan,n_nba,n_nbb,n_nbp,n_orientation,n_dirtotal,n_dirfacea,n_dirfaceb,n_dirprofil,n_formule,n_rotation,n_cortotal,n_corfacea,n_corfaceb,n_corprofil,n_epuisement
+FROM nucleus;
+
+DROP TABLE nucleus;
+
+ALTER TABLE nouv_nucleus
+RENAME TO nucleus;
+
+Ajout du champ ordre dans la table enlevement_nucleus
+=====================================================
+DROP INDEX enlevement_nucleus_pkey;
+
+CREATE TABLE "nouv_enlevement_nucleus" (
+"zone" text NOT NULL,
+"numero" integer NOT NULL,
+"bis" text NOT NULL,
+"n_ordre" integer NOT NULL,
+"en_rang" text NOT NULL,
+"en_longueur" integer,
+"en_largeur" integer,
+"en_obliquite" text,
+"en_obliquite_degre" text,
+"en_corde" integer,
+"en_fleche" integer,
+"en_dptimpact" text,
+"en_frappe" text,
+"en_numero" integer,
+"en_inclinaison" text,
+"en_direction" text,
+Constraint "enlevement_nucleus_pkey" Primary Key ("zone", "numero", "bis", "n_ordre","en_rang"), FOREIGN KEY (zone, numero, bis, n_ordre) REFERENCES nucleus (zone, numero, bis, n_ordre)
+);
+
+INSERT INTO nouv_enlevement_nucleus
+SELECT zone,numero,bis, 1, en_rang,en_longueur,en_largeur,en_obliquite,en_obliquite_degre,en_corde,en_fleche,en_dptimpact,en_frappe,en_numero,en_inclinaison,en_direction
+FROM enlevement_nucleus;
+
+DROP TABLE enlevement_nucleus;
+
+ALTER TABLE nouv_enlevement_nucleus
+RENAME TO enlevement_nucleus;
+
+Ajout du champ relation dans les tables outil, galet_amenage, enlevement_galet
+==============================================================================
+ALTER TABLE outil
+ADD COLUMN o_relation text;
+
+ALTER TABLE galet_amenage
+ADD COLUMN ga_relation text;
+
+ALTER TABLE enlevement_galet
+ADD COLUMN eg_relation text;
+
+Une ou deux  corrections en passant
+===================================
+ALTER TABLE usure_dent
+ADD COLUMN ud_fragmentation;
+
+
+INSERT INTO remonte_ordre(ordre,classe)
+VALUES ('PH','MAMMALIA');
+
+INSERT INTO remonte_ordre(ordre,classe)
+VALUES ('GH','MAMMALIA');
+
+Modifs de la table usure_dent
+=============================
+DROP TABLE controle_ud_serie;
+
+DROP INDEX usure_dent_pkey;
+
+CREATE TABLE "nouv_usure_dent" (
+"zone"          text NOT NULL,
+"numero"        integer NOT NULL,
+"bis"           text NOT NULL,
+"ud_serie"      text NOT NULL,
+"ud_type"       text,
+"ud_lateralite" text,
+"ud_usure"      text,
+"ud_fragmentation" text,
+Constraint "usure_dent_pkey" Primary Key ("zone", "numero", "bis", "ud_serie"), FOREIGN KEY (zone, numero, bis) REFERENCES faune (zone, numero, bis)
+);
+
+INSERT INTO nouv_usure_dent 
+SELECT zone, numero, bis, ud_serie,ud_type,ud_lateralite,ud_usure,ud_fragmentation
+FROM usure_dent;
+
+DROP TABLE usure_dent;
+
+ALTER TABLE nouv_usure_dent
+RENAME TO usure_dent;
+
+modifs des droits
+=================
+GRANT ALL ON nucleus TO super_nom_base;
+GRANT ALL ON nucleus TO nom_base;
+GRANT SELECT ON nucleus TO visiteur_nom_base;
+
+GRANT ALL ON enlevement_nucleus TO super_nom_base;
+GRANT SELECT ON enlevement_nucleus TO nom_base;
+GRANT SELECT ON enlevement_nucleus TO visiteur_nom_base;
+
+GRANT ALL ON usure_dent TO super_nom_base;
+GRANT ALL ON usure_dent TO nom_base;
+GRANT SELECT usure_dent TO visiteur_nom_base;
+
+
+modifs des écrans
+=================
+Remplacer les programmes contenus dans /home/bases/cgi-bin/archeo par ceux du repertoire pub du lazaret.unice.fr
+
+ATTENTION
+=========
+Lors de la prochaine création d'une base de bien recuperer la nouvelle structure de la base sur le lazaret.unice.fr avant de commencer
+
+

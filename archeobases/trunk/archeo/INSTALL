@@ -3,6 +3,10 @@ Installation Instructions
 
 * Complete install instructions under the /doc folder
 
+Python prerequistes :
++ pyExcelerator (http://sourceforge.net/projects/pyexcelerator)
++ jahtml (included in this distrib)
+
 
 Resume :
 ---------

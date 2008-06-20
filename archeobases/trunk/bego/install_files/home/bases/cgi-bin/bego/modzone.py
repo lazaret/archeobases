@@ -12,7 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import zone
+
 
 zone.Zone("bas").traite_saisie(["zone"])

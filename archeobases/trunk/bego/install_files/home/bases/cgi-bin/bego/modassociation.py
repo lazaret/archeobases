@@ -12,7 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import association
+
 
 association.Association("bas").traite_saisie(["zone", "groupe", "roche", "face", "association"])

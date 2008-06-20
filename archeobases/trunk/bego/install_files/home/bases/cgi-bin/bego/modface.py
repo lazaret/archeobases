@@ -12,8 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import begoconf
 import face
 
-face.Face("bas").traite_saisie(["zone", "groupe", "roche", "face"], parent = begoconf.getparent())
+
+face.Face("bas").traite_saisie(["zone", "groupe", "roche", "face"], parent=begoconf.getparent())

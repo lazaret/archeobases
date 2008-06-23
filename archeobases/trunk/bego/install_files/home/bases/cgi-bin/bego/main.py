@@ -12,11 +12,9 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import begoconf
 
+
 page = begoconf.Main("Menu Principal")
-
 page.dessine_cadre(begoconf.script_location("menu"), begoconf.script_location("bas"))
-
 page.output()

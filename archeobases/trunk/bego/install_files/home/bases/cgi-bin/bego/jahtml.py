@@ -32,7 +32,6 @@ import string
 import time
 import os
 import cStringIO
-import urllib
 
 __version__ = "2.00"
 

@@ -12,10 +12,9 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import annuaireconf
+
 
 page = annuaireconf.Bas("", "")
 page.insert_text("")
-
 page.output()

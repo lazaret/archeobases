@@ -12,10 +12,9 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import annuaireconf
+
 
 page = annuaireconf.Main("Menu Principal")
 page.dessine_cadre(annuaireconf.script_location("menu"), annuaireconf.script_location("bas"))
-
 page.output()

@@ -12,26 +12,18 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import os
 import cgi
-import urllib
 import annuaireconf
-import afficheclefs
-import annuairedata
 
 
 doc = annuaireconf.Bas("Modification des paramètres", "Modification d'une zone")
-db = annuaireconf.ArcheoDataBase()
+db = annuaireconf.AnnuaireDataBase()
 form = cgi.FieldStorage()
 doc.br()
 doc.br()
 doc.br()
 doc.br()
-
-
 doc.button(name="entree", value="Entree", onclick='parent.bas.location="' + annuaireconf.script_location("modcontrole_entree.py") + '"')
-
 doc.output()
 
 

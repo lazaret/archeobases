@@ -12,7 +12,6 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import annuaireconf
 import database
 
@@ -51,7 +50,6 @@ page.push()
 page.tr()
 page.td(align = "center")
 bouton(page, "requetes", "sql")
-
 if annuaireconf.utilisateur_courant in annuaireconf.superusers:
     bouton(page, "controle", "controles")
 page.a("Aide", href=annuaireconf.site_location, target="_top")

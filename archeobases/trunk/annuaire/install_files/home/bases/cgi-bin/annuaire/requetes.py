@@ -18,10 +18,10 @@ import string
 import cgi
 import urllib
 import csv
-try :
+try:
     import threading
     havethreads = 1
-except :
+except:
     havethreads = 0
 import annuaireconf
 import jahtml
@@ -41,21 +41,21 @@ def cherche_requete(db, nom):
 
 
 class PageRequete(annuaireconf.Bas):
-    def ecran_requetes(self, coulfond, coultete, coulhaut, coulpartie, coulmenu, requete = "") :
+    def ecran_requetes(self, coulfond, coultete, coulhaut, coulpartie, coulmenu, requete=""):
         self.center()
         self.push()
-        self.table(border = 1, cellpadding = 0, cellspacing =5)
+        self.table(border=1, cellpadding=0, cellspacing=5)
         self.push()
-        self.tr( bgcolor = coultete )
+        self.tr(bgcolor=coultete)
         self.th("Saisissez votre requête")
         self.pop()
-        self.tr(bgcolor = coultete)
+        self.tr(bgcolor=coultete)
         self.td(align="center")
-        self.form(method = "POST", action = self.script_name())
+        self.form(method="POST", action=self.script_name())
         self.push()
-        self.textarea(name = "requete", rows = "10", cols = "70", wrap = "physical")
+        self.textarea(name="requete", rows="10", cols="70", wrap="physical")
         if requete != "":
-            self.insert_text( requete)
+            self.insert_text(requete)
         self.pop()
         self.br()
         self.insert_text("Nom de la requete:")
@@ -64,36 +64,36 @@ class PageRequete(annuaireconf.Bas):
         else:
             self.text(name="nomrequete", value="", size=50, maxlength=50)
         self.br()
-        self.table(border = 0, cellpadding = 0, cellspacing = 5)
+        self.table(border=0, cellpadding=0, cellspacing=5)
         self.tr()
         self.push()
         self.td()
-        self.insert_text("Affichage :")
+        self.insert_text("Affichage:")
         self.push()
-        self.select(name = "presentation")
+        self.select(name="presentation")
         if form.has_key("presentation"):
             for a in liste_affichage:
                 if form.has_key("presentation") and (form["presentation"].value == a):
-                    self.option_selected(a, value = a)
+                    self.option_selected(a, value=a)
                 else:
-                    self.option(a, value = a)
+                    self.option(a, value=a)
         else:
-            self.option_selected(affichage_default, value = affichage_default)
+            self.option_selected(affichage_default, value=affichage_default)
             for a in liste_affichage:
                 if a != affichage_default:
-                    self.option(a, value = a)
+                    self.option(a, value=a)
         self.pop()
-        self.submit(name = "action", value = "ENVOYER")
-        self.reset(value = "ANNULER")
+        self.submit(name="action", value="ENVOYER")
+        self.reset(value="ANNULER")
         self.pop()
-        dico = { "requete" : "SELECT nomrequete,coderequete FROM requete ORDER BY nomrequete ASC;", "presentation" : elabore }
-        self.td(align = "center", valign = "middle")
-        self.a("Liste des Requêtes", href = self.script_name() + '?' + urllib.urlencode(dico))
+        dico = {"requete": "SELECT nomrequete,coderequete FROM requete ORDER BY nomrequete ASC;", "presentation": elabore}
+        self.td(align="center", valign="middle")
+        self.a("Liste des Requêtes", href=self.script_name() + '?' + urllib.urlencode(dico))
         self.br()
-        self.a("Aide", href = annuaireconf.help_location, target = "top")
+        self.a("Aide", href=annuaireconf.help_location, target="top")
         self.pop()
 
-    def output(self, file = "-"):
+    def output(self, file="-"):
         global master
         global endpart
         self.pop()
@@ -117,14 +117,14 @@ def mixed_part_handler(parent, indicateur, timer):
         else:
             if parent.isAlive():
                 heure_courante = time.time()
-                if not master :
+                if not master:
                     master = jahtml.CGI_document("multipart/x-mixed-replace;boundary=" + endpart)
                     master.insert_text("--" + endpart)
                     master.output()
                     timer = max_timer
                 part = jahtml.CGI_document()
                 part.push()
-                part.default_header(title = "Veuillez patienter...")
+                part.default_header(title="Veuillez patienter...")
                 part.body()
                 part.h3("Veuillez patienter...")
                 part.insert_text("Durée écoulée: %02.2f secondes" % (time.time() - heure_debut))
@@ -171,8 +171,8 @@ if ruser not in annuaireconf.visitorusers:
                         annuaireconf.fatalerror_message("La requête %s n'existe pas" % form["nomrequete"].value)
             else:
                 quequette = ""
-            doc.set_redirect(doc.script_name() + '?' + urllib.urlencode({"requete" : quequette, "nomrequete" : nomrequete, "presentation" : form["presentation"].value, "lue": 1 }))
-        elif form.has_key("requete") :
+            doc.set_redirect(doc.script_name() + '?' + urllib.urlencode({"requete": quequette, "nomrequete": nomrequete, "presentation": form["presentation"].value, "lue": 1}))
+        elif form.has_key("requete"):
             quequette = string.strip(string.replace(form["requete"].value, "\r", ""))
             doc.ecran_requetes(annuaireconf.bas1_bgcolor, annuaireconf.bas1_bgcolor, annuaireconf.bas1_bgcolor, annuaireconf.bas1_bgcolor, annuaireconf.bas1_bgcolor, requete=quequette)
             # la premiere alerte doit etre lancee assez tot pour
@@ -183,7 +183,7 @@ if ruser not in annuaireconf.visitorusers:
             heure_debut = time.time()
             if havethreads:
                 rendezvous = threading.Event()
-                threading.Thread(target = mixed_part_handler, kwargs = { "parent" : threading.currentThread(), "indicateur" : rendezvous, "timer" : premier_timer}).start()
+                threading.Thread(target=mixed_part_handler, kwargs={"parent": threading.currentThread(), "indicateur": rendezvous, "timer": premier_timer}).start()
             resultat = db.query(quequette)
             if (resultat != None) and (type(resultat) != type(0)):
                 doc.div(align="center")
@@ -191,7 +191,7 @@ if ruser not in annuaireconf.visitorusers:
                 if nbrecords:
                     liste_champs = resultat.listfields() # un tuple
                     liste_valeurs = resultat.getresult() # un tuple de listes
-                    if form["presentation"].value == telechargecsv :
+                    if form["presentation"].value == telechargecsv:
                     # export au format CSV
                         csv.register_dialect("csvrfc", quotechar='"', doublequote=True, quoting=csv.QUOTE_ALL)
                         # CSV all quoted, delimited by double quotes with quote escaped
@@ -201,11 +201,11 @@ if ruser not in annuaireconf.visitorusers:
                         csvwriter = csv.writer(csv_file, dialect="csvrfc")
                         #write the first row
                         csvwriter.writerow(liste_champs)
-                        for row in liste_valeurs :
+                        for row in liste_valeurs:
                             #write each rows
                             csvwriter.writerow(row)
                         csv_file.close()
-                        doc = jahtml.CGI_document(content_type = "text/csv;")
+                        doc = jahtml.CGI_document(content_type="text/csv;")
                         doc.set_redirect("/annuaire/resultat_requete.csv")
                     else:
                     # affichage HTML du résultat
@@ -215,7 +215,7 @@ if ruser not in annuaireconf.visitorusers:
                             esse = ''
                         doc.font(`nbrecords` + " enregistrement%s trouvé%s" % (esse, esse), color="red")
                         if form["presentation"].value != simplifie:
-                            doc.table(border = "1", lines = nbrecords + 1, cols = len(liste_champs))
+                            doc.table(border="1", lines=nbrecords + 1, cols=len(liste_champs))
                             doc.push()
                             doc.tr()
                             for champ in liste_champs:
@@ -246,7 +246,7 @@ if ruser not in annuaireconf.visitorusers:
                             for champ in liste_champs:
                                 ligne = ligne + champ + " " * (longueur_champs[champ] - len(champ) + 1)
                             doc.insert_text("%s\n%s\n" % (ligne, '-' * len(ligne)))
-                            for enregistrement in liste_valeurs :
+                            for enregistrement in liste_valeurs:
                                 line = ""
                                 for i in range(len(liste_champs)):
                                     value = str(enregistrement[i])
@@ -263,7 +263,7 @@ if ruser not in annuaireconf.visitorusers:
                 doc.pre()
                 doc.insert_text("Résultat de la requête: " + `resultat`)
                 doc.pop()
-            if havethreads :
+            if havethreads:
                 rendezvous.set()
     doc.output()
 else:

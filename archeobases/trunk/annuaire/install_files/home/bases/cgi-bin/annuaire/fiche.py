@@ -262,7 +262,6 @@ class Fiche(annuairedata.Data):
     def photofiche(self, enreg, penreg=None):
         self.menu_photofiche(enreg, annuaireconf.basform_bgcolormiddle, self.liste_photofiche)
 
-
 ###############################################################################
 #                                METHODES
 ##############################################################################

@@ -14,7 +14,7 @@
 
 
 ########################################################################
-# ce programme permet:          
+# ce programme permet:
 #          * de ne garder que la premiere et la derniere ligne d'une serie
 #            ou la deuxieme colone de droite (z) est la meme
 #          * de garder intacte les deux premier colone de la ligne ou la
@@ -26,33 +26,32 @@
 import sys
 import string
 
-sys.path.append("../cgi")
 
+sys.path.append("../cgi")
 x = z = cpt = z_prec = 0
 ligne_prec = ""
-
 lignes = sys.stdin.readlines()
-for ligne in lignes:
-        ligne = string.strip(ligne[:-1])
-        if (ligne != ""):
-            if (ligne[:1] == "\""):
-                if (ligne_prec !=""):
-			print ligne_prec
-			ligne_prec=""
-			z_prec=0
-		print ligne
-            else:
-                champs = ligne.split(',')
-                x = champs[0]
-                z = champs[1]
-                if (z == z_prec):
-                    ligne_prec = ligne
-                else:
-                    if (ligne_prec != "" ):  
-                        print ligne_prec
-                    ligne_prec = ""
-                    print ligne
-                    z_prec = z
-                    cpt = cpt +1
 
+for ligne in lignes:
+    ligne = string.strip(ligne[:-1])
+    if (ligne != ""):
+        if (ligne[:1] == "\""):
+            if (ligne_prec !=""):
+                print ligne_prec
+                ligne_prec = ""
+                z_prec = 0
+        print ligne
+    else:
+        champs = ligne.split(',')
+        x = champs[0]
+        z = champs[1]
+        if (z == z_prec):
+            ligne_prec = ligne
+        else:
+            if (ligne_prec != "" ):
+                print ligne_prec
+            ligne_prec = ""
+            print ligne
+            z_prec = z
+            cpt = cpt +1
 print ligne_prec

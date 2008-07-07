@@ -14,28 +14,23 @@
 
 import sys
 import string
-
-sys.path.append("../cgi")
-
 import database
 
+sys.path.append("../cgi")
 db = database.DataBase(database=sys.argv[1], username = "postgres")
 lignes = sys.stdin.readlines()
 
 for ligne in lignes:
-        ligne = string.strip(ligne[:-1])
-        champs = string.split(ligne, ",")
-        for i in range(0, len(champs)):
-            champs[i] = db.quote(string.upper(champs[i]), "text")
-
-        update = "UPDATE carnet SET sol = " + champs[2] + " WHERE zone = " + champs[0] + " AND couche = " + champs[1] + " AND bis like 'R%';"
-
-        print update
-
-        try:
-               db.query(update)
-        except:
-               print ("probleme ligne", update)
+    ligne = string.strip(ligne[:-1])
+    champs = string.split(ligne, ",")
+    for i in range(0, len(champs)):
+        champs[i] = db.quote(string.upper(champs[i]), "text")
+    update = "UPDATE carnet SET sol = " + champs[2] + " WHERE zone = " + champs[0] + " AND couche = " + champs[1] + " AND bis like 'R%';"
+    print update
+    try:
+        db.query(update)
+    except:
+        print ("probleme ligne", update)
 
 
 

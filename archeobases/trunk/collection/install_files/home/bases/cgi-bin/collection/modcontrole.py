@@ -12,13 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import os
 import cgi
-import urllib
 import collectionconf
-import afficheclefs
-import collectiondata
 
 
 doc = collectionconf.Bas("Modification des paramètres", "Modification d'une zone")
@@ -28,8 +23,6 @@ doc.br()
 doc.br()
 doc.br()
 doc.br()
-
-
 doc.button(name="entree", value="Entree", onclick='parent.bas.location="' + collectionconf.script_location("modcontrole_collection.py") + '"')
 doc.output()
 

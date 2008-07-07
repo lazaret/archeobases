@@ -12,10 +12,9 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import collectionconf
+
 
 page = collectionconf.Main("Menu Principal")
 page.dessine_cadre(collectionconf.script_location("menu"), collectionconf.script_location("bas"))
-
 page.output()

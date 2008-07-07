@@ -14,7 +14,7 @@
 
 import collectionconf
 
+
 page = collectionconf.Bas("", "")
 page.insert_text("")
-
 page.output()

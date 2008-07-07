@@ -12,8 +12,6 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import collectionconf
 import scan
 
 

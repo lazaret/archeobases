@@ -12,10 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import collectionconf
 import vue
-
 
 vue.Vue("bas").traite_saisie(["identifiant"])
 

@@ -12,48 +12,41 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import collectionconf
-import database
-import urllib
 
 
 def petit_logo(page, logo, lien) :
-        if logo != None :
-                page.push()
-                page.td()
-                page.a(href = lien, target = "_top")
-                page.img(src = collectionconf.decor_location(logo), border = "0")
-                page.pop()
-
-
-def bouton(page, module, image) :
+    if logo != None :
         page.push()
-        page.a(href=collectionconf.script_location(module), target="bas")
-        page.img(src=collectionconf.decors_location + image + ".jpg", border=0)
+        page.td()
+        page.a(href=lien, target="_top")
+        page.img(src=collectionconf.decor_location(logo), border="0")
         page.pop()
 
-page = collectionconf.Menu("Menu")
+def bouton(page, module, image) :
+    page.push()
+    page.a(href=collectionconf.script_location(module), target="bas")
+    page.img(src=collectionconf.decors_location + image + ".jpg", border=0)
+    page.pop()
 
+page = collectionconf.Menu("Menu")
 nombase = collectionconf.getBase()
 
 page.div(align="center")
 page.table(border="0")
 page.push()
 page.td()
-#page.img(src = collectionconf.decor_location(""), alt= "", border=0)
 page.pop()
 page.td()
 page.table(border="0")
 page.tr()
-
 page.push()
 page.td()
 page.table(border= "0")
 page.form(method="POST")
 page.push()
 page.tr()
-page.td(align = "center")
+page.td(align="center")
 bouton(page, "modbiblio", "bibliographie")
 bouton(page, "modmateriel", "materiel")
 bouton(page, "modanthropologie", "anthropologie")
@@ -63,30 +56,23 @@ bouton(page, "modscan", "scan")
 bouton(page, "modaudio_video", "audio_video")
 bouton(page, "modvue", "vue")
 page.pop()
-
 page.tr()
-page.td(align = "center")
+page.td(align="center")
 bouton(page, "moddessin", "dessin")
 bouton(page, "modreleve", "releve")
 bouton(page, "modcarte", "carte")
-
 bouton(page, "modassociation", "association")
-
 if collectionconf.utilisateur_courant not in collectionconf.visitorusers :
-        bouton(page, "requetes", "sql")
+    bouton(page, "requetes", "sql")
 if collectionconf.utilisateur_courant in collectionconf.superusers :
-        bouton(page, "controle", "controles")
-
+    bouton(page, "controle", "controles")
 page.push()
-page.a(href = collectionconf.site_location, target = "_top")
+page.a(href=collectionconf.site_location, target="_top")
 page.img(src=collectionconf.decors_location + "aide.jpg", border=0)
 page.pop()
 page.push()
-page.a(href =  "/cgi-bin/collection.py?base=aucune", target = "_top")
+page.a(href="/cgi-bin/collection.py?base=aucune", target="_top")
 page.img(src=collectionconf.decors_location + "deconnexion.jpg", border=0)
 page.pop()
-
-
 petit_logo(page, collectionconf.petit_logo_bas, collectionconf.petit_logo_bas_link)
-
 page.output()

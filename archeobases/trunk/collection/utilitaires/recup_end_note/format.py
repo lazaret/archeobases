@@ -12,29 +12,27 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import sys
-import string
+
+
 sys.path.append("../cgi")
-
 lignes = sys.stdin.readlines()
-
-i = 0 
+i = 0
 j = 1000
 result = ''
-new=0
+new = 0
+
 for ligne in lignes:
-        
-        if ligne.find('@') != -1:
-            j = j+1
-            new=1
-        else:
-            ligne = ligne.lstrip(' ')
-            if new: 
-                if (ligne[:-1]).find('Author'):
-                    champs = ligne[:-1].strip(',')
-                    print 'auteur trouve: '+ champs[1]]
-                else:
-                    print '   ' + ligne[:-1]
-            new = 0    
+    if ligne.find('@') != -1:
+        j = j+1
+        new = 1
+    else:
+        ligne = ligne.lstrip(' ')
+        if new:
+            if (ligne[:-1]).find('Author'):
+                champs = ligne[:-1].strip(',')
+                print "auteur trouve: "+ champs[1]
+            else:
+                print '   ' + ligne[:-1]
+        new = 0
 

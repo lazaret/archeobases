@@ -74,7 +74,6 @@ class PageRequete(collectionconf.Bas):
         self.submit(name="action", value="ENLEVER")
         self.reset(value="ANNULER")
 
-
 form = cgi.FieldStorage()   #recupere tous les param passes par le script precedent
 doc = PageRequete("Modification des contrôles", "Modification des contrôles")
 db = collectionconf.CollectionDataBase()

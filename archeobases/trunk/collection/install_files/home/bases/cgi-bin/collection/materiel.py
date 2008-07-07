@@ -50,13 +50,11 @@ class Materiel(collectiondata.Data):
                 "m_scan_nb_coupes"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0}, \
                 "m_scan_nb_plans_coupes": {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0}, \
                 "m_moul_orig"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 0}, \
-
                 "m_batiment"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
                 "m_meuble"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
                 "m_piece"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
                 "m_tiroir"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
                 "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-
                 "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
                 "m_localite"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
                 "m_commune"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
@@ -68,11 +66,9 @@ class Materiel(collectiondata.Data):
                 "m_periode_culturelle" : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
                 "m_periode_geologique" : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
                 "m_age_absolu"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-
                 "m_observations"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0}, \
                 "m_bibliographie"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0}, \
                 "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 150, "memory": 0}, \
-
                 "m_numero_individu"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
                 "m_groupe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
                 "m_classe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
@@ -508,7 +504,7 @@ class Materiel(collectiondata.Data):
                 self.__doc__.td(clign="center", colspan="3")
                 self.__doc__.font(size=collectionconf.font_size)
                 dico['identifiant'] = valeur[k]['identifiant_2']
-                #TOTO: faire requete pour connaitre le nom de la table correspondante
+                #TODO: faire requete pour connaitre le nom de la table correspondante
                 query_count_biblio = "SELECT COUNT(*) FROM biblio WHERE identifiant=" \
                     + self.__db__.quote(valeur[k]['identifiant_2'],"text") + ";"
                 res = self.__db__.query(query_count_biblio)
@@ -517,7 +513,6 @@ class Materiel(collectiondata.Data):
                     link = collectionconf.script_location("modbiblio") + '?' + urllib.urlencode(dico)
                 else:
                     link = collectionconf.script_location("modmateriel") + '?' + urllib.urlencode(dico)
-
                 if link:
                     self.__doc__.a(valeur[k]['identifiant_2'], href=link)
                 self.__doc__.pop()

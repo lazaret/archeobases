@@ -210,7 +210,6 @@ def image_location(image):
     if image != None:
         return images_location + image
 
-
 def decor_location(image):
     """ Fonction qui renvoie l'url dans lequel sont les decors."""
     if image != None:

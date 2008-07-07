@@ -30,7 +30,7 @@
 #       volume          nombre_volume
 #       abstract        resume
 #       keywords        mots_clefs
-#       journal         journal 
+#       journal         journal
 #       institution     institution
 #       school          ecole
 #       series          serie
@@ -39,48 +39,44 @@
 
 import sys
 import string
-
-sys.path.append("../cgi")
-
 import database
 
-db = database.DataBase(database=sys.argv[1], username = "postgres")
 
+sys.path.append("../cgi")
+db = database.DataBase(database=sys.argv[1], username = "postgres")
 lignes = sys.stdin.readlines()
-Correspondance = {      'Authors':'auteur', \
-                        'Title':'titre', \
-                        'BookTitle':'nom', \
-                        'Publisher':'editeur', \
-                        'Adress':'ville_edition', \
-                        'Pages':'pages', \
-                        'Year':'annee', \
-                        'Month':'mois', \
-                        'Volume':'nombre_volume', \
-                        'Abstract':'resume', \
-                        'Keywords':'mots_clefs', \
-                        'Journal':'journal', \
-                        'Institution':'institution', \
-                        'School':'ecole', \
-                        'Series':'serie', \
-                        'Edition':'edition', \
-                 }
-                 
-                 
+Correspondance =   {'Authors':'auteur', \
+                    'Title':'titre', \
+                    'BookTitle':'nom', \
+                    'Publisher':'editeur', \
+                    'Adress':'ville_edition', \
+                    'Pages':'pages', \
+                    'Year':'annee', \
+                    'Month':'mois', \
+                    'Volume':'nombre_volume', \
+                    'Abstract':'resume', \
+                    'Keywords':'mots_clefs', \
+                    'Journal':'journal', \
+                    'Institution':'institution', \
+                    'School':'ecole', \
+                    'Series':'serie', \
+                    'Edition':'edition', \
+                    }
+
 precede = 0
-enregistrements = []                     
+enregistrements = []
 cpt = 0
 new_biblio = {}
 
 for ligne in lignes:
-        if ligne :
-                #s'il y a un @ en debut de ligne, il s'agit d'une nouvelle biblio
-                if (ligne[0] == '@' and len(new_biblio.keys())>0):
-                        enregistrements.append(new_biblio)
-                        new_biblio = {}
-                        ligne = ligne[1:]
-                        new_biblio['type_biblio'] = string.upper(ligne)
-                        print "type_biblio= ", ligne
-                        precede = 1
-                        
-        else:
-                print "pb"
+    if ligne :
+        #s'il y a un @ en debut de ligne, il s'agit d'une nouvelle biblio
+        if (ligne[0] == '@' and len(new_biblio.keys())>0):
+            enregistrements.append(new_biblio)
+            new_biblio = {}
+            ligne = ligne[1:]
+            new_biblio['type_biblio'] = string.upper(ligne)
+            print "type_biblio= ", ligne
+            precede = 1
+    else:
+        print "pb"

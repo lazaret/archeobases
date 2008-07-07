@@ -15,8 +15,8 @@
 import sys
 import os
 
-for fichier in os.listdir(".") :
-    if fichier.endswith(".datas") :
+for fichier in os.listdir("."):
+    if fichier.endswith(".datas"):
         nom = fichier[:-6]
         print "Traitement de %s..." % fichier,
         sys.stdout.flush()

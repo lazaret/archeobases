@@ -23,14 +23,14 @@ photo = photo.Photo("bas","fiche")
 f = photo.getcurform()
 page = photo.getcurdoc()
 
-if f.has_key("action") :
-    if f["action"].value == "Modifier" :
+if f.has_key("action"):
+    if f["action"].value == "Modifier":
         photo.modifier()
-    elif f["action"].value == "Supprimer" :
+    elif f["action"].value == "Supprimer":
         photo.supprimer()
-    elif f["action"].value[:7] == "Ajouter" :
+    elif f["action"].value[:7] == "Ajouter":
         photo.creer()
-    elif f["action"].value[:8] == "Nouvelle" :
+    elif f["action"].value[:8] == "Nouvelle":
         page.push()
         page.div(align="center")
         page.form(action=page.script_name(), method="POST", enctype="multipart/form-data")
@@ -60,7 +60,7 @@ if f.has_key("action") :
         listetaille = ["Moyenne", "Petite", "Grande"]
         page.push()
         page.select(name="taille")
-        for x in listetaille :
+        for x in listetaille:
             page.option(x, value=x)
         page.pop()
         page.push()
@@ -74,16 +74,16 @@ if f.has_key("action") :
         page.td(align="center", valign="middle", colspan=nbcols)
         referer = os.environ["HTTP_REFERER"]
         inter = string.find(referer, '?')
-        if inter != -1 :
+        if inter != -1:
             referer = referer[:inter]
         inter = string.find(referer, '#')
-        if inter != -1 :
+        if inter != -1:
             referer = referer[:inter]
         page.hidden(name="referer", value=referer)
         page.submit(name="action", value="Ajouter la photo")
         page.reset(value="Effacer")
         page.pop()
-    else :
+    else:
         collectionconf.log_message("%s: Action [%s] inconnue" % (photo.getcurdoc().script_name(), f["action"].value))
 else:
     collectionconf.log_message("Aucun champ 'action' dans le formulaire: <%s>" % str(f))

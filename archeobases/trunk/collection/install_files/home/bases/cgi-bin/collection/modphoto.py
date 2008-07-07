@@ -23,13 +23,13 @@ photo = photo.Photo("bas","fiche")
 f = photo.getcurform()
 
 if f.has_key("action") :
-    if f["action"].value == "Modifier" :
+    if f["action"].value == "Modifier":
         photo.modifier()
-    elif f["action"].value == "Supprimer" :
+    elif f["action"].value == "Supprimer":
         photo.supprimer()
-    elif f["action"].value[:7] == "Ajouter" :
+    elif f["action"].value[:7] == "Ajouter":
         photo.creer()
-    elif f["action"].value[:8] == "Nouvelle" :
+    elif f["action"].value[:8] == "Nouvelle":
         page = photo.getcurdoc()
         page.push()
         page.div(align="center")
@@ -61,7 +61,7 @@ if f.has_key("action") :
         page.td(align="left", valign="middle", colspan=nbcols - 1)
         listetaille = ["Moyenne", "petite", "Grande"]
         page.select(name="taille")
-        for x in listetaille :
+        for x in listetaille:
             page.option(x, value=x)
         page.pop()
         page.push()
@@ -85,5 +85,5 @@ if f.has_key("action") :
         page.reset(value="Effacer")
         page.pop()
         page.output()
-    else :
+    else:
         collectionconf.log_message("%s: Action [%s] inconnue" % (photo.getcurdoc().script_name(), f["action"].value))

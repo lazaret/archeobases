@@ -268,7 +268,7 @@ class Moulages(collectiondata.Data):
                 self.__doc__.td(clign="center", colspan="3")
                 self.__doc__.font(size=collectionconf.font_size)
                 dico['identifiant'] = valeur[k]['identifiant_2']
-                #TOTO: faire requete pour connaitre le nom de la table correspondante
+                #TODO: faire requete pour connaitre le nom de la table correspondante
                 query_count_biblio = "SELECT COUNT(*) FROM biblio WHERE identifiant=" \
                     + self.__db__.quote(valeur[k]['identifiant_2'],"text") + ";"
                 res = self.__db__.query(query_count_biblio)

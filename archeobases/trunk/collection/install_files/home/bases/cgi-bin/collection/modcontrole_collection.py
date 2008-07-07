@@ -12,13 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import os
-import cgi
 import urllib
 import collectionconf
-import afficheclefs
-import collectiondata
 import string
 
 
@@ -26,7 +21,6 @@ page = collectionconf.Controle("Controles")
 page.div(align="center")
 page.table(border="0")
 page.tr()
-
 page.push()
 page.push()
 page.td()
@@ -36,7 +30,6 @@ page.tr()
 page.td(align="center")
 page.insert_text(" Contrôles des champs des ecrans de la collection")
 page.pop()
-
 page.tr()
 page.td()
 page.table(border= "0")
@@ -45,25 +38,21 @@ page.push()
 page.tr()
 #page.br()
 page.br()
-page.td(align = "center", valign = "center")
+page.td(align="center", valign="center")
 page.push()
 cpt = 0
-for chaine in ("b_type_biblio","b_langue_document","m_type_materiel","m_batiment","m_piece","m_classe","m_ordre","m_famille","m_genre","m_espece", \
-                "m_sexe_individu","m_representation_squel","m_nature","m_type_support","m_etagere", "m_moul_orig"):
-
-        if (cpt == 6 ) :
-                page.pop()
-                page.push()
-                page.tr()
-                page.td(align = "center")
-                cpt = 1
-        else :
-                cpt = cpt + 1
-
-        dico = {"champ": chaine}
-
-        page.button(value = string.capitalize(dico["champ"]) , onclick='parent.bas.location="' + collectionconf.script_location("controle_general") + "?" + urllib.urlencode(dico) + '"')
-
+for chaine in ("b_type_biblio", "b_langue_document", "m_type_materiel", "m_batiment", "m_piece", "m_classe", "m_ordre", \
+                "m_famille", "m_genre","m_espece", \
+                "m_sexe_individu", "m_representation_squel", "m_nature", "m_type_support", "m_etagere", "m_moul_orig"):
+    if (cpt == 6 ) :
+        page.pop()
+        page.push()
+        page.tr()
+        page.td(align="center")
+        cpt = 1
+    else :
+        cpt = cpt + 1
+    dico = {"champ": chaine}
+    page.button(value=string.capitalize(dico["champ"]) , onclick='parent.bas.location="' + collectionconf.script_location("controle_general") + "?" + urllib.urlencode(dico) + '"')
 page.pop()
-
 page.output()

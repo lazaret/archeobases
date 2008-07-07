@@ -1,7 +1,6 @@
-#! /usr/bin/env python
-# -*- coding: UTF-8 -*-
-#
 # Module for HTML ouput
+# -*- coding: UTF-8 -*-
+
 # jahtml
 # (C) Jerome ALET <alet@unice.fr> 1999-2001
 # You're welcome to redistribute this software under the
@@ -34,6 +33,7 @@ import time
 import os
 import cStringIO
 
+
 __version__ = "2.00"
 
 class Html_document:
@@ -47,7 +47,8 @@ class Html_document:
         self.__pushed__ = []
         self.__position__ = 0
         self.__indentstring__ = " "
-# Warning descativé pour eclaircir les logs apache (bertrand)
+
+# Warning desactivé pour eclaircir les logs apache (bertrand)
 #   sys.stderr.write("WARNING: The jahtml.Html_document() class shouldn't be used anymore.\n")
 #   sys.stderr.write("Use jaxml.HTML_document() instead, and modify your programs according to the new API.\n")
 #   sys.stderr.write("Download jaxml now from: http://cortex.unice.fr/~jerome/jaxml/\n")
@@ -64,17 +65,17 @@ class Html_document:
             return ""
 
     def __insert_symtag__(self, tag, arguments, dotab = 1, donl = 0, domod = 0):
-        """ Insert a symetrical tag (e.g. <BODY> </BODY>) in the page.
+        """Insert a symetrical tag (e.g. <BODY> </BODY>) in the page.
 
-            tag
+           tag
                 tag to be inserted
-            arguments
+           arguments
                 tag's arguments (e.g. BACKGROUND='image.gif')
-            dotab
+           dotab
                 if the tag should shift to the right on opening and left on closing
-            donl
+           donl
                 if newlines should be added after the tag
-            domod
+           domod
                 if content between opening and closing should be output as-is or not
         """
         text = tag
@@ -108,30 +109,30 @@ class Html_document:
     def __subst_lines__(self, lines, **vars):
         """Substitues var names with their values.
 
-           parts of this function come from the Whiz package
-           THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
-                ## Author: Neale Pickett <neale@lanl.gov>
-                ## Time-stamp: <99/02/11 10:45:42 neale>
+            parts of this function come from the Whiz package
+            THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
+            ## Author: Neale Pickett <neale@lanl.gov>
+            ## Time-stamp: <99/02/11 10:45:42 neale>
 
-                ## This software and ancillary information (herein called "SOFTWARE")
-                ## called html.py made avaiable under the terms described here.  The
-                ## SOFTWARE has been approved for release with associated LA-CC Number
-                ## 89-47.
+            ## This software and ancillary information (herein called "SOFTWARE")
+            ## called html.py made avaiable under the terms described here.  The
+            ## SOFTWARE has been approved for release with associated LA-CC Number
+            ## 89-47.
 
-                ## Unless otherwise indicated, this SOFTWARE has been authored by an
-                ## employee or employees of the University of California, operator of
-                ## the Los Alamos National Laboratory under contract No. W-7405-ENG-36
-                ## with the U.S. Department of Energy.  The U.S. Government has rights
-                ## to use, reproduce, and distribute this SOFTWARE.  The public may
-                ## copy, distribute, prepare derivative works and publicly display this
-                ## SOFTWARE without charge, provided that this Notice and any statement
-                ## of authorship are reproduced on all copies.  Neither the Government
-                ## nor the University makes any warranty, express or implied, or assumes
-                ## any liability or responsibility for the use of this SOFTWARE.
+            ## Unless otherwise indicated, this SOFTWARE has been authored by an
+            ## employee or employees of the University of California, operator of
+            ## the Los Alamos National Laboratory under contract No. W-7405-ENG-36
+            ## with the U.S. Department of Energy.  The U.S. Government has rights
+            ## to use, reproduce, and distribute this SOFTWARE.  The public may
+            ## copy, distribute, prepare derivative works and publicly display this
+            ## SOFTWARE without charge, provided that this Notice and any statement
+            ## of authorship are reproduced on all copies.  Neither the Government
+            ## nor the University makes any warranty, express or implied, or assumes
+            ## any liability or responsibility for the use of this SOFTWARE.
 
-                ## If SOFTWARE is modified to produce derivative works, such modified
-                ## SOFTWARE should be clearly marked, so as not to confuse it with the
-                ## version available from LANL.
+            ## If SOFTWARE is modified to produce derivative works, such modified
+            ## SOFTWARE should be clearly marked, so as not to confuse it with the
+            ## version available from LANL.
         """
         import regex
 
@@ -157,14 +158,14 @@ class Html_document:
     def __adjust_stack__(self, offset):
         """Adjust the stack of pushed positions.
 
-            offset
+           offset
                 offset by which adjust the stack
         """
         if len(self.__pushed__):
             pos, oldoffset = self.__pushed__[-1]
             self.__pushed__[-1] = (pos, oldoffset + offset)
 
-    def __enclosing_tag__(self, tag, args, text, dotab=1, donl=0, domod=0):
+    def __enclosing_tag__(self, tag, args, text, dotab = 1, donl = 0, domod = 0):
         """Insert a text enclosed between an opening an a closing tag.
 
            tag
@@ -177,7 +178,7 @@ class Html_document:
         self.insert_text(text)
         self.pop()
 
-    def __ienclosing_tag__(self, tag, args, text, dotab=1, donl=0, domod=0):
+    def __ienclosing_tag__(self, tag, args, text, dotab = 1, donl = 0, domod = 0):
         """Same as above, but intelligent."""
         if text != "":
             self.__enclosing_tag__(tag, args, text, dotab, donl, domod)
@@ -185,7 +186,6 @@ class Html_document:
             self.__insert_symtag__(tag, args, dotab, donl, domod)
 
 # Here begins the callable interface
-
     def set_indentstring(self, newindentstring = " "):
         """Sets the indentation string for the output (default is a single space character).
 
@@ -222,14 +222,16 @@ class Html_document:
         self.__adjust_stack__(1)
 
     def push(self):
-        """ Push the current tag's position.
-            useful before a block of imbricated tags
+        """Push the current tag's position.
+
+           useful before a block of imbricated tags
         """
         self.__pushed__.append((self.__position__, 0))
 
     def pop(self):
-        """ Restore the latest pushed position.
-            useful to get out of a block of imbricated tags
+        """Restore the latest pushed position.
+
+           useful to get out of a block of imbricated tags
         """
         if len(self.__pushed__):
             pos, offset = self.__pushed__[-1]
@@ -272,13 +274,12 @@ class Html_document:
         retval = outstr.getvalue()
         outstr.close()
         return retval
-
     __str__ = __repr__
 
     def output(self, file = "-"):
         """Ouput the page, with indentation.
 
-            file
+           file
                 the file object or filename to output to
         """
         isopen = 0
@@ -298,31 +299,31 @@ class Html_document:
     def template(self, file = "-", **vars):
         """Include an external file in the current doc.
 
-           Replace ##vars## with their values
-           parts of this function come from the Whiz package
-           THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
-                ## Author: Neale Pickett <neale@lanl.gov>
-                ## Time-stamp: <99/02/11 10:45:42 neale>
+            Replace ##vars## with their values
+            parts of this function come from the Whiz package
+            THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
+            ## Author: Neale Pickett <neale@lanl.gov>
+            ## Time-stamp: <99/02/11 10:45:42 neale>
 
-                ## This software and ancillary information (herein called "SOFTWARE")
-                ## called html.py made avaiable under the terms described here.  The
-                ## SOFTWARE has been approved for release with associated LA-CC Number
-                ## 89-47.
+            ## This software and ancillary information (herein called "SOFTWARE")
+            ## called html.py made avaiable under the terms described here.  The
+            ## SOFTWARE has been approved for release with associated LA-CC Number
+            ## 89-47.
 
-                ## Unless otherwise indicated, this SOFTWARE has been authored by an
-                ## employee or employees of the University of California, operator of
-                ## the Los Alamos National Laboratory under contract No. W-7405-ENG-36
-                ## with the U.S. Department of Energy.  The U.S. Government has rights
-                ## to use, reproduce, and distribute this SOFTWARE.  The public may
-                ## copy, distribute, prepare derivative works and publicly display this
-                ## SOFTWARE without charge, provided that this Notice and any statement
-                ## of authorship are reproduced on all copies.  Neither the Government
-                ## nor the University makes any warranty, express or implied, or assumes
-                ## any liability or responsibility for the use of this SOFTWARE.
+            ## Unless otherwise indicated, this SOFTWARE has been authored by an
+            ## employee or employees of the University of California, operator of
+            ## the Los Alamos National Laboratory under contract No. W-7405-ENG-36
+            ## with the U.S. Department of Energy.  The U.S. Government has rights
+            ## to use, reproduce, and distribute this SOFTWARE.  The public may
+            ## copy, distribute, prepare derivative works and publicly display this
+            ## SOFTWARE without charge, provided that this Notice and any statement
+            ## of authorship are reproduced on all copies.  Neither the Government
+            ## nor the University makes any warranty, express or implied, or assumes
+            ## any liability or responsibility for the use of this SOFTWARE.
 
-                ## If SOFTWARE is modified to produce derivative works, such modified
-                ## SOFTWARE should be clearly marked, so as not to confuse it with the
-                ## version available from LANL.
+            ## If SOFTWARE is modified to produce derivative works, such modified
+            ## SOFTWARE should be clearly marked, so as not to confuse it with the
+            ## version available from LANL.
         """
         if type(file) == type(""):
             if (file != "-") and (file != ""):
@@ -1097,6 +1098,7 @@ class Html_document:
         self.title(title)
         self.pop()
 
+
 class CGI_document(Html_document):
     """
     This class defines a CGI document.
@@ -1115,10 +1117,8 @@ class CGI_document(Html_document):
         self.__redirect__ = ""
         self.__status__ = ""
         self.__statmes__ = ""
-
         # self.__debug__ can be used to debug jahtml as well as the user's own scripts
         self.__debug__ = None
-
         Html_document.__init__(self)
 
     def __output__(self, file):
@@ -1132,7 +1132,6 @@ class CGI_document(Html_document):
                 f = sys.stdout
         else:
             f = file
-
         if self.__redirect__ != "":
             f.write("Location: %s\n\n" % self.__redirect__)
         else:

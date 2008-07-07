@@ -12,8 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import string
+
 
 #### Debut de la partie configurable ####
 

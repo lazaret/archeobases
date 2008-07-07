@@ -40,7 +40,6 @@ page.br()
 page.td(align="center", valign="center")
 page.push()
 cpt = 0
-
 for chaine in ("type_entree", "type_personne", "civilite", "association", "cotisation", "type_adresse"):
     if (cpt == 6 ):
         page.pop()
@@ -52,6 +51,5 @@ for chaine in ("type_entree", "type_personne", "civilite", "association", "cotis
         cpt = cpt + 1
     dico = {"champ": chaine}
     page.button(value=string.capitalize(dico["champ"]), onclick='parent.bas.location="' + annuaireconf.script_location("controle_general") + "?" + urllib.urlencode(dico) + '"')
-
 page.pop()
 page.output()

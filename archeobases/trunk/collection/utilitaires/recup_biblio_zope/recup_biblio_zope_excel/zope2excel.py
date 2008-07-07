@@ -29,7 +29,7 @@
 #       volume          nombre_volume
 #       abstract        resume
 #       keywords        mots_clefs
-#       journal         journal 
+#       journal         journal
 #       institution     institution
 #       school          ecole
 #       series          serie
@@ -38,44 +38,40 @@
 
 import sys
 import string
-import urllib
+
+
 sys.path.append("../cgi")
-
-
 lignes = sys.stdin.readlines()
-Liste_clefs = ['publication_type','publication_title','publication_year','publication_month','author',
-               'indice','journal','chapter', \
-                'volume','number','pages','series','edition','editor','publisher','chapter','booktitle', \
-               'school','institution','adress','isbn','description','keywords','indice','abstract','authors']
-               
+Liste_clefs =  ['publication_type', 'publication_title', 'publication_year', 'publication_month', 'author',
+                'indice', 'journal', 'chapter', \
+                'volume', 'number', 'pages', 'series','edition', 'editor', 'publisher', 'chapter', 'booktitle', \
+                'school', 'institution', 'adress', 'isbn', 'description', 'keywords', 'indice', 'abstract', 'authors'
+                ]
 enregistrements = []
 cpt = 0
 new_biblio = []
+
 for ligne in lignes:
-        if ligne:
-                #s'il y a un # en debut de ligne, il s'agit d'une nouvelle biblio
-                if (ligne[0] == '#' and len(new_biblio)>0):
-                        liste = string.join(new_biblio,'|')
-                        new_biblio = []
-                        cpt = cpt+1
-                        print liste
-                        
-                # sinon s'il s'agit d'un identifiant DRET-BIB        
-                elif (ligne.find(':') == -1):        
-                        if (ligne[:4].upper() == 'DRET'):
-                                new_biblio.append(ligne[:-1])
-                else: 
-                        #position du premier ':'
-                        indice_1 = ligne.find(':')
-                        propriete = ligne[:indice_1]
-                        propriete = string.strip(propriete)
-                        
-                        if (propriete in Liste_clefs):
-                                #position du deuxieme ':'
-                                indice_2 = ligne[indice_1+1:].find(':') + indice_1  + 2
-                                
-                                valeur = ligne[indice_2:]
-                                valeur = string.strip(valeur)
-                                new_biblio.append(valeur)
-                                
-print "nombre d'enregistrements: ",cpt
+    if ligne:
+        #s'il y a un # en debut de ligne, il s'agit d'une nouvelle biblio
+        if (ligne[0] == '#' and len(new_biblio)>0):
+            liste = string.join(new_biblio,'|')
+            new_biblio = []
+            cpt = cpt+1
+            print liste
+        # sinon s'il s'agit d'un identifiant DRET-BIB
+        elif (ligne.find(':') == -1):
+            if (ligne[:4].upper() == 'DRET'):
+                new_biblio.append(ligne[:-1])
+        else:
+            #position du premier ':'
+            indice_1 = ligne.find(':')
+            propriete = ligne[:indice_1]
+            propriete = string.strip(propriete)
+            if (propriete in Liste_clefs):
+                #position du deuxieme ':'
+                indice_2 = ligne[indice_1+1:].find(':') + indice_1  + 2
+                valeur = ligne[indice_2:]
+                valeur = string.strip(valeur)
+                new_biblio.append(valeur)
+print "nombre d'enregistrements: ", cpt

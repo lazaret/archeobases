@@ -26,7 +26,6 @@ import tempfile
 import jaxml
 from pdfmap import maptool
 
-
 try:
     import psyco
 except ImportError:
@@ -75,6 +74,7 @@ def get_xy(zone, x, y):
 
 def main(arguments):
     """Fonction principale"""
+
     # import du fichier de configuration
     if arguments[1] == "--titre":
         titre = arguments[2]
@@ -84,7 +84,6 @@ def main(arguments):
     confname = arguments[1]
     config = imp.load_source("config", confname)
     typetrace = config.TYPETRACE.lower()
-
     # parcours tous les fichiers d'entrée et stocke les données
     # dans des listes.
     urlerreurs = []
@@ -106,7 +105,7 @@ def main(arguments):
                     v = champs[i]
                     if (v.startswith('"') and v.endswith('"')) or \
                        (v.startswith("'") and v.endswith("'")):
-                        champs[i] = v[1:-1]
+                        champs[i] = v[1:-1] # remove comas
                     indicechamps[champs[i]] = i
                 izone = indicechamps["zone"]
                 inumero = indicechamps["numero"]
@@ -134,10 +133,10 @@ def main(arguments):
                     nature = valeurs[inature].strip()
                     valeurs[izone] = valeurs[izone].upper()
                     valeurs[iorientation] = valeurs[iorientation].upper() or 'N'
-                    urldic = { "action": "Chercher",
-                               "zone": valeurs[izone],
-                               "numero": valeurs[inumero],
-                               "bis": valeurs[ibis],
+                    urldic = {"action": "Chercher",
+                              "zone": valeurs[izone],
+                              "numero": valeurs[inumero],
+                              "bis": valeurs[ibis],
                              }
                     url = "%s?%s" % (config.URL, urllib.urlencode(urldic))
                     erreur = False
@@ -160,7 +159,6 @@ def main(arguments):
                                 if not surface:
                                     raise ValueError, "Surface nulle."
                             except (ValueError, TypeError):
-                                #if (typetrace != "plan") and getattr(config, "INCOMPLETS", True):
                                 if getattr(config, "INCOMPLETS", True):
                                     longueur = largeur = epaisseur = config.FORCETAILLE or 0.01
                                     surface = longueur * largeur
@@ -218,7 +216,6 @@ def main(arguments):
                 if config.MIROIR:
                     realx = 2*config.XORIGINE - x
                 else:
-                    #realx = x + 1
                     realx = x
                 realy = -zabsolu
                 reallength = epaisseur
@@ -306,17 +303,17 @@ def main(arguments):
     for infile in allfiles:
         # initialize the new page
         doc.initpage(background = bg, \
-             xorigin = config.XORIGINE, \
-             yorigin = config.YORIGINE, \
-             xscale = config.XECHELLE, \
-             yscale = config.YECHELLE, \
-             xstep = config.XPAS, \
-             ystep = config.YPAS, \
-             rotation = config.ROTATION, \
-             showxgrid = config.XMONTRERGRILLE, \
-             showygrid = config.YMONTRERGRILLE, \
-             showxscale = config.XMONTRERECHELLE, \
-             showyscale = config.YMONTRERECHELLE)
+            xorigin = config.XORIGINE, \
+            yorigin = config.YORIGINE, \
+            xscale = config.XECHELLE, \
+            yscale = config.YECHELLE, \
+            xstep = config.XPAS, \
+            ystep = config.YPAS, \
+            rotation = config.ROTATION, \
+            showxgrid = config.XMONTRERGRILLE, \
+            showygrid = config.YMONTRERGRILLE, \
+            showxscale = config.XMONTRERECHELLE, \
+            showyscale = config.YMONTRERECHELLE)
         # draws the datas read from he input files
         # according to what's in the configuration file
         doc.draw_datas(config.FICHIERCONFIGNATURES, \
@@ -324,13 +321,18 @@ def main(arguments):
                        legend = config.LEGENDE)
         # ends the current page
         doc.endpage()
-    # generates the PDF document
-    doc.output(config.FICHIERPDF)
+        # generates the PDF document
+    try:
+        doc.output(config.FICHIERPDF)
+    except IndexError:
+        return True # Impossible de generer le PDF car toutes les lignes sont invalides (par exemple tous les z sont vides)
+
+
 
 def mainForCGI():
     """Main function when used as a CGI script."""
     # first retrieve all variables:
-    variables = [ ("auteur", "text", str), ("titre", "text", str), ("soustitre", "text", str),
+    variables = [("auteur", "text", str), ("titre", "text", str), ("soustitre", "text", str),
                  ("typetrace", "text", str, True), ("papier", "text", str, True),
                  ("orientation", "text", str, True), ("marge", "text", str, True  ),
                  ("echelle", "text", float, True), ("xmontrerechelle", "bool", bool), ("ymontrerechelle", "bool", bool),
@@ -343,7 +345,6 @@ def mainForCGI():
                  ("ximage", "text", float), ("yimage", "text", float), ("largeurimage", "text", float), ("hauteurimage", "text", float),
                  ("rotationimage", "text", lambda s: s.strip() or None), ("imagefond", "file", str), ("url", "text", str, True), ("fichierconfignatures", "file", str, True),
                  ("fichierdonnees", "file", str, True), ("incomplets", "bool", bool)]
-
     form = cgi.FieldStorage()
     varvalues = {}
     errors = []
@@ -446,17 +447,20 @@ def mainForCGI():
         configpy.write('FICHIERPDF = "%s"\n' % resultname)
         configpy.close()
         donneesoriginales = os.path.join(directory, "resultat-requete.datas")
-        main(("genmap", configpyname, donneesoriginales))
+        erreur = main(("genmap", configpyname, donneesoriginales))
         doc.h3("Résultat:")
         doc.ul()
         doc._push()
         doc.li()
-        doc._text("Fichier PDF:")
-        doc.a("%s/resultat.pdf" % url, href="%s/resultat.pdf" % url, target="_new")
+        doc._text("Fichier PDF :")
+        if erreur :
+            doc._text("<strong>Génération du PDF impossible, vérifiez vos données s.v.p !</strong>")
+        else:
+            doc.a("%s/resultat.pdf" % url, href="%s/resultat.pdf" % url, target="_new")
         doc._pop()
         doc._push()
         doc.li()
-        doc._text("Erreurs:")
+        doc._text("Erreurs :")
         if os.path.exists(erreursname):
             doc.a("%s/erreurs.html" % url, href="%s/erreurs.html" % url, target="_new")
         else:
@@ -464,20 +468,21 @@ def mainForCGI():
         doc._pop()
         doc._push()
         doc.li()
-        doc._text("Fichier de configuration de Genmap:")
+        doc._text("Fichier de configuration de Genmap :")
         doc.a("%s/configuration.txt" % url, href="%s/configuration.txt" % url, target="_new")
         doc._pop()
         doc._push()
         doc.li()
-        doc._text("Fichier de configuration des natures:")
+        doc._text("Fichier de configuration des natures :")
         doc.a("%s/natures.conf" % url, href="%s/natures.conf" % url, target="_new")
         doc._pop()
         doc._push()
         doc.li()
-        doc._text("Données originales:")
+        doc._text("Données originales :")
         doc.a("%s/resultat-requete.datas" % url, href="%s/resultat-requete.datas" % url, target="_new")
         doc._pop()
     doc._output("-")
+
 
 if __name__ == '__main__':
     if len(sys.argv) == 1:

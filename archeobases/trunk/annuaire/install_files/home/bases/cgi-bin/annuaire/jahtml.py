@@ -24,7 +24,6 @@
 # =====================================================================
 #
 #
-# $Id: jahtml.py,v 1.5 2001/02/06 10:10:17 jerome Exp $
 #
 
 import sys
@@ -34,12 +33,12 @@ import os
 import cStringIO
 
 
-__version__ = "2.00"
+__version__ = "2.01"
 
 class Html_document:
     """This class defines an HTML document.
 
-       Not all functions should be called from the outside.
+    Not all functions should be called from the outside.
     """
     def __init__(self):
         """Initialize local datas."""
@@ -47,12 +46,11 @@ class Html_document:
         self.__pushed__ = []
         self.__position__ = 0
         self.__indentstring__ = " "
-
-# Warning desactivé pour eclaircir les logs apache (bertrand)
-#   sys.stderr.write("WARNING: The jahtml.Html_document() class shouldn't be used anymore.\n")
-#   sys.stderr.write("Use jaxml.HTML_document() instead, and modify your programs according to the new API.\n")
-#   sys.stderr.write("Download jaxml now from: http://cortex.unice.fr/~jerome/jaxml/\n")
-#   sys.stderr.flush()
+# Warning descativé pour eclaircir les logs apache (bertrand)
+        #sys.stderr.write("WARNING: The jahtml.Html_document() class shouldn't be used anymore.\n")
+        #sys.stderr.write("Use jaxml.HTML_document() instead, and modify your programs according to the new API.\n")
+        #sys.stderr.write("Download jaxml now from: http://cortex.unice.fr/~jerome/jaxml/\n")
+        #sys.stderr.flush()
 
     def __calculate_args__(self, modifier, value):
         if value != None:
@@ -64,19 +62,19 @@ class Html_document:
         else:
             return ""
 
-    def __insert_symtag__(self, tag, arguments, dotab = 1, donl = 0, domod = 0):
+    def __insert_symtag__(self, tag, arguments, dotab=1, donl=0, domod=0):
         """Insert a symetrical tag (e.g. <BODY> </BODY>) in the page.
 
-           tag
-                tag to be inserted
-           arguments
-                tag's arguments (e.g. BACKGROUND='image.gif')
-           dotab
-                if the tag should shift to the right on opening and left on closing
-           donl
-                if newlines should be added after the tag
-           domod
-                if content between opening and closing should be output as-is or not
+        tag
+            tag to be inserted
+        arguments
+            tag's arguments (e.g. BACKGROUND='image.gif')
+        dotab
+            if the tag should shift to the right on opening and left on closing
+        donl
+            if newlines should be added after the tag
+        domod
+            if content between opening and closing should be output as-is or not
         """
         text = tag
         if arguments != "":
@@ -109,16 +107,14 @@ class Html_document:
     def __subst_lines__(self, lines, **vars):
         """Substitues var names with their values.
 
-            parts of this function come from the Whiz package
-            THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
+        parts of this function come from the Whiz package
+        THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
             ## Author: Neale Pickett <neale@lanl.gov>
             ## Time-stamp: <99/02/11 10:45:42 neale>
-
             ## This software and ancillary information (herein called "SOFTWARE")
             ## called html.py made avaiable under the terms described here.  The
             ## SOFTWARE has been approved for release with associated LA-CC Number
             ## 89-47.
-
             ## Unless otherwise indicated, this SOFTWARE has been authored by an
             ## employee or employees of the University of California, operator of
             ## the Los Alamos National Laboratory under contract No. W-7405-ENG-36
@@ -129,13 +125,11 @@ class Html_document:
             ## of authorship are reproduced on all copies.  Neither the Government
             ## nor the University makes any warranty, express or implied, or assumes
             ## any liability or responsibility for the use of this SOFTWARE.
-
             ## If SOFTWARE is modified to produce derivative works, such modified
             ## SOFTWARE should be clearly marked, so as not to confuse it with the
             ## version available from LANL.
         """
         import regex
-
         container = regex.compile('\(<!-- \)?##\([-_A-Za-z0-9]+\)##\( -->\)?')
         for line in lines:
             while container.search(line) != -1:
@@ -158,49 +152,51 @@ class Html_document:
     def __adjust_stack__(self, offset):
         """Adjust the stack of pushed positions.
 
-           offset
-                offset by which adjust the stack
+        offset
+            offset by which adjust the stack
         """
         if len(self.__pushed__):
             pos, oldoffset = self.__pushed__[-1]
             self.__pushed__[-1] = (pos, oldoffset + offset)
 
-    def __enclosing_tag__(self, tag, args, text, dotab = 1, donl = 0, domod = 0):
+    def __enclosing_tag__(self, tag, args, text, dotab=1, donl=0, domod=0):
         """Insert a text enclosed between an opening an a closing tag.
 
-           tag
-                the tag to use
-           text
-                the text to enclose
+        tag
+            the tag to use
+        text
+            the text to enclose
         """
         self.push()
         self.__insert_symtag__(tag, args, dotab, donl, domod)
         self.insert_text(text)
         self.pop()
 
-    def __ienclosing_tag__(self, tag, args, text, dotab = 1, donl = 0, domod = 0):
+    def __ienclosing_tag__(self, tag, args, text, dotab=1, donl=0, domod=0):
         """Same as above, but intelligent."""
         if text != "":
             self.__enclosing_tag__(tag, args, text, dotab, donl, domod)
         else:
             self.__insert_symtag__(tag, args, dotab, donl, domod)
 
+#
 # Here begins the callable interface
-    def set_indentstring(self, newindentstring = " "):
+
+    def set_indentstring(self, newindentstring=" "):
         """Sets the indentation string for the output (default is a single space character).
 
-           newindentstring
-                new indentation string, e.g. 2 spaces, default is a single space character
+        newindentstring
+            new indentation string, e.g. 2 spaces, default is a single space character
         """
         self.__indentstring__ = newindentstring
 
     def insert_tag(self, tag, arguments):
         """Insert a non symetrical tag (e.g. <BR>) in the page.
 
-           tag
-                tag to be inserted
-           arguments
-                tag's arguments
+        tag
+            tag to be inserted
+        arguments
+            tag's arguments
         """
         text = tag
         if arguments != "":
@@ -214,8 +210,8 @@ class Html_document:
     def insert_text(self, text):
         """Insert plain text in the page.
 
-           text
-                text to be inserted
+        text
+            text to be inserted
         """
         self.__page__.insert(self.__position__, (str(text), 0, 0, 0))
         self.__position__ = self.__position__ + 1
@@ -224,14 +220,14 @@ class Html_document:
     def push(self):
         """Push the current tag's position.
 
-           useful before a block of imbricated tags
+        useful before a block of imbricated tags
         """
         self.__pushed__.append((self.__position__, 0))
 
     def pop(self):
         """Restore the latest pushed position.
 
-           useful to get out of a block of imbricated tags
+        useful to get out of a block of imbricated tags
         """
         if len(self.__pushed__):
             pos, offset = self.__pushed__[-1]
@@ -274,9 +270,10 @@ class Html_document:
         retval = outstr.getvalue()
         outstr.close()
         return retval
+
     __str__ = __repr__
 
-    def output(self, file = "-"):
+    def output(self, file="-"):
         """Ouput the page, with indentation.
 
            file
@@ -296,20 +293,18 @@ class Html_document:
         if isopen:
             outf.close()
 
-    def template(self, file = "-", **vars):
+    def template(self, file="-", **vars):
         """Include an external file in the current doc.
 
-            Replace ##vars## with their values
-            parts of this function come from the Whiz package
-            THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
+        Replace ##vars## with their values
+        parts of this function come from the Whiz package
+        THANKS TO Neale Pickett ! Here follows the original license terms for Whiz:
             ## Author: Neale Pickett <neale@lanl.gov>
             ## Time-stamp: <99/02/11 10:45:42 neale>
-
             ## This software and ancillary information (herein called "SOFTWARE")
             ## called html.py made avaiable under the terms described here.  The
             ## SOFTWARE has been approved for release with associated LA-CC Number
             ## 89-47.
-
             ## Unless otherwise indicated, this SOFTWARE has been authored by an
             ## employee or employees of the University of California, operator of
             ## the Los Alamos National Laboratory under contract No. W-7405-ENG-36
@@ -320,7 +315,6 @@ class Html_document:
             ## of authorship are reproduced on all copies.  Neither the Government
             ## nor the University makes any warranty, express or implied, or assumes
             ## any liability or responsibility for the use of this SOFTWARE.
-
             ## If SOFTWARE is modified to produce derivative works, such modified
             ## SOFTWARE should be clearly marked, so as not to confuse it with the
             ## version available from LANL.
@@ -1079,14 +1073,14 @@ class Html_document:
         """Insert a <PLAINTEXT> tag."""
         self.insert_tag("PLAINTEXT")
 
-    def default_header(self, title = "JAHTML Default Document", **modifiers):
+    def default_header(self, title="JAHTML Default Document", **modifiers):
         """Begins a normal document.
 
-           title
-                the title of the document
-           modifiers
-                usual meta name= content= tags (keywords, description, etc...)
-                WARNING: doesn't work with other meta tags
+        title
+            the title of the document
+        modifiers
+            usual meta name= content= tags (keywords, description, etc...)
+            WARNING: doesn't work with other meta tags
         """
         self.html()
         self.push()
@@ -1094,10 +1088,9 @@ class Html_document:
         self.insert_text('<meta http-equiv="Content-Type", content="text/html;charset=utf-8" />')
         for mod in modifiers.keys():
             if modifiers[mod] != None:
-                self.meta(name = string.upper(mod), content = modifiers[mod])
+                self.meta(name=string.upper(mod), content=modifiers[mod])
         self.title(title)
         self.pop()
-
 
 class CGI_document(Html_document):
     """
@@ -1106,7 +1099,7 @@ class CGI_document(Html_document):
     it inherits from the Html_document class, but more methods are present
     """
 
-    def __init__(self, content_type = "text/html;charset=utf-8"):
+    def __init__(self, content_type="text/html;charset=utf-8"):
         """
         Initialise local datas.
         """
@@ -1156,55 +1149,55 @@ class CGI_document(Html_document):
     def set_pragma(self, prag):
         """Defines the pragma value.
 
-           prag
-                The pragma's value
+        prag
+            The pragma's value
         """
         self.__pragma__ = prag
 
     def set_expires(self, exp):
         """Defines the expiration date of the CGI output.
 
-           exp
-                The expiration date
+        exp
+            The expiration date
         """
         self.__expires__ = exp
 
     def set_redirect(self, url):
         """Defines the redirection url.
 
-           url
-                The redirection url to send
+        url
+            The redirection url to send
         """
         self.__redirect__ = url
 
-    def set_content_type(self, ctype = "text/html"):
+    def set_content_type(self, ctype="text/html"):
         """Defines the content type of the CGI output.
 
-           ctype
-                The new content type, default is text/html
+        ctype
+            The new content type, default is text/html
         """
         self.__content_type__ = ctype
 
-    def set_content_disposition(self, disp = ""):
+    def set_content_disposition(self, disp=""):
         """Defines the content disposition of the CGI output.
 
-           disp
-                The new disposition, default is ""
+        disp
+            The new disposition, default is ""
         """
         self.__content_disposition__ = disp
 
     def set_status(self, code, message=""):
         """Defines the status to return.
 
-           code
-                The status value
-           message
-                The message following the status value
+        code
+            The status value
+        message
+            The message following the status value
         """
         self.__status__ = code
         self.__statmes__ = message
 
-    def do_nothing(self, message = "No response"):
+    def do_nothing(self, message="No response"):
         """Set status to 204 (do nothing)."""
         self.set_status("204", message)
 
@@ -1297,18 +1290,17 @@ class CGI_document(Html_document):
         """Returns the HTTP_REFERER environment variable value."""
         return self.envvar('HTTP_REFERER')
 
-    def log_message(self, msg = "Error in a CGI Script made with jahtml", level = "error"):
+    def log_message(self, msg="Error in a CGI Script made with jahtml", level="error"):
         """Logs a message to the HTTP server's error log file (usually on stderr)."""
         sys.stderr.write("[%s] [%s] %s\n" % (time.asctime(time.localtime(time.time())), level, msg))
 
-    def log_message_and_exit(self, msg = "Fatal Error in a CGI Script made with jahtml", level = "error"):
+    def log_message_and_exit(self, msg="Fatal Error in a CGI Script made with jahtml", level="error"):
         """Logs a message to the HTTP server's error log file (usually on stderr) and exits unsuccessfully."""
         self.log_message(msg, level)
         sys.exit(-1)
 
-    def output(self, file = "-"):
+    def output(self, file="-"):
         """Prints the CGI script output to stdout or file.
-
            If self.__debug__ is defined it is used as a file
            to which send the output to too.
         """

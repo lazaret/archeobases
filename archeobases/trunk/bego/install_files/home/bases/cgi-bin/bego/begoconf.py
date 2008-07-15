@@ -20,8 +20,8 @@ import string
 #
 # nom de l'application
 app_name     = "bego"
-author_name  = "Rachel Vaudron & Bertrand Lecervoisier"
-author_email = "root@lazaret.unice.fr"
+author_name  = "Laboratoire Départemental de Prehistoire du Lazaret"
+author_email = "opensource@lazaret.unice.fr"
 username     = "alet"
 superusers   = ["superbego"]
 
@@ -39,9 +39,15 @@ mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160
 
 #
 # Message de copyright
-copyright_msg       = string.upper(app_name) + " &copy; 2000-2008 " + author_name
+copyright_msg       = "Archeobases-Bego &copy; 2000-2008 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
+
+
+base_courante = app_name # ajoutée pour uniformiser requetes.py
+
+#Liste des clefs créeant un lien dans requetes.py
+linkeys = ["zone", "roche", "face", "figure", "historique", "association", "coderequete"]
 
 #
 # Emplacement des programmes et données de l'application
@@ -64,7 +70,7 @@ bas_bgcolor    = "#FFFFFF"
 menu_background   = None
 gauche_background = None
 bas_background    = None
-bas1_bgcolor   = "#B8AF80"
+bas1_bgcolor   = "#E1DCD6"
 bas2_bgcolor   = "#CFC4BE"
 bas3_bgcolor   = "#F3EEEE"
 bas4_bgcolor   = "#E1DCD6"
@@ -95,10 +101,10 @@ gros_logo_link         = None
 # taille de la police par defaut
 font_size = -1
 
-
 #### Fin de la partie configurable ####
-# Rien ne devrait être modifié après cette ligne
 
+#
+# Rien ne devrait être modifié après cette ligne
 import sys
 import os
 import time
@@ -128,6 +134,13 @@ def decor_location(image):
     """ Fonction qui renvoie l'url dans lequel sont les decors."""
     if image != None:
         return decors_location + image
+
+def copyright(doc):
+    """ Fonction qui insere le message de copyright."""
+    doc.hr_noshade(width='66%')
+    doc.div(align="center")
+    doc.font(size=copyright_font_size)
+    doc.a(copyright_msg, href=copyright_link)
 
 def heurecourante():
     """ Fonction qui renvoie l'heure courante sous forme texte."""
@@ -197,13 +210,6 @@ def getparent():
         if p[:5] != "photo":
             p = p[:-3]              # on enleve le ".py" de la fin
             return p
-
-def copyright(doc):
-    """ Fonction qui insere le message de copyright."""
-    doc.hr_noshade(width='66%')
-    doc.div(align="center")
-    doc.font(size=copyright_font_size)
-    doc.a(copyright_msg, href=copyright_link)
 
 
 #

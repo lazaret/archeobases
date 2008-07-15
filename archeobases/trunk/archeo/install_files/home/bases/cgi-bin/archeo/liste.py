@@ -12,6 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
+"""Untested install script. May update a database and add default 'controles' values."""
+
 import sys
 import string
 import database

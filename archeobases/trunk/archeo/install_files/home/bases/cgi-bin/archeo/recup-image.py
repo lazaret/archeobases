@@ -12,8 +12,10 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-# recupere les images d'un cd pour les insérer dasn la base
-### TODO verifier l'utilité de ce script
+""" recupere les images d'un cd pour les insérer dans la base """
+# Outdated and untested file
+# try to change the db value at line 109 if you whant to test it anyway
+
 
 import sys
 import os

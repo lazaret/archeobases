@@ -18,7 +18,7 @@ import string
 #### Debut de la partie configurable ####
 
 # nom de l'application
-author_name  = "Rachel Vaudron & Bertrand Lecervoisier"
+author_name  = "Laboratoire Départemental de Prehistoire du Lazaret"
 author_email = "opensource@lazaret.unice.fr"
 
 # mode debug
@@ -32,7 +32,7 @@ mogrify_Petite  = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "320
 mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160>x160>" -quality 50'
 
 # Message de copyright
-copyright_msg       = "ANNUAIRE &copy; 2008 " + author_name
+copyright_msg       = "Archeobases-Annuaire &copy; 2006-2008 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 

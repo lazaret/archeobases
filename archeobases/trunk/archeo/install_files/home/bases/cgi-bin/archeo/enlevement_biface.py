@@ -26,16 +26,16 @@ class Enlevement_Biface(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "zone"           : {"type": "text", "default":  "",  "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                "numero"         : {"type": "int",  "default":  0,   "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                "bis"            : {"type": "text", "default":  "",  "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                "eb_rang"        : {"type": "text", "default":  "0", "mandatory": 1 , "longueur": 1}, \
-                "eb_longueur"    : {"type": "int",  "mandatory": 0 , "longueur":  3}, \
-                "eb_largeur"     : {"type": "int",  "mandatory": 0 , "longueur":  3}, \
-                "eb_obliquite"   : {"type": "int",  "mandatory": 0 , "longueur":  3}, \
-                "eb_corde"       : {"type": "int",  "mandatory": 0 , "longueur":  3}, \
-                "eb_fleche"      : {"type": "int",  "mandatory": 0 , "longueur":  3}, \
-                "eb_tranche"     : {"type": "text", "default":   "", "mandatory": 0 , "longueur": 8}, \
+                "zone"           : {"type": "text", "default": "",  "mandatory": 1 , "longueur": 0, "memory": 1}, \
+                "numero"         : {"type": "int",  "default": 0,   "mandatory": 1 , "longueur": 6, "memory": 1}, \
+                "bis"            : {"type": "text", "default": "",  "mandatory": 1 , "longueur": 0, "memory": 1}, \
+                "eb_rang"        : {"type": "text", "default": "0", "mandatory": 1 , "longueur": 1}, \
+                "eb_longueur"    : {"type": "int",  "mandatory": 0, "longueur": 3}, \
+                "eb_largeur"     : {"type": "int",  "mandatory": 0, "longueur": 3}, \
+                "eb_obliquite"   : {"type": "int",  "mandatory": 0, "longueur": 3}, \
+                "eb_corde"       : {"type": "int",  "mandatory": 0, "longueur": 3}, \
+                "eb_fleche"      : {"type": "int",  "mandatory": 0, "longueur": 3}, \
+                "eb_tranche"     : {"type": "text", "default":  "", "mandatory": 0 , "longueur": 8}, \
                }
     #
     # liste des tables enfants
@@ -50,7 +50,6 @@ class Enlevement_Biface(archeodata.Data):
     # liste des champs dans leur ordre de saisie
     __ordrechamps__ = ["zone", "numero", "bis", "eb_rang", "eb_longueur", "eb_largeur", "eb_obliquite", "eb_corde", "eb_fleche", "eb_tranche"]
     __orderby__ = " ORDER BY zone, numero, bis, eb_rang ASC;"
-
      #
     # liste des formulaires supplementaires
     __formsupp__ = []

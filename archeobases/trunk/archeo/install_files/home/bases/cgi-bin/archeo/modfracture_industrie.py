@@ -12,8 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import archeoconf
 import fracture_industrie
 
-fracture_industrie.Fracture_Industrie("bas").traite_parametre(["zone", "numero", "bis", "fi_ordre"], parent = archeoconf.getparent())
+
+fracture_industrie.Fracture_Industrie("bas").traite_parametre(["zone", "numero", "bis", "fi_ordre"], parent=archeoconf.getparent())

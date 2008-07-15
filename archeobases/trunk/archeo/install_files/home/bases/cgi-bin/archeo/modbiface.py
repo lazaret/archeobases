@@ -12,8 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import archeoconf
 import biface
+
 
 biface.Biface("bas").traite_saisie(["zone", "numero", "bis"])

@@ -12,9 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import archeoconf
 import fracture_faune
 
-fracture_faune.Fracture_Faune("bas").traite_parametre(["zone", "numero", 
-"bis"], parent = archeoconf.getparent())
+
+fracture_faune.Fracture_Faune("bas").traite_parametre(["zone", "numero", "bis"], parent=archeoconf.getparent())

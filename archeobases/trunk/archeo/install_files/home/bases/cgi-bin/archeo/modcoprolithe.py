@@ -12,9 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import archeoconf
 import coprolithe
-import cgi
+
 
 coprolithe.Coprolithe("bas").traite_saisie(["zone", "numero", "bis"])

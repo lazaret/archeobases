@@ -12,10 +12,10 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import archeoconf
 import bord
 
-bord.Bord("bas").traite_parametre(["zone", "numero", "bis", "b_ordre"],  parent = archeoconf.getparent())
+
+bord.Bord("bas").traite_parametre(["zone", "numero", "bis", "b_ordre"],  parent=archeoconf.getparent())
 
 

@@ -12,9 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import archeoconf
 import stigmate
+
 
 stigmate.Stigmate("bas").traite_parametre(["zone", "numero", "bis", "s_ordre"])
 

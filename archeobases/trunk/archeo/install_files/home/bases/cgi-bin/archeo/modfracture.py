@@ -15,4 +15,5 @@
 import archeoconf
 import fracture
 
-fracture.Fracture("bas").traite_parametre(["zone", "numero", "bis", "f_ordre"], parent = archeoconf.getparent())
+
+fracture.Fracture("bas").traite_parametre(["zone", "numero", "bis", "f_ordre"], parent=archeoconf.getparent())

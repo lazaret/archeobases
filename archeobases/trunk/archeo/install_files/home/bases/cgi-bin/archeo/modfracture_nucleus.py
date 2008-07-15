@@ -12,7 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-import archeoconf
 import fracture
+
 
 fracture.Fracture("bas","fracture_nucleus").traite_parametre(["zone", "numero", "bis", "f_ordre"])

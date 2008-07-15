@@ -12,8 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import archeoconf
 import dent
+
 
 dent.Dent("bas").traite_saisie(["zone", "numero", "bis", "d_serie", "d_type"])

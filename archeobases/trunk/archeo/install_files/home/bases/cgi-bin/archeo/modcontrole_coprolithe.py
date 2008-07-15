@@ -12,13 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import os
-import cgi
 import urllib
 import archeoconf
-import afficheclefs
-import archeodata
 import string
 
 
@@ -26,7 +21,6 @@ page = archeoconf.Controle("Controles")
 page.div(align="center")
 page.table(border="0")
 page.tr()
-
 page.push()
 page.push()
 page.td()
@@ -36,31 +30,26 @@ page.tr()
 page.td(align="center")
 page.insert_text(" Contrôles des champs de l'écran coprolithe  ")
 page.pop()
-
 page.tr()
 page.td()
-page.table(border= "0")
+page.table(border="0")
 page.form(method="POST")
 page.push()
 page.tr()
 page.br()
-page.td(align = "center", valign = "center")
+page.td(align="center", valign="center")
 page.push()
 cpt = 0
-for chaine in ("c_sediment","c_couleur","c_motif","c_motnat","c_motcou","c_forme","c_vol","c_volext","c_retrecissement","c_extremite","c_ext1","c_ext2","c_alteration","c_altnat","c_inclusion","c_incl1","c_incl2","c_incl3","c_element","c_granulometrie","c_liant","c_consistance","c_ordre","c_famille","c_genre","c_parasito","c_palyno","c_lame","c_autre","c_mif","c_macroreste"):
-        if (cpt == 6 ) :
-                page.pop()
-                page.push()
-                page.tr()
-                page.td(align = "center")
-                cpt = 1
-        else :
-                cpt = cpt + 1
-
-        dico = {"champ": chaine}
-
-        page.button(value = string.capitalize(dico["champ"]) , onclick='parent.bas.location="' + archeoconf.script_location("controle_general") + "?" + urllib.urlencode(dico) + '"')
-
+for chaine in ("c_sediment", "c_couleur", "c_motif", "c_motnat", "c_motcou", "c_forme", "c_vol", "c_volext", "c_retrecissement", "c_extremite", "c_ext1", "c_ext2", "c_alteration", "c_altnat", "c_inclusion", "c_incl1", "c_incl2", "c_incl3", "c_element", "c_granulometrie", "c_liant", "c_consistance", "c_ordre", "c_famille", "c_genre", "c_parasito", "c_palyno", "c_lame", "c_autre", "c_mif", "c_macroreste"):
+    if (cpt == 6 ):
+        page.pop()
+        page.push()
+        page.tr()
+        page.td(align="center")
+        cpt = 1
+    else:
+        cpt = cpt + 1
+    dico = {"champ": chaine}
+    page.button(value=string.capitalize(dico["champ"]), onclick='parent.bas.location="' + archeoconf.script_location("controle_general") + "?" + urllib.urlencode(dico) + '"')
 page.pop()
-
 page.output()

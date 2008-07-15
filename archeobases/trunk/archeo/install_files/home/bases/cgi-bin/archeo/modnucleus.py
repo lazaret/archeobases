@@ -12,8 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import archeoconf
 import nucleus
 
-nucleus.Nucleus("bas").traite_saisie(["zone", "numero", "bis"])#, parent = archeoconf.getparent())
+
+nucleus.Nucleus("bas").traite_saisie(["zone", "numero", "bis"])

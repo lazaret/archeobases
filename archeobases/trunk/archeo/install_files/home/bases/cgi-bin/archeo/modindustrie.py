@@ -12,9 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-import archeoconf
 import industrie
 
 
-industrie.Industrie("bas").traite_saisie(["zone", "numero", "bis"])#, parent = archeoconf.getparent())
+industrie.Industrie("bas").traite_saisie(["zone", "numero", "bis"])
 

@@ -12,10 +12,9 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import archeoconf
+
 
 page = archeoconf.Main("Menu Principal")
 page.dessine_cadre(archeoconf.script_location("menu"), archeoconf.script_location("bas"))
-
 page.output()

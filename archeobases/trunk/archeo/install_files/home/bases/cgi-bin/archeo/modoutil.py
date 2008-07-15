@@ -12,9 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-import archeoconf
 import outil
 
 
-outil.Outil("bas").traite_saisie(["zone", "numero", "bis", "o_ordre"])#, parent = archeoconf.getparent())
+outil.Outil("bas").traite_saisie(["zone", "numero", "bis", "o_ordre"])
 

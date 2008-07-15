@@ -13,9 +13,7 @@
 #
 
 
-import archeoconf
 import faune
-import cgi
 
 
 faune.Faune("bas").traite_saisie(["zone", "numero", "bis"])

@@ -12,29 +12,27 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 #==========================================================
 # Programme qui permet de changer les mots de passes des utilisateurs en appellant la commande htaccess
 #==========================================================
+
 import os
 import sys
 import string
 import database
+
 sys.path.append("../cgi")
-
-
 db = database.DataBase(database=sys.argv[1], username = "postgres")
-
 modif = raw_input('Souhaitez-vous modifier les mots de passe de cette base O/N ?  ')
 
 if string.upper(modif) == "O":
-        print "mot de passe super%s"%sys.argv[1]
-	os.system("htpasswd  authentification super%s"%sys.argv[1])
-        print "mot de passe %s"%sys.argv[1]
-	os.system("htpasswd  authentification %s"%sys.argv[1])
-        print "mot de passe visiteur%s"%sys.argv[1]
-	os.system("htpasswd  authentification visiteur%s"%sys.argv[1])
-	
+    print "mot de passe super%s"%sys.argv[1]
+    os.system("htpasswd  authentification super%s"%sys.argv[1])
+    print "mot de passe %s"%sys.argv[1]
+    os.system("htpasswd  authentification %s"%sys.argv[1])
+    print "mot de passe visiteur%s"%sys.argv[1]
+    os.system("htpasswd  authentification visiteur%s"%sys.argv[1])
+
 
 
 

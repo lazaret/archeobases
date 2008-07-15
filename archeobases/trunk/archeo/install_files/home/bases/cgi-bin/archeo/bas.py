@@ -12,10 +12,9 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import archeoconf
+
 
 page = archeoconf.Bas("", "")
 page.insert_text("")
-
 page.output()

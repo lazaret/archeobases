@@ -12,8 +12,6 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import archeoconf
 import usure_dent
 
 

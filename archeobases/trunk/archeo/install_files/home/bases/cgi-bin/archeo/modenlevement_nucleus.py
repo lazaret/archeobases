@@ -12,8 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import archeoconf
 import enlevement_nucleus
 
-enlevement_nucleus.Enlevement_Nucleus("bas").traite_parametre(["zone", "numero", "bis", "en_rang"], parent = archeoconf.getparent())
+
+enlevement_nucleus.Enlevement_Nucleus("bas").traite_parametre(["zone", "numero", "bis", "en_rang"], parent=archeoconf.getparent())

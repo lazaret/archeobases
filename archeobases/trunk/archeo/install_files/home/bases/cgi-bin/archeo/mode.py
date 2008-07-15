@@ -12,13 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
-import os
 import cgi
-import urllib
 import archeoconf
-import afficheclefs
-import archeodata
 
 
 doc = archeoconf.Bas("Modification des paramètres", "Modification d'une zone")
@@ -26,7 +21,6 @@ db = archeoconf.ArcheoDataBase()
 form = cgi.FieldStorage()
 
 doc.button(name="carnet", value="Carnet", onclick='parent.bas.location="' + archeoconf.script_location("modcontrole_carnet.py") + '"')
-
 doc.output()
 
 

@@ -12,8 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-
 import archeoconf
 import enlevement_biface
 
-enlevement_biface.Enlevement_Biface("bas").traite_parametre(["zone", "numero", "bis", "eb_rang"], parent = archeoconf.getparent())
+
+enlevement_biface.Enlevement_Biface("bas").traite_parametre(["zone", "numero", "bis", "eb_rang"], parent=archeoconf.getparent())

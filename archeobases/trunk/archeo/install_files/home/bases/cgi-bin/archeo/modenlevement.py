@@ -13,7 +13,7 @@
 #
 
 
-import archeoconf
 import enlevement
 
-enlevement.Enlevement("bas").traite_parametre(["zone", "numero", "bis", "e_ordre"])#, parent = archeoconf.getparent())
+
+enlevement.Enlevement("bas").traite_parametre(["zone", "numero", "bis", "e_ordre"])

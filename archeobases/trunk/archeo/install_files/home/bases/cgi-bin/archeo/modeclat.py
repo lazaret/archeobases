@@ -13,7 +13,7 @@
 #
 
 
-import archeoconf
 import eclat
 
-eclat.Eclat("bas").traite_saisie(["zone", "numero", "bis"])#, "industrie"]), parent = archeoconf.getparent())
+
+eclat.Eclat("bas").traite_saisie(["zone", "numero", "bis"])

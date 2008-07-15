@@ -26,7 +26,7 @@ def getConfig():
     fconfig.close()
     return {'cgipath': cgipath, 'docpath': docpath,'bases' : bases}
 
-config = getconfig()
+config = getConfig()
 
 def getCookies():
     cooker = {}

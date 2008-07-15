@@ -313,12 +313,12 @@ def display_identifiant_1(objet, enreg, penreg=None, inc=0, alignement="left", c
                 except ValueError,msg:
                     # ne devrait pas se produire
                     collectionconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
-        else:
-            try:
-                objet.__doc__.text(name="identifiant_1", value=val, size=20, maxlength=15)
-            except ValueError,msg:
-                # ne devrait pas se produire
-                collectionconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
+            else:
+                try:
+                    objet.__doc__.text(name="identifiant_1", value=val, size=20, maxlength=15)
+                except ValueError,msg:
+                    # ne devrait pas se produire
+                    collectionconf.fatalerror_message("Erreur sur incrémentation d'un numéro, valeur=%s, message=%s" % (repr(val), msg))
         elif (objet.__form__["action"].value == "Compter"):
             objet.__doc__.text(name="identifiant_1", value=val, size=20, maxlength=40)
         elif val:

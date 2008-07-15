@@ -17,7 +17,9 @@ import time
 import string
 import cgi
 import urllib
+import socket
 import csv
+import pyExcelerator
 try:
     import threading
     havethreads = 1
@@ -29,15 +31,41 @@ import jahtml
 
 elabore = "Elaboré"
 simplifie = "Simplifié"
-telechargecsv = "Texte format CSV"
-liste_affichage = [ simplifie, elabore, telechargecsv ]
+telechargexls = "Fichier format Excel"
+telechargecsv = "Fichier format CSV"
+liste_affichage = [simplifie, elabore, telechargexls, telechargecsv]
 affichage_default = simplifie
+
 
 def cherche_requete(db, nom):
     resultat = db.query("SELECT * FROM requete WHERE nomrequete = " + db.quote(nom, "text"))
     resultat = resultat.dictresult()
     if len(resultat) == 1:
         return resultat[0]
+
+def display_field(key, champ, enregistrement):
+    """ Display a field and eventualy add a link in 'élaboré' view."""
+    link = None
+    linkeys = [] #begoconf.linkeys # clefs pour lesquelles on veut un lien vers un ecran
+    if key in linkeys: # si dans les clefs primaires
+        if key == "coderequete":
+            dico = {"requete": enregistrement["coderequete"], "presentation": elabore, "lue": 1}
+            if enregistrement.has_key("nomrequete"):
+                dico["nomrequete"] = enregistrement["nomrequete"]
+            link = doc.script_name() + '?' + urllib.urlencode(dico)
+        else :
+            dico = {"action": "Chercher"} # on cree le dico
+            for nom_champ in linkeys: # pour chaque clef primaire
+                if enregistrement.has_key(nom_champ): # si une donnée de requette existe pour la clef primaire
+                    dico[nom_champ] = enregistrement[nom_champ] # on modifi le dico
+            table = key
+            link = begoconf.script_location("mod" + table) + "?" + urllib.urlencode(dico)
+    if str(champ) == "None": # do not display the 'None' values
+        champ = ""
+    if link:
+        doc.a(str(champ), href=link)
+    else:
+        doc.insert_text(champ)
 
 
 class PageRequete(collectionconf.Bas):
@@ -109,7 +137,6 @@ def mixed_part_handler(parent, indicateur, timer):
     global master
     global premier_decalage
     global max_timer
-
     while parent.isAlive():
         indicateur.wait(timeout=timer)
         if indicateur.isSet():
@@ -136,6 +163,7 @@ def mixed_part_handler(parent, indicateur, timer):
                 collectionconf.log_message("La requete est tombee en erreur", level="error")
     sys.exit(0)
 
+
 master = None
 heure_debut = 0
 premier_timer = 5.0             # 5 secondes
@@ -145,8 +173,11 @@ endpart = "rachelvaudron"
 form = cgi.FieldStorage()   #recupere tous les param passes par le script precedent
 doc = PageRequete("Requêtes SQL", "Requêtes SQL")
 ruser = doc.remote_user()
+hostname = socket.gethostbyname(socket.gethostname())
+
+
 if ruser not in collectionconf.visitorusers:
-    db = collectionconf.CollectionDataBase(debuglevel=1)
+    db = collectionconf.CollectionDataBase()
     if (not form.has_key("nomrequete")) and (not form.has_key("requete")):
         doc.ecran_requetes(collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor)
     else:
@@ -176,27 +207,29 @@ if ruser not in collectionconf.visitorusers:
         elif form.has_key("requete"):
             quequette = string.strip(string.replace(form["requete"].value, "\r", ""))
             doc.ecran_requetes(collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor, collectionconf.bas1_bgcolor, requete=quequette)
-            # la premiere alerte doit etre lancee assez tot pour
-            # que l'utilisateur ne s'impatiente pas
+            # la premiere alerte doit etre lancee assez tot pour que l'utilisateur ne s'impatiente pas
             # mais assez tard pour qu'une erreur sur la requete ait ete recuperee
-            # par fatalerror_message()
-            # 5 secondes c'est plutot pas mal.
-            heure_debut = time.time()
-            if havethreads:
+            # par fatalerror_message() 5 secondes c'est plutot pas mal.
+            # debut du timer activé seulement pour l'affichage html élaboré et simplifié
+            # et si le module threading a été correctement importé (le timer casse cvs.witer)
+            if form["presentation"].value in [elabore, simplifie] and havethreads:
+                heure_debut = time.time()
                 rendezvous = threading.Event()
                 threading.Thread(target=mixed_part_handler, kwargs={"parent": threading.currentThread(), "indicateur": rendezvous, "timer": premier_timer}).start()
+            # resultat de la requette (doit être apres l'eventuel timer)
             resultat = db.query(quequette)
             if (resultat != None) and (type(resultat) != type(0)):
                 doc.div(align="center")
                 nbrecords = resultat.ntuples()
                 if nbrecords:
                     liste_champs = resultat.listfields() # un tuple
+                    dict_valeurs = resultat.dictresult() # un tuple de dictionnaires de données
                     liste_valeurs = resultat.getresult() # un tuple de listes
+                    # export to CSV format
                     if form["presentation"].value == telechargecsv:
-                    # export au format CSV
                         csv.register_dialect("csvrfc", quotechar='"', doublequote=True, quoting=csv.QUOTE_ALL)
                         # CSV all quoted, delimited by double quotes with quote escaped
-                        # We quote all in collection because we can have comas, retur line insisde fields
+                        # We quote all because we can have comas and return line insisde fields
                         # see RFC-4180 CVS format section 2.7
                         csv_file = open("/home/bases/collection/resultat_requete.csv", "wb")
                         csvwriter = csv.writer(csv_file, dialect="csvrfc")
@@ -205,36 +238,80 @@ if ruser not in collectionconf.visitorusers:
                         for row in liste_valeurs:
                             #write each rows
                             csvwriter.writerow(row)
+                        # save the file and post the file for download
                         csv_file.close()
-                        doc = jahtml.CGI_document(content_type = "text/csv;")
-                        doc.set_redirect("/collection/resultat_requete.csv")
+                        doc.set_redirect("http://"+hostname+"/collection/resultat_requete.csv")
+                    # export to excel format encoded in iso-8859-15
+                    if form["presentation"].value == telechargexls:
+                        # create the file and the sheet
+                        xls_file = pyExcelerator.Workbook()
+                        pyExcelerator.UnicodeUtils.DEFAULT_ENCODING = "iso-8859-15"
+                        xls_sheet = xls_file.add_sheet("requete_"+collectionconf.base_courante)
+                        # defaut cell style
+                        sheet_style = pyExcelerator.XFStyle()
+                        cell_alignment = pyExcelerator.Alignment()
+                        cell_alignment.horz = pyExcelerator.Alignment.HORZ_LEFT # cells aligned to the left
+                        sheet_style.alignment = cell_alignment
+                        # first row cell style
+                        first_raw_style = pyExcelerator.XFStyle()
+                        bold_font = pyExcelerator.Font()
+                        bold_font.bold = True
+                        first_raw_style.font = bold_font # first raw in bold
+                        #write the first row
+                        for col in range(len(liste_champs)):
+                            try :
+                                # convert text fields to iso-8859-15 encodig for excel file
+                                champ = liste_champs[col].decode("utf-8").encode("iso-8859-15", "replace")
+                            except AttributeError:
+                                #field is not text (date, int, ect..)
+                                champ = liste_champs[col]
+                            xls_sheet.write(0, col, champ, first_raw_style)
+                        #write the database output datas
+                        row = 0
+                        for enregistrement in liste_valeurs:
+                            row += 1 # increment now to preserve the first line
+                            # on lit les enregistrements en ligne
+                            for col in range(len(enregistrement)):
+                                try:
+                                    # convert text fields to iso-8859-15 encodig for excel file
+                                    champ = enregistrement[col].decode("utf-8").encode("iso-8859-15", "replace")
+                                except AttributeError:
+                                    #field is not text (date, int, ect..)
+                                    champ = enregistrement[col]
+                                # fields formating
+                                if champ == None:
+                                    champ = ""
+                                xls_sheet.write(row, col, champ, sheet_style)
+                        # save the file and post the file for download
+                        xls_file.save("/home/bases/collection/resultat_requete.xls")
+                        doc.set_redirect("http://"+hostname+"/collection/resultat_requete.xls")
+                    # display HTML results
                     else:
-                        # affichage HTML du résultat
                         if nbrecords > 1:
                             esse = 's'
                         else:
                             esse = ''
                         doc.font(`nbrecords` + " enregistrement%s trouvé%s" % (esse, esse), color="red")
-                        if form["presentation"].value != simplifie:
+                        if form["presentation"].value == elabore:
+                            # affichage élaboré
+                            doc.br()
+                            doc.br()
                             doc.table(border="1", lines=nbrecords + 1, cols=len(liste_champs))
                             doc.push()
                             doc.tr()
+                            # write the first row
                             for champ in liste_champs:
                                 doc.th(champ, bgcolor=collectionconf.bas1_bgcolor)
                             doc.pop()
-                            for enregistrement in liste_valeurs:
-                                line = ""
-                                for i in range(len(liste_champs)):
-                                    value = enregistrement[i]
-                                    if str(value) == "None":
-                                        value = ""
-                                    if type(value) == type(""):
-                                        align = "left"
-                                    else:
-                                        align = "right"
-                                    line = line + '<td align="%s" bgcolor="%s">%s</td>\n' % (align, collectionconf.bas1_bgcolor, str(value))
-                                doc.insert_text("<tr>%s</tr>\n" % line)
+                            # write the datas rows
+                            for enregistrement in dict_valeurs: # enregistrement est un dictionnaire
+                                doc.tr()
+                                for key in liste_champs:
+                                    champ = enregistrement[key]
+                                    doc.td(align="left", bgcolor=begoconf.bas1_bgcolor)
+                                    display_field(key, champ, enregistrement)
                         else:
+                            # affichage simplifié
                             indice_champs = {}
                             for champ in liste_champs:
                                 indice_champs[champ] = resultat.fieldnum(champ)
@@ -264,7 +341,9 @@ if ruser not in collectionconf.visitorusers:
                 doc.pre()
                 doc.insert_text("Résultat de la requête: " + `resultat`)
                 doc.pop()
-            if havethreads:
+            # fin du timer activé seulement pour l'affichage html élaboré et simplifié
+            # et si le module threading a été correctement importé
+            if form["presentation"].value in [elabore, simplifie] and havethreads:
                 rendezvous.set()
     doc.output()
 else:

@@ -393,9 +393,9 @@ class Data:
                 for enfant in self.__listenfants__:
                     self.__doc__.insert_text("&nbsp;" * 5)
                     if enfant == "hachereau":
-                        pluriel = 'x'
+                        self.dessine_lien(("Hachereaux"), archeoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
                     elif enfant == "nonos":
-                        self.dessine_lien(("Mesure des Os"), archeoconf.script_location("mod" + enfant) + "?" +urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
+                        self.dessine_lien(("Mesure des Os"), archeoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
                     elif enfant == "fracture_faune":
                         self.dessine_lien(("Fractures faunes"), archeoconf.script_location("mod" + enfant) + "?" + urllib.urlencode(dico), archeoconf.lien_enfant_bgcolor)
                     elif enfant == "nucleus":

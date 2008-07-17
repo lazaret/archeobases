@@ -28,9 +28,9 @@ class Nonos(archeodata.Data):
     __champs__ =    {
                     "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
                     "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6,"memory": 1}, \
-                    "bis"          : {"type": "text","default": "",  "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "o_serie"      : {"type": "text", "default": "1", "longueur": 2, "memory": 1}, \
-                    "o_type"       : {"type": "text","default": "",  "mandatory": 1, "longueur": 3}, \
+                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
+                    "o_serie"      : {"type": "text", "default": "1", "mandatory": 1,"longueur": 2, "memory": 1}, \
+                    "o_type"       : {"type": "text", "default": "", "mandatory": 1, "longueur": 3}, \
                     "o_m1"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
                     "o_m2"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
                     "o_m3"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
@@ -93,7 +93,7 @@ class Nonos(archeodata.Data):
     __listechamps__ = ["zone", "numero", "bis", "o_serie", "o_type", "o_m1", "o_m2", "o_m3", "o_m4", "o_m5", "o_m6", "o_m7", "o_m8", "o_m9", "o_m10", "o_m11", "o_m12", "o_m13", "o_m14", "o_m15", "o_m16", "o_m17", "o_m18", "o_m19", "o_m20", "o_m21", "o_m22", "o_m23", "o_m24", "o_m25", "o_m26", "o_m27",  "o_m28", "o_m29", "o_m30", "o_m31", "o_m32", "o_m33", "o_m34", "o_m35", "o_m36", "o_m37", "o_m38", "o_m39", "o_m40", "o_m41", "o_m42", "o_m43", "o_m44", "o_m45", "o_m46", "o_m47", "o_m48", "o_m49", "o_m50"]
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "o_serie", "o_type", "o_m1", "o_m2", "o_m3", "o_m4", "o_m5", "o_m6", "o_m7", "o_m8", "o_m9", "o_m10", "o_m11", "o_m12", "o_m13", "o_m14", "o_m15", "o_m16", "o_m17", "o_m18", "o_m19", "o_m20", "o_m21", "o_m22", "o_m23", "o_m24", "o_m25", "o_m26", "o_m27", "o_m28", "o_m29", "o_m30", "o_m31", "o_m32", "o_m33", "o_m34", "o_m35", "o_m36", "o_m37", "o_m38", "o_m39", "o_m40", "o_m41", "o_m42", "o_m43", "o_m44", "o_m45", "o_m46", "o_m47", "o_m48", "o_m49", "o_m50"]
+    __ordrechamps__ = ["zone", "numero", "bis", "o_serie", "f_famille", "f_genre", "f_espece", "o_type", "o_m1", "o_m2", "o_m3", "o_m4", "o_m5", "o_m6", "o_m7", "o_m8", "o_m9", "o_m10", "o_m11", "o_m12", "o_m13", "o_m14", "o_m15", "o_m16", "o_m17", "o_m18", "o_m19", "o_m20", "o_m21", "o_m22", "o_m23", "o_m24", "o_m25", "o_m26", "o_m27", "o_m28", "o_m29", "o_m30", "o_m31", "o_m32", "o_m33", "o_m34", "o_m35", "o_m36", "o_m37", "o_m38", "o_m39", "o_m40", "o_m41", "o_m42", "o_m43", "o_m44", "o_m45", "o_m46", "o_m47", "o_m48", "o_m49", "o_m50"]
     __orderby__ = " ORDER BY zone, numero, bis, o_serie ASC;"
     #
     # liste des formulaires supplementaires
@@ -156,6 +156,23 @@ class Nonos(archeodata.Data):
     def o_serie_base_to_form(self, enreg, penreg=None):
         afficheclefs.display_x_serie(self, "o_serie", "10", enreg, penreg)
         self.__doc__.pop()
+
+############################### En sortie ###################################
+    def f_famille_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
+            liste_clefs = ["zone", "numero", "bis", "o_serie"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 2, enreg, penreg)
+
+    def f_genre_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis", "o_serie"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 2, enreg, penreg)
+
+    def f_espece_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis", "o_serie"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 2, enreg, penreg)
 
 ################################### En entrée ########################################
     def o_type_base_to_form(self, enreg, penreg=None):

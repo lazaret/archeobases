@@ -53,7 +53,7 @@ class Trace(archeodata.Data):
                     "t_dessin"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
                     "t_replique"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
                     "t_photo"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                   }
+                    }
     #
     # liste des tables enfants
     __listenfants__ = []
@@ -66,7 +66,7 @@ class Trace(archeodata.Data):
 
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ =  ["zone", "numero", "bis", "t_ensemble", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "t_nature", "t_nombre", "t_agent", "t_phenomene", "t_localisation", "t_position", "t_locmusc", "t_longueur", "t_classe", "t_largeur", "t_profondeur", "t_section", "t_diametre", "t_dstrie", "t_trace", "t_allure", "t_direction", "t_sens", "t_dessin", "t_photo", "t_replique", "t_description"]
+    __ordrechamps__ =  ["zone", "numero", "bis", "t_ensemble", "f_famille", "f_genre", "f_espece", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "t_nature", "t_nombre", "t_agent", "t_phenomene", "t_localisation", "t_position", "t_locmusc", "t_longueur", "t_classe", "t_largeur", "t_profondeur", "t_section", "t_diametre", "t_dstrie", "t_trace", "t_allure", "t_direction", "t_sens", "t_dessin", "t_photo", "t_replique", "t_description"]
     __orderby__ = " ORDER BY zone, numero, bis, t_ensemble ASC;"
     #
     # liste des formulaires supplementaires
@@ -127,6 +127,23 @@ class Trace(archeodata.Data):
         self.__doc__.pop()
 
 ############################### En sortie ###################################
+
+    def f_famille_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 2, enreg, penreg)
+
+    def f_genre_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 1, enreg, penreg)
+
+    def f_espece_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 1, enreg, penreg)
+
     def f_typos1_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
@@ -140,7 +157,7 @@ class Trace(archeodata.Data):
             self.__doc__.insert_text("Nature de l'os")
             self.__doc__.pop()
             self.__doc__.push()
-            self.__doc__.td(colspan=4, align="center")
+            self.__doc__.td(colspan=2, align="center")
             self.__doc__.font(size=archeoconf.font_size)
 
     def f_typos2_base_to_form(self, enreg, penreg=None):

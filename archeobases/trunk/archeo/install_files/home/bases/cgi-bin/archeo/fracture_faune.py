@@ -41,7 +41,7 @@ class Fracture_Faune(archeodata.Data):
                     "ff_aspect2"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
                     "ff_profil2"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 3}, \
                     "ff_morphologie2": {"type": "text", "default": "", "mandatory": 0 , "longueur": 3}, \
-                   }
+                    }
     #
     # liste des tables enfants
     __listenfants__ = []
@@ -53,8 +53,8 @@ class Fracture_Faune(archeodata.Data):
     __listechamps__ = ["zone", "numero", "bis", "ff_localisation1", "ff_non1", "ff_angle1", "ff_aspect1", "ff_profil1", "ff_morphologie1", "ff_localisation2", "ff_non2", "ff_angle2", "ff_aspect2", "ff_profil2", "ff_morphologie2"]
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "ff_localisation1", "ff_non1", "ff_angle1", "ff_aspect1", "ff_profil1", "ff_morphologie1", "ff_localisation2", "ff_non2", "ff_angle2", "ff_aspect2", "ff_profil2", "ff_morphologie2"]
-    __orderby__ = " ORDER BY zone, numero, bis;"
+    __ordrechamps__ = ["zone", "numero", "bis", "f_famille", "f_genre", "f_espece", "ff_localisation1", "ff_non1", "ff_angle1", "ff_aspect1", "ff_profil1", "ff_morphologie1", "ff_localisation2", "ff_non2", "ff_angle2", "ff_aspect2", "ff_profil2", "ff_morphologie2"]
+    __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
     __formsupp__ = []
@@ -104,8 +104,26 @@ class Fracture_Faune(archeodata.Data):
         afficheclefs.display_bis(self, enreg, penreg)
         self.__doc__.pop()
 
+############################### En sortie ###################################
+    def f_famille_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 1, enreg, penreg)
+
+    def f_genre_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 1, enreg, penreg)
+
+    def f_espece_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 1, enreg, penreg)
+
 ################################### En entrée ########################################
     def ff_localisation1_base_to_form(self, enreg, penreg=None):
+        afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
         self.__doc__.push()
         afficheclefs.champ_liste(self, "ff_localisation1", "localisation1", enreg, penreg, "", dontchange=0)
 

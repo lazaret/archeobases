@@ -17,16 +17,13 @@ import string
 
 #### Début de la partie configurable ####
 
-#
 # nom de l'application
 author_name  = "Laboratoire Départemental de Prehistoire du Lazaret"
 author_email = "opensource@lazaret.unice.fr"
 
-#
 # mode debug
 debug = False
 
-#
 # commandes popur changer la taille des images
 mogrify_normale  = '/usr/bin/mogrify -format tiff -quality 100'
 mogrify_Grande  = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "1280>x1280>" -quality 75'
@@ -34,13 +31,14 @@ mogrify_Moyenne = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "640
 mogrify_Petite  = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "320>x320>" -quality 50'
 mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160>x160>" -quality 50'
 
-#
 # Message de copyright
 copyright_msg       = "Archeobases-Archeo &copy; 2000-2008 " + author_name
 copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
-#
+#Liste des clefs créant un lien dans requetes.py
+linkeys = ["coderequete"]
+
 # Couleurs de fond des trois parties de l'écran ou None
 menu_bgcolor   = "#FFFFFF"
 gauche_bgcolor = "#E1DCD6" #
@@ -52,13 +50,11 @@ bas4_bgcolor   = "#E1DCD6" #
 lien_parent_bgcolor = "#FF0000" #
 lien_enfant_bgcolor = "#3333FF" #
 
-#
 # Images de fond des trois parties de l'écran ou None
 menu_background   = None
 gauche_background = None
 bas_background    = None
 
-#
 # couleurs de fond des formulaires de chaque partie de l'écran
 menuform_bgcolor      = "#CCCAE5" #
 basform_bgcolorleft   = "#FFFFCC" #
@@ -67,7 +63,6 @@ basform_bgcolormiddle = "#DDDDDD" #
 basform_bgcolorbottom = "#CCCCCC"
 basform_bgcolorcenter = "#CCCCCC" #
 
-#
 # Logos
 petit_logo_bas    = None
 petit_logo_gauche = None
@@ -78,7 +73,6 @@ petit_logo_bas_link    = None
 petit_logo_gauche_link = None
 gros_logo_link         = None
 
-#
 # taille de la police par defaut
 font_size = -1
 

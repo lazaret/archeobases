@@ -46,7 +46,7 @@ def cherche_requete(db, nom):
 def display_field(key, champ, enregistrement):
     """ Display a field and eventualy add a link in 'élaboré' view."""
     link = None
-    linkeys = [] #begoconf.linkeys # clefs pour lesquelles on veut un lien vers un ecran
+    linkeys = archeoconf.linkeys # clefs pour lesquelles on veut un lien vers un ecran
     if key in linkeys: # si dans les clefs primaires
         if key == "coderequete":
             dico = {"requete": enregistrement["coderequete"], "presentation": elabore, "lue": 1}
@@ -59,7 +59,7 @@ def display_field(key, champ, enregistrement):
                 if enregistrement.has_key(nom_champ): # si une donnée de requette existe pour la clef primaire
                     dico[nom_champ] = enregistrement[nom_champ] # on modifi le dico
             table = key
-            link = begoconf.script_location("mod" + table) + "?" + urllib.urlencode(dico)
+            link = archeoconf.script_location("mod" + table) + "?" + urllib.urlencode(dico)
     if str(champ) == "None": # do not display the 'None' values
         champ = ""
     if link:
@@ -308,7 +308,7 @@ if ruser not in archeoconf.visitorusers:
                                 doc.tr()
                                 for key in liste_champs:
                                     champ = enregistrement[key]
-                                    doc.td(align="left", bgcolor=begoconf.bas1_bgcolor)
+                                    doc.td(align="left", bgcolor=archeoconf.bas1_bgcolor)
                                     display_field(key, champ, enregistrement)
                         else:
                             # affichage simplifié

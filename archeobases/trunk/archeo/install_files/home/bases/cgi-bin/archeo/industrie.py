@@ -56,7 +56,7 @@ class Industrie(archeodata.Data):
                     }
     #
     # liste des tables enfants
-    __listenfants__   = [ "eclat", "outil", "galet_amenage", "nucleus", "biface", "hachereau"]
+    __listenfants__   = ["eclat", "outil", "galet_amenage", "nucleus", "biface", "hachereau"]
     __listeparents__  = ["carnet"]
     __listeclefs__    = ["zone", "numero", "bis"]
     __vraiparent__    = "carnet"
@@ -174,7 +174,7 @@ class Industrie(archeodata.Data):
             liste_clefs = ["zone", "numero", "bis"]
             self.champ_liste_table("carnet", liste_clefs, "sol", "sol", enreg, penreg, " ", dontchange=None)
 
-    def  couche_base_to_form(self, enreg, penreg=None):
+    def couche_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             liste_clefs = ["zone", "numero", "bis"]
             self.champ_nsaisie_table("carnet",  liste_clefs, "couche", "couche", 3, 20, "", 1, enreg, penreg)

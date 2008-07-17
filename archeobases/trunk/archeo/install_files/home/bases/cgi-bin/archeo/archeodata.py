@@ -1016,3 +1016,4 @@ class Data:
             #
             # sinon on ajoute en plus un formulaire vide pour pouvoir ajouter
             self.formulaire_hook_parametre(penreg=penreg)
+

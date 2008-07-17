@@ -46,7 +46,7 @@ copyright_font_size = "-3"
 
 base_courante = app_name # ajoutée pour uniformiser requetes.py
 
-#Liste des clefs créeant un lien dans requetes.py
+#Liste des clefs créant un lien dans requetes.py
 linkeys = ["zone", "roche", "face", "figure", "historique", "association", "coderequete"]
 
 #

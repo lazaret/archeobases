@@ -73,7 +73,7 @@ class Dent(archeodata.Data):
     __listechamps__ = ["zone", "numero", "bis", "d_serie", "d_type", "d_m1", "d_m2", "d_m3", "d_m4", "d_m5", "d_m6", "d_m7", "d_m8", "d_m9", "d_m10", "d_m11", "d_m12", "d_m13", "d_m14", "d_m15", "d_m16", "d_m17", "d_m18", "d_m19", "d_m20", "d_m21", "d_m22", "d_m23", "d_m24", "d_m25", "d_m26", "d_m27", "d_m28", "d_m29", "d_m30"]
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "d_serie", "d_type", "d_m1", "d_m2", "d_m3", "d_m4", "d_m5", "d_m6", "d_m7", "d_m8", "d_m9", "d_m10", "d_m11", "d_m12", "d_m13", "d_m14", "d_m15", "d_m16", "d_m17", "d_m18", "d_m19", "d_m20", "d_m21", "d_m22", "d_m23", "d_m24", "d_m25", "d_m26", "d_m27", "d_m28", "d_m29", "d_m30"]
+    __ordrechamps__ = ["zone", "numero", "bis", "d_serie", "d_type", "f_famille", "f_genre", "f_espece", "d_m1", "d_m2", "d_m3", "d_m4", "d_m5", "d_m6", "d_m7", "d_m8", "d_m9", "d_m10", "d_m11", "d_m12", "d_m13", "d_m14", "d_m15", "d_m16", "d_m17", "d_m18", "d_m19", "d_m20", "d_m21", "d_m22", "d_m23", "d_m24", "d_m25", "d_m26", "d_m27", "d_m28", "d_m29", "d_m30"]
     __orderby__ = " ORDER BY zone, numero, bis, d_serie, d_type ASC;"
     #
     # liste des formulaires supplementaires
@@ -146,7 +146,24 @@ class Dent(archeodata.Data):
         afficheclefs.display_type(self, "d_type", enreg, penreg)
         self.__doc__.pop()
 
-################################### En entrée ########################################
+############################### En sortie ###################################
+    def f_famille_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 2, enreg, penreg)
+
+    def f_genre_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 2, enreg, penreg)
+
+    def f_espece_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ["zone", "numero", "bis"]
+            self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 2, enreg, penreg)
+
+############################### En entrée #####################################
     def d_m1_base_to_form(self, enreg, penreg=None):
         afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
         self.__doc__.push()

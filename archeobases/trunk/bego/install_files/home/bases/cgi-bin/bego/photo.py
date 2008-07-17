@@ -95,7 +95,6 @@ class Photo(begodata.Data):
         fout.write(self.__form__["fichier_photo"].value)
         fout.close()
         cmd = mogrify + ' "' + taille + '" >/dev/null'
-        begoconf.log_message(cmd, level="debug")
         os.system(cmd)
 
     def retour(self):
@@ -196,9 +195,7 @@ class Photo(begodata.Data):
             begoconf.fatalerror_message("Impossible de créer le repertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
         ##
         idphoto = self.get_nextval()
-        begoconf.log_message("idphoto = "+str(idphoto), "error")
         fname = rep + os.sep + str(idphoto)
-        begoconf.log_message("fname = "+str(fname), "error")
         small = fname + "s.jpeg"
         big = fname + ".jpeg"
         normale = fname + ".tiff"

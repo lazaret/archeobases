@@ -12,7 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-""" Programme qui permet de changer les mots de passes des utilisateurs en appellant la commande htaccess """
+"""Programme qui permet de changer les mots de passes des utilisateurs en appellant la commande htaccess."""
 
 import os
 import sys

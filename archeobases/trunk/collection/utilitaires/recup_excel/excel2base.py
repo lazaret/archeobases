@@ -21,7 +21,7 @@ import database
 
 
 sys.path.append("../cgi")
-db = database.DataBase(database=sys.argv[1], username = "postgres")
+db = database.DataBase(database=sys.argv[1], username="postgres")
 cpt = 0
 cpt_ok = 0
 pb = 0

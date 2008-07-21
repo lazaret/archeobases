@@ -25,7 +25,6 @@ import urlparse
 import tempfile
 import jaxml
 from pdfmap import maptool
-
 try:
     import psyco
 except ImportError:
@@ -137,7 +136,7 @@ def main(arguments):
                               "zone": valeurs[izone],
                               "numero": valeurs[inumero],
                               "bis": valeurs[ibis],
-                             }
+                              }
                     url = "%s?%s" % (config.URL, urllib.urlencode(urldic))
                     erreur = False
                     if not nature:

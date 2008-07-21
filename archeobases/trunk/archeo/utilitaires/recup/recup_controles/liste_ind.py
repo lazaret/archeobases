@@ -15,30 +15,28 @@
 
 ########################################################################
 # ce programme permet de recuperer le contenu du lexique d'industrie dans les controles de la base archeo
-# ./liste_industrie.py < liste-industrie.txt    
+# ./liste_industrie.py < liste-industrie.txt
 ########################################################################
 
 import sys
 import string
-
-sys.path.append("../cgi")
 import database
+sys.path.append("../cgi")
 
-db = database.DataBase(database=sys.argv[1], username = "postgres")
+
+db = database.DataBase(database=sys.argv[1], username="postgres")
 
 
 lignes = sys.stdin.readlines()
 for ligne in lignes:
-        ligne = string.strip(ligne[:-1])
-        
-        if (ligne != "") and (ligne[:1] == "("):
-                x = len(ligne)-1
-                nom_champ = ligne[1:x]
-                print ("nom_champ : ", nom_champ)
-        elif ligne != "":
-                insert = "INSERT INTO controle_" + nom_champ + "(" + nom_champ + ")  VALUES (" +  db.quote(ligne,"text") + ");"
-                db.query(insert)
-                print(insert)
-                
+    ligne = string.strip(ligne[:-1])
+    if (ligne != "") and (ligne[:1] == "("):
+        x = len(ligne)-1
+        nom_champ = ligne[1:x]
+        print ("nom_champ : ", nom_champ)
+    elif ligne != "":
+        insert = "INSERT INTO controle_" + nom_champ + "(" + nom_champ + ")  VALUES (" +  db.quote(ligne,"text") + ");"
+        db.query(insert)
+        print(insert)
 db.query("VACUUM;")
 

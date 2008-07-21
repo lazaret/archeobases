@@ -12,7 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-#       CREE UN utilistauer pour une base 
+#       CREE UN utilistauer pour une base
 
 import os
 import sys
@@ -26,7 +26,7 @@ sys.path.append("../cgi")
 #=================================================================
 
 nom_base = raw_input('Nom de la base sur laquelle vous souhaitez créer les droits:')
-db = database.DataBase(database=nom_base, username = "postgres")
+db = database.DataBase(database=nom_base, username="postgres")
 
 print(" CREATION DES DROITS SUR LES TABLES DE LA BASE")
 #====================================================
@@ -35,11 +35,11 @@ recup_table = "SELECT relname FROM pg_class WHERE relname NOT LIKE 'pg%' AND rel
 res_table = db.query(recup_table).dictresult()
 print (len(res_table))
 for i in range( 1, len(res_table)):
-        db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
-        print("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
-        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO user_query;"       
-        print(grant_normal)
-        db.query(grant_normal)
+    db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
+    print("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
+    grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO user_query;"
+    print(grant_normal)
+    db.query(grant_normal)
 
 #######GRANT SUR TABLES CONTROLE
 print "CREATION DES DROITS SUR LES TABLES CONTROLES"
@@ -47,10 +47,10 @@ recup_table = "SELECT relname FROM pg_class WHERE relname NOT LIKE 'pg%' AND rel
 
 res_table = db.query(recup_table).dictresult()
 for i in range( 1, len(res_table)):
-        print("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
-        db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
-        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO user_query ;"  
-        print(grant_normal)
-        db.query(grant_normal)
-               
+    print("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
+    db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM user_query;")
+    grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO user_query ;"
+    print(grant_normal)
+    db.query(grant_normal)
+
 

@@ -21,7 +21,7 @@ import database
 
 
 sys.path.append("../cgi")
-db = database.DataBase(database=sys.argv[1], username = "postgres")
+db = database.DataBase(database=sys.argv[1], username="postgres")
 modif = raw_input('Souhaitez-vous modifier les mots de passe de cette base O/N ?  ')
 
 if string.upper(modif) == "O":

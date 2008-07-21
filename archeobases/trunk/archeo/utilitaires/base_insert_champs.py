@@ -31,7 +31,7 @@ for ligne in lignes:
             champs[i] = string.strip(champs[i])
             if champs[i] == '-':
                 champs[i] = ''
-            elif champs[i] in ['999', '9999.99', '999.99']:
+            elif champs[i] in ('999', '9999.99', '999.99'):
                 champs[i] = '0'
         new_ga = []
         new_eg = []

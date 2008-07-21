@@ -22,9 +22,8 @@ sys.path.append("../cgi")
 
 # RECUPERATION DU NOM DE LA NOUVELLE BASE ET CONNEXION A template1
 #=================================================================
-
 nom_base = raw_input('Nom de la base sur laquelle vous souhaitez créer les droits:')
-db = database.DataBase(database=nom_base, username = "postgres")
+db = database.DataBase(database=nom_base, username="postgres")
 
 print(" CREATION DES DROITS SUR LES TABLES DE LA BASE")
 #====================================================
@@ -37,26 +36,22 @@ for i in range( 1, len(res_table)):
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM " + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM visiteur" + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM public" + ";")
-        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"   
+        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"
         db.query(grant_super)
-	print (grant_super)
-        grant_normal = "GRANT ALL ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"       
+    print (grant_super)
+        grant_normal = "GRANT ALL ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"
         db.query(grant_normal)
-
-        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"  
-        db.query(grant_visiteur)
-
-        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"
-        db.query(grant_normal)
-
         grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"
         db.query(grant_visiteur)
-
+        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"
+        db.query(grant_normal)
+        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"
+        db.query(grant_visiteur)
         grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public;"
         db.query(grant_public)
 
-        
-grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public;"  
+
+grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public;"
         db.query(grant_public)
 
 #######GRANT SUR TABLES CONTROLE
@@ -69,19 +64,16 @@ for i in range( 1, len(res_table)):
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM " + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM visiteur" + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM public" + ";")
-
-        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"   
+        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"
         db.query(grant_super)
-	print grant_super
+    print grant_super
 
-        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"  
+        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"
         db.query(grant_normal)
-
-        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"  
+        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"
         db.query(grant_visiteur)
-
         grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public;"
-	db.query(grant_public)
+    db.query(grant_public)
 
 
 grant_super = "GRANT ALL ON controle_zone TO super"+ nom_base + ";"

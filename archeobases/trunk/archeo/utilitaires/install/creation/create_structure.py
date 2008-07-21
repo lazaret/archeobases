@@ -28,7 +28,7 @@ print("AVERTISSEMENT: placez-vous dans le repertoire ou est votre schema_archeo.
 #=================================================================
 
 nom_base = raw_input('Nom de la nouvelle base:')
-db = database.DataBase(database="template1", username = "postgres")
+db = database.DataBase(database="template1", username="postgres")
 
 print(" CREATION DE LA BASE")
 #=============================
@@ -62,16 +62,13 @@ for i in range( 1, len(res_table)):
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM " + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM visiteur" + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM public" + ";")
-        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"   
+        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"
         db.query(grant_super)
-
-        grant_normal = "GRANT ALL ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"       
+        grant_normal = "GRANT ALL ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"
         db.query(grant_normal)
-
-        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"  
+        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"
         db.query(grant_visiteur)
-
-        grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public"+ nom_base + ";"  
+        grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public"+ nom_base + ";"
         db.query(grant_public)
 
 #######GRANT SUR TABLES CONTROLE
@@ -83,15 +80,11 @@ for i in range( 1, len(res_table)):
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM " + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM visiteur" + nom_base + ";")
         db.query("REVOKE ALL ON "+ res_table[i]["relname"] + " FROM public" + ";")
-
-        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"   
+        grant_super = "GRANT ALL ON " + res_table[i]["relname"] + " TO super"+ nom_base + ";"
         db.query(grant_super)
-
-        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"  
+        grant_normal = "GRANT SELECT ON " + res_table[i]["relname"] + " TO "+ nom_base + ";"
         db.query(grant_normal)
-
-        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"  
+        grant_visiteur = "GRANT SELECT ON " + res_table[i]["relname"] + " TO visiteur"+ nom_base + ";"
         db.query(grant_visiteur)
-
         grant_public = "GRANT SELECT ON " + res_table[i]["relname"] + " TO public"+ nom_base + ";"
-	db.query(grant_public)
+    db.query(grant_public)

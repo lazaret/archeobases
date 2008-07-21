@@ -52,7 +52,7 @@ print("-> IMPORTATION DU FICHIER DANS LA BASE")
 os.system ("psql -d "+nom_base+" -U postgres < "+nom_fichier+"8 > /dev/null")
 
 #Maintenance mini sur la nouvelle base
-db = database.DataBase(database = nom_base, username = "postgres")
+db = database.DataBase(database=nom_base, username="postgres")
 db.query("VACUUM ANALYSE;")
 db.query("REINDEX DATABASE "+nom_base+";")
 db.query("VACUUM ANALYSE;")

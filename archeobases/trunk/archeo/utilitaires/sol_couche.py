@@ -17,7 +17,7 @@ import string
 import database
 
 sys.path.append("../cgi")
-db = database.DataBase(database=sys.argv[1], username = "postgres")
+db = database.DataBase(database=sys.argv[1], username="postgres")
 lignes = sys.stdin.readlines()
 
 for ligne in lignes:

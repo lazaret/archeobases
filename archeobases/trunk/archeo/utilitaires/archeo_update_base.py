@@ -19,11 +19,11 @@ import database
 
 
 sys.path.append("../cgi")
-print("AVERTISSEMENT: placez-vous dans le r�pertoire o� est votre schema_archeo.sql")
+print("AVERTISSEMENT: placez-vous dans le répertoire où est votre schema_archeo.sql")
 
 # RECUPERATION DU NOM DE LA NOUVELLE BASE ET CONNEXION A template1
 #=================================================================
-liste_base = ['essai', 'fate', 'fejej', 'isernia', 'lazaret', 'kadagona']
+liste_base = ('essai', 'fate', 'fejej', 'isernia', 'lazaret', 'kadagona')
 requete = raw_input("Rentrez votre requète:\n")
 
 for i in range(0, len(liste_base)):

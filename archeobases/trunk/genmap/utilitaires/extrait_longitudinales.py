@@ -29,9 +29,9 @@ if __name__ == "__main__":
         zone_max   = sys.argv[3].upper()
         ep_tranche = int(sys.argv[4])
         requete = """SELECT zone, numero, bis,
-                            x, y, zabsolu, nature,
-                            longueur, largeur, epaisseur,
-                            orientation, pendage
+                        x, y, zabsolu, nature,
+                        longueur, largeur, epaisseur,
+                        orientation, pendage
                         FROM carnet
                         WHERE zone LIKE '%s%%' AND x BETWEEN %i AND %i;"""
         try:

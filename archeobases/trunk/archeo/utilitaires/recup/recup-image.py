@@ -16,7 +16,6 @@
 # Outdated and untested file
 # try to change the db value at line 109 if you whant to test it anyway
 
-
 import sys
 import os
 import string

@@ -17,11 +17,12 @@ import pg
 
 
 requete = """SELECT zone, numero, bis,
-                    x, y, zabsolu, nature,
-                    longueur, largeur, epaisseur,
-                    orientation, pendage
+                x, y, zabsolu, nature,
+                longueur, largeur, epaisseur,
+                orientation, pendage
                 FROM carnet
                 WHERE zone LIKE '%s%%' AND x BETWEEN %i AND %i;"""
+
 db = pg.connect(dbname="arago", user="postgres")
 
 for zone in "BCDEFGHIJKL":

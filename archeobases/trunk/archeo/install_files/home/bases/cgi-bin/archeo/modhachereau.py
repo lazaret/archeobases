@@ -15,4 +15,4 @@
 import hachereau
 
 
-hachereau.Hachereau("bas").traite_saisie(["zone", "numero", "bis"])
+hachereau.Hachereau("bas").traite_saisie(("zone", "numero", "bis"))

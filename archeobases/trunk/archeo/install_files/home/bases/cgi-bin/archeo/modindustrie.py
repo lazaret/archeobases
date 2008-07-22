@@ -15,5 +15,5 @@
 import industrie
 
 
-industrie.Industrie("bas").traite_saisie(["zone", "numero", "bis"])
+industrie.Industrie("bas").traite_saisie(("zone", "numero", "bis"))
 

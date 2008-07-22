@@ -26,45 +26,45 @@ class Face(begodata.Data):
     __new_record__ = "Nouvelle"
     #
     # tous les champs de la table proprietaire
-    __champs__ = { \
-                "zone"        : {"type": "decimal", "default": 0,   "mandatory": 1}, \
-                "groupe"      : {"type": "decimal", "default": 0,   "mandatory": 1}, \
-                "roche"       : {"type": "text",    "default": "",  "mandatory": 1}, \
-                "face"        : {"type": "text",    "default": "",  "mandatory": 1}, \
-                "type"        : {"type": "text",    "default": "",  "mandatory": 0}, \
-                "forme"       : {"type": "text",    "default": "",  "mandatory": 0}, \
-                "longueur"    : {"type": "decimal", "default": 0,   "mandatory": 0}, \
-                "largeur"     : {"type": "decimal", "default": 0,   "mandatory": 0}, \
-                "couleur"     : {"type": "text",    "default": "",  "mandatory": 0}, \
-                "aspect"      : {"type": "text",    "default": "",  "mandatory": 0}, \
-                "decrochement": {"type": "bool",    "default": "f", "mandatory": 0}, \
-                "fissure"     : {"type": "bool",    "default": "f", "mandatory": 0}, \
-                "microflore"  : {"type": "bool",    "default": "f", "mandatory": 0}, \
-                "nodule"      : {"type": "bool",    "default": "f", "mandatory": 0}, \
-                "trou"        : {"type": "bool",    "default": "f", "mandatory": 0}, \
-                "erosion"     : {"type": "text",    "default": "f", "mandatory": 0}, \
-                "desquamation": {"type": "text",    "default": "",  "mandatory": 0}, \
-                "direction"   : {"type": "text",    "default": "",  "mandatory": 0}, \
-                "inclinaison" : {"type": "decimal", "default": "",  "mandatory": 0}, \
-                "orientation" : {"type": "text",    "default": "",  "mandatory": 0}, \
+    __champs__ = {
+                "zone"        : {"type": "decimal", "default": 0,   "mandatory": 1},
+                "groupe"      : {"type": "decimal", "default": 0,   "mandatory": 1},
+                "roche"       : {"type": "text",    "default": "",  "mandatory": 1},
+                "face"        : {"type": "text",    "default": "",  "mandatory": 1},
+                "type"        : {"type": "text",    "default": "",  "mandatory": 0},
+                "forme"       : {"type": "text",    "default": "",  "mandatory": 0},
+                "longueur"    : {"type": "decimal", "default": 0,   "mandatory": 0},
+                "largeur"     : {"type": "decimal", "default": 0,   "mandatory": 0},
+                "couleur"     : {"type": "text",    "default": "",  "mandatory": 0},
+                "aspect"      : {"type": "text",    "default": "",  "mandatory": 0},
+                "decrochement": {"type": "bool",    "default": "f", "mandatory": 0},
+                "fissure"     : {"type": "bool",    "default": "f", "mandatory": 0},
+                "microflore"  : {"type": "bool",    "default": "f", "mandatory": 0},
+                "nodule"      : {"type": "bool",    "default": "f", "mandatory": 0},
+                "trou"        : {"type": "bool",    "default": "f", "mandatory": 0},
+                "erosion"     : {"type": "text",    "default": "f", "mandatory": 0},
+                "desquamation": {"type": "text",    "default": "",  "mandatory": 0},
+                "direction"   : {"type": "text",    "default": "",  "mandatory": 0},
+                "inclinaison" : {"type": "decimal", "default": "",  "mandatory": 0},
+                "orientation" : {"type": "text",    "default": "",  "mandatory": 0},
                 "nbthemes"    : {"type": "decimal", "default": "",  "mandatory": 0},
                 }
     #
     # liste des tables enfants
-    __listenfants__ = ["figure", "historique", "association"]
-    __listeparents__ = ["zone", "roche"]
-    __listeclefs__ = ["zone", "groupe", "roche", "face"]
+    __listenfants__ = ("figure", "historique", "association")
+    __listeparents__ = ("zone", "roche")
+    __listeclefs__ = ("zone", "groupe", "roche", "face")
     __vraiparent__ = "roche"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "groupe", "roche", "face", "longueur", "largeur", "type", "forme", "couleur", "aspect", "decrochement", "fissure", "microflore", "nodule", "trou", "erosion", "desquamation", "direction", "inclinaison", "orientation"]
+    __listechamps__ = ("zone", "groupe", "roche", "face", "longueur", "largeur", "type", "forme", "couleur", "aspect", "decrochement", "fissure", "microflore", "nodule", "trou", "erosion", "desquamation", "direction", "inclinaison", "orientation")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = [ "zone", "groupe", "roche", "face", "longueur", "largeur", "type", "forme", "couleur", "aspect", "decrochement", "fissure", "microflore", "nodule", "trou", "erosion", "desquamation", "direction", "inclinaison", "orientation", "nbthemes"]
+    __ordrechamps__ = ("zone", "groupe", "roche", "face", "longueur", "largeur", "type", "forme", "couleur", "aspect", "decrochement", "fissure", "microflore", "nodule", "trou", "erosion", "desquamation", "direction", "inclinaison", "orientation", "nbthemes")
     __orderby__ = " ORDER BY zone, groupe, roche, face ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = [ "photoface", "figures" ]
+    __formsupp__ = ("photoface", "figures")
 
     def zone_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
@@ -235,9 +235,9 @@ class Face(begodata.Data):
             if enreg["nodule"] == 't':
                 self.__doc__.checkbox_checked(name="nodule")
             else :
-                self.__doc__.checkbox(name = "nodule")  # 'f' ou vide
+                self.__doc__.checkbox(name="nodule")  # 'f' ou vide
         else:
-            self.__doc__.checkbox(name = "nodule")      # 'f' est la valeur par defaut
+            self.__doc__.checkbox(name="nodule")      # 'f' est la valeur par defaut
         self.__doc__.insert_text("Nodule")
         self.__doc__.pop()
 
@@ -631,37 +631,37 @@ class Face(begodata.Data):
                 self.__doc__.tr()
                 self.__doc__.td(valign="middle", align="center")
                 photo_url = begoconf.images_location + "Z" + `enreg["zone"]` + "/G" + `enreg["groupe"]` + "/R" + enreg["roche"] + "/F" + enreg["face"] + "/" + `photo["idphoto"]`
-                self.__doc__.a(href = photo_url + ".jpeg")
+                self.__doc__.a(href=photo_url + ".jpeg")
                 xmax, ymax = begoconf.get_imagesize(begoconf.image_fullname("Z" + `enreg["zone"]` + os.sep + "G" + `enreg["groupe"]` + os.sep + "R" +  enreg["roche"] + os.sep + "F" +  enreg["face"] + os.sep + `photo["idphoto"]` + "s.jpeg"))
                 self.__doc__.img(src=photo_url + "s.jpeg", width=xmax, height=ymax)
                 self.__doc__.pop()
                 self.__doc__.tr()
                 self.__doc__.td(valign="middle", align="center")
                 self.__doc__.font(size=begoconf.font_size)
-                self.__doc__.textarea(name = "legende", rows="4", cols="50", wrap="physical")
+                self.__doc__.textarea(name="legende", rows="4", cols="50", wrap="physical")
                 self.__doc__.insert_text(photo["legende"])
                 self.__doc__.pop()
                 self.__doc__.td(bgcolor=begoconf.basform_bgcolorright, valign="middle", align="center")
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
-                self.__doc__.hidden(name="zone",    value=photo["zone"])
-                self.__doc__.hidden(name="groupe",  value=photo["groupe"])
-                self.__doc__.hidden(name="roche",   value=photo["roche"])
-                self.__doc__.hidden(name="face",    value=photo["face"])
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.hidden(name="zone", value=photo["zone"])
+                self.__doc__.hidden(name="groupe", value=photo["groupe"])
+                self.__doc__.hidden(name="roche", value=photo["roche"])
+                self.__doc__.hidden(name="face", value=photo["face"])
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
             self.__doc__.push()
-            self.__doc__.form(method="POST",   action=begoconf.script_location("modphoto"))
-            self.__doc__.hidden(name="zone",   value=enreg["zone"])
+            self.__doc__.form(method="POST", action=begoconf.script_location("modphoto"))
+            self.__doc__.hidden(name="zone", value=enreg["zone"])
             self.__doc__.hidden(name="groupe", value=enreg["groupe"])
-            self.__doc__.hidden(name="roche",  value=enreg["roche"])
-            self.__doc__.hidden(name="face",   value=enreg["face"])
+            self.__doc__.hidden(name="roche", value=enreg["roche"])
+            self.__doc__.hidden(name="face", value=enreg["face"])
             self.__doc__.submit(name="action", value="Nouvelle")
             self.__doc__.pop()
             self.__doc__.font("aucune photo", color="red", size=begoconf.font_size)
@@ -689,7 +689,7 @@ class Face(begodata.Data):
             self.__doc__.td(bgcolor=begoconf.basform_bgcolorcenter, colspan="2")
             self.__doc__.font(size=begoconf.font_size)
             penreg = {"zone": enreg["zone"], "groupe": enreg["groupe"], "roche": enreg["roche"], "face": enreg["face"]}
-            figure.Figure(self).traite_saisie(["zone", "groupe", "roche", "face", "figure"], parent=self.__tablename__, penreg=penreg)
+            figure.Figure(self).traite_saisie(("zone", "groupe", "roche", "face", "figure"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 ############################################################################################################################
@@ -697,12 +697,12 @@ class Face(begodata.Data):
 ############################################################################################################################
     def modifier(self):
         """Met a jour la face courante"""
-        self.__db__.query(self.make_update_query(["zone", "groupe", "roche", "face"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self) :
         """ s'il existe des figures ou des photos sur cette face on refuse la suppression"""
-        if self.exist(["zone", "groupe", "roche", "face"], table="figure") or self.exist(["zone", "groupe", "roche", "face"], table="photoface"):
+        if self.exist(self.__listeclefs__, table="figure") or self.exist(self.__listeclefs__, table="photoface"):
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -716,19 +716,19 @@ class Face(begodata.Data):
             except:
                 begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
             # on efface la face
-            self.delete_records(["zone", "groupe", "roche", "face"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         """ si la face n'existe pas déjà alors on la crée, sinon on refuse"""
-        if self.exist(["zone", "groupe", "roche", "face"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la face dans la base
             # sauf si la roche n'existe pas.
-            if not self.exist(["zone", "groupe", "roche"], table="roche"):
-                primarykeys = { "zone": None, "groupe": None, "roche": None, "face": None}
+            if not self.exist(("zone", "groupe", "roche"), table="roche"):
+                primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None}
                 return (-2, primarykeys)
             else:
                 # on insère maintenant la face dans la base

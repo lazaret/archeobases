@@ -26,23 +26,23 @@ class Association(collectiondata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant_1" : {"type": "text", "default": "", "mandatory": 1, "longueur": 20, "memory": 1}, \
-                "identifiant_2" : {"type": "text", "default": "", "mandatory": 1, "longueur": 20, "memory": 1}, \
+                "identifiant_1": {"type": "text", "default": "", "mandatory": 1, "longueur": 20, "memory": 1},
+                "identifiant_2": {"type": "text", "default": "", "mandatory": 1, "longueur": 20, "memory": 1},
                 }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeclefs__    = ["identifiant_1", "identifiant_2"]
+    __listenfants__   = ()
+    __listeclefs__    = ("identifiant_1", "identifiant_2")
     __vraiparent__    = "association"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant_1", "identifiant_2"]
+    __listechamps__ = ("identifiant_1", "identifiant_2")
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant_1", "identifiant_2"]
+    __ordrechamps__ = ("identifiant_1", "identifiant_2")
     __orderby__ = " ORDER BY identifiant_1, identifiant_2 ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def identifiant_1_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -97,19 +97,18 @@ class Association(collectiondata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour la association courante"""
-        self.__db__.query(self.make_update_query(["identifiant_1", "identifiant_2"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface l' association
-        self.delete_records(["identifiant_1", "identifiant_2"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la association n'existe pas déjà alors on la crée, sinon on refuse
         i1 = self.__form__["identifiant_1"].value
         i2 = self.__form__["identifiant_2"].value
-        # TODO VERIFIER
         if (self.exist_association_identique(self.__db__.quote(i1,"text"), self.__db__.quote(i2,"text"), "association")== 1):
             primarykeys = {"identifiant_1": None, "identifiant_2": None}
             return (-1, primarykeys)

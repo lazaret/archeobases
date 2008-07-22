@@ -24,14 +24,14 @@ class Photo(archeodata.Data):
     __color__ = archeoconf.bas1_bgcolor
     __champs__ =    {
                     "idphoto": {"type": "seq", "default": "nextval('seq_idphoto')", "mandatory": 1, "longueur": 0},
-                    "zone"   : {"type": "text", "default": 0, "mandatory": 1 ,"longueur": 0},
+                    "zone"   : {"type": "text", "default": 0, "mandatory": 1,"longueur": 0},
                     "numero" : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 0},
                     "bis"    : {"type": "text", "default": "", "mandatory": 1, "longueur": 0},
-                    "legende": {"type": "text", "default": "", "mandatory": 0 ,"longueur": 50},
+                    "legende": {"type": "text", "default": "", "mandatory": 0, "longueur": 50},
                     }
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis"]
+    __listechamps__ = ("zone", "numero", "bis")
 
     def __init__(self, parent, nomtable):
         self.__tablename__ = nomtable
@@ -96,7 +96,7 @@ class Photo(archeodata.Data):
             os.unlink(normale)
         except:
             archeoconf.fatalerror_message("Impossible d'effacer la photo " + fname)
-        self.delete_records(["idphoto"])
+        self.delete_records(("idphoto",))
         self.retour()
 
     def creer(self):

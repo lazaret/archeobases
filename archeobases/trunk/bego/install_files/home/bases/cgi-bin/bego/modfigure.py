@@ -16,4 +16,4 @@ import begoconf
 import figure
 
 
-figure.Figure("bas").traite_saisie(["zone", "groupe", "roche", "face", "figure"], parent=begoconf.getparent())
+figure.Figure("bas").traite_saisie(("zone", "groupe", "roche", "face", "figure"), parent=begoconf.getparent())

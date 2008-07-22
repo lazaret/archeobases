@@ -16,4 +16,4 @@ import archeoconf
 import fracture_faune
 
 
-fracture_faune.Fracture_Faune("bas").traite_saisie(["zone", "numero", "bis"])
+fracture_faune.Fracture_Faune("bas").traite_saisie(("zone", "numero", "bis"))

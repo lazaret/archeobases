@@ -48,19 +48,19 @@ class Fiche(annuairedata.Data):
                     }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeclefs__    = ["identifiant"]
+    __listenfants__   = ()
+    __listeclefs__    = ("identifiant",)
     __vraiparent__    = "fiche"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "type_entree", "type_personne", "civilite", "titre", "nom", "prenom", "nationalite", "date_naissance", "fonction", "specialite", "commentaire", "association", "numero_adherent", "cotisation", "chantier"]
+    __listechamps__ = ("identifiant", "type_entree", "type_personne", "civilite", "titre", "nom", "prenom", "nationalite", "date_naissance", "fonction", "specialite", "commentaire", "association", "numero_adherent", "cotisation", "chantier")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "type_entree", "type_personne", "civilite", "titre", "nom", "prenom", "nationalite", "date_naissance", "fonction", "specialite", "commentaire", "association", "numero_adherent", "cotisation", "chantier", "modif_fiche"]
+    __ordrechamps__ = ("identifiant", "type_entree", "type_personne", "civilite", "titre", "nom", "prenom", "nationalite", "date_naissance", "fonction", "specialite", "commentaire", "association", "numero_adherent", "cotisation", "chantier", "modif_fiche")
     __orderby__ = " ORDER BY identifiant ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["adresse", "photofiche"]
+    __formsupp__ = ("adresse", "photofiche")
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -179,7 +179,7 @@ class Fiche(annuairedata.Data):
             self.__doc__.td(bgcolor=annuaireconf.basform_bgcolorcenter, colspan="2")
             self.__doc__.font(size=annuaireconf.font_size)
             penreg = {"identifiant": enreg["identifiant"]}
-            adresse.Adresse(self).traite_saisie(["identifiant", "ordre"], parent=self.__tablename__, penreg=penreg)
+            adresse.Adresse(self).traite_saisie(("identifiant", "ordre"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 #########################################################################
@@ -267,7 +267,7 @@ class Fiche(annuairedata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour la fiche courante"""
-        self.__db__.query(self.make_update_query(["identifiant"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE fiche SET modif_fiche='now' WHERE identifiant=" + i  + ";"
         self.__db__.query(update_date)
@@ -275,7 +275,7 @@ class Fiche(annuairedata.Data):
 
     def supprimer(self):
        # s'il existe des figures ou des photos sur cette fiche on refuse la suppression
-        if self.exist(["identifiant"], table="adresse") or self.exist(["identifiant"], table="photofiche"):
+        if self.exist(self.__listeclefs__, table="adresse") or self.exist(self.__listeclefs__, table="photofiche"):
             return -1
         else:
             i = "I" + self.__form__["identifiant"].value
@@ -286,12 +286,12 @@ class Fiche(annuairedata.Data):
             except:
                 annuaireconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
             # on efface l' fiche
-            self.delete_records(["identifiant"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si la fiche n'existe pas deja alors on la cree, sinon on refuse
-        if self.exist(["identifiant"], table="fiche"):
+        if self.exist(self.__listeclefs__, table="fiche"):
             primarykeys = {"identifiant": None}
             return (-1, primarykeys)
         else:

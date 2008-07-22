@@ -26,37 +26,37 @@ class Enlevement_Nucleus(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"          : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"        : {"type": "int", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"           : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "n_ordre"       : {"type": "int", "default": 0, "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "en_rang"       : {"type": "text", "default": "0", "mandatory": 1 , "longueur": 1}, \
-                    "en_longueur"   : {"type": "decimal", "mandatory": 0 , "longueur": 0}, \
-                    "en_largeur"    : {"type": "decimal", "mandatory": 0 , "longueur": 0},
-                    "en_obliquite_degre" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "en_corde"      : {"type": "int", "mandatory": 0 , "longueur": 0}, \
-                    "en_fleche"     : {"type": "int", "mandatory": 0 , "longueur": 0}, \
-                    "en_dptimpact"  : {"type": "text", "mandatory": 0 , "longueur": 0}, \
-                    "en_frappe"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "en_numero"     : {"type": "int", "mandatory": 0 , "longueur": 0}, \
-                    "en_inclinaison": {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "en_direction"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
+                    "zone"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"        : {"type": "int", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"           : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "n_ordre"       : {"type": "int", "default": 0, "mandatory": 1, "longueur": 0, "memory": 1},
+                    "en_rang"       : {"type": "text", "default": "0", "mandatory": 1, "longueur": 1},
+                    "en_longueur"   : {"type": "decimal", "mandatory": 0, "longueur": 0},
+                    "en_largeur"    : {"type": "decimal", "mandatory": 0, "longueur": 0},
+                    "en_obliquite_degre" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "en_corde"      : {"type": "int", "mandatory": 0, "longueur": 0},
+                    "en_fleche"     : {"type": "int", "mandatory": 0, "longueur": 0},
+                    "en_dptimpact"  : {"type": "text", "mandatory": 0, "longueur": 0},
+                    "en_frappe"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "en_numero"     : {"type": "int", "mandatory": 0, "longueur": 0},
+                    "en_inclinaison": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "en_direction"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__ = ["zone", "numero", "bis", "n_ordre", "en_rang"]
-    __listeparents__ = ["carnet", "nucleus"]
+    __listenfants__ = ()
+    __listeclefs__ = ("zone", "numero", "bis", "n_ordre", "en_rang")
+    __listeparents__ = ("carnet", "nucleus")
     __vraiparent__ = "nucleus"
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "n_ordre", "en_rang", "en_longueur", "en_largeur", "en_obliquite_degre", "en_corde", "en_fleche", "en_dptimpact", "en_frappe", "en_numero", "en_inclinaison", "en_direction"]
+    __listechamps__ = ("zone", "numero", "bis", "n_ordre", "en_rang", "en_longueur", "en_largeur", "en_obliquite_degre", "en_corde", "en_fleche", "en_dptimpact", "en_frappe", "en_numero", "en_inclinaison", "en_direction")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ =["zone", "numero", "bis", "n_ordre", "en_rang", "en_longueur", "en_largeur", "en_obliquite_degre", "en_corde",  "en_fleche", "en_dptimpact", "en_frappe", "en_numero", "en_inclinaison", "en_direction"]
+    __ordrechamps__ =("zone", "numero", "bis", "n_ordre", "en_rang", "en_longueur", "en_largeur", "en_obliquite_degre", "en_corde",  "en_fleche", "en_dptimpact", "en_frappe", "en_numero", "en_inclinaison", "en_direction")
     __orderby__ = " ORDER BY zone, numero, bis, n_ordre, en_rang ASC;"
      #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def __init__(self, parent, nomtable=None):
         self.__tablename__ = nomtable
@@ -180,22 +180,22 @@ class Enlevement_Nucleus(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'enlevement courant"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "n_ordre", "en_rang"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface l' enlevement
-        self.delete_records(["zone", "numero", "bis", "n_ordre", "en_rang"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si l' enlevement existe, on refuse de le creer
-        if self.exist(["zone", "numero", "bis", "n_ordre", "en_rang"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "en_rang": None}
             return (-1, primarykeys)
         else:
             # sinon si son parent n'existe pas, on refuse
-            if not self.exist(["zone", "numero", "bis"], table="nucleus"):
+            if not self.exist(("zone", "numero", "bis"), table="nucleus"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             # sinon si son parent existe, on le cree

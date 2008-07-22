@@ -15,4 +15,4 @@
 import galet_amenage
 
 
-galet_amenage.Galet_amenage("bas").traite_saisie(["zone", "numero", "bis", "ga_ordre"])
+galet_amenage.Galet_amenage("bas").traite_saisie(("zone", "numero", "bis", "ga_ordre"))

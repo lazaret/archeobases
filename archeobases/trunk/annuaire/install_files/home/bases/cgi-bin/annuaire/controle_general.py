@@ -57,7 +57,7 @@ class PageRequete(annuaireconf.Bas) :
                 self.option(val, value = enreg[param])
         else:
             self.p()
-            if param in ["civilite", "association", "cotisation"]:
+            if param in ("civilite", "association", "cotisation"):
                 self.font("Aucune "+ param +" saisie", color="red")
             else:
                 self.font("Aucun "+ param +" saisi", color="red")

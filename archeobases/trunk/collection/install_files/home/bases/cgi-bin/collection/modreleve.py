@@ -15,5 +15,5 @@
 import releve
 
 
-releve.Releve("bas").traite_saisie(["identifiant"])
+releve.Releve("bas").traite_saisie(("identifiant",))
 

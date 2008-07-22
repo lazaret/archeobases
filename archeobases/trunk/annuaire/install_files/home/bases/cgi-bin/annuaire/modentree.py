@@ -15,4 +15,4 @@
 import entree
 
 
-entree.Entree("bas").traite_saisie(["identifiant"])
+entree.Entree("bas").traite_saisie(("identifiant",))

@@ -26,112 +26,112 @@ class Hachereau(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"         : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"          : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "h_forme"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_type"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 15}, \
-                    "h_base"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_surface"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_enlevement" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_amenagement_bord" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_distale"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_biseau"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_bord"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_meplat"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "h_extension"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_symetrie"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_facture"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_bilaterale" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_bifaciale"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_arete"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_retouche"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "h_long1" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_long2" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_long3" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_l1" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_l1a": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_l2" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_l3" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_l4" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_l5" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_e1" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_e2" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_poids": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind1": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind2": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind3": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind4": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind5": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind6": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind7": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind8": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind9": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind10": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind11": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind12": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind13": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind14": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ind15": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hc"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hd"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_he"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hb1a": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hb1b": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hb1" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hb2a": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hb2b": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hb2" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hde1": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hde2": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hg1" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hg2" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hh"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hi"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hj"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hk"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hla1": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hlb1": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hl1" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hla2": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hlb2": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hl2" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hm"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hs"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hng" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hnd" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_ho"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hp"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hq"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hr"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hu"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hx"  : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hya1": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hya2": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hya" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hyb1": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hyb2": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hyb" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hyax": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hybx": {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
-                    "h_hyx" : {"type": "decimal", "mandatory": 0 , "longueur": 5}, \
+                    "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "h_forme"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_type"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 15},
+                    "h_base"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_surface"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_enlevement" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_amenagement_bord" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_distale"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_biseau"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_bord"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_meplat"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_extension"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_symetrie"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_facture"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_bilaterale" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_bifaciale"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_arete"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_retouche"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "h_long1" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_long2" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_long3" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_l1" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_l1a": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_l2" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_l3" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_l4" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_l5" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_e1" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_e2" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_poids": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind1": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind2": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind3": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind4": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind5": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind6": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind7": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind8": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind9": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind10": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind11": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind12": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind13": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind14": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ind15": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hc"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hd"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_he"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hb1a": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hb1b": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hb1" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hb2a": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hb2b": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hb2" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hde1": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hde2": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hg1" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hg2" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hh"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hi"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hj"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hk"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hla1": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hlb1": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hl1" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hla2": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hlb2": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hl2" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hm"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hs"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hng" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hnd" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_ho"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hp"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hq"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hr"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hu"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hx"  : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hya1": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hya2": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hya" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hyb1": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hyb2": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hyb" : {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hyax": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hybx": {"type": "decimal", "mandatory": 0, "longueur": 5},
+                    "h_hyx" : {"type": "decimal", "mandatory": 0, "longueur": 5},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "industrie"]
-    __listeclefs__ = ["zone", "numero", "bis"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "industrie")
+    __listeclefs__ = ("zone", "numero", "bis")
     __vraiparent__ = "industrie"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_facture", "h_bilaterale",  "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hyax", "h_hybx", "h_hyx"]
+    __listechamps__ = ("zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_facture", "h_bilaterale",  "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hyax", "h_hybx", "h_hyx")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_facture", "h_bilaterale",  "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hyax", "h_hybx", "h_hyx"]
+    __ordrechamps__ = ("zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_facture", "h_bilaterale",  "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hyax", "h_hybx", "h_hyx")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = [ ""]
+    __formsupp__ = ("",)
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -186,7 +186,7 @@ class Hachereau(archeodata.Data):
     def h_type_base_to_form(self, enreg, penreg=None):
         afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
         self.__doc__.push()
-        afficheclefs.champ_saisie(self, "h_type", "type", 15, 20, " " , enreg, penreg)
+        afficheclefs.champ_saisie(self, "h_type", "type", 15, 20, " ", enreg, penreg)
 
     def h_base_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "h_base", "base réservée", enreg, penreg, "", dontchange=0)
@@ -503,41 +503,28 @@ class Hachereau(archeodata.Data):
         self.__doc__.pop()
 
 ##############################################################################################################################
-#                                       LIEN AVEC L'ECRAN FIGURE
-##############################################################################################################################
-    def figures(self, enreg, penreg=None):
-        if enreg != None:
-            self.__doc__.push()
-            self.__doc__.tr()
-            self.__doc__.td(bgcolor=archeoconf.basform_bgcolorcenter, colspan="2")
-            self.__doc__.font(size=archeoconf.font_size)
-            penreg = {"zone": enreg["zone"], "groupe": enreg["groupe"], "roche": enreg["roche"], "hachereau": enreg["hachereau"]}
-            figure.Figure(self).traite_saisie(["zone", "groupe", "roche", "industrie", "figure"], parent=self.__tablename__, penreg=penreg)
-            self.__doc__.pop()
-
-##############################################################################################################################
 #                                               METHODES
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la industrie courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des outil sur hachereau associe à cet éclat
         # on efface l'éclat
-        self.delete_records(["zone", "numero", "bis"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la industrie n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la industrie dans la base
             # sauf si la bis n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="industrie"):
+            if not self.exist(self.__listeclefs__, table="industrie"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

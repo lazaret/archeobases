@@ -92,13 +92,12 @@ def parcours(db, dirname, names):
             t1 = string.find(filename, '-')
             f = string.find(filename, 'F')
             t2 = string.rfind(filename, '-')
-# on convertit les chiffres romain en chiffres arabes
+            # on convertit les chiffres romain en chiffres arabes
             zone = arabe[filename[z+1:g]]
             groupe = arabe[filename[g+1:r]]
-            roche  = filename[r+1:t1]
+            roche = filename[r+1:t1]
             # on remplace les petites lettres par @petite lettre pour la roche
             for i in grec.keys():
-                #print roche,i,grec[i]
                 if string.find(roche, 'bis') < 0:
                     roche = string.replace(roche, i, grec[i])
         if f >= 0:

@@ -15,4 +15,4 @@
 import fracture
 
 
-fracture.Fracture("bas","fracture_nucleus").traite_parametre(["zone", "numero", "bis", "f_ordre"])
+fracture.Fracture("bas","fracture_nucleus").traite_parametre(("zone", "numero", "bis", "f_ordre"))

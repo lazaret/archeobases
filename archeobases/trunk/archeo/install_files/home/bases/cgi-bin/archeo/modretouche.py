@@ -16,4 +16,4 @@ import archeoconf
 import retouche
 
 
-retouche.Retouche("bas").traite_parametre(["zone", "numero", "bis", "r_ordre"], parent=archeoconf.getparent())
+retouche.Retouche("bas").traite_parametre(("zone", "numero", "bis", "r_ordre"), parent=archeoconf.getparent())

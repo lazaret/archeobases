@@ -26,33 +26,33 @@ class Fracture_Industrie(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =   {
-                    "zone"         : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"          : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "fi_ordre"     : {"type": "decimal", "default": 0, "mandatory": 1 , "longueur": 0, "memory": 0}, \
-                    "fi_type"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "fi_percussion": {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "fi_mode"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "fi_localisation": {"type": "text", "default": "", "mandatory": 0 , "longueur": 10}, \
-                    "fi_anciennete": {"type": "text", "default": "", "mandatory": 0 , "longueur": 3}, \
-                    "fi_relation"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 7}, \
-                   }
+                    "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "fi_ordre"     : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 0, "memory": 0},
+                    "fi_type"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "fi_percussion": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "fi_mode"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "fi_localisation": {"type": "text", "default": "", "mandatory": 0, "longueur": 10},
+                    "fi_anciennete": {"type": "text", "default": "", "mandatory": 0, "longueur": 3},
+                    "fi_relation"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
+                    }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__ = ["zone", "numero", "bis", "fi_ordre"]
+    __listenfants__ = ()
+    __listeclefs__ = ("zone", "numero", "bis", "fi_ordre")
     __vraiparent__ = "industrie"
-    __listeparents__ = ["industrie"]
+    __listeparents__ = ("industrie",)
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "fi_ordre", "fi_type", "fi_percussion", "fi_mode", "fi_localisation", "fi_anciennete", "fi_relation"]
+    __listechamps__ = ("zone", "numero", "bis", "fi_ordre", "fi_type", "fi_percussion", "fi_mode", "fi_localisation", "fi_anciennete", "fi_relation")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "fi_ordre", "fi_type",  "fi_percussion", "fi_mode",  "fi_localisation", "fi_anciennete", "fi_relation"]
+    __ordrechamps__ = ("zone", "numero", "bis", "fi_ordre", "fi_type",  "fi_percussion", "fi_mode",  "fi_localisation", "fi_anciennete", "fi_relation")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def __init__(self, parent, nomtable=None):
         self.__tablename__ = nomtable
@@ -148,23 +148,23 @@ class Fracture_Industrie(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'fracture courant"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "fi_ordre"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des figures ou des photos sur cette industrie on refuse la suppression
         # on efface la fracture
-        self.delete_records(["zone", "numero", "bis", "fi_ordre"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si l' fracture existe, on refuse de le creer
-        if self.exist(["zone", "numero", "bis", "fi_ordre"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "fi_ordre": None}
             return (-1, primarykeys)
         else:
             # sinon si son parent n'existe pas, on refuse
-            if not self.exist(["zone", "numero", "bis"], table="industrie"):
+            if not self.exist(("zone", "numero", "bis"), table="industrie"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             # sinon si son parent existe, on le cree

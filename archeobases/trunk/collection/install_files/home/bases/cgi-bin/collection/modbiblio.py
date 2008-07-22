@@ -15,5 +15,5 @@
 import biblio
 
 
-biblio.Biblio("bas").traite_saisie(["identifiant"])
+biblio.Biblio("bas").traite_saisie(("identifiant",))
 

@@ -26,38 +26,38 @@ class Fracture_Faune(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"         : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"          : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "ff_localisation1": {"type": "text", "mandatory": 0 , "longueur": 0}, \
-                    "ff_non1"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ff_angle1"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ff_aspect1"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ff_profil1"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 3}, \
-                    "ff_morphologie1": {"type": "text", "default": "", "mandatory": 0 , "longueur": 3}, \
-                    "ff_localisation2": {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ff_non2"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ff_angle2"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ff_aspect2"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ff_profil2"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 3}, \
-                    "ff_morphologie2": {"type": "text", "default": "", "mandatory": 0 , "longueur": 3}, \
+                    "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "ff_localisation1": {"type": "text", "mandatory": 0, "longueur": 0}, \
+                    "ff_non1"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ff_angle1"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ff_aspect1"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ff_profil1"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 3},
+                    "ff_morphologie1": {"type": "text", "default": "", "mandatory": 0, "longueur": 3},
+                    "ff_localisation2": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ff_non2"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ff_angle2"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ff_aspect2"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ff_profil2"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 3},
+                    "ff_morphologie2": {"type": "text", "default": "", "mandatory": 0, "longueur": 3},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "faune"]
-    __listeclefs__ = ["zone", "numero", "bis"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "faune")
+    __listeclefs__ = ("zone", "numero", "bis")
     __vraiparent__ = "faune"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "ff_localisation1", "ff_non1", "ff_angle1", "ff_aspect1", "ff_profil1", "ff_morphologie1", "ff_localisation2", "ff_non2", "ff_angle2", "ff_aspect2", "ff_profil2", "ff_morphologie2"]
+    __listechamps__ = ("zone", "numero", "bis", "ff_localisation1", "ff_non1", "ff_angle1", "ff_aspect1", "ff_profil1", "ff_morphologie1", "ff_localisation2", "ff_non2", "ff_angle2", "ff_aspect2", "ff_profil2", "ff_morphologie2")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "f_famille", "f_genre", "f_espece", "ff_localisation1", "ff_non1", "ff_angle1", "ff_aspect1", "ff_profil1", "ff_morphologie1", "ff_localisation2", "ff_non2", "ff_angle2", "ff_aspect2", "ff_profil2", "ff_morphologie2"]
+    __ordrechamps__ = ("zone", "numero", "bis", "f_famille", "f_genre", "f_espece", "ff_localisation1", "ff_non1", "ff_angle1", "ff_aspect1", "ff_profil1", "ff_morphologie1", "ff_localisation2", "ff_non2", "ff_angle2", "ff_aspect2", "ff_profil2", "ff_morphologie2")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -108,17 +108,17 @@ class Fracture_Faune(archeodata.Data):
     def f_famille_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 1, enreg, penreg)
 
     def f_genre_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 1, enreg, penreg)
 
     def f_espece_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 1, enreg, penreg)
 
 ################################### En entrée ########################################
@@ -178,23 +178,23 @@ class Fracture_Faune(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la fracture courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface la fracture_faune sur éclat
-        self.delete_records(["zone", "numero", "bis"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la fracture_faune n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la fracture_faune dans la base
             # sauf si la faune n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="faune"):
+            if not self.exist(self.__listeclefs__, table="faune"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

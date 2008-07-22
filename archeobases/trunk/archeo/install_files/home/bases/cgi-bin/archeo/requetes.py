@@ -33,7 +33,7 @@ elabore = "Elaboré"
 simplifie = "Simplifié"
 telechargexls = "Fichier format Excel"
 telechargecsv = "Fichier format CSV"
-liste_affichage = [simplifie, elabore, telechargexls, telechargecsv]
+liste_affichage = (simplifie, elabore, telechargexls, telechargecsv)
 affichage_default = simplifie
 
 
@@ -212,7 +212,7 @@ if ruser not in archeoconf.visitorusers:
             # par fatalerror_message() 5 secondes c'est plutot pas mal.
             # debut du timer activé seulement pour l'affichage html élaboré et simplifié
             # et si le module threading a été correctement importé (le timer casse cvs.witer)
-            if form["presentation"].value in [elabore, simplifie] and havethreads:
+            if form["presentation"].value in (elabore, simplifie) and havethreads:
                 heure_debut = time.time()
                 rendezvous = threading.Event()
                 threading.Thread(target=mixed_part_handler, kwargs={"parent": threading.currentThread(), "indicateur": rendezvous, "timer": premier_timer}).start()

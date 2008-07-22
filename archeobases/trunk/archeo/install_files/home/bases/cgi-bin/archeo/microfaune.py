@@ -26,58 +26,58 @@ class Microfaune(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0}, \
-                    "numero"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6}, \
-                    "bis"           : {"type": "text", "default": "", "mandatory": 1, "longueur": 0}, \
-                    "mf_serie"      : {"type": "text", "default": "1", "mandatory": 1, "longueur": 2}, \
-                    "mf_type"       : {"type": "text", "default": "", "mandatory": 1, "longueur": 0}, \
-                    "mf_m1"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m2"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m3"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m4"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m5"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m6"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m7"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m8"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m9"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m10"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m11"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m12"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m13"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m14"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m15"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m16"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m17"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m18"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m19"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m20"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m21"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m22"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m23"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m24"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m25"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m26"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m27"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m28"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m29"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "mf_m30"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5}, \
+                    "zone"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0},
+                    "numero"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6},
+                    "bis"           : {"type": "text", "default": "", "mandatory": 1, "longueur": 0},
+                    "mf_serie"      : {"type": "text", "default": "1", "mandatory": 1, "longueur": 2},
+                    "mf_type"       : {"type": "text", "default": "", "mandatory": 1, "longueur": 0},
+                    "mf_m1"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m2"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m3"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m4"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m5"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m6"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m7"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m8"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m9"         : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m10"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m11"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m12"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m13"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m14"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m15"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m16"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m17"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m18"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m19"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m20"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m21"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m22"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m23"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m24"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m25"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m26"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m27"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m28"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m29"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
+                    "mf_m30"        : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 5},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "faune"]
-    __listeclefs__ = ["zone", "numero", "bis", "mf_serie", "mf_type"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "faune")
+    __listeclefs__ = ("zone", "numero", "bis", "mf_serie", "mf_type")
     __vraiparent__ = "faune"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "mf_serie", "mf_type", "mf_m1", "mf_m2", "mf_m3", "mf_m4", "mf_m5", "mf_m6", "mf_m7", "mf_m8", "mf_m9", "mf_m10", "mf_m11", "mf_m12", "mf_m13", "mf_m14", "mf_m15", "mf_m16", "mf_m17", "mf_m18", "mf_m19", "mf_m20", "mf_m21", "mf_m22", "mf_m23", "mf_m24", "mf_m25", "mf_m26", "mf_m27", "mf_m28", "mf_m29", "mf_m30"]
+    __listechamps__ = ("zone", "numero", "bis", "mf_serie", "mf_type", "mf_m1", "mf_m2", "mf_m3", "mf_m4", "mf_m5", "mf_m6", "mf_m7", "mf_m8", "mf_m9", "mf_m10", "mf_m11", "mf_m12", "mf_m13", "mf_m14", "mf_m15", "mf_m16", "mf_m17", "mf_m18", "mf_m19", "mf_m20", "mf_m21", "mf_m22", "mf_m23", "mf_m24", "mf_m25", "mf_m26", "mf_m27", "mf_m28", "mf_m29", "mf_m30")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "mf_serie", "mf_type", "f_famille", "f_genre", "f_espece", "mf_m1", "mf_m2", "mf_m3", "mf_m4", "mf_m5", "mf_m6", "mf_m7", "mf_m8", "mf_m9", "mf_m10", "mf_m11", "mf_m12", "mf_m13", "mf_m14", "mf_m15", "mf_m16", "mf_m17", "mf_m18", "mf_m19", "mf_m20", "mf_m21", "mf_m22", "mf_m23", "mf_m24", "mf_m25", "mf_m26", "mf_m27", "mf_m28", "mf_m29", "mf_m30"]
+    __ordrechamps__ = ("zone", "numero", "bis", "mf_serie", "mf_type", "f_famille", "f_genre", "f_espece", "mf_m1", "mf_m2", "mf_m3", "mf_m4", "mf_m5", "mf_m6", "mf_m7", "mf_m8", "mf_m9", "mf_m10", "mf_m11", "mf_m12", "mf_m13", "mf_m14", "mf_m15", "mf_m16", "mf_m17", "mf_m18", "mf_m19", "mf_m20", "mf_m21", "mf_m22", "mf_m23", "mf_m24", "mf_m25", "mf_m26", "mf_m27", "mf_m28", "mf_m29", "mf_m30")
     __orderby__ = " ORDER BY zone, numero, bis, mf_serie, mf_type ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -150,17 +150,17 @@ class Microfaune(archeodata.Data):
     def f_famille_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 2, enreg, penreg)
 
     def f_genre_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 2, enreg, penreg)
 
     def f_espece_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 2, enreg, penreg)
 
 ################################### En entrée ########################################
@@ -272,23 +272,23 @@ class Microfaune(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la micro courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "mf_serie", "mf_type"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface la microfaune sur éclat
-        self.delete_records(["zone", "numero", "bis", "mf_serie", "mf_type"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la microfaune n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis", "mf_serie", "mf_type"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "o_ordre": None, "mf_serie": None, "mf_type": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la microfaune dans la base
             # sauf si la faune n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="faune"):
+            if not self.exist(("zone", "numero", "bis"), table="faune"):
                 primarykeys = {"zone": None, "numero": None, "bis": None, "mf_serie": None, "mf_type": None}
                 return (-2, primarykeys)
             else:

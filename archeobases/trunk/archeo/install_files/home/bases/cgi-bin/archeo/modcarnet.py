@@ -15,4 +15,4 @@
 import carnet
 
 
-carnet.Carnet("bas").traite_saisie(["zone", "numero", "bis"])
+carnet.Carnet("bas").traite_saisie(("zone", "numero", "bis"))

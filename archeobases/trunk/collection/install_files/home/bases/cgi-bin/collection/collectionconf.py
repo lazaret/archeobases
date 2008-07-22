@@ -41,7 +41,7 @@ copyright_link      = "mailto:" + author_email
 copyright_font_size = "-3"
 
 #Liste des clefs créant un lien dans requetes.py
-linkeys = ["coderequete"]
+linkeys = ("coderequete",)
 
 #
 # Couleurs de fond des trois parties de l'écran ou None

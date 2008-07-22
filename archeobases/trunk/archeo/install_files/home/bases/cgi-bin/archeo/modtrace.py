@@ -15,4 +15,4 @@
 import trace
 
 
-trace.Trace("bas").traite_saisie(["zone", "numero", "bis", "t_ensemble"])
+trace.Trace("bas").traite_saisie(("zone", "numero", "bis", "t_ensemble"))

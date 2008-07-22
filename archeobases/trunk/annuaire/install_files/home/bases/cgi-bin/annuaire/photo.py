@@ -23,13 +23,13 @@ class Photo(annuairedata.Data):
     # les champs minimum de la table photoxx
     __color__ = annuaireconf.bas_bgcolor
     __champs__ = { \
-                "idphoto": {"type": "seq",  "default": "nextval('seq_idphoto')", "mandatory": 1, "longueur": 0}, \
-                "numero" : {"type": "int",  "default": 0,  "mandatory": 1, "longueur": 0}, \
-                "legende": {"type": "text", "default": "", "mandatory": 0, "longueur": 50}, \
+                "idphoto": {"type": "seq",  "default": "nextval('seq_idphoto')", "mandatory": 1, "longueur": 0},
+                "numero" : {"type": "int",  "default": 0,  "mandatory": 1, "longueur": 0},
+                "legende": {"type": "text", "default": "", "mandatory": 0, "longueur": 50},
                 }
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = [ "identifiant" ]
+    __listechamps__ = ("identifiant",)
 
     def __init__(self, parent, nomtable):
         self.__tablename__ = nomtable
@@ -92,7 +92,7 @@ class Photo(annuairedata.Data):
             os.unlink(normale)
         except:
             annuaireconf.fatalerror_message("Impossible d'effacer la photo " + fname)
-        self.delete_records(["idphoto"])
+        self.delete_records(("idphoto",))
         self.retour()
 
     def creer(self):

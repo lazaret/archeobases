@@ -15,4 +15,4 @@
 import nucleus
 
 
-nucleus.Nucleus("bas").traite_saisie(["zone", "numero", "bis"])
+nucleus.Nucleus("bas").traite_saisie(("zone", "numero", "bis"))

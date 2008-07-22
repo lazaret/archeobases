@@ -115,7 +115,7 @@ def display_zone_photo(doc, enreg, penreg = None, alignement = "right"):
         listezones[i] = i
     if penreg and penreg.has_key("zone"):
         liste_deroulante(doc, "zone", listezones, penreg, dontchange=1)
-    else :
+    else:
         liste_deroulante(doc, "zone", listezones, enreg, dontchange=1)
     doc.pop()
 

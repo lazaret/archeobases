@@ -189,7 +189,7 @@ db = begoconf.BegoDataBase(username="bego")
 form = cgi.FieldStorage()
 if form.has_key("action"):
     dico = {"action": "Modifier"}
-    for champ in ["zone", "groupe", "roche", "face", "association"]:
+    for champ in ("zone", "groupe", "roche", "face", "association"):
         dico[champ] = form[champ].value
     urlretour = urllib.urlencode(dico)
     if form["action"].value == "<-- Enlever":

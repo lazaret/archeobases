@@ -16,4 +16,4 @@ import begoconf
 import face
 
 
-face.Face("bas").traite_saisie(["zone", "groupe", "roche", "face"], parent=begoconf.getparent())
+face.Face("bas").traite_saisie(("zone", "groupe", "roche", "face"), parent=begoconf.getparent())

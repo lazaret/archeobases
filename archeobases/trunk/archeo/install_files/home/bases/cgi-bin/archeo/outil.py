@@ -27,48 +27,48 @@ class Outil(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =   {
-                    "zone"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0 , "memory": 1}, \
-                    "numero"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6 , "memory": 1}, \
-                    "bis"           : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "o_ordre"       : {"type": "int", "default": 0 , "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "o_code"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_code_comp"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_retouche"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_orientation" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_origine"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_destination" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_etat"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_tranchant"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_sens"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_relation"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 7}, \
-                    "o_serie"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_forme"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_chronologie" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "o_a"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
-                    "o_b"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
-                    "o_c"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
-                    "o_d"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
-                    "o_e"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
-                    "o_f"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
-                    "o_g"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
-                    "o_h"           : {"type": "decimal", "mandatory": 0 , "longueur": "3"}, \
+                    "zone"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"           : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "o_ordre"       : {"type": "int", "default": 0, "mandatory": 1, "longueur": 0, "memory": 1},
+                    "o_code"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_code_comp"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_retouche"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_orientation" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_origine"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_destination" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_etat"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_tranchant"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_sens"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_relation"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
+                    "o_serie"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_forme"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_chronologie" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "o_a"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
+                    "o_b"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
+                    "o_c"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
+                    "o_d"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
+                    "o_e"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
+                    "o_f"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
+                    "o_g"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
+                    "o_h"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
                    }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "industrie"]
-    __listeclefs__ = ["zone", "numero", "bis", "o_ordre"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "industrie")
+    __listeclefs__ = ("zone", "numero", "bis", "o_ordre")
     __vraiparent__ = "carnet"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "o_ordre", "o_code", "o_code_comp", "o_retouche", "o_etat", "o_serie", "o_chronologie", "o_origine", "o_destination", "o_tranchant", "o_relation", "o_sens", "o_forme", "o_orientation", "o_a", "o_b", "o_c", "o_d", "o_e", "o_f", "o_g", "o_h"]
+    __listechamps__ = ("zone", "numero", "bis", "o_ordre", "o_code", "o_code_comp", "o_retouche", "o_etat", "o_serie", "o_chronologie", "o_origine", "o_destination", "o_tranchant", "o_relation", "o_sens", "o_forme", "o_orientation", "o_a", "o_b", "o_c", "o_d", "o_e", "o_f", "o_g", "o_h")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "o_ordre", "o_code", "o_code_comp", "o_retouche", "o_etat", "o_origine", "o_destination", "o_sens", "o_tranchant", "o_relation", "o_serie", "o_forme", "o_orientation", "o_chronologie", "o_a", "o_b", "o_c", "o_d", "o_e", "o_f", "o_g", "o_h"]
+    __ordrechamps__ = ("zone", "numero", "bis", "o_ordre", "o_code", "o_code_comp", "o_retouche", "o_etat", "o_origine", "o_destination", "o_sens", "o_tranchant", "o_relation", "o_serie", "o_forme", "o_orientation", "o_chronologie", "o_a", "o_b", "o_c", "o_d", "o_e", "o_f", "o_g", "o_h")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["photooutil", "outil"]
+    __formsupp__ = ("photooutil", "outil")
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -132,10 +132,10 @@ class Outil(archeodata.Data):
     def o_code_base_to_form(self, enreg, penreg=None):
         afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
         self.__doc__.push()
-        afficheclefs.champ_nsaisie(self, "o_code", "code simple/multiple", 20, 20 ," ", 2, enreg,  penreg)
+        afficheclefs.champ_nsaisie(self, "o_code", "code simple/multiple", 20, 20," ", 2, enreg,  penreg)
 
     def o_code_comp_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_nsaisie(self, "o_code_comp", "composite", 15, 20 , "", 1, enreg,  penreg)
+        afficheclefs.champ_nsaisie(self, "o_code_comp", "composite", 15, 20, "", 1, enreg,  penreg)
         self.__doc__.pop()
 
     def o_retouche_base_to_form(self, enreg, penreg=None):
@@ -160,7 +160,7 @@ class Outil(archeodata.Data):
 
     def o_tranchant_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_nsaisie(self, "o_tranchant", "tranchant", 7, 20 , " ", 1 ,enreg,  penreg)
+        afficheclefs.champ_nsaisie(self, "o_tranchant", "tranchant", 7, 20, " ", 1,enreg,  penreg)
 
     def o_relation_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_saisie(self, "o_relation", "relation", 5, 20, "", enreg, penreg)
@@ -183,7 +183,7 @@ class Outil(archeodata.Data):
 
     def o_a_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_saisie(self, "o_a", "A", 3, 20 , " ", enreg,  penreg)
+        afficheclefs.champ_saisie(self, "o_a", "A", 3, 20, " ", enreg,  penreg)
 
     def o_b_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_saisie(self, "o_b", "B", 3, 20, "", enreg,  penreg)
@@ -309,23 +309,23 @@ class Outil(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la industrie courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "o_ordre"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface l'outil sur éclat
-        self.delete_records(["zone", "numero", "bis", "o_ordre"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si l'outil n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis", "o_ordre"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "o_ordre": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant l'outil dans la base
             # sauf si l'industrie n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="industrie"):
+            if not self.exist(("zone", "numero", "bis"), table="industrie"):
             #"eclat"):
                 primarykeys = {"zone": None, "numero": None, "bis": None, "o_": None}
                 return (-2, primarykeys)

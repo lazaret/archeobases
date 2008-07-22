@@ -28,64 +28,63 @@ class Anthropologie(collectiondata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"          : {"type": "text", "mandatory": 1, "longueur": 20, "memory": 1}, \
-                "m_type_materiel"      : {"type": "text", "default": "ANTHROPOLOGIE", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                "m_type_support"       : {"type": "text", "default": "MOULAGE_ANTHROPOLOGIE", "mandatory": 0, "longueur": 0, "memory": 0}, \
-                "m_groupe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 30,  "memory": 0}, \
-                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,   "memory": 0}, \
-                "m_nom_commun"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_nom_familier"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 15,  "memory": 0}, \
-                "m_nom_fossile"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_numero_inventaire"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 10,  "memory": 0}, \
-                "m_age_absolu"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_ville"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_individu"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 3,   "memory": 0}, \
-                "m_depot_original"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50,  "memory": 0}, \
-                "m_genre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_espece"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_holotype_espece"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_synonymes"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 100, "memory": 0}, \
-                "m_description_anatomique": {"type": "text", "default": "", "mandatory": 0 , "longueur": 300, "memory": 0}, \
-                "m_date_decouverte"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0}, \
-                "m_inventeur"          : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0}, \
-                "m_origine"            : {"type": "text", "default": "", "mandatory": 0 , "longueur": 30,  "memory": 0}, \
-                "m_date"               : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0}, \
-                "m_date_acquisition"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0}, \
-                "m_depot_moule"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 50,  "memory": 0}, \
-                "m_nature"             : {"type": "text", "default": "", "mandatory": 0 , "longueur": 15,  "memory": 0}, \
-                "m_observations"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 500, "memory": 0}, \
-                "m_bibliographie"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 500, "memory": 0}, \
-                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0 , "longueur": 150, "memory": 0}, \
-                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0 , "longueur": 2 , "memory": 0}, \
-                "m_date_modif"         : {"type": "date", "default": "",  "mandatory": 0 , "longueur": 0 , "memory": 0}, \
-                "m_saisie"             : {"type": "date", "mandatory": 0 , "longueur": 10}, \
+                "identifiant"          : {"type": "text", "mandatory": 1, "longueur": 20, "memory": 1},
+                "m_type_materiel"      : {"type": "text", "default": "ANTHROPOLOGIE", "mandatory": 1, "longueur": 0, "memory": 1},
+                "m_type_support"       : {"type": "text", "default": "MOULAGE_ANTHROPOLOGIE", "mandatory": 0, "longueur": 0, "memory": 0},
+                "m_groupe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 30,  "memory": 0},
+                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,   "memory": 0},
+                "m_nom_commun"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_nom_familier"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 15,  "memory": 0},
+                "m_nom_fossile"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_numero_inventaire"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 10,  "memory": 0},
+                "m_age_absolu"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_ville"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_individu"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 3,   "memory": 0},
+                "m_depot_original"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50,  "memory": 0},
+                "m_genre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_espece"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_holotype_espece"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_synonymes"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 100, "memory": 0},
+                "m_description_anatomique": {"type": "text", "default": "", "mandatory": 0 , "longueur": 300, "memory": 0},
+                "m_date_decouverte"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},
+                "m_inventeur"          : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},
+                "m_origine"            : {"type": "text", "default": "", "mandatory": 0 , "longueur": 30,  "memory": 0},
+                "m_date"               : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},
+                "m_date_acquisition"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},
+                "m_depot_moule"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 50,  "memory": 0},
+                "m_nature"             : {"type": "text", "default": "", "mandatory": 0 , "longueur": 15,  "memory": 0},
+                "m_observations"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 500, "memory": 0},
+                "m_bibliographie"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 500, "memory": 0},
+                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0 , "longueur": 150, "memory": 0},
+                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0 , "longueur": 2 , "memory": 0},
+                "m_date_modif"         : {"type": "date", "default": "",  "mandatory": 0 , "longueur": 0 , "memory": 0},
+                "m_saisie"             : {"type": "date", "mandatory": 0 , "longueur": 10},
                 }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeclefs__    = ["identifiant"]
+    __listenfants__   = ()
+    __listeclefs__    = ("identifiant",)
     __vraiparent__    = "anthropologie"
-
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_groupe", "m_etagere", "m_nom_commun", \
-                       "m_nom_familier", "m_nom_fossile", "m_nom_site", "m_numero_inventaire", "m_age_absolu", "m_ville", "m_pays","m_individu", \
-                       "m_depot_original", "m_genre", "m_espece", "m_holotype_espece", \
-                       "m_synonymes", "m_description_anatomique", "m_date_decouverte", "m_inventeur", "m_origine", \
-                       "m_date", "m_date_acquisition", "m_depot_moule", "m_nature", "m_observations", "m_bibliographie", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif"]
+    __listechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_groupe", "m_etagere", "m_nom_commun",
+                       "m_nom_familier", "m_nom_fossile", "m_nom_site", "m_numero_inventaire", "m_age_absolu", "m_ville",
+                       "m_pays", "m_individu", "m_depot_original", "m_genre", "m_espece", "m_holotype_espece",
+                       "m_synonymes", "m_description_anatomique", "m_date_decouverte", "m_inventeur", "m_origine",
+                       "m_date", "m_date_acquisition", "m_depot_moule", "m_nature", "m_observations", "m_bibliographie",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif")
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_groupe", "m_etagere", "m_nom_commun", \
-                       "m_nom_familier", "m_nom_fossile", "m_nom_site", "m_numero_inventaire", "m_age_absolu", "m_ville", "m_pays", "m_individu", \
-                       "m_depot_original", "m_genre", "m_espece", "m_holotype_espece", \
-                       "m_synonymes", "m_description_anatomique","m_date_decouverte", "m_inventeur", "m_origine", \
-                       "m_date", "m_date_acquisition", "m_depot_moule", "m_nature", "m_observations", "m_bibliographie", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif", "m_saisie", "liens"]
+    __ordrechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_groupe", "m_etagere", "m_nom_commun",
+                       "m_nom_familier", "m_nom_fossile", "m_nom_site", "m_numero_inventaire", "m_age_absolu", "m_ville",
+                       "m_pays", "m_individu", "m_depot_original", "m_genre", "m_espece", "m_holotype_espece",
+                       "m_synonymes", "m_description_anatomique","m_date_decouverte", "m_inventeur", "m_origine",
+                       "m_date", "m_date_acquisition", "m_depot_moule", "m_nature", "m_observations", "m_bibliographie",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif", "m_saisie", "liens")
     __orderby__ = " ORDER BY identifiant ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []#"photomateriel"]
+    __formsupp__ = ()
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -96,7 +95,7 @@ class Anthropologie(collectiondata.Data):
     def champ_verify(self, fieldname, value):
         # si la longueur de la valeur issue du formulaire est > a la longueur
         # definie dans l'attribut longueur des champs
-        if  (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"])*2):
+        if (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"])*2):
             return -1       # erreur
         else:
             return 0
@@ -284,7 +283,7 @@ class Anthropologie(collectiondata.Data):
     def m_saisie_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             self.__doc__.push()
-            afficheclefs.champ_saisie(self,"m_saisie", "Fiche saisie le", 10, 20, " ", enreg, penreg)
+            afficheclefs.champ_saisie(self, "m_saisie", "Fiche saisie le", 10, 20, " ", enreg, penreg)
             self.__doc__.pop()
 
     def liens_base_to_form(self, enreg, penreg=None):
@@ -388,11 +387,11 @@ class Anthropologie(collectiondata.Data):
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
                 self.__doc__.hidden(name="identifiant", value=photo["identifiant"])
                 self.__doc__.hidden(name="referer", value=self.__doc__.script_name())
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
@@ -421,7 +420,7 @@ class Anthropologie(collectiondata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour le anthropologie courant"""
-        self.__db__.query(self.make_update_query(["identifiant"],"materiel"))
+        self.__db__.query(self.make_update_query(self.__listeclefs__, "materiel"))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
         self.__db__.query(update_date)
@@ -442,19 +441,19 @@ class Anthropologie(collectiondata.Data):
         except:
             collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
         # on efface le anthropologie
-        self.delete_records(["identifiant"],"materiel")
+        self.delete_records(self.__listeclefs__, "materiel")
         return 0
 
     def creer(self):
         # si le anthropologie n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"], table="materiel"):
+        if self.exist(self.__listeclefs__, table="materiel"):
             primarykeys = {"identifiant": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant le anthropologie dans la base
             i = self.__form__["identifiant"].value
             self.__db__.query(self.make_insert_query({},"materiel"))
-            primarykeys = { "identifiant": i}
+            primarykeys = {"identifiant": i}
             update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
             self.__db__.query(update_date)
             return (0, primarykeys)

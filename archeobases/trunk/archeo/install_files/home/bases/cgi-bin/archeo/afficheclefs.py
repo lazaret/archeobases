@@ -392,7 +392,7 @@ def display_x_serie(objet, nom_champ, n, enreg, penreg=None, alignement="right",
     for i in range(1, int(n)+1):
         listeordres.update({i: str(i)})
     if objet.__form__.has_key("action") and ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Nouvel")):
-        liste_deroulante(objet, nom_champ, listeordres, getval(objet, nom_champ, enreg, penreg) , dontchange=0)
+        liste_deroulante(objet, nom_champ, listeordres, getval(objet, nom_champ, enreg, penreg), dontchange=0)
     else:
         liste_deroulante(objet, nom_champ, listeordres, getval(objet, nom_champ, enreg, penreg), dontchange=1)
     objet.__doc__.pop()
@@ -438,7 +438,7 @@ def display_x_rang(objet, nom_champ, n, enreg, penreg=None, alignement="right", 
     for i in range(1, int(n)+1):
         listeordres.update({i: str(i)})
     if objet.__form__.has_key("action") and ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Nouvel")):
-        liste_deroulante(objet, nom_champ, listeordres, getval(objet, nom_champ, enreg, penreg) , dontchange=0)
+        liste_deroulante(objet, nom_champ, listeordres, getval(objet, nom_champ, enreg, penreg), dontchange=0)
     else:
         liste_deroulante(objet, nom_champ, listeordres, getval(objet, nom_champ, enreg, penreg), dontchange=1)
     objet.__doc__.pop()

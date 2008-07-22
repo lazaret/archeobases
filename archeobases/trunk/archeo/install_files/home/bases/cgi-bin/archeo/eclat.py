@@ -27,61 +27,61 @@ class Eclat(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"             : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "numero"           : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6 , "memory": 1}, \
-                    "bis"              : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
+                    "zone"             : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"           : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"              : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
                     "e_code"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
-                    "e_debitage"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "e_type"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "e_section_long"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_section_trans"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_contour"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "e_enlevement"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "e_bulbe"          : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_talon"          : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_cone"           : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_onde"           : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_epi"            : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_strie"          : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_parasite"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_secondaire"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_charniere"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_carene"         : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_type"           : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "e_longm"          : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_largm"          : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_fa"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_fb"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_fc"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_fd"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_fe"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_ff"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_ta"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_tb"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_tc"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_td"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_te"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_tf"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_ti"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_tg"             : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "e_thc"            : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
+                    "e_debitage"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_type"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_section_long"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_section_trans"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_contour"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_enlevement"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_bulbe"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_talon"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_cone"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_onde"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_epi"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_strie"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_parasite"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_secondaire"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_charniere"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_carene"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_type"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "e_longm"          : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_largm"          : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_fa"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_fb"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_fc"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_fd"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_fe"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_ff"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_ta"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_tb"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_tc"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_td"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_te"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_tf"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_ti"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_tg"             : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "e_thc"            : {"type": "decimal", "mandatory": 0, "longueur": 3},
                     }
     #
     # liste des tables enfants
-    __listenfants__  = []
-    __listeparents__ = ["carnet", "industrie"]
-    __listeclefs__   = ["zone", "numero", "bis"]
+    __listenfants__  = ()
+    __listeparents__ = ("carnet", "industrie")
+    __listeclefs__   = ("zone", "numero", "bis")
     __vraiparent__   = "industrie"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "e_code", "e_debitage", "e_type", "e_section_long", "e_section_trans", "e_contour", "e_enlevement", "e_bulbe", "e_talon", "e_cone", "e_onde", "e_epi", "e_strie", "e_parasite", "e_secondaire", "e_charniere", "e_carene", "e_longm", "e_largm", "e_fa", "e_fb", "e_fc", "e_fd", "e_fe", "e_ff", "e_ta", "e_tb", "e_tc", "e_td", "e_te", "e_tf", "e_ti", "e_tg", "e_thc"]
+    __listechamps__ = ("zone", "numero", "bis", "e_code", "e_debitage", "e_type", "e_section_long", "e_section_trans", "e_contour", "e_enlevement", "e_bulbe", "e_talon", "e_cone", "e_onde", "e_epi", "e_strie", "e_parasite", "e_secondaire", "e_charniere", "e_carene", "e_longm", "e_largm", "e_fa", "e_fb", "e_fc", "e_fd", "e_fe", "e_ff", "e_ta", "e_tb", "e_tc", "e_td", "e_te", "e_tf", "e_ti", "e_tg", "e_thc")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "e_code", "e_debitage", "e_type", "e_section_long", "e_section_trans", "e_contour", "e_enlevement", "e_talon", "e_bulbe", "e_cone", "e_onde", "e_epi", "e_strie", "e_parasite", "e_secondaire", "e_charniere", "e_carene", "e_longm", "e_largm", "e_fa", "e_fb", "e_fc", "e_fd", "e_fe", "e_ff", "e_ta", "e_tb", "e_tc", "e_td", "e_te", "e_tf", "e_ti", "e_tg", "e_thc"]
+    __ordrechamps__ = ("zone", "numero", "bis", "e_code", "e_debitage", "e_type", "e_section_long", "e_section_trans", "e_contour", "e_enlevement", "e_talon", "e_bulbe", "e_cone", "e_onde", "e_epi", "e_strie", "e_parasite", "e_secondaire", "e_charniere", "e_carene", "e_longm", "e_largm", "e_fa", "e_fb", "e_fc", "e_fd", "e_fe", "e_ff", "e_ta", "e_tb", "e_tc", "e_td", "e_te", "e_tf", "e_ti", "e_tg", "e_thc")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = [ "bords" ]
+    __formsupp__ = ("bords",)
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -294,22 +294,22 @@ class Eclat(archeodata.Data):
 #########################################################################
     def modifier(self):
         """Met a jour l'eclat courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
-        self.delete_records(["zone", "numero", "bis"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si l'eclat n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant l'eclat dans la base
             # sauf si la bis n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="industrie"):
+            if not self.exist(self.__listeclefs__, table="industrie"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

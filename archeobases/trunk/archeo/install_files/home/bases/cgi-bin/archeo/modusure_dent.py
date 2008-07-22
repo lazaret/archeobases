@@ -15,4 +15,4 @@
 import usure_dent
 
 
-usure_dent.Usure_Dent("bas").traite_saisie(["zone", "numero", "bis", "ud_serie"])
+usure_dent.Usure_Dent("bas").traite_saisie(("zone", "numero", "bis", "ud_serie"))

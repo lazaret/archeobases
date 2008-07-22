@@ -15,5 +15,5 @@
 import anthropologie
 
 
-anthropologie.Anthropologie("bas").traite_saisie(["identifiant"])
+anthropologie.Anthropologie("bas").traite_saisie(("identifiant",))
 

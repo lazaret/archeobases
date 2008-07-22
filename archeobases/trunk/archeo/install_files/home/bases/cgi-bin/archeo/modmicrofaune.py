@@ -15,4 +15,4 @@
 import microfaune
 
 
-microfaune.Microfaune("bas").traite_saisie(["zone", "numero", "bis", "mf_serie", "mf_type"])
+microfaune.Microfaune("bas").traite_saisie(("zone", "numero", "bis", "mf_serie", "mf_type"))

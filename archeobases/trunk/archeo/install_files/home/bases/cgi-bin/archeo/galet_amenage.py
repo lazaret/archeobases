@@ -27,79 +27,79 @@ class Galet_amenage(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"         : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"          : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "ga_ordre"     : {"type": "int", "default": 0, "mandatory": 1 , "longueur": 2, "memory": 1}, \
-                    "ga_type"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_facture"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_qualite"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_nba"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_nbb"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_nbp"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_forme"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_arete"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_obliquite" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_orientation": {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_retouche"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_relation"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 7}, \
-                    "ga_cha"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chb"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chc"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chd"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_che"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chde"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chf"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ga_chg"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 75}, \
-                    "ga_chh"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chi"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chj"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chk"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chna"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chnb"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chl"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chm"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_cho"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chp"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chq"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chqq"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chr"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chrg"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chrd"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chrr"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chs"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_cht"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chu"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chw1"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chw2"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chv1"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chv2"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chv3"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chx"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chxx"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chy"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chyy"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chz1"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chz2"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chz3"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "ga_chz4"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                   }
+                    "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "ga_ordre"     : {"type": "int", "default": 0, "mandatory": 1, "longueur": 2, "memory": 1},
+                    "ga_type"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_facture"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_qualite"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_nba"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_nbb"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_nbp"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_forme"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_arete"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_obliquite" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_orientation": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_retouche"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_relation"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
+                    "ga_cha"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chb"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chc"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chd"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_che"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chde"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chf"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ga_chg"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 75},
+                    "ga_chh"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chi"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chj"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chk"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chna"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chnb"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chl"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chm"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_cho"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chp"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chq"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chqq"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chr"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chrg"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chrd"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chrr"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chs"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_cht"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chu"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chw1"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chw2"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chv1"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chv2"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chv3"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chx"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chxx"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chy"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chyy"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chz1"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chz2"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chz3"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "ga_chz4"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "industrie"]
-    __listeclefs__ = ["zone", "numero", "bis"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "industrie")
+    __listeclefs__ = ("zone", "numero", "bis")
     __vraiparent__ = "industrie"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "ga_ordre", "ga_type", "ga_facture", "ga_qualite", "ga_nba", "ga_nbb", "ga_nbp", "ga_forme", "ga_arete", "ga_orientation", "ga_obliquite", "ga_retouche", "ga_relation", "ga_cha", "ga_chb", "ga_chc", "ga_chd", "ga_che", "ga_chde", "ga_chf", "ga_chg" , "ga_chh",  "ga_chi", "ga_chj", "ga_chk", "ga_chna", "ga_chnb", "ga_chl", "ga_chm", "ga_cho", "ga_chp", "ga_chq" , "ga_chqq", "ga_chr", "ga_chrg", "ga_chrd", "ga_chrr", "ga_chs", "ga_cht", "ga_chu", "ga_chw1", "ga_chw2", "ga_chv1" , "ga_chv2", "ga_chv3", "ga_chx", "ga_chxx", "ga_chy", "ga_chyy", "ga_chz1", "ga_chz2", "ga_chz3", "ga_chz4"]
+    __listechamps__ = ("zone", "numero", "bis", "ga_ordre", "ga_type", "ga_facture", "ga_qualite", "ga_nba", "ga_nbb", "ga_nbp", "ga_forme", "ga_arete", "ga_orientation", "ga_obliquite", "ga_retouche", "ga_relation", "ga_cha", "ga_chb", "ga_chc", "ga_chd", "ga_che", "ga_chde", "ga_chf", "ga_chg", "ga_chh",  "ga_chi", "ga_chj", "ga_chk", "ga_chna", "ga_chnb", "ga_chl", "ga_chm", "ga_cho", "ga_chp", "ga_chq", "ga_chqq", "ga_chr", "ga_chrg", "ga_chrd", "ga_chrr", "ga_chs", "ga_cht", "ga_chu", "ga_chw1", "ga_chw2", "ga_chv1", "ga_chv2", "ga_chv3", "ga_chx", "ga_chxx", "ga_chy", "ga_chyy", "ga_chz1", "ga_chz2", "ga_chz3", "ga_chz4")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "ga_ordre", "ga_type", "ga_facture", "ga_qualite", "ga_nba", "ga_nbb", "ga_nbp","ga_forme", "ga_arete", "ga_orientation", "ga_obliquite", "ga_retouche", "ga_relation", "ga_cha", "ga_chb", "ga_chc", "ga_chd", "ga_che", "ga_chde", "ga_chf", "ga_chg" , "ga_chh", "ga_chi", "ga_chj", "ga_chk", "ga_chna", "ga_chnb", "ga_chl", "ga_chm", "ga_cho", "ga_chp", "ga_chq" , "ga_chqq", "ga_chr", "ga_chrg", "ga_chrd", "ga_chrr", "ga_chs", "ga_cht", "ga_chu", "ga_chw1", "ga_chw2", "ga_chv1" , "ga_chv2", "ga_chv3", "ga_chx", "ga_chxx", "ga_chy", "ga_chyy", "ga_chz1", "ga_chz2", "ga_chz3", "ga_chz4"]
+    __ordrechamps__ = ("zone", "numero", "bis", "ga_ordre", "ga_type", "ga_facture", "ga_qualite", "ga_nba", "ga_nbb", "ga_nbp","ga_forme", "ga_arete", "ga_orientation", "ga_obliquite", "ga_retouche", "ga_relation", "ga_cha", "ga_chb", "ga_chc", "ga_chd", "ga_che", "ga_chde", "ga_chf", "ga_chg", "ga_chh", "ga_chi", "ga_chj", "ga_chk", "ga_chna", "ga_chnb", "ga_chl", "ga_chm", "ga_cho", "ga_chp", "ga_chq", "ga_chqq", "ga_chr", "ga_chrg", "ga_chrd", "ga_chrr", "ga_chs", "ga_cht", "ga_chu", "ga_chw1", "ga_chw2", "ga_chv1", "ga_chv2", "ga_chv3", "ga_chx", "ga_chxx", "ga_chy", "ga_chyy", "ga_chz1", "ga_chz2", "ga_chz3", "ga_chz4")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["enlevements"]
+    __formsupp__ = ("enlevements",)
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -365,33 +365,33 @@ class Galet_amenage(archeodata.Data):
             self.__doc__.td(bgcolor=archeoconf.basform_bgcolorcenter, colspan="2")
             self.__doc__.font(size=archeoconf.font_size)
             penreg = {"zone": enreg["zone"], "numero": enreg["numero"], "bis": enreg["bis"]}
-            enlevement_galet.Enlevement_Galet(self).traite_saisie(["zone", "numero", "bis", "ga_rang", "eg_rang"], parent=self.__tablename__, penreg=penreg)
+            enlevement_galet.Enlevement_Galet(self).traite_saisie(("zone", "numero", "bis", "ga_rang", "eg_rang"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 #######################################################################################
 #                                       METHODES
 ########################################################################################
     def modifier(self):
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "ga_ordre"]))
+        self.__db__.query(self.make_update_query(("zone", "numero", "bis", "ga_ordre")))
         return 0
 
     def supprimer(self):
-        if self.exist(["zone", "numero", "bis", "ga_ordre"], table="enlevement_galet"):
+        if self.exist(("zone", "numero", "bis", "ga_ordre"), table="enlevement_galet"):
             return -1
         else:
             # on efface le ga
-            self.delete_records(["zone", "numero", "bis", "ga_ordre"])
+            self.delete_records(("zone", "numero", "bis", "ga_ordre"))
             return 0
 
     def creer(self):
         # si le galet n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis", "ga_ordre"]):
+        if self.exist(("zone", "numero", "bis", "ga_ordre")):
             primarykeys = {"zone": None, "numero": None, "bis": None, "ga_ordre":None}
             return (-1, primarykeys)
         else:
             # on insère maintenant le galet dans la base
             # sauf si l'industrie n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="industrie"):
+            if not self.exist(self.__listeclefs__, table="industrie"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

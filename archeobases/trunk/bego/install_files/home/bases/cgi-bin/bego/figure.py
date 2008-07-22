@@ -25,57 +25,57 @@ class Figure(begodata.Data):
     __new_record__ = "Nouvelle"
     #
     # tous les champs de la table proprietaire
-    __champs__ = { \
-                "zone"         :{"type": "decimal", "default": 0,  "mandatory": 1}, \
-                "groupe"       :{"type": "decimal", "default": 0,  "mandatory": 1}, \
-                "roche"        :{"type": "text",    "default": "", "mandatory": 1}, \
-                "face"         :{"type": "text",    "default": "", "mandatory": 1}, \
-                "figure"       :{"type": "text",    "default": "", "mandatory": 1}, \
-                "carre"        :{"type": "text",    "default": "", "mandatory": 0}, \
-                "identite"     :{"type": "text",    "default": "", "mandatory": 0}, \
-                "signe"        :{"type": "text",    "default": "", "mandatory": 0}, \
-                "style"        :{"type": "text",    "default": "", "mandatory": 0}, \
-                "longueur"     :{"type": "decimal", "default": 0,  "mandatory": 0}, \
-                "largeur"      :{"type": "decimal", "default": 0,  "mandatory": 0}, \
-                "sens"         :{"type": "text",    "default": "", "mandatory": 0}, \
-                "cardinale"    :{"type": "text",    "default": "", "mandatory": 0}, \
-                "geographique" :{"type": "text",    "default": "", "mandatory": 0}, \
-                "qualite"      :{"type": "text",    "default": "", "mandatory": 0}, \
-                "contour"      :{"type": "text",    "default": "", "mandatory": 0}, \
-                "debord"       :{"type": "text",    "default": "", "mandatory": 0}, \
-                "profil"       :{"type": "text",    "default": "", "mandatory": 0}, \
-                "strie"        :{"type": "text",    "default": "", "mandatory": 0}, \
-                "alignement"   :{"type": "text",    "default": "", "mandatory": 0}, \
-                "surface"      :{"type": "text",    "default": "", "mandatory": 0}, \
-                "bavure"       :{"type": "text",    "default": "", "mandatory": 0}, \
-                "perif"        :{"type": "text",    "default": "", "mandatory": 0}, \
-                "raclage"      :{"type": "text",    "default": "", "mandatory": 0}, \
-                "forme"        :{"type": "text",    "default": "", "mandatory": 0}, \
-                "profondeur"   :{"type": "text",    "default": "", "mandatory": 0}, \
-                "taille"       :{"type": "text",    "default": "", "mandatory": 0}, \
-                "disposition"  :{"type": "text",    "default": "", "mandatory": 0}, \
-                "description"  :{"type": "text",    "default": "", "mandatory": 0}, \
-                "conti"        :{"type": "text",    "default": "", "mandatory": 0}, \
+    __champs__ = {
+                "zone"         :{"type": "decimal", "default": 0,  "mandatory": 1},
+                "groupe"       :{"type": "decimal", "default": 0,  "mandatory": 1},
+                "roche"        :{"type": "text",    "default": "", "mandatory": 1},
+                "face"         :{"type": "text",    "default": "", "mandatory": 1},
+                "figure"       :{"type": "text",    "default": "", "mandatory": 1},
+                "carre"        :{"type": "text",    "default": "", "mandatory": 0},
+                "identite"     :{"type": "text",    "default": "", "mandatory": 0},
+                "signe"        :{"type": "text",    "default": "", "mandatory": 0},
+                "style"        :{"type": "text",    "default": "", "mandatory": 0},
+                "longueur"     :{"type": "decimal", "default": 0,  "mandatory": 0},
+                "largeur"      :{"type": "decimal", "default": 0,  "mandatory": 0},
+                "sens"         :{"type": "text",    "default": "", "mandatory": 0},
+                "cardinale"    :{"type": "text",    "default": "", "mandatory": 0},
+                "geographique" :{"type": "text",    "default": "", "mandatory": 0},
+                "qualite"      :{"type": "text",    "default": "", "mandatory": 0},
+                "contour"      :{"type": "text",    "default": "", "mandatory": 0},
+                "debord"       :{"type": "text",    "default": "", "mandatory": 0},
+                "profil"       :{"type": "text",    "default": "", "mandatory": 0},
+                "strie"        :{"type": "text",    "default": "", "mandatory": 0},
+                "alignement"   :{"type": "text",    "default": "", "mandatory": 0},
+                "surface"      :{"type": "text",    "default": "", "mandatory": 0},
+                "bavure"       :{"type": "text",    "default": "", "mandatory": 0},
+                "perif"        :{"type": "text",    "default": "", "mandatory": 0},
+                "raclage"      :{"type": "text",    "default": "", "mandatory": 0},
+                "forme"        :{"type": "text",    "default": "", "mandatory": 0},
+                "profondeur"   :{"type": "text",    "default": "", "mandatory": 0},
+                "taille"       :{"type": "text",    "default": "", "mandatory": 0},
+                "disposition"  :{"type": "text",    "default": "", "mandatory": 0},
+                "description"  :{"type": "text",    "default": "", "mandatory": 0},
+                "conti"        :{"type": "text",    "default": "", "mandatory": 0},
                 }
 
-    __listeparents__  = ["zone", "roche", "face"]
-    __listeclefs__ = ["zone", "groupe", "roche", "face", "figure"]
+    __listeparents__  = ("zone", "roche", "face")
+    __listeclefs__ = ("zone", "groupe", "roche", "face", "figure")
     __vraiparent__ = "face"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "groupe", "roche", "face", "figure", "carre", "identite", "signe", "style", "sens", "longueur","largeur",  "cardinale", "geographique", "qualite", "contour","debord", "profil", "strie", "alignement", "surface", "perif", "raclage", "forme", "profondeur", "taille", "bavure", "disposition", "description", "conti"]
+    __listechamps__ = ("zone", "groupe", "roche", "face", "figure", "carre", "identite", "signe", "style", "sens", "longueur", "largeur", "cardinale", "geographique", "qualite", "contour", "debord", "profil", "strie", "alignement", "surface", "perif", "raclage", "forme", "profondeur", "taille", "bavure", "disposition", "description", "conti")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "groupe", "roche", "face", "figure", "carre", "identite", "conti", "signe", "style", "sens", "longueur", "largeur", "cardinale", "geographique", "qualite", "contour","debord", "profil", "strie", "alignement", "surface", "perif", "raclage", "forme", "profondeur", "taille", "bavure","disposition", "description"]
+    __ordrechamps__ = ("zone", "groupe", "roche", "face", "figure", "carre", "identite", "conti", "signe", "style", "sens", "longueur", "largeur", "cardinale", "geographique", "qualite", "contour", "debord", "profil", "strie", "alignement", "surface", "perif", "raclage", "forme", "profondeur", "taille", "bavure", "disposition", "description")
     __orderby__ = " ORDER BY zone, groupe, roche, face, figure ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["photofigure"]
+    __formsupp__ = ("photofigure",)
 
-    def zone_base_to_form(self, enreg, penreg = None) :
-            self.__doc__.push()
-            self.__doc__.tr()
-            afficheclefs.display_zone(self, enreg, penreg)
+    def zone_base_to_form(self, enreg, penreg = None):
+        self.__doc__.push()
+        self.__doc__.tr()
+        afficheclefs.display_zone(self, enreg, penreg)
 
     def groupe_base_to_form(self, enreg, penreg=None):
         afficheclefs.display_groupe(self, enreg, penreg)
@@ -99,9 +99,9 @@ class Figure(begodata.Data):
         self.__doc__.td(align="right", valign="middle")
         self.__doc__.font("Carré:", size=begoconf.font_size)
         self.__doc__.font(size=begoconf.font_size)
-        if enreg != None :
+        if enreg != None:
             self.__doc__.text(name="carre", value=enreg["carre"], size=3, maxlength=3)
-        else :
+        else:
             self.__doc__.text(name="carre", size="3", maxlength="3", value="")
         self.__doc__.pop()
 
@@ -114,9 +114,9 @@ class Figure(begodata.Data):
         self.__doc__.push()
         self.__doc__.td(align="left", valign="middle")
         self.__doc__.font(size=begoconf.font_size)
-        if enreg != None :
+        if enreg != None:
             self.__doc__.text(name="identite", size="15", maxlength="15", value=enreg["identite"])
-        else :
+        else:
             self.__doc__.text(name="identite", size="15", maxlength="15", value="")
         self.__doc__.pop()
 
@@ -240,7 +240,7 @@ class Figure(begodata.Data):
         self.__doc__.push()
         self.__doc__.td(align="left", valign="middle")
         self.__doc__.font(size=begoconf.font_size)
-        liste = {"N": "N", "NE": "NE","E" : "E", "SE": "SE", "S": "S", "SO": "SO", "O": "O", "NO": "NO"}
+        liste = {"N": "N", "NE": "NE", "E": "E", "SE": "SE", "S": "S", "SO": "SO", "O": "O", "NO": "NO"}
         afficheclefs.liste_deroulante(self.__doc__, "cardinale", liste, enreg)
         self.__doc__.pop()
 
@@ -293,7 +293,7 @@ class Figure(begodata.Data):
         self.__doc__.push()
         self.__doc__.td(align="left", valign="middle")
         self.__doc__.font(size=begoconf.font_size)
-        liste = { "NR Net & R": "NR","PNR Pas Net & R": "PNR", "NI Net & I": "NI", "PNI Pas Net & I": "PNI"}
+        liste = {"NR Net & R": "NR", "PNR Pas Net & R": "PNR", "NI Net & I": "NI", "PNI Pas Net & I": "PNI"}
         afficheclefs.liste_deroulante(self.__doc__, "contour", liste, enreg)
         self.__doc__.pop()
 
@@ -430,7 +430,7 @@ class Figure(begodata.Data):
         self.__doc__.font(size=begoconf.font_size)
         liste = {"AR Arrondies & Régulières": "AR", "AI Arrondies & Irrégulières": "AI", "OR Ovales & Régulières": "OR",
             "OI Ovales et Irrégulières": "OI", "TR Triangulaires & Régulières": "TR", "TI Triangulaires & Irrégulières": "TI",
-            "LR aLlongées & Régulières" : "LR", "LI aLlongées & Irrégulières": "LI", "TLR Très aLlongées & Régulières": "TAR",
+            "LR aLlongées & Régulières": "LR", "LI aLlongées & Irrégulières": "LI", "TLR Très aLlongées & Régulières": "TAR",
             "TLI Très aLlongées & Irrégulières": "TLI", "AOR AO & Régulières": "AOR", "AOI AO & Irrégulières": "AOI",
             "ALR AL & Régulières": "ALR", "ALI AL & Irrégulières": "ALI", "ATLR ATL & Régulières": "ATLR",
             "ATLI ATL & Irrégulières": "ATLI"}
@@ -452,7 +452,7 @@ class Figure(begodata.Data):
         self.__doc__.push()
         self.__doc__.td(align="left", valign="middle", colspan="2")
         self.__doc__.font(size=begoconf.font_size)
-        liste = {"SR Superficielle & Régulière": "SR", "SI Superficielle & Irrégulière": "SI","PPR Peu Profonde & Régulière": "PPR",
+        liste = {"SR Superficielle & Régulière": "SR", "SI Superficielle & Irrégulière": "SI", "PPR Peu Profonde & Régulière": "PPR",
             "PPI Peu Profonde & Irégulières": "PPI", "PR Profonde & Régulière": "PR", "PI Profonde et Irrégulière": "PI",
             "TPR Très Profonde & Régulière": "TPR", "TPI Très Profonde & Irrégulière": "TPI"}
         afficheclefs.liste_deroulante(self.__doc__, "profondeur", liste, enreg)
@@ -473,7 +473,7 @@ class Figure(begodata.Data):
         self.__doc__.push()
         self.__doc__.td(align="left", valign="middle")
         self.__doc__.font(size=begoconf.font_size)
-        liste = {"TP Très Petite": "TP", "P Petite": "P","M Moyenne": "M", "G Grande": "G"}
+        liste = {"TP Très Petite": "TP", "P Petite": "P", "M Moyenne": "M", "G Grande": "G"}
         afficheclefs.liste_deroulante(self.__doc__, "taille", liste, enreg)
         self.__doc__.pop()
         self.__doc__.pop()
@@ -512,9 +512,9 @@ class Figure(begodata.Data):
         self.__doc__.td(valign="middle", align="left", colspan = "3")
         self.__doc__.font(size=begoconf.font_size)
         self.__doc__.textarea(name="description", rows="4", cols="50", wrap="physical")
-        if enreg != None :
+        if enreg != None:
             self.__doc__.insert_text(enreg["description"])
-        else :
+        else:
             self.__doc__.insert_text("")
         self.__doc__.pop()
         self.__doc__.pop()
@@ -530,9 +530,9 @@ class Figure(begodata.Data):
         if lg:
             self.__doc__.push()
             self.__doc__.div(align="center")
-            if lg > 1 :
+            if lg > 1:
                 s = "s"
-            else :
+            else:
                 s = ""
             self.__doc__.font(`lg` + " photographie :" + s, color="red")
             self.__doc__.pop()
@@ -565,25 +565,25 @@ class Figure(begodata.Data):
                 self.__doc__.td(bgcolor=begoconf.basform_bgcolorright, valign="middle", align="center")
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
-                self.__doc__.hidden(name="zone",    value=photo["zone"])
-                self.__doc__.hidden(name="groupe",  value=photo["groupe"])
-                self.__doc__.hidden(name="roche",   value=photo["roche"])
-                self.__doc__.hidden(name="face",    value=photo["face"])
-                self.__doc__.hidden(name="figure",  value=photo["figure"])
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.hidden(name="zone", value=photo["zone"])
+                self.__doc__.hidden(name="groupe", value=photo["groupe"])
+                self.__doc__.hidden(name="roche", value=photo["roche"])
+                self.__doc__.hidden(name="face", value=photo["face"])
+                self.__doc__.hidden(name="figure", value=photo["figure"])
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
             self.__doc__.push()
-            self.__doc__.form(method= "POST",   action=begoconf.script_location("modphoto"))
-            self.__doc__.hidden(name= "zone",   value=enreg["zone"])
+            self.__doc__.form(method= "POST", action=begoconf.script_location("modphoto"))
+            self.__doc__.hidden(name= "zone", value=enreg["zone"])
             self.__doc__.hidden(name= "groupe", value=enreg["groupe"])
-            self.__doc__.hidden(name= "roche",  value=enreg["roche"])
-            self.__doc__.hidden(name= "face",   value=enreg["face"])
+            self.__doc__.hidden(name= "roche", value=enreg["roche"])
+            self.__doc__.hidden(name= "face", value=enreg["face"])
             self.__doc__.hidden(name= "figure", value=enreg["figure"])
             self.__doc__.submit(name= "action", value="Nouvelle")
             self.__doc__.pop()
@@ -605,12 +605,12 @@ class Figure(begodata.Data):
     def modifier(self):
         """Met a jour la figure courante"""
         # face pas dans les clefs primaires car on veut pouvoir la changer facilement
-        self.__db__.query(self.make_update_query(["zone", "groupe", "roche", "figure"]))
+        self.__db__.query(self.make_update_query(("zone", "groupe", "roche", "figure")))
         return 0
 
     def supprimer(self):
         """ s'il existe des photos sur cette face on refuse la suppression"""
-        if self.exist(["zone", "groupe", "roche", "face", "figure"], table="photofigure"):
+        if self.exist(self.__listeclefs__, table="photofigure"):
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -625,18 +625,18 @@ class Figure(begodata.Data):
             except:
                 begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
             # on efface la figure
-            self.delete_records(["zone", "groupe", "roche", "face", "figure"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         """ si la face n'existe pas déjà alors on la crée, sinon on refuse"""
-        if self.exist(["zone", "groupe", "roche", "face", "figure"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None, "figure": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la figure dans la base
             # sauf si la face n'existe pas.
-            if not self.exist(["zone", "groupe", "roche", "face"], table="face"):
+            if not self.exist(("zone", "groupe", "roche", "face"), table="face"):
                 primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None, "figure": None}
                 return (-2, primarykeys)
             else:
@@ -647,6 +647,6 @@ class Figure(begodata.Data):
                 f = self.__form__["face"].value
                 fg = self.__form__["figure"].value
                 self.__db__.query(self.make_insert_query({ }))
-                primarykeys = { "zone": z, "groupe": g, "roche": r, "face": f, "figure": fg}
+                primarykeys = {"zone": z, "groupe": g, "roche": r, "face": f, "figure": fg}
                 return (0, primarykeys)
 

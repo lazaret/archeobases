@@ -26,55 +26,55 @@ class Carnet(archeodata.Data):
     #
     # tous les champs de la table carnet
     __champs__ =   {
-                    "zone"       : {"type": "text", "default": "",  "mandatory": 1, "longueur": 0, "memory": 1, "compter": 1}, \
-                    "numero"     : {"type": "int", "default": 0,   "mandatory": 1, "longueur": 6, "memory": 1}, \
-                    "bis"        : {"type": "text", "default": "",  "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "locus"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0    }, \
-                    "localite"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0    }, \
-                    "carre"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "souscarre"  : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "ensemble"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "niveau"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "sol"        : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "couche"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 6, "memory": 1}, \
-                    "foyer"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "nature"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0, "memory": 1}, \
-                    "nofouille"  : {"type": "int", "mandatory": 0, "longueur": 4}, \
-                    "nomusee"    : {"type": "int", "mandatory": 0, "longueur": 7}, \
-                    "nosopi"     : {"type": "int", "mandatory": 0, "longueur": 7}, \
-                    "responsable_fouille": {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1}, \
-                    "x"          : {"type": "int",   "mandatory": 0, "longueur": 3}, \
-                    "y"          : {"type": "int",   "mandatory": 0, "longueur": 3}, \
-                    "zrelatif"   : {"type": "decimal",   "mandatory": 0, "longueur": 6}, \
-                    "zabsolu"    : {"type": "decimal", "mandatory": 0, "longueur": 6}, \
-                    "zreference" : {"type": "decimal",   "mandatory": 0, "longueur": 6, "memory":  1}, \
-                    "latitude"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10}, \
-                    "longitude"  : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10}, \
-                    "orientation": {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "pendage"    : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "vers"       : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0}, \
-                    "longueur"   : {"type": "int", "mandatory": 0, "longueur": 6}, \
-                    "largeur"    : {"type": "int", "mandatory": 0, "longueur": 6}, \
-                    "epaisseur"  : {"type": "int", "mandatory": 0, "longueur": 6}, \
-                    "trouve"     : {"type": "date","mandatory": 0, "longueur": 10, "memory": 1}, \
-                    "saisie"     : {"type": "date", "mandatory": 0, "longueur": 10}, \
+                    "zone"       : {"type": "text", "default": "",  "mandatory": 1, "longueur": 0, "memory": 1, "compter": 1},
+                    "numero"     : {"type": "int", "default": 0,   "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"        : {"type": "text", "default": "",  "mandatory": 1, "longueur": 0, "memory": 1},
+                    "locus"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "localite"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "carre"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "souscarre"  : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "ensemble"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "niveau"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "sol"        : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "couche"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 6, "memory": 1},
+                    "foyer"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "nature"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0, "memory": 1},
+                    "nofouille"  : {"type": "int", "mandatory": 0, "longueur": 4},
+                    "nomusee"    : {"type": "int", "mandatory": 0, "longueur": 7},
+                    "nosopi"     : {"type": "int", "mandatory": 0, "longueur": 7},
+                    "responsable_fouille": {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1},
+                    "x"          : {"type": "int",   "mandatory": 0, "longueur": 3},
+                    "y"          : {"type": "int",   "mandatory": 0, "longueur": 3},
+                    "zrelatif"   : {"type": "decimal",   "mandatory": 0, "longueur": 6},
+                    "zabsolu"    : {"type": "decimal", "mandatory": 0, "longueur": 6},
+                    "zreference" : {"type": "decimal",   "mandatory": 0, "longueur": 6, "memory":  1},
+                    "latitude"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10},
+                    "longitude"  : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10},
+                    "orientation": {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "pendage"    : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "vers"       : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
+                    "longueur"   : {"type": "int", "mandatory": 0, "longueur": 6},
+                    "largeur"    : {"type": "int", "mandatory": 0, "longueur": 6},
+                    "epaisseur"  : {"type": "int", "mandatory": 0, "longueur": 6},
+                    "trouve"     : {"type": "date","mandatory": 0, "longueur": 10, "memory": 1},
+                    "saisie"     : {"type": "date", "mandatory": 0, "longueur": 10},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = [ "industrie", "faune"]
-    __listeclefs__ = ["zone", "numero", "bis"]
+    __listenfants__ = ("industrie", "faune")
+    __listeclefs__ = ("zone", "numero", "bis")
     __vraiparent__ = "carnet"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = [ "zone", "numero", "bis", "locus", "localite", "carre", "souscarre", "ensemble", "niveau", "sol", "couche", "nature", "nofouille", "nomusee", "nosopi", "responsable_fouille", "x", "y", "zrelatif",  "zreference", "latitude", "longitude", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "trouve"]
+    __listechamps__ = ("zone", "numero", "bis", "locus", "localite", "carre", "souscarre", "ensemble", "niveau", "sol", "couche", "nature", "nofouille", "nomusee", "nosopi", "responsable_fouille", "x", "y", "zrelatif",  "zreference", "latitude", "longitude", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "trouve")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = [ "zone", "numero", "bis", "locus", "localite", "carre", "souscarre", "ensemble", "niveau", "sol", "couche", "nature", "nofouille", "nomusee", "nosopi", "responsable_fouille", "x", "y", "zrelatif",  "zreference", "zabsolu", "latitude", "longitude", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "trouve", "saisie"]
+    __ordrechamps__ = ("zone", "numero", "bis", "locus", "localite", "carre", "souscarre", "ensemble", "niveau", "sol", "couche", "nature", "nofouille", "nomusee", "nosopi", "responsable_fouille", "x", "y", "zrelatif",  "zreference", "zabsolu", "latitude", "longitude", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "trouve", "saisie")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
-    __controle_saisie__ = ["zone"]
+    __controle_saisie__ = ("zone",)
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["faune", "industrie" ]
+    __formsupp__ = ("faune", "industrie")
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -194,7 +194,7 @@ class Carnet(archeodata.Data):
 ############# calcul zabs en sortie
     def zabsolu_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet",  liste_clefs, "zabsolu", "zabs", 3, 20, "", enreg, penreg)
         self.__doc__.pop()
 
@@ -242,43 +242,28 @@ class Carnet(archeodata.Data):
             afficheclefs.champ_nsaisie(self, "saisie", "Fiche saisie le", 10, 20, "", 2, enreg, penreg)
         self.__doc__.pop()
 
-#############################################################################################################################
-
-#############################################################################################################################
-#                                       LIEN AVEC L'ECRAN INDUSTRIE
-#############################################################################################################################
-    def faces(self, enreg, penreg=None):
-        if enreg != None:
-            self.__doc__.push()
-            self.__doc__.tr()
-            self.__doc__.td(bgcolor=archeoconf.basform_bgcolormiddle, colspan="2")
-            self.__doc__.font(size=archeoconf.font_size)
-            penreg = {"zone": enreg["zone"], "groupe": enreg["groupe"], "roche": enreg["roche"]}
-            face.Face(self).traite_saisie(["zone", "groupe", "roche", "face"], parent=self.__tablename__, penreg=penreg)
-            self.__doc__.pop()
-
 ##############################################################################################################################
 #                                               METHODES
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la roche courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         update_zabs = "UPDATE CARNET SET zabsolu = zrelatif+zreference WHERE zone=" + self.__db__.quote(self.__form__["zone"].value, "text") + " and numero=" + self.__form__["numero"].value + " and bis=" + self.__db__.quote(self.__form__["bis"].value,"text") + ";"
         self.__db__.query(update_zabs)
         return 0
 
     def supprimer(self):
         # s'il existe des faunes ou des industries associes a cette fiche du carnet, on refuse la suppression
-        if self.exist(["zone", "numero", "bis"], table="industrie") or self.exist(["zone", "numero", "bis"], table="faune"):
+        if self.exist(self.__listeclefs__, table="industrie") or self.exist(self.__listeclefs__, table="faune"):
             return -1
         else:
             # on efface le carnet
-            self.delete_records(["zone", "numero", "bis"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si l'objet n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis"]):
+        if self.exist(self.__listeclefs__):
             return (-1, {"zone": None, "numero": None, "bis": None})
         else:
             z = self.__form__["zone"].value

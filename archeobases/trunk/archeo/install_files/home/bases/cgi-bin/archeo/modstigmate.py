@@ -15,5 +15,5 @@
 import stigmate
 
 
-stigmate.Stigmate("bas").traite_parametre(["zone", "numero", "bis", "s_ordre"])
+stigmate.Stigmate("bas").traite_parametre(("zone", "numero", "bis", "s_ordre"))
 

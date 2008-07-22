@@ -26,31 +26,31 @@ class Usure_Dent(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"            : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "numero"          : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6,"memory": 1}, \
-                    "bis"             : {"type": "text","default": "",  "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "ud_serie"        : {"type": "text", "default": "", "mandatory": 1 , "longueur": 1}, \
-                    "ud_type"         : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ud_lateralite"   : {"type": "text", "default": 0, "mandatory": 0, "longueur": 2}, \
-                    "ud_usure"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "ud_fragmentation": {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
+                    "zone"            : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"          : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6,"memory": 1},
+                    "bis"             : {"type": "text","default": "",  "mandatory": 1, "longueur": 0, "memory": 1},
+                    "ud_serie"        : {"type": "text", "default": "", "mandatory": 1, "longueur": 1},
+                    "ud_type"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ud_lateralite"   : {"type": "text", "default": 0, "mandatory": 0, "longueur": 2},
+                    "ud_usure"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "ud_fragmentation": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "faune"]
-    __listeclefs__ = ["zone", "numero", "bis", "ud_serie"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "faune")
+    __listeclefs__ = ("zone", "numero", "bis", "ud_serie")
     __vraiparent__ = "faune"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "ud_serie", "ud_type", "ud_lateralite", "ud_usure", "ud_fragmentation"]
+    __listechamps__ = ("zone", "numero", "bis", "ud_serie", "ud_type", "ud_lateralite", "ud_usure", "ud_fragmentation")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "ud_serie", "ud_type", "ud_lateralite", "ud_usure", "ud_fragmentation"]
+    __ordrechamps__ = ("zone", "numero", "bis", "ud_serie", "ud_type", "ud_lateralite", "ud_usure", "ud_fragmentation")
     __orderby__ = " ORDER BY zone, numero, bis, ud_serie ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["photousure_dent"]
+    __formsupp__ = ("photousure_dent",)
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -128,22 +128,22 @@ class Usure_Dent(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la micro courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "ud_serie"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
-        self.delete_records(["zone", "numero", "bis", "ud_serie"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la usure_dent n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis", "ud_serie"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "o_ordre": None, "ud_serie": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la usure_dent dans la base
             # sauf si la faune n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="faune"):
+            if not self.exist(("zone", "numero", "bis"), table="faune"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

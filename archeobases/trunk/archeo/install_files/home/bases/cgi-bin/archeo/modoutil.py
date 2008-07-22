@@ -15,5 +15,5 @@
 import outil
 
 
-outil.Outil("bas").traite_saisie(["zone", "numero", "bis", "o_ordre"])
+outil.Outil("bas").traite_saisie(("zone", "numero", "bis", "o_ordre"))
 

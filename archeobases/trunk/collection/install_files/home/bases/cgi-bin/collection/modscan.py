@@ -15,5 +15,5 @@
 import scan
 
 
-scan.Scan("bas").traite_saisie(["identifiant"])
+scan.Scan("bas").traite_saisie(("identifiant",))
 

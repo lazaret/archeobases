@@ -15,5 +15,5 @@
 import faune_comparaison
 
 
-faune_comparaison.Faune_comparaison("bas").traite_saisie(["identifiant"])
+faune_comparaison.Faune_comparaison("bas").traite_saisie(("identifiant",))
 

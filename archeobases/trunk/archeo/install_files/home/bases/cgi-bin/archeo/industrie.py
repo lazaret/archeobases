@@ -30,46 +30,46 @@ class Industrie(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"              : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"            : {"type": "int", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"               : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "i_oa"              : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3}, \
-                    "i_ob"              : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3}, \
-                    "i_oc"              : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3}, \
-                    "i_poids"           : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "i_forme_galet"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_support_originel": {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_matiere"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_objet"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_patine"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_dpatine"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_alteration"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_encroutement"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_pmycellium"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_eolisation"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_lustrage"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_roulage"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_action"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "i_desilicification": {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
+                    "zone"              : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"            : {"type": "int", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"               : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "i_oa"              : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "i_ob"              : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "i_oc"              : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "i_poids"           : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "i_forme_galet"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_support_originel": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_matiere"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_objet"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_patine"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_dpatine"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_alteration"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_encroutement"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_pmycellium"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_eolisation"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_lustrage"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_roulage"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_action"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_desilicification": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "i_support"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 5},
                     "i_observation"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     }
     #
     # liste des tables enfants
-    __listenfants__   = ["eclat", "outil", "galet_amenage", "nucleus", "biface", "hachereau"]
-    __listeparents__  = ["carnet"]
-    __listeclefs__    = ["zone", "numero", "bis"]
+    __listenfants__   = ("eclat", "outil", "galet_amenage", "nucleus", "biface", "hachereau")
+    __listeparents__  = ("carnet",)
+    __listeclefs__    = ("zone", "numero", "bis")
     __vraiparent__    = "carnet"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "i_poids", "i_matiere", "i_support", "i_objet" , "i_patine", "i_dpatine", "i_alteration", "i_encroutement", "i_pmycellium", "i_eolisation", "i_lustrage", "i_roulage", "i_action", "i_desilicification", "i_oa", "i_ob", "i_oc", "i_forme_galet", "i_support_originel", "i_observation"]
+    __listechamps__ = ("zone", "numero", "bis", "i_poids", "i_matiere", "i_support", "i_objet", "i_patine", "i_dpatine", "i_alteration", "i_encroutement", "i_pmycellium", "i_eolisation", "i_lustrage", "i_roulage", "i_action", "i_desilicification", "i_oa", "i_ob", "i_oc", "i_forme_galet", "i_support_originel", "i_observation")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "nature", "x", "y", "zrelatif", "zabsolu", "zreference", "ensemble", "niveau", "sol", "couche", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "oa", "ob", "oc", "i_poids" , "i_forme_galet", "i_support_originel", "i_objet", "i_matiere", "i_support", "i_patine", "i_dpatine", "i_alteration", "i_desilicification", "i_encroutement", "i_pmycellium", "i_action", "i_eolisation", "i_lustrage", "i_roulage","i_observation", "composite"]
+    __ordrechamps__ = ("zone", "numero", "bis", "nature", "x", "y", "zrelatif", "zabsolu", "zreference", "ensemble", "niveau", "sol", "couche", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "oa", "ob", "oc", "i_poids", "i_forme_galet", "i_support_originel", "i_objet", "i_matiere", "i_support", "i_patine", "i_dpatine", "i_alteration", "i_desilicification", "i_encroutement", "i_pmycellium", "i_action", "i_eolisation", "i_lustrage", "i_roulage","i_observation", "composite")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["retouches", "fracture_industries", "stigmates" , "photoindustrie"]
+    __formsupp__ = ("retouches", "fracture_industries", "stigmates", "photoindustrie")
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -125,75 +125,75 @@ class Industrie(archeodata.Data):
         self.__doc__.push()
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_liste_table("carnet", liste_clefs, "nature", "nature", enreg, penreg, "Rappel des données du carnet", dontchange=None)
 
     def x_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet",  liste_clefs, "x", "x", 3, 20, "", enreg, penreg)
 
     def y_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet",  liste_clefs, "y", "y", 3, 20, "", enreg, penreg)
         self.__doc__.pop()
 
     def zrelatif_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet",  liste_clefs, "zrelatif", "zrela", 3, 20, "", enreg, penreg)
 
     def zabsolu_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet",  liste_clefs, "zabsolu", "zabs", 3, 20, "", enreg, penreg)
 
     def zreference_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet",  liste_clefs, "zreference", "zref", 3, 20, "", enreg, penreg)
         self.__doc__.pop()
 
     def ensemble_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_liste_table("carnet", liste_clefs, "ensemble", "ensemble", enreg, penreg, " ", dontchange=1)
 
     def niveau_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_liste_table("carnet", liste_clefs, "niveau", "niveau", enreg, penreg, "", dontchange=None)
         self.__doc__.pop()
 
     def sol_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_liste_table("carnet", liste_clefs, "sol", "sol", enreg, penreg, " ", dontchange=None)
 
     def couche_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("carnet",  liste_clefs, "couche", "couche", 3, 20, "", 1, enreg, penreg)
 
     def orientation_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_liste_table("carnet", liste_clefs, "orientation", "orientation", enreg, penreg, "", dontchange=None)
         self.__doc__.pop()
 
     def pendage_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_liste_table("carnet", liste_clefs, "pendage", "pendage", enreg, penreg, " ", dontchange=None)
 
     def vers_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_liste_table("carnet", liste_clefs, "vers", "vers", enreg, penreg, "", dontchange=None)
         self.__doc__.pop()
 
@@ -201,17 +201,17 @@ class Industrie(archeodata.Data):
         self.__doc__.push()
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet", liste_clefs, "longueur", "L", 6, 20, "Dimensions", enreg, penreg)
 
     def largeur_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet", liste_clefs, "largeur", "l", 6, 20, "", enreg, penreg)
 
     def epaisseur_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table("carnet", liste_clefs, "epaisseur", "e", 6, 20, "", enreg, penreg)
         self.__doc__.pop()
 
@@ -225,7 +225,7 @@ class Industrie(archeodata.Data):
         afficheclefs.champ_saisie(self, "i_ob", "Ob", 6, 20, "", enreg, penreg)
 
     def oc_base_to_form(self, enreg, penreg=None):
-        liste_clefs = ["zone", "numero", "bis"]
+#        liste_clefs = ("zone", "numero", "bis")
         afficheclefs.champ_saisie(self, "i_oc", "Oc", 6, 20, "", enreg, penreg)
         self.__doc__.pop()
 
@@ -345,7 +345,7 @@ class Industrie(archeodata.Data):
             self.__doc__.td(bgcolor=archeoconf.basform_bgcolorcenter, colspan="2")
             self.__doc__.font(size=archeoconf.font_size)
             penreg = {"zone": enreg["zone"], "numero": enreg["numero"], "bis": enreg["bis"]}
-            fracture_industrie.Fracture_Industrie(self).traite_saisie(["zone", "numero", "bis", "f_ordre"], parent=self.__tablename__, penreg=penreg)
+            fracture_industrie.Fracture_Industrie(self).traite_saisie(("zone", "numero", "bis", "f_ordre"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 ###############################################################################
@@ -358,7 +358,7 @@ class Industrie(archeodata.Data):
             self.__doc__.td(bgcolor=archeoconf.basform_bgcolorcenter, colspan="2")
             self.__doc__.font(size=archeoconf.font_size)
             penreg = {"zone": enreg["zone"], "numero": enreg["numero"], "bis": enreg["bis"]}
-            retouche.Retouche(self).traite_saisie(["zone", "numero", "bis", "r_ordre"], parent=self.__tablename__, penreg=penreg)
+            retouche.Retouche(self).traite_saisie(("zone", "numero", "bis", "r_ordre"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 ###############################################################################
@@ -371,7 +371,7 @@ class Industrie(archeodata.Data):
             self.__doc__.td(bgcolor=archeoconf.basform_bgcolorcenter, colspan="2")
             self.__doc__.font(size=archeoconf.font_size)
             penreg = {"zone": enreg["zone"], "numero": enreg["numero"], "bis": enreg["bis"]}
-            stigmate.Stigmate(self).traite_saisie(["zone", "numero", "bis", "s_ordre"], parent=self.__tablename__, penreg=penreg)
+            stigmate.Stigmate(self).traite_saisie(("zone", "numero", "bis", "s_ordre"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 #########################################################################
@@ -463,7 +463,7 @@ class Industrie(archeodata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour la industrie courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
@@ -481,18 +481,18 @@ class Industrie(archeodata.Data):
             except:
                 archeoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
             # on efface l' industrie
-            self.delete_records(["zone", "numero", "bis"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si la industrie n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis"], table="industrie"):
+        if self.exist(self.__listeclefs__, table="industrie"):
             primarykeys = {"zone": None, "numero": None, "bis": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant l'industrie dans la base
             # sauf si le carnet n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="carnet"):
+            if not self.exist(self.__listeclefs__, table="carnet"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

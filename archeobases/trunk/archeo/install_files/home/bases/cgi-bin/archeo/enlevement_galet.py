@@ -50,7 +50,7 @@ class Enlevement_Galet(archeodata.Data):
                     "eg_corde"         : {"type": "decimal", "mandatory": 0, "longueur": 3},
                     "eg_fleche"        : {"type": "decimal", "mandatory": 0, "longueur": 3},
                     "eg_dptimpact"     : {"type": "text", "mandatory": 0, "longueur": 3},
-                   }
+                    }
     #
     # liste des tables enfants
     __listenfants__ = ()

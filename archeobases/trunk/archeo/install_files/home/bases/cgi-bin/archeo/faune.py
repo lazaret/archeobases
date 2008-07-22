@@ -93,7 +93,7 @@ class Faune(archeodata.Data):
                     "f_restauration"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "f_saisie"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "f_responsable"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
-                   }
+                    }
     #
     # liste des tables enfants
     __listenfants__   = ("nonos", "dent", "microfaune", "fracture_faune", "trace")

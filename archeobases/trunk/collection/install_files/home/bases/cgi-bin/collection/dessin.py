@@ -28,27 +28,27 @@ class Dessin(collectiondata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"         : {"type": "text", "default": 0,   "mandatory": 1,  "longueur": 20, "memory": 1}, \
-                "m_type_materiel"     : {"type": "text", "default": "DESSIN", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                "m_type_support"      : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 0,  "memory": 0}, \
-                "m_etagere"           : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 4,  "memory": 0}, \
-                "m_nom_site"          : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 40, "memory": 0}, \
-                "m_ville"             : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 20, "memory": 0}, \
-                "m_pays"              : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 40, "memory": 0}, \
-                "m_individu"          : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 3,  "memory": 0}, \
-                "m_description_anatomique": {"type": "text", "default": "",  "mandatory": 0, "longueur": 300, "memory": 0}, \
-                "m_date_decouverte"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,  "memory": 0}, \
-                "m_inventeur"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_nature"            : {"type": "text", "default": "",  "mandatory": 0, "longueur": 15,  "memory": 0}, \
-                "m_date"              : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,   "memory": 0}, \
-                "m_donnateur"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 30,  "memory": 0}, \
-                "m_support"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10,  "memory": 0}, \
-                "m_dimension"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 15,  "memory": 0}, \
-                "m_observations"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 500, "memory": 0}, \
-                "m_mots_clefs"        : {"type": "text", "default": "",  "mandatory": 0, "longueur": 150, "memory": 0}, \
-                "m_nombre_exemplaires": {"type": "int",  "mandatory": 0 , "longueur": 2, "memory": 0}, \
-                "m_date_modif"        : {"type": "date", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_saisie"            : {"type": "date", "mandatory": 0 , "longueur": 10}, \
+                "identifiant"         : {"type": "text", "default": 0,   "mandatory": 1,  "longueur": 20, "memory": 1},
+                "m_type_materiel"     : {"type": "text", "default": "DESSIN", "mandatory": 1, "longueur": 0, "memory": 1},
+                "m_type_support"      : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 0,  "memory": 0},
+                "m_etagere"           : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 4,  "memory": 0},
+                "m_nom_site"          : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 40, "memory": 0},
+                "m_ville"             : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 20, "memory": 0},
+                "m_pays"              : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 40, "memory": 0},
+                "m_individu"          : {"type": "text", "default": "",  "mandatory": 0 , "longueur": 3,  "memory": 0},
+                "m_description_anatomique": {"type": "text", "default": "",  "mandatory": 0, "longueur": 300, "memory": 0},
+                "m_date_decouverte"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,  "memory": 0},
+                "m_inventeur"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_nature"            : {"type": "text", "default": "",  "mandatory": 0, "longueur": 15,  "memory": 0},
+                "m_date"              : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,   "memory": 0},
+                "m_donnateur"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 30,  "memory": 0},
+                "m_support"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10,  "memory": 0},
+                "m_dimension"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 15,  "memory": 0},
+                "m_observations"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 500, "memory": 0},
+                "m_mots_clefs"        : {"type": "text", "default": "",  "mandatory": 0, "longueur": 150, "memory": 0},
+                "m_nombre_exemplaires": {"type": "int",  "mandatory": 0 , "longueur": 2, "memory": 0},
+                "m_date_modif"        : {"type": "date", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_saisie"            : {"type": "date", "mandatory": 0 , "longueur": 10},
                }
     #
     # liste des tables enfants

@@ -68,7 +68,7 @@ class Coprolithe(archeodata.Data):
                     "c_autre"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "c_mif"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "c_macroreste"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
-                   }
+                    }
     #
     # liste des tables enfants
     __listenfants__   = ()

@@ -28,24 +28,24 @@ class Fiche(annuairedata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"    : {"type": "int",  "default":  0,  "mandatory": 1, "longueur": 6, "memory": 1}, \
-                "type_entree"    : {"type": "text", "default":  "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                "type_personne"  : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0}, \
-                "civilite"       : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0}, \
-                "titre"          : {"type": "text", "default":  "", "mandatory": 0, "longueur": 20, "memory": 0}, \
-                "nom"            : {"type": "text", "default":  "", "mandatory": 0, "longueur": 30, "memory": 0}, \
-                "prenom"         : {"type": "text", "default":  "", "mandatory": 0, "longueur": 20, "memory": 0}, \
-                "nationalite"    : {"type": "text", "default":  "", "mandatory": 0, "longueur": 20, "memory": 0}, \
-                "date_naissance" : {"type": "date", "mandatory": 0, "longueur": 10}, \
-                "fonction"       : {"type": "text", "default":  "", "mandatory": 0, "longueur": 50, "memory": 0}, \
-                "specialite"     : {"type": "text", "default":  "", "mandatory": 0, "longueur": 50, "memory": 0}, \
+                "identifiant"    : {"type": "int",  "default":  0,  "mandatory": 1, "longueur": 6, "memory": 1},
+                "type_entree"    : {"type": "text", "default":  "", "mandatory": 1, "longueur": 0, "memory": 1},
+                "type_personne"  : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0},
+                "civilite"       : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0},
+                "titre"          : {"type": "text", "default":  "", "mandatory": 0, "longueur": 20, "memory": 0},
+                "nom"            : {"type": "text", "default":  "", "mandatory": 0, "longueur": 30, "memory": 0},
+                "prenom"         : {"type": "text", "default":  "", "mandatory": 0, "longueur": 20, "memory": 0},
+                "nationalite"    : {"type": "text", "default":  "", "mandatory": 0, "longueur": 20, "memory": 0},
+                "date_naissance" : {"type": "date", "mandatory": 0, "longueur": 10},
+                "fonction"       : {"type": "text", "default":  "", "mandatory": 0, "longueur": 50, "memory": 0},
+                "specialite"     : {"type": "text", "default":  "", "mandatory": 0, "longueur": 50, "memory": 0},
                 "commentaire"    : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0},
-                "association"    : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0}, \
-                "numero_adherent": {"type": "int",  "mandatory": 0, "longueur":  6}, \
-                "cotisation"     : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0}, \
+                "association"    : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0},
+                "numero_adherent": {"type": "int",  "mandatory": 0, "longueur":  6},
+                "cotisation"     : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0},
                 "chantier"       : {"type": "text", "default":  "", "mandatory": 0, "longueur": 0},
-                "modif_fiche"    : {"type": "date", "mandatory": 0, "longueur": 10}, \
-                    }
+                "modif_fiche"    : {"type": "date", "mandatory": 0, "longueur": 10},
+                }
     #
     # liste des tables enfants
     __listenfants__   = ()

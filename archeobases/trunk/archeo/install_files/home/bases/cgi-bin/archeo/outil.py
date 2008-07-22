@@ -52,7 +52,7 @@ class Outil(archeodata.Data):
                     "o_f"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
                     "o_g"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
                     "o_h"           : {"type": "decimal", "mandatory": 0, "longueur": "3"},
-                   }
+                    }
     #
     # liste des tables enfants
     __listenfants__ = ()

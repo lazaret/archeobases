@@ -14,5 +14,6 @@
 
 import vue
 
-vue.Vue("bas").traite_saisie(["identifiant"])
+
+vue.Vue("bas").traite_saisie(("identifiant",))
 

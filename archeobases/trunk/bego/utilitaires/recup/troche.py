@@ -35,7 +35,7 @@ for ligne in lignes:
         nouveaux = []
         nouveaux.append(champs[0]) #z
         nouveaux.append(champs[1]) #g
-        if champs[2] in ["-", "--", "---"]: #r
+        if champs[2] in ("-", "--", "---"): #r
             nouveaux.append(champs[3])
         else:
             nouveaux.append(champs[3]+champs[2])
@@ -43,12 +43,12 @@ for ligne in lignes:
         nouveaux.append(champs[5]) #y
         nouveaux.append(champs[6]) #z
         champs[7] = string.upper(champs[7])
-        if (champs[7] in ['G', 'GS', 'S', 'SG']):
+        if champs[7] in ('G', 'GS', 'S', 'SG'):
             nouveaux.append(champs[7]) #nature
-        elif (champs[7] in ['SG']):
+        elif champs[7] in ('SG',):
             nouveau.append('S')
         for i in range(0, len(nouveaux)):
-            if i  in [0, 2, 6]:
+            if i  in (0, 2, 6):
                 nouveaux[i] = db.quote(nouveaux[i], "text")
         insert = "INSERT INTO roche (zone, groupe, roche, x, y, z, nature) VALUES ("
         insert = insert+string.join(nouveaux, ', ')

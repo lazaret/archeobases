@@ -15,5 +15,5 @@
 import dessin
 
 
-dessin.Dessin("bas").traite_saisie(["identifiant"])
+dessin.Dessin("bas").traite_saisie(("identifiant",))
 

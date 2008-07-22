@@ -27,66 +27,66 @@ class Coprolithe(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"            : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "numero"          : {"type": "int", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1}, \
-                    "bis"             : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "c_longueur"      : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3}, \
-                    "c_largeur"       : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3}, \
-                    "c_epaisseur"     : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3}, \
-                    "c_poids"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "c_famille"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                    "c_ordre"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 25, "memory": 1}, \
-                    "c_genre"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1}, \
-                    "c_association"   : {"type": "int", "default": "", "mandatory": 0, "longueur": 4}, \
-                    "c_fragmentation" : {"type": "text", "default": "", "mandatory": 0, "longueur": 4}, \
-                    "c_sediment"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_couleur"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_motif"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_motnat"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_motcou"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_forme"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_vol"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_volext"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_retrecissement": {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_nombre"        : {"type": "int", "default": "0", "mandatory": 0, "longueur": 0}, \
-                    "c_extremite"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_ext1"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_ext2"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_alteration"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_altnat"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_inclusion"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_incl1"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_incl2"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_incl3"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_element"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_granulometrie" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_liant"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_consistance"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_parasito"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_palyno"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_lame"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_autre"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_mif"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "c_macroreste"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
+                    "zone"            : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"          : {"type": "int", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"             : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "c_longueur"      : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "c_largeur"       : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "c_epaisseur"     : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "c_poids"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "c_famille"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                    "c_ordre"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 25, "memory": 1},
+                    "c_genre"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
+                    "c_association"   : {"type": "int", "default": "", "mandatory": 0, "longueur": 4},
+                    "c_fragmentation" : {"type": "text", "default": "", "mandatory": 0, "longueur": 4},
+                    "c_sediment"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_couleur"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_motif"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_motnat"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_motcou"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_forme"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_vol"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_volext"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_retrecissement": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_nombre"        : {"type": "int", "default": "0", "mandatory": 0, "longueur": 0},
+                    "c_extremite"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_ext1"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_ext2"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_alteration"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_altnat"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_inclusion"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_incl1"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_incl2"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_incl3"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_element"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_granulometrie" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_liant"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_consistance"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_parasito"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_palyno"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_lame"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_autre"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_mif"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "c_macroreste"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                    }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeparents__  = ["carnet"]
-    __listeclefs__    = ["zone", "numero", "bis"]
+    __listenfants__   = ()
+    __listeparents__  = ("carnet",)
+    __listeclefs__    = ("zone", "numero", "bis")
     __vraiparent__    = "carnet"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "c_association", "c_fragmentation", "c_sediment", "c_couleur", "c_motif", "c_motnat", "c_motcou", "c_forme", "c_vol", "c_volext", "c_retrecissement", "c_nombre", "c_extremite", "c_ext1", "c_ext2", "c_alteration", "c_altnat", "c_inclusion", "c_incl1", "c_incl2", "c_incl3", "c_element", "c_granulometrie", "c_liant", "c_consistance", "c_ordre", "c_famille", "c_genre", "c_parasito", "c_palyno", "c_lame", "c_autre", "c_mif", "c_macroreste", "c_longueur", "c_largeur", "c_epaisseur", "c_poids"]
+    __listechamps__ = ("zone", "numero", "bis", "c_association", "c_fragmentation", "c_sediment", "c_couleur", "c_motif", "c_motnat", "c_motcou", "c_forme", "c_vol", "c_volext", "c_retrecissement", "c_nombre", "c_extremite", "c_ext1", "c_ext2", "c_alteration", "c_altnat", "c_inclusion", "c_incl1", "c_incl2", "c_incl3", "c_element", "c_granulometrie", "c_liant", "c_consistance", "c_ordre", "c_famille", "c_genre", "c_parasito", "c_palyno", "c_lame", "c_autre", "c_mif", "c_macroreste", "c_longueur", "c_largeur", "c_epaisseur", "c_poids")
     # liste des champs de saisie que l'on souhaite controler
-    __controle_saisie__ = ["ordre", "c_famille", "c_genre"]
+    __controle_saisie__ = ("ordre", "c_famille", "c_genre")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "c_association", "couche", "c_longueur", "c_largeur", "c_epaisseur", "c_poids", "c_fragmentation", "c_sediment", "c_couleur", "c_motif", "c_motnat", "c_motcou", "c_forme", "c_vol", "c_volext", "c_retrecissement", "c_nombre", "c_extremite", "c_ext1", "c_ext2", "c_alteration", "c_altnat", "c_inclusion", "c_incl1", "c_incl2", "c_incl3", "c_element", "c_granulometrie", "c_liant", "c_consistance", "c_ordre", "c_famille", "c_genre", "c_parasito", "c_palyno", "c_lame", "c_autre", "c_mif", "c_macroreste"]
+    __ordrechamps__ = ("zone", "numero", "bis", "c_association", "couche", "c_longueur", "c_largeur", "c_epaisseur", "c_poids", "c_fragmentation", "c_sediment", "c_couleur", "c_motif", "c_motnat", "c_motcou", "c_forme", "c_vol", "c_volext", "c_retrecissement", "c_nombre", "c_extremite", "c_ext1", "c_ext2", "c_alteration", "c_altnat", "c_inclusion", "c_incl1", "c_incl2", "c_incl3", "c_element", "c_granulometrie", "c_liant", "c_consistance", "c_ordre", "c_famille", "c_genre", "c_parasito", "c_palyno", "c_lame", "c_autre", "c_mif", "c_macroreste")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = [ "photocoprolithe"]
+    __formsupp__ = ("photocoprolithe",)
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -172,7 +172,7 @@ class Coprolithe(archeodata.Data):
 ############################### En sortie ###################################
     def  couche_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("carnet",  liste_clefs, "couche", "couche", 1, 20, "", 1, enreg, penreg)
         self.__doc__.pop()
 
@@ -416,12 +416,12 @@ class Coprolithe(archeodata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour la coprolithe courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des figures ou des photos sur cette coprolithe on refuse la suppression
-        if self.exist(["zone", "numero", "bis"], table="photocoprolithe"):
+        if self.exist(self.__listeclefs__, table="photocoprolithe"):
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -434,18 +434,18 @@ class Coprolithe(archeodata.Data):
             except:
                 archeoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
             # on efface l' coprolithe
-            self.delete_records(["zone", "numero", "bis"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si la coprolithe n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis"], table="coprolithe"):
+        if self.exist(self.__listeclefs__, table="coprolithe"):
             primarykeys = {"zone": None, "numero": None, "bis": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant le coprolithe dans la base
             # sauf si le carnet n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="carnet"):
+            if not self.exist(self.__listeclefs__, table="carnet"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

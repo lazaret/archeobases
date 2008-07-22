@@ -26,48 +26,48 @@ class Retouche(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"           : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"         : {"type": "decimal", "default": 0, "mandatory": 1 ,"longueur": 6, "memory": 1}, \
-                    "bis"            : {"type": "text", "default": "", "mandatory": 1 ,"longueur": 0, "memory": 1}, \
-                    "r_ordre"        : {"type": "decimal", "default": 1, "mandatory": 1 ,"longueur": 2}, \
-                    "r_type"         : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_obliquite"    : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_denticulation": {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_cas"          : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_utilisation"  : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_dimension"    : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_association"  : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_superposition": {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_extremite"    : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_bord"         : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_extension"    : {"type": "decimal", "mandatory": 0 ,"longueur": 3}, \
-                    "r_frequence"    : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_ecrasement"   : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_lustrage"     : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_biseau"       : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_strie"        : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_origine"      : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_destination"  : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_sens"         : {"type": "text", "default": "", "mandatory": 0 ,"longueur": 0}, \
-                    "r_tranchant"    : {"type": "text", "default": "" , "mandatory": 0 ,"longueur": 0}, \
-                    "r_relation"     : {"type": "text", "default": "" , "mandatory": 0 ,"longueur": 0}, \
-                   }
+                    "zone"           : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"         : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"            : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "r_ordre"        : {"type": "decimal", "default": 1, "mandatory": 1, "longueur": 2},
+                    "r_type"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_obliquite"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_denticulation": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_cas"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_utilisation"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_dimension"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_association"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_superposition": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_extremite"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_bord"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_extension"    : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "r_frequence"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_ecrasement"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_lustrage"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_biseau"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_strie"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_origine"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_destination"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "r_sens"         : {"type": "text", "default": "", "mandatory":0, "longueur": 0},
+                    "r_tranchant"    : {"type": "text", "default": "", "mandatory":0, "longueur": 0},
+                    "r_relation"     : {"type": "text", "default": "", "mandatory":0, "longueur": 0},
+                    }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__ = ["zone", "numero", "bis", "r_ordre"]
+    __listenfants__ = ()
+    __listeclefs__ = ("zone", "numero", "bis", "r_ordre")
     __vraiparent__ = "industrie"
-    __listparents__ = ["industrie"]
+    __listparents__ = ("industrie",)
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "r_ordre", "r_type", "r_obliquite", "r_denticulation", "r_cas", "r_dimension", "r_association", "r_superposition", "r_extremite", "r_bord", "r_extension", "r_frequence", "r_ecrasement", "r_lustrage", "r_utilisation", "r_strie", "r_origine", "r_destination", "r_sens", "r_tranchant", "r_relation"]
+    __listechamps__ = ("zone", "numero", "bis", "r_ordre", "r_type", "r_obliquite", "r_denticulation", "r_cas", "r_dimension", "r_association", "r_superposition", "r_extremite", "r_bord", "r_extension", "r_frequence", "r_ecrasement", "r_lustrage", "r_utilisation", "r_strie", "r_origine", "r_destination", "r_sens", "r_tranchant", "r_relation")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "r_ordre", "r_type", "r_obliquite", "r_denticulation", "r_cas", "r_dimension", "r_association", "r_superposition", "r_extremite", "r_bord", "r_extension", "r_frequence", "r_ecrasement", "r_lustrage", "r_utilisation", "r_strie", "r_origine", "r_destination", "r_sens", "r_tranchant", "r_relation"]
+    __ordrechamps__ = ("zone", "numero", "bis", "r_ordre", "r_type", "r_obliquite", "r_denticulation", "r_cas", "r_dimension", "r_association", "r_superposition", "r_extremite", "r_bord", "r_extension", "r_frequence", "r_ecrasement", "r_lustrage", "r_utilisation", "r_strie", "r_origine", "r_destination", "r_sens", "r_tranchant", "r_relation")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def __init__(self, parent, nomtable=None):
         self.__tablename__ = nomtable
@@ -220,22 +220,22 @@ class Retouche(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'retouche courant"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "r_ordre"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface l' retouche
-        self.delete_records(["zone", "numero", "bis", "r_ordre"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la retouche existe, on refuse de le creer
-        if self.exist(["zone", "numero", "bis", "r_ordre"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "r_ordre": None}
             return (-1, primarykeys)
         else:
             # sinon si son parent n'existe pas, on refuse
-            if not self.exist(["zone", "numero", "bis"], table="industrie"):
+            if not self.exist(("zone", "numero", "bis"), table="industrie"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             # sinon si son parent existe, on le cree

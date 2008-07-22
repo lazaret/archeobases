@@ -29,91 +29,91 @@ class Faune(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"             : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"           : {"type": "int", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"              : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "f_longueur"       : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 3}, \
-                    "f_largeur"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 3}, \
-                    "f_epaisseur"      : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 3}, \
-                    "f_poids"          : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "f_classe"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                    "f_ordre"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 25 , "memory": 1}, \
-                    "f_famille"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                    "f_ssfamille"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                    "f_affgenre"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1}, \
-                    "f_genre"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1}, \
-                    "f_affespece"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1}, \
-                    "f_espece"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1}, \
-                    "f_ssespece"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1}, \
-                    "f_typos1"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 1, "memory": 1}, \
-                    "f_typos2"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 4, "memory": 1}, \
-                    "f_typos3"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1}, \
-                    "f_typos4"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1}, \
-                    "f_typos5"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1}, \
-                    "f_typos6"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1}, \
-                    "f_lateralite"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_stserie"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_sexe"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_taille"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1}, \
-                    "f_agecl"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_agest"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 3}, \
-                    "f_epins"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_reference"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 15}, \
-                    "f_stdent"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_taille"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_association"    : {"type": "int", "default": 0, "mandatory": 0, "longueur": 0}, \
-                    "f_pathologie"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 100}, \
-                    "f_description"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_fragge"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_fragde"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_sauvefrag"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_couleur"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_caltype"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_calcouleur"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_concretion"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_oxyde"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_coraspect"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_corfissure"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_fossilisation"  : {"type": "text", "default": "O", "mandatory": 0, "longueur": 0}, \
-                    "f_tissu"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_typedos"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_complement"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_pelote"         : {"type": "text", "default": "N", "mandatory": 0, "longueur": 0}, \
-                    "f_coprolithe"     : {"type": "text", "default": "N", "mandatory": 0, "longueur": 0}, \
-                    "f_ilongueur"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_icirconference" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_eclat"          : {"type": "text", "default": "A", "mandatory": 0, "longueur": 0}, \
-                    "f_agent"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_photo"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_dessin"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_traitement"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_datation"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_moulage"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_conservation"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_restauration"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_saisie"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "f_responsable"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1}, \
+                    "zone"             : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"           : {"type": "int", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"              : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "f_longueur"       : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "f_largeur"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "f_epaisseur"      : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "f_poids"          : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "f_classe"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                    "f_ordre"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 25, "memory": 1},
+                    "f_famille"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                    "f_ssfamille"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                    "f_affgenre"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1},
+                    "f_genre"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
+                    "f_affespece"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1},
+                    "f_espece"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
+                    "f_ssespece"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
+                    "f_typos1"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 1, "memory": 1},
+                    "f_typos2"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 4, "memory": 1},
+                    "f_typos3"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
+                    "f_typos4"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
+                    "f_typos5"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
+                    "f_typos6"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
+                    "f_lateralite"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_stserie"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_sexe"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_taille"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1},
+                    "f_agecl"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_agest"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 3},
+                    "f_epins"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_reference"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 15},
+                    "f_stdent"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_taille"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_association"    : {"type": "int", "default": 0, "mandatory": 0, "longueur": 0},
+                    "f_pathologie"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 100},
+                    "f_description"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_fragge"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_fragde"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_sauvefrag"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_couleur"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_caltype"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_calcouleur"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_concretion"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_oxyde"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_coraspect"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_corfissure"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_fossilisation"  : {"type": "text", "default": "O", "mandatory": 0, "longueur": 0},
+                    "f_tissu"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_typedos"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_complement"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_pelote"         : {"type": "text", "default": "N", "mandatory": 0, "longueur": 0},
+                    "f_coprolithe"     : {"type": "text", "default": "N", "mandatory": 0, "longueur": 0},
+                    "f_ilongueur"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_icirconference" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_eclat"          : {"type": "text", "default": "A", "mandatory": 0, "longueur": 0},
+                    "f_agent"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_photo"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_dessin"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_traitement"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_datation"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_moulage"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_conservation"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_restauration"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_saisie"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "f_responsable"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
                    }
     #
     # liste des tables enfants
-    __listenfants__   = ["nonos", "dent", "microfaune", "fracture_faune", "trace"]
-    __listeparents__  = ["carnet"]
-    __listeclefs__    = ["zone", "numero", "bis"]
+    __listenfants__   = ("nonos", "dent", "microfaune", "fracture_faune", "trace")
+    __listeparents__  = ("carnet",)
+    __listeclefs__    = ("zone", "numero", "bis")
     __vraiparent__    = "carnet"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "f_longueur", "f_largeur", "f_epaisseur", "f_poids", "f_classe", "f_ordre", "f_famille", "f_ssfamille", "f_affgenre", "f_genre", "f_affespece", "f_espece", "f_ssespece", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "f_typos6", "f_lateralite", "f_fragge", "f_fragde", "f_sauvefrag", "f_typedos", "f_complement", "f_pelote", "f_coprolithe", "f_tissu", "f_sexe", "f_taille", "f_agecl", "f_agest", "f_epins", "f_stserie", "f_stdent", "f_association", "f_pathologie", "f_description", "f_couleur", "f_caltype", "f_calcouleur", "f_concretion", "f_oxyde", "f_fossilisation", "f_coraspect", "f_corfissure", "f_conservation", "f_ilongueur", "f_icirconference", "f_eclat", "f_agent", "f_photo", "f_dessin", "f_traitement", "f_datation", "f_moulage", "f_restauration", "f_responsable"]
+    __listechamps__ = ("zone", "numero", "bis", "f_longueur", "f_largeur", "f_epaisseur", "f_poids", "f_classe", "f_ordre", "f_famille", "f_ssfamille", "f_affgenre", "f_genre", "f_affespece", "f_espece", "f_ssespece", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "f_typos6", "f_lateralite", "f_fragge", "f_fragde", "f_sauvefrag", "f_typedos", "f_complement", "f_pelote", "f_coprolithe", "f_tissu", "f_sexe", "f_taille", "f_agecl", "f_agest", "f_epins", "f_stserie", "f_stdent", "f_association", "f_pathologie", "f_description", "f_couleur", "f_caltype", "f_calcouleur", "f_concretion", "f_oxyde", "f_fossilisation", "f_coraspect", "f_corfissure", "f_conservation", "f_ilongueur", "f_icirconference", "f_eclat", "f_agent", "f_photo", "f_dessin", "f_traitement", "f_datation", "f_moulage", "f_restauration", "f_responsable")
     # liste des champs de saisie que l'on souhaite controler
-    __controle_saisie__ = ["f_typos1"]
+    __controle_saisie__ = ("f_typos1",)
     #
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "nature", "couche", "orientation", "pendage", "sol", "x", "y", "zabsolu", "longueur", "largeur", "epaisseur", "f_longueur", "f_largeur", "f_epaisseur", "f_poids", "f_classe", "f_ordre", "f_famille", "f_ssfamille", "f_affgenre", "f_genre", "f_affespece", "f_espece", "f_ssespece", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "f_typos6", "f_lateralite", "f_stserie", "f_fragge", "f_fragde", "f_sauvefrag", "f_typedos", "f_complement", "f_tissu", "f_sexe", "f_taille", "f_agecl", "f_agest", "f_epins", "f_stdent", "f_reference", "f_association", "f_pathologie", "f_description", "f_couleur", "f_caltype", "f_calcouleur", "f_concretion", "f_oxyde", "f_fossilisation", "f_coraspect", "f_corfissure", "f_ilongueur", "f_icirconference", "f_eclat", "f_agent", "f_pelote", "f_coprolithe", "f_photo", "f_dessin", "f_traitement", "f_datation", "f_moulage", "f_restauration", "f_saisie", "f_responsable"]
+    __ordrechamps__ = ("zone", "numero", "bis", "nature", "couche", "orientation", "pendage", "sol", "x", "y", "zabsolu", "longueur", "largeur", "epaisseur", "f_longueur", "f_largeur", "f_epaisseur", "f_poids", "f_classe", "f_ordre", "f_famille", "f_ssfamille", "f_affgenre", "f_genre", "f_affespece", "f_espece", "f_ssespece", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "f_typos6", "f_lateralite", "f_stserie", "f_fragge", "f_fragde", "f_sauvefrag", "f_typedos", "f_complement", "f_tissu", "f_sexe", "f_taille", "f_agecl", "f_agest", "f_epins", "f_stdent", "f_reference", "f_association", "f_pathologie", "f_description", "f_couleur", "f_caltype", "f_calcouleur", "f_concretion", "f_oxyde", "f_fossilisation", "f_coraspect", "f_corfissure", "f_ilongueur", "f_icirconference", "f_eclat", "f_agent", "f_pelote", "f_coprolithe", "f_photo", "f_dessin", "f_traitement", "f_datation", "f_moulage", "f_restauration", "f_saisie", "f_responsable")
     #"f_conservation",
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = [ "usure_dents", "photofaune"]
+    __formsupp__ = ("usure_dents", "photofaune")
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -169,57 +169,57 @@ class Faune(archeodata.Data):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "7")
             self.__doc__.push()
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nliste_table("carnet", liste_clefs, "nature", "nature", 2, enreg, penreg, "Carnet", dontchange=None)
 
     def  couche_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
-            self.champ_nsaisie_table("carnet",  liste_clefs, "couche", "couche", 3, 20, "", 2, enreg, penreg)
+            liste_clefs = ("zone", "numero", "bis")
+            self.champ_nsaisie_table("carnet", liste_clefs, "couche", "couche", 3, 20, "", 2, enreg, penreg)
 
     def sol_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nliste_table("carnet", liste_clefs, "sol", "sol", 2, enreg, penreg, "", dontchange=None)
             self.__doc__.pop()
 
     def x_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             self.__doc__.push()
-            liste_clefs = ["zone", "numero", "bis"]
-            self.champ_nsaisie_table("carnet",  liste_clefs, "x", "x", 3, 20, " ", 2, enreg, penreg)
+            liste_clefs = ("zone", "numero", "bis")
+            self.champ_nsaisie_table("carnet", liste_clefs, "x", "x", 3, 20, " ", 2, enreg, penreg)
 
     def y_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
-            self.champ_nsaisie_table("carnet",  liste_clefs, "y", "y", 3, 20, "", 2,  enreg, penreg)
+            liste_clefs = ("zone", "numero", "bis")
+            self.champ_nsaisie_table("carnet", liste_clefs, "y", "y", 3, 20, "", 2,  enreg, penreg)
 
     def zabsolu_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
-            self.champ_nsaisie_table("carnet",  liste_clefs, "zabsolu", "zabs", 3, 20, "", 2, enreg, penreg)
+            liste_clefs = ("zone", "numero", "bis")
+            self.champ_nsaisie_table("carnet", liste_clefs, "zabsolu", "zabs", 3, 20, "", 2, enreg, penreg)
             self.__doc__.pop()
 
     def longueur_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             self.__doc__.push()
-            liste_clefs = ["zone", "numero", "bis"]
-            self.champ_nsaisie_table("carnet",  liste_clefs, "longueur", "L", 3, 20, " ", 2, enreg, penreg)
+            liste_clefs = ("zone", "numero", "bis")
+            self.champ_nsaisie_table("carnet", liste_clefs, "longueur", "L", 3, 20, " ", 2, enreg, penreg)
 
     def largeur_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
-            self.champ_nsaisie_table("carnet",  liste_clefs, "largeur", "l", 3, 20, "", 2, enreg, penreg)
+            liste_clefs = ("zone", "numero", "bis")
+            self.champ_nsaisie_table("carnet", liste_clefs, "largeur", "l", 3, 20, "", 2, enreg, penreg)
 
     def epaisseur_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
-            self.champ_nsaisie_table("carnet",  liste_clefs, "epaisseur", "e", 3, 20, "", 2, enreg, penreg)
+            liste_clefs = ("zone", "numero", "bis")
+            self.champ_nsaisie_table("carnet", liste_clefs, "epaisseur", "e", 3, 20, "", 2, enreg, penreg)
             self.__doc__.pop()
 
     def saisie_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.__doc__.push()
             self.__doc__.tr()
             self.__doc__.td()
@@ -279,7 +279,7 @@ class Faune(archeodata.Data):
         afficheclefs.champ_saisie_simple(self, "f_espece", 15, 35, enreg, penreg)
 
     def f_ssespece_base_to_form(self, enreg, penreg=None):
-        liste_clefs = ["zone", "numero", "bis"]
+#        liste_clefs = ["zone", "numero", "bis"]
         afficheclefs.champ_nsaisie(self, "f_ssespece", "ssespece", 15, 35, "", 2, enreg, penreg)
         self.__doc__.pop()
 
@@ -482,7 +482,7 @@ class Faune(archeodata.Data):
             self.__doc__.td(bgcolor=archeoconf.basform_bgcolorcenter, colspan="2")
             self.__doc__.font(size=archeoconf.font_size)
             penreg = {"zone": enreg["zone"], "numero": enreg["numero"], "bis": enreg["bis"]}
-            usure_dent.Usure_Dent(self).traite_saisie(["zone", "numero", "bis", "ud_serie"], parent=self.__tablename__, penreg=penreg)
+            usure_dent.Usure_Dent(self).traite_saisie(("zone", "numero", "bis", "ud_serie"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 #########################################################################
@@ -602,13 +602,13 @@ class Faune(archeodata.Data):
 
     def modifier(self):
         """Met a jour la faune courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis"]))
-        self.remonte_determination(["zone", "numero", "bis"])
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
+        self.remonte_determination(self.__listeclefs__)
         return 0
 
     def supprimer(self):
        # s'il existe des figures ou des photos sur cette faune on refuse la suppression
-        if self.exist(["zone", "numero", "bis"], table="photofaune"):
+        if self.exist(self.__listeclefs__, table="photofaune"):
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -621,18 +621,18 @@ class Faune(archeodata.Data):
             except:
                 archeoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
             # on efface l' faune
-            self.delete_records(["zone", "numero", "bis"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si la faune n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis"], table="faune"):
+        if self.exist(self.__listeclefs__, table="faune"):
             primarykeys = {"zone": None, "numero": None, "bis": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la faune dans la base
             # sauf si le carnet n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="carnet"):
+            if not self.exist(self.__listeclefs__, table="carnet"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:
@@ -646,7 +646,7 @@ class Faune(archeodata.Data):
                     primarykeys = {"zone": z, "numero": n, "bis": b}
                 else:
                     self.__db__.query(requete)
-                    self.remonte_determination(["zone", "numero", "bis"])
+                    self.remonte_determination(self.__listeclefs__)
                     primarykeys = {"zone": z, "numero": n, "bis": b}
                     return (0, primarykeys)
 

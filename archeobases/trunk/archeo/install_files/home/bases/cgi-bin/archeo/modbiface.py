@@ -15,4 +15,4 @@
 import biface
 
 
-biface.Biface("bas").traite_saisie(["zone", "numero", "bis"])
+biface.Biface("bas").traite_saisie(("zone", "numero", "bis"))

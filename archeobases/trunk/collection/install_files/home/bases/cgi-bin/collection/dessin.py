@@ -52,25 +52,25 @@ class Dessin(collectiondata.Data):
                }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeclefs__    = ["identifiant"]
+    __listenfants__   = ()
+    __listeclefs__    = ("identifiant",)
     __vraiparent__    = "dessin"
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site", \
-                       "m_ville", "m_pays", "m_individu", \
-                       "m_description_anatomique", "m_date_decouverte", "m_inventeur", "m_nature", "m_date", \
-                       "m_donnateur", "m_support", "m_dimension", "m_observations", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif"]
+    __listechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site",
+                       "m_ville", "m_pays", "m_individu",
+                       "m_description_anatomique", "m_date_decouverte", "m_inventeur", "m_nature", "m_date",
+                       "m_donnateur", "m_support", "m_dimension", "m_observations",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif")
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site", \
-                       "m_ville", "m_pays", "m_individu", \
-                       "m_description_anatomique", "m_date_decouverte", "m_inventeur", "m_nature", "m_date", \
-                       "m_donnateur", "m_support", "m_dimension", "m_observations", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif", "m_saisie", "liens"]
+    __ordrechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site",
+                       "m_ville", "m_pays", "m_individu",
+                       "m_description_anatomique", "m_date_decouverte", "m_inventeur", "m_nature", "m_date",
+                       "m_donnateur", "m_support", "m_dimension", "m_observations",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif", "m_saisie", "liens")
     __orderby__ = " ORDER BY identifiant ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -305,11 +305,11 @@ class Dessin(collectiondata.Data):
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
                 self.__doc__.hidden(name="identifiant", value=photo["identifiant"])
                 self.__doc__.hidden(name="referer", value=self.__doc__.script_name())
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
@@ -338,7 +338,7 @@ class Dessin(collectiondata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour le dessin courant"""
-        self.__db__.query(self.make_update_query(["identifiant"],"materiel"))
+        self.__db__.query(self.make_update_query(self.__listeclefs__, "materiel"))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
         self.__db__.query(update_date)
@@ -359,12 +359,12 @@ class Dessin(collectiondata.Data):
         except:
             collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
         # on efface le dessin
-        self.delete_records(["identifiant"], "materiel")
+        self.delete_records(self.__listeclefs__, "materiel")
         return 0
 
     def creer(self):
         # si le dessin n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"], table="materiel"):
+        if self.exist(self.__listeclefs__, table="materiel"):
             primarykeys = {"identifiant": None}
             return (-1, primarykeys)
         else:

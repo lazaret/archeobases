@@ -26,25 +26,25 @@ class Entree(annuairedata.Data):
     #
     # tous les champs de la table entree
     __champs__ = { \
-                "identifiant": {"type": "int",  "default": 0,  "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                "type_entree": {"type": "text", "default": "", "mandatory": 1 , "longueur": 0 , "memory": 1}, \
+                "identifiant": {"type": "int",  "default": 0,  "mandatory": 1 , "longueur": 6, "memory": 1},
+                "type_entree": {"type": "text", "default": "", "mandatory": 1 , "longueur": 0 , "memory": 1},
                 }
     #
     # liste des tables enfants
-    __listenfants__ = [ "fiche"]
-    __listeclefs__ = ["identifiant"]
+    __listenfants__ = ("fiche",)
+    __listeclefs__ = ("identifiant",)
     __vraiparent__ = "entree"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = [ "identifiant", "type_entree"]
+    __listechamps__ = ("identifiant", "type_entree")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = [ "identifiant", "type_entree"]
+    __ordrechamps__ = ("identifiant", "type_entree")
     __orderby__ = " ORDER BY identifiant ASC;"
-    __controle_saisie__ = [""]
+    __controle_saisie__ = ("",)
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["fiche" ]
+    __formsupp__ = ("fiche",)
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -84,21 +84,21 @@ class Entree(annuairedata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'entree courante"""
-        self.__db__.query(self.make_update_query(["identifiant"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des fiches associes a cette entree, on refuse la suppression
-        if self.exist(["identifiant"], table = "fiche") :
+        if self.exist(self.__listeclefs__, table = "fiche") :
             return -1
         else:
             # on efface l'entree
-            self.delete_records(["identifiant"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si l'objet n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"]):
+        if self.exist(self.__listeclefs__):
             return (-1, {"identifiant": None})
         else:
             i = self.__form__["identifiant"].value

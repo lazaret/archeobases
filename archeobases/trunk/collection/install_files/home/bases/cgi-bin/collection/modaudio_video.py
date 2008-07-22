@@ -15,5 +15,5 @@
 import audio_video
 
 
-audio_video.Audio_video("bas").traite_saisie(["identifiant"])
+audio_video.Audio_video("bas").traite_saisie(("identifiant",))
 

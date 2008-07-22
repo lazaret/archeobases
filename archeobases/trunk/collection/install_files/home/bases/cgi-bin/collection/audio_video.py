@@ -28,39 +28,39 @@ class Audio_video(collectiondata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"         : {"type": "text", "mandatory": 1, "longueur": 20, "memory": 1}, \
-                "m_type_materiel"     : {"type": "text", "default": "AUDIO_VIDEO", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                "m_type_support"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_etagere"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,   "memory": 0}, \
-                "m_titre"             : {"type": "text", "default": "",  "mandatory": 0, "longueur": 200, "memory": 0}, \
-                "m_auteur"            : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_date"              : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,   "memory": 0}, \
-                "m_support"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10,  "memory": 0}, \
-                "m_editeur"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 100, "memory": 0}, \
-                "m_diffusion"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 30,  "memory": 0}, \
-                "m_duree"             : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10,  "memory": 0}, \
-                "m_observations"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 500, "memory": 0}, \
-                "m_mots_clefs"        : {"type": "text", "default": "",  "mandatory": 0, "longueur": 150, "memory": 0}, \
-                "m_nombre_exemplaires": {"type": "int",  "mandatory": 0, "longueur":  2, "memory": 0}, \
-                "m_date_modif"        : {"type": "date", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0}, \
+                "identifiant"         : {"type": "text", "mandatory": 1, "longueur": 20, "memory": 1},
+                "m_type_materiel"     : {"type": "text", "default": "AUDIO_VIDEO", "mandatory": 1, "longueur": 0, "memory": 1},
+                "m_type_support"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_etagere"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,   "memory": 0},
+                "m_titre"             : {"type": "text", "default": "",  "mandatory": 0, "longueur": 200, "memory": 0},
+                "m_auteur"            : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_date"              : {"type": "text", "default": "",  "mandatory": 0, "longueur": 4,   "memory": 0},
+                "m_support"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10,  "memory": 0},
+                "m_editeur"           : {"type": "text", "default": "",  "mandatory": 0, "longueur": 100, "memory": 0},
+                "m_diffusion"         : {"type": "text", "default": "",  "mandatory": 0, "longueur": 30,  "memory": 0},
+                "m_duree"             : {"type": "text", "default": "",  "mandatory": 0, "longueur": 10,  "memory": 0},
+                "m_observations"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 500, "memory": 0},
+                "m_mots_clefs"        : {"type": "text", "default": "",  "mandatory": 0, "longueur": 150, "memory": 0},
+                "m_nombre_exemplaires": {"type": "int",  "mandatory": 0, "longueur":  2, "memory": 0},
+                "m_date_modif"        : {"type": "date", "default": "",  "mandatory": 0, "longueur": 0,   "memory": 0},
                 }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__  = ["identifiant"]
+    __listenfants__ = ()
+    __listeclefs__  = ("identifiant",)
     __vraiparent__  = "audio_video"
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_titre", \
-                       "m_auteur", "m_date", "m_support", "m_editeur", "m_diffusion", "m_duree", \
-                       "m_observations", "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif"]
+    __listechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_titre",
+                       "m_auteur", "m_date", "m_support", "m_editeur", "m_diffusion", "m_duree",
+                       "m_observations", "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif")
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_titre", \
-                       "m_auteur", "m_date", "m_support", "m_editeur", "m_diffusion", "m_duree", \
-                       "m_observations", "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif"]
+    __ordrechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_titre",
+                       "m_auteur", "m_date", "m_support", "m_editeur", "m_diffusion", "m_duree",
+                       "m_observations", "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif")
     __orderby__ = " ORDER BY identifiant ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []#"photomateriel"]
+    __formsupp__ = ()
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -270,11 +270,11 @@ class Audio_video(collectiondata.Data):
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
                 self.__doc__.hidden(name="identifiant", value=photo["identifiant"])
                 self.__doc__.hidden(name="referer", value=self.__doc__.script_name())
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
@@ -303,7 +303,7 @@ class Audio_video(collectiondata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour le audio_video courant"""
-        self.__db__.query(self.make_update_query(["identifiant"],"materiel"))
+        self.__db__.query(self.make_update_query(self.__listeclefs__, "materiel"))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
         self.__db__.query(update_date)
@@ -324,19 +324,19 @@ class Audio_video(collectiondata.Data):
         except:
             collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
         # on efface le audio_video
-        self.delete_records(["identifiant"],"materiel")
+        self.delete_records(self.__listeclefs__,"materiel")
         return 0
 
     def creer(self):
         # si le audio_video n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"], table="materiel"):
+        if self.exist(self.__listeclefs__, table="materiel"):
             primarykeys = {"identifiant": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant le audio_video dans la base
             i = self.__form__["identifiant"].value
             self.__db__.query(self.make_insert_query({},"materiel"))
-            primarykeys = { "identifiant": i}
+            primarykeys = {"identifiant": i}
             update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
             self.__db__.query(update_date)
             return (0, primarykeys)

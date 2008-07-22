@@ -15,4 +15,4 @@
 import dent
 
 
-dent.Dent("bas").traite_saisie(["zone", "numero", "bis", "d_serie", "d_type"])
+dent.Dent("bas").traite_saisie(("zone", "numero", "bis", "d_serie", "d_type"))

@@ -27,29 +27,29 @@ class Association(begodata.Data):
     __new_record__ = "Nouvelle"
     #
     # tous les champs de la table proprietaire
-    __champs__ = { \
-                "zone"        : {"type": "decimal", "default": 0,  "mandatory": 1}, \
-                "groupe"      : {"type": "decimal", "default": 0,  "mandatory": 1}, \
-                "roche"       : {"type": "text",    "default": "", "mandatory": 1}, \
-                "face"        : {"type": "text",    "default": "", "mandatory": 1}, \
-                "association" : {"type": "decimal", "default": "", "mandatory": 1},\
-                "type"        : {"type": "text",    "default": "", "mandatory": 0},\
+    __champs__ = {
+                "zone"        : {"type": "decimal", "default": 0,  "mandatory": 1},
+                "groupe"      : {"type": "decimal", "default": 0,  "mandatory": 1},
+                "roche"       : {"type": "text",    "default": "", "mandatory": 1},
+                "face"        : {"type": "text",    "default": "", "mandatory": 1},
+                "association" : {"type": "decimal", "default": "", "mandatory": 1},
+                "type"        : {"type": "text",    "default": "", "mandatory": 0},
                 "disposition" : {"type": "text",    "default": "", "mandatory": 0}
                 }
 
-    __listeparents__  = ["zone", "roche", "face"]
-    __listeclefs__ = ["zone", "groupe", "roche", "face", "association"]
+    __listeparents__  = ("zone", "roche", "face")
+    __listeclefs__ = ("zone", "groupe", "roche", "face", "association")
     __vraiparent__ = "face"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "groupe", "roche", "face", "association", "type", "disposition"]
+    __listechamps__ = ("zone", "groupe", "roche", "face", "association", "type", "disposition")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "groupe", "roche", "face", "association", "type", "disposition"]
+    __ordrechamps__ = ("zone", "groupe", "roche", "face", "association", "type", "disposition")
     __orderby__ = " ORDER BY zone, groupe, roche, face, association ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["figassoc", "photoassociation"]
+    __formsupp__ = ("figassoc", "photoassociation")
 
     def zone_base_to_form(self, enreg, penreg=None):
         """ Affiche la zone à l'aide de display_zone."""
@@ -132,7 +132,7 @@ class Association(begodata.Data):
         self.__doc__.hidden(name="face", value=enreg["face"])
         self.__doc__.hidden(name="association", value=enreg["association"])
         if len(res):
-            champs = ["figure", "identite", "style", "sens", "ordre"]
+            champs = ("figure", "identite", "style", "sens", "ordre")
             self.__doc__.push()
             self.__doc__.table(border=1)
             self.__doc__.caption("Liste des figures de l'Association")
@@ -265,13 +265,13 @@ class Association(begodata.Data):
 ############################################################################################################################
     def modifier(self):
         """Met a jour l'association courante"""
-        self.__db__.query(self.make_update_query(["zone", "groupe", "roche", "face", "association"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         """ Supprime l'association sauf s'il existe des photos ou des figures associees
         alors on refuse la suppression"""
-        if self.exist(["zone", "groupe", "roche", "face", "association"], table="photoassociation") or self.exist(["zone", "groupe", "roche", "face", "association"], table="figassoc"):
+        if self.exist(self.__listeclefs__, table="photoassociation") or self.exist(self.__listeclefs__, table="figassoc"):
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -286,19 +286,19 @@ class Association(begodata.Data):
             except:
                 begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
             # on efface la association
-            self.delete_records(["zone", "groupe", "roche", "face", "association"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         """ Crée l'association si elle n'existe pas, sinon erreur"""
-        if self.exist(["zone", "groupe", "roche", "face", "association"]):
-            primarykeys = { "zone": None, "groupe": None, "roche": None, "face": None, "association": None}
+        if self.exist(self.__listeclefs__):
+            primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None, "association": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant l'association dans la base
             # sauf si la face n'existe pas.
-            if not self.exist(["zone", "groupe", "roche", "face"], table="face"):
-                primarykeys = { "zone": None, "groupe": None, "roche": None, "face": None, "association": None}
+            if not self.exist(("zone", "groupe", "roche", "face"), table="face"):
+                primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None, "association": None}
                 return (-2, primarykeys)
             else:
                 z = self.__form__["zone"].value

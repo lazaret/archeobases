@@ -77,7 +77,7 @@ elif f["action"].value == "Nouvelle":
     page.tr()
     page.td("&nbsp;Taille&nbsp;de&nbsp;l'image&nbsp;:&nbsp;", align="right")
     page.td(align="left")
-    listetaille = ["Moyenne", "Petite", "Grande"]
+    listetaille = ("Moyenne", "Petite", "Grande")
     page.select(name="taille")
     for x in listetaille:
         page.option(x, value=x)

@@ -15,5 +15,5 @@
 import moulages
 
 
-moulages.Moulages("bas").traite_saisie(["identifiant"])
+moulages.Moulages("bas").traite_saisie(("identifiant",))
 

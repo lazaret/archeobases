@@ -26,78 +26,78 @@ class Nonos(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6,"memory": 1}, \
-                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "o_serie"      : {"type": "text", "default": "1", "mandatory": 1,"longueur": 2, "memory": 1}, \
-                    "o_type"       : {"type": "text", "default": "", "mandatory": 1, "longueur": 3}, \
-                    "o_m1"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m2"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m3"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m4"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m5"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m6"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m7"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m8"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m9"         : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m10"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m11"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m12"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m13"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m14"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m15"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m16"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m17"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m18"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m19"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m20"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m21"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m22"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m23"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m24"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m25"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m26"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m27"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m28"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m29"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m30"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m31"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m32"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m33"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m34"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m35"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m36"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m37"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m38"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m39"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m40"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m41"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m42"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m43"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m44"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m45"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m46"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m47"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m48"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m49"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
-                    "o_m50"        : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 5}, \
+                    "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6,"memory": 1},
+                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "o_serie"      : {"type": "text", "default": "1", "mandatory": 1,"longueur": 2, "memory": 1},
+                    "o_type"       : {"type": "text", "default": "", "mandatory": 1, "longueur": 3},
+                    "o_m1"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m2"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m3"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m4"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m5"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m6"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m7"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m8"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m9"         : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m10"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m11"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m12"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m13"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m14"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m15"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m16"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m17"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m18"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m19"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m20"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m21"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m22"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m23"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m24"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m25"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m26"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m27"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m28"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m29"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m30"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m31"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m32"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m33"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m34"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m35"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m36"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m37"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m38"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m39"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m40"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m41"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m42"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m43"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m44"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m45"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m46"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m47"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m48"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m49"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "o_m50"        : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "faune"]
-    __listeclefs__ = ["zone", "numero", "bis", "o_serie"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "faune")
+    __listeclefs__ = ("zone", "numero", "bis", "o_serie"]
     __vraiparent__ = "faune"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "o_serie", "o_type", "o_m1", "o_m2", "o_m3", "o_m4", "o_m5", "o_m6", "o_m7", "o_m8", "o_m9", "o_m10", "o_m11", "o_m12", "o_m13", "o_m14", "o_m15", "o_m16", "o_m17", "o_m18", "o_m19", "o_m20", "o_m21", "o_m22", "o_m23", "o_m24", "o_m25", "o_m26", "o_m27",  "o_m28", "o_m29", "o_m30", "o_m31", "o_m32", "o_m33", "o_m34", "o_m35", "o_m36", "o_m37", "o_m38", "o_m39", "o_m40", "o_m41", "o_m42", "o_m43", "o_m44", "o_m45", "o_m46", "o_m47", "o_m48", "o_m49", "o_m50"]
+    __listechamps__ = ("zone", "numero", "bis", "o_serie", "o_type", "o_m1", "o_m2", "o_m3", "o_m4", "o_m5", "o_m6", "o_m7", "o_m8", "o_m9", "o_m10", "o_m11", "o_m12", "o_m13", "o_m14", "o_m15", "o_m16", "o_m17", "o_m18", "o_m19", "o_m20", "o_m21", "o_m22", "o_m23", "o_m24", "o_m25", "o_m26", "o_m27",  "o_m28", "o_m29", "o_m30", "o_m31", "o_m32", "o_m33", "o_m34", "o_m35", "o_m36", "o_m37", "o_m38", "o_m39", "o_m40", "o_m41", "o_m42", "o_m43", "o_m44", "o_m45", "o_m46", "o_m47", "o_m48", "o_m49", "o_m50")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "o_serie", "f_famille", "f_genre", "f_espece", "o_type", "o_m1", "o_m2", "o_m3", "o_m4", "o_m5", "o_m6", "o_m7", "o_m8", "o_m9", "o_m10", "o_m11", "o_m12", "o_m13", "o_m14", "o_m15", "o_m16", "o_m17", "o_m18", "o_m19", "o_m20", "o_m21", "o_m22", "o_m23", "o_m24", "o_m25", "o_m26", "o_m27", "o_m28", "o_m29", "o_m30", "o_m31", "o_m32", "o_m33", "o_m34", "o_m35", "o_m36", "o_m37", "o_m38", "o_m39", "o_m40", "o_m41", "o_m42", "o_m43", "o_m44", "o_m45", "o_m46", "o_m47", "o_m48", "o_m49", "o_m50"]
+    __ordrechamps__ = ("zone", "numero", "bis", "o_serie", "f_famille", "f_genre", "f_espece", "o_type", "o_m1", "o_m2", "o_m3", "o_m4", "o_m5", "o_m6", "o_m7", "o_m8", "o_m9", "o_m10", "o_m11", "o_m12", "o_m13", "o_m14", "o_m15", "o_m16", "o_m17", "o_m18", "o_m19", "o_m20", "o_m21", "o_m22", "o_m23", "o_m24", "o_m25", "o_m26", "o_m27", "o_m28", "o_m29", "o_m30", "o_m31", "o_m32", "o_m33", "o_m34", "o_m35", "o_m36", "o_m37", "o_m38", "o_m39", "o_m40", "o_m41", "o_m42", "o_m43", "o_m44", "o_m45", "o_m46", "o_m47", "o_m48", "o_m49", "o_m50")
     __orderby__ = " ORDER BY zone, numero, bis, o_serie ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -161,17 +161,17 @@ class Nonos(archeodata.Data):
     def f_famille_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
-            liste_clefs = ["zone", "numero", "bis", "o_serie"]
+            liste_clefs = ("zone", "numero", "bis", "o_serie")
             self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 2, enreg, penreg)
 
     def f_genre_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis", "o_serie"]
+            liste_clefs = ("zone", "numero", "bis", "o_serie")
             self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 2, enreg, penreg)
 
     def f_espece_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis", "o_serie"]
+            liste_clefs = ("zone", "numero", "bis", "o_serie")
             self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 2, enreg, penreg)
 
 ################################### En entrée ########################################
@@ -357,23 +357,23 @@ class Nonos(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la micro courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "o_serie"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface la os sur éclat
-        self.delete_records(["zone", "numero", "bis", "o_serie"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la os n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis", "o_serie"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "o_ordre": None, "o_serie": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la os dans la base
             # sauf si la faune n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="faune"):
+            if not self.exist(("zone", "numero", "bis"), table="faune"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

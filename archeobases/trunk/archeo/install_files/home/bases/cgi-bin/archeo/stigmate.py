@@ -26,45 +26,45 @@ class Stigmate(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"         : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                    "bis"          : {"type": "text", "default": "", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "s_ordre"      : {"type": "decimal", "default": 1, "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                    "s_type"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "s_sous_type"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "s_lustrage"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "s_polissage"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "s_localisation": {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "s_situation"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "s_relation"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "s_longueur"   : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_largeur"    : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_cimx"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_cimn"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_cr1s"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_cr2s"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_timx2"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_timn2"      : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_tr1s"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_tr2s"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
-                    "s_tang"       : {"type": "decimal", "mandatory": 0 , "longueur": 3}, \
+                    "zone"         : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"       : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "s_ordre"      : {"type": "decimal", "default": 1, "mandatory": 1, "longueur": 0, "memory": 1},
+                    "s_type"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "s_sous_type"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "s_lustrage"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "s_polissage"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "s_localisation": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "s_situation"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "s_relation"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "s_longueur"   : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_largeur"    : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_cimx"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_cimn"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_cr1s"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_cr2s"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_timx2"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_timn2"      : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_tr1s"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_tr2s"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
+                    "s_tang"       : {"type": "decimal", "mandatory": 0, "longueur": 3},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__ = ["zone", "numero", "bis", "s_ordre"]
-    __listeparents__ = ["industrie"]
+    __listenfants__ = ()
+    __listeclefs__ = ("zone", "numero", "bis", "s_ordre")
+    __listeparents__ = ("industrie",)
     __vraiparent__ = "industrie"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "s_ordre", "s_type", "s_sous_type", "s_lustrage", "s_polissage", "s_localisation", "s_situation", "s_relation", "s_longueur", "s_largeur", "s_cimx", "s_cimn", "s_cr1s", "s_cr2s", "s_timx2", "s_timn2", "s_tr1s", "s_tr2s", "s_tang"]
+    __listechamps__ = ("zone", "numero", "bis", "s_ordre", "s_type", "s_sous_type", "s_lustrage", "s_polissage", "s_localisation", "s_situation", "s_relation", "s_longueur", "s_largeur", "s_cimx", "s_cimn", "s_cr1s", "s_cr2s", "s_timx2", "s_timn2", "s_tr1s", "s_tr2s", "s_tang")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ =  ["zone", "numero", "bis", "s_ordre", "s_type", "s_sous_type", "s_lustrage", "s_polissage", "s_localisation", "s_situation", "s_relation", "s_longueur", "s_largeur", "s_cimx", "s_cimn", "s_cr1s", "s_cr2s", "s_timx2", "s_timn2", "s_tang", "s_tr1s", "s_tr2s"]
+    __ordrechamps__ =  ("zone", "numero", "bis", "s_ordre", "s_type", "s_sous_type", "s_lustrage", "s_polissage", "s_localisation", "s_situation", "s_relation", "s_longueur", "s_largeur", "s_cimx", "s_cimn", "s_cr1s", "s_cr2s", "s_timx2", "s_timn2", "s_tang", "s_tr1s", "s_tr2s")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def __init__(self, parent, nomtable=None):
         self.__tablename__ = nomtable
@@ -213,22 +213,22 @@ class Stigmate(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'stigmate courant"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "s_ordre"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des figures ou des photos sur cette industrie on refuse la suppression
         # on efface la stigmate
-        self.delete_records(["zone", "numero", "bis", "s_ordre"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si son parent n'existe pas, on refuse
-        if not self.exist(["zone", "numero", "bis"], table="industrie"):
+        if not self.exist(("zone", "numero", "bis"), table="industrie"):
             primarykeys = {"zone": None, "numero": None, "bis": None}
             return (-2, primarykeys)
         else:
-            if self.exist(["zone", "numero", "bis", "s_ordre"]):
+            if self.exist(self.__listeclefs__):
             # si l' stigmate existe, on refuse de le creer
                 primarykeys = {"zone": None, "numero": None, "bis": None, "s_ordre": None}
                 return (-1, primarykeys)

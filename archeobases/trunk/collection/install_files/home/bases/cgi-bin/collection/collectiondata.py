@@ -513,8 +513,6 @@ class Data:
                 else:
                     fauxtype = "text" # meme pour les numeriques
                 val = self.__db__.quote(self.__form__[c].value, fauxtype)
-                # A NE REACTIVER QU'EN CAS DE BESOIN (recherche non stricte)
-                #
                 vc = self.__form__[c].value
                 if hasattr(self, c + "_form_to_base"):
                     vc = getattr(self, c + "_form_to_base")(vc)

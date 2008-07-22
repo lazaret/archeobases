@@ -16,4 +16,4 @@ import archeoconf
 import enlevement_galet
 
 
-enlevement_galet.Enlevement_Galet("bas").traite_parametre(["zone", "numero", "bis", "ga_ordre", "eg_rang"], parent=archeoconf.getparent())
+enlevement_galet.Enlevement_Galet("bas").traite_parametre(("zone", "numero", "bis", "ga_ordre", "eg_rang"), parent=archeoconf.getparent())

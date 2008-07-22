@@ -16,4 +16,4 @@
 import faune
 
 
-faune.Faune("bas").traite_saisie(["zone", "numero", "bis"])
+faune.Faune("bas").traite_saisie(("zone", "numero", "bis"))

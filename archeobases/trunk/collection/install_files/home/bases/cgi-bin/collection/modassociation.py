@@ -15,5 +15,5 @@
 import association
 
 
-association.Association("bas").traite_saisie(["identifiant_1", "identifiant_2"])
+association.Association("bas").traite_saisie(("identifiant_1", "identifiant_2"))
 

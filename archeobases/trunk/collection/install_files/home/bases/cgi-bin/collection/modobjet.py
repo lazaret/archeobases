@@ -15,4 +15,4 @@
 import objet
 
 
-objet.Objet("bas").traite_saisie(["identifiant"])
+objet.Objet("bas").traite_saisie(("identifiant",))

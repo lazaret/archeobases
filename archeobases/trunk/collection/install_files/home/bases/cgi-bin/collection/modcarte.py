@@ -15,5 +15,5 @@
 import carte
 
 
-carte.Carte("bas").traite_saisie(["identifiant"])
+carte.Carte("bas").traite_saisie(("identifiant",))
 

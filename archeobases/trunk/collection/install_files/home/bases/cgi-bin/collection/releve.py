@@ -28,45 +28,45 @@ class Releve(collectiondata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"          : {"type": "text", "default": 0,  "mandatory": 1, "longueur": 20,  "memory": 1}, \
-                "m_type_materiel"      : {"type": "text", "default": "RELEVE", "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                "m_type_support"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,   "memory": 0}, \
-                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_ville"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_description_anatomique": {"type": "text", "default": "",  "mandatory": 0, "longueur": 300, "memory": 0}, \
-                "m_date_decouverte"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,   "memory": 0}, \
-                "m_nature"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 15,  "memory": 0}, \
-                "m_dimension"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 15,  "memory": 0}, \
-                "m_echelle"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 10,  "memory": 0}, \
-                "m_observations"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0}, \
-                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 150, "memory": 0}, \
-                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0, "longueur": 2, "memory": 0}, \
-                "m_date_modif"         : {"type": "date", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_saisie"             : {"type": "date", "mandatory": 0, "longueur": 10}, \
+                "identifiant"          : {"type": "text", "default": 0,  "mandatory": 1, "longueur": 20,  "memory": 1},
+                "m_type_materiel"      : {"type": "text", "default": "RELEVE", "mandatory": 1 , "longueur": 0, "memory": 1},
+                "m_type_support"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,   "memory": 0},
+                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_ville"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_description_anatomique": {"type": "text", "default": "",  "mandatory": 0, "longueur": 300, "memory": 0},
+                "m_date_decouverte"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,   "memory": 0},
+                "m_nature"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 15,  "memory": 0},
+                "m_dimension"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 15,  "memory": 0},
+                "m_echelle"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 10,  "memory": 0},
+                "m_observations"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0},
+                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 150, "memory": 0},
+                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0, "longueur": 2, "memory": 0},
+                "m_date_modif"         : {"type": "date", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_saisie"             : {"type": "date", "mandatory": 0, "longueur": 10},
                 }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeclefs__    = ["identifiant"]
+    __listenfants__   = ()
+    __listeclefs__    = ("identifiant",)
     __vraiparent__    = "releve"
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site", \
-                       "m_ville","m_pays", \
-                       "m_description_anatomique", "m_date_decouverte", "m_nature", \
-                       "m_dimension", "m_echelle", "m_observations", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif"]
+    __listechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site",
+                       "m_ville","m_pays",
+                       "m_description_anatomique", "m_date_decouverte", "m_nature",
+                       "m_dimension", "m_echelle", "m_observations",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif")
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site", \
-                       "m_ville","m_pays", \
-                       "m_description_anatomique", "m_date_decouverte", "m_nature", \
-                       "m_dimension", "m_echelle", "m_observations", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif", "m_saisie", "liens"]
+    __ordrechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_etagere", "m_nom_site",
+                       "m_ville","m_pays",
+                       "m_description_anatomique", "m_date_decouverte", "m_nature",
+                       "m_dimension", "m_echelle", "m_observations",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_date_modif", "m_saisie", "liens")
     __orderby__ = " ORDER BY identifiant ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []#"photomateriel"]
+    __formsupp__ = ()
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -214,7 +214,7 @@ class Releve(collectiondata.Data):
                 self.__doc__.td(clign="center", colspan="3")
                 self.__doc__.font(size=collectionconf.font_size)
                 dico['identifiant'] = valeur[k]['identifiant_2']
-                #TOTO: faire requete pour connaitre le nom de la table correspondante
+                #TODO: faire requete pour connaitre le nom de la table correspondante
                 query_count_biblio = "SELECT COUNT(*) FROM biblio WHERE identifiant=" \
                     + self.__db__.quote(valeur[k]['identifiant_2'],"text") + ";"
                 res = self.__db__.query(query_count_biblio)
@@ -281,11 +281,11 @@ class Releve(collectiondata.Data):
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
                 self.__doc__.hidden(name="identifiant", value=photo["identifiant"])
                 self.__doc__.hidden(name="referer", value=self.__doc__.script_name())
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
@@ -314,7 +314,7 @@ class Releve(collectiondata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour le releve courant"""
-        self.__db__.query(self.make_update_query(["identifiant"],"materiel"))
+        self.__db__.query(self.make_update_query(self.__listeclefs__, "materiel"))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
         self.__db__.query(update_date)
@@ -335,12 +335,12 @@ class Releve(collectiondata.Data):
         except:
             collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
         # on efface le releve
-        self.delete_records(["identifiant"],"materiel")
+        self.delete_records(self.__listeclefs__, "materiel")
         return 0
 
     def creer(self):
         # si le releve n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"], table="materiel"):
+        if self.exist(self.__listeclefs__, table="materiel"):
             primarykeys = {"identifiant": None}
             return (-1, primarykeys)
         else:

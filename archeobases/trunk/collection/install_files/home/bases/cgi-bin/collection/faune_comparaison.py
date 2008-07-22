@@ -28,65 +28,65 @@ class Faune_comparaison(collectiondata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"          : {"type": "text", "default": 0,  "mandatory": 1, "longueur": 20, "memory": 1}, \
-                "m_type_materiel"      : {"type": "text", "default": "FAUNE_COMPARAISON", "mandatory": 1, "longueur": 0 , "memory": 1}, \
-                "m_numero_individu"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_classe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_ordre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_famille"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_genre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_espece"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_nom_commun"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 0}, \
-                "m_age_individu"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_sexe_individu"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0}, \
-                "m_donnees_individu"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_representation_squel": {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 0}, \
-                "m_description_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0}, \
-                "m_observations_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0}, \
-                "m_nature"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0}, \
-                "m_age_absolu"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_numero_inventaire"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_donnateur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_date_acquisition"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,  "memory": 0}, \
-                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0}, \
-                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0, "longueur": 6, "memory": 0}, \
-                "m_batiment"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0}, \
-                "m_piece"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0}, \
-                "m_meuble"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 0}, \
-                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 0}, \
-                "m_date_modif"         : {"type": "date", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0}, \
-                "m_saisie"             : {"type": "date", "mandatory": 0, "longueur": 10}, \
+                "identifiant"          : {"type": "text", "default": 0,  "mandatory": 1, "longueur": 20, "memory": 1},
+                "m_type_materiel"      : {"type": "text", "default": "FAUNE_COMPARAISON", "mandatory": 1, "longueur": 0 , "memory": 1},
+                "m_numero_individu"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_classe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_ordre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_famille"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_genre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_espece"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_nom_commun"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 0},
+                "m_age_individu"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_sexe_individu"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0},
+                "m_donnees_individu"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_representation_squel": {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 0},
+                "m_description_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0},
+                "m_observations_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0},
+                "m_nature"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0},
+                "m_age_absolu"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_numero_inventaire"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_donnateur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_date_acquisition"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 4,  "memory": 0},
+                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 0},
+                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0, "longueur": 6, "memory": 0},
+                "m_batiment"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0},
+                "m_piece"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0},
+                "m_meuble"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 0},
+                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 0},
+                "m_date_modif"         : {"type": "date", "default": "", "mandatory": 0, "longueur": 0,  "memory": 0},
+                "m_saisie"             : {"type": "date", "mandatory": 0, "longueur": 10},
                 }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeclefs__    = ["identifiant"]
+    __listenfants__   = ()
+    __listeclefs__    = ("identifiant",)
     __vraiparent__    = "faune_comparaison"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "m_type_materiel", "m_numero_individu", \
-                       "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_nom_commun", \
-                       "m_nom_site", "m_pays", "m_age_individu", \
-                       "m_sexe_individu","m_donnees_individu", \
-                       "m_representation_squel", "m_description_anatomique", "m_observations_anatomique", \
-                       "m_nature", "m_age_absolu", "m_numero_inventaire", "m_donnateur", "m_date_acquisition", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_batiment", "m_piece", "m_meuble", "m_etagere", \
-                       "m_date_modif"]
+    __listechamps__ = ("identifiant", "m_type_materiel", "m_numero_individu",
+                       "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_nom_commun",
+                       "m_nom_site", "m_pays", "m_age_individu",
+                       "m_sexe_individu","m_donnees_individu",
+                       "m_representation_squel", "m_description_anatomique", "m_observations_anatomique",
+                       "m_nature", "m_age_absolu", "m_numero_inventaire", "m_donnateur", "m_date_acquisition",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_batiment", "m_piece", "m_meuble", "m_etagere",
+                       "m_date_modif")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "m_type_materiel", "m_numero_individu", \
-                       "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_nom_commun", \
-                       "m_nom_site", "m_pays", "m_age_individu", "m_sexe_individu", "m_donnees_individu", \
-                       "m_representation_squel", "m_description_anatomique", "m_observations_anatomique", \
-                       "m_nature","m_age_absolu", "m_numero_inventaire", "m_donnateur", "m_date_acquisition", \
-                       "m_mots_clefs", "m_nombre_exemplaires", "m_batiment", "m_piece", "m_meuble", "m_etagere", \
-                       "m_date_modif", "m_saisie", "liens"]
+    __ordrechamps__ = ("identifiant", "m_type_materiel", "m_numero_individu",
+                       "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_nom_commun",
+                       "m_nom_site", "m_pays", "m_age_individu", "m_sexe_individu", "m_donnees_individu",
+                       "m_representation_squel", "m_description_anatomique", "m_observations_anatomique",
+                       "m_nature","m_age_absolu", "m_numero_inventaire", "m_donnateur", "m_date_acquisition",
+                       "m_mots_clefs", "m_nombre_exemplaires", "m_batiment", "m_piece", "m_meuble", "m_etagere",
+                       "m_date_modif", "m_saisie", "liens")
     __orderby__ = " ORDER BY identifiant ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -373,11 +373,11 @@ class Faune_comparaison(collectiondata.Data):
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
                 self.__doc__.hidden(name="identifiant", value=photo["identifiant"])
                 self.__doc__.hidden(name="referer", value=self.__doc__.script_name())
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
@@ -406,7 +406,7 @@ class Faune_comparaison(collectiondata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour le faune_comparaison courant"""
-        self.__db__.query(self.make_update_query(["identifiant"],"materiel"))
+        self.__db__.query(self.make_update_query(self.__listeclefs__, "materiel"))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
         self.__db__.query(update_date)
@@ -427,18 +427,18 @@ class Faune_comparaison(collectiondata.Data):
         except:
             collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
         # on efface le faune_comparaison
-        self.delete_records(["identifiant"],"materiel")
+        self.delete_records(self.__listeclefs__, "materiel")
         return 0
 
     def creer(self):
         # si le faune_comparaison n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"], table="materiel"):
+        if self.exist(self.__listeclefs__, table="materiel"):
             primarykeys = {"identifiant": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant le faune_comparaison dans la base
             i = self.__form__["identifiant"].value
-            self.__db__.query(self.make_insert_query({},"materiel"))
+            self.__db__.query(self.make_insert_query({}, "materiel"))
             primarykeys = {"identifiant": i}
             update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
             self.__db__.query(update_date)

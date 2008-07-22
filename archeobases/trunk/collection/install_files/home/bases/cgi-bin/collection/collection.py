@@ -18,13 +18,13 @@ import cgi
 import jahtml
 
 
-# ces fonctions sont dupliquées volontairement d'collectionconf.py
+# ces fonctions sont dupliquées volontairement de collectionconf.py
 # ne pas toucher !
 def getConfig():
     fconfig = open("/etc/collection.conf")
     exec(fconfig)
     fconfig.close()
-    return { 'cgipath': cgipath, 'docpath': docpath, 'bases': bases }
+    return {'cgipath': cgipath, 'docpath': docpath, 'bases': bases}
 
 config = getConfig()
 

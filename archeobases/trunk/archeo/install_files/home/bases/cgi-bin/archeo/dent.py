@@ -26,58 +26,58 @@ class Dent(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"   : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "numero" : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1}, \
-                    "bis"    : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "d_serie": {"type": "text", "default": "1", "mandatory": 1, "longueur": 2}, \
-                    "d_type" : {"type": "text", "default": "", "mandatory": 1, "longueur": 0}, \
-                    "d_m1"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m2"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m3"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m4"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m5"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m6"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m7"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m8"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m9"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m10"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m11"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m12"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m13"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m14"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m15"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m16"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m17"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m18"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m19"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m20"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m21"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m22"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m23"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m24"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m25"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m26"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m27"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m28"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m29"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
-                    "d_m30"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5}, \
+                    "zone"   : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero" : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory": 1},
+                    "bis"    : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "d_serie": {"type": "text", "default": "1", "mandatory": 1, "longueur": 2},
+                    "d_type" : {"type": "text", "default": "", "mandatory": 1, "longueur": 0},
+                    "d_m1"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m2"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m3"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m4"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m5"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m6"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m7"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m8"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m9"   : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m10"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m11"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m12"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m13"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m14"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m15"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m16"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m17"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m18"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m19"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m20"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m21"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m22"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m23"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m24"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m25"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m26"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m27"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m28"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m29"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
+                    "d_m30"  : {"type": "int", "default": 0, "mandatory": 0, "longueur": 5},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "faune"]
-    __listeclefs__ = ["zone", "numero", "bis", "d_serie", "d_type"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "faune")
+    __listeclefs__ = ("zone", "numero", "bis", "d_serie", "d_type")
     __vraiparent__ = "faune"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "d_serie", "d_type", "d_m1", "d_m2", "d_m3", "d_m4", "d_m5", "d_m6", "d_m7", "d_m8", "d_m9", "d_m10", "d_m11", "d_m12", "d_m13", "d_m14", "d_m15", "d_m16", "d_m17", "d_m18", "d_m19", "d_m20", "d_m21", "d_m22", "d_m23", "d_m24", "d_m25", "d_m26", "d_m27", "d_m28", "d_m29", "d_m30"]
+    __listechamps__ = ("zone", "numero", "bis", "d_serie", "d_type", "d_m1", "d_m2", "d_m3", "d_m4", "d_m5", "d_m6", "d_m7", "d_m8", "d_m9", "d_m10", "d_m11", "d_m12", "d_m13", "d_m14", "d_m15", "d_m16", "d_m17", "d_m18", "d_m19", "d_m20", "d_m21", "d_m22", "d_m23", "d_m24", "d_m25", "d_m26", "d_m27", "d_m28", "d_m29", "d_m30")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "d_serie", "d_type", "f_famille", "f_genre", "f_espece", "d_m1", "d_m2", "d_m3", "d_m4", "d_m5", "d_m6", "d_m7", "d_m8", "d_m9", "d_m10", "d_m11", "d_m12", "d_m13", "d_m14", "d_m15", "d_m16", "d_m17", "d_m18", "d_m19", "d_m20", "d_m21", "d_m22", "d_m23", "d_m24", "d_m25", "d_m26", "d_m27", "d_m28", "d_m29", "d_m30"]
+    __ordrechamps__ = ("zone", "numero", "bis", "d_serie", "d_type", "f_famille", "f_genre", "f_espece", "d_m1", "d_m2", "d_m3", "d_m4", "d_m5", "d_m6", "d_m7", "d_m8", "d_m9", "d_m10", "d_m11", "d_m12", "d_m13", "d_m14", "d_m15", "d_m16", "d_m17", "d_m18", "d_m19", "d_m20", "d_m21", "d_m22", "d_m23", "d_m24", "d_m25", "d_m26", "d_m27", "d_m28", "d_m29", "d_m30")
     __orderby__ = " ORDER BY zone, numero, bis, d_serie, d_type ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -150,17 +150,17 @@ class Dent(archeodata.Data):
     def f_famille_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "10")
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 2, enreg, penreg)
 
     def f_genre_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 2, enreg, penreg)
 
     def f_espece_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 2, enreg, penreg)
 
 ############################### En entrée #####################################
@@ -272,23 +272,23 @@ class Dent(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la micro courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "d_serie", "d_type"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface la dent sur éclat
-        self.delete_records(["zone", "numero", "bis", "d_serie", "d_type"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si la dent n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis", "d_serie", "d_type"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "o_ordre": None, "d_serie": None, "d_type": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la dent dans la base
             # sauf si la faune n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="faune"):
+            if not self.exist(("zone", "numero", "bis"), table="faune"):
                 primarykeys = {"zone": None, "numero": None, "bis": None, "d_serie": None, "d_type": None}
                 return (-2, primarykeys)
             else:

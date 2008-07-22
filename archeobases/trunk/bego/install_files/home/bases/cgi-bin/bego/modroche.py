@@ -15,4 +15,4 @@
 import roche
 
 
-roche.Roche("bas").traite_saisie(["zone", "groupe", "roche"])
+roche.Roche("bas").traite_saisie(("zone", "groupe", "roche"))

@@ -15,4 +15,4 @@
 import association
 
 
-association.Association("bas").traite_saisie(["zone", "groupe", "roche", "face", "association"])
+association.Association("bas").traite_saisie(("zone", "groupe", "roche", "face", "association"))

@@ -16,5 +16,5 @@ import annuaireconf
 import fiche
 
 
-fiche.Fiche("bas").traite_saisie(["identifiant"])
+fiche.Fiche("bas").traite_saisie(("identifiant",))
 

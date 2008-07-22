@@ -15,6 +15,7 @@
 import cgi
 import collectionconf
 
+
 doc = collectionconf.Bas("Modification des paramètres", "Modification d'une zone")
 db = collectionconf.CollectionDataBase()
 form = cgi.FieldStorage()

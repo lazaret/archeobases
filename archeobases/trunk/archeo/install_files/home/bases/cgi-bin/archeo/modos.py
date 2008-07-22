@@ -15,4 +15,4 @@
 import nonos
 
 
-nonos.Nonos("bas").traite_saisie(["zone", "numero", "bis", "o_serie"])
+nonos.Nonos("bas").traite_saisie(("zone", "numero", "bis", "o_serie"))

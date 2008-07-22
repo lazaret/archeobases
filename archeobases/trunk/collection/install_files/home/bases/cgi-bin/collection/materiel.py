@@ -28,106 +28,106 @@ class Materiel(collectiondata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"          : {"type": "text", "default": 0,  "mandatory": 1, "longueur": 20,  "memory": 1}, \
-                "m_type_materiel"      : {"type": "text", "default": "", "mandatory": 1, "longueur": 0,   "memory": 1}, \
-                "m_type_support"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0, "longueur": 6,  "memory":   0}, \
-                "m_numero_inventaire"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_titre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 200, "memory": 0}, \
-                "m_donnateur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_depot_original"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_auteur"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_date"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_date_acquisition"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_editeur"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 100, "memory": 0}, \
-                "m_date_edition"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_diffusion"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 30,  "memory": 0}, \
-                "m_duree"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 10,  "memory": 0}, \
-                "m_support"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_dimensions"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_echelle"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_scan_epaisseur_coupe": {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0}, \
-                "m_scan_nb_coupes"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0}, \
-                "m_scan_nb_plans_coupes": {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0}, \
-                "m_moul_orig"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 0}, \
-                "m_batiment"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_meuble"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_piece"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_tiroir"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_localite"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_commune"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_ville"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_region"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_inventeur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_date_decouverte"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_periode_culturelle" : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_periode_geologique" : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_age_absolu"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_observations"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0}, \
-                "m_bibliographie"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0}, \
-                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 150, "memory": 0}, \
-                "m_numero_individu"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_groupe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_classe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_ordre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_famille"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_genre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_espece"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_holotype_espece"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_nom_familier"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0}, \
-                "m_nom_fossile"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0}, \
-                "m_synonymes"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_nom_commun"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_age_individu"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0}, \
-                "m_sexe_individu"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0}, \
-                "m_donnees_individu"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 200, "memory": 0}, \
-                "m_representation_squel": {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 0}, \
-                "m_description_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0}, \
-                "m_observations_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0}, \
-                "m_nature"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0 , "memory": 0}, \
-                "m_date_modif"         : {"type": "date", "default": "", "mandatory": 0, "longueur": 0 , "memory": 0}, \
-                "m_saisie"             : {"type": "date", "mandatory": 0 , "longueur": 10}, \
+                "identifiant"          : {"type": "text", "default": 0,  "mandatory": 1, "longueur": 20,  "memory": 1},
+                "m_type_materiel"      : {"type": "text", "default": "", "mandatory": 1, "longueur": 0,   "memory": 1},
+                "m_type_support"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_nombre_exemplaires" : {"type": "int",  "mandatory": 0, "longueur": 6,  "memory":   0},
+                "m_numero_inventaire"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_titre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 200, "memory": 0},
+                "m_donnateur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_depot_original"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_auteur"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_date"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_date_acquisition"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_editeur"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 100, "memory": 0},
+                "m_date_edition"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_diffusion"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 30,  "memory": 0},
+                "m_duree"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 10,  "memory": 0},
+                "m_support"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_dimensions"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_echelle"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_scan_epaisseur_coupe": {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0},
+                "m_scan_nb_coupes"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0},
+                "m_scan_nb_plans_coupes": {"type": "text", "default": "", "mandatory": 0, "longueur": 12, "memory": 0},
+                "m_moul_orig"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 0},
+                "m_batiment"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_meuble"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_piece"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_tiroir"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_etagere"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_nom_site"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_localite"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_commune"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_ville"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_region"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_pays"               : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_inventeur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_date_decouverte"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_periode_culturelle" : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_periode_geologique" : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_age_absolu"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_observations"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0},
+                "m_bibliographie"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 500, "memory": 0},
+                "m_mots_clefs"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 150, "memory": 0},
+                "m_numero_individu"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_groupe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_classe"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_ordre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_famille"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_genre"              : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_espece"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_holotype_espece"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_nom_familier"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 20,  "memory": 0},
+                "m_nom_fossile"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 40,  "memory": 0},
+                "m_synonymes"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_nom_commun"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_age_individu"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 80,  "memory": 0},
+                "m_sexe_individu"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0,   "memory": 0},
+                "m_donnees_individu"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 200, "memory": 0},
+                "m_representation_squel": {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 0},
+                "m_description_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0},
+                "m_observations_anatomique": {"type": "text", "default": "", "mandatory": 0, "longueur": 300, "memory": 0},
+                "m_nature"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 0 , "memory": 0},
+                "m_date_modif"         : {"type": "date", "default": "", "mandatory": 0, "longueur": 0 , "memory": 0},
+                "m_saisie"             : {"type": "date", "mandatory": 0 , "longueur": 10},
                 }
     #
     # liste des tables enfants
-    __listenfants__   = []
-    __listeclefs__    = ["identifiant"]
+    __listenfants__   = ()
+    __listeclefs__    = ("identifiant",)
     __vraiparent__    = "materiel"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_nombre_exemplaires", "m_numero_inventaire", \
-                    "m_titre", "m_donnateur", "m_depot_original", "m_auteur","m_date", "m_date_acquisition", "m_editeur", \
-                    "m_date_edition", "m_diffusion", "m_duree", "m_support", "m_dimensions", "m_echelle", \
-                    "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes", "m_moul_orig", \
-                    "m_batiment", "m_piece", "m_meuble", "m_etagere", "m_tiroir", \
-                    "m_nom_site", "m_localite", "m_ville", "m_commune", "m_region", "m_pays", "m_inventeur", \
-                    "m_date_decouverte", "m_periode_culturelle", "m_periode_geologique", "m_age_absolu", \
-                    "m_observations", "m_bibliographie", "m_mots_clefs", "m_numero_individu", \
-                    "m_groupe", "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_holotype_espece", \
-                    "m_nom_familier", "m_nom_fossile", "m_synonymes", "m_nom_commun", \
-                    "m_age_individu", "m_sexe_individu", "m_donnees_individu", "m_representation_squel", \
-                    "m_description_anatomique", "m_observations_anatomique", "m_nature", "m_date_modif"]
+    __listechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_nombre_exemplaires", "m_numero_inventaire",
+                    "m_titre", "m_donnateur", "m_depot_original", "m_auteur","m_date", "m_date_acquisition", "m_editeur",
+                    "m_date_edition", "m_diffusion", "m_duree", "m_support", "m_dimensions", "m_echelle",
+                    "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes", "m_moul_orig",
+                    "m_batiment", "m_piece", "m_meuble", "m_etagere", "m_tiroir",
+                    "m_nom_site", "m_localite", "m_ville", "m_commune", "m_region", "m_pays", "m_inventeur",
+                    "m_date_decouverte", "m_periode_culturelle", "m_periode_geologique", "m_age_absolu",
+                    "m_observations", "m_bibliographie", "m_mots_clefs", "m_numero_individu",
+                    "m_groupe", "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_holotype_espece",
+                    "m_nom_familier", "m_nom_fossile", "m_synonymes", "m_nom_commun",
+                    "m_age_individu", "m_sexe_individu", "m_donnees_individu", "m_representation_squel",
+                    "m_description_anatomique", "m_observations_anatomique", "m_nature", "m_date_modif")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "m_type_materiel", "m_type_support", "m_nombre_exemplaires", "m_numero_inventaire", \
-                    "m_titre","m_donnateur", "m_depot_original", "m_auteur", "m_date", "m_date_acquisition", "m_editeur", \
-                    "m_date_edition", "m_diffusion", "m_duree", "m_support", "m_dimensions", "m_echelle", \
-                    "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes", "m_moul_orig", \
-                    "m_batiment", "m_piece", "m_meuble", "m_etagere", "m_tiroir", \
-                    "m_nom_site", "m_localite", "m_ville", "m_commune", "m_region", "m_pays", "m_inventeur", \
-                    "m_date_decouverte", "m_periode_culturelle", "m_periode_geologique", "m_age_absolu", \
-                    "m_observations", "m_bibliographie", "m_mots_clefs", "m_numero_individu", \
-                    "m_groupe", "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_holotype_espece", \
-                    "m_nom_familier", "m_nom_fossile", "m_synonymes", "m_nom_commun", \
-                    "m_age_individu", "m_sexe_individu", "m_donnees_individu", "m_representation_squel", \
-                    "m_description_anatomique", "m_observations_anatomique", "m_nature", "m_date_modif", "m_saisie","liens"]
+    __ordrechamps__ = ("identifiant", "m_type_materiel", "m_type_support", "m_nombre_exemplaires", "m_numero_inventaire",
+                    "m_titre","m_donnateur", "m_depot_original", "m_auteur", "m_date", "m_date_acquisition", "m_editeur",
+                    "m_date_edition", "m_diffusion", "m_duree", "m_support", "m_dimensions", "m_echelle",
+                    "m_scan_epaisseur_coupe", "m_scan_nb_coupes", "m_scan_nb_plans_coupes", "m_moul_orig",
+                    "m_batiment", "m_piece", "m_meuble", "m_etagere", "m_tiroir",
+                    "m_nom_site", "m_localite", "m_ville", "m_commune", "m_region", "m_pays", "m_inventeur",
+                    "m_date_decouverte", "m_periode_culturelle", "m_periode_geologique", "m_age_absolu",
+                    "m_observations", "m_bibliographie", "m_mots_clefs", "m_numero_individu",
+                    "m_groupe", "m_classe", "m_ordre", "m_famille", "m_genre", "m_espece", "m_holotype_espece",
+                    "m_nom_familier", "m_nom_fossile", "m_synonymes", "m_nom_commun",
+                    "m_age_individu", "m_sexe_individu", "m_donnees_individu", "m_representation_squel",
+                    "m_description_anatomique", "m_observations_anatomique", "m_nature", "m_date_modif", "m_saisie","liens")
     __orderby__ = " ORDER BY identifiant ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -571,11 +571,11 @@ class Materiel(collectiondata.Data):
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
                 self.__doc__.hidden(name="identifiant", value=photo["identifiant"])
                 self.__doc__.hidden(name="referer", value=self.__doc__.script_name())
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
@@ -604,7 +604,7 @@ class Materiel(collectiondata.Data):
 ##############################################################################
     def modifier(self):
         """Met a jour le materiel courant"""
-        self.__db__.query(self.make_update_query(["identifiant"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE materiel SET m_date_modif='now' WHERE identifiant='" + i + "';"
         self.__db__.query(update_date)
@@ -620,12 +620,12 @@ class Materiel(collectiondata.Data):
         except:
             collectionconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
         # on efface le materiel
-        self.delete_records(["identifiant"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si le materiel n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"], table="materiel"):
+        if self.exist(self.__listeclefs__, table="materiel"):
             primarykeys = {"identifiant": None}
             return (-1, primarykeys)
         else:

@@ -16,4 +16,4 @@
 import eclat
 
 
-eclat.Eclat("bas").traite_saisie(["zone", "numero", "bis"])
+eclat.Eclat("bas").traite_saisie(("zone", "numero", "bis"))

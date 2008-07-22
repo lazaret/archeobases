@@ -55,7 +55,7 @@ class PageRequete(begoconf.Bas):
                 self.option(val, value = val)
         else:
             self.p()
-            if param in ["tourbiere", "moraine", "vegetation"]:
+            if param in ("tourbiere", "moraine", "vegetation"):
                 self.font("Aucune "+ param +" saisie", color="red")
             else:
                 self.font("Aucun "+ param +" saisi", color="red")
@@ -73,7 +73,7 @@ class PageRequete(begoconf.Bas):
 form = cgi.FieldStorage()   #recupere tous les param passes par le script precedent
 doc = PageRequete("Modification des Paramètres", "Modification des Paramètres")
 db = begoconf.BegoDataBase(username="bego")
-for p in ['acces', 'sentier', 'sommet', 'col', 'lac', 'torrent', 'tourbiere', 'eboulis', 'moraine', 'glacier', 'vegetation']:
+for p in ('acces', 'sentier', 'sommet', 'col', 'lac', 'torrent', 'tourbiere', 'eboulis', 'moraine', 'glacier', 'vegetation'):
     doc.ecran_requetes("#CCCCCC", "#CCFFFF", "#FFFFCC", "#CCCCCC", "#FFFFCC", p)
 doc.output()
 

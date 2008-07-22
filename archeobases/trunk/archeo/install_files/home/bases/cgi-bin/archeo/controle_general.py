@@ -58,7 +58,7 @@ class PageRequete(archeoconf.Bas):
                 self.option(val, value=enreg[param])
         else:
             self.p()
-            if param in ["zone", "localite", "couche", "nature", "orientation"]:
+            if param in ("zone", "localite", "couche", "nature", "orientation"):
                 self.font("Aucune "+ param +" saisie", color="red")
             else:
                 self.font("Aucun "+ param +" saisi", color="red")

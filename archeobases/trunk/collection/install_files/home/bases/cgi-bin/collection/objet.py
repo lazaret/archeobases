@@ -25,26 +25,26 @@ class Objet(collectiondata.Data):
     __color__ = collectionconf.bas1_bgcolor
     #
     # tous les champs de la table objet
-    __champs__ = {\
-                "identifiant": {"type": "text", "default": 0,  "mandatory": 1, "longueur": 6, "memory": 1}, \
-                "type_objet" : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
+    __champs__ = {
+                "identifiant": {"type": "text", "default": 0,  "mandatory": 1, "longueur": 6, "memory": 1},
+                "type_objet" : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
                 }
     #
     # liste des tables enfants
-    __listenfants__ = [ "association", "biblio"]
-    __listeclefs__ = ["identifiant"]
+    __listenfants__ = ("association", "biblio")
+    __listeclefs__ = ("identifiant",)
     __vraiparent__ = "objet"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = [ "identifiant", "type_objet"]
+    __listechamps__ = ("identifiant", "type_objet")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = [ "identifiant", "type_objet"]
+    __ordrechamps__ = ("identifiant", "type_objet")
     __orderby__ = " ORDER BY identifiant ASC;"
-    __controle_saisie__ = [""]
+    __controle_saisie__ = ("",)
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["biblio" ]
+    __formsupp__ = ("biblio",)
 
     def identifiant_verify(self, fieldname, value):
         if (value == '') or self.champ_verify(fieldname, value):
@@ -84,21 +84,21 @@ class Objet(collectiondata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'objet courante"""
-        self.__db__.query(self.make_update_query(["identifiant"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des biblios associes a cette objet, on refuse la suppression
-        if self.exist(["identifiant"], table="biblio"):
+        if self.exist(self.__listeclefs__, table="biblio"):
             return -1
         else:
             # on efface l'objet
-            self.delete_records(["identifiant"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si l'objet n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["identifiant"]):
+        if self.exist(self.__listeclefs__):
             return (-1, {"identifiant": None})
         else:
             i = self.__form__["identifiant"].value

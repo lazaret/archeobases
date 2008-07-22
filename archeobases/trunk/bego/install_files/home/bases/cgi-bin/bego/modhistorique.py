@@ -16,4 +16,4 @@ import begoconf
 import historique
 
 
-historique.Historique("bas").traite_saisie(["zone", "groupe", "roche", "face", "historique"], parent=begoconf.getparent())
+historique.Historique("bas").traite_saisie(("zone", "groupe", "roche", "face", "historique"), parent=begoconf.getparent())

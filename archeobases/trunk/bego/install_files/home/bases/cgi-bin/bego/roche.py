@@ -27,40 +27,40 @@ class Roche(begodata.Data):
     #
     # tous les champs de la table roche
     __champs__ = { \
-                "zone"        :{"type": "decimal", "default": 0,   "mandatory": 1}, \
-                "groupe"      :{"type": "decimal", "default": 0,   "mandatory": 1}, \
-                "roche"       :{"type": "text",    "default": "",  "mandatory": 1}, \
-                "nom"         :{"type": "text",    "default": "",  "mandatory": 0}, \
-                "x"           :{"type": "decimal", "default": 0,   "mandatory": 0}, \
-                "y"           :{"type": "decimal", "default": 0,   "mandatory": 0}, \
-                "z"           :{"type": "decimal", "default": 0,   "mandatory": 0}, \
-                "longueur"    :{"type": "decimal", "default": "0", "mandatory": 0}, \
-                "largeur"     :{"type": "decimal", "default": "0", "mandatory": 0}, \
-                "epaisseur"   :{"type": "decimal", "default": "",  "mandatory": 0}, \
-                "nature"      :{"type": "text",    "default": "",  "mandatory": 0}, \
-                "type"        :{"type": "text",    "default": "",  "mandatory": 0}, \
-                "orientation" :{"type": "text",    "default": "",  "mandatory": 0}, \
-                "contexte"    :{"type": "text",    "default": "",  "mandatory": 0}, \
-                "publication" :{"type": "bool",    "default": "f", "mandatory": 0}, \
-                "nb"          :{"type": "text",    "default": "",  "mandatory": 0}, \
-                "remarquable" :{"type": "bool",    "default": "f", "mandatory": 0}, \
+                "zone"        :{"type": "decimal", "default": 0,   "mandatory": 1},
+                "groupe"      :{"type": "decimal", "default": 0,   "mandatory": 1},
+                "roche"       :{"type": "text",    "default": "",  "mandatory": 1},
+                "nom"         :{"type": "text",    "default": "",  "mandatory": 0},
+                "x"           :{"type": "decimal", "default": 0,   "mandatory": 0},
+                "y"           :{"type": "decimal", "default": 0,   "mandatory": 0},
+                "z"           :{"type": "decimal", "default": 0,   "mandatory": 0},
+                "longueur"    :{"type": "decimal", "default": "0", "mandatory": 0},
+                "largeur"     :{"type": "decimal", "default": "0", "mandatory": 0},
+                "epaisseur"   :{"type": "decimal", "default": "",  "mandatory": 0},
+                "nature"      :{"type": "text",    "default": "",  "mandatory": 0},
+                "type"        :{"type": "text",    "default": "",  "mandatory": 0},
+                "orientation" :{"type": "text",    "default": "",  "mandatory": 0},
+                "contexte"    :{"type": "text",    "default": "",  "mandatory": 0},
+                "publication" :{"type": "bool",    "default": "f", "mandatory": 0},
+                "nb"          :{"type": "text",    "default": "",  "mandatory": 0},
+                "remarquable" :{"type": "bool",    "default": "f", "mandatory": 0},
                 }
     #
     # liste des tables enfants
-    __listenfants__ = ["face", "figure", "historique", "association"]
-    __listeparents__  = ["zone"]
-    __listeclefs__ = ["zone", "groupe", "roche"]
+    __listenfants__ = ("face", "figure", "historique", "association")
+    __listeparents__  = ("zone",)
+    __listeclefs__ = ("zone", "groupe", "roche")
     __vraiparent__ = "zone"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "groupe", "roche", "nom", "x", "y", "z", "longueur", "largeur", "epaisseur", "nature", "type", "orientation", "remarquable", "contexte", "publication"]
+    __listechamps__ = ("zone", "groupe", "roche", "nom", "x", "y", "z", "longueur", "largeur", "epaisseur", "nature", "type", "orientation", "remarquable", "contexte", "publication")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "groupe", "roche", "nom", "x", "y", "z", "longueur", "largeur", "epaisseur", "nature", "type", "orientation", "remarquable", "contexte", "publication", "nb"]
+    __ordrechamps__ = ("zone", "groupe", "roche", "nom", "x", "y", "z", "longueur", "largeur", "epaisseur", "nature", "type", "orientation", "remarquable", "contexte", "publication", "nb")
     __orderby__ = " ORDER BY zone, groupe, roche ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["photoroches", "faces"]
+    __formsupp__ = ("photoroches", "faces")
 
     def zone_verify(self, value):
         if value == '':
@@ -110,7 +110,7 @@ class Roche(begodata.Data):
     def x_base_to_form(self, enreg, penreg=None):
         """ Affiche et saisie de la liste de la coordonée x."""
         self.__doc__.push()
-        self.__doc__.tr(align = "right")
+        self.__doc__.tr(align="right")
         self.__doc__.push()
         self.__doc__.td(align="right", valign="center")
         self.__doc__.u()
@@ -250,7 +250,7 @@ class Roche(begodata.Data):
         self.__doc__.push()
         self.__doc__.td()
         self.__doc__.pop()
-        self.__doc__.td(valign = "middle", align="left")
+        self.__doc__.td(valign="middle", align="left")
         self.__doc__.font(size=begoconf.font_size)
         if enreg != None:
             if enreg["remarquable"] == 't':
@@ -285,7 +285,7 @@ class Roche(begodata.Data):
         self.__doc__.font(size=begoconf.font_size)
         if enreg != None:
             if enreg["publication"] == 't':
-                self.__doc__.checkbox_checked(name = "publication")
+                self.__doc__.checkbox_checked(name="publication")
             else:
                 self.__doc__.checkbox(name="publication") # 'f' ou vide
         else:
@@ -318,7 +318,7 @@ class Roche(begodata.Data):
             self.__doc__.insert_text("Totaux")
             self.__doc__.pop()
             self.__doc__.push()
-            self.__doc__.td(clign = "center", colspan="3")
+            self.__doc__.td(clign="center", colspan="3")
             self.__doc__.font(size=begoconf.font_size)
             self.__doc__.insert_text("Nombre de faces gravées : ")
             nb = self.__db__.query("SELECT COUNT(*) FROM face WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal") + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + ";")
@@ -327,7 +327,7 @@ class Roche(begodata.Data):
             self.__doc__.insert_text(`nb`)
             self.__doc__.pop()
             self.__doc__.push()
-            self.__doc__.td( colspan ="2")
+            self.__doc__.td(colspan="2")
             self.__doc__.font(size=begoconf.font_size)
             self.__doc__.insert_text("Nombre de gravures : ")
             nb = self.__db__.query("SELECT count(*)  FROM figure WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " AND groupe = " + self.__db__.quote(enreg["groupe"], "decimal")  + " AND roche = " + self.__db__.quote(enreg["roche"], "text") + ";")
@@ -349,7 +349,7 @@ class Roche(begodata.Data):
         lg = len(resp)
         if lg:
             self.__doc__.push()
-            self.__doc__.div(align = "center")
+            self.__doc__.div(align="center")
             if lg > 1:
                 s = "s"
             else :
@@ -385,25 +385,25 @@ class Roche(begodata.Data):
                 self.__doc__.td(bgcolor=begoconf.basform_bgcolorright, valign="middle", align="center")
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
-                self.__doc__.hidden(name="zone",    value=photo["zone"])
-                self.__doc__.hidden(name="groupe",  value=photo["groupe"])
-                self.__doc__.hidden(name="roche",   value=photo["roche"])
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.hidden(name="zone",  value=photo["zone"])
+                self.__doc__.hidden(name="groupe", value=photo["groupe"])
+                self.__doc__.hidden(name="roche", value=photo["roche"])
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.p()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.p()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
             self.__doc__.push()
-            self.__doc__.form(method="POST",   action=begoconf.script_location("modphoto"))
-            self.__doc__.hidden(name="zone",   value=enreg["zone"])
+            self.__doc__.form(method="POST", action=begoconf.script_location("modphoto"))
+            self.__doc__.hidden(name="zone", value=enreg["zone"])
             self.__doc__.hidden(name="groupe", value=enreg["groupe"])
-            self.__doc__.hidden(name="roche",  value=enreg["roche"])
+            self.__doc__.hidden(name="roche", value=enreg["roche"])
             self.__doc__.submit(name="action", value="Nouvelle") # bouton ajouter une photo
             self.__doc__.pop()
-            self.__doc__.font("aucune photo", color = "red", size = begoconf.font_size)
+            self.__doc__.font("aucune photo", color="red", size=begoconf.font_size)
 
     def menu_photoroches(self, enreg, color, function):
         if enreg != None:
@@ -428,7 +428,7 @@ class Roche(begodata.Data):
             self.__doc__.td(bgcolor=begoconf.basform_bgcolormiddle, colspan="2")
             self.__doc__.font(size=begoconf.font_size)
             penreg = {"zone": enreg["zone"], "groupe": enreg["groupe"], "roche": enreg["roche"]}
-            face.Face(self).traite_saisie(["zone", "groupe", "roche", "face"], parent = self.__tablename__, penreg = penreg)
+            face.Face(self).traite_saisie(("zone", "groupe", "roche", "face"), parent=self.__tablename__, penreg=penreg)
             self.__doc__.pop()
 
 ##############################################################################################################################
@@ -437,12 +437,12 @@ class Roche(begodata.Data):
 
     def modifier(self):
         """Met a jour la roche courante"""
-        self.__db__.query(self.make_update_query(["zone", "groupe", "roche"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self) :
         """ S'il existe des faces ou des photos  sur cette roche on refuse la suppression."""
-        if self.exist(["zone", "groupe", "roche"], table = "face") or self.exist(["zone", "groupe", "roche"], table = "photoroche") :
+        if self.exist(self.__listeclefs__, table="face") or self.exist(self.__listeclefs__, table="photoroche") :
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -466,18 +466,18 @@ class Roche(begodata.Data):
             except:
                 pass
             # on efface la roche
-            self.delete_records(["zone", "groupe", "roche"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         """ Si la roche n'existe pas déjà alors on la crée, sinon on refuse."""
-        if self.exist(["zone", "groupe", "roche"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "groupe": None, "roche": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la roche dans la base
             #sauf si la zone correspondante n'existe pas
-            if not self.exist(["zone"], table ="zone") :
+            if not self.exist(("zone",), table ="zone") :
                 primarykeys = {"zone": None, "groupe": None, "roche": None}
                 return (-2, primarykeys)
             else:

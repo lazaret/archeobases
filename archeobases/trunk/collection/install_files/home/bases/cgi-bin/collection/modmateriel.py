@@ -15,5 +15,5 @@
 import materiel
 
 
-materiel.Materiel("bas").traite_saisie(["identifiant"])
+materiel.Materiel("bas").traite_saisie(("identifiant",))
 

@@ -27,50 +27,50 @@ class Trace(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "zone"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "numero"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6,"memory": 1}, \
-                    "bis"           : {"type": "text","default": "",  "mandatory": 1, "longueur": 0, "memory": 1}, \
-                    "t_ensemble"    : {"type": "text", "default": "1", "mandatory": 1 , "longueur": 2, "memory": 1}, \
-                    "t_nature"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_nombre"      : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 2}, \
-                    "t_agent"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_phenomene"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_localisation": {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_position"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_locmusc"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_longueur"    : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 3}, \
-                    "t_classe"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_largeur"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_profondeur"  : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_section"     : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_diametre"    : {"type": "int", "default": 0, "mandatory": 0 , "longueur": 3}, \
-                    "t_dstrie"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_trace"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_direction"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_sens"        : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_description" : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_allure"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_dessin"      : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_replique"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
-                    "t_photo"       : {"type": "text", "default": "", "mandatory": 0 , "longueur": 0}, \
+                    "zone"          : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory": 1},
+                    "numero"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6,"memory": 1},
+                    "bis"           : {"type": "text","default": "",  "mandatory": 1, "longueur": 0, "memory": 1},
+                    "t_ensemble"    : {"type": "text", "default": "1", "mandatory": 1, "longueur": 2, "memory": 1},
+                    "t_nature"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_nombre"      : {"type": "decimal", "default": 0, "mandatory": 0, "longueur": 2},
+                    "t_agent"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_phenomene"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_localisation": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_position"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_locmusc"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_longueur"    : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "t_classe"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_largeur"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_profondeur"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_section"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_diametre"    : {"type": "int", "default": 0, "mandatory": 0, "longueur": 3},
+                    "t_dstrie"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_trace"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_direction"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_sens"        : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_description" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_allure"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_dessin"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_replique"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "t_photo"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeparents__ = ["carnet", "faune"]
-    __listeclefs__ = ["zone", "numero", "bis", "t_ensemble"]
+    __listenfants__ = ()
+    __listeparents__ = ("carnet", "faune")
+    __listeclefs__ = ("zone", "numero", "bis", "t_ensemble")
     __vraiparent__ = "faune"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "t_ensemble", "t_nature", "t_nombre", "t_agent", "t_phenomene", "t_localisation", "t_position", "t_locmusc", "t_longueur", "t_classe", "t_largeur", "t_profondeur", "t_section", "t_diametre", "t_dstrie", "t_trace", "t_allure", "t_direction", "t_sens", "t_dessin", "t_photo", "t_replique", "t_description"]
+    __listechamps__ = ("zone", "numero", "bis", "t_ensemble", "t_nature", "t_nombre", "t_agent", "t_phenomene", "t_localisation", "t_position", "t_locmusc", "t_longueur", "t_classe", "t_largeur", "t_profondeur", "t_section", "t_diametre", "t_dstrie", "t_trace", "t_allure", "t_direction", "t_sens", "t_dessin", "t_photo", "t_replique", "t_description")
 
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ =  ["zone", "numero", "bis", "t_ensemble", "f_famille", "f_genre", "f_espece", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "t_nature", "t_nombre", "t_agent", "t_phenomene", "t_localisation", "t_position", "t_locmusc", "t_longueur", "t_classe", "t_largeur", "t_profondeur", "t_section", "t_diametre", "t_dstrie", "t_trace", "t_allure", "t_direction", "t_sens", "t_dessin", "t_photo", "t_replique", "t_description"]
+    __ordrechamps__ =  ("zone", "numero", "bis", "t_ensemble", "f_famille", "f_genre", "f_espece", "f_typos1", "f_typos2", "f_typos3", "f_typos4", "f_typos5", "t_nature", "t_nombre", "t_agent", "t_phenomene", "t_localisation", "t_position", "t_locmusc", "t_longueur", "t_classe", "t_largeur", "t_profondeur", "t_section", "t_diametre", "t_dstrie", "t_trace", "t_allure", "t_direction", "t_sens", "t_dessin", "t_photo", "t_replique", "t_description")
     __orderby__ = " ORDER BY zone, numero, bis, t_ensemble ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["phototrace"]
+    __formsupp__ = ("phototrace",)
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -131,23 +131,23 @@ class Trace(archeodata.Data):
     def f_famille_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_famille", "famille", 3, 20, "", 2, enreg, penreg)
 
     def f_genre_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_genre", "genre", 3, 20, "", 1, enreg, penreg)
 
     def f_espece_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_nsaisie_table("faune", liste_clefs, "f_espece", "espece", 3, 20, "", 1, enreg, penreg)
 
     def f_typos1_base_to_form(self, enreg, penreg=None):
         if enreg != None:
             afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.__doc__.push()
             self.__doc__.tr()
             self.__doc__.push()
@@ -162,22 +162,22 @@ class Trace(archeodata.Data):
 
     def f_typos2_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table_simple("faune",  liste_clefs, "f_typos2", 3, 20, "", enreg, penreg)
 
     def f_typos3_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table_simple("faune",  liste_clefs, "f_typos3", 3, 20, "", enreg, penreg)
 
     def f_typos4_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table_simple("faune",  liste_clefs, "f_typos4", 3, 20, "", enreg, penreg)
 
     def f_typos5_base_to_form(self, enreg, penreg=None):
         if enreg != None:
-            liste_clefs = ["zone", "numero", "bis"]
+            liste_clefs = ("zone", "numero", "bis")
             self.champ_saisie_table_simple("faune",  liste_clefs, "f_typos5", 3, 20, "", enreg, penreg)
             self.__doc__.pop()
             self.__doc__.pop()
@@ -357,12 +357,12 @@ class Trace(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour la micro courante"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "t_ensemble"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des figures ou des photos sur cette trace on refuse la suppression
-        if self.exist(["zone", "numero", "bis", "t_ensemble"], table="phototrace"):
+        if self.exist(self.__listeclefs__, table="phototrace"):
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -376,18 +376,18 @@ class Trace(archeodata.Data):
             except:
                 archeoconf.fatalerror_message("Impossible de supprimer le répertoire [%s]" % rr)
             # on efface la trace
-            self.delete_records(["zone", "numero", "bis", "t_ensemble"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         # si la trace n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone", "numero", "bis", "t_ensemble"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "o_ordre": None, "t_ensemble": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la trace dans la base
             # sauf si la faune n'existe pas.
-            if not self.exist(["zone", "numero", "bis"], table="faune"):
+            if not self.exist(("zone", "numero", "bis"), table="faune"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             else:

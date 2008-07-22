@@ -26,33 +26,33 @@ class Enlevement_Biface(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "zone"           : {"type": "text", "default": "",  "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                "numero"         : {"type": "int",  "default": 0,   "mandatory": 1 , "longueur": 6, "memory": 1}, \
-                "bis"            : {"type": "text", "default": "",  "mandatory": 1 , "longueur": 0, "memory": 1}, \
-                "eb_rang"        : {"type": "text", "default": "0", "mandatory": 1 , "longueur": 1}, \
-                "eb_longueur"    : {"type": "int",  "mandatory": 0, "longueur": 3}, \
-                "eb_largeur"     : {"type": "int",  "mandatory": 0, "longueur": 3}, \
-                "eb_obliquite"   : {"type": "int",  "mandatory": 0, "longueur": 3}, \
-                "eb_corde"       : {"type": "int",  "mandatory": 0, "longueur": 3}, \
-                "eb_fleche"      : {"type": "int",  "mandatory": 0, "longueur": 3}, \
-                "eb_tranche"     : {"type": "text", "default":  "", "mandatory": 0 , "longueur": 8}, \
-               }
+                "zone"           : {"type": "text", "default": "",  "mandatory": 1, "longueur": 0, "memory": 1},
+                "numero"         : {"type": "int",  "default": 0,   "mandatory": 1, "longueur": 6, "memory": 1},
+                "bis"            : {"type": "text", "default": "",  "mandatory": 1, "longueur": 0, "memory": 1},
+                "eb_rang"        : {"type": "text", "default": "0", "mandatory": 1, "longueur": 1},
+                "eb_longueur"    : {"type": "int",  "mandatory": 0, "longueur": 3},
+                "eb_largeur"     : {"type": "int",  "mandatory": 0, "longueur": 3},
+                "eb_obliquite"   : {"type": "int",  "mandatory": 0, "longueur": 3},
+                "eb_corde"       : {"type": "int",  "mandatory": 0, "longueur": 3},
+                "eb_fleche"      : {"type": "int",  "mandatory": 0, "longueur": 3},
+                "eb_tranche"     : {"type": "text", "default":  "", "mandatory": 0, "longueur": 8},
+                }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__ = ["zone", "numero", "bis", "eb_rang"]
-    __listeparents__ = ["carnet", "biface"]
+    __listenfants__ = ()
+    __listeclefs__ = ("zone", "numero", "bis", "eb_rang")
+    __listeparents__ = ("carnet", "biface")
     __vraiparent__ = "biface"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "eb_rang", "eb_longueur", "eb_largeur", "eb_obliquite", "eb_corde", "eb_fleche", "eb_tranche"]
+    __listechamps__ = ("zone", "numero", "bis", "eb_rang", "eb_longueur", "eb_largeur", "eb_obliquite", "eb_corde", "eb_fleche", "eb_tranche")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "eb_rang", "eb_longueur", "eb_largeur", "eb_obliquite", "eb_corde", "eb_fleche", "eb_tranche"]
+    __ordrechamps__ = ("zone", "numero", "bis", "eb_rang", "eb_longueur", "eb_largeur", "eb_obliquite", "eb_corde", "eb_fleche", "eb_tranche")
     __orderby__ = " ORDER BY zone, numero, bis, eb_rang ASC;"
      #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def __init__(self, parent, nomtable=None):
         self.__tablename__ = nomtable
@@ -148,22 +148,22 @@ class Enlevement_Biface(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'enlevement courant"""
-        self.__db__.query(self.make_update_query(["zone", "numero", "bis", "eb_rang"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # on efface l' enlevement
-        self.delete_records(["zone", "numero", "bis", "eb_rang"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si l' enlevement existe, on refuse de le creer
-        if self.exist(["zone", "numero", "bis", "eb_rang"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "numero": None, "bis": None, "eb_rang": None}
             return (-1, primarykeys)
         else:
             # sinon si son parent n'existe pas, on refuse
-            if not self.exist(["zone", "numero", "bis"], table="biface"):
+            if not self.exist(("zone", "numero", "bis"), table="biface"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             # sinon si son parent existe, on le cree

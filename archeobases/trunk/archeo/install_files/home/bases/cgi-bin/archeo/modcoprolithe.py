@@ -15,4 +15,4 @@
 import coprolithe
 
 
-coprolithe.Coprolithe("bas").traite_saisie(["zone", "numero", "bis"])
+coprolithe.Coprolithe("bas").traite_saisie(("zone", "numero", "bis"))

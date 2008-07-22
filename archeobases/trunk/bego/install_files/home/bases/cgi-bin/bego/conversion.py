@@ -15,7 +15,7 @@
 import sys
 import os
 
-### BUG guillemets non fermes
+
 def conversion(romain):
     """ Convertit du chiffre romain en chiffre arabe."""
     if len(romain) >= 1:
@@ -43,7 +43,7 @@ def parcours(arg, dirname, names):
         fichier = os.path.join(dirname, filename)
         if os.path.isfile(fichier):
             for car in filename:
-                if (filename[car == 'Z'):
+                if (filename[car] == 'Z'):
                     while filename[car] != 'G':
                         romain = romain + filename[car]
                         zone   = conversion(romain)

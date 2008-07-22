@@ -15,4 +15,4 @@
 import adresse
 
 
-adresse.Adresse("bas").traite_parametre(["identifiant", "ordre"])
+adresse.Adresse("bas").traite_parametre(("identifiant", "ordre"))

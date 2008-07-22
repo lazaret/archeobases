@@ -25,36 +25,37 @@ class Historique(begodata.Data):
     __new_record__ = "Nouvelle"
     #
     # tous les champs de la table proprietaire
-    __champs__ = { \
-                "zone"          :{"type": "decimal", "default": 0,  "mandatory": 1}, \
-                "groupe"        :{"type": "decimal", "default": 0,  "mandatory": 1}, \
-                "roche"         :{"type": "text",    "default": "", "mandatory": 1}, \
-                "face"          :{"type": "text",    "default": "", "mandatory": 1}, \
-                "historique"    :{"type": "text",    "default": "", "mandatory": 1}, \
-                "motif"         :{"type": "text",    "default": "", "mandatory": 0}, \
-                "type"          :{"type": "text",    "default": "", "mandatory": 0}, \
-                "origine"       :{"type": "text",    "default": "", "mandatory": 0}, \
-                "realisation"   :{"type": "text",    "default": "", "mandatory": 0}, \
-                "date"          :{"type": "date",    "default": "", "mandatory": 0}, \
-                "longueur"      :{"type": "decimal", "default": 0,  "mandatory": 0}, \
-                "largeur"       :{"type": "decimal", "default": 0,  "mandatory": 0}, \
-                "qualite"       :{"type": "text",    "default": "", "mandatory": 0}, \
-                "style"         :{"type": "text",    "default": "", "mandatory": 0}, \
-                "description"   :{"type": "text",    "default": "", "mandatory": 0}, \
-                "superposition" :{"type": "text",    "default": "", "mandatory": 0}, \
+    __champs__ = {
+                "zone"          :{"type": "decimal", "default": 0,  "mandatory": 1},
+                "groupe"        :{"type": "decimal", "default": 0,  "mandatory": 1},
+                "roche"         :{"type": "text",    "default": "", "mandatory": 1},
+                "face"          :{"type": "text",    "default": "", "mandatory": 1},
+                "historique"    :{"type": "text",    "default": "", "mandatory": 1},
+                "motif"         :{"type": "text",    "default": "", "mandatory": 0},
+                "type"          :{"type": "text",    "default": "", "mandatory": 0},
+                "origine"       :{"type": "text",    "default": "", "mandatory": 0},
+                "realisation"   :{"type": "text",    "default": "", "mandatory": 0},
+                "date"          :{"type": "date",    "default": "", "mandatory": 0},
+                "longueur"      :{"type": "decimal", "default": 0,  "mandatory": 0},
+                "largeur"       :{"type": "decimal", "default": 0,  "mandatory": 0},
+                "qualite"       :{"type": "text",    "default": "", "mandatory": 0},
+                "style"         :{"type": "text",    "default": "", "mandatory": 0},
+                "description"   :{"type": "text",    "default": "", "mandatory": 0},
+                "superposition" :{"type": "text",    "default": "", "mandatory": 0},
                 }
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "groupe", "roche", "face", "historique", "motif", "type", "origine", "realisation", "superposition", "date", "longueur", "largeur", "qualite", "style", "description"]
-    __listeparents__  = ["zone", "roche", "face"]
+    __listechamps__ = ("zone", "groupe", "roche", "face", "historique", "motif", "type", "origine", "realisation", "superposition", "date", "longueur", "largeur", "qualite", "style", "description")
+    __listeparents__  = ("zone", "roche", "face")
+    __listeclefs__ = ("zone", "groupe", "roche", "face", "historique")
     __vraiparent__ = "face"
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ =  ["zone", "groupe", "roche", "face", "historique", "motif", "date", "type", "origine", "realisation", "superposition", "longueur", "largeur", "qualite", "style", "description"]
+    __ordrechamps__ =  ("zone", "groupe", "roche", "face", "historique", "motif", "date", "type", "origine", "realisation", "superposition", "longueur", "largeur", "qualite", "style", "description")
     __orderby__ = " ORDER BY zone, groupe, roche, face, historique ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["photohistorique"]
+    __formsupp__ = ("photohistorique",)
 
     def zone_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
@@ -277,28 +278,28 @@ class Historique(begodata.Data):
                 self.__doc__.pop()
                 self.__doc__.td(bgcolor=begoconf.basform_bgcolorright, valign="middle", align="center")
                 self.__doc__.font(size=begoconf.font_size)
-                self.__doc__.hidden(name="idphoto",    value=photo["idphoto"])
-                self.__doc__.hidden(name="zone",       value=photo["zone"])
-                self.__doc__.hidden(name="groupe",     value=photo["groupe"])
-                self.__doc__.hidden(name="roche",      value=photo["roche"])
-                self.__doc__.hidden(name="face",       value=photo["face"])
+                self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
+                self.__doc__.hidden(name="zone", value=photo["zone"])
+                self.__doc__.hidden(name="groupe", value=photo["groupe"])
+                self.__doc__.hidden(name="roche", value=photo["roche"])
+                self.__doc__.hidden(name="face", value=photo["face"])
                 self.__doc__.hidden(name="historique", value=photo["historique"])
-                self.__doc__.submit(name="action",     value="Modifier")
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",     value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",     value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
             self.__doc__.push()
-            self.__doc__.form(method= "POST",       action=begoconf.script_location("modphoto"))
-            self.__doc__.hidden(name= "zone",       value=enreg["zone"])
-            self.__doc__.hidden(name= "groupe",     value=enreg["groupe"])
-            self.__doc__.hidden(name= "roche",      value=enreg["roche"])
-            self.__doc__.hidden(name= "face",       value=enreg["face"])
+            self.__doc__.form(method= "POST", action=begoconf.script_location("modphoto"))
+            self.__doc__.hidden(name= "zone", value=enreg["zone"])
+            self.__doc__.hidden(name= "groupe", value=enreg["groupe"])
+            self.__doc__.hidden(name= "roche", value=enreg["roche"])
+            self.__doc__.hidden(name= "face", value=enreg["face"])
             self.__doc__.hidden(name= "historique", value=enreg["historique"])
-            self.__doc__.submit(name= "action",     value="Nouvelle")
+            self.__doc__.submit(name= "action", value="Nouvelle")
             self.__doc__.pop()
             self.__doc__.font("aucune photo", color="red", size=begoconf.font_size)
 
@@ -317,12 +318,12 @@ class Historique(begodata.Data):
 
     def modifier(self):
         """Met a jour l'historique courante"""
-        self.__db__.query(self.make_update_query(["zone", "groupe", "roche", "face", "historique"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         """ s'il existe des photos sur cette face on refuse la suppression"""
-        if self.exist(["zone", "groupe", "roche", "face", "historique"], table="photohistorique"):
+        if self.exist(self.__listeclefs__, table="photohistorique"):
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -337,18 +338,18 @@ class Historique(begodata.Data):
             except:
                 begoconf.fatalerror_message("Impossible de supprimer le repertoire [%s]" % rr)
             # on efface la gravure historique
-            self.delete_records(["zone", "groupe", "roche", "face", "historique"])
+            self.delete_records(self.__listeclefs__)
             return 0
 
     def creer(self):
         """ si la face n'existe pas déjà alors on la crée, sinon on refuse"""
-        if self.exist(["zone", "groupe", "roche", "face", "historique"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None, "historique": None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la historique dans la base
             # sauf si la face n'existe pas.
-            if not self.exist(["zone", "groupe", "roche", "face"], table="face"):
+            if not self.exist(("zone", "groupe", "roche", "face"), table="face"):
                 primarykeys = {"zone": None, "groupe": None, "roche": None, "face": None, "historique": None}
                 return (-2, primarykeys)
             else:

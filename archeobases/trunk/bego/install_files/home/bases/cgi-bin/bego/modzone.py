@@ -15,4 +15,4 @@
 import zone
 
 
-zone.Zone("bas").traite_saisie(["zone"])
+zone.Zone("bas").traite_saisie(("zone",))

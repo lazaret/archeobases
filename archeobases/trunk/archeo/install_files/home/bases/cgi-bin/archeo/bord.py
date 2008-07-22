@@ -26,31 +26,31 @@ class Bord(archeodata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ =    {
-                    "b_ordre"        : {"type": "seq", "default": "nextval('seq_bord')", "mandatory": 1 , "longueur": 0}, \
-                    "zone"           : {"type": "text", "default": "", "mandatory": 1, "longueur": 0 , "memory":1}, \
-                    "numero"         : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6 , "memory":1}, \
-                    "bis"            : {"type": "text", "default": "", "mandatory": 1, "longueur": 0 , "memory":1}, \
-                    "b_ordre"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 2}, \
-                    "b_extremite"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "b_code"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "b_amincissement": {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                    "b_localisation" : {"type": "text", "default": "", "mandatory": 0, "longueur": 7}, \
+                    "b_ordre"        : {"type": "seq", "default": "nextval('seq_bord')", "mandatory": 1, "longueur": 0},
+                    "zone"           : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory":1},
+                    "numero"         : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 6, "memory":1},
+                    "bis"            : {"type": "text", "default": "", "mandatory": 1, "longueur": 0, "memory":1},
+                    "b_ordre"        : {"type": "decimal", "default": 0, "mandatory": 1, "longueur": 2},
+                    "b_extremite"    : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "b_code"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "b_amincissement": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "b_localisation" : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
                     }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__ = ["zone", "numero", "bis"]
+    __listenfants__ = ()
+    __listeclefs__ = ("zone", "numero", "bis")
     __vraiparent__ = "eclat"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["zone", "numero", "bis", "b_ordre", "b_extremite", "b_code", "b_localisation", "b_amincissement"]
+    __listechamps__ = ("zone", "numero", "bis", "b_ordre", "b_extremite", "b_code", "b_localisation", "b_amincissement")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["zone", "numero", "bis", "b_ordre", "b_extremite", "b_code", "b_localisation", "b_amincissement"]
+    __ordrechamps__ = ("zone", "numero", "bis", "b_ordre", "b_extremite", "b_code", "b_localisation", "b_amincissement")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def __init__(self, parent, nomtable=None):
         self.__tablename__ = nomtable
@@ -143,23 +143,23 @@ class Bord(archeodata.Data):
 ##############################################################################################################################
     def modifier(self):
         """Met a jour l'bord courant"""
-        liste = ["zone", "numero", "bis", "b_ordre"]
+        liste = ("zone", "numero", "bis", "b_ordre")
         self.__db__.query(self.make_update_query(liste))
         return 0
 
     def supprimer(self):
                 # on efface le bord
-                self.delete_records(["zone", "numero", "bis", "b_ordre"])
+                self.delete_records(("zone", "numero", "bis", "b_ordre"))
                 return 0
 
     def creer(self):
         # si le bord existe, on refuse de le creer
-        if self.exist(["zone", "numero", "bis", "b_ordre"]):
+        if self.exist(("zone", "numero", "bis", "b_ordre")):
             primarykeys = {"zone": None, "numero": None, "bis": None, "b_ordre": None}
             return (-1, primarykeys)
         else:
             # sinon si son parent n'existe pas, on refuse
-            if not self.exist(["zone", "numero", "bis"], table="eclat"):
+            if not self.exist(self.__listeclefs__, table="eclat"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
             # sinon si son parent existe, on le cree

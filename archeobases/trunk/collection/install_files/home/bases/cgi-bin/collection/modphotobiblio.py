@@ -57,7 +57,7 @@ if f.has_key("action"):
         page.tr()
         page.td("Taille des images:", valign="middle", align="right", width="20%")
         page.td(align="left", valign="middle", colspan=nbcols - 1)
-        listetaille = ["Moyenne", "Petite", "Grande"]
+        listetaille = ("Moyenne", "Petite", "Grande")
         page.push()
         page.select(name="taille")
         for x in listetaille:

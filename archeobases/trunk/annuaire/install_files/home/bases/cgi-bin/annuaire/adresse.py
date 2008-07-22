@@ -29,38 +29,38 @@ class Adresse(annuairedata.Data):
     #
     # tous les champs de la table proprietaire
     __champs__ = {
-                "identifiant"   : {"type": "int",  "default": 0,  "mandatory": 1, "longueur": 6, "memory": 1}, \
-                "ordre"         : {"type": "int",  "default": 1,  "mandatory": 1, "longueur": 2}, \
-                "type_adresse"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0}, \
-                "adresse_1"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1}, \
-                "adresse_2"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1}, \
-                "adresse_3"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1}, \
-                "adresse_4"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1}, \
-                "code"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                "ville"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 25, "memory": 1}, \
-                "pays"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                "telephone_1"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                "telephone_2"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                "fax"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1}, \
-                "email"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 30, "memory": 1}, \
-                "modif_adresse" : {"type": "date", "mandatory" : 0 , "longueur" : 10}, \
-                  }
+                "identifiant"   : {"type": "int",  "default": 0,  "mandatory": 1, "longueur": 6, "memory": 1},
+                "ordre"         : {"type": "int",  "default": 1,  "mandatory": 1, "longueur": 2},
+                "type_adresse"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                "adresse_1"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1},
+                "adresse_2"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1},
+                "adresse_3"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1},
+                "adresse_4"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 50, "memory": 1},
+                "code"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                "ville"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 25, "memory": 1},
+                "pays"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                "telephone_1"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                "telephone_2"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                "fax"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
+                "email"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 30, "memory": 1},
+                "modif_adresse" : {"type": "date", "mandatory" : 0 , "longueur" : 10},
+                }
     #
     # liste des tables enfants
-    __listenfants__ = []
-    __listeclefs__ = ["identifiant", "ordre"]
+    __listenfants__ = ()
+    __listeclefs__ = ("identifiant", "ordre")
     __vraiparent__ = "fiche"
-    __listparents__ = ["fiche"]
+    __listparents__ = ("fiche",)
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["identifiant", "ordre", "type_adresse", "adresse_1", "adresse_2", "adresse_3", "adresse_4", "code", "ville", "pays", "telephone_1", "telephone_2", "fax", "email"]
+    __listechamps__ = ("identifiant", "ordre", "type_adresse", "adresse_1", "adresse_2", "adresse_3", "adresse_4", "code", "ville", "pays", "telephone_1", "telephone_2", "fax", "email")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["identifiant", "ordre", "type_adresse", "adresse_1", "adresse_2", "adresse_3", "adresse_4", "code", "ville", "pays", "telephone_1", "telephone_2", "fax", "email", "modif_adresse"]
+    __ordrechamps__ = ("identifiant", "ordre", "type_adresse", "adresse_1", "adresse_2", "adresse_3", "adresse_4", "code", "ville", "pays", "telephone_1", "telephone_2", "fax", "email", "modif_adresse")
     __orderby__ = " ORDER BY identifiant, ordre ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = []
+    __formsupp__ = ()
 
     def __init__(self, parent, nomtable=None):
         self.__tablename__ = nomtable
@@ -172,7 +172,7 @@ class Adresse(annuairedata.Data):
 ##############################################################################################################################
     def modifier(self) :
         """Met a jour l'adresse courante"""
-        self.__db__.query(self.make_update_query(["identifiant", "ordre"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         i = self.__form__["identifiant"].value
         update_date = "UPDATE adresse SET modif_adresse='now' WHERE identifiant=" + i  + ";"
         self.__db__.query(update_date)
@@ -180,12 +180,12 @@ class Adresse(annuairedata.Data):
 
     def supprimer(self):
         # on efface l'adresse
-        self.delete_records(["identifiant", "ordre"])
+        self.delete_records(self.__listeclefs__)
         return 0
 
     def creer(self):
         # si l'adresse existe, on refuse de le creer
-        if self.exist(["identifiant", "ordre"]):
+        if self.exist(self.__listeclefs__):
             primarykeys = {"identifiant": None, "ordre": None}
             return (-1, primarykeys)
         else :

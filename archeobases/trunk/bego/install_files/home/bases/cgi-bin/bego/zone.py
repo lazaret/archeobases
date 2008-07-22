@@ -26,27 +26,27 @@ class Zone(begodata.Data):
     __new_record__ = "Nouvelle"
     #
     # tous les champs de la table proprietaire
-    __champs__ = { \
-                "secteur"     :{"type": "text",    "default": "", "mandatory": 0}, \
-                "zone"        :{"type": "decimal", "default": 0,  "mandatory": 1}, \
-                "groupes"     :{"type": "decimal", "default": 0,  "mandatory": 0}, \
-                "remarquable" :{"type": "text",    "default": "", "mandatory": 0}, \
+    __champs__ = {
+                "secteur"     :{"type": "text",    "default": "", "mandatory": 0},
+                "zone"        :{"type": "decimal", "default": 0,  "mandatory": 1},
+                "groupes"     :{"type": "decimal", "default": 0,  "mandatory": 0},
+                "remarquable" :{"type": "text",    "default": "", "mandatory": 0},
                 }
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ["secteur", "zone", "groupes"]
+    __listechamps__ = ("secteur", "zone", "groupes")
     #
     # liste des tables enfants
-    __listenfants__ = ["roche", "face", "figure", "historique", "association"]
-    __listeclefs__ = ["zone"]
+    __listenfants__ = ("roche", "face", "figure", "historique", "association")
+    __listeclefs__ = ("zone",)
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ["secteur", "zone", "groupes", "remarquable"]
+    __ordrechamps__ = ("secteur", "zone", "groupes", "remarquable")
     __orderby__ = " ORDER BY zone ASC;"
     __vraiparent__ = None
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ["zone_param", "photozones"]
+    __formsupp__ = ("zone_param", "photozones")
 
     def zone_verify(self, value):
         if value == '':
@@ -61,7 +61,7 @@ class Zone(begodata.Data):
         self.__doc__.td(align="right", valign="middle")
         self.__doc__.font(size=begoconf.font_size)
         self.__doc__.insert_text("Secteur")
-        secteurs = ["Merveilles", "Fontanalba", "Vallaurette", "Valmasque", "Sainte Marie", "Vei del Bouc", "Sabion"]
+        secteurs = ("Merveilles", "Fontanalba", "Vallaurette", "Valmasque", "Sainte Marie", "Vei del Bouc", "Sabion")
         listesecteurs = {}
         for s in secteurs:
             listesecteurs[s] = s
@@ -97,7 +97,7 @@ class Zone(begodata.Data):
             self.__doc__.tr()
             self.__doc__.td(colspan=2)
             if len(res):
-                champs = ["groupe", "roche"]
+                champs = ("groupe", "roche")
                 self.__doc__.push()
                 self.__doc__.table(border=1, width="100%")
                 self.__doc__.push()
@@ -114,10 +114,10 @@ class Zone(begodata.Data):
                     for c in champs:
                         val = roche[c]
                         self.__doc__.push()
-                        self.__doc__.td(align = "center", valign = "middle")
+                        self.__doc__.td(align="center", valign="middle")
                         if c == "roche" :
-                            dico = { "action" : "Chercher", "zone" : enreg["zone"], "roche" : val }
-                            self.__doc__.a(val, href = begoconf.script_location("modroche") + '?' + urllib.urlencode(dico))
+                            dico = {"action": "Chercher", "zone": enreg["zone"], "roche": val}
+                            self.__doc__.a(val, href=begoconf.script_location("modroche") + '?' + urllib.urlencode(dico))
                         else :
                             self.__doc__.insert_text(val)
                         self.__doc__.pop()
@@ -140,9 +140,9 @@ class Zone(begodata.Data):
         # liste des param appartenant a la zone
         z = self.__db__.quote(enreg["zone"], "decimal")
         where = " WHERE zone = %s " % (z)
-        query  = "SELECT " + param + " FROM " + param + " WHERE id" + param + " IN ("
+        query = "SELECT " + param + " FROM " + param + " WHERE id" + param + " IN ("
         qassoc = "SELECT id" + param + " FROM zone_" + param  + where
-        query  = query + qassoc + ");"                # on recupere la liste des param de la zone
+        query = query + qassoc + ");"                # on recupere la liste des param de la zone
         res = self.__db__.query(query).dictresult()
         if len(res):
             self.__doc__.push()
@@ -164,15 +164,15 @@ class Zone(begodata.Data):
             self.__doc__.push()
             self.__doc__.p()
             self.__doc__.font(size=begoconf.font_size)
-            if param in ["tourbiere", "moraine", "vegetation"]:
-                self.__doc__.font("Aucune "+ param +" dans la zone", color = "red")
+            if param in ("tourbiere", "moraine", "vegetation"):
+                self.__doc__.font("Aucune "+ param +" dans la zone", color="red")
             else:
-                self.__doc__.font("Aucun "+ param +" dans la zone", color = "red")
+                self.__doc__.font("Aucun "+ param +" dans la zone", color="red")
             self.__doc__.pop()
 
     def zone_param(self, enreg, penreg=None):
         if enreg != None:
-            liste = ["acces", "sentier", "sommet", "col", "lac", "torrent", "tourbiere", "eboulis", "moraine", "glacier", "vegetation"]
+            liste = ("acces", "sentier", "sommet", "col", "lac", "torrent", "tourbiere", "eboulis", "moraine", "glacier", "vegetation")
             for i in liste:
                 self.__doc__.push()
                 self.__doc__.tr()
@@ -198,7 +198,7 @@ class Zone(begodata.Data):
         lg = len(resp)
         if lg:
             self.__doc__.push()
-            self.__doc__.div(align = "center")
+            self.__doc__.div(align="center")
             if lg > 1:
                 s = "s"
             else:
@@ -234,18 +234,18 @@ class Zone(begodata.Data):
                 self.__doc__.td(bgcolor=begoconf.basform_bgcolorright, valign="middle", align="center")
                 self.__doc__.font(size=begoconf.font_size)
                 self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
-                self.__doc__.hidden(name="zone",    value=photo["zone"])
-                self.__doc__.submit(name="action",  value="Modifier")
+                self.__doc__.hidden(name="zone", value=photo["zone"])
+                self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Supprimer")
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.br()
-                self.__doc__.submit(name="action",  value="Nouvelle")
+                self.__doc__.submit(name="action", value="Nouvelle")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:
             self.__doc__.push()
-            self.__doc__.form(method="POST",   action=begoconf.script_location("modphoto"))
-            self.__doc__.hidden(name="zone",   value=enreg["zone"])
+            self.__doc__.form(method="POST", action=begoconf.script_location("modphoto"))
+            self.__doc__.hidden(name="zone", value=enreg["zone"])
             self.__doc__.submit(name="action", value="Nouvelle photo")
             self.__doc__.pop()
             self.__doc__.font("aucune photo", color="red", size=begoconf.font_size)
@@ -269,12 +269,12 @@ class Zone(begodata.Data):
 
     def modifier(self) :
         """Met a jour la zone courante"""
-        self.__db__.query(self.make_update_query(["zone"]))
+        self.__db__.query(self.make_update_query(self.__listeclefs__))
         return 0
 
     def supprimer(self):
         # s'il existe des roches ou des photos pour cette zone on refuse la suppression
-        if self.exist(["zone"], table = "roche") or self.exist(["zone"], table = "photozone") :
+        if self.exist(self.__listeclefs__, table="roche") or self.exist(self.__listeclefs__, table="photozone") :
             return -1
         else:
             z = "Z" + self.__form__["zone"].value
@@ -292,13 +292,13 @@ class Zone(begodata.Data):
                 except:
                     pass
                 # on efface la roche
-                self.delete_records(["zone"])
+                self.delete_records(self.__listeclefs__)
                 return 0
 
     def creer(self):
         # si la roche n'existe pas déjà alors on la crée, sinon on refuse
-        if self.exist(["zone"]):
-            primarykeys = { "zone" : None}
+        if self.exist(self.__listeclefs__):
+            primarykeys = {"zone" : None}
             return (-1, primarykeys)
         else:
             # on insère maintenant la roche dans la base

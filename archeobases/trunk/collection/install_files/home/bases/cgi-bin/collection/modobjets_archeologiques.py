@@ -12,8 +12,8 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
-import moulages
+import objets_archeologiques
 
 
-moulages.Moulages("bas").traite_saisie(("identifiant",))
+objets_archeologiques.Objets_archeologiques("bas").traite_saisie(("identifiant",))
 

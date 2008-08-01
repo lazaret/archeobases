@@ -252,7 +252,6 @@ class Data:
         return query
 
     def make_insert_query(self, primarykeys, table=None):
-        begoconf.log_message("primarykeys = "+str(primarykeys))
         """Calcule la requete d'insertion"""
         if table == None:
             table = self.__tablename__

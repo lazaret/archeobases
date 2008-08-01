@@ -27,10 +27,10 @@ import begodata
 class Photo(begodata.Data):
     # les champs minimum des tables photo*
     __champs__ = {
-            "idphoto" :{"type": "seq",     "default": "nextval('seq_idphoto')", "mandatory": 1},
-            "zone"    :{"type": "decimal", "default": 0,  "mandatory": 1},
-            "legende" :{"type": "text",    "default": "", "mandatory": 1},
-            }
+                "idphoto" :{"type": "seq",     "default": "nextval('seq_idphoto')", "mandatory": 1},
+                "zone"    :{"type": "decimal", "default": 0,  "mandatory": 1},
+                "legende" :{"type": "text",    "default": "", "mandatory": 1},
+                }
     #
     # liste des seuls champs que l'on veut pouvoir modifier
     __listechamps__ = ["zone"]
@@ -73,7 +73,11 @@ class Photo(begodata.Data):
             self.__champs__["historique"] = {"type": "text",    "default": "", "mandatory": 1}
         elif self.__form__.has_key("face"):
             self.__tablename__ = "face"
+            self.__listechamps__.append("groupe")
+            self.__listechamps__.append("roche")
             self.__listechamps__.append("face")
+            self.__champs__["groupe"] = {"type": "decimal", "default": 0,  "mandatory": 1}
+            self.__champs__["roche"] = {"type": "text", "default": "", "mandatory": 1}
             self.__champs__["face"] = {"type": "text", "default": "", "mandatory": 1}
         elif self.__form__.has_key("roche") :
             self.__tablename__ = "roche"
@@ -144,8 +148,8 @@ class Photo(begodata.Data):
         elif "historique" in self.__listechamps__:
             fname = fname + os.sep + "H" + self.__form__["historique"].value
         fname = fname + os.sep + self.__form__["idphoto"].value
-        small = begoconf.image_fullname(fname + "s.jpeg")
-        big = begoconf.image_fullname(fname + ".jpeg")
+        small = begoconf.image_fullname(fname + "s.jpg")
+        big = begoconf.image_fullname(fname + ".jpg")
         try:
             os.unlink(small)
             os.unlink(big)
@@ -195,18 +199,14 @@ class Photo(begodata.Data):
             begoconf.fatalerror_message("Impossible de créer le repertoire [%s] ou l'un de ses composants: %s" % (rep, msg))
         ##
         idphoto = self.get_nextval()
-        fname = rep + os.sep + str(idphoto)
-        small = fname + "s.jpeg"
-        big = fname + ".jpeg"
-        normale = fname + ".tiff"
+        fname = rep + os.sep + str(idphoto) # for example home/bases/bego/image/Z1/G1/R1/Fa/Fg1/115
+        small = fname + "s.jpg"
+        normale = fname + ".jpg"
         # on insère maintenant la photo dans la base
         # mais seulement si le chargement des images a fonctionné
         try:
-            t = self.__form__["taille"].value
-            t = "mogrify_" + t
-            self.transfere_fichier(normale, begoconf.mogrify_normale)
-            self.transfere_fichier(small, begoconf.mogrify_small)
-            self.transfere_fichier(big, getattr(begoconf, t))
+            self.transfere_fichier(normale, begoconf.mogrify_normale) # Tranfere l'image
+            self.transfere_fichier(small, begoconf.mogrify_small) # Crée la vignette 160x160
         except:
             begoconf.fatalerror_message("Impossible de transférer la photo " + fname)
         else:

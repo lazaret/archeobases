@@ -46,7 +46,7 @@ class Zone(begodata.Data):
     __vraiparent__ = None
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ("zone_param", "photozones")
+    __formsupp__ = ("zone_param",)
 
     def zone_verify(self, value):
         if value == '':
@@ -188,80 +188,6 @@ class Zone(begodata.Data):
                 self.__doc__.td(align="center", valign="middle", bgcolor=begoconf.basform_bgcolormiddle)
                 self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.pop()
-
-############################################################################################################################
-#                                               PHOTOS
-############################################################################################################################
-    def liste_photozones(self, enreg):
-        resp = self.__db__.query("SELECT * FROM photozone WHERE zone = " + self.__db__.quote(enreg["zone"], "decimal") + " ORDER BY idphoto ASC;")
-        resp = resp.dictresult()
-        lg = len(resp)
-        if lg:
-            self.__doc__.push()
-            self.__doc__.div(align="center")
-            if lg > 1:
-                s = "s"
-            else:
-                s = ""
-            self.__doc__.font(`lg` + " photo" + s, color="red")
-            self.__doc__.pop()
-            self.__doc__.push()
-            self.__doc__.table(border="0", cellpadding="0", cellspacing="0")
-            for photo in resp:
-                self.__doc__.push()
-                self.__doc__.tr()
-                self.__doc__.td()
-                self.__doc__.form(method="POST", action=begoconf.script_location("modphoto"))
-                self.__doc__.table(border=5, cellpadding=5, cellspacing=5)
-                self.__doc__.tr()
-                self.__doc__.push()
-                self.__doc__.td()
-                self.__doc__.table(border=0, cellpadding=0, cellspacing=0)
-                self.__doc__.push()
-                self.__doc__.tr()
-                self.__doc__.td(valign="middle", align="center")
-                photo_url = begoconf.images_location + "Z" + `enreg["zone"]` + "/" + `photo["idphoto"]`
-                self.__doc__.a(href=photo_url + ".jpeg")
-                xmax, ymax = begoconf.get_imagesize(begoconf.image_fullname("Z" + `enreg["zone"]` + os.sep + `photo["idphoto"]` + "s.jpeg"))
-                self.__doc__.img(src=photo_url + "s.jpeg", width=xmax, height=ymax)
-                self.__doc__.pop()
-                self.__doc__.tr()
-                self.__doc__.td(valign="middle", align="center")
-                self.__doc__.font(size=begoconf.font_size)
-                self.__doc__.textarea(name="legende", rows="4", cols="50", wrap="physical")
-                self.__doc__.insert_text(photo["legende"])
-                self.__doc__.pop()
-                self.__doc__.td(bgcolor=begoconf.basform_bgcolorright, valign="middle", align="center")
-                self.__doc__.font(size=begoconf.font_size)
-                self.__doc__.hidden(name="idphoto", value=photo["idphoto"])
-                self.__doc__.hidden(name="zone", value=photo["zone"])
-                self.__doc__.submit(name="action", value="Modifier")
-                self.__doc__.br()
-                self.__doc__.submit(name="action", value="Supprimer")
-                self.__doc__.br()
-                self.__doc__.submit(name="action", value="Nouvelle")
-                self.__doc__.pop()
-            self.__doc__.pop()
-        else:
-            self.__doc__.push()
-            self.__doc__.form(method="POST", action=begoconf.script_location("modphoto"))
-            self.__doc__.hidden(name="zone", value=enreg["zone"])
-            self.__doc__.submit(name="action", value="Nouvelle photo")
-            self.__doc__.pop()
-            self.__doc__.font("aucune photo", color="red", size=begoconf.font_size)
-
-    def menu_photozones(self, enreg, color, function):
-        if enreg != None:
-            self.__doc__.push()
-            self.__doc__.tr()
-            self.__doc__.td(bgcolor=color, colspan="2")
-            self.__doc__.font(size=begoconf.font_size)
-            self.__doc__.div(align="center")
-            function(enreg)
-            self.__doc__.pop()
-
-    def photozones(self, enreg, penreg=None):
-        self.menu_photozones(enreg, begoconf.basform_bgcolormiddle, self.liste_photozones)
 
 ############################################################################################################################
 #                                               METHODES

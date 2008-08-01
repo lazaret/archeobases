@@ -552,9 +552,9 @@ class Figure(begodata.Data):
                 self.__doc__.tr()
                 self.__doc__.td(valign = "middle", align = "center")
                 photo_url = begoconf.images_location + "Z" + `enreg["zone"]` + "/G" + `enreg["groupe"]` + "/R" + enreg["roche"] + "/F" + enreg["face"] + "/Fg" + enreg["figure"] + "/" + `photo["idphoto"]`
-                self.__doc__.a(href = photo_url + ".jpeg")
-                xmax, ymax = begoconf.get_imagesize(begoconf.image_fullname("Z" + `enreg["zone"]` + os.sep + "G" + `enreg["groupe"]` + os.sep + "R" +  enreg["roche"] + os.sep + "F" + enreg["face"] + os.sep + "Fg" + enreg["figure"] + os.sep + `photo["idphoto"]` + "s.jpeg"))
-                self.__doc__.img(src = photo_url + "s.jpeg", width=xmax, height=ymax)
+                self.__doc__.a(href = photo_url + ".jpg")
+                xmax, ymax = begoconf.get_imagesize(begoconf.image_fullname("Z" + `enreg["zone"]` + os.sep + "G" + `enreg["groupe"]` + os.sep + "R" +  enreg["roche"] + os.sep + "F" + enreg["face"] + os.sep + "Fg" + enreg["figure"] + os.sep + `photo["idphoto"]` + "s.jpg"))
+                self.__doc__.img(src = photo_url + "s.jpg", width=xmax, height=ymax)
                 self.__doc__.pop()
                 self.__doc__.tr()
                 self.__doc__.td(valign="middle", align="center")

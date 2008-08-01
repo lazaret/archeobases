@@ -31,11 +31,8 @@ debug = False
 
 #
 # commandes popur changer la taille des images
-mogrify_normale = '/usr/bin/mogrify -format tiff -quality 100'
-mogrify_Grande  = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "1280>x1280>" -quality 75'
-mogrify_Moyenne = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "640>x640>" -quality 50'
-mogrify_Petite  = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "320>x320>" -quality 50'
-mogrify_small   = '/usr/bin/mogrify -format jpeg -interlace Plane -geometry "160>x160>" -quality 50'
+mogrify_normale = '/usr/bin/mogrify -format jpg -quality 100'
+mogrify_small   = '/usr/bin/mogrify -format jpg -interlace Plane -geometry "180>x180>" -quality 50'
 
 #
 # Message de copyright

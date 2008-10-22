@@ -281,6 +281,9 @@ if ruser not in archeoconf.visitorusers:
                                 # fields formating
                                 if champ == None:
                                     champ = ""
+                                if type(champ) == long:
+                                    # convert long type to int type (long type is not suporteded by PyExelerator)
+                                    champ = int(champ)
                                 xls_sheet.write(row, col, champ, sheet_style)
                         # save the file and post the file for download
                         xls_file.save("/home/bases/archeo/resultat_requete.xls")

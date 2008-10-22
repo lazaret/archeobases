@@ -259,7 +259,7 @@ if ruser in begoconf.superusers:
                         first_raw_style.font = bold_font # first raw in bold
                         #write the first row
                         for col in range(len(liste_champs)):
-                            try :
+                            try:
                                 # convert text fields to iso-8859-15 encodig for excel file
                                 champ = liste_champs[col].decode("utf-8").encode("iso-8859-15", "replace")
                             except AttributeError:
@@ -281,6 +281,9 @@ if ruser in begoconf.superusers:
                                 # fields formating
                                 if champ == None:
                                     champ = ""
+                                if type(champ) == long:
+                                    # convert long type to int type (long type is not suporteded by PyExelerator)
+                                    champ = int(champ)
                                 xls_sheet.write(row, col, champ, sheet_style)
                         # save the file and post the file for download
                         xls_file.save("/home/bases/bego/resultat_requete.xls")

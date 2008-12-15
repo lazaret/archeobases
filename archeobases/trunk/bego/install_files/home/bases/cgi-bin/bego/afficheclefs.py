@@ -91,7 +91,7 @@ def display_zone(objet, enreg, penreg=None, alignement="right"):
     objet.__doc__.font(size=begoconf.font_size)
     objet.__doc__.insert_text("Zone : ")
     listezones = {}
-    for i in range(0, 22):
+    for i in range(0, 23):
         listezones[i] = i
     if penreg and penreg.has_key("zone"):
         liste_deroulante(objet.__doc__, "zone", listezones, penreg, dontchange=1)
@@ -111,7 +111,7 @@ def display_zone_photo(doc, enreg, penreg = None, alignement = "right"):
     doc.font(size=begoconf.font_size)
     doc.insert_text("Zone : ")
     listezones = {}
-    for i in range(0, 22):
+    for i in range(0, 23):
         listezones[i] = i
     if penreg and penreg.has_key("zone"):
         liste_deroulante(doc, "zone", listezones, penreg, dontchange=1)

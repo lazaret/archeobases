@@ -287,19 +287,20 @@ def display_x_ordre(objet, nom_champ, imin, imax, enreg, penreg=None, alignement
     val = getval(objet, nom_champ, enreg, penreg)
     try:
         val = int(val)
-    except ValueError :
-        pass
+    except ValueError:
+        if val =='':
+            val = 0
     for i in range(imin, imax):
         listeordres[i] = i
     if objet.__form__.has_key("action"):
         if ((objet.__form__["action"].value == "Compter") or (objet.__form__["action"].value == "Chercher")):
-            liste_deroulante(objet, nom_champ, listeordres, val, dontchange = change)
+            liste_deroulante(objet, nom_champ, listeordres, val, dontchange=change)
         elif (objet.__form__["action"].value == "Nouveau") or (objet.__form__["action"].value == "Nouvel") or (objet.__form__["action"].value == "Nouvelle"):
             liste_deroulante(objet, nom_champ, listeordres,  val+1) #ajouter+1
         else:
-            liste_deroulante(objet, nom_champ, listeordres, val )
+            liste_deroulante(objet, nom_champ, listeordres, val)
     else:
-        liste_deroulante(objet, nom_champ, listeordres, val )
+        liste_deroulante(objet, nom_champ, listeordres, val)
     objet.__doc__.pop()
 
 #====================================

@@ -32,7 +32,7 @@ class Biblio(collectiondata.Data):
                 "b_type_biblio"     : {"type": "text", "default": "", "mandatory": 1, "longueur": 0,  "memory": 1},
                 "b_indice"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 20},
                 "b_titre_ouvrage"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 200},
-                "b_auteur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 300},
+                "b_auteur"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 400},
                 "b_titre_article"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 300},
                 "b_titre_periodique": {"type": "text", "default": "", "mandatory": 0, "longueur": 100},
                 "b_pages"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 12},
@@ -42,11 +42,11 @@ class Biblio(collectiondata.Data):
                 "b_annee"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 9},
                 "b_mois"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 30},
                 "b_nombre_volume"   : {"type": "int",  "mandatory": 0, "longueur": 3},
-                "b_numero"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 4},
-                "b_volume"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 4},
-                "b_tome"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 4},
-                "b_serie"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 4},
-                "b_fascicule"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 4},
+                "b_numero"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
+                "b_volume"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
+                "b_tome"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
+                "b_serie"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
+                "b_fascicule"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
                 "b_langue_document" : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                 "b_langue_resume"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 30},
                 "b_etablissement"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 100},
@@ -54,7 +54,7 @@ class Biblio(collectiondata.Data):
                 "b_isbn"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 20},
                 "b_issn"            : {"type": "text", "default": "", "mandatory": 0, "longueur": 15},
                 "b_resume"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 500},
-                "b_mots_clefs"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 300},
+                "b_mots_clefs"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 500},
                 "b_url"             : {"type": "text", "default": "", "mandatory": 0, "longueur": 100},
                 "b_nombre_ex_supp"  : {"type": "int",  "mandatory": 0, "longueur": 2},
                 "b_modif_biblio"    : {"type": "date", "mandatory": 0, "longueur": 10},
@@ -188,27 +188,27 @@ class Biblio(collectiondata.Data):
 
     def b_numero_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_saisie(self, "b_numero", "Numéro", 4, 4, " ", enreg, penreg)
+        afficheclefs.champ_saisie(self, "b_numero", "Numéro", 7, 7, " ", enreg, penreg)
         self.__doc__.pop()
 
     def b_volume_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_saisie(self, "b_volume", "Volume", 4, 4, " ", enreg, penreg)
+        afficheclefs.champ_saisie(self, "b_volume", "Volume", 7, 7, " ", enreg, penreg)
         self.__doc__.pop()
 
     def b_tome_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_saisie(self, "b_tome", "Tome", 4, 4, " ", enreg, penreg)
+        afficheclefs.champ_saisie(self, "b_tome", "Tome", 7, 7, " ", enreg, penreg)
         self.__doc__.pop()
 
     def b_serie_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_saisie(self, "b_serie", "Série", 4, 4, " ", enreg, penreg)
+        afficheclefs.champ_saisie(self, "b_serie", "Série", 7, 7, " ", enreg, penreg)
         self.__doc__.pop()
 
     def b_fascicule_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_saisie(self, "b_fascicule", "Fascicule", 4, 4, " ", enreg, penreg)
+        afficheclefs.champ_saisie(self, "b_fascicule", "Fascicule", 7, 7, " ", enreg, penreg)
         self.__doc__.pop()
 
     def b_langue_document_base_to_form(self, enreg, penreg=None):
@@ -253,7 +253,7 @@ class Biblio(collectiondata.Data):
 
     def b_mots_clefs_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
-        afficheclefs.champ_saisie_area(self, "b_mots_clefs", "Mots clefs", 3, 80, 5, " ", enreg, penreg)
+        afficheclefs.champ_saisie_area(self, "b_mots_clefs", "Mots clefs", 4, 80, 5, " ", enreg, penreg)
         self.__doc__.pop()
 
     def b_url_base_to_form(self, enreg, penreg=None):

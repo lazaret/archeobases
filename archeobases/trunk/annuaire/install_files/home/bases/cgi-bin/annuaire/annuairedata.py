@@ -1055,7 +1055,7 @@ class Data :
         # si c'est une table "mere" (ex: roche")
         # on sort le document
         if self.__parent__ == self.__tablename__:
-            elf.__doc__.output()
+            self.__doc__.output()
         else:
             # sinon on ajoute en plus un formulaire vide pour pouvoir ajouter
             self.formulaire_hook_parametre(penreg=penreg)

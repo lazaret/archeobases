@@ -51,9 +51,9 @@ lien_parent_bgcolor = "#FF0000"
 lien_enfant_bgcolor = "#3333FF"
 
 # Images de fond des trois parties de l'ecran ou None
-menu_background   = "#FFFFFF"
-gauche_background = "#FFFFFF"
-bas_background    = "#FFFFFF"
+menu_background   = None
+gauche_background = None
+bas_background    = None
 
 # couleurs de fond des formulaires de chaque partie de l'ecran
 menuform_bgcolor      = "#96ADC4"

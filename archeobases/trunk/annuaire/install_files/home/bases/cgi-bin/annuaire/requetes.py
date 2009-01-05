@@ -25,7 +25,7 @@ try:
     havethreads = 1
 except:
     havethreads = 0
-import collectionconf
+import annuaireconf
 import jahtml
 
 
@@ -140,7 +140,7 @@ def mixed_part_handler(parent, indicateur, timer):
     while parent.isAlive():
         indicateur.wait(timeout=timer)
         if indicateur.isSet():
-            collectionconf.log_message("La requete s'est terminée sans probleme", level="debug")
+            annuaireconf.log_message("La requete s'est terminée sans probleme", level="debug")
             break   # Requête terminée sans problème
         else:
             if parent.isAlive():
@@ -160,7 +160,7 @@ def mixed_part_handler(parent, indicateur, timer):
                 part.insert_text("\n--" + endpart)
                 part.output()
             else:
-                collectionconf.log_message("La requete est tombee en erreur", level="error")
+                annuaireconf.log_message("La requete est tombee en erreur", level="error")
     sys.exit(0)
 
 
@@ -240,7 +240,7 @@ if ruser not in annuaireconf.visitorusers:
                             csvwriter.writerow(row)
                         # save the file and post the file for download
                         csv_file.close()
-                        doc.set_redirect("http://"+hostname+"/collection/resultat_requete.csv")
+                        doc.set_redirect("http://"+hostname+"/annuaire/resultat_requete.csv")
                     # export to excel format encoded in iso-8859-15
                     if form["presentation"].value == telechargexls:
                         # create the file and the sheet

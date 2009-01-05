@@ -260,7 +260,7 @@ class Data :
         """Renvoie le compte d'enregistrements correspondant à la liste des champs passes en parametre"""
         if table == None:
             table = self.__tablename__
-        cpt = self.__db__.query( "SELECT count(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
+        cpt = self.__db__.query( "SELECT COUNT(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
         cpt = cpt.dictresult()
         return (cpt["count"])
 
@@ -503,7 +503,7 @@ class Data :
     def recherche_complete_compter(self, table=None, penreg=None):
         if table == None:
             table = self.__tablename__
-        q = "SELECT count(*) FROM " + table
+        q = "SELECT COUNT(*) FROM " + table
         w = ""
         for c in self.__champs__.keys():
             if self.__form__.has_key(c):
@@ -514,12 +514,12 @@ class Data :
                     fauxtype = "bool"
                 else:
                     fauxtype = "text" # meme pour les numeriques
-                if (self.exist_table(c, table = "controle_" + c) and not(self.__champs__[c].has_key("compter"))):
+                if (self.exist_table(c, table="controle_" + c) and not(self.__champs__[c].has_key("compter"))):
                     val = self.__db__.quote(self.__form__[c].value, fauxtype)
                     w = w + "(" + c + " = " + val + ") AND "
                 else:
-                    val = (self.__form__[c].value)
-                    w = w + "(" + c  + " " + val + ") AND "
+                    val = self.__db__.quote(self.__form__[c].value, fauxtype)
+                    w = w + "(" + c  + " = " + val + ") AND "
             elif penreg and penreg.has_key(c):
                 if self.exist_table(c, table = "controle_" + c) :
                     val = self.__db__.quote(self.__form__[c].value, fauxtype)

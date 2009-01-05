@@ -227,7 +227,7 @@ class Data:
         """Renvoie le compte d'enregistrements correspondant à la liste des champs passes en parametre"""
         if table == None:
             table = self.__tablename__
-        cpt = self.__db__.query( "SELECT count(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
+        cpt = self.__db__.query( "SELECT COUNT(*) FROM " + table + self.__createwhere__(liste_champs) + ";")
         cpt = cpt.dictresult()
         return (cpt["count"])
 

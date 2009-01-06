@@ -53,6 +53,8 @@ class Industrie(archeodata.Data):
                     "i_desilicification": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "i_support"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 5},
                     "i_observation"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_saisie"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
+                    "i_responsable"     : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
                     }
     #
     # liste des tables enfants
@@ -62,10 +64,10 @@ class Industrie(archeodata.Data):
     __vraiparent__    = "carnet"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ("zone", "numero", "bis", "i_poids", "i_matiere", "i_support", "i_objet", "i_patine", "i_dpatine", "i_alteration", "i_encroutement", "i_pmycellium", "i_eolisation", "i_lustrage", "i_roulage", "i_action", "i_desilicification", "i_oa", "i_ob", "i_oc", "i_forme_galet", "i_support_originel", "i_observation")
+    __listechamps__ = ("zone", "numero", "bis", "i_poids", "i_matiere", "i_support", "i_objet", "i_patine", "i_dpatine", "i_alteration", "i_encroutement", "i_pmycellium", "i_eolisation", "i_lustrage", "i_roulage", "i_action", "i_desilicification", "i_oa", "i_ob", "i_oc", "i_forme_galet", "i_support_originel", "i_observation", "i_responsable")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ("zone", "numero", "bis", "nature", "x", "y", "zrelatif", "zabsolu", "zreference", "ensemble", "niveau", "sol", "couche", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "oa", "ob", "oc", "i_poids", "i_forme_galet", "i_support_originel", "i_objet", "i_matiere", "i_support", "i_patine", "i_dpatine", "i_alteration", "i_desilicification", "i_encroutement", "i_pmycellium", "i_action", "i_eolisation", "i_lustrage", "i_roulage","i_observation", "composite")
+    __ordrechamps__ = ("zone", "numero", "bis", "nature", "x", "y", "zrelatif", "zabsolu", "zreference", "ensemble", "niveau", "sol", "couche", "orientation", "pendage", "vers", "longueur", "largeur", "epaisseur", "oa", "ob", "oc", "i_poids", "i_forme_galet", "i_support_originel", "i_objet", "i_matiere", "i_support", "i_patine", "i_dpatine", "i_alteration", "i_desilicification", "i_encroutement", "i_pmycellium", "i_action", "i_eolisation", "i_lustrage", "i_roulage","i_observation", "i_saisie", "i_responsable", "composite")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
@@ -215,6 +217,18 @@ class Industrie(archeodata.Data):
             self.champ_saisie_table("carnet", liste_clefs, "epaisseur", "e", 6, 20, "", enreg, penreg)
         self.__doc__.pop()
 
+    def saisie_base_to_form(self, enreg, penreg=None):
+        if enreg != None:
+            liste_clefs = ("zone", "numero", "bis")
+            self.__doc__.push()
+            self.__doc__.tr()
+            self.__doc__.td()
+            self.__doc__.insert_text("Saisi le")
+            self.__doc__.font(size=archeoconf.font_size)
+            self.__doc__.insert_text("Saisi le")
+            self.__doc__.text(name="i_saisie", value=enreg["i_saisie"], size=3, maxlength=20)
+            self.__doc__.pop()
+
 ################################### En entrée ###########################
     def oa_base_to_form(self, enreg, penreg=None):
         afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
@@ -225,7 +239,6 @@ class Industrie(archeodata.Data):
         afficheclefs.champ_saisie(self, "i_ob", "Ob", 6, 20, "", enreg, penreg)
 
     def oc_base_to_form(self, enreg, penreg=None):
-#        liste_clefs = ("zone", "numero", "bis")
         afficheclefs.champ_saisie(self, "i_oc", "Oc", 6, 20, "", enreg, penreg)
         self.__doc__.pop()
 
@@ -291,8 +304,18 @@ class Industrie(archeodata.Data):
         self.__doc__.pop()
 
     def i_observation_base_to_form(self, enreg, penreg=None):
+        afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
         self.__doc__.push()
         afficheclefs.champ_saisie_area(self, "i_observation", "Observations", 3, 50, 5, "", enreg, penreg)
+        self.__doc__.pop()
+
+    def i_saisie_base_to_form(self, enreg, penreg=None):
+        afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
+        self.__doc__.push()
+        afficheclefs.champ_nsaisie(self, "i_saisie", "Fiche saisie le", 10, 20, " ", 2, enreg, penreg)
+
+    def i_responsable_base_to_form(self, enreg, penreg=None):
+        afficheclefs.champ_nliste(self, "i_responsable", "responsable", enreg, penreg, "", 2, dontchange=0)
         self.__doc__.pop()
 
 ################# En sortie depuis la table outil sur eclat#############

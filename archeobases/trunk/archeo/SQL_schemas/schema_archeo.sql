@@ -1,6 +1,8 @@
 --
 -- PostgreSQL database dump
 --
+-- replace 'databasename' 'superdatabasename' 'visiterdatabasename' by the names of the users of the database
+--
 
 SET client_encoding = 'UTF8';
 SET check_function_bodies = false;
@@ -2680,6 +2682,18 @@ CREATE TABLE controle_i_pmycellium (
 ALTER TABLE public.controle_i_pmycellium OWNER TO postgres;
 
 --
+-- Name: controle_i_responsable; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_i_responsable (
+    i_responsable text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_i_responsable OWNER TO postgres;
+
+--
 -- Name: controle_i_roulage; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3652,18 +3666,6 @@ CREATE TABLE controle_zone (
 ALTER TABLE public.controle_zone OWNER TO postgres;
 
 --
--- Name: controlec__forme; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE controlec__forme (
-    c_forme text NOT NULL,
-    description text
-);
-
-
-ALTER TABLE public.controlec__forme OWNER TO postgres;
-
---
 -- Name: coprolithe; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3899,7 +3901,6 @@ CREATE TABLE faune (
     f_largeur integer,
     f_epaisseur integer,
     f_poids integer,
-    f_ancien_oss text,
     f_classe text,
     f_ordre text,
     f_famille text,
@@ -3954,8 +3955,6 @@ CREATE TABLE faune (
     f_saisie date DEFAULT date('now'::text),
     f_reference text,
     f_complement text,
-    responsable text,
-    controle_f_ancien_oss text,
     f_responsable text,
     f_affgenre text,
     f_affespece text
@@ -4205,7 +4204,9 @@ CREATE TABLE industrie (
     i_desilicification text,
     old_support text,
     i_observation text,
-    i_support text
+    i_support text,
+    i_responsable text,
+    i_saisie date DEFAULT date('now'::text)
 );
 
 
@@ -7010,14 +7011,6 @@ ALTER TABLE ONLY controle_zone
 
 
 --
--- Name: controlec__forme_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY controlec__forme
-    ADD CONSTRAINT controlec__forme_pkey PRIMARY KEY (c_forme);
-
-
---
 -- Name: coprolithe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -8142,9 +8135,9 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 REVOKE ALL ON TABLE biface FROM PUBLIC;
 REVOKE ALL ON TABLE biface FROM postgres;
 GRANT ALL ON TABLE biface TO postgres;
-GRANT ALL ON TABLE biface TO lazaret;
-GRANT ALL ON TABLE biface TO superlazaret;
-GRANT SELECT ON TABLE biface TO visiteurlazaret;
+GRANT ALL ON TABLE biface TO databasename;
+GRANT ALL ON TABLE biface TO superdatabasename;
+GRANT SELECT ON TABLE biface TO visiteurdatabasename;
 GRANT SELECT ON TABLE biface TO PUBLIC;
 
 
@@ -8155,9 +8148,9 @@ GRANT SELECT ON TABLE biface TO PUBLIC;
 REVOKE ALL ON TABLE bord FROM PUBLIC;
 REVOKE ALL ON TABLE bord FROM postgres;
 GRANT ALL ON TABLE bord TO postgres;
-GRANT ALL ON TABLE bord TO lazaret;
-GRANT ALL ON TABLE bord TO superlazaret;
-GRANT SELECT ON TABLE bord TO visiteurlazaret;
+GRANT ALL ON TABLE bord TO databasename;
+GRANT ALL ON TABLE bord TO superdatabasename;
+GRANT SELECT ON TABLE bord TO visiteurdatabasename;
 
 
 --
@@ -8167,9 +8160,9 @@ GRANT SELECT ON TABLE bord TO visiteurlazaret;
 REVOKE ALL ON TABLE carnet FROM PUBLIC;
 REVOKE ALL ON TABLE carnet FROM postgres;
 GRANT ALL ON TABLE carnet TO postgres;
-GRANT ALL ON TABLE carnet TO lazaret;
-GRANT ALL ON TABLE carnet TO superlazaret;
-GRANT SELECT ON TABLE carnet TO visiteurlazaret;
+GRANT ALL ON TABLE carnet TO databasename;
+GRANT ALL ON TABLE carnet TO superdatabasename;
+GRANT SELECT ON TABLE carnet TO visiteurdatabasename;
 
 
 --
@@ -8180,8 +8173,8 @@ REVOKE ALL ON TABLE controle_b_amenagement_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amenagement_bord FROM postgres;
 GRANT ALL ON TABLE controle_b_amenagement_bord TO postgres;
 GRANT SELECT ON TABLE controle_b_amenagement_bord TO PUBLIC;
-GRANT SELECT ON TABLE controle_b_amenagement_bord TO lazaret;
-GRANT ALL ON TABLE controle_b_amenagement_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_b_amenagement_bord TO databasename;
+GRANT ALL ON TABLE controle_b_amenagement_bord TO superdatabasename;
 
 
 --
@@ -8191,8 +8184,8 @@ GRANT ALL ON TABLE controle_b_amenagement_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_b_amenagement_distal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amenagement_distal FROM postgres;
 GRANT ALL ON TABLE controle_b_amenagement_distal TO postgres;
-GRANT SELECT ON TABLE controle_b_amenagement_distal TO lazaret;
-GRANT ALL ON TABLE controle_b_amenagement_distal TO superlazaret;
+GRANT SELECT ON TABLE controle_b_amenagement_distal TO databasename;
+GRANT ALL ON TABLE controle_b_amenagement_distal TO superdatabasename;
 
 
 --
@@ -8202,8 +8195,8 @@ GRANT ALL ON TABLE controle_b_amenagement_distal TO superlazaret;
 REVOKE ALL ON TABLE controle_b_amincissement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amincissement FROM postgres;
 GRANT ALL ON TABLE controle_b_amincissement TO postgres;
-GRANT SELECT ON TABLE controle_b_amincissement TO lazaret;
-GRANT ALL ON TABLE controle_b_amincissement TO superlazaret;
+GRANT SELECT ON TABLE controle_b_amincissement TO databasename;
+GRANT ALL ON TABLE controle_b_amincissement TO superdatabasename;
 
 
 --
@@ -8213,8 +8206,8 @@ GRANT ALL ON TABLE controle_b_amincissement TO superlazaret;
 REVOKE ALL ON TABLE controle_b_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_arete FROM postgres;
 GRANT ALL ON TABLE controle_b_arete TO postgres;
-GRANT SELECT ON TABLE controle_b_arete TO lazaret;
-GRANT ALL ON TABLE controle_b_arete TO superlazaret;
+GRANT SELECT ON TABLE controle_b_arete TO databasename;
+GRANT ALL ON TABLE controle_b_arete TO superdatabasename;
 
 
 --
@@ -8224,8 +8217,8 @@ GRANT ALL ON TABLE controle_b_arete TO superlazaret;
 REVOKE ALL ON TABLE controle_b_base FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_base FROM postgres;
 GRANT ALL ON TABLE controle_b_base TO postgres;
-GRANT SELECT ON TABLE controle_b_base TO lazaret;
-GRANT ALL ON TABLE controle_b_base TO superlazaret;
+GRANT SELECT ON TABLE controle_b_base TO databasename;
+GRANT ALL ON TABLE controle_b_base TO superdatabasename;
 
 
 --
@@ -8235,8 +8228,8 @@ GRANT ALL ON TABLE controle_b_base TO superlazaret;
 REVOKE ALL ON TABLE controle_b_bifaciale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bifaciale FROM postgres;
 GRANT ALL ON TABLE controle_b_bifaciale TO postgres;
-GRANT SELECT ON TABLE controle_b_bifaciale TO lazaret;
-GRANT ALL ON TABLE controle_b_bifaciale TO superlazaret;
+GRANT SELECT ON TABLE controle_b_bifaciale TO databasename;
+GRANT ALL ON TABLE controle_b_bifaciale TO superdatabasename;
 
 
 --
@@ -8246,8 +8239,8 @@ GRANT ALL ON TABLE controle_b_bifaciale TO superlazaret;
 REVOKE ALL ON TABLE controle_b_bilaterale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bilaterale FROM postgres;
 GRANT ALL ON TABLE controle_b_bilaterale TO postgres;
-GRANT SELECT ON TABLE controle_b_bilaterale TO lazaret;
-GRANT ALL ON TABLE controle_b_bilaterale TO superlazaret;
+GRANT SELECT ON TABLE controle_b_bilaterale TO databasename;
+GRANT ALL ON TABLE controle_b_bilaterale TO superdatabasename;
 
 
 --
@@ -8257,8 +8250,8 @@ GRANT ALL ON TABLE controle_b_bilaterale TO superlazaret;
 REVOKE ALL ON TABLE controle_b_biseau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_biseau FROM postgres;
 GRANT ALL ON TABLE controle_b_biseau TO postgres;
-GRANT SELECT ON TABLE controle_b_biseau TO lazaret;
-GRANT ALL ON TABLE controle_b_biseau TO superlazaret;
+GRANT SELECT ON TABLE controle_b_biseau TO databasename;
+GRANT ALL ON TABLE controle_b_biseau TO superdatabasename;
 
 
 --
@@ -8268,8 +8261,8 @@ GRANT ALL ON TABLE controle_b_biseau TO superlazaret;
 REVOKE ALL ON TABLE controle_b_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bord FROM postgres;
 GRANT ALL ON TABLE controle_b_bord TO postgres;
-GRANT SELECT ON TABLE controle_b_bord TO lazaret;
-GRANT ALL ON TABLE controle_b_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_b_bord TO databasename;
+GRANT ALL ON TABLE controle_b_bord TO superdatabasename;
 
 
 --
@@ -8279,8 +8272,8 @@ GRANT ALL ON TABLE controle_b_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_b_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_code FROM postgres;
 GRANT ALL ON TABLE controle_b_code TO postgres;
-GRANT SELECT ON TABLE controle_b_code TO lazaret;
-GRANT ALL ON TABLE controle_b_code TO superlazaret;
+GRANT SELECT ON TABLE controle_b_code TO databasename;
+GRANT ALL ON TABLE controle_b_code TO superdatabasename;
 
 
 --
@@ -8290,8 +8283,8 @@ GRANT ALL ON TABLE controle_b_code TO superlazaret;
 REVOKE ALL ON TABLE controle_b_dat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat FROM postgres;
 GRANT ALL ON TABLE controle_b_dat TO postgres;
-GRANT SELECT ON TABLE controle_b_dat TO lazaret;
-GRANT ALL ON TABLE controle_b_dat TO superlazaret;
+GRANT SELECT ON TABLE controle_b_dat TO databasename;
+GRANT ALL ON TABLE controle_b_dat TO superdatabasename;
 
 
 --
@@ -8301,8 +8294,8 @@ GRANT ALL ON TABLE controle_b_dat TO superlazaret;
 REVOKE ALL ON TABLE controle_b_dat1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat1 FROM postgres;
 GRANT ALL ON TABLE controle_b_dat1 TO postgres;
-GRANT SELECT ON TABLE controle_b_dat1 TO lazaret;
-GRANT ALL ON TABLE controle_b_dat1 TO superlazaret;
+GRANT SELECT ON TABLE controle_b_dat1 TO databasename;
+GRANT ALL ON TABLE controle_b_dat1 TO superdatabasename;
 
 
 --
@@ -8312,8 +8305,8 @@ GRANT ALL ON TABLE controle_b_dat1 TO superlazaret;
 REVOKE ALL ON TABLE controle_b_dat2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat2 FROM postgres;
 GRANT ALL ON TABLE controle_b_dat2 TO postgres;
-GRANT SELECT ON TABLE controle_b_dat2 TO lazaret;
-GRANT ALL ON TABLE controle_b_dat2 TO superlazaret;
+GRANT SELECT ON TABLE controle_b_dat2 TO databasename;
+GRANT ALL ON TABLE controle_b_dat2 TO superdatabasename;
 
 
 --
@@ -8323,8 +8316,8 @@ GRANT ALL ON TABLE controle_b_dat2 TO superlazaret;
 REVOKE ALL ON TABLE controle_b_distale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_distale FROM postgres;
 GRANT ALL ON TABLE controle_b_distale TO postgres;
-GRANT SELECT ON TABLE controle_b_distale TO lazaret;
-GRANT ALL ON TABLE controle_b_distale TO superlazaret;
+GRANT SELECT ON TABLE controle_b_distale TO databasename;
+GRANT ALL ON TABLE controle_b_distale TO superdatabasename;
 
 
 --
@@ -8334,8 +8327,8 @@ GRANT ALL ON TABLE controle_b_distale TO superlazaret;
 REVOKE ALL ON TABLE controle_b_enlevement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_enlevement FROM postgres;
 GRANT ALL ON TABLE controle_b_enlevement TO postgres;
-GRANT SELECT ON TABLE controle_b_enlevement TO lazaret;
-GRANT ALL ON TABLE controle_b_enlevement TO superlazaret;
+GRANT SELECT ON TABLE controle_b_enlevement TO databasename;
+GRANT ALL ON TABLE controle_b_enlevement TO superdatabasename;
 
 
 --
@@ -8345,8 +8338,8 @@ GRANT ALL ON TABLE controle_b_enlevement TO superlazaret;
 REVOKE ALL ON TABLE controle_b_extension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_extension FROM postgres;
 GRANT ALL ON TABLE controle_b_extension TO postgres;
-GRANT SELECT ON TABLE controle_b_extension TO lazaret;
-GRANT ALL ON TABLE controle_b_extension TO superlazaret;
+GRANT SELECT ON TABLE controle_b_extension TO databasename;
+GRANT ALL ON TABLE controle_b_extension TO superdatabasename;
 
 
 --
@@ -8356,8 +8349,8 @@ GRANT ALL ON TABLE controle_b_extension TO superlazaret;
 REVOKE ALL ON TABLE controle_b_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_extremite FROM postgres;
 GRANT ALL ON TABLE controle_b_extremite TO postgres;
-GRANT SELECT ON TABLE controle_b_extremite TO lazaret;
-GRANT ALL ON TABLE controle_b_extremite TO superlazaret;
+GRANT SELECT ON TABLE controle_b_extremite TO databasename;
+GRANT ALL ON TABLE controle_b_extremite TO superdatabasename;
 
 
 --
@@ -8367,8 +8360,8 @@ GRANT ALL ON TABLE controle_b_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_b_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_facture FROM postgres;
 GRANT ALL ON TABLE controle_b_facture TO postgres;
-GRANT SELECT ON TABLE controle_b_facture TO lazaret;
-GRANT ALL ON TABLE controle_b_facture TO superlazaret;
+GRANT SELECT ON TABLE controle_b_facture TO databasename;
+GRANT ALL ON TABLE controle_b_facture TO superdatabasename;
 
 
 --
@@ -8378,8 +8371,8 @@ GRANT ALL ON TABLE controle_b_facture TO superlazaret;
 REVOKE ALL ON TABLE controle_b_meplat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_meplat FROM postgres;
 GRANT ALL ON TABLE controle_b_meplat TO postgres;
-GRANT SELECT ON TABLE controle_b_meplat TO lazaret;
-GRANT ALL ON TABLE controle_b_meplat TO superlazaret;
+GRANT SELECT ON TABLE controle_b_meplat TO databasename;
+GRANT ALL ON TABLE controle_b_meplat TO superdatabasename;
 
 
 --
@@ -8389,8 +8382,8 @@ GRANT ALL ON TABLE controle_b_meplat TO superlazaret;
 REVOKE ALL ON TABLE controle_b_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_retouche FROM postgres;
 GRANT ALL ON TABLE controle_b_retouche TO postgres;
-GRANT SELECT ON TABLE controle_b_retouche TO lazaret;
-GRANT ALL ON TABLE controle_b_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_b_retouche TO databasename;
+GRANT ALL ON TABLE controle_b_retouche TO superdatabasename;
 
 
 --
@@ -8400,8 +8393,8 @@ GRANT ALL ON TABLE controle_b_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_b_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_support FROM postgres;
 GRANT ALL ON TABLE controle_b_support TO postgres;
-GRANT ALL ON TABLE controle_b_support TO lazaret;
-GRANT ALL ON TABLE controle_b_support TO superlazaret;
+GRANT ALL ON TABLE controle_b_support TO databasename;
+GRANT ALL ON TABLE controle_b_support TO superdatabasename;
 
 
 --
@@ -8411,8 +8404,8 @@ GRANT ALL ON TABLE controle_b_support TO superlazaret;
 REVOKE ALL ON TABLE controle_b_surface FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_surface FROM postgres;
 GRANT ALL ON TABLE controle_b_surface TO postgres;
-GRANT SELECT ON TABLE controle_b_surface TO lazaret;
-GRANT ALL ON TABLE controle_b_surface TO superlazaret;
+GRANT SELECT ON TABLE controle_b_surface TO databasename;
+GRANT ALL ON TABLE controle_b_surface TO superdatabasename;
 
 
 --
@@ -8422,8 +8415,8 @@ GRANT ALL ON TABLE controle_b_surface TO superlazaret;
 REVOKE ALL ON TABLE controle_b_symetrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_symetrie FROM postgres;
 GRANT ALL ON TABLE controle_b_symetrie TO postgres;
-GRANT SELECT ON TABLE controle_b_symetrie TO lazaret;
-GRANT ALL ON TABLE controle_b_symetrie TO superlazaret;
+GRANT SELECT ON TABLE controle_b_symetrie TO databasename;
+GRANT ALL ON TABLE controle_b_symetrie TO superdatabasename;
 
 
 --
@@ -8433,8 +8426,8 @@ GRANT ALL ON TABLE controle_b_symetrie TO superlazaret;
 REVOKE ALL ON TABLE controle_b_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_type FROM postgres;
 GRANT ALL ON TABLE controle_b_type TO postgres;
-GRANT SELECT ON TABLE controle_b_type TO lazaret;
-GRANT ALL ON TABLE controle_b_type TO superlazaret;
+GRANT SELECT ON TABLE controle_b_type TO databasename;
+GRANT ALL ON TABLE controle_b_type TO superdatabasename;
 
 
 --
@@ -8444,8 +8437,8 @@ GRANT ALL ON TABLE controle_b_type TO superlazaret;
 REVOKE ALL ON TABLE controle_bis FROM PUBLIC;
 REVOKE ALL ON TABLE controle_bis FROM postgres;
 GRANT ALL ON TABLE controle_bis TO postgres;
-GRANT SELECT ON TABLE controle_bis TO lazaret;
-GRANT ALL ON TABLE controle_bis TO superlazaret;
+GRANT SELECT ON TABLE controle_bis TO databasename;
+GRANT ALL ON TABLE controle_bis TO superdatabasename;
 
 
 --
@@ -8455,8 +8448,8 @@ GRANT ALL ON TABLE controle_bis TO superlazaret;
 REVOKE ALL ON TABLE controle_c_alteration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_alteration FROM postgres;
 GRANT ALL ON TABLE controle_c_alteration TO postgres;
-GRANT ALL ON TABLE controle_c_alteration TO superlazaret;
-GRANT SELECT ON TABLE controle_c_alteration TO lazaret;
+GRANT ALL ON TABLE controle_c_alteration TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_alteration TO databasename;
 
 
 --
@@ -8466,8 +8459,8 @@ GRANT SELECT ON TABLE controle_c_alteration TO lazaret;
 REVOKE ALL ON TABLE controle_c_altnat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_altnat FROM postgres;
 GRANT ALL ON TABLE controle_c_altnat TO postgres;
-GRANT ALL ON TABLE controle_c_altnat TO superlazaret;
-GRANT SELECT ON TABLE controle_c_altnat TO lazaret;
+GRANT ALL ON TABLE controle_c_altnat TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_altnat TO databasename;
 
 
 --
@@ -8477,7 +8470,7 @@ GRANT SELECT ON TABLE controle_c_altnat TO lazaret;
 REVOKE ALL ON TABLE controle_c_autre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_autre FROM postgres;
 GRANT ALL ON TABLE controle_c_autre TO postgres;
-GRANT ALL ON TABLE controle_c_autre TO superlazaret;
+GRANT ALL ON TABLE controle_c_autre TO superdatabasename;
 
 
 --
@@ -8487,8 +8480,8 @@ GRANT ALL ON TABLE controle_c_autre TO superlazaret;
 REVOKE ALL ON TABLE controle_c_consistance FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_consistance FROM postgres;
 GRANT ALL ON TABLE controle_c_consistance TO postgres;
-GRANT ALL ON TABLE controle_c_consistance TO superlazaret;
-GRANT SELECT ON TABLE controle_c_consistance TO lazaret;
+GRANT ALL ON TABLE controle_c_consistance TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_consistance TO databasename;
 
 
 --
@@ -8498,8 +8491,8 @@ GRANT SELECT ON TABLE controle_c_consistance TO lazaret;
 REVOKE ALL ON TABLE controle_c_couleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_couleur FROM postgres;
 GRANT ALL ON TABLE controle_c_couleur TO postgres;
-GRANT ALL ON TABLE controle_c_couleur TO superlazaret;
-GRANT SELECT ON TABLE controle_c_couleur TO lazaret;
+GRANT ALL ON TABLE controle_c_couleur TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_couleur TO databasename;
 
 
 --
@@ -8509,7 +8502,7 @@ GRANT SELECT ON TABLE controle_c_couleur TO lazaret;
 REVOKE ALL ON TABLE controle_c_element FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_element FROM postgres;
 GRANT ALL ON TABLE controle_c_element TO postgres;
-GRANT ALL ON TABLE controle_c_element TO superlazaret;
+GRANT ALL ON TABLE controle_c_element TO superdatabasename;
 
 
 --
@@ -8519,8 +8512,8 @@ GRANT ALL ON TABLE controle_c_element TO superlazaret;
 REVOKE ALL ON TABLE controle_c_ext1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_ext1 FROM postgres;
 GRANT ALL ON TABLE controle_c_ext1 TO postgres;
-GRANT ALL ON TABLE controle_c_ext1 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_ext1 TO lazaret;
+GRANT ALL ON TABLE controle_c_ext1 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_ext1 TO databasename;
 
 
 --
@@ -8530,8 +8523,8 @@ GRANT SELECT ON TABLE controle_c_ext1 TO lazaret;
 REVOKE ALL ON TABLE controle_c_ext2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_ext2 FROM postgres;
 GRANT ALL ON TABLE controle_c_ext2 TO postgres;
-GRANT ALL ON TABLE controle_c_ext2 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_ext2 TO lazaret;
+GRANT ALL ON TABLE controle_c_ext2 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_ext2 TO databasename;
 
 
 --
@@ -8541,7 +8534,7 @@ GRANT SELECT ON TABLE controle_c_ext2 TO lazaret;
 REVOKE ALL ON TABLE controle_c_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_extremite FROM postgres;
 GRANT ALL ON TABLE controle_c_extremite TO postgres;
-GRANT ALL ON TABLE controle_c_extremite TO superlazaret;
+GRANT ALL ON TABLE controle_c_extremite TO superdatabasename;
 
 
 --
@@ -8551,7 +8544,7 @@ GRANT ALL ON TABLE controle_c_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_c_famille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_famille FROM postgres;
 GRANT ALL ON TABLE controle_c_famille TO postgres;
-GRANT ALL ON TABLE controle_c_famille TO superlazaret;
+GRANT ALL ON TABLE controle_c_famille TO superdatabasename;
 
 
 --
@@ -8561,8 +8554,8 @@ GRANT ALL ON TABLE controle_c_famille TO superlazaret;
 REVOKE ALL ON TABLE controle_c_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_forme FROM postgres;
 GRANT ALL ON TABLE controle_c_forme TO postgres;
-GRANT ALL ON TABLE controle_c_forme TO lazaret;
-GRANT ALL ON TABLE controle_c_forme TO superlazaret;
+GRANT ALL ON TABLE controle_c_forme TO databasename;
+GRANT ALL ON TABLE controle_c_forme TO superdatabasename;
 
 
 --
@@ -8572,7 +8565,7 @@ GRANT ALL ON TABLE controle_c_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_c_genre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_genre FROM postgres;
 GRANT ALL ON TABLE controle_c_genre TO postgres;
-GRANT ALL ON TABLE controle_c_genre TO superlazaret;
+GRANT ALL ON TABLE controle_c_genre TO superdatabasename;
 
 
 --
@@ -8582,8 +8575,8 @@ GRANT ALL ON TABLE controle_c_genre TO superlazaret;
 REVOKE ALL ON TABLE controle_c_granulometrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_granulometrie FROM postgres;
 GRANT ALL ON TABLE controle_c_granulometrie TO postgres;
-GRANT ALL ON TABLE controle_c_granulometrie TO superlazaret;
-GRANT SELECT ON TABLE controle_c_granulometrie TO lazaret;
+GRANT ALL ON TABLE controle_c_granulometrie TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_granulometrie TO databasename;
 
 
 --
@@ -8593,8 +8586,8 @@ GRANT SELECT ON TABLE controle_c_granulometrie TO lazaret;
 REVOKE ALL ON TABLE controle_c_incl1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl1 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl1 TO postgres;
-GRANT ALL ON TABLE controle_c_incl1 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_incl1 TO lazaret;
+GRANT ALL ON TABLE controle_c_incl1 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_incl1 TO databasename;
 
 
 --
@@ -8604,7 +8597,7 @@ GRANT SELECT ON TABLE controle_c_incl1 TO lazaret;
 REVOKE ALL ON TABLE controle_c_incl2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl2 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl2 TO postgres;
-GRANT ALL ON TABLE controle_c_incl2 TO superlazaret;
+GRANT ALL ON TABLE controle_c_incl2 TO superdatabasename;
 
 
 --
@@ -8614,8 +8607,8 @@ GRANT ALL ON TABLE controle_c_incl2 TO superlazaret;
 REVOKE ALL ON TABLE controle_c_incl3 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl3 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl3 TO postgres;
-GRANT ALL ON TABLE controle_c_incl3 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_incl3 TO lazaret;
+GRANT ALL ON TABLE controle_c_incl3 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_incl3 TO databasename;
 
 
 --
@@ -8625,7 +8618,7 @@ GRANT SELECT ON TABLE controle_c_incl3 TO lazaret;
 REVOKE ALL ON TABLE controle_c_inclusion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_inclusion FROM postgres;
 GRANT ALL ON TABLE controle_c_inclusion TO postgres;
-GRANT ALL ON TABLE controle_c_inclusion TO superlazaret;
+GRANT ALL ON TABLE controle_c_inclusion TO superdatabasename;
 
 
 --
@@ -8635,8 +8628,8 @@ GRANT ALL ON TABLE controle_c_inclusion TO superlazaret;
 REVOKE ALL ON TABLE controle_c_lame FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_lame FROM postgres;
 GRANT ALL ON TABLE controle_c_lame TO postgres;
-GRANT ALL ON TABLE controle_c_lame TO superlazaret;
-GRANT SELECT ON TABLE controle_c_lame TO lazaret;
+GRANT ALL ON TABLE controle_c_lame TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_lame TO databasename;
 
 
 --
@@ -8646,7 +8639,7 @@ GRANT SELECT ON TABLE controle_c_lame TO lazaret;
 REVOKE ALL ON TABLE controle_c_liant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_liant FROM postgres;
 GRANT ALL ON TABLE controle_c_liant TO postgres;
-GRANT ALL ON TABLE controle_c_liant TO superlazaret;
+GRANT ALL ON TABLE controle_c_liant TO superdatabasename;
 
 
 --
@@ -8656,8 +8649,8 @@ GRANT ALL ON TABLE controle_c_liant TO superlazaret;
 REVOKE ALL ON TABLE controle_c_macroreste FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_macroreste FROM postgres;
 GRANT ALL ON TABLE controle_c_macroreste TO postgres;
-GRANT ALL ON TABLE controle_c_macroreste TO superlazaret;
-GRANT SELECT ON TABLE controle_c_macroreste TO lazaret;
+GRANT ALL ON TABLE controle_c_macroreste TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_macroreste TO databasename;
 
 
 --
@@ -8667,8 +8660,8 @@ GRANT SELECT ON TABLE controle_c_macroreste TO lazaret;
 REVOKE ALL ON TABLE controle_c_mif FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_mif FROM postgres;
 GRANT ALL ON TABLE controle_c_mif TO postgres;
-GRANT ALL ON TABLE controle_c_mif TO superlazaret;
-GRANT SELECT ON TABLE controle_c_mif TO lazaret;
+GRANT ALL ON TABLE controle_c_mif TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_mif TO databasename;
 
 
 --
@@ -8678,8 +8671,8 @@ GRANT SELECT ON TABLE controle_c_mif TO lazaret;
 REVOKE ALL ON TABLE controle_c_motcou FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motcou FROM postgres;
 GRANT ALL ON TABLE controle_c_motcou TO postgres;
-GRANT ALL ON TABLE controle_c_motcou TO superlazaret;
-GRANT SELECT ON TABLE controle_c_motcou TO lazaret;
+GRANT ALL ON TABLE controle_c_motcou TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_motcou TO databasename;
 
 
 --
@@ -8689,8 +8682,8 @@ GRANT SELECT ON TABLE controle_c_motcou TO lazaret;
 REVOKE ALL ON TABLE controle_c_motif FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motif FROM postgres;
 GRANT ALL ON TABLE controle_c_motif TO postgres;
-GRANT ALL ON TABLE controle_c_motif TO superlazaret;
-GRANT SELECT ON TABLE controle_c_motif TO lazaret;
+GRANT ALL ON TABLE controle_c_motif TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_motif TO databasename;
 
 
 --
@@ -8700,8 +8693,8 @@ GRANT SELECT ON TABLE controle_c_motif TO lazaret;
 REVOKE ALL ON TABLE controle_c_motnat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motnat FROM postgres;
 GRANT ALL ON TABLE controle_c_motnat TO postgres;
-GRANT ALL ON TABLE controle_c_motnat TO superlazaret;
-GRANT SELECT ON TABLE controle_c_motnat TO lazaret;
+GRANT ALL ON TABLE controle_c_motnat TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_motnat TO databasename;
 
 
 --
@@ -8711,8 +8704,8 @@ GRANT SELECT ON TABLE controle_c_motnat TO lazaret;
 REVOKE ALL ON TABLE controle_c_palyno FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_palyno FROM postgres;
 GRANT ALL ON TABLE controle_c_palyno TO postgres;
-GRANT ALL ON TABLE controle_c_palyno TO superlazaret;
-GRANT SELECT ON TABLE controle_c_palyno TO lazaret;
+GRANT ALL ON TABLE controle_c_palyno TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_palyno TO databasename;
 
 
 --
@@ -8722,7 +8715,7 @@ GRANT SELECT ON TABLE controle_c_palyno TO lazaret;
 REVOKE ALL ON TABLE controle_c_parasito FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_parasito FROM postgres;
 GRANT ALL ON TABLE controle_c_parasito TO postgres;
-GRANT ALL ON TABLE controle_c_parasito TO superlazaret;
+GRANT ALL ON TABLE controle_c_parasito TO superdatabasename;
 
 
 --
@@ -8732,7 +8725,7 @@ GRANT ALL ON TABLE controle_c_parasito TO superlazaret;
 REVOKE ALL ON TABLE controle_c_retrecissement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_retrecissement FROM postgres;
 GRANT ALL ON TABLE controle_c_retrecissement TO postgres;
-GRANT ALL ON TABLE controle_c_retrecissement TO superlazaret;
+GRANT ALL ON TABLE controle_c_retrecissement TO superdatabasename;
 
 
 --
@@ -8742,8 +8735,8 @@ GRANT ALL ON TABLE controle_c_retrecissement TO superlazaret;
 REVOKE ALL ON TABLE controle_c_sediment FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_sediment FROM postgres;
 GRANT ALL ON TABLE controle_c_sediment TO postgres;
-GRANT ALL ON TABLE controle_c_sediment TO superlazaret;
-GRANT SELECT ON TABLE controle_c_sediment TO lazaret;
+GRANT ALL ON TABLE controle_c_sediment TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_sediment TO databasename;
 
 
 --
@@ -8753,8 +8746,8 @@ GRANT SELECT ON TABLE controle_c_sediment TO lazaret;
 REVOKE ALL ON TABLE controle_c_vol FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_vol FROM postgres;
 GRANT ALL ON TABLE controle_c_vol TO postgres;
-GRANT ALL ON TABLE controle_c_vol TO superlazaret;
-GRANT SELECT ON TABLE controle_c_vol TO lazaret;
+GRANT ALL ON TABLE controle_c_vol TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_vol TO databasename;
 
 
 --
@@ -8764,8 +8757,8 @@ GRANT SELECT ON TABLE controle_c_vol TO lazaret;
 REVOKE ALL ON TABLE controle_c_volext FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_volext FROM postgres;
 GRANT ALL ON TABLE controle_c_volext TO postgres;
-GRANT ALL ON TABLE controle_c_volext TO superlazaret;
-GRANT SELECT ON TABLE controle_c_volext TO lazaret;
+GRANT ALL ON TABLE controle_c_volext TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_volext TO databasename;
 
 
 --
@@ -8775,8 +8768,8 @@ GRANT SELECT ON TABLE controle_c_volext TO lazaret;
 REVOKE ALL ON TABLE controle_carre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_carre FROM postgres;
 GRANT ALL ON TABLE controle_carre TO postgres;
-GRANT SELECT ON TABLE controle_carre TO lazaret;
-GRANT ALL ON TABLE controle_carre TO superlazaret;
+GRANT SELECT ON TABLE controle_carre TO databasename;
+GRANT ALL ON TABLE controle_carre TO superdatabasename;
 
 
 --
@@ -8786,8 +8779,8 @@ GRANT ALL ON TABLE controle_carre TO superlazaret;
 REVOKE ALL ON TABLE controle_d_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_d_serie FROM postgres;
 GRANT ALL ON TABLE controle_d_serie TO postgres;
-GRANT SELECT ON TABLE controle_d_serie TO lazaret;
-GRANT ALL ON TABLE controle_d_serie TO superlazaret;
+GRANT SELECT ON TABLE controle_d_serie TO databasename;
+GRANT ALL ON TABLE controle_d_serie TO superdatabasename;
 
 
 --
@@ -8797,8 +8790,8 @@ GRANT ALL ON TABLE controle_d_serie TO superlazaret;
 REVOKE ALL ON TABLE controle_d_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_d_type FROM postgres;
 GRANT ALL ON TABLE controle_d_type TO postgres;
-GRANT SELECT ON TABLE controle_d_type TO lazaret;
-GRANT ALL ON TABLE controle_d_type TO superlazaret;
+GRANT SELECT ON TABLE controle_d_type TO databasename;
+GRANT ALL ON TABLE controle_d_type TO superdatabasename;
 
 
 --
@@ -8808,8 +8801,8 @@ GRANT ALL ON TABLE controle_d_type TO superlazaret;
 REVOKE ALL ON TABLE controle_e_bulbe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_bulbe FROM postgres;
 GRANT ALL ON TABLE controle_e_bulbe TO postgres;
-GRANT SELECT ON TABLE controle_e_bulbe TO lazaret;
-GRANT ALL ON TABLE controle_e_bulbe TO superlazaret;
+GRANT SELECT ON TABLE controle_e_bulbe TO databasename;
+GRANT ALL ON TABLE controle_e_bulbe TO superdatabasename;
 
 
 --
@@ -8819,8 +8812,8 @@ GRANT ALL ON TABLE controle_e_bulbe TO superlazaret;
 REVOKE ALL ON TABLE controle_e_carene FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_carene FROM postgres;
 GRANT ALL ON TABLE controle_e_carene TO postgres;
-GRANT SELECT ON TABLE controle_e_carene TO lazaret;
-GRANT ALL ON TABLE controle_e_carene TO superlazaret;
+GRANT SELECT ON TABLE controle_e_carene TO databasename;
+GRANT ALL ON TABLE controle_e_carene TO superdatabasename;
 
 
 --
@@ -8830,8 +8823,8 @@ GRANT ALL ON TABLE controle_e_carene TO superlazaret;
 REVOKE ALL ON TABLE controle_e_charniere FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_charniere FROM postgres;
 GRANT ALL ON TABLE controle_e_charniere TO postgres;
-GRANT SELECT ON TABLE controle_e_charniere TO lazaret;
-GRANT ALL ON TABLE controle_e_charniere TO superlazaret;
+GRANT SELECT ON TABLE controle_e_charniere TO databasename;
+GRANT ALL ON TABLE controle_e_charniere TO superdatabasename;
 
 
 --
@@ -8841,8 +8834,8 @@ GRANT ALL ON TABLE controle_e_charniere TO superlazaret;
 REVOKE ALL ON TABLE controle_e_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_code FROM postgres;
 GRANT ALL ON TABLE controle_e_code TO postgres;
-GRANT SELECT ON TABLE controle_e_code TO lazaret;
-GRANT ALL ON TABLE controle_e_code TO superlazaret;
+GRANT SELECT ON TABLE controle_e_code TO databasename;
+GRANT ALL ON TABLE controle_e_code TO superdatabasename;
 
 
 --
@@ -8852,8 +8845,8 @@ GRANT ALL ON TABLE controle_e_code TO superlazaret;
 REVOKE ALL ON TABLE controle_e_cone FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_cone FROM postgres;
 GRANT ALL ON TABLE controle_e_cone TO postgres;
-GRANT SELECT ON TABLE controle_e_cone TO lazaret;
-GRANT ALL ON TABLE controle_e_cone TO superlazaret;
+GRANT SELECT ON TABLE controle_e_cone TO databasename;
+GRANT ALL ON TABLE controle_e_cone TO superdatabasename;
 
 
 --
@@ -8863,8 +8856,8 @@ GRANT ALL ON TABLE controle_e_cone TO superlazaret;
 REVOKE ALL ON TABLE controle_e_contour FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_contour FROM postgres;
 GRANT ALL ON TABLE controle_e_contour TO postgres;
-GRANT SELECT ON TABLE controle_e_contour TO lazaret;
-GRANT ALL ON TABLE controle_e_contour TO superlazaret;
+GRANT SELECT ON TABLE controle_e_contour TO databasename;
+GRANT ALL ON TABLE controle_e_contour TO superdatabasename;
 
 
 --
@@ -8874,8 +8867,8 @@ GRANT ALL ON TABLE controle_e_contour TO superlazaret;
 REVOKE ALL ON TABLE controle_e_debitage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_debitage FROM postgres;
 GRANT ALL ON TABLE controle_e_debitage TO postgres;
-GRANT SELECT ON TABLE controle_e_debitage TO lazaret;
-GRANT ALL ON TABLE controle_e_debitage TO superlazaret;
+GRANT SELECT ON TABLE controle_e_debitage TO databasename;
+GRANT ALL ON TABLE controle_e_debitage TO superdatabasename;
 
 
 --
@@ -8885,8 +8878,8 @@ GRANT ALL ON TABLE controle_e_debitage TO superlazaret;
 REVOKE ALL ON TABLE controle_e_enlevement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_enlevement FROM postgres;
 GRANT ALL ON TABLE controle_e_enlevement TO postgres;
-GRANT SELECT ON TABLE controle_e_enlevement TO lazaret;
-GRANT ALL ON TABLE controle_e_enlevement TO superlazaret;
+GRANT SELECT ON TABLE controle_e_enlevement TO databasename;
+GRANT ALL ON TABLE controle_e_enlevement TO superdatabasename;
 
 
 --
@@ -8896,8 +8889,8 @@ GRANT ALL ON TABLE controle_e_enlevement TO superlazaret;
 REVOKE ALL ON TABLE controle_e_epi FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_epi FROM postgres;
 GRANT ALL ON TABLE controle_e_epi TO postgres;
-GRANT SELECT ON TABLE controle_e_epi TO lazaret;
-GRANT ALL ON TABLE controle_e_epi TO superlazaret;
+GRANT SELECT ON TABLE controle_e_epi TO databasename;
+GRANT ALL ON TABLE controle_e_epi TO superdatabasename;
 
 
 --
@@ -8907,8 +8900,8 @@ GRANT ALL ON TABLE controle_e_epi TO superlazaret;
 REVOKE ALL ON TABLE controle_e_onde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_onde FROM postgres;
 GRANT ALL ON TABLE controle_e_onde TO postgres;
-GRANT SELECT ON TABLE controle_e_onde TO lazaret;
-GRANT ALL ON TABLE controle_e_onde TO superlazaret;
+GRANT SELECT ON TABLE controle_e_onde TO databasename;
+GRANT ALL ON TABLE controle_e_onde TO superdatabasename;
 
 
 --
@@ -8918,8 +8911,8 @@ GRANT ALL ON TABLE controle_e_onde TO superlazaret;
 REVOKE ALL ON TABLE controle_e_parasite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_parasite FROM postgres;
 GRANT ALL ON TABLE controle_e_parasite TO postgres;
-GRANT SELECT ON TABLE controle_e_parasite TO lazaret;
-GRANT ALL ON TABLE controle_e_parasite TO superlazaret;
+GRANT SELECT ON TABLE controle_e_parasite TO databasename;
+GRANT ALL ON TABLE controle_e_parasite TO superdatabasename;
 
 
 --
@@ -8929,8 +8922,8 @@ GRANT ALL ON TABLE controle_e_parasite TO superlazaret;
 REVOKE ALL ON TABLE controle_e_secondaire FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_secondaire FROM postgres;
 GRANT ALL ON TABLE controle_e_secondaire TO postgres;
-GRANT SELECT ON TABLE controle_e_secondaire TO lazaret;
-GRANT ALL ON TABLE controle_e_secondaire TO superlazaret;
+GRANT SELECT ON TABLE controle_e_secondaire TO databasename;
+GRANT ALL ON TABLE controle_e_secondaire TO superdatabasename;
 
 
 --
@@ -8940,8 +8933,8 @@ GRANT ALL ON TABLE controle_e_secondaire TO superlazaret;
 REVOKE ALL ON TABLE controle_e_section_long FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_section_long FROM postgres;
 GRANT ALL ON TABLE controle_e_section_long TO postgres;
-GRANT SELECT ON TABLE controle_e_section_long TO lazaret;
-GRANT ALL ON TABLE controle_e_section_long TO superlazaret;
+GRANT SELECT ON TABLE controle_e_section_long TO databasename;
+GRANT ALL ON TABLE controle_e_section_long TO superdatabasename;
 
 
 --
@@ -8951,8 +8944,8 @@ GRANT ALL ON TABLE controle_e_section_long TO superlazaret;
 REVOKE ALL ON TABLE controle_e_section_trans FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_section_trans FROM postgres;
 GRANT ALL ON TABLE controle_e_section_trans TO postgres;
-GRANT SELECT ON TABLE controle_e_section_trans TO lazaret;
-GRANT ALL ON TABLE controle_e_section_trans TO superlazaret;
+GRANT SELECT ON TABLE controle_e_section_trans TO databasename;
+GRANT ALL ON TABLE controle_e_section_trans TO superdatabasename;
 
 
 --
@@ -8962,8 +8955,8 @@ GRANT ALL ON TABLE controle_e_section_trans TO superlazaret;
 REVOKE ALL ON TABLE controle_e_strie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_strie FROM postgres;
 GRANT ALL ON TABLE controle_e_strie TO postgres;
-GRANT SELECT ON TABLE controle_e_strie TO lazaret;
-GRANT ALL ON TABLE controle_e_strie TO superlazaret;
+GRANT SELECT ON TABLE controle_e_strie TO databasename;
+GRANT ALL ON TABLE controle_e_strie TO superdatabasename;
 
 
 --
@@ -8973,8 +8966,8 @@ GRANT ALL ON TABLE controle_e_strie TO superlazaret;
 REVOKE ALL ON TABLE controle_e_talon FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_talon FROM postgres;
 GRANT ALL ON TABLE controle_e_talon TO postgres;
-GRANT SELECT ON TABLE controle_e_talon TO lazaret;
-GRANT ALL ON TABLE controle_e_talon TO superlazaret;
+GRANT SELECT ON TABLE controle_e_talon TO databasename;
+GRANT ALL ON TABLE controle_e_talon TO superdatabasename;
 
 
 --
@@ -8984,8 +8977,8 @@ GRANT ALL ON TABLE controle_e_talon TO superlazaret;
 REVOKE ALL ON TABLE controle_e_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_type FROM postgres;
 GRANT ALL ON TABLE controle_e_type TO postgres;
-GRANT SELECT ON TABLE controle_e_type TO lazaret;
-GRANT ALL ON TABLE controle_e_type TO superlazaret;
+GRANT SELECT ON TABLE controle_e_type TO databasename;
+GRANT ALL ON TABLE controle_e_type TO superdatabasename;
 
 
 --
@@ -8995,8 +8988,8 @@ GRANT ALL ON TABLE controle_e_type TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_element FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_element FROM postgres;
 GRANT ALL ON TABLE controle_eg_element TO postgres;
-GRANT SELECT ON TABLE controle_eg_element TO lazaret;
-GRANT ALL ON TABLE controle_eg_element TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_element TO databasename;
+GRANT ALL ON TABLE controle_eg_element TO superdatabasename;
 
 
 --
@@ -9006,8 +8999,8 @@ GRANT ALL ON TABLE controle_eg_element TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_epaisseur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_epaisseur FROM postgres;
 GRANT ALL ON TABLE controle_eg_epaisseur TO postgres;
-GRANT SELECT ON TABLE controle_eg_epaisseur TO lazaret;
-GRANT ALL ON TABLE controle_eg_epaisseur TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_epaisseur TO databasename;
+GRANT ALL ON TABLE controle_eg_epaisseur TO superdatabasename;
 
 
 --
@@ -9017,8 +9010,8 @@ GRANT ALL ON TABLE controle_eg_epaisseur TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_extremite FROM postgres;
 GRANT ALL ON TABLE controle_eg_extremite TO postgres;
-GRANT SELECT ON TABLE controle_eg_extremite TO lazaret;
-GRANT ALL ON TABLE controle_eg_extremite TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_extremite TO databasename;
+GRANT ALL ON TABLE controle_eg_extremite TO superdatabasename;
 
 
 --
@@ -9028,8 +9021,8 @@ GRANT ALL ON TABLE controle_eg_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_longueur_generale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_longueur_generale FROM postgres;
 GRANT ALL ON TABLE controle_eg_longueur_generale TO postgres;
-GRANT SELECT ON TABLE controle_eg_longueur_generale TO lazaret;
-GRANT ALL ON TABLE controle_eg_longueur_generale TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_longueur_generale TO databasename;
+GRANT ALL ON TABLE controle_eg_longueur_generale TO superdatabasename;
 
 
 --
@@ -9039,8 +9032,8 @@ GRANT ALL ON TABLE controle_eg_longueur_generale TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_proeminence FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_proeminence FROM postgres;
 GRANT ALL ON TABLE controle_eg_proeminence TO postgres;
-GRANT SELECT ON TABLE controle_eg_proeminence TO lazaret;
-GRANT ALL ON TABLE controle_eg_proeminence TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_proeminence TO databasename;
+GRANT ALL ON TABLE controle_eg_proeminence TO superdatabasename;
 
 
 --
@@ -9050,8 +9043,8 @@ GRANT ALL ON TABLE controle_eg_proeminence TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_profil FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_profil FROM postgres;
 GRANT ALL ON TABLE controle_eg_profil TO postgres;
-GRANT SELECT ON TABLE controle_eg_profil TO lazaret;
-GRANT ALL ON TABLE controle_eg_profil TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_profil TO databasename;
+GRANT ALL ON TABLE controle_eg_profil TO superdatabasename;
 
 
 --
@@ -9061,8 +9054,8 @@ GRANT ALL ON TABLE controle_eg_profil TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_eg_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_eg_profondeur TO lazaret;
-GRANT ALL ON TABLE controle_eg_profondeur TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_profondeur TO databasename;
+GRANT ALL ON TABLE controle_eg_profondeur TO superdatabasename;
 
 
 --
@@ -9072,8 +9065,8 @@ GRANT ALL ON TABLE controle_eg_profondeur TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_sens FROM postgres;
 GRANT ALL ON TABLE controle_eg_sens TO postgres;
-GRANT SELECT ON TABLE controle_eg_sens TO lazaret;
-GRANT ALL ON TABLE controle_eg_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_sens TO databasename;
+GRANT ALL ON TABLE controle_eg_sens TO superdatabasename;
 
 
 --
@@ -9083,8 +9076,8 @@ GRANT ALL ON TABLE controle_eg_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_situation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_situation FROM postgres;
 GRANT ALL ON TABLE controle_eg_situation TO postgres;
-GRANT SELECT ON TABLE controle_eg_situation TO lazaret;
-GRANT ALL ON TABLE controle_eg_situation TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_situation TO databasename;
+GRANT ALL ON TABLE controle_eg_situation TO superdatabasename;
 
 
 --
@@ -9094,8 +9087,8 @@ GRANT ALL ON TABLE controle_eg_situation TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_support FROM postgres;
 GRANT ALL ON TABLE controle_eg_support TO postgres;
-GRANT SELECT ON TABLE controle_eg_support TO lazaret;
-GRANT ALL ON TABLE controle_eg_support TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_support TO databasename;
+GRANT ALL ON TABLE controle_eg_support TO superdatabasename;
 
 
 --
@@ -9105,8 +9098,8 @@ GRANT ALL ON TABLE controle_eg_support TO superlazaret;
 REVOKE ALL ON TABLE controle_en_direction FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_direction FROM postgres;
 GRANT ALL ON TABLE controle_en_direction TO postgres;
-GRANT SELECT ON TABLE controle_en_direction TO lazaret;
-GRANT ALL ON TABLE controle_en_direction TO superlazaret;
+GRANT SELECT ON TABLE controle_en_direction TO databasename;
+GRANT ALL ON TABLE controle_en_direction TO superdatabasename;
 
 
 --
@@ -9116,8 +9109,8 @@ GRANT ALL ON TABLE controle_en_direction TO superlazaret;
 REVOKE ALL ON TABLE controle_en_dptimpact FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_dptimpact FROM postgres;
 GRANT ALL ON TABLE controle_en_dptimpact TO postgres;
-GRANT SELECT ON TABLE controle_en_dptimpact TO lazaret;
-GRANT ALL ON TABLE controle_en_dptimpact TO superlazaret;
+GRANT SELECT ON TABLE controle_en_dptimpact TO databasename;
+GRANT ALL ON TABLE controle_en_dptimpact TO superdatabasename;
 
 
 --
@@ -9127,8 +9120,8 @@ GRANT ALL ON TABLE controle_en_dptimpact TO superlazaret;
 REVOKE ALL ON TABLE controle_en_frappe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_frappe FROM postgres;
 GRANT ALL ON TABLE controle_en_frappe TO postgres;
-GRANT SELECT ON TABLE controle_en_frappe TO lazaret;
-GRANT ALL ON TABLE controle_en_frappe TO superlazaret;
+GRANT SELECT ON TABLE controle_en_frappe TO databasename;
+GRANT ALL ON TABLE controle_en_frappe TO superdatabasename;
 
 
 --
@@ -9138,8 +9131,8 @@ GRANT ALL ON TABLE controle_en_frappe TO superlazaret;
 REVOKE ALL ON TABLE controle_en_inclinaison FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_inclinaison FROM postgres;
 GRANT ALL ON TABLE controle_en_inclinaison TO postgres;
-GRANT SELECT ON TABLE controle_en_inclinaison TO lazaret;
-GRANT ALL ON TABLE controle_en_inclinaison TO superlazaret;
+GRANT SELECT ON TABLE controle_en_inclinaison TO databasename;
+GRANT ALL ON TABLE controle_en_inclinaison TO superdatabasename;
 
 
 --
@@ -9149,8 +9142,8 @@ GRANT ALL ON TABLE controle_en_inclinaison TO superlazaret;
 REVOKE ALL ON TABLE controle_en_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_en_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_en_obliquite TO lazaret;
-GRANT ALL ON TABLE controle_en_obliquite TO superlazaret;
+GRANT SELECT ON TABLE controle_en_obliquite TO databasename;
+GRANT ALL ON TABLE controle_en_obliquite TO superdatabasename;
 
 
 --
@@ -9160,8 +9153,8 @@ GRANT ALL ON TABLE controle_en_obliquite TO superlazaret;
 REVOKE ALL ON TABLE controle_en_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_en_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_en_profondeur TO lazaret;
-GRANT ALL ON TABLE controle_en_profondeur TO superlazaret;
+GRANT SELECT ON TABLE controle_en_profondeur TO databasename;
+GRANT ALL ON TABLE controle_en_profondeur TO superdatabasename;
 
 
 --
@@ -9171,8 +9164,8 @@ GRANT ALL ON TABLE controle_en_profondeur TO superlazaret;
 REVOKE ALL ON TABLE controle_ensemble FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ensemble FROM postgres;
 GRANT ALL ON TABLE controle_ensemble TO postgres;
-GRANT SELECT ON TABLE controle_ensemble TO lazaret;
-GRANT ALL ON TABLE controle_ensemble TO superlazaret;
+GRANT SELECT ON TABLE controle_ensemble TO databasename;
+GRANT ALL ON TABLE controle_ensemble TO superdatabasename;
 
 
 --
@@ -9182,8 +9175,8 @@ GRANT ALL ON TABLE controle_ensemble TO superlazaret;
 REVOKE ALL ON TABLE controle_f_affespece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_affespece FROM postgres;
 GRANT ALL ON TABLE controle_f_affespece TO postgres;
-GRANT ALL ON TABLE controle_f_affespece TO lazaret;
-GRANT ALL ON TABLE controle_f_affespece TO superlazaret;
+GRANT ALL ON TABLE controle_f_affespece TO databasename;
+GRANT ALL ON TABLE controle_f_affespece TO superdatabasename;
 
 
 --
@@ -9193,8 +9186,8 @@ GRANT ALL ON TABLE controle_f_affespece TO superlazaret;
 REVOKE ALL ON TABLE controle_f_affgenre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_affgenre FROM postgres;
 GRANT ALL ON TABLE controle_f_affgenre TO postgres;
-GRANT ALL ON TABLE controle_f_affgenre TO lazaret;
-GRANT ALL ON TABLE controle_f_affgenre TO superlazaret;
+GRANT ALL ON TABLE controle_f_affgenre TO databasename;
+GRANT ALL ON TABLE controle_f_affgenre TO superdatabasename;
 
 
 --
@@ -9204,8 +9197,8 @@ GRANT ALL ON TABLE controle_f_affgenre TO superlazaret;
 REVOKE ALL ON TABLE controle_f_agecl FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agecl FROM postgres;
 GRANT ALL ON TABLE controle_f_agecl TO postgres;
-GRANT SELECT ON TABLE controle_f_agecl TO lazaret;
-GRANT ALL ON TABLE controle_f_agecl TO superlazaret;
+GRANT SELECT ON TABLE controle_f_agecl TO databasename;
+GRANT ALL ON TABLE controle_f_agecl TO superdatabasename;
 
 
 --
@@ -9215,8 +9208,8 @@ GRANT ALL ON TABLE controle_f_agecl TO superlazaret;
 REVOKE ALL ON TABLE controle_f_agent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agent FROM postgres;
 GRANT ALL ON TABLE controle_f_agent TO postgres;
-GRANT SELECT ON TABLE controle_f_agent TO lazaret;
-GRANT ALL ON TABLE controle_f_agent TO superlazaret;
+GRANT SELECT ON TABLE controle_f_agent TO databasename;
+GRANT ALL ON TABLE controle_f_agent TO superdatabasename;
 
 
 --
@@ -9226,8 +9219,8 @@ GRANT ALL ON TABLE controle_f_agent TO superlazaret;
 REVOKE ALL ON TABLE controle_f_agest FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agest FROM postgres;
 GRANT ALL ON TABLE controle_f_agest TO postgres;
-GRANT SELECT ON TABLE controle_f_agest TO lazaret;
-GRANT ALL ON TABLE controle_f_agest TO superlazaret;
+GRANT SELECT ON TABLE controle_f_agest TO databasename;
+GRANT ALL ON TABLE controle_f_agest TO superdatabasename;
 
 
 --
@@ -9237,8 +9230,8 @@ GRANT ALL ON TABLE controle_f_agest TO superlazaret;
 REVOKE ALL ON TABLE controle_f_association FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_association FROM postgres;
 GRANT ALL ON TABLE controle_f_association TO postgres;
-GRANT SELECT ON TABLE controle_f_association TO lazaret;
-GRANT ALL ON TABLE controle_f_association TO superlazaret;
+GRANT SELECT ON TABLE controle_f_association TO databasename;
+GRANT ALL ON TABLE controle_f_association TO superdatabasename;
 
 
 --
@@ -9248,8 +9241,8 @@ GRANT ALL ON TABLE controle_f_association TO superlazaret;
 REVOKE ALL ON TABLE controle_f_calcouleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_calcouleur FROM postgres;
 GRANT ALL ON TABLE controle_f_calcouleur TO postgres;
-GRANT SELECT ON TABLE controle_f_calcouleur TO lazaret;
-GRANT ALL ON TABLE controle_f_calcouleur TO superlazaret;
+GRANT SELECT ON TABLE controle_f_calcouleur TO databasename;
+GRANT ALL ON TABLE controle_f_calcouleur TO superdatabasename;
 
 
 --
@@ -9259,8 +9252,8 @@ GRANT ALL ON TABLE controle_f_calcouleur TO superlazaret;
 REVOKE ALL ON TABLE controle_f_caltype FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_caltype FROM postgres;
 GRANT ALL ON TABLE controle_f_caltype TO postgres;
-GRANT SELECT ON TABLE controle_f_caltype TO lazaret;
-GRANT ALL ON TABLE controle_f_caltype TO superlazaret;
+GRANT SELECT ON TABLE controle_f_caltype TO databasename;
+GRANT ALL ON TABLE controle_f_caltype TO superdatabasename;
 
 
 --
@@ -9270,8 +9263,8 @@ GRANT ALL ON TABLE controle_f_caltype TO superlazaret;
 REVOKE ALL ON TABLE controle_f_classe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_classe FROM postgres;
 GRANT ALL ON TABLE controle_f_classe TO postgres;
-GRANT SELECT ON TABLE controle_f_classe TO lazaret;
-GRANT ALL ON TABLE controle_f_classe TO superlazaret;
+GRANT SELECT ON TABLE controle_f_classe TO databasename;
+GRANT ALL ON TABLE controle_f_classe TO superdatabasename;
 
 
 --
@@ -9281,8 +9274,8 @@ GRANT ALL ON TABLE controle_f_classe TO superlazaret;
 REVOKE ALL ON TABLE controle_f_complement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_complement FROM postgres;
 GRANT ALL ON TABLE controle_f_complement TO postgres;
-GRANT ALL ON TABLE controle_f_complement TO lazaret;
-GRANT ALL ON TABLE controle_f_complement TO superlazaret;
+GRANT ALL ON TABLE controle_f_complement TO databasename;
+GRANT ALL ON TABLE controle_f_complement TO superdatabasename;
 
 
 --
@@ -9292,8 +9285,8 @@ GRANT ALL ON TABLE controle_f_complement TO superlazaret;
 REVOKE ALL ON TABLE controle_f_composite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_composite FROM postgres;
 GRANT ALL ON TABLE controle_f_composite TO postgres;
-GRANT SELECT ON TABLE controle_f_composite TO lazaret;
-GRANT ALL ON TABLE controle_f_composite TO superlazaret;
+GRANT SELECT ON TABLE controle_f_composite TO databasename;
+GRANT ALL ON TABLE controle_f_composite TO superdatabasename;
 
 
 --
@@ -9303,8 +9296,8 @@ GRANT ALL ON TABLE controle_f_composite TO superlazaret;
 REVOKE ALL ON TABLE controle_f_concretion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_concretion FROM postgres;
 GRANT ALL ON TABLE controle_f_concretion TO postgres;
-GRANT SELECT ON TABLE controle_f_concretion TO lazaret;
-GRANT ALL ON TABLE controle_f_concretion TO superlazaret;
+GRANT SELECT ON TABLE controle_f_concretion TO databasename;
+GRANT ALL ON TABLE controle_f_concretion TO superdatabasename;
 
 
 --
@@ -9314,8 +9307,8 @@ GRANT ALL ON TABLE controle_f_concretion TO superlazaret;
 REVOKE ALL ON TABLE controle_f_conservation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_conservation FROM postgres;
 GRANT ALL ON TABLE controle_f_conservation TO postgres;
-GRANT SELECT ON TABLE controle_f_conservation TO lazaret;
-GRANT ALL ON TABLE controle_f_conservation TO superlazaret;
+GRANT SELECT ON TABLE controle_f_conservation TO databasename;
+GRANT ALL ON TABLE controle_f_conservation TO superdatabasename;
 
 
 --
@@ -9325,8 +9318,8 @@ GRANT ALL ON TABLE controle_f_conservation TO superlazaret;
 REVOKE ALL ON TABLE controle_f_coprolithe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_coprolithe FROM postgres;
 GRANT ALL ON TABLE controle_f_coprolithe TO postgres;
-GRANT SELECT ON TABLE controle_f_coprolithe TO lazaret;
-GRANT ALL ON TABLE controle_f_coprolithe TO superlazaret;
+GRANT SELECT ON TABLE controle_f_coprolithe TO databasename;
+GRANT ALL ON TABLE controle_f_coprolithe TO superdatabasename;
 
 
 --
@@ -9336,8 +9329,8 @@ GRANT ALL ON TABLE controle_f_coprolithe TO superlazaret;
 REVOKE ALL ON TABLE controle_f_coraspect FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_coraspect FROM postgres;
 GRANT ALL ON TABLE controle_f_coraspect TO postgres;
-GRANT SELECT ON TABLE controle_f_coraspect TO lazaret;
-GRANT ALL ON TABLE controle_f_coraspect TO superlazaret;
+GRANT SELECT ON TABLE controle_f_coraspect TO databasename;
+GRANT ALL ON TABLE controle_f_coraspect TO superdatabasename;
 
 
 --
@@ -9347,8 +9340,8 @@ GRANT ALL ON TABLE controle_f_coraspect TO superlazaret;
 REVOKE ALL ON TABLE controle_f_corfissure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_corfissure FROM postgres;
 GRANT ALL ON TABLE controle_f_corfissure TO postgres;
-GRANT SELECT ON TABLE controle_f_corfissure TO lazaret;
-GRANT ALL ON TABLE controle_f_corfissure TO superlazaret;
+GRANT SELECT ON TABLE controle_f_corfissure TO databasename;
+GRANT ALL ON TABLE controle_f_corfissure TO superdatabasename;
 
 
 --
@@ -9358,8 +9351,8 @@ GRANT ALL ON TABLE controle_f_corfissure TO superlazaret;
 REVOKE ALL ON TABLE controle_f_couleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_couleur FROM postgres;
 GRANT ALL ON TABLE controle_f_couleur TO postgres;
-GRANT SELECT ON TABLE controle_f_couleur TO lazaret;
-GRANT ALL ON TABLE controle_f_couleur TO superlazaret;
+GRANT SELECT ON TABLE controle_f_couleur TO databasename;
+GRANT ALL ON TABLE controle_f_couleur TO superdatabasename;
 
 
 --
@@ -9369,8 +9362,8 @@ GRANT ALL ON TABLE controle_f_couleur TO superlazaret;
 REVOKE ALL ON TABLE controle_f_datation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_datation FROM postgres;
 GRANT ALL ON TABLE controle_f_datation TO postgres;
-GRANT SELECT ON TABLE controle_f_datation TO lazaret;
-GRANT ALL ON TABLE controle_f_datation TO superlazaret;
+GRANT SELECT ON TABLE controle_f_datation TO databasename;
+GRANT ALL ON TABLE controle_f_datation TO superdatabasename;
 
 
 --
@@ -9380,8 +9373,8 @@ GRANT ALL ON TABLE controle_f_datation TO superlazaret;
 REVOKE ALL ON TABLE controle_f_description FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_description FROM postgres;
 GRANT ALL ON TABLE controle_f_description TO postgres;
-GRANT SELECT ON TABLE controle_f_description TO lazaret;
-GRANT ALL ON TABLE controle_f_description TO superlazaret;
+GRANT SELECT ON TABLE controle_f_description TO databasename;
+GRANT ALL ON TABLE controle_f_description TO superdatabasename;
 
 
 --
@@ -9391,8 +9384,8 @@ GRANT ALL ON TABLE controle_f_description TO superlazaret;
 REVOKE ALL ON TABLE controle_f_dessin FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_dessin FROM postgres;
 GRANT ALL ON TABLE controle_f_dessin TO postgres;
-GRANT SELECT ON TABLE controle_f_dessin TO lazaret;
-GRANT ALL ON TABLE controle_f_dessin TO superlazaret;
+GRANT SELECT ON TABLE controle_f_dessin TO databasename;
+GRANT ALL ON TABLE controle_f_dessin TO superdatabasename;
 
 
 --
@@ -9402,8 +9395,8 @@ GRANT ALL ON TABLE controle_f_dessin TO superlazaret;
 REVOKE ALL ON TABLE controle_f_eclat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_eclat FROM postgres;
 GRANT ALL ON TABLE controle_f_eclat TO postgres;
-GRANT SELECT ON TABLE controle_f_eclat TO lazaret;
-GRANT ALL ON TABLE controle_f_eclat TO superlazaret;
+GRANT SELECT ON TABLE controle_f_eclat TO databasename;
+GRANT ALL ON TABLE controle_f_eclat TO superdatabasename;
 
 
 --
@@ -9413,8 +9406,8 @@ GRANT ALL ON TABLE controle_f_eclat TO superlazaret;
 REVOKE ALL ON TABLE controle_f_espece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_espece FROM postgres;
 GRANT ALL ON TABLE controle_f_espece TO postgres;
-GRANT SELECT ON TABLE controle_f_espece TO lazaret;
-GRANT ALL ON TABLE controle_f_espece TO superlazaret;
+GRANT SELECT ON TABLE controle_f_espece TO databasename;
+GRANT ALL ON TABLE controle_f_espece TO superdatabasename;
 
 
 --
@@ -9424,8 +9417,8 @@ GRANT ALL ON TABLE controle_f_espece TO superlazaret;
 REVOKE ALL ON TABLE controle_f_famille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_famille FROM postgres;
 GRANT ALL ON TABLE controle_f_famille TO postgres;
-GRANT SELECT ON TABLE controle_f_famille TO lazaret;
-GRANT ALL ON TABLE controle_f_famille TO superlazaret;
+GRANT SELECT ON TABLE controle_f_famille TO databasename;
+GRANT ALL ON TABLE controle_f_famille TO superdatabasename;
 
 
 --
@@ -9435,8 +9428,8 @@ GRANT ALL ON TABLE controle_f_famille TO superlazaret;
 REVOKE ALL ON TABLE controle_f_fossilisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fossilisation FROM postgres;
 GRANT ALL ON TABLE controle_f_fossilisation TO postgres;
-GRANT SELECT ON TABLE controle_f_fossilisation TO lazaret;
-GRANT ALL ON TABLE controle_f_fossilisation TO superlazaret;
+GRANT SELECT ON TABLE controle_f_fossilisation TO databasename;
+GRANT ALL ON TABLE controle_f_fossilisation TO superdatabasename;
 
 
 --
@@ -9446,8 +9439,8 @@ GRANT ALL ON TABLE controle_f_fossilisation TO superlazaret;
 REVOKE ALL ON TABLE controle_f_fragde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fragde FROM postgres;
 GRANT ALL ON TABLE controle_f_fragde TO postgres;
-GRANT SELECT ON TABLE controle_f_fragde TO lazaret;
-GRANT ALL ON TABLE controle_f_fragde TO superlazaret;
+GRANT SELECT ON TABLE controle_f_fragde TO databasename;
+GRANT ALL ON TABLE controle_f_fragde TO superdatabasename;
 
 
 --
@@ -9457,8 +9450,8 @@ GRANT ALL ON TABLE controle_f_fragde TO superlazaret;
 REVOKE ALL ON TABLE controle_f_fragge FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fragge FROM postgres;
 GRANT ALL ON TABLE controle_f_fragge TO postgres;
-GRANT SELECT ON TABLE controle_f_fragge TO lazaret;
-GRANT ALL ON TABLE controle_f_fragge TO superlazaret;
+GRANT SELECT ON TABLE controle_f_fragge TO databasename;
+GRANT ALL ON TABLE controle_f_fragge TO superdatabasename;
 
 
 --
@@ -9468,8 +9461,8 @@ GRANT ALL ON TABLE controle_f_fragge TO superlazaret;
 REVOKE ALL ON TABLE controle_f_genre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_genre FROM postgres;
 GRANT ALL ON TABLE controle_f_genre TO postgres;
-GRANT SELECT ON TABLE controle_f_genre TO lazaret;
-GRANT ALL ON TABLE controle_f_genre TO superlazaret;
+GRANT SELECT ON TABLE controle_f_genre TO databasename;
+GRANT ALL ON TABLE controle_f_genre TO superdatabasename;
 
 
 --
@@ -9479,8 +9472,8 @@ GRANT ALL ON TABLE controle_f_genre TO superlazaret;
 REVOKE ALL ON TABLE controle_f_icirconference FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_icirconference FROM postgres;
 GRANT ALL ON TABLE controle_f_icirconference TO postgres;
-GRANT SELECT ON TABLE controle_f_icirconference TO lazaret;
-GRANT ALL ON TABLE controle_f_icirconference TO superlazaret;
+GRANT SELECT ON TABLE controle_f_icirconference TO databasename;
+GRANT ALL ON TABLE controle_f_icirconference TO superdatabasename;
 
 
 --
@@ -9490,8 +9483,8 @@ GRANT ALL ON TABLE controle_f_icirconference TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ilongueur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ilongueur FROM postgres;
 GRANT ALL ON TABLE controle_f_ilongueur TO postgres;
-GRANT SELECT ON TABLE controle_f_ilongueur TO lazaret;
-GRANT ALL ON TABLE controle_f_ilongueur TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ilongueur TO databasename;
+GRANT ALL ON TABLE controle_f_ilongueur TO superdatabasename;
 
 
 --
@@ -9501,8 +9494,8 @@ GRANT ALL ON TABLE controle_f_ilongueur TO superlazaret;
 REVOKE ALL ON TABLE controle_f_lateralite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_lateralite FROM postgres;
 GRANT ALL ON TABLE controle_f_lateralite TO postgres;
-GRANT SELECT ON TABLE controle_f_lateralite TO lazaret;
-GRANT ALL ON TABLE controle_f_lateralite TO superlazaret;
+GRANT SELECT ON TABLE controle_f_lateralite TO databasename;
+GRANT ALL ON TABLE controle_f_lateralite TO superdatabasename;
 
 
 --
@@ -9512,8 +9505,8 @@ GRANT ALL ON TABLE controle_f_lateralite TO superlazaret;
 REVOKE ALL ON TABLE controle_f_mode FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_mode FROM postgres;
 GRANT ALL ON TABLE controle_f_mode TO postgres;
-GRANT SELECT ON TABLE controle_f_mode TO lazaret;
-GRANT ALL ON TABLE controle_f_mode TO superlazaret;
+GRANT SELECT ON TABLE controle_f_mode TO databasename;
+GRANT ALL ON TABLE controle_f_mode TO superdatabasename;
 
 
 --
@@ -9523,8 +9516,8 @@ GRANT ALL ON TABLE controle_f_mode TO superlazaret;
 REVOKE ALL ON TABLE controle_f_moulage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_moulage FROM postgres;
 GRANT ALL ON TABLE controle_f_moulage TO postgres;
-GRANT SELECT ON TABLE controle_f_moulage TO lazaret;
-GRANT ALL ON TABLE controle_f_moulage TO superlazaret;
+GRANT SELECT ON TABLE controle_f_moulage TO databasename;
+GRANT ALL ON TABLE controle_f_moulage TO superdatabasename;
 
 
 --
@@ -9534,8 +9527,8 @@ GRANT ALL ON TABLE controle_f_moulage TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ordre FROM postgres;
 GRANT ALL ON TABLE controle_f_ordre TO postgres;
-GRANT SELECT ON TABLE controle_f_ordre TO lazaret;
-GRANT ALL ON TABLE controle_f_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ordre TO databasename;
+GRANT ALL ON TABLE controle_f_ordre TO superdatabasename;
 
 
 --
@@ -9545,8 +9538,8 @@ GRANT ALL ON TABLE controle_f_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_f_oxyde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_oxyde FROM postgres;
 GRANT ALL ON TABLE controle_f_oxyde TO postgres;
-GRANT SELECT ON TABLE controle_f_oxyde TO lazaret;
-GRANT ALL ON TABLE controle_f_oxyde TO superlazaret;
+GRANT SELECT ON TABLE controle_f_oxyde TO databasename;
+GRANT ALL ON TABLE controle_f_oxyde TO superdatabasename;
 
 
 --
@@ -9556,8 +9549,8 @@ GRANT ALL ON TABLE controle_f_oxyde TO superlazaret;
 REVOKE ALL ON TABLE controle_f_pathologie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_pathologie FROM postgres;
 GRANT ALL ON TABLE controle_f_pathologie TO postgres;
-GRANT SELECT ON TABLE controle_f_pathologie TO lazaret;
-GRANT ALL ON TABLE controle_f_pathologie TO superlazaret;
+GRANT SELECT ON TABLE controle_f_pathologie TO databasename;
+GRANT ALL ON TABLE controle_f_pathologie TO superdatabasename;
 
 
 --
@@ -9567,8 +9560,8 @@ GRANT ALL ON TABLE controle_f_pathologie TO superlazaret;
 REVOKE ALL ON TABLE controle_f_pelote FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_pelote FROM postgres;
 GRANT ALL ON TABLE controle_f_pelote TO postgres;
-GRANT SELECT ON TABLE controle_f_pelote TO lazaret;
-GRANT ALL ON TABLE controle_f_pelote TO superlazaret;
+GRANT SELECT ON TABLE controle_f_pelote TO databasename;
+GRANT ALL ON TABLE controle_f_pelote TO superdatabasename;
 
 
 --
@@ -9578,8 +9571,8 @@ GRANT ALL ON TABLE controle_f_pelote TO superlazaret;
 REVOKE ALL ON TABLE controle_f_percussion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_percussion FROM postgres;
 GRANT ALL ON TABLE controle_f_percussion TO postgres;
-GRANT SELECT ON TABLE controle_f_percussion TO lazaret;
-GRANT ALL ON TABLE controle_f_percussion TO superlazaret;
+GRANT SELECT ON TABLE controle_f_percussion TO databasename;
+GRANT ALL ON TABLE controle_f_percussion TO superdatabasename;
 
 
 --
@@ -9589,8 +9582,8 @@ GRANT ALL ON TABLE controle_f_percussion TO superlazaret;
 REVOKE ALL ON TABLE controle_f_photo FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_photo FROM postgres;
 GRANT ALL ON TABLE controle_f_photo TO postgres;
-GRANT SELECT ON TABLE controle_f_photo TO lazaret;
-GRANT ALL ON TABLE controle_f_photo TO superlazaret;
+GRANT SELECT ON TABLE controle_f_photo TO databasename;
+GRANT ALL ON TABLE controle_f_photo TO superdatabasename;
 
 
 --
@@ -9600,8 +9593,8 @@ GRANT ALL ON TABLE controle_f_photo TO superlazaret;
 REVOKE ALL ON TABLE controle_f_reference FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_reference FROM postgres;
 GRANT ALL ON TABLE controle_f_reference TO postgres;
-GRANT ALL ON TABLE controle_f_reference TO lazaret;
-GRANT ALL ON TABLE controle_f_reference TO superlazaret;
+GRANT ALL ON TABLE controle_f_reference TO databasename;
+GRANT ALL ON TABLE controle_f_reference TO superdatabasename;
 
 
 --
@@ -9611,8 +9604,8 @@ GRANT ALL ON TABLE controle_f_reference TO superlazaret;
 REVOKE ALL ON TABLE controle_f_responsable FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_responsable FROM postgres;
 GRANT ALL ON TABLE controle_f_responsable TO postgres;
-GRANT SELECT ON TABLE controle_f_responsable TO lazaret;
-GRANT ALL ON TABLE controle_f_responsable TO superlazaret;
+GRANT SELECT ON TABLE controle_f_responsable TO databasename;
+GRANT ALL ON TABLE controle_f_responsable TO superdatabasename;
 
 
 --
@@ -9622,8 +9615,8 @@ GRANT ALL ON TABLE controle_f_responsable TO superlazaret;
 REVOKE ALL ON TABLE controle_f_restauration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_restauration FROM postgres;
 GRANT ALL ON TABLE controle_f_restauration TO postgres;
-GRANT SELECT ON TABLE controle_f_restauration TO lazaret;
-GRANT ALL ON TABLE controle_f_restauration TO superlazaret;
+GRANT SELECT ON TABLE controle_f_restauration TO databasename;
+GRANT ALL ON TABLE controle_f_restauration TO superdatabasename;
 
 
 --
@@ -9633,8 +9626,8 @@ GRANT ALL ON TABLE controle_f_restauration TO superlazaret;
 REVOKE ALL ON TABLE controle_f_saisie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_saisie FROM postgres;
 GRANT ALL ON TABLE controle_f_saisie TO postgres;
-GRANT SELECT ON TABLE controle_f_saisie TO lazaret;
-GRANT ALL ON TABLE controle_f_saisie TO superlazaret;
+GRANT SELECT ON TABLE controle_f_saisie TO databasename;
+GRANT ALL ON TABLE controle_f_saisie TO superdatabasename;
 
 
 --
@@ -9644,8 +9637,8 @@ GRANT ALL ON TABLE controle_f_saisie TO superlazaret;
 REVOKE ALL ON TABLE controle_f_sauvefrag FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_sauvefrag FROM postgres;
 GRANT ALL ON TABLE controle_f_sauvefrag TO postgres;
-GRANT SELECT ON TABLE controle_f_sauvefrag TO lazaret;
-GRANT ALL ON TABLE controle_f_sauvefrag TO superlazaret;
+GRANT SELECT ON TABLE controle_f_sauvefrag TO databasename;
+GRANT ALL ON TABLE controle_f_sauvefrag TO superdatabasename;
 
 
 --
@@ -9655,8 +9648,8 @@ GRANT ALL ON TABLE controle_f_sauvefrag TO superlazaret;
 REVOKE ALL ON TABLE controle_f_sexe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_sexe FROM postgres;
 GRANT ALL ON TABLE controle_f_sexe TO postgres;
-GRANT SELECT ON TABLE controle_f_sexe TO lazaret;
-GRANT ALL ON TABLE controle_f_sexe TO superlazaret;
+GRANT SELECT ON TABLE controle_f_sexe TO databasename;
+GRANT ALL ON TABLE controle_f_sexe TO superdatabasename;
 
 
 --
@@ -9666,8 +9659,8 @@ GRANT ALL ON TABLE controle_f_sexe TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ssespece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ssespece FROM postgres;
 GRANT ALL ON TABLE controle_f_ssespece TO postgres;
-GRANT SELECT ON TABLE controle_f_ssespece TO lazaret;
-GRANT ALL ON TABLE controle_f_ssespece TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ssespece TO databasename;
+GRANT ALL ON TABLE controle_f_ssespece TO superdatabasename;
 
 
 --
@@ -9677,8 +9670,8 @@ GRANT ALL ON TABLE controle_f_ssespece TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ssfamille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ssfamille FROM postgres;
 GRANT ALL ON TABLE controle_f_ssfamille TO postgres;
-GRANT SELECT ON TABLE controle_f_ssfamille TO lazaret;
-GRANT ALL ON TABLE controle_f_ssfamille TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ssfamille TO databasename;
+GRANT ALL ON TABLE controle_f_ssfamille TO superdatabasename;
 
 
 --
@@ -9688,8 +9681,8 @@ GRANT ALL ON TABLE controle_f_ssfamille TO superlazaret;
 REVOKE ALL ON TABLE controle_f_stdent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_stdent FROM postgres;
 GRANT ALL ON TABLE controle_f_stdent TO postgres;
-GRANT SELECT ON TABLE controle_f_stdent TO lazaret;
-GRANT ALL ON TABLE controle_f_stdent TO superlazaret;
+GRANT SELECT ON TABLE controle_f_stdent TO databasename;
+GRANT ALL ON TABLE controle_f_stdent TO superdatabasename;
 
 
 --
@@ -9699,8 +9692,8 @@ GRANT ALL ON TABLE controle_f_stdent TO superlazaret;
 REVOKE ALL ON TABLE controle_f_stserie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_stserie FROM postgres;
 GRANT ALL ON TABLE controle_f_stserie TO postgres;
-GRANT SELECT ON TABLE controle_f_stserie TO lazaret;
-GRANT ALL ON TABLE controle_f_stserie TO superlazaret;
+GRANT SELECT ON TABLE controle_f_stserie TO databasename;
+GRANT ALL ON TABLE controle_f_stserie TO superdatabasename;
 
 
 --
@@ -9710,8 +9703,8 @@ GRANT ALL ON TABLE controle_f_stserie TO superlazaret;
 REVOKE ALL ON TABLE controle_f_taille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_taille FROM postgres;
 GRANT ALL ON TABLE controle_f_taille TO postgres;
-GRANT SELECT ON TABLE controle_f_taille TO lazaret;
-GRANT ALL ON TABLE controle_f_taille TO superlazaret;
+GRANT SELECT ON TABLE controle_f_taille TO databasename;
+GRANT ALL ON TABLE controle_f_taille TO superdatabasename;
 
 
 --
@@ -9721,8 +9714,8 @@ GRANT ALL ON TABLE controle_f_taille TO superlazaret;
 REVOKE ALL ON TABLE controle_f_tissu FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_tissu FROM postgres;
 GRANT ALL ON TABLE controle_f_tissu TO postgres;
-GRANT SELECT ON TABLE controle_f_tissu TO lazaret;
-GRANT ALL ON TABLE controle_f_tissu TO superlazaret;
+GRANT SELECT ON TABLE controle_f_tissu TO databasename;
+GRANT ALL ON TABLE controle_f_tissu TO superdatabasename;
 
 
 --
@@ -9732,8 +9725,8 @@ GRANT ALL ON TABLE controle_f_tissu TO superlazaret;
 REVOKE ALL ON TABLE controle_f_traitement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_traitement FROM postgres;
 GRANT ALL ON TABLE controle_f_traitement TO postgres;
-GRANT SELECT ON TABLE controle_f_traitement TO lazaret;
-GRANT ALL ON TABLE controle_f_traitement TO superlazaret;
+GRANT SELECT ON TABLE controle_f_traitement TO databasename;
+GRANT ALL ON TABLE controle_f_traitement TO superdatabasename;
 
 
 --
@@ -9743,8 +9736,8 @@ GRANT ALL ON TABLE controle_f_traitement TO superlazaret;
 REVOKE ALL ON TABLE controle_f_tranchant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_tranchant FROM postgres;
 GRANT ALL ON TABLE controle_f_tranchant TO postgres;
-GRANT SELECT ON TABLE controle_f_tranchant TO lazaret;
-GRANT ALL ON TABLE controle_f_tranchant TO superlazaret;
+GRANT SELECT ON TABLE controle_f_tranchant TO databasename;
+GRANT ALL ON TABLE controle_f_tranchant TO superdatabasename;
 
 
 --
@@ -9754,8 +9747,8 @@ GRANT ALL ON TABLE controle_f_tranchant TO superlazaret;
 REVOKE ALL ON TABLE controle_f_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_type FROM postgres;
 GRANT ALL ON TABLE controle_f_type TO postgres;
-GRANT SELECT ON TABLE controle_f_type TO lazaret;
-GRANT ALL ON TABLE controle_f_type TO superlazaret;
+GRANT SELECT ON TABLE controle_f_type TO databasename;
+GRANT ALL ON TABLE controle_f_type TO superdatabasename;
 
 
 --
@@ -9765,8 +9758,8 @@ GRANT ALL ON TABLE controle_f_type TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typedos FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typedos FROM postgres;
 GRANT ALL ON TABLE controle_f_typedos TO postgres;
-GRANT SELECT ON TABLE controle_f_typedos TO lazaret;
-GRANT ALL ON TABLE controle_f_typedos TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typedos TO databasename;
+GRANT ALL ON TABLE controle_f_typedos TO superdatabasename;
 
 
 --
@@ -9776,8 +9769,8 @@ GRANT ALL ON TABLE controle_f_typedos TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos1 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos1 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos1 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos1 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos1 TO databasename;
+GRANT ALL ON TABLE controle_f_typos1 TO superdatabasename;
 
 
 --
@@ -9787,8 +9780,8 @@ GRANT ALL ON TABLE controle_f_typos1 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos2 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos2 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos2 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos2 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos2 TO databasename;
+GRANT ALL ON TABLE controle_f_typos2 TO superdatabasename;
 
 
 --
@@ -9798,8 +9791,8 @@ GRANT ALL ON TABLE controle_f_typos2 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos3 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos3 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos3 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos3 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos3 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos3 TO databasename;
+GRANT ALL ON TABLE controle_f_typos3 TO superdatabasename;
 
 
 --
@@ -9809,8 +9802,8 @@ GRANT ALL ON TABLE controle_f_typos3 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos4 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos4 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos4 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos4 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos4 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos4 TO databasename;
+GRANT ALL ON TABLE controle_f_typos4 TO superdatabasename;
 
 
 --
@@ -9820,8 +9813,8 @@ GRANT ALL ON TABLE controle_f_typos4 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos5 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos5 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos5 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos5 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos5 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos5 TO databasename;
+GRANT ALL ON TABLE controle_f_typos5 TO superdatabasename;
 
 
 --
@@ -9831,8 +9824,8 @@ GRANT ALL ON TABLE controle_f_typos5 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos6 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos6 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos6 TO postgres;
-GRANT ALL ON TABLE controle_f_typos6 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos6 TO superlazaret;
+GRANT ALL ON TABLE controle_f_typos6 TO databasename;
+GRANT ALL ON TABLE controle_f_typos6 TO superdatabasename;
 
 
 --
@@ -9842,8 +9835,8 @@ GRANT ALL ON TABLE controle_f_typos6 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_angle1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_angle1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_angle1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_angle1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_angle1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_angle1 TO databasename;
+GRANT ALL ON TABLE controle_ff_angle1 TO superdatabasename;
 
 
 --
@@ -9853,8 +9846,8 @@ GRANT ALL ON TABLE controle_ff_angle1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_angle2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_angle2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_angle2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_angle2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_angle2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_angle2 TO databasename;
+GRANT ALL ON TABLE controle_ff_angle2 TO superdatabasename;
 
 
 --
@@ -9864,8 +9857,8 @@ GRANT ALL ON TABLE controle_ff_angle2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_aspect1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_aspect1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_aspect1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_aspect1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_aspect1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_aspect1 TO databasename;
+GRANT ALL ON TABLE controle_ff_aspect1 TO superdatabasename;
 
 
 --
@@ -9875,8 +9868,8 @@ GRANT ALL ON TABLE controle_ff_aspect1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_aspect2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_aspect2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_aspect2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_aspect2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_aspect2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_aspect2 TO databasename;
+GRANT ALL ON TABLE controle_ff_aspect2 TO superdatabasename;
 
 
 --
@@ -9886,8 +9879,8 @@ GRANT ALL ON TABLE controle_ff_aspect2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_localisation1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_localisation1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_localisation1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_localisation1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_localisation1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_localisation1 TO databasename;
+GRANT ALL ON TABLE controle_ff_localisation1 TO superdatabasename;
 
 
 --
@@ -9897,8 +9890,8 @@ GRANT ALL ON TABLE controle_ff_localisation1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_localisation2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_localisation2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_localisation2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_localisation2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_localisation2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_localisation2 TO databasename;
+GRANT ALL ON TABLE controle_ff_localisation2 TO superdatabasename;
 
 
 --
@@ -9908,8 +9901,8 @@ GRANT ALL ON TABLE controle_ff_localisation2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_morphologie1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_morphologie1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_morphologie1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_morphologie1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_morphologie1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_morphologie1 TO databasename;
+GRANT ALL ON TABLE controle_ff_morphologie1 TO superdatabasename;
 
 
 --
@@ -9919,8 +9912,8 @@ GRANT ALL ON TABLE controle_ff_morphologie1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_morphologie2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_morphologie2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_morphologie2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_morphologie2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_morphologie2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_morphologie2 TO databasename;
+GRANT ALL ON TABLE controle_ff_morphologie2 TO superdatabasename;
 
 
 --
@@ -9930,8 +9923,8 @@ GRANT ALL ON TABLE controle_ff_morphologie2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_non1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_non1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_non1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_non1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_non1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_non1 TO databasename;
+GRANT ALL ON TABLE controle_ff_non1 TO superdatabasename;
 
 
 --
@@ -9941,8 +9934,8 @@ GRANT ALL ON TABLE controle_ff_non1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_non2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_non2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_non2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_non2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_non2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_non2 TO databasename;
+GRANT ALL ON TABLE controle_ff_non2 TO superdatabasename;
 
 
 --
@@ -9952,8 +9945,8 @@ GRANT ALL ON TABLE controle_ff_non2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_profil1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_profil1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_profil1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_profil1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_profil1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_profil1 TO databasename;
+GRANT ALL ON TABLE controle_ff_profil1 TO superdatabasename;
 
 
 --
@@ -9963,8 +9956,8 @@ GRANT ALL ON TABLE controle_ff_profil1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_profil2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_profil2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_profil2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_profil2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_profil2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_profil2 TO databasename;
+GRANT ALL ON TABLE controle_ff_profil2 TO superdatabasename;
 
 
 --
@@ -9974,8 +9967,8 @@ GRANT ALL ON TABLE controle_ff_profil2 TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_mode FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_mode FROM postgres;
 GRANT ALL ON TABLE controle_fi_mode TO postgres;
-GRANT SELECT ON TABLE controle_fi_mode TO lazaret;
-GRANT ALL ON TABLE controle_fi_mode TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_mode TO databasename;
+GRANT ALL ON TABLE controle_fi_mode TO superdatabasename;
 
 
 --
@@ -9985,8 +9978,8 @@ GRANT ALL ON TABLE controle_fi_mode TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_ordre FROM postgres;
 GRANT ALL ON TABLE controle_fi_ordre TO postgres;
-GRANT SELECT ON TABLE controle_fi_ordre TO lazaret;
-GRANT ALL ON TABLE controle_fi_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_ordre TO databasename;
+GRANT ALL ON TABLE controle_fi_ordre TO superdatabasename;
 
 
 --
@@ -9996,8 +9989,8 @@ GRANT ALL ON TABLE controle_fi_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_percussion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_percussion FROM postgres;
 GRANT ALL ON TABLE controle_fi_percussion TO postgres;
-GRANT SELECT ON TABLE controle_fi_percussion TO lazaret;
-GRANT ALL ON TABLE controle_fi_percussion TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_percussion TO databasename;
+GRANT ALL ON TABLE controle_fi_percussion TO superdatabasename;
 
 
 --
@@ -10007,8 +10000,8 @@ GRANT ALL ON TABLE controle_fi_percussion TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_type FROM postgres;
 GRANT ALL ON TABLE controle_fi_type TO postgres;
-GRANT SELECT ON TABLE controle_fi_type TO lazaret;
-GRANT ALL ON TABLE controle_fi_type TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_type TO databasename;
+GRANT ALL ON TABLE controle_fi_type TO superdatabasename;
 
 
 --
@@ -10018,8 +10011,8 @@ GRANT ALL ON TABLE controle_fi_type TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_arete FROM postgres;
 GRANT ALL ON TABLE controle_ga_arete TO postgres;
-GRANT SELECT ON TABLE controle_ga_arete TO lazaret;
-GRANT ALL ON TABLE controle_ga_arete TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_arete TO databasename;
+GRANT ALL ON TABLE controle_ga_arete TO superdatabasename;
 
 
 --
@@ -10029,8 +10022,8 @@ GRANT ALL ON TABLE controle_ga_arete TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_chf FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_chf FROM postgres;
 GRANT ALL ON TABLE controle_ga_chf TO postgres;
-GRANT SELECT ON TABLE controle_ga_chf TO lazaret;
-GRANT ALL ON TABLE controle_ga_chf TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_chf TO databasename;
+GRANT ALL ON TABLE controle_ga_chf TO superdatabasename;
 
 
 --
@@ -10040,8 +10033,8 @@ GRANT ALL ON TABLE controle_ga_chf TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_facture FROM postgres;
 GRANT ALL ON TABLE controle_ga_facture TO postgres;
-GRANT SELECT ON TABLE controle_ga_facture TO lazaret;
-GRANT ALL ON TABLE controle_ga_facture TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_facture TO databasename;
+GRANT ALL ON TABLE controle_ga_facture TO superdatabasename;
 
 
 --
@@ -10051,8 +10044,8 @@ GRANT ALL ON TABLE controle_ga_facture TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_forme FROM postgres;
 GRANT ALL ON TABLE controle_ga_forme TO postgres;
-GRANT SELECT ON TABLE controle_ga_forme TO lazaret;
-GRANT ALL ON TABLE controle_ga_forme TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_forme TO databasename;
+GRANT ALL ON TABLE controle_ga_forme TO superdatabasename;
 
 
 --
@@ -10062,8 +10055,8 @@ GRANT ALL ON TABLE controle_ga_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_ga_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_ga_obliquite TO lazaret;
-GRANT ALL ON TABLE controle_ga_obliquite TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_obliquite TO databasename;
+GRANT ALL ON TABLE controle_ga_obliquite TO superdatabasename;
 
 
 --
@@ -10073,8 +10066,8 @@ GRANT ALL ON TABLE controle_ga_obliquite TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_orientation FROM postgres;
 GRANT ALL ON TABLE controle_ga_orientation TO postgres;
-GRANT SELECT ON TABLE controle_ga_orientation TO lazaret;
-GRANT ALL ON TABLE controle_ga_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_orientation TO databasename;
+GRANT ALL ON TABLE controle_ga_orientation TO superdatabasename;
 
 
 --
@@ -10084,8 +10077,8 @@ GRANT ALL ON TABLE controle_ga_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_qualite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_qualite FROM postgres;
 GRANT ALL ON TABLE controle_ga_qualite TO postgres;
-GRANT SELECT ON TABLE controle_ga_qualite TO lazaret;
-GRANT ALL ON TABLE controle_ga_qualite TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_qualite TO databasename;
+GRANT ALL ON TABLE controle_ga_qualite TO superdatabasename;
 
 
 --
@@ -10095,8 +10088,8 @@ GRANT ALL ON TABLE controle_ga_qualite TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_retouche FROM postgres;
 GRANT ALL ON TABLE controle_ga_retouche TO postgres;
-GRANT SELECT ON TABLE controle_ga_retouche TO lazaret;
-GRANT ALL ON TABLE controle_ga_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_retouche TO databasename;
+GRANT ALL ON TABLE controle_ga_retouche TO superdatabasename;
 
 
 --
@@ -10106,8 +10099,8 @@ GRANT ALL ON TABLE controle_ga_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_type FROM postgres;
 GRANT ALL ON TABLE controle_ga_type TO postgres;
-GRANT SELECT ON TABLE controle_ga_type TO lazaret;
-GRANT ALL ON TABLE controle_ga_type TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_type TO databasename;
+GRANT ALL ON TABLE controle_ga_type TO superdatabasename;
 
 
 --
@@ -10117,8 +10110,8 @@ GRANT ALL ON TABLE controle_ga_type TO superlazaret;
 REVOKE ALL ON TABLE controle_h_amenagement_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_amenagement_bord FROM postgres;
 GRANT ALL ON TABLE controle_h_amenagement_bord TO postgres;
-GRANT SELECT ON TABLE controle_h_amenagement_bord TO lazaret;
-GRANT ALL ON TABLE controle_h_amenagement_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_h_amenagement_bord TO databasename;
+GRANT ALL ON TABLE controle_h_amenagement_bord TO superdatabasename;
 
 
 --
@@ -10128,8 +10121,8 @@ GRANT ALL ON TABLE controle_h_amenagement_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_h_amenagement_distal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_amenagement_distal FROM postgres;
 GRANT ALL ON TABLE controle_h_amenagement_distal TO postgres;
-GRANT SELECT ON TABLE controle_h_amenagement_distal TO lazaret;
-GRANT ALL ON TABLE controle_h_amenagement_distal TO superlazaret;
+GRANT SELECT ON TABLE controle_h_amenagement_distal TO databasename;
+GRANT ALL ON TABLE controle_h_amenagement_distal TO superdatabasename;
 
 
 --
@@ -10139,8 +10132,8 @@ GRANT ALL ON TABLE controle_h_amenagement_distal TO superlazaret;
 REVOKE ALL ON TABLE controle_h_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_arete FROM postgres;
 GRANT ALL ON TABLE controle_h_arete TO postgres;
-GRANT SELECT ON TABLE controle_h_arete TO lazaret;
-GRANT ALL ON TABLE controle_h_arete TO superlazaret;
+GRANT SELECT ON TABLE controle_h_arete TO databasename;
+GRANT ALL ON TABLE controle_h_arete TO superdatabasename;
 
 
 --
@@ -10150,8 +10143,8 @@ GRANT ALL ON TABLE controle_h_arete TO superlazaret;
 REVOKE ALL ON TABLE controle_h_base FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_base FROM postgres;
 GRANT ALL ON TABLE controle_h_base TO postgres;
-GRANT SELECT ON TABLE controle_h_base TO lazaret;
-GRANT ALL ON TABLE controle_h_base TO superlazaret;
+GRANT SELECT ON TABLE controle_h_base TO databasename;
+GRANT ALL ON TABLE controle_h_base TO superdatabasename;
 
 
 --
@@ -10161,8 +10154,8 @@ GRANT ALL ON TABLE controle_h_base TO superlazaret;
 REVOKE ALL ON TABLE controle_h_bilaterale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_bilaterale FROM postgres;
 GRANT ALL ON TABLE controle_h_bilaterale TO postgres;
-GRANT SELECT ON TABLE controle_h_bilaterale TO lazaret;
-GRANT ALL ON TABLE controle_h_bilaterale TO superlazaret;
+GRANT SELECT ON TABLE controle_h_bilaterale TO databasename;
+GRANT ALL ON TABLE controle_h_bilaterale TO superdatabasename;
 
 
 --
@@ -10172,8 +10165,8 @@ GRANT ALL ON TABLE controle_h_bilaterale TO superlazaret;
 REVOKE ALL ON TABLE controle_h_biseau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_biseau FROM postgres;
 GRANT ALL ON TABLE controle_h_biseau TO postgres;
-GRANT SELECT ON TABLE controle_h_biseau TO lazaret;
-GRANT ALL ON TABLE controle_h_biseau TO superlazaret;
+GRANT SELECT ON TABLE controle_h_biseau TO databasename;
+GRANT ALL ON TABLE controle_h_biseau TO superdatabasename;
 
 
 --
@@ -10183,8 +10176,8 @@ GRANT ALL ON TABLE controle_h_biseau TO superlazaret;
 REVOKE ALL ON TABLE controle_h_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_bord FROM postgres;
 GRANT ALL ON TABLE controle_h_bord TO postgres;
-GRANT SELECT ON TABLE controle_h_bord TO lazaret;
-GRANT ALL ON TABLE controle_h_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_h_bord TO databasename;
+GRANT ALL ON TABLE controle_h_bord TO superdatabasename;
 
 
 --
@@ -10194,8 +10187,8 @@ GRANT ALL ON TABLE controle_h_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_h_distale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_distale FROM postgres;
 GRANT ALL ON TABLE controle_h_distale TO postgres;
-GRANT SELECT ON TABLE controle_h_distale TO lazaret;
-GRANT ALL ON TABLE controle_h_distale TO superlazaret;
+GRANT SELECT ON TABLE controle_h_distale TO databasename;
+GRANT ALL ON TABLE controle_h_distale TO superdatabasename;
 
 
 --
@@ -10205,8 +10198,8 @@ GRANT ALL ON TABLE controle_h_distale TO superlazaret;
 REVOKE ALL ON TABLE controle_h_extension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_extension FROM postgres;
 GRANT ALL ON TABLE controle_h_extension TO postgres;
-GRANT SELECT ON TABLE controle_h_extension TO lazaret;
-GRANT ALL ON TABLE controle_h_extension TO superlazaret;
+GRANT SELECT ON TABLE controle_h_extension TO databasename;
+GRANT ALL ON TABLE controle_h_extension TO superdatabasename;
 
 
 --
@@ -10216,8 +10209,8 @@ GRANT ALL ON TABLE controle_h_extension TO superlazaret;
 REVOKE ALL ON TABLE controle_h_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_facture FROM postgres;
 GRANT ALL ON TABLE controle_h_facture TO postgres;
-GRANT SELECT ON TABLE controle_h_facture TO lazaret;
-GRANT ALL ON TABLE controle_h_facture TO superlazaret;
+GRANT SELECT ON TABLE controle_h_facture TO databasename;
+GRANT ALL ON TABLE controle_h_facture TO superdatabasename;
 
 
 --
@@ -10227,8 +10220,8 @@ GRANT ALL ON TABLE controle_h_facture TO superlazaret;
 REVOKE ALL ON TABLE controle_h_meplat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_meplat FROM postgres;
 GRANT ALL ON TABLE controle_h_meplat TO postgres;
-GRANT SELECT ON TABLE controle_h_meplat TO lazaret;
-GRANT ALL ON TABLE controle_h_meplat TO superlazaret;
+GRANT SELECT ON TABLE controle_h_meplat TO databasename;
+GRANT ALL ON TABLE controle_h_meplat TO superdatabasename;
 
 
 --
@@ -10238,8 +10231,8 @@ GRANT ALL ON TABLE controle_h_meplat TO superlazaret;
 REVOKE ALL ON TABLE controle_h_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_retouche FROM postgres;
 GRANT ALL ON TABLE controle_h_retouche TO postgres;
-GRANT SELECT ON TABLE controle_h_retouche TO lazaret;
-GRANT ALL ON TABLE controle_h_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_h_retouche TO databasename;
+GRANT ALL ON TABLE controle_h_retouche TO superdatabasename;
 
 
 --
@@ -10249,8 +10242,8 @@ GRANT ALL ON TABLE controle_h_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_h_surface FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_surface FROM postgres;
 GRANT ALL ON TABLE controle_h_surface TO postgres;
-GRANT SELECT ON TABLE controle_h_surface TO lazaret;
-GRANT ALL ON TABLE controle_h_surface TO superlazaret;
+GRANT SELECT ON TABLE controle_h_surface TO databasename;
+GRANT ALL ON TABLE controle_h_surface TO superdatabasename;
 
 
 --
@@ -10260,8 +10253,8 @@ GRANT ALL ON TABLE controle_h_surface TO superlazaret;
 REVOKE ALL ON TABLE controle_h_symetrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_symetrie FROM postgres;
 GRANT ALL ON TABLE controle_h_symetrie TO postgres;
-GRANT SELECT ON TABLE controle_h_symetrie TO lazaret;
-GRANT ALL ON TABLE controle_h_symetrie TO superlazaret;
+GRANT SELECT ON TABLE controle_h_symetrie TO databasename;
+GRANT ALL ON TABLE controle_h_symetrie TO superdatabasename;
 
 
 --
@@ -10271,8 +10264,8 @@ GRANT ALL ON TABLE controle_h_symetrie TO superlazaret;
 REVOKE ALL ON TABLE controle_i_action FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_action FROM postgres;
 GRANT ALL ON TABLE controle_i_action TO postgres;
-GRANT SELECT ON TABLE controle_i_action TO lazaret;
-GRANT ALL ON TABLE controle_i_action TO superlazaret;
+GRANT SELECT ON TABLE controle_i_action TO databasename;
+GRANT ALL ON TABLE controle_i_action TO superdatabasename;
 
 
 --
@@ -10282,8 +10275,8 @@ GRANT ALL ON TABLE controle_i_action TO superlazaret;
 REVOKE ALL ON TABLE controle_i_alteration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_alteration FROM postgres;
 GRANT ALL ON TABLE controle_i_alteration TO postgres;
-GRANT SELECT ON TABLE controle_i_alteration TO lazaret;
-GRANT ALL ON TABLE controle_i_alteration TO superlazaret;
+GRANT SELECT ON TABLE controle_i_alteration TO databasename;
+GRANT ALL ON TABLE controle_i_alteration TO superdatabasename;
 
 
 --
@@ -10293,8 +10286,8 @@ GRANT ALL ON TABLE controle_i_alteration TO superlazaret;
 REVOKE ALL ON TABLE controle_i_desilicification FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_desilicification FROM postgres;
 GRANT ALL ON TABLE controle_i_desilicification TO postgres;
-GRANT SELECT ON TABLE controle_i_desilicification TO lazaret;
-GRANT ALL ON TABLE controle_i_desilicification TO superlazaret;
+GRANT SELECT ON TABLE controle_i_desilicification TO databasename;
+GRANT ALL ON TABLE controle_i_desilicification TO superdatabasename;
 
 
 --
@@ -10304,8 +10297,8 @@ GRANT ALL ON TABLE controle_i_desilicification TO superlazaret;
 REVOKE ALL ON TABLE controle_i_dpatine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_dpatine FROM postgres;
 GRANT ALL ON TABLE controle_i_dpatine TO postgres;
-GRANT SELECT ON TABLE controle_i_dpatine TO lazaret;
-GRANT ALL ON TABLE controle_i_dpatine TO superlazaret;
+GRANT SELECT ON TABLE controle_i_dpatine TO databasename;
+GRANT ALL ON TABLE controle_i_dpatine TO superdatabasename;
 
 
 --
@@ -10315,8 +10308,8 @@ GRANT ALL ON TABLE controle_i_dpatine TO superlazaret;
 REVOKE ALL ON TABLE controle_i_encroutement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_encroutement FROM postgres;
 GRANT ALL ON TABLE controle_i_encroutement TO postgres;
-GRANT SELECT ON TABLE controle_i_encroutement TO lazaret;
-GRANT ALL ON TABLE controle_i_encroutement TO superlazaret;
+GRANT SELECT ON TABLE controle_i_encroutement TO databasename;
+GRANT ALL ON TABLE controle_i_encroutement TO superdatabasename;
 
 
 --
@@ -10326,8 +10319,8 @@ GRANT ALL ON TABLE controle_i_encroutement TO superlazaret;
 REVOKE ALL ON TABLE controle_i_eolisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_eolisation FROM postgres;
 GRANT ALL ON TABLE controle_i_eolisation TO postgres;
-GRANT SELECT ON TABLE controle_i_eolisation TO lazaret;
-GRANT ALL ON TABLE controle_i_eolisation TO superlazaret;
+GRANT SELECT ON TABLE controle_i_eolisation TO databasename;
+GRANT ALL ON TABLE controle_i_eolisation TO superdatabasename;
 
 
 --
@@ -10337,8 +10330,8 @@ GRANT ALL ON TABLE controle_i_eolisation TO superlazaret;
 REVOKE ALL ON TABLE controle_i_forme_galet FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_forme_galet FROM postgres;
 GRANT ALL ON TABLE controle_i_forme_galet TO postgres;
-GRANT SELECT ON TABLE controle_i_forme_galet TO lazaret;
-GRANT ALL ON TABLE controle_i_forme_galet TO superlazaret;
+GRANT SELECT ON TABLE controle_i_forme_galet TO databasename;
+GRANT ALL ON TABLE controle_i_forme_galet TO superdatabasename;
 
 
 --
@@ -10348,8 +10341,8 @@ GRANT ALL ON TABLE controle_i_forme_galet TO superlazaret;
 REVOKE ALL ON TABLE controle_i_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_i_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_i_lustrage TO lazaret;
-GRANT ALL ON TABLE controle_i_lustrage TO superlazaret;
+GRANT SELECT ON TABLE controle_i_lustrage TO databasename;
+GRANT ALL ON TABLE controle_i_lustrage TO superdatabasename;
 
 
 --
@@ -10359,8 +10352,8 @@ GRANT ALL ON TABLE controle_i_lustrage TO superlazaret;
 REVOKE ALL ON TABLE controle_i_matiere FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_matiere FROM postgres;
 GRANT ALL ON TABLE controle_i_matiere TO postgres;
-GRANT SELECT ON TABLE controle_i_matiere TO lazaret;
-GRANT ALL ON TABLE controle_i_matiere TO superlazaret;
+GRANT SELECT ON TABLE controle_i_matiere TO databasename;
+GRANT ALL ON TABLE controle_i_matiere TO superdatabasename;
 
 
 --
@@ -10370,8 +10363,8 @@ GRANT ALL ON TABLE controle_i_matiere TO superlazaret;
 REVOKE ALL ON TABLE controle_i_objet FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_objet FROM postgres;
 GRANT ALL ON TABLE controle_i_objet TO postgres;
-GRANT SELECT ON TABLE controle_i_objet TO lazaret;
-GRANT ALL ON TABLE controle_i_objet TO superlazaret;
+GRANT SELECT ON TABLE controle_i_objet TO databasename;
+GRANT ALL ON TABLE controle_i_objet TO superdatabasename;
 
 
 --
@@ -10381,8 +10374,8 @@ GRANT ALL ON TABLE controle_i_objet TO superlazaret;
 REVOKE ALL ON TABLE controle_i_patine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_patine FROM postgres;
 GRANT ALL ON TABLE controle_i_patine TO postgres;
-GRANT SELECT ON TABLE controle_i_patine TO lazaret;
-GRANT ALL ON TABLE controle_i_patine TO superlazaret;
+GRANT SELECT ON TABLE controle_i_patine TO databasename;
+GRANT ALL ON TABLE controle_i_patine TO superdatabasename;
 
 
 --
@@ -10392,8 +10385,19 @@ GRANT ALL ON TABLE controle_i_patine TO superlazaret;
 REVOKE ALL ON TABLE controle_i_pmycellium FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_pmycellium FROM postgres;
 GRANT ALL ON TABLE controle_i_pmycellium TO postgres;
-GRANT SELECT ON TABLE controle_i_pmycellium TO lazaret;
-GRANT ALL ON TABLE controle_i_pmycellium TO superlazaret;
+GRANT SELECT ON TABLE controle_i_pmycellium TO databasename;
+GRANT ALL ON TABLE controle_i_pmycellium TO superdatabasename;
+
+
+--
+-- Name: controle_i_responsable; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_i_responsable FROM PUBLIC;
+REVOKE ALL ON TABLE controle_i_responsable FROM postgres;
+GRANT ALL ON TABLE controle_i_responsable TO postgres;
+GRANT SELECT ON TABLE controle_i_responsable TO databasename;
+GRANT ALL ON TABLE controle_i_responsable TO superdatabasename;
 
 
 --
@@ -10403,8 +10407,8 @@ GRANT ALL ON TABLE controle_i_pmycellium TO superlazaret;
 REVOKE ALL ON TABLE controle_i_roulage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_roulage FROM postgres;
 GRANT ALL ON TABLE controle_i_roulage TO postgres;
-GRANT SELECT ON TABLE controle_i_roulage TO lazaret;
-GRANT ALL ON TABLE controle_i_roulage TO superlazaret;
+GRANT SELECT ON TABLE controle_i_roulage TO databasename;
+GRANT ALL ON TABLE controle_i_roulage TO superdatabasename;
 
 
 --
@@ -10414,8 +10418,8 @@ GRANT ALL ON TABLE controle_i_roulage TO superlazaret;
 REVOKE ALL ON TABLE controle_i_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_support FROM postgres;
 GRANT ALL ON TABLE controle_i_support TO postgres;
-GRANT SELECT ON TABLE controle_i_support TO lazaret;
-GRANT ALL ON TABLE controle_i_support TO superlazaret;
+GRANT SELECT ON TABLE controle_i_support TO databasename;
+GRANT ALL ON TABLE controle_i_support TO superdatabasename;
 
 
 --
@@ -10425,8 +10429,8 @@ GRANT ALL ON TABLE controle_i_support TO superlazaret;
 REVOKE ALL ON TABLE controle_i_support_originel FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_support_originel FROM postgres;
 GRANT ALL ON TABLE controle_i_support_originel TO postgres;
-GRANT SELECT ON TABLE controle_i_support_originel TO lazaret;
-GRANT ALL ON TABLE controle_i_support_originel TO superlazaret;
+GRANT SELECT ON TABLE controle_i_support_originel TO databasename;
+GRANT ALL ON TABLE controle_i_support_originel TO superdatabasename;
 
 
 --
@@ -10436,8 +10440,8 @@ GRANT ALL ON TABLE controle_i_support_originel TO superlazaret;
 REVOKE ALL ON TABLE controle_localite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_localite FROM postgres;
 GRANT ALL ON TABLE controle_localite TO postgres;
-GRANT SELECT ON TABLE controle_localite TO lazaret;
-GRANT ALL ON TABLE controle_localite TO superlazaret;
+GRANT SELECT ON TABLE controle_localite TO databasename;
+GRANT ALL ON TABLE controle_localite TO superdatabasename;
 
 
 --
@@ -10447,8 +10451,8 @@ GRANT ALL ON TABLE controle_localite TO superlazaret;
 REVOKE ALL ON TABLE controle_locus FROM PUBLIC;
 REVOKE ALL ON TABLE controle_locus FROM postgres;
 GRANT ALL ON TABLE controle_locus TO postgres;
-GRANT SELECT ON TABLE controle_locus TO lazaret;
-GRANT ALL ON TABLE controle_locus TO superlazaret;
+GRANT SELECT ON TABLE controle_locus TO databasename;
+GRANT ALL ON TABLE controle_locus TO superdatabasename;
 
 
 --
@@ -10458,8 +10462,8 @@ GRANT ALL ON TABLE controle_locus TO superlazaret;
 REVOKE ALL ON TABLE controle_mf_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_mf_serie FROM postgres;
 GRANT ALL ON TABLE controle_mf_serie TO postgres;
-GRANT SELECT ON TABLE controle_mf_serie TO lazaret;
-GRANT ALL ON TABLE controle_mf_serie TO superlazaret;
+GRANT SELECT ON TABLE controle_mf_serie TO databasename;
+GRANT ALL ON TABLE controle_mf_serie TO superdatabasename;
 
 
 --
@@ -10469,8 +10473,8 @@ GRANT ALL ON TABLE controle_mf_serie TO superlazaret;
 REVOKE ALL ON TABLE controle_mf_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_mf_type FROM postgres;
 GRANT ALL ON TABLE controle_mf_type TO postgres;
-GRANT SELECT ON TABLE controle_mf_type TO lazaret;
-GRANT ALL ON TABLE controle_mf_type TO superlazaret;
+GRANT SELECT ON TABLE controle_mf_type TO databasename;
+GRANT ALL ON TABLE controle_mf_type TO superdatabasename;
 
 
 --
@@ -10480,8 +10484,8 @@ GRANT ALL ON TABLE controle_mf_type TO superlazaret;
 REVOKE ALL ON TABLE controle_n_cortotal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_cortotal FROM postgres;
 GRANT ALL ON TABLE controle_n_cortotal TO postgres;
-GRANT SELECT ON TABLE controle_n_cortotal TO lazaret;
-GRANT ALL ON TABLE controle_n_cortotal TO superlazaret;
+GRANT SELECT ON TABLE controle_n_cortotal TO databasename;
+GRANT ALL ON TABLE controle_n_cortotal TO superdatabasename;
 
 
 --
@@ -10491,9 +10495,9 @@ GRANT ALL ON TABLE controle_n_cortotal TO superlazaret;
 REVOKE ALL ON TABLE controle_n_epuisement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_epuisement FROM postgres;
 GRANT ALL ON TABLE controle_n_epuisement TO postgres;
-GRANT ALL ON TABLE controle_n_epuisement TO lazaret;
-GRANT ALL ON TABLE controle_n_epuisement TO superlazaret;
-GRANT SELECT ON TABLE controle_n_epuisement TO visiteurlazaret;
+GRANT ALL ON TABLE controle_n_epuisement TO databasename;
+GRANT ALL ON TABLE controle_n_epuisement TO superdatabasename;
+GRANT SELECT ON TABLE controle_n_epuisement TO visiteurdatabasename;
 
 
 --
@@ -10503,8 +10507,8 @@ GRANT SELECT ON TABLE controle_n_epuisement TO visiteurlazaret;
 REVOKE ALL ON TABLE controle_n_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_forme FROM postgres;
 GRANT ALL ON TABLE controle_n_forme TO postgres;
-GRANT SELECT ON TABLE controle_n_forme TO lazaret;
-GRANT ALL ON TABLE controle_n_forme TO superlazaret;
+GRANT SELECT ON TABLE controle_n_forme TO databasename;
+GRANT ALL ON TABLE controle_n_forme TO superdatabasename;
 
 
 --
@@ -10514,8 +10518,8 @@ GRANT ALL ON TABLE controle_n_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_n_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_orientation FROM postgres;
 GRANT ALL ON TABLE controle_n_orientation TO postgres;
-GRANT SELECT ON TABLE controle_n_orientation TO lazaret;
-GRANT ALL ON TABLE controle_n_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_n_orientation TO databasename;
+GRANT ALL ON TABLE controle_n_orientation TO superdatabasename;
 
 
 --
@@ -10525,8 +10529,8 @@ GRANT ALL ON TABLE controle_n_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_n_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_type FROM postgres;
 GRANT ALL ON TABLE controle_n_type TO postgres;
-GRANT SELECT ON TABLE controle_n_type TO lazaret;
-GRANT ALL ON TABLE controle_n_type TO superlazaret;
+GRANT SELECT ON TABLE controle_n_type TO databasename;
+GRANT ALL ON TABLE controle_n_type TO superdatabasename;
 
 
 --
@@ -10536,8 +10540,8 @@ GRANT ALL ON TABLE controle_n_type TO superlazaret;
 REVOKE ALL ON TABLE controle_nature FROM PUBLIC;
 REVOKE ALL ON TABLE controle_nature FROM postgres;
 GRANT ALL ON TABLE controle_nature TO postgres;
-GRANT SELECT ON TABLE controle_nature TO lazaret;
-GRANT ALL ON TABLE controle_nature TO superlazaret;
+GRANT SELECT ON TABLE controle_nature TO databasename;
+GRANT ALL ON TABLE controle_nature TO superdatabasename;
 
 
 --
@@ -10547,8 +10551,8 @@ GRANT ALL ON TABLE controle_nature TO superlazaret;
 REVOKE ALL ON TABLE controle_niveau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_niveau FROM postgres;
 GRANT ALL ON TABLE controle_niveau TO postgres;
-GRANT SELECT ON TABLE controle_niveau TO lazaret;
-GRANT ALL ON TABLE controle_niveau TO superlazaret;
+GRANT SELECT ON TABLE controle_niveau TO databasename;
+GRANT ALL ON TABLE controle_niveau TO superdatabasename;
 
 
 --
@@ -10558,8 +10562,8 @@ GRANT ALL ON TABLE controle_niveau TO superlazaret;
 REVOKE ALL ON TABLE controle_o_chronologie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_chronologie FROM postgres;
 GRANT ALL ON TABLE controle_o_chronologie TO postgres;
-GRANT SELECT ON TABLE controle_o_chronologie TO lazaret;
-GRANT ALL ON TABLE controle_o_chronologie TO superlazaret;
+GRANT SELECT ON TABLE controle_o_chronologie TO databasename;
+GRANT ALL ON TABLE controle_o_chronologie TO superdatabasename;
 
 
 --
@@ -10569,8 +10573,8 @@ GRANT ALL ON TABLE controle_o_chronologie TO superlazaret;
 REVOKE ALL ON TABLE controle_o_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_code FROM postgres;
 GRANT ALL ON TABLE controle_o_code TO postgres;
-GRANT SELECT ON TABLE controle_o_code TO lazaret;
-GRANT ALL ON TABLE controle_o_code TO superlazaret;
+GRANT SELECT ON TABLE controle_o_code TO databasename;
+GRANT ALL ON TABLE controle_o_code TO superdatabasename;
 
 
 --
@@ -10580,8 +10584,8 @@ GRANT ALL ON TABLE controle_o_code TO superlazaret;
 REVOKE ALL ON TABLE controle_o_destination FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_destination FROM postgres;
 GRANT ALL ON TABLE controle_o_destination TO postgres;
-GRANT SELECT ON TABLE controle_o_destination TO lazaret;
-GRANT ALL ON TABLE controle_o_destination TO superlazaret;
+GRANT SELECT ON TABLE controle_o_destination TO databasename;
+GRANT ALL ON TABLE controle_o_destination TO superdatabasename;
 
 
 --
@@ -10591,8 +10595,8 @@ GRANT ALL ON TABLE controle_o_destination TO superlazaret;
 REVOKE ALL ON TABLE controle_o_etat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_etat FROM postgres;
 GRANT ALL ON TABLE controle_o_etat TO postgres;
-GRANT SELECT ON TABLE controle_o_etat TO lazaret;
-GRANT ALL ON TABLE controle_o_etat TO superlazaret;
+GRANT SELECT ON TABLE controle_o_etat TO databasename;
+GRANT ALL ON TABLE controle_o_etat TO superdatabasename;
 
 
 --
@@ -10602,8 +10606,8 @@ GRANT ALL ON TABLE controle_o_etat TO superlazaret;
 REVOKE ALL ON TABLE controle_o_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_forme FROM postgres;
 GRANT ALL ON TABLE controle_o_forme TO postgres;
-GRANT SELECT ON TABLE controle_o_forme TO lazaret;
-GRANT ALL ON TABLE controle_o_forme TO superlazaret;
+GRANT SELECT ON TABLE controle_o_forme TO databasename;
+GRANT ALL ON TABLE controle_o_forme TO superdatabasename;
 
 
 --
@@ -10613,8 +10617,8 @@ GRANT ALL ON TABLE controle_o_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_o_localisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_localisation FROM postgres;
 GRANT ALL ON TABLE controle_o_localisation TO postgres;
-GRANT SELECT ON TABLE controle_o_localisation TO lazaret;
-GRANT ALL ON TABLE controle_o_localisation TO superlazaret;
+GRANT SELECT ON TABLE controle_o_localisation TO databasename;
+GRANT ALL ON TABLE controle_o_localisation TO superdatabasename;
 
 
 --
@@ -10624,8 +10628,8 @@ GRANT ALL ON TABLE controle_o_localisation TO superlazaret;
 REVOKE ALL ON TABLE controle_o_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_ordre FROM postgres;
 GRANT ALL ON TABLE controle_o_ordre TO postgres;
-GRANT SELECT ON TABLE controle_o_ordre TO lazaret;
-GRANT ALL ON TABLE controle_o_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_o_ordre TO databasename;
+GRANT ALL ON TABLE controle_o_ordre TO superdatabasename;
 
 
 --
@@ -10635,8 +10639,8 @@ GRANT ALL ON TABLE controle_o_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_o_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_orientation FROM postgres;
 GRANT ALL ON TABLE controle_o_orientation TO postgres;
-GRANT SELECT ON TABLE controle_o_orientation TO lazaret;
-GRANT ALL ON TABLE controle_o_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_o_orientation TO databasename;
+GRANT ALL ON TABLE controle_o_orientation TO superdatabasename;
 
 
 --
@@ -10646,8 +10650,8 @@ GRANT ALL ON TABLE controle_o_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_o_origine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_origine FROM postgres;
 GRANT ALL ON TABLE controle_o_origine TO postgres;
-GRANT SELECT ON TABLE controle_o_origine TO lazaret;
-GRANT ALL ON TABLE controle_o_origine TO superlazaret;
+GRANT SELECT ON TABLE controle_o_origine TO databasename;
+GRANT ALL ON TABLE controle_o_origine TO superdatabasename;
 
 
 --
@@ -10657,8 +10661,8 @@ GRANT ALL ON TABLE controle_o_origine TO superlazaret;
 REVOKE ALL ON TABLE controle_o_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_retouche FROM postgres;
 GRANT ALL ON TABLE controle_o_retouche TO postgres;
-GRANT SELECT ON TABLE controle_o_retouche TO lazaret;
-GRANT ALL ON TABLE controle_o_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_o_retouche TO databasename;
+GRANT ALL ON TABLE controle_o_retouche TO superdatabasename;
 
 
 --
@@ -10668,8 +10672,8 @@ GRANT ALL ON TABLE controle_o_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_o_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_sens FROM postgres;
 GRANT ALL ON TABLE controle_o_sens TO postgres;
-GRANT SELECT ON TABLE controle_o_sens TO lazaret;
-GRANT ALL ON TABLE controle_o_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_o_sens TO databasename;
+GRANT ALL ON TABLE controle_o_sens TO superdatabasename;
 
 
 --
@@ -10679,8 +10683,8 @@ GRANT ALL ON TABLE controle_o_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_o_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_serie FROM postgres;
 GRANT ALL ON TABLE controle_o_serie TO postgres;
-GRANT SELECT ON TABLE controle_o_serie TO lazaret;
-GRANT ALL ON TABLE controle_o_serie TO superlazaret;
+GRANT SELECT ON TABLE controle_o_serie TO databasename;
+GRANT ALL ON TABLE controle_o_serie TO superdatabasename;
 
 
 --
@@ -10690,8 +10694,8 @@ GRANT ALL ON TABLE controle_o_serie TO superlazaret;
 REVOKE ALL ON TABLE controle_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_orientation FROM postgres;
 GRANT ALL ON TABLE controle_orientation TO postgres;
-GRANT SELECT ON TABLE controle_orientation TO lazaret;
-GRANT ALL ON TABLE controle_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_orientation TO databasename;
+GRANT ALL ON TABLE controle_orientation TO superdatabasename;
 
 
 --
@@ -10701,8 +10705,8 @@ GRANT ALL ON TABLE controle_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_pendage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_pendage FROM postgres;
 GRANT ALL ON TABLE controle_pendage TO postgres;
-GRANT SELECT ON TABLE controle_pendage TO lazaret;
-GRANT ALL ON TABLE controle_pendage TO superlazaret;
+GRANT SELECT ON TABLE controle_pendage TO databasename;
+GRANT ALL ON TABLE controle_pendage TO superdatabasename;
 
 
 --
@@ -10712,8 +10716,8 @@ GRANT ALL ON TABLE controle_pendage TO superlazaret;
 REVOKE ALL ON TABLE controle_r_association FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_association FROM postgres;
 GRANT ALL ON TABLE controle_r_association TO postgres;
-GRANT SELECT ON TABLE controle_r_association TO lazaret;
-GRANT ALL ON TABLE controle_r_association TO superlazaret;
+GRANT SELECT ON TABLE controle_r_association TO databasename;
+GRANT ALL ON TABLE controle_r_association TO superdatabasename;
 
 
 --
@@ -10723,8 +10727,8 @@ GRANT ALL ON TABLE controle_r_association TO superlazaret;
 REVOKE ALL ON TABLE controle_r_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_bord FROM postgres;
 GRANT ALL ON TABLE controle_r_bord TO postgres;
-GRANT SELECT ON TABLE controle_r_bord TO lazaret;
-GRANT ALL ON TABLE controle_r_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_r_bord TO databasename;
+GRANT ALL ON TABLE controle_r_bord TO superdatabasename;
 
 
 --
@@ -10734,8 +10738,8 @@ GRANT ALL ON TABLE controle_r_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_r_cas FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_cas FROM postgres;
 GRANT ALL ON TABLE controle_r_cas TO postgres;
-GRANT SELECT ON TABLE controle_r_cas TO lazaret;
-GRANT ALL ON TABLE controle_r_cas TO superlazaret;
+GRANT SELECT ON TABLE controle_r_cas TO databasename;
+GRANT ALL ON TABLE controle_r_cas TO superdatabasename;
 
 
 --
@@ -10745,8 +10749,8 @@ GRANT ALL ON TABLE controle_r_cas TO superlazaret;
 REVOKE ALL ON TABLE controle_r_denticulation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_denticulation FROM postgres;
 GRANT ALL ON TABLE controle_r_denticulation TO postgres;
-GRANT SELECT ON TABLE controle_r_denticulation TO lazaret;
-GRANT ALL ON TABLE controle_r_denticulation TO superlazaret;
+GRANT SELECT ON TABLE controle_r_denticulation TO databasename;
+GRANT ALL ON TABLE controle_r_denticulation TO superdatabasename;
 
 
 --
@@ -10756,8 +10760,8 @@ GRANT ALL ON TABLE controle_r_denticulation TO superlazaret;
 REVOKE ALL ON TABLE controle_r_destination FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_destination FROM postgres;
 GRANT ALL ON TABLE controle_r_destination TO postgres;
-GRANT SELECT ON TABLE controle_r_destination TO lazaret;
-GRANT ALL ON TABLE controle_r_destination TO superlazaret;
+GRANT SELECT ON TABLE controle_r_destination TO databasename;
+GRANT ALL ON TABLE controle_r_destination TO superdatabasename;
 
 
 --
@@ -10767,8 +10771,8 @@ GRANT ALL ON TABLE controle_r_destination TO superlazaret;
 REVOKE ALL ON TABLE controle_r_dimension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_dimension FROM postgres;
 GRANT ALL ON TABLE controle_r_dimension TO postgres;
-GRANT SELECT ON TABLE controle_r_dimension TO lazaret;
-GRANT ALL ON TABLE controle_r_dimension TO superlazaret;
+GRANT SELECT ON TABLE controle_r_dimension TO databasename;
+GRANT ALL ON TABLE controle_r_dimension TO superdatabasename;
 
 
 --
@@ -10778,8 +10782,8 @@ GRANT ALL ON TABLE controle_r_dimension TO superlazaret;
 REVOKE ALL ON TABLE controle_r_ecrasement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_ecrasement FROM postgres;
 GRANT ALL ON TABLE controle_r_ecrasement TO postgres;
-GRANT SELECT ON TABLE controle_r_ecrasement TO lazaret;
-GRANT ALL ON TABLE controle_r_ecrasement TO superlazaret;
+GRANT SELECT ON TABLE controle_r_ecrasement TO databasename;
+GRANT ALL ON TABLE controle_r_ecrasement TO superdatabasename;
 
 
 --
@@ -10789,8 +10793,8 @@ GRANT ALL ON TABLE controle_r_ecrasement TO superlazaret;
 REVOKE ALL ON TABLE controle_r_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_extremite FROM postgres;
 GRANT ALL ON TABLE controle_r_extremite TO postgres;
-GRANT SELECT ON TABLE controle_r_extremite TO lazaret;
-GRANT ALL ON TABLE controle_r_extremite TO superlazaret;
+GRANT SELECT ON TABLE controle_r_extremite TO databasename;
+GRANT ALL ON TABLE controle_r_extremite TO superdatabasename;
 
 
 --
@@ -10800,8 +10804,8 @@ GRANT ALL ON TABLE controle_r_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_r_frequence FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_frequence FROM postgres;
 GRANT ALL ON TABLE controle_r_frequence TO postgres;
-GRANT SELECT ON TABLE controle_r_frequence TO lazaret;
-GRANT ALL ON TABLE controle_r_frequence TO superlazaret;
+GRANT SELECT ON TABLE controle_r_frequence TO databasename;
+GRANT ALL ON TABLE controle_r_frequence TO superdatabasename;
 
 
 --
@@ -10811,8 +10815,8 @@ GRANT ALL ON TABLE controle_r_frequence TO superlazaret;
 REVOKE ALL ON TABLE controle_r_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_r_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_r_lustrage TO lazaret;
-GRANT ALL ON TABLE controle_r_lustrage TO superlazaret;
+GRANT SELECT ON TABLE controle_r_lustrage TO databasename;
+GRANT ALL ON TABLE controle_r_lustrage TO superdatabasename;
 
 
 --
@@ -10822,8 +10826,8 @@ GRANT ALL ON TABLE controle_r_lustrage TO superlazaret;
 REVOKE ALL ON TABLE controle_r_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_r_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_r_obliquite TO lazaret;
-GRANT ALL ON TABLE controle_r_obliquite TO superlazaret;
+GRANT SELECT ON TABLE controle_r_obliquite TO databasename;
+GRANT ALL ON TABLE controle_r_obliquite TO superdatabasename;
 
 
 --
@@ -10833,8 +10837,8 @@ GRANT ALL ON TABLE controle_r_obliquite TO superlazaret;
 REVOKE ALL ON TABLE controle_r_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_ordre FROM postgres;
 GRANT ALL ON TABLE controle_r_ordre TO postgres;
-GRANT SELECT ON TABLE controle_r_ordre TO lazaret;
-GRANT ALL ON TABLE controle_r_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_r_ordre TO databasename;
+GRANT ALL ON TABLE controle_r_ordre TO superdatabasename;
 
 
 --
@@ -10844,8 +10848,8 @@ GRANT ALL ON TABLE controle_r_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_r_origine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_origine FROM postgres;
 GRANT ALL ON TABLE controle_r_origine TO postgres;
-GRANT SELECT ON TABLE controle_r_origine TO lazaret;
-GRANT ALL ON TABLE controle_r_origine TO superlazaret;
+GRANT SELECT ON TABLE controle_r_origine TO databasename;
+GRANT ALL ON TABLE controle_r_origine TO superdatabasename;
 
 
 --
@@ -10855,8 +10859,8 @@ GRANT ALL ON TABLE controle_r_origine TO superlazaret;
 REVOKE ALL ON TABLE controle_r_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_sens FROM postgres;
 GRANT ALL ON TABLE controle_r_sens TO postgres;
-GRANT SELECT ON TABLE controle_r_sens TO lazaret;
-GRANT ALL ON TABLE controle_r_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_r_sens TO databasename;
+GRANT ALL ON TABLE controle_r_sens TO superdatabasename;
 
 
 --
@@ -10866,8 +10870,8 @@ GRANT ALL ON TABLE controle_r_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_r_strie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_strie FROM postgres;
 GRANT ALL ON TABLE controle_r_strie TO postgres;
-GRANT SELECT ON TABLE controle_r_strie TO lazaret;
-GRANT ALL ON TABLE controle_r_strie TO superlazaret;
+GRANT SELECT ON TABLE controle_r_strie TO databasename;
+GRANT ALL ON TABLE controle_r_strie TO superdatabasename;
 
 
 --
@@ -10877,8 +10881,8 @@ GRANT ALL ON TABLE controle_r_strie TO superlazaret;
 REVOKE ALL ON TABLE controle_r_superposition FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_superposition FROM postgres;
 GRANT ALL ON TABLE controle_r_superposition TO postgres;
-GRANT SELECT ON TABLE controle_r_superposition TO lazaret;
-GRANT ALL ON TABLE controle_r_superposition TO superlazaret;
+GRANT SELECT ON TABLE controle_r_superposition TO databasename;
+GRANT ALL ON TABLE controle_r_superposition TO superdatabasename;
 
 
 --
@@ -10888,8 +10892,8 @@ GRANT ALL ON TABLE controle_r_superposition TO superlazaret;
 REVOKE ALL ON TABLE controle_r_tranchant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_tranchant FROM postgres;
 GRANT ALL ON TABLE controle_r_tranchant TO postgres;
-GRANT SELECT ON TABLE controle_r_tranchant TO lazaret;
-GRANT ALL ON TABLE controle_r_tranchant TO superlazaret;
+GRANT SELECT ON TABLE controle_r_tranchant TO databasename;
+GRANT ALL ON TABLE controle_r_tranchant TO superdatabasename;
 
 
 --
@@ -10899,8 +10903,8 @@ GRANT ALL ON TABLE controle_r_tranchant TO superlazaret;
 REVOKE ALL ON TABLE controle_r_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_type FROM postgres;
 GRANT ALL ON TABLE controle_r_type TO postgres;
-GRANT SELECT ON TABLE controle_r_type TO lazaret;
-GRANT ALL ON TABLE controle_r_type TO superlazaret;
+GRANT SELECT ON TABLE controle_r_type TO databasename;
+GRANT ALL ON TABLE controle_r_type TO superdatabasename;
 
 
 --
@@ -10910,8 +10914,8 @@ GRANT ALL ON TABLE controle_r_type TO superlazaret;
 REVOKE ALL ON TABLE controle_r_utilisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_utilisation FROM postgres;
 GRANT ALL ON TABLE controle_r_utilisation TO postgres;
-GRANT SELECT ON TABLE controle_r_utilisation TO lazaret;
-GRANT ALL ON TABLE controle_r_utilisation TO superlazaret;
+GRANT SELECT ON TABLE controle_r_utilisation TO databasename;
+GRANT ALL ON TABLE controle_r_utilisation TO superdatabasename;
 
 
 --
@@ -10921,8 +10925,8 @@ GRANT ALL ON TABLE controle_r_utilisation TO superlazaret;
 REVOKE ALL ON TABLE controle_responsable_fouille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_responsable_fouille FROM postgres;
 GRANT ALL ON TABLE controle_responsable_fouille TO postgres;
-GRANT SELECT ON TABLE controle_responsable_fouille TO lazaret;
-GRANT ALL ON TABLE controle_responsable_fouille TO superlazaret;
+GRANT SELECT ON TABLE controle_responsable_fouille TO databasename;
+GRANT ALL ON TABLE controle_responsable_fouille TO superdatabasename;
 GRANT ALL ON TABLE controle_responsable_fouille TO superchoukoutien;
 GRANT SELECT ON TABLE controle_responsable_fouille TO choukoutien;
 GRANT SELECT ON TABLE controle_responsable_fouille TO visiteurchoukoutien;
@@ -10935,8 +10939,8 @@ GRANT SELECT ON TABLE controle_responsable_fouille TO visiteurchoukoutien;
 REVOKE ALL ON TABLE controle_s_localisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_localisation FROM postgres;
 GRANT ALL ON TABLE controle_s_localisation TO postgres;
-GRANT SELECT ON TABLE controle_s_localisation TO lazaret;
-GRANT ALL ON TABLE controle_s_localisation TO superlazaret;
+GRANT SELECT ON TABLE controle_s_localisation TO databasename;
+GRANT ALL ON TABLE controle_s_localisation TO superdatabasename;
 
 
 --
@@ -10946,8 +10950,8 @@ GRANT ALL ON TABLE controle_s_localisation TO superlazaret;
 REVOKE ALL ON TABLE controle_s_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_s_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_s_lustrage TO lazaret;
-GRANT ALL ON TABLE controle_s_lustrage TO superlazaret;
+GRANT SELECT ON TABLE controle_s_lustrage TO databasename;
+GRANT ALL ON TABLE controle_s_lustrage TO superdatabasename;
 
 
 --
@@ -10957,8 +10961,8 @@ GRANT ALL ON TABLE controle_s_lustrage TO superlazaret;
 REVOKE ALL ON TABLE controle_s_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_ordre FROM postgres;
 GRANT ALL ON TABLE controle_s_ordre TO postgres;
-GRANT SELECT ON TABLE controle_s_ordre TO lazaret;
-GRANT ALL ON TABLE controle_s_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_s_ordre TO databasename;
+GRANT ALL ON TABLE controle_s_ordre TO superdatabasename;
 
 
 --
@@ -10968,8 +10972,8 @@ GRANT ALL ON TABLE controle_s_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_s_polissage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_polissage FROM postgres;
 GRANT ALL ON TABLE controle_s_polissage TO postgres;
-GRANT SELECT ON TABLE controle_s_polissage TO lazaret;
-GRANT ALL ON TABLE controle_s_polissage TO superlazaret;
+GRANT SELECT ON TABLE controle_s_polissage TO databasename;
+GRANT ALL ON TABLE controle_s_polissage TO superdatabasename;
 
 
 --
@@ -10979,8 +10983,8 @@ GRANT ALL ON TABLE controle_s_polissage TO superlazaret;
 REVOKE ALL ON TABLE controle_s_relation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_relation FROM postgres;
 GRANT ALL ON TABLE controle_s_relation TO postgres;
-GRANT SELECT ON TABLE controle_s_relation TO lazaret;
-GRANT ALL ON TABLE controle_s_relation TO superlazaret;
+GRANT SELECT ON TABLE controle_s_relation TO databasename;
+GRANT ALL ON TABLE controle_s_relation TO superdatabasename;
 
 
 --
@@ -10990,8 +10994,8 @@ GRANT ALL ON TABLE controle_s_relation TO superlazaret;
 REVOKE ALL ON TABLE controle_s_situation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_situation FROM postgres;
 GRANT ALL ON TABLE controle_s_situation TO postgres;
-GRANT SELECT ON TABLE controle_s_situation TO lazaret;
-GRANT ALL ON TABLE controle_s_situation TO superlazaret;
+GRANT SELECT ON TABLE controle_s_situation TO databasename;
+GRANT ALL ON TABLE controle_s_situation TO superdatabasename;
 
 
 --
@@ -11001,8 +11005,8 @@ GRANT ALL ON TABLE controle_s_situation TO superlazaret;
 REVOKE ALL ON TABLE controle_s_sous_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_sous_type FROM postgres;
 GRANT ALL ON TABLE controle_s_sous_type TO postgres;
-GRANT SELECT ON TABLE controle_s_sous_type TO lazaret;
-GRANT ALL ON TABLE controle_s_sous_type TO superlazaret;
+GRANT SELECT ON TABLE controle_s_sous_type TO databasename;
+GRANT ALL ON TABLE controle_s_sous_type TO superdatabasename;
 
 
 --
@@ -11012,8 +11016,8 @@ GRANT ALL ON TABLE controle_s_sous_type TO superlazaret;
 REVOKE ALL ON TABLE controle_s_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_type FROM postgres;
 GRANT ALL ON TABLE controle_s_type TO postgres;
-GRANT SELECT ON TABLE controle_s_type TO lazaret;
-GRANT ALL ON TABLE controle_s_type TO superlazaret;
+GRANT SELECT ON TABLE controle_s_type TO databasename;
+GRANT ALL ON TABLE controle_s_type TO superdatabasename;
 
 
 --
@@ -11023,8 +11027,8 @@ GRANT ALL ON TABLE controle_s_type TO superlazaret;
 REVOKE ALL ON TABLE controle_sol FROM PUBLIC;
 REVOKE ALL ON TABLE controle_sol FROM postgres;
 GRANT ALL ON TABLE controle_sol TO postgres;
-GRANT SELECT ON TABLE controle_sol TO lazaret;
-GRANT ALL ON TABLE controle_sol TO superlazaret;
+GRANT SELECT ON TABLE controle_sol TO databasename;
+GRANT ALL ON TABLE controle_sol TO superdatabasename;
 
 
 --
@@ -11034,8 +11038,8 @@ GRANT ALL ON TABLE controle_sol TO superlazaret;
 REVOKE ALL ON TABLE controle_souscarre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_souscarre FROM postgres;
 GRANT ALL ON TABLE controle_souscarre TO postgres;
-GRANT SELECT ON TABLE controle_souscarre TO lazaret;
-GRANT ALL ON TABLE controle_souscarre TO superlazaret;
+GRANT SELECT ON TABLE controle_souscarre TO databasename;
+GRANT ALL ON TABLE controle_souscarre TO superdatabasename;
 
 
 --
@@ -11045,8 +11049,8 @@ GRANT ALL ON TABLE controle_souscarre TO superlazaret;
 REVOKE ALL ON TABLE controle_t_agent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_agent FROM postgres;
 GRANT ALL ON TABLE controle_t_agent TO postgres;
-GRANT SELECT ON TABLE controle_t_agent TO lazaret;
-GRANT ALL ON TABLE controle_t_agent TO superlazaret;
+GRANT SELECT ON TABLE controle_t_agent TO databasename;
+GRANT ALL ON TABLE controle_t_agent TO superdatabasename;
 
 
 --
@@ -11056,8 +11060,8 @@ GRANT ALL ON TABLE controle_t_agent TO superlazaret;
 REVOKE ALL ON TABLE controle_t_allure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_allure FROM postgres;
 GRANT ALL ON TABLE controle_t_allure TO postgres;
-GRANT SELECT ON TABLE controle_t_allure TO lazaret;
-GRANT ALL ON TABLE controle_t_allure TO superlazaret;
+GRANT SELECT ON TABLE controle_t_allure TO databasename;
+GRANT ALL ON TABLE controle_t_allure TO superdatabasename;
 
 
 --
@@ -11067,8 +11071,8 @@ GRANT ALL ON TABLE controle_t_allure TO superlazaret;
 REVOKE ALL ON TABLE controle_t_classe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_classe FROM postgres;
 GRANT ALL ON TABLE controle_t_classe TO postgres;
-GRANT SELECT ON TABLE controle_t_classe TO lazaret;
-GRANT ALL ON TABLE controle_t_classe TO superlazaret;
+GRANT SELECT ON TABLE controle_t_classe TO databasename;
+GRANT ALL ON TABLE controle_t_classe TO superdatabasename;
 
 
 --
@@ -11078,8 +11082,8 @@ GRANT ALL ON TABLE controle_t_classe TO superlazaret;
 REVOKE ALL ON TABLE controle_t_dessin FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_dessin FROM postgres;
 GRANT ALL ON TABLE controle_t_dessin TO postgres;
-GRANT SELECT ON TABLE controle_t_dessin TO lazaret;
-GRANT ALL ON TABLE controle_t_dessin TO superlazaret;
+GRANT SELECT ON TABLE controle_t_dessin TO databasename;
+GRANT ALL ON TABLE controle_t_dessin TO superdatabasename;
 
 
 --
@@ -11089,8 +11093,8 @@ GRANT ALL ON TABLE controle_t_dessin TO superlazaret;
 REVOKE ALL ON TABLE controle_t_direction FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_direction FROM postgres;
 GRANT ALL ON TABLE controle_t_direction TO postgres;
-GRANT SELECT ON TABLE controle_t_direction TO lazaret;
-GRANT ALL ON TABLE controle_t_direction TO superlazaret;
+GRANT SELECT ON TABLE controle_t_direction TO databasename;
+GRANT ALL ON TABLE controle_t_direction TO superdatabasename;
 
 
 --
@@ -11100,8 +11104,8 @@ GRANT ALL ON TABLE controle_t_direction TO superlazaret;
 REVOKE ALL ON TABLE controle_t_dstrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_dstrie FROM postgres;
 GRANT ALL ON TABLE controle_t_dstrie TO postgres;
-GRANT SELECT ON TABLE controle_t_dstrie TO lazaret;
-GRANT ALL ON TABLE controle_t_dstrie TO superlazaret;
+GRANT SELECT ON TABLE controle_t_dstrie TO databasename;
+GRANT ALL ON TABLE controle_t_dstrie TO superdatabasename;
 
 
 --
@@ -11111,8 +11115,8 @@ GRANT ALL ON TABLE controle_t_dstrie TO superlazaret;
 REVOKE ALL ON TABLE controle_t_ensemble FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_ensemble FROM postgres;
 GRANT ALL ON TABLE controle_t_ensemble TO postgres;
-GRANT SELECT ON TABLE controle_t_ensemble TO lazaret;
-GRANT ALL ON TABLE controle_t_ensemble TO superlazaret;
+GRANT SELECT ON TABLE controle_t_ensemble TO databasename;
+GRANT ALL ON TABLE controle_t_ensemble TO superdatabasename;
 
 
 --
@@ -11122,8 +11126,8 @@ GRANT ALL ON TABLE controle_t_ensemble TO superlazaret;
 REVOKE ALL ON TABLE controle_t_largeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_largeur FROM postgres;
 GRANT ALL ON TABLE controle_t_largeur TO postgres;
-GRANT SELECT ON TABLE controle_t_largeur TO lazaret;
-GRANT ALL ON TABLE controle_t_largeur TO superlazaret;
+GRANT SELECT ON TABLE controle_t_largeur TO databasename;
+GRANT ALL ON TABLE controle_t_largeur TO superdatabasename;
 
 
 --
@@ -11133,8 +11137,8 @@ GRANT ALL ON TABLE controle_t_largeur TO superlazaret;
 REVOKE ALL ON TABLE controle_t_locmusc FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_locmusc FROM postgres;
 GRANT ALL ON TABLE controle_t_locmusc TO postgres;
-GRANT SELECT ON TABLE controle_t_locmusc TO lazaret;
-GRANT ALL ON TABLE controle_t_locmusc TO superlazaret;
+GRANT SELECT ON TABLE controle_t_locmusc TO databasename;
+GRANT ALL ON TABLE controle_t_locmusc TO superdatabasename;
 
 
 --
@@ -11144,8 +11148,8 @@ GRANT ALL ON TABLE controle_t_locmusc TO superlazaret;
 REVOKE ALL ON TABLE controle_t_nature FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_nature FROM postgres;
 GRANT ALL ON TABLE controle_t_nature TO postgres;
-GRANT SELECT ON TABLE controle_t_nature TO lazaret;
-GRANT ALL ON TABLE controle_t_nature TO superlazaret;
+GRANT SELECT ON TABLE controle_t_nature TO databasename;
+GRANT ALL ON TABLE controle_t_nature TO superdatabasename;
 
 
 --
@@ -11155,8 +11159,8 @@ GRANT ALL ON TABLE controle_t_nature TO superlazaret;
 REVOKE ALL ON TABLE controle_t_phenomene FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_phenomene FROM postgres;
 GRANT ALL ON TABLE controle_t_phenomene TO postgres;
-GRANT SELECT ON TABLE controle_t_phenomene TO lazaret;
-GRANT ALL ON TABLE controle_t_phenomene TO superlazaret;
+GRANT SELECT ON TABLE controle_t_phenomene TO databasename;
+GRANT ALL ON TABLE controle_t_phenomene TO superdatabasename;
 
 
 --
@@ -11166,8 +11170,8 @@ GRANT ALL ON TABLE controle_t_phenomene TO superlazaret;
 REVOKE ALL ON TABLE controle_t_photo FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_photo FROM postgres;
 GRANT ALL ON TABLE controle_t_photo TO postgres;
-GRANT SELECT ON TABLE controle_t_photo TO lazaret;
-GRANT ALL ON TABLE controle_t_photo TO superlazaret;
+GRANT SELECT ON TABLE controle_t_photo TO databasename;
+GRANT ALL ON TABLE controle_t_photo TO superdatabasename;
 
 
 --
@@ -11177,8 +11181,8 @@ GRANT ALL ON TABLE controle_t_photo TO superlazaret;
 REVOKE ALL ON TABLE controle_t_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_t_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_t_profondeur TO lazaret;
-GRANT ALL ON TABLE controle_t_profondeur TO superlazaret;
+GRANT SELECT ON TABLE controle_t_profondeur TO databasename;
+GRANT ALL ON TABLE controle_t_profondeur TO superdatabasename;
 
 
 --
@@ -11188,8 +11192,8 @@ GRANT ALL ON TABLE controle_t_profondeur TO superlazaret;
 REVOKE ALL ON TABLE controle_t_replique FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_replique FROM postgres;
 GRANT ALL ON TABLE controle_t_replique TO postgres;
-GRANT SELECT ON TABLE controle_t_replique TO lazaret;
-GRANT ALL ON TABLE controle_t_replique TO superlazaret;
+GRANT SELECT ON TABLE controle_t_replique TO databasename;
+GRANT ALL ON TABLE controle_t_replique TO superdatabasename;
 
 
 --
@@ -11199,8 +11203,8 @@ GRANT ALL ON TABLE controle_t_replique TO superlazaret;
 REVOKE ALL ON TABLE controle_t_section FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_section FROM postgres;
 GRANT ALL ON TABLE controle_t_section TO postgres;
-GRANT SELECT ON TABLE controle_t_section TO lazaret;
-GRANT ALL ON TABLE controle_t_section TO superlazaret;
+GRANT SELECT ON TABLE controle_t_section TO databasename;
+GRANT ALL ON TABLE controle_t_section TO superdatabasename;
 
 
 --
@@ -11210,8 +11214,8 @@ GRANT ALL ON TABLE controle_t_section TO superlazaret;
 REVOKE ALL ON TABLE controle_t_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_sens FROM postgres;
 GRANT ALL ON TABLE controle_t_sens TO postgres;
-GRANT SELECT ON TABLE controle_t_sens TO lazaret;
-GRANT ALL ON TABLE controle_t_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_t_sens TO databasename;
+GRANT ALL ON TABLE controle_t_sens TO superdatabasename;
 
 
 --
@@ -11221,8 +11225,8 @@ GRANT ALL ON TABLE controle_t_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_t_trace FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_trace FROM postgres;
 GRANT ALL ON TABLE controle_t_trace TO postgres;
-GRANT SELECT ON TABLE controle_t_trace TO lazaret;
-GRANT ALL ON TABLE controle_t_trace TO superlazaret;
+GRANT SELECT ON TABLE controle_t_trace TO databasename;
+GRANT ALL ON TABLE controle_t_trace TO superdatabasename;
 
 
 --
@@ -11232,8 +11236,8 @@ GRANT ALL ON TABLE controle_t_trace TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_fragmentation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_fragmentation FROM postgres;
 GRANT ALL ON TABLE controle_ud_fragmentation TO postgres;
-GRANT ALL ON TABLE controle_ud_fragmentation TO lazaret;
-GRANT ALL ON TABLE controle_ud_fragmentation TO superlazaret;
+GRANT ALL ON TABLE controle_ud_fragmentation TO databasename;
+GRANT ALL ON TABLE controle_ud_fragmentation TO superdatabasename;
 
 
 --
@@ -11243,8 +11247,8 @@ GRANT ALL ON TABLE controle_ud_fragmentation TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_lateralite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_lateralite FROM postgres;
 GRANT ALL ON TABLE controle_ud_lateralite TO postgres;
-GRANT ALL ON TABLE controle_ud_lateralite TO lazaret;
-GRANT ALL ON TABLE controle_ud_lateralite TO superlazaret;
+GRANT ALL ON TABLE controle_ud_lateralite TO databasename;
+GRANT ALL ON TABLE controle_ud_lateralite TO superdatabasename;
 
 
 --
@@ -11254,8 +11258,8 @@ GRANT ALL ON TABLE controle_ud_lateralite TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_type FROM postgres;
 GRANT ALL ON TABLE controle_ud_type TO postgres;
-GRANT ALL ON TABLE controle_ud_type TO lazaret;
-GRANT ALL ON TABLE controle_ud_type TO superlazaret;
+GRANT ALL ON TABLE controle_ud_type TO databasename;
+GRANT ALL ON TABLE controle_ud_type TO superdatabasename;
 
 
 --
@@ -11265,8 +11269,8 @@ GRANT ALL ON TABLE controle_ud_type TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_usure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_usure FROM postgres;
 GRANT ALL ON TABLE controle_ud_usure TO postgres;
-GRANT ALL ON TABLE controle_ud_usure TO lazaret;
-GRANT ALL ON TABLE controle_ud_usure TO superlazaret;
+GRANT ALL ON TABLE controle_ud_usure TO databasename;
+GRANT ALL ON TABLE controle_ud_usure TO superdatabasename;
 
 
 --
@@ -11276,8 +11280,8 @@ GRANT ALL ON TABLE controle_ud_usure TO superlazaret;
 REVOKE ALL ON TABLE controle_vers FROM PUBLIC;
 REVOKE ALL ON TABLE controle_vers FROM postgres;
 GRANT ALL ON TABLE controle_vers TO postgres;
-GRANT SELECT ON TABLE controle_vers TO lazaret;
-GRANT ALL ON TABLE controle_vers TO superlazaret;
+GRANT SELECT ON TABLE controle_vers TO databasename;
+GRANT ALL ON TABLE controle_vers TO superdatabasename;
 
 
 --
@@ -11287,8 +11291,8 @@ GRANT ALL ON TABLE controle_vers TO superlazaret;
 REVOKE ALL ON TABLE controle_zone FROM PUBLIC;
 REVOKE ALL ON TABLE controle_zone FROM postgres;
 GRANT ALL ON TABLE controle_zone TO postgres;
-GRANT SELECT ON TABLE controle_zone TO lazaret;
-GRANT ALL ON TABLE controle_zone TO superlazaret;
+GRANT SELECT ON TABLE controle_zone TO databasename;
+GRANT ALL ON TABLE controle_zone TO superdatabasename;
 
 
 --
@@ -11298,8 +11302,8 @@ GRANT ALL ON TABLE controle_zone TO superlazaret;
 REVOKE ALL ON TABLE dent FROM PUBLIC;
 REVOKE ALL ON TABLE dent FROM postgres;
 GRANT ALL ON TABLE dent TO postgres;
-GRANT ALL ON TABLE dent TO lazaret;
-GRANT ALL ON TABLE dent TO superlazaret;
+GRANT ALL ON TABLE dent TO databasename;
+GRANT ALL ON TABLE dent TO superdatabasename;
 
 
 --
@@ -11309,8 +11313,8 @@ GRANT ALL ON TABLE dent TO superlazaret;
 REVOKE ALL ON TABLE eclat FROM PUBLIC;
 REVOKE ALL ON TABLE eclat FROM postgres;
 GRANT ALL ON TABLE eclat TO postgres;
-GRANT ALL ON TABLE eclat TO lazaret;
-GRANT ALL ON TABLE eclat TO superlazaret;
+GRANT ALL ON TABLE eclat TO databasename;
+GRANT ALL ON TABLE eclat TO superdatabasename;
 
 
 --
@@ -11321,8 +11325,8 @@ REVOKE ALL ON TABLE enlevement_biface FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_biface FROM postgres;
 GRANT ALL ON TABLE enlevement_biface TO postgres;
 GRANT SELECT ON TABLE enlevement_biface TO PUBLIC;
-GRANT ALL ON TABLE enlevement_biface TO lazaret;
-GRANT ALL ON TABLE enlevement_biface TO superlazaret;
+GRANT ALL ON TABLE enlevement_biface TO databasename;
+GRANT ALL ON TABLE enlevement_biface TO superdatabasename;
 
 
 --
@@ -11332,9 +11336,9 @@ GRANT ALL ON TABLE enlevement_biface TO superlazaret;
 REVOKE ALL ON TABLE enlevement_galet FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_galet FROM postgres;
 GRANT ALL ON TABLE enlevement_galet TO postgres;
-GRANT ALL ON TABLE enlevement_galet TO lazaret;
-GRANT ALL ON TABLE enlevement_galet TO superlazaret;
-GRANT SELECT ON TABLE enlevement_galet TO visiteurlazaret;
+GRANT ALL ON TABLE enlevement_galet TO databasename;
+GRANT ALL ON TABLE enlevement_galet TO superdatabasename;
+GRANT SELECT ON TABLE enlevement_galet TO visiteurdatabasename;
 
 
 --
@@ -11344,9 +11348,9 @@ GRANT SELECT ON TABLE enlevement_galet TO visiteurlazaret;
 REVOKE ALL ON TABLE enlevement_nucleus FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_nucleus FROM postgres;
 GRANT ALL ON TABLE enlevement_nucleus TO postgres;
-GRANT ALL ON TABLE enlevement_nucleus TO lazaret;
-GRANT ALL ON TABLE enlevement_nucleus TO superlazaret;
-GRANT SELECT ON TABLE enlevement_nucleus TO visiteurlazaret;
+GRANT ALL ON TABLE enlevement_nucleus TO databasename;
+GRANT ALL ON TABLE enlevement_nucleus TO superdatabasename;
+GRANT SELECT ON TABLE enlevement_nucleus TO visiteurdatabasename;
 
 
 --
@@ -11356,9 +11360,9 @@ GRANT SELECT ON TABLE enlevement_nucleus TO visiteurlazaret;
 REVOKE ALL ON TABLE faune FROM PUBLIC;
 REVOKE ALL ON TABLE faune FROM postgres;
 GRANT ALL ON TABLE faune TO postgres;
-GRANT ALL ON TABLE faune TO lazaret;
-GRANT ALL ON TABLE faune TO superlazaret;
-GRANT SELECT ON TABLE faune TO visiteurlazaret;
+GRANT ALL ON TABLE faune TO databasename;
+GRANT ALL ON TABLE faune TO superdatabasename;
+GRANT SELECT ON TABLE faune TO visiteurdatabasename;
 
 
 --
@@ -11368,8 +11372,8 @@ GRANT SELECT ON TABLE faune TO visiteurlazaret;
 REVOKE ALL ON TABLE fracture_faune FROM PUBLIC;
 REVOKE ALL ON TABLE fracture_faune FROM postgres;
 GRANT ALL ON TABLE fracture_faune TO postgres;
-GRANT ALL ON TABLE fracture_faune TO lazaret;
-GRANT ALL ON TABLE fracture_faune TO superlazaret;
+GRANT ALL ON TABLE fracture_faune TO databasename;
+GRANT ALL ON TABLE fracture_faune TO superdatabasename;
 
 
 --
@@ -11379,8 +11383,8 @@ GRANT ALL ON TABLE fracture_faune TO superlazaret;
 REVOKE ALL ON TABLE fracture_industrie FROM PUBLIC;
 REVOKE ALL ON TABLE fracture_industrie FROM postgres;
 GRANT ALL ON TABLE fracture_industrie TO postgres;
-GRANT ALL ON TABLE fracture_industrie TO lazaret;
-GRANT ALL ON TABLE fracture_industrie TO superlazaret;
+GRANT ALL ON TABLE fracture_industrie TO databasename;
+GRANT ALL ON TABLE fracture_industrie TO superdatabasename;
 
 
 --
@@ -11390,8 +11394,8 @@ GRANT ALL ON TABLE fracture_industrie TO superlazaret;
 REVOKE ALL ON TABLE galet_amenage FROM PUBLIC;
 REVOKE ALL ON TABLE galet_amenage FROM postgres;
 GRANT ALL ON TABLE galet_amenage TO postgres;
-GRANT ALL ON TABLE galet_amenage TO lazaret;
-GRANT ALL ON TABLE galet_amenage TO superlazaret;
+GRANT ALL ON TABLE galet_amenage TO databasename;
+GRANT ALL ON TABLE galet_amenage TO superdatabasename;
 
 
 --
@@ -11401,8 +11405,8 @@ GRANT ALL ON TABLE galet_amenage TO superlazaret;
 REVOKE ALL ON TABLE hachereau FROM PUBLIC;
 REVOKE ALL ON TABLE hachereau FROM postgres;
 GRANT ALL ON TABLE hachereau TO postgres;
-GRANT ALL ON TABLE hachereau TO lazaret;
-GRANT ALL ON TABLE hachereau TO superlazaret;
+GRANT ALL ON TABLE hachereau TO databasename;
+GRANT ALL ON TABLE hachereau TO superdatabasename;
 
 
 --
@@ -11412,8 +11416,8 @@ GRANT ALL ON TABLE hachereau TO superlazaret;
 REVOKE ALL ON TABLE industrie FROM PUBLIC;
 REVOKE ALL ON TABLE industrie FROM postgres;
 GRANT ALL ON TABLE industrie TO postgres;
-GRANT ALL ON TABLE industrie TO lazaret;
-GRANT ALL ON TABLE industrie TO superlazaret;
+GRANT ALL ON TABLE industrie TO databasename;
+GRANT ALL ON TABLE industrie TO superdatabasename;
 
 
 --
@@ -11423,8 +11427,8 @@ GRANT ALL ON TABLE industrie TO superlazaret;
 REVOKE ALL ON TABLE microfaune FROM PUBLIC;
 REVOKE ALL ON TABLE microfaune FROM postgres;
 GRANT ALL ON TABLE microfaune TO postgres;
-GRANT ALL ON TABLE microfaune TO lazaret;
-GRANT ALL ON TABLE microfaune TO superlazaret;
+GRANT ALL ON TABLE microfaune TO databasename;
+GRANT ALL ON TABLE microfaune TO superdatabasename;
 
 
 --
@@ -11434,8 +11438,8 @@ GRANT ALL ON TABLE microfaune TO superlazaret;
 REVOKE ALL ON TABLE nucleus FROM PUBLIC;
 REVOKE ALL ON TABLE nucleus FROM postgres;
 GRANT ALL ON TABLE nucleus TO postgres;
-GRANT ALL ON TABLE nucleus TO lazaret;
-GRANT ALL ON TABLE nucleus TO superlazaret;
+GRANT ALL ON TABLE nucleus TO databasename;
+GRANT ALL ON TABLE nucleus TO superdatabasename;
 
 
 --
@@ -11445,8 +11449,8 @@ GRANT ALL ON TABLE nucleus TO superlazaret;
 REVOKE ALL ON TABLE os FROM PUBLIC;
 REVOKE ALL ON TABLE os FROM postgres;
 GRANT ALL ON TABLE os TO postgres;
-GRANT ALL ON TABLE os TO lazaret;
-GRANT ALL ON TABLE os TO superlazaret;
+GRANT ALL ON TABLE os TO databasename;
+GRANT ALL ON TABLE os TO superdatabasename;
 
 
 --
@@ -11456,8 +11460,8 @@ GRANT ALL ON TABLE os TO superlazaret;
 REVOKE ALL ON TABLE outil FROM PUBLIC;
 REVOKE ALL ON TABLE outil FROM postgres;
 GRANT ALL ON TABLE outil TO postgres;
-GRANT ALL ON TABLE outil TO lazaret;
-GRANT ALL ON TABLE outil TO superlazaret;
+GRANT ALL ON TABLE outil TO databasename;
+GRANT ALL ON TABLE outil TO superdatabasename;
 
 
 --
@@ -11467,8 +11471,8 @@ GRANT ALL ON TABLE outil TO superlazaret;
 REVOKE ALL ON TABLE photocoprolithe FROM PUBLIC;
 REVOKE ALL ON TABLE photocoprolithe FROM postgres;
 GRANT ALL ON TABLE photocoprolithe TO postgres;
-GRANT ALL ON TABLE photocoprolithe TO lazaret;
-GRANT ALL ON TABLE photocoprolithe TO superlazaret;
+GRANT ALL ON TABLE photocoprolithe TO databasename;
+GRANT ALL ON TABLE photocoprolithe TO superdatabasename;
 
 
 --
@@ -11478,8 +11482,8 @@ GRANT ALL ON TABLE photocoprolithe TO superlazaret;
 REVOKE ALL ON TABLE photofaune FROM PUBLIC;
 REVOKE ALL ON TABLE photofaune FROM postgres;
 GRANT ALL ON TABLE photofaune TO postgres;
-GRANT ALL ON TABLE photofaune TO lazaret;
-GRANT ALL ON TABLE photofaune TO superlazaret;
+GRANT ALL ON TABLE photofaune TO databasename;
+GRANT ALL ON TABLE photofaune TO superdatabasename;
 
 
 --
@@ -11489,8 +11493,8 @@ GRANT ALL ON TABLE photofaune TO superlazaret;
 REVOKE ALL ON TABLE photoindustrie FROM PUBLIC;
 REVOKE ALL ON TABLE photoindustrie FROM postgres;
 GRANT ALL ON TABLE photoindustrie TO postgres;
-GRANT ALL ON TABLE photoindustrie TO lazaret;
-GRANT ALL ON TABLE photoindustrie TO superlazaret;
+GRANT ALL ON TABLE photoindustrie TO databasename;
+GRANT ALL ON TABLE photoindustrie TO superdatabasename;
 
 
 --
@@ -11500,8 +11504,8 @@ GRANT ALL ON TABLE photoindustrie TO superlazaret;
 REVOKE ALL ON TABLE phototrace FROM PUBLIC;
 REVOKE ALL ON TABLE phototrace FROM postgres;
 GRANT ALL ON TABLE phototrace TO postgres;
-GRANT ALL ON TABLE phototrace TO lazaret;
-GRANT ALL ON TABLE phototrace TO superlazaret;
+GRANT ALL ON TABLE phototrace TO databasename;
+GRANT ALL ON TABLE phototrace TO superdatabasename;
 
 
 --
@@ -11511,8 +11515,8 @@ GRANT ALL ON TABLE phototrace TO superlazaret;
 REVOKE ALL ON TABLE remonte_famille FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_famille FROM postgres;
 GRANT ALL ON TABLE remonte_famille TO postgres;
-GRANT ALL ON TABLE remonte_famille TO lazaret;
-GRANT ALL ON TABLE remonte_famille TO superlazaret;
+GRANT ALL ON TABLE remonte_famille TO databasename;
+GRANT ALL ON TABLE remonte_famille TO superdatabasename;
 
 
 --
@@ -11522,8 +11526,8 @@ GRANT ALL ON TABLE remonte_famille TO superlazaret;
 REVOKE ALL ON TABLE remonte_genre FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_genre FROM postgres;
 GRANT ALL ON TABLE remonte_genre TO postgres;
-GRANT ALL ON TABLE remonte_genre TO lazaret;
-GRANT ALL ON TABLE remonte_genre TO superlazaret;
+GRANT ALL ON TABLE remonte_genre TO databasename;
+GRANT ALL ON TABLE remonte_genre TO superdatabasename;
 
 
 --
@@ -11533,8 +11537,8 @@ GRANT ALL ON TABLE remonte_genre TO superlazaret;
 REVOKE ALL ON TABLE remonte_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_ordre FROM postgres;
 GRANT ALL ON TABLE remonte_ordre TO postgres;
-GRANT ALL ON TABLE remonte_ordre TO lazaret;
-GRANT ALL ON TABLE remonte_ordre TO superlazaret;
+GRANT ALL ON TABLE remonte_ordre TO databasename;
+GRANT ALL ON TABLE remonte_ordre TO superdatabasename;
 
 
 --
@@ -11544,8 +11548,8 @@ GRANT ALL ON TABLE remonte_ordre TO superlazaret;
 REVOKE ALL ON TABLE requete FROM PUBLIC;
 REVOKE ALL ON TABLE requete FROM postgres;
 GRANT ALL ON TABLE requete TO postgres;
-GRANT ALL ON TABLE requete TO lazaret;
-GRANT ALL ON TABLE requete TO superlazaret;
+GRANT ALL ON TABLE requete TO databasename;
+GRANT ALL ON TABLE requete TO superdatabasename;
 
 
 --
@@ -11555,8 +11559,8 @@ GRANT ALL ON TABLE requete TO superlazaret;
 REVOKE ALL ON TABLE retouche FROM PUBLIC;
 REVOKE ALL ON TABLE retouche FROM postgres;
 GRANT ALL ON TABLE retouche TO postgres;
-GRANT ALL ON TABLE retouche TO lazaret;
-GRANT ALL ON TABLE retouche TO superlazaret;
+GRANT ALL ON TABLE retouche TO databasename;
+GRANT ALL ON TABLE retouche TO superdatabasename;
 
 
 --
@@ -11566,8 +11570,8 @@ GRANT ALL ON TABLE retouche TO superlazaret;
 REVOKE ALL ON TABLE seq_bord FROM PUBLIC;
 REVOKE ALL ON TABLE seq_bord FROM postgres;
 GRANT ALL ON TABLE seq_bord TO postgres;
-GRANT ALL ON TABLE seq_bord TO lazaret;
-GRANT ALL ON TABLE seq_bord TO superlazaret;
+GRANT ALL ON TABLE seq_bord TO databasename;
+GRANT ALL ON TABLE seq_bord TO superdatabasename;
 
 
 --
@@ -11577,8 +11581,8 @@ GRANT ALL ON TABLE seq_bord TO superlazaret;
 REVOKE ALL ON TABLE seq_photofaune FROM PUBLIC;
 REVOKE ALL ON TABLE seq_photofaune FROM postgres;
 GRANT ALL ON TABLE seq_photofaune TO postgres;
-GRANT ALL ON TABLE seq_photofaune TO lazaret;
-GRANT ALL ON TABLE seq_photofaune TO superlazaret;
+GRANT ALL ON TABLE seq_photofaune TO databasename;
+GRANT ALL ON TABLE seq_photofaune TO superdatabasename;
 
 
 --
@@ -11588,8 +11592,8 @@ GRANT ALL ON TABLE seq_photofaune TO superlazaret;
 REVOKE ALL ON TABLE seq_photoindustrie FROM PUBLIC;
 REVOKE ALL ON TABLE seq_photoindustrie FROM postgres;
 GRANT ALL ON TABLE seq_photoindustrie TO postgres;
-GRANT ALL ON TABLE seq_photoindustrie TO lazaret;
-GRANT ALL ON TABLE seq_photoindustrie TO superlazaret;
+GRANT ALL ON TABLE seq_photoindustrie TO databasename;
+GRANT ALL ON TABLE seq_photoindustrie TO superdatabasename;
 
 
 --
@@ -11599,8 +11603,8 @@ GRANT ALL ON TABLE seq_photoindustrie TO superlazaret;
 REVOKE ALL ON TABLE seq_phototrace FROM PUBLIC;
 REVOKE ALL ON TABLE seq_phototrace FROM postgres;
 GRANT ALL ON TABLE seq_phototrace TO postgres;
-GRANT ALL ON TABLE seq_phototrace TO lazaret;
-GRANT ALL ON TABLE seq_phototrace TO superlazaret;
+GRANT ALL ON TABLE seq_phototrace TO databasename;
+GRANT ALL ON TABLE seq_phototrace TO superdatabasename;
 
 
 --
@@ -11610,8 +11614,8 @@ GRANT ALL ON TABLE seq_phototrace TO superlazaret;
 REVOKE ALL ON TABLE stigmate FROM PUBLIC;
 REVOKE ALL ON TABLE stigmate FROM postgres;
 GRANT ALL ON TABLE stigmate TO postgres;
-GRANT ALL ON TABLE stigmate TO lazaret;
-GRANT ALL ON TABLE stigmate TO superlazaret;
+GRANT ALL ON TABLE stigmate TO databasename;
+GRANT ALL ON TABLE stigmate TO superdatabasename;
 
 
 --
@@ -11621,8 +11625,8 @@ GRANT ALL ON TABLE stigmate TO superlazaret;
 REVOKE ALL ON TABLE trace FROM PUBLIC;
 REVOKE ALL ON TABLE trace FROM postgres;
 GRANT ALL ON TABLE trace TO postgres;
-GRANT ALL ON TABLE trace TO lazaret;
-GRANT ALL ON TABLE trace TO superlazaret;
+GRANT ALL ON TABLE trace TO databasename;
+GRANT ALL ON TABLE trace TO superdatabasename;
 
 
 --
@@ -11632,9 +11636,9 @@ GRANT ALL ON TABLE trace TO superlazaret;
 REVOKE ALL ON TABLE usure_dent FROM PUBLIC;
 REVOKE ALL ON TABLE usure_dent FROM postgres;
 GRANT ALL ON TABLE usure_dent TO postgres;
-GRANT ALL ON TABLE usure_dent TO lazaret;
-GRANT ALL ON TABLE usure_dent TO superlazaret;
-GRANT SELECT ON TABLE usure_dent TO visiteurlazaret;
+GRANT ALL ON TABLE usure_dent TO databasename;
+GRANT ALL ON TABLE usure_dent TO superdatabasename;
+GRANT SELECT ON TABLE usure_dent TO visiteurdatabasename;
 
 
 --

@@ -1,2 +1,5 @@
 schema_archeo -> Base nue sans contrôles
 schema_archeo_controles -> Base nue avec un certain nombre de contrôles par defaut
+
+Pensez à remplacer les utilisateur 'databasename' 'superdatabasename' 'visiterdatabasename'
+en fonction de votre base de donnée

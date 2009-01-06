@@ -1,6 +1,8 @@
 --
 -- PostgreSQL database dump
 --
+-- replace 'databasename' 'superdatabasename' 'visiterdatabasename' by the names of the users of the database
+--
 
 SET client_encoding = 'UTF8';
 SET check_function_bodies = false;
@@ -2680,6 +2682,18 @@ CREATE TABLE controle_i_pmycellium (
 ALTER TABLE public.controle_i_pmycellium OWNER TO postgres;
 
 --
+-- Name: controle_i_responsable; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE controle_i_responsable (
+    i_responsable text NOT NULL,
+    description text
+);
+
+
+ALTER TABLE public.controle_i_responsable OWNER TO postgres;
+
+--
 -- Name: controle_i_roulage; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3652,18 +3666,6 @@ CREATE TABLE controle_zone (
 ALTER TABLE public.controle_zone OWNER TO postgres;
 
 --
--- Name: controlec__forme; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE controlec__forme (
-    c_forme text NOT NULL,
-    description text
-);
-
-
-ALTER TABLE public.controlec__forme OWNER TO postgres;
-
---
 -- Name: coprolithe; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -3899,7 +3901,6 @@ CREATE TABLE faune (
     f_largeur integer,
     f_epaisseur integer,
     f_poids integer,
-    f_ancien_oss text,
     f_classe text,
     f_ordre text,
     f_famille text,
@@ -3954,8 +3955,6 @@ CREATE TABLE faune (
     f_saisie date DEFAULT date('now'::text),
     f_reference text,
     f_complement text,
-    responsable text,
-    controle_f_ancien_oss text,
     f_responsable text,
     f_affgenre text,
     f_affespece text
@@ -4205,7 +4204,9 @@ CREATE TABLE industrie (
     i_desilicification text,
     old_support text,
     i_observation text,
-    i_support text
+    i_support text,
+    i_responsable text,
+    i_saisie date DEFAULT date('now'::text)
 );
 
 
@@ -4744,8826 +4745,8190 @@ ALTER TABLE public.usure_dent OWNER TO postgres;
 -- Data for Name: biface; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY biface ("zone", numero, bis, b_forme, b_type, b_base, b_surface, b_enlevement, b_amenagement_bord, b_amenagement_distal, b_distale, b_biseau, b_bord, b_meplat, b_extension, b_symetrie, b_facture, b_bilaterale, b_bifaciale, b_arete, b_retouche, b_lar1, b_lar2, b_lar3, b_long1, b_l1a, b_long2, b_long3, b_lar4, b_l5, b_e1, b_e2, b_poids, b_ind1, b_ind2, b_ind3, b_ind4, b_ind5, b_ind6, b_ind7, b_ind8, b_ind9, b_ind10, b_ind11, b_ind12, b_ind13, b_ind14, b_ind15, b_ind16, b_bc, b_nt, b_dat1, b_dat2, b_dat, b_bd1, b_be1, b_bd2, b_be2, b_1t, b_2t, b_bde1, b_bde2, b_bdet, b_ent, b_bf, b_te, b_bh1, b_bh2, b_bht, b_bi1, b_bi2, b_bit, b_bj1, b_bj2, b_bj, b_bk1, b_bk2, b_bk, b_bna, b_bnb, b_bla, b_blb, b_bla1, b_blb1, b_bl1, b_bla2, b_blb2, b_bl2, b_bo1a, b_bo1b, b_bo2a, b_bo2b, b_bo, b_p1, b_p2, b_bp1, b_bp2, b_bq1, b_bq2, b_bq1a, b_bq2a, b_br1, b_br2, b_bv, b_bx, b_by, b_bep, b_bu1, b_bu2, b_bu, b_bu1a, b_bu2a, b_ua, b_bg, b_ntf, b_bo1, b_bo2, b_support, b_bo3, b_bua, b_bo3b, b_bo3a, b_lar5) FROM stdin;
-\.
 
 
 --
 -- Data for Name: bord; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY bord ("zone", numero, bis, b_ordre, b_extremite, b_code, b_amincissement, b_localisation) FROM stdin;
-\.
 
 
 --
 -- Data for Name: carnet; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY carnet ("zone", numero, bis, locus, localite, carre, souscarre, ensemble, niveau, sol, couche, foyer, nature, nofouille, nomusee, nosopi, x, y, zrelatif, zreference, zabsolu, orientation, pendage, vers, longueur, largeur, epaisseur, trouve, saisie, latitude, longitude, responsable_fouille) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_b_amenagement_bord; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_amenagement_bord (b_amenagement_bord, description) FROM stdin;
-AB0	\N
-AB1	\N
-AB2	\N
-AB3	\N
-AB4	\N
-\.
+INSERT INTO controle_b_amenagement_bord VALUES ('AB0', NULL);
+INSERT INTO controle_b_amenagement_bord VALUES ('AB1', NULL);
+INSERT INTO controle_b_amenagement_bord VALUES ('AB2', NULL);
+INSERT INTO controle_b_amenagement_bord VALUES ('AB3', NULL);
+INSERT INTO controle_b_amenagement_bord VALUES ('AB4', NULL);
 
 
 --
 -- Data for Name: controle_b_amenagement_distal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_amenagement_distal (b_amenagement_distal, description) FROM stdin;
-1	\N
-2	\N
-\.
+INSERT INTO controle_b_amenagement_distal VALUES ('1', NULL);
+INSERT INTO controle_b_amenagement_distal VALUES ('2', NULL);
 
 
 --
 -- Data for Name: controle_b_amincissement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_amincissement (b_amincissement, description) FROM stdin;
-ALCD	\N
-ALCI	\N
-ALCM	\N
-ALED	\N
-ALEI	\N
-ALEM	\N
-ADCD	\N
-ADCI	\N
-ADCM	\N
-ADCP	\N
-ADED	\N
-ADEI	\N
-ADEM	\N
-ADEP	\N
-APCD	\N
-APCI	\N
-APCM	\N
-APCP	\N
-APED	\N
-APEI	\N
-APEM	\N
-APEP	\N
-\.
+INSERT INTO controle_b_amincissement VALUES ('ALCD', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ALCI', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ALCM', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ALED', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ALEI', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ALEM', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADCD', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADCI', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADCM', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADCP', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADED', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADEI', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADEM', NULL);
+INSERT INTO controle_b_amincissement VALUES ('ADEP', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APCD', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APCI', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APCM', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APCP', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APED', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APEI', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APEM', NULL);
+INSERT INTO controle_b_amincissement VALUES ('APEP', NULL);
 
 
 --
 -- Data for Name: controle_b_arete; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_arete (b_arete, description) FROM stdin;
-ALR	\N
-ALI	\N
-ALS	\N
-ALSI	\N
-ALSR	\N
-ALRI	\N
-ALRS	\N
-ALIS	\N
-AL0	\N
-\.
+INSERT INTO controle_b_arete VALUES ('ALR', NULL);
+INSERT INTO controle_b_arete VALUES ('ALI', NULL);
+INSERT INTO controle_b_arete VALUES ('ALS', NULL);
+INSERT INTO controle_b_arete VALUES ('ALSI', NULL);
+INSERT INTO controle_b_arete VALUES ('ALSR', NULL);
+INSERT INTO controle_b_arete VALUES ('ALRI', NULL);
+INSERT INTO controle_b_arete VALUES ('ALRS', NULL);
+INSERT INTO controle_b_arete VALUES ('ALIS', NULL);
+INSERT INTO controle_b_arete VALUES ('AL0', NULL);
 
 
 --
 -- Data for Name: controle_b_base; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_base (b_base, description) FROM stdin;
-B1	\N
-B2	\N
-\.
+INSERT INTO controle_b_base VALUES ('B1', NULL);
+INSERT INTO controle_b_base VALUES ('B2', NULL);
 
 
 --
 -- Data for Name: controle_b_bifaciale; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_bifaciale (b_bifaciale, description) FROM stdin;
-EQ1	\N
-EQ2	\N
-\.
+INSERT INTO controle_b_bifaciale VALUES ('EQ1', NULL);
+INSERT INTO controle_b_bifaciale VALUES ('EQ2', NULL);
 
 
 --
 -- Data for Name: controle_b_bilaterale; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_bilaterale (b_bilaterale, description) FROM stdin;
-SB0	\N
-SB1	\N
-\.
+INSERT INTO controle_b_bilaterale VALUES ('SB0', NULL);
+INSERT INTO controle_b_bilaterale VALUES ('SB1', NULL);
 
 
 --
 -- Data for Name: controle_b_biseau; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_biseau (b_biseau, description) FROM stdin;
-BT0	\N
-BT1	\N
-BT1A	\N
-BT1B	\N
-BT1C	\N
-\.
+INSERT INTO controle_b_biseau VALUES ('BT0', NULL);
+INSERT INTO controle_b_biseau VALUES ('BT1', NULL);
+INSERT INTO controle_b_biseau VALUES ('BT1A', NULL);
+INSERT INTO controle_b_biseau VALUES ('BT1B', NULL);
+INSERT INTO controle_b_biseau VALUES ('BT1C', NULL);
 
 
 --
 -- Data for Name: controle_b_bord; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_bord (b_bord, description) FROM stdin;
-FB1	\N
-FB2	\N
-FB3	\N
-FB4	\N
-FB23	\N
-FB12	\N
-FB13	\N
-\.
+INSERT INTO controle_b_bord VALUES ('FB1', NULL);
+INSERT INTO controle_b_bord VALUES ('FB2', NULL);
+INSERT INTO controle_b_bord VALUES ('FB3', NULL);
+INSERT INTO controle_b_bord VALUES ('FB4', NULL);
+INSERT INTO controle_b_bord VALUES ('FB23', NULL);
+INSERT INTO controle_b_bord VALUES ('FB12', NULL);
+INSERT INTO controle_b_bord VALUES ('FB13', NULL);
 
 
 --
 -- Data for Name: controle_b_code; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_code (b_code, description) FROM stdin;
-MC	\N
-MNC	\N
-MBN	\N
-MRD	\N
-MRI	\N
-MRM	\N
-TL	\N
-TLC	\N
-TNC	\N
-TLD	\N
-TLI	\N
-TLM	\N
-BIT	\N
-I	\N
-PP	\N
-TT	\N
-CH	\N
-MBC	\N
-MBNC	\N
-MBPF	\N
-MBCA	\N
-MBFV	\N
-EC	\N
-ENC	\N
-PUA	\N
-PUG	\N
-PUD	\N
-PBA	\N
-PBG	\N
-PBD	\N
-TTD	\N
-TTI	\N
-TTM	\N
-TRD	\N
-TRI	\N
-TRM	\N
-MTRD	\N
-MTRI	\N
-MTRM	\N
-O	\N
-POL	\N
-\.
+INSERT INTO controle_b_code VALUES ('MC', NULL);
+INSERT INTO controle_b_code VALUES ('MNC', NULL);
+INSERT INTO controle_b_code VALUES ('MBN', NULL);
+INSERT INTO controle_b_code VALUES ('MRD', NULL);
+INSERT INTO controle_b_code VALUES ('MRI', NULL);
+INSERT INTO controle_b_code VALUES ('MRM', NULL);
+INSERT INTO controle_b_code VALUES ('TL', NULL);
+INSERT INTO controle_b_code VALUES ('TLC', NULL);
+INSERT INTO controle_b_code VALUES ('TNC', NULL);
+INSERT INTO controle_b_code VALUES ('TLD', NULL);
+INSERT INTO controle_b_code VALUES ('TLI', NULL);
+INSERT INTO controle_b_code VALUES ('TLM', NULL);
+INSERT INTO controle_b_code VALUES ('BIT', NULL);
+INSERT INTO controle_b_code VALUES ('I', NULL);
+INSERT INTO controle_b_code VALUES ('PP', NULL);
+INSERT INTO controle_b_code VALUES ('TT', NULL);
+INSERT INTO controle_b_code VALUES ('CH', NULL);
+INSERT INTO controle_b_code VALUES ('MBC', NULL);
+INSERT INTO controle_b_code VALUES ('MBNC', NULL);
+INSERT INTO controle_b_code VALUES ('MBPF', NULL);
+INSERT INTO controle_b_code VALUES ('MBCA', NULL);
+INSERT INTO controle_b_code VALUES ('MBFV', NULL);
+INSERT INTO controle_b_code VALUES ('EC', NULL);
+INSERT INTO controle_b_code VALUES ('ENC', NULL);
+INSERT INTO controle_b_code VALUES ('PUA', NULL);
+INSERT INTO controle_b_code VALUES ('PUG', NULL);
+INSERT INTO controle_b_code VALUES ('PUD', NULL);
+INSERT INTO controle_b_code VALUES ('PBA', NULL);
+INSERT INTO controle_b_code VALUES ('PBG', NULL);
+INSERT INTO controle_b_code VALUES ('PBD', NULL);
+INSERT INTO controle_b_code VALUES ('TTD', NULL);
+INSERT INTO controle_b_code VALUES ('TTI', NULL);
+INSERT INTO controle_b_code VALUES ('TTM', NULL);
+INSERT INTO controle_b_code VALUES ('TRD', NULL);
+INSERT INTO controle_b_code VALUES ('TRI', NULL);
+INSERT INTO controle_b_code VALUES ('TRM', NULL);
+INSERT INTO controle_b_code VALUES ('MTRD', NULL);
+INSERT INTO controle_b_code VALUES ('MTRI', NULL);
+INSERT INTO controle_b_code VALUES ('MTRM', NULL);
+INSERT INTO controle_b_code VALUES ('O', NULL);
+INSERT INTO controle_b_code VALUES ('POL', NULL);
 
 
 --
 -- Data for Name: controle_b_dat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_dat (b_dat, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_b_dat1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_dat1 (b_dat1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_b_dat2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_dat2 (b_dat2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_b_distale; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_distale (b_distale, description) FROM stdin;
-ED1	\N
-ED2	\N
-ED3	\N
-ED4	\N
-ED5	\N
-ED6	\N
-\.
+INSERT INTO controle_b_distale VALUES ('ED1', NULL);
+INSERT INTO controle_b_distale VALUES ('ED2', NULL);
+INSERT INTO controle_b_distale VALUES ('ED3', NULL);
+INSERT INTO controle_b_distale VALUES ('ED4', NULL);
+INSERT INTO controle_b_distale VALUES ('ED5', NULL);
+INSERT INTO controle_b_distale VALUES ('ED6', NULL);
 
 
 --
 -- Data for Name: controle_b_enlevement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_enlevement (b_enlevement, description) FROM stdin;
-EB1	\N
-EB2	\N
-EB3	\N
-\.
+INSERT INTO controle_b_enlevement VALUES ('EB1', NULL);
+INSERT INTO controle_b_enlevement VALUES ('EB2', NULL);
+INSERT INTO controle_b_enlevement VALUES ('EB3', NULL);
 
 
 --
 -- Data for Name: controle_b_extension; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_extension (b_extension, description) FROM stdin;
-ERU	\N
-EAU	\N
-EMU	\N
-ER	\N
-ERA	\N
-EA	\N
-EMA	\N
-EMM	\N
-EMR	\N
-\.
+INSERT INTO controle_b_extension VALUES ('ERU', NULL);
+INSERT INTO controle_b_extension VALUES ('EAU', NULL);
+INSERT INTO controle_b_extension VALUES ('EMU', NULL);
+INSERT INTO controle_b_extension VALUES ('ER', NULL);
+INSERT INTO controle_b_extension VALUES ('ERA', NULL);
+INSERT INTO controle_b_extension VALUES ('EA', NULL);
+INSERT INTO controle_b_extension VALUES ('EMA', NULL);
+INSERT INTO controle_b_extension VALUES ('EMM', NULL);
+INSERT INTO controle_b_extension VALUES ('EMR', NULL);
 
 
 --
 -- Data for Name: controle_b_extremite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_extremite (b_extremite, description) FROM stdin;
-LATG	\N
-TRDIS	\N
-LATD	\N
-TRPROX	\N
-ANGGPROX	\N
-ANGGDIS	\N
-ANGDPROX	\N
-ANGDDIS	\N
-\.
+INSERT INTO controle_b_extremite VALUES ('LATG', NULL);
+INSERT INTO controle_b_extremite VALUES ('TRDIS', NULL);
+INSERT INTO controle_b_extremite VALUES ('LATD', NULL);
+INSERT INTO controle_b_extremite VALUES ('TRPROX', NULL);
+INSERT INTO controle_b_extremite VALUES ('ANGGPROX', NULL);
+INSERT INTO controle_b_extremite VALUES ('ANGGDIS', NULL);
+INSERT INTO controle_b_extremite VALUES ('ANGDPROX', NULL);
+INSERT INTO controle_b_extremite VALUES ('ANGDDIS', NULL);
 
 
 --
 -- Data for Name: controle_b_facture; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_facture (b_facture, description) FROM stdin;
-FHB	\N
-FHM	\N
-HT	\N
-\.
+INSERT INTO controle_b_facture VALUES ('FHB', NULL);
+INSERT INTO controle_b_facture VALUES ('FHM', NULL);
+INSERT INTO controle_b_facture VALUES ('HT', NULL);
 
 
 --
 -- Data for Name: controle_b_meplat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_meplat (b_meplat, description) FROM stdin;
-ML0	\N
-ML1	\N
-ML1U	\N
-ML1B	\N
-\.
+INSERT INTO controle_b_meplat VALUES ('ML0', NULL);
+INSERT INTO controle_b_meplat VALUES ('ML1', NULL);
+INSERT INTO controle_b_meplat VALUES ('ML1U', NULL);
+INSERT INTO controle_b_meplat VALUES ('ML1B', NULL);
 
 
 --
 -- Data for Name: controle_b_retouche; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_retouche (b_retouche, description) FROM stdin;
-RS0	\N
-RS1	\N
-RS2	\N
-RS5	\N
-\.
+INSERT INTO controle_b_retouche VALUES ('RS0', NULL);
+INSERT INTO controle_b_retouche VALUES ('RS1', NULL);
+INSERT INTO controle_b_retouche VALUES ('RS2', NULL);
+INSERT INTO controle_b_retouche VALUES ('RS5', NULL);
 
 
 --
 -- Data for Name: controle_b_support; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_support (b_support, description) FROM stdin;
-NLE	\N
-G0	\N
-G1	\N
-G2	\N
-G3	\N
-IND	\N
-D	\N
-\.
+INSERT INTO controle_b_support VALUES ('NLE', NULL);
+INSERT INTO controle_b_support VALUES ('G0', NULL);
+INSERT INTO controle_b_support VALUES ('G1', NULL);
+INSERT INTO controle_b_support VALUES ('G2', NULL);
+INSERT INTO controle_b_support VALUES ('G3', NULL);
+INSERT INTO controle_b_support VALUES ('IND', NULL);
+INSERT INTO controle_b_support VALUES ('D', NULL);
 
 
 --
 -- Data for Name: controle_b_surface; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_surface (b_surface, description) FROM stdin;
-SO0	\N
-SO1	\N
-SO2	\N
-SO3	\N
-\.
+INSERT INTO controle_b_surface VALUES ('SO0', NULL);
+INSERT INTO controle_b_surface VALUES ('SO1', NULL);
+INSERT INTO controle_b_surface VALUES ('SO2', NULL);
+INSERT INTO controle_b_surface VALUES ('SO3', NULL);
 
 
 --
 -- Data for Name: controle_b_symetrie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_symetrie (b_symetrie, description) FROM stdin;
-SMD0	\N
-SMD1	\N
-\.
+INSERT INTO controle_b_symetrie VALUES ('SMD0', NULL);
+INSERT INTO controle_b_symetrie VALUES ('SMD1', NULL);
 
 
 --
 -- Data for Name: controle_b_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_b_type (b_type, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_bis; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_bis (bis, description) FROM stdin;
-R	\N
---	\N
-A	\N
-B	\N
-C	\N
-D	\N
-E	\N
-\.
+INSERT INTO controle_bis VALUES ('R', NULL);
+INSERT INTO controle_bis VALUES ('--', NULL);
+INSERT INTO controle_bis VALUES ('A', NULL);
+INSERT INTO controle_bis VALUES ('B', NULL);
+INSERT INTO controle_bis VALUES ('C', NULL);
+INSERT INTO controle_bis VALUES ('D', NULL);
+INSERT INTO controle_bis VALUES ('E', NULL);
 
 
 --
 -- Data for Name: controle_c_alteration; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_alteration (c_alteration, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_altnat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_altnat (c_altnat, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_autre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_autre (c_autre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_consistance; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_consistance (c_consistance, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_couleur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_couleur (c_couleur, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_element; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_element (c_element, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_ext1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_ext1 (c_ext1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_ext2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_ext2 (c_ext2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_extremite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_extremite (c_extremite, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_famille; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_famille (c_famille, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_forme; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_forme (c_forme, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_genre (c_genre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_granulometrie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_granulometrie (c_granulometrie, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_incl1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_incl1 (c_incl1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_incl2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_incl2 (c_incl2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_incl3; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_incl3 (c_incl3, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_inclusion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_inclusion (c_inclusion, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_lame; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_lame (c_lame, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_liant; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_liant (c_liant, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_macroreste; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_macroreste (c_macroreste, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_mif; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_mif (c_mif, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_motcou; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_motcou (c_motcou, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_motif; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_motif (c_motif, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_motnat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_motnat (c_motnat, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_ordre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_ordre (c_ordre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_palyno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_palyno (c_palyno, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_parasito; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_parasito (c_parasito, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_retrecissement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_retrecissement (c_retrecissement, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_sediment; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_sediment (c_sediment, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_vol; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_vol (c_vol, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_c_volext; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_c_volext (c_volext, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_carre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_carre (carre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_d_serie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_d_serie (d_serie, description) FROM stdin;
-1	\N
-2	\N
-3	\N
-4	\N
-\.
+INSERT INTO controle_d_serie VALUES ('1', NULL);
+INSERT INTO controle_d_serie VALUES ('2', NULL);
+INSERT INTO controle_d_serie VALUES ('3', NULL);
+INSERT INTO controle_d_serie VALUES ('4', NULL);
 
 
 --
 -- Data for Name: controle_d_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_d_type (d_type, description) FROM stdin;
-M1	\N
-M2	\N
-P2	\N
-M3	\N
-I3	\N
-P4	\N
-CA	\N
-P3	\N
-I2	\N
-D3	\N
-D4	\N
-D2	\N
-I1	\N
-C	\N
-M4	\N
-IG	\N
-P2I	\N
-P3I	\N
-P4I	\N
-M1I	\N
-I1I	\N
-CI	\N
-P4S	\N
-I3S	\N
-CS	\N
-P1S	\N
-P2S	\N
-P3S	\N
-M1S	\N
-M2S	\N
-I1S	\N
-I2S	\N
-I3I	\N
-I2I	\N
-M3I	\N
-M2I	\N
-P1I	\N
-\.
+INSERT INTO controle_d_type VALUES ('M1', NULL);
+INSERT INTO controle_d_type VALUES ('M2', NULL);
+INSERT INTO controle_d_type VALUES ('P2', NULL);
+INSERT INTO controle_d_type VALUES ('M3', NULL);
+INSERT INTO controle_d_type VALUES ('I3', NULL);
+INSERT INTO controle_d_type VALUES ('P4', NULL);
+INSERT INTO controle_d_type VALUES ('CA', NULL);
+INSERT INTO controle_d_type VALUES ('P3', NULL);
+INSERT INTO controle_d_type VALUES ('I2', NULL);
+INSERT INTO controle_d_type VALUES ('D3', NULL);
+INSERT INTO controle_d_type VALUES ('D4', NULL);
+INSERT INTO controle_d_type VALUES ('D2', NULL);
+INSERT INTO controle_d_type VALUES ('I1', NULL);
+INSERT INTO controle_d_type VALUES ('C', NULL);
+INSERT INTO controle_d_type VALUES ('M4', NULL);
+INSERT INTO controle_d_type VALUES ('IG', NULL);
+INSERT INTO controle_d_type VALUES ('P2I', NULL);
+INSERT INTO controle_d_type VALUES ('P3I', NULL);
+INSERT INTO controle_d_type VALUES ('P4I', NULL);
+INSERT INTO controle_d_type VALUES ('M1I', NULL);
+INSERT INTO controle_d_type VALUES ('I1I', NULL);
+INSERT INTO controle_d_type VALUES ('CI', NULL);
+INSERT INTO controle_d_type VALUES ('P4S', NULL);
+INSERT INTO controle_d_type VALUES ('I3S', NULL);
+INSERT INTO controle_d_type VALUES ('CS', NULL);
+INSERT INTO controle_d_type VALUES ('P1S', NULL);
+INSERT INTO controle_d_type VALUES ('P2S', NULL);
+INSERT INTO controle_d_type VALUES ('P3S', NULL);
+INSERT INTO controle_d_type VALUES ('M1S', NULL);
+INSERT INTO controle_d_type VALUES ('M2S', NULL);
+INSERT INTO controle_d_type VALUES ('I1S', NULL);
+INSERT INTO controle_d_type VALUES ('I2S', NULL);
+INSERT INTO controle_d_type VALUES ('I3I', NULL);
+INSERT INTO controle_d_type VALUES ('I2I', NULL);
+INSERT INTO controle_d_type VALUES ('M3I', NULL);
+INSERT INTO controle_d_type VALUES ('M2I', NULL);
+INSERT INTO controle_d_type VALUES ('P1I', NULL);
 
 
 --
 -- Data for Name: controle_e_bulbe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_bulbe (e_bulbe, description) FROM stdin;
-A	\N
-E1	\N
-E2	\N
-E3	\N
-I	\N
-UTC	\N
-UC	\N
-UPD	\N
-UD	\N
-UP	\N
-M1A	\N
-M1B	\N
-M1C	\N
-M2A	\N
-M1D	\N
-M1E	\N
-M2B	\N
-M2C	\N
-M2D	\N
-UN	\N
-UE1	\N
-UE2	\N
-UE3	\N
-M1AC	\N
-M1AP	\N
-M1APD	\N
-M1AD	\N
-M1ATC	\N
-\.
+INSERT INTO controle_e_bulbe VALUES ('A', NULL);
+INSERT INTO controle_e_bulbe VALUES ('E1', NULL);
+INSERT INTO controle_e_bulbe VALUES ('E2', NULL);
+INSERT INTO controle_e_bulbe VALUES ('E3', NULL);
+INSERT INTO controle_e_bulbe VALUES ('I', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UTC', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UC', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UPD', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UD', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UP', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1A', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1B', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1C', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M2A', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1D', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1E', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M2B', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M2C', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M2D', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UN', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UE1', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UE2', NULL);
+INSERT INTO controle_e_bulbe VALUES ('UE3', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1AC', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1AP', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1APD', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1AD', NULL);
+INSERT INTO controle_e_bulbe VALUES ('M1ATC', NULL);
 
 
 --
 -- Data for Name: controle_e_carene; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_carene (e_carene, description) FROM stdin;
-N	\N
-A	\N
-P	\N
-\.
+INSERT INTO controle_e_carene VALUES ('N', NULL);
+INSERT INTO controle_e_carene VALUES ('A', NULL);
+INSERT INTO controle_e_carene VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_e_charniere; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_charniere (e_charniere, description) FROM stdin;
-N	\N
-O	\N
-AN	\N
-S	\N
-P	\N
-A	\N
-\.
+INSERT INTO controle_e_charniere VALUES ('N', NULL);
+INSERT INTO controle_e_charniere VALUES ('O', NULL);
+INSERT INTO controle_e_charniere VALUES ('AN', NULL);
+INSERT INTO controle_e_charniere VALUES ('S', NULL);
+INSERT INTO controle_e_charniere VALUES ('P', NULL);
+INSERT INTO controle_e_charniere VALUES ('A', NULL);
 
 
 --
 -- Data for Name: controle_e_code; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_code (e_code, description) FROM stdin;
-ECL	\N
-ECLF	\N
-ECLU	\N
-PTE	\N
-PTEU	\N
-PTEF	\N
-LAM	\N
-LAMU	\N
-LAMF	\N
-OUT	\N
-PEC	\N
-PECU	\N
-PECF	\N
-LAML	\N
-ERT	\N
-CHBU	\N
-PEL	\N
-ECLTH	\N
-\.
+INSERT INTO controle_e_code VALUES ('ECL', NULL);
+INSERT INTO controle_e_code VALUES ('ECLF', NULL);
+INSERT INTO controle_e_code VALUES ('ECLU', NULL);
+INSERT INTO controle_e_code VALUES ('PTE', NULL);
+INSERT INTO controle_e_code VALUES ('PTEU', NULL);
+INSERT INTO controle_e_code VALUES ('PTEF', NULL);
+INSERT INTO controle_e_code VALUES ('LAM', NULL);
+INSERT INTO controle_e_code VALUES ('LAMU', NULL);
+INSERT INTO controle_e_code VALUES ('LAMF', NULL);
+INSERT INTO controle_e_code VALUES ('OUT', NULL);
+INSERT INTO controle_e_code VALUES ('PEC', NULL);
+INSERT INTO controle_e_code VALUES ('PECU', NULL);
+INSERT INTO controle_e_code VALUES ('PECF', NULL);
+INSERT INTO controle_e_code VALUES ('LAML', NULL);
+INSERT INTO controle_e_code VALUES ('ERT', NULL);
+INSERT INTO controle_e_code VALUES ('CHBU', NULL);
+INSERT INTO controle_e_code VALUES ('PEL', NULL);
+INSERT INTO controle_e_code VALUES ('ECLTH', NULL);
 
 
 --
 -- Data for Name: controle_e_cone; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_cone (e_cone, description) FROM stdin;
-N	\N
-FD	\N
-D	\N
-TD	\N
-A	\N
-\.
+INSERT INTO controle_e_cone VALUES ('N', NULL);
+INSERT INTO controle_e_cone VALUES ('FD', NULL);
+INSERT INTO controle_e_cone VALUES ('D', NULL);
+INSERT INTO controle_e_cone VALUES ('TD', NULL);
+INSERT INTO controle_e_cone VALUES ('A', NULL);
 
 
 --
 -- Data for Name: controle_e_contour; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_contour (e_contour, description) FROM stdin;
-A1	\N
-A2	\N
-A3	\N
-Q1	\N
-Q2	\N
-Q3	\N
-Q4	\N
-Q5	\N
-Q6	\N
-P	\N
-TC	\N
-TD	\N
-R	\N
-I	\N
-\.
+INSERT INTO controle_e_contour VALUES ('A1', NULL);
+INSERT INTO controle_e_contour VALUES ('A2', NULL);
+INSERT INTO controle_e_contour VALUES ('A3', NULL);
+INSERT INTO controle_e_contour VALUES ('Q1', NULL);
+INSERT INTO controle_e_contour VALUES ('Q2', NULL);
+INSERT INTO controle_e_contour VALUES ('Q3', NULL);
+INSERT INTO controle_e_contour VALUES ('Q4', NULL);
+INSERT INTO controle_e_contour VALUES ('Q5', NULL);
+INSERT INTO controle_e_contour VALUES ('Q6', NULL);
+INSERT INTO controle_e_contour VALUES ('P', NULL);
+INSERT INTO controle_e_contour VALUES ('TC', NULL);
+INSERT INTO controle_e_contour VALUES ('TD', NULL);
+INSERT INTO controle_e_contour VALUES ('R', NULL);
+INSERT INTO controle_e_contour VALUES ('I', NULL);
 
 
 --
 -- Data for Name: controle_e_debitage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_debitage (e_debitage, description) FROM stdin;
-IA	\N
-IAC	\N
-IAC1	\N
-IAC2	\N
-IAC3	\N
-IAC4	\N
-IAC5	\N
-IAC6	\N
-IAL	\N
-IAL1	\N
-IAL2	\N
-IAL3	\N
-IAL4	\N
-IAL5	\N
-IAL6	\N
-IB	\N
-IBC	\N
-IBC1	\N
-IBC2	\N
-IBC3	\N
-IBC4	\N
-IBC5	\N
-IBC6	\N
-IBL	\N
-IBL1	\N
-IBL2	\N
-IBL3	\N
-IBL4	\N
-IBL5	\N
-IBL6	\N
-IC	\N
-ICC	\N
-ICC1	\N
-ICC2	\N
-ICC3	\N
-ICC4	\N
-ICC5	\N
-ICC6	\N
-ICL	\N
-ICL1	\N
-ICL2	\N
-ICL3	\N
-ICL4	\N
-ICL5	\N
-ICL6	\N
-ID	\N
-ID1	\N
-ID2	\N
-II	\N
-IIA	\N
-IIAC	\N
-IIAC1	\N
-IIAC2	\N
-IIAC3	\N
-IIAC4	\N
-IIAC5	\N
-IIAC6	\N
-IIAL	\N
-IIAL1	\N
-IIAL2	\N
-IIAL3	\N
-IIAL4	\N
-IIAL5	\N
-IIAL6	\N
-IIB	\N
-IIBC	\N
-IIBC1	\N
-IIBC2	\N
-IIBC3	\N
-IIBC4	\N
-IIBC5	\N
-IIBC6	\N
-II BL	\N
-IIBL1	\N
-IIBL2	\N
-IIBL3	\N
-IIBL4	\N
-IIBL5	\N
-IIBL6	\N
-IIC	\N
-IICC	\N
-IICC1	\N
-IICC2	\N
-IICC3	\N
-IICC4	\N
-IICC5	\N
-IICC6	\N
-IICL	\N
-IICL1	\N
-IICL2	\N
-IICL3	\N
-IICL4	\N
-IICL5	\N
-IICL6	\N
-IID	\N
-IID1	\N
-IID2	\N
-III	\N
-IIIA	\N
-IIIA1	\N
-IIIA1A	\N
-IIIA1B	\N
-IIIA2	\N
-IIIA2A	\N
-IIIA2B	\N
-IIIA2C	\N
-IIIA2D	\N
-IIIA3	\N
-IIIA3A	\N
-IIIA3B	\N
-IIIA3C	\N
-IIIA3D	\N
-IIIA4	\N
-IIIA4A	\N
-IIIA4B	\N
-IIIA4C	\N
-IIIA4D	\N
-IIIA5	\N
-IIIA5A	\N
-IIIA5B	\N
-IIIA5C	\N
-IIIA5D	\N
-IIIB	\N
-IIIB1	\N
-IIIB1A	\N
-IIIB1B	\N
-IIIB2	\N
-IIIB2A	\N
-IIIB2B	\N
-IIIB2C	\N
-IIIB2D	\N
-IIIB3	\N
-IIIB3A	\N
-IIIB3B	\N
-IIIB3C	\N
-IIIB3D	\N
-IIIB4	\N
-IIIB4A	\N
-IIIB4B	\N
-IIIB4C	\N
-IIIB4D	\N
-IIIB5	\N
-IIIB5A	\N
-IIIB5B	\N
-IIIC	\N
-IIIC1	\N
-IIIC1A	\N
-IIIC1B	\N
-IIIC2	\N
-IIIC2A	\N
-IIIC2B	\N
-IIIC2C	\N
-IIIC2D	\N
-IIIC3	\N
-IIIC3A	\N
-IIIC3B	\N
-IIIC3C	\N
-IIIC3D	\N
-IIIC4	\N
-IIIC4A	\N
-IIIC4B	\N
-IIIC4C	\N
-IIIC4D	\N
-IIIC5	\N
-IIIC5A	\N
-IIIC5B	\N
-IIIC5C	\N
-IIIC5D	\N
-IIID	\N
-IIID1A	\N
-IIID2	\N
-IIID2A	\N
-IIID2C	\N
-IIID3	\N
-IIID3A	\N
-IIID3C	\N
-IIID4	\N
-IIID4A	\N
-IIID4C	\N
-IIID5	\N
-IIID5A	\N
-IIID5C	\N
-IV	\N
-IVA	\N
-IVA1	\N
-IVA2	\N
-IVB	\N
-IVB1	\N
-IVB2	\N
-IVC	\N
-IVD	\N
-I	\N
-IIID3B	\N
-IIID2B	\N
-\.
+INSERT INTO controle_e_debitage VALUES ('IA', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAC1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAC2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAC3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAC4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAC5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAC6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAL', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAL1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAL2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAL3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAL4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAL5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IAL6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IB', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBC1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBC2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBC3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBC4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBC5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBC6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBL', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBL1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBL2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBL3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBL4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBL5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IBL6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IC', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICC', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICC1', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICC2', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICC3', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICC4', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICC5', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICC6', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICL', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICL1', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICL2', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICL3', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICL4', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICL5', NULL);
+INSERT INTO controle_e_debitage VALUES ('ICL6', NULL);
+INSERT INTO controle_e_debitage VALUES ('ID', NULL);
+INSERT INTO controle_e_debitage VALUES ('ID1', NULL);
+INSERT INTO controle_e_debitage VALUES ('ID2', NULL);
+INSERT INTO controle_e_debitage VALUES ('II', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIA', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAC1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAC2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAC3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAC4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAC5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAC6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAL', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAL1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAL2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAL3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAL4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAL5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIAL6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIB', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBC1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBC2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBC3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBC4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBC5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBC6', NULL);
+INSERT INTO controle_e_debitage VALUES ('II BL', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBL1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBL2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBL3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBL4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBL5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIBL6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICC1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICC2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICC3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICC4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICC5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICC6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICL', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICL1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICL2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICL3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICL4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICL5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IICL6', NULL);
+INSERT INTO controle_e_debitage VALUES ('IID', NULL);
+INSERT INTO controle_e_debitage VALUES ('IID1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IID2', NULL);
+INSERT INTO controle_e_debitage VALUES ('III', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA1A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA1B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA2A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA2B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA2C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA2D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA3A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA3B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA3C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA3D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA4A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA4B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA4C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA4D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA5A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA5B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA5C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIA5D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB1A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB1B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB2A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB2B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB2C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB2D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB3A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB3B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB3C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB3D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB4A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB4B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB4C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB4D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB5A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIB5B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC1A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC1B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC2A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC2B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC2C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC2D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC3A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC3B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC3C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC3D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC4A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC4B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC4C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC4D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC5A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC5B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC5C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIIC5D', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID1A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID2A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID2C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID3', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID3A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID3C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID4', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID4A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID4C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID5', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID5A', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID5C', NULL);
+INSERT INTO controle_e_debitage VALUES ('IV', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVA', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVA1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVA2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVB', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVB1', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVB2', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVC', NULL);
+INSERT INTO controle_e_debitage VALUES ('IVD', NULL);
+INSERT INTO controle_e_debitage VALUES ('I', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID3B', NULL);
+INSERT INTO controle_e_debitage VALUES ('IIID2B', NULL);
 
 
 --
 -- Data for Name: controle_e_enlevement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_enlevement (e_enlevement, description) FROM stdin;
-O	\N
-LC	\N
-LU	\N
-LB	\N
-TU	\N
-TB	\N
-OR	\N
-E	\N
-C	\N
-I	\N
-D	\N
-\.
+INSERT INTO controle_e_enlevement VALUES ('O', NULL);
+INSERT INTO controle_e_enlevement VALUES ('LC', NULL);
+INSERT INTO controle_e_enlevement VALUES ('LU', NULL);
+INSERT INTO controle_e_enlevement VALUES ('LB', NULL);
+INSERT INTO controle_e_enlevement VALUES ('TU', NULL);
+INSERT INTO controle_e_enlevement VALUES ('TB', NULL);
+INSERT INTO controle_e_enlevement VALUES ('OR', NULL);
+INSERT INTO controle_e_enlevement VALUES ('E', NULL);
+INSERT INTO controle_e_enlevement VALUES ('C', NULL);
+INSERT INTO controle_e_enlevement VALUES ('I', NULL);
+INSERT INTO controle_e_enlevement VALUES ('D', NULL);
 
 
 --
 -- Data for Name: controle_e_epi; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_epi (e_epi, description) FROM stdin;
-N	\N
-FD	\N
-D	\N
-TD	\N
-A	\N
-\.
+INSERT INTO controle_e_epi VALUES ('N', NULL);
+INSERT INTO controle_e_epi VALUES ('FD', NULL);
+INSERT INTO controle_e_epi VALUES ('D', NULL);
+INSERT INTO controle_e_epi VALUES ('TD', NULL);
+INSERT INTO controle_e_epi VALUES ('A', NULL);
 
 
 --
 -- Data for Name: controle_e_onde; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_onde (e_onde, description) FROM stdin;
-N	\N
-FD	\N
-D	\N
-TD	\N
-A	\N
-BIP	\N
-\.
+INSERT INTO controle_e_onde VALUES ('N', NULL);
+INSERT INTO controle_e_onde VALUES ('FD', NULL);
+INSERT INTO controle_e_onde VALUES ('D', NULL);
+INSERT INTO controle_e_onde VALUES ('TD', NULL);
+INSERT INTO controle_e_onde VALUES ('A', NULL);
+INSERT INTO controle_e_onde VALUES ('BIP', NULL);
 
 
 --
 -- Data for Name: controle_e_parasite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_parasite (e_parasite, description) FROM stdin;
-N	\N
-PP	\N
-PM	\N
-PG	\N
-PTG	\N
-A	\N
-\.
+INSERT INTO controle_e_parasite VALUES ('N', NULL);
+INSERT INTO controle_e_parasite VALUES ('PP', NULL);
+INSERT INTO controle_e_parasite VALUES ('PM', NULL);
+INSERT INTO controle_e_parasite VALUES ('PG', NULL);
+INSERT INTO controle_e_parasite VALUES ('PTG', NULL);
+INSERT INTO controle_e_parasite VALUES ('A', NULL);
 
 
 --
 -- Data for Name: controle_e_secondaire; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_secondaire (e_secondaire, description) FROM stdin;
-N	\N
-PU	\N
-PQ	\N
-PN	\N
-A	\N
-\.
+INSERT INTO controle_e_secondaire VALUES ('N', NULL);
+INSERT INTO controle_e_secondaire VALUES ('PU', NULL);
+INSERT INTO controle_e_secondaire VALUES ('PQ', NULL);
+INSERT INTO controle_e_secondaire VALUES ('PN', NULL);
+INSERT INTO controle_e_secondaire VALUES ('A', NULL);
 
 
 --
 -- Data for Name: controle_e_section_long; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_section_long (e_section_long, description) FROM stdin;
-LA	\N
-LB	\N
-LC	\N
-LD	\N
-LE	\N
-LF	\N
-LG	\N
-LJ	\N
-\.
+INSERT INTO controle_e_section_long VALUES ('LA', NULL);
+INSERT INTO controle_e_section_long VALUES ('LB', NULL);
+INSERT INTO controle_e_section_long VALUES ('LC', NULL);
+INSERT INTO controle_e_section_long VALUES ('LD', NULL);
+INSERT INTO controle_e_section_long VALUES ('LE', NULL);
+INSERT INTO controle_e_section_long VALUES ('LF', NULL);
+INSERT INTO controle_e_section_long VALUES ('LG', NULL);
+INSERT INTO controle_e_section_long VALUES ('LJ', NULL);
 
 
 --
 -- Data for Name: controle_e_section_trans; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_section_trans (e_section_trans, description) FROM stdin;
-A	\N
-B	\N
-C	\N
-D	\N
-E	\N
-F	\N
-G	\N
-H	\N
-I	\N
-J	\N
-P	\N
-R	\N
-\.
+INSERT INTO controle_e_section_trans VALUES ('A', NULL);
+INSERT INTO controle_e_section_trans VALUES ('B', NULL);
+INSERT INTO controle_e_section_trans VALUES ('C', NULL);
+INSERT INTO controle_e_section_trans VALUES ('D', NULL);
+INSERT INTO controle_e_section_trans VALUES ('E', NULL);
+INSERT INTO controle_e_section_trans VALUES ('F', NULL);
+INSERT INTO controle_e_section_trans VALUES ('G', NULL);
+INSERT INTO controle_e_section_trans VALUES ('H', NULL);
+INSERT INTO controle_e_section_trans VALUES ('I', NULL);
+INSERT INTO controle_e_section_trans VALUES ('J', NULL);
+INSERT INTO controle_e_section_trans VALUES ('P', NULL);
+INSERT INTO controle_e_section_trans VALUES ('R', NULL);
 
 
 --
 -- Data for Name: controle_e_strie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_strie (e_strie, description) FROM stdin;
-N	\N
-A	\N
-P	\N
-\.
+INSERT INTO controle_e_strie VALUES ('N', NULL);
+INSERT INTO controle_e_strie VALUES ('A', NULL);
+INSERT INTO controle_e_strie VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_e_talon; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_talon (e_talon, description) FROM stdin;
-TL	\N
-TL1	\N
-TL2	\N
-TL3	\N
-TLP	\N
-TD	\N
-TD1A	\N
-TD1B	\N
-TDA	\N
-TD4B	\N
-TD5A	\N
-TD5B	\N
-TD3A	\N
-TD3B	\N
-TF	\N
-TF1A	\N
-TF1B	\N
-TF2A	\N
-TF2B	\N
-TF3A	\N
-TF3B	\N
-TF4A	\N
-TF4B	\N
-TF5A	\N
-TF5B	\N
-TR	\N
-TR6C	\N
-TR6D	\N
-TR7	\N
-TC	\N
-TO	\N
-TO8	\N
-TO9	\N
-TI	\N
-TA	\N
-TP2	\N
-TP3	\N
-TP4	\N
-TD4A	\N
-\.
+INSERT INTO controle_e_talon VALUES ('TL', NULL);
+INSERT INTO controle_e_talon VALUES ('TL1', NULL);
+INSERT INTO controle_e_talon VALUES ('TL2', NULL);
+INSERT INTO controle_e_talon VALUES ('TL3', NULL);
+INSERT INTO controle_e_talon VALUES ('TLP', NULL);
+INSERT INTO controle_e_talon VALUES ('TD', NULL);
+INSERT INTO controle_e_talon VALUES ('TD1A', NULL);
+INSERT INTO controle_e_talon VALUES ('TD1B', NULL);
+INSERT INTO controle_e_talon VALUES ('TDA', NULL);
+INSERT INTO controle_e_talon VALUES ('TD4B', NULL);
+INSERT INTO controle_e_talon VALUES ('TD5A', NULL);
+INSERT INTO controle_e_talon VALUES ('TD5B', NULL);
+INSERT INTO controle_e_talon VALUES ('TD3A', NULL);
+INSERT INTO controle_e_talon VALUES ('TD3B', NULL);
+INSERT INTO controle_e_talon VALUES ('TF', NULL);
+INSERT INTO controle_e_talon VALUES ('TF1A', NULL);
+INSERT INTO controle_e_talon VALUES ('TF1B', NULL);
+INSERT INTO controle_e_talon VALUES ('TF2A', NULL);
+INSERT INTO controle_e_talon VALUES ('TF2B', NULL);
+INSERT INTO controle_e_talon VALUES ('TF3A', NULL);
+INSERT INTO controle_e_talon VALUES ('TF3B', NULL);
+INSERT INTO controle_e_talon VALUES ('TF4A', NULL);
+INSERT INTO controle_e_talon VALUES ('TF4B', NULL);
+INSERT INTO controle_e_talon VALUES ('TF5A', NULL);
+INSERT INTO controle_e_talon VALUES ('TF5B', NULL);
+INSERT INTO controle_e_talon VALUES ('TR', NULL);
+INSERT INTO controle_e_talon VALUES ('TR6C', NULL);
+INSERT INTO controle_e_talon VALUES ('TR6D', NULL);
+INSERT INTO controle_e_talon VALUES ('TR7', NULL);
+INSERT INTO controle_e_talon VALUES ('TC', NULL);
+INSERT INTO controle_e_talon VALUES ('TO', NULL);
+INSERT INTO controle_e_talon VALUES ('TO8', NULL);
+INSERT INTO controle_e_talon VALUES ('TO9', NULL);
+INSERT INTO controle_e_talon VALUES ('TI', NULL);
+INSERT INTO controle_e_talon VALUES ('TA', NULL);
+INSERT INTO controle_e_talon VALUES ('TP2', NULL);
+INSERT INTO controle_e_talon VALUES ('TP3', NULL);
+INSERT INTO controle_e_talon VALUES ('TP4', NULL);
+INSERT INTO controle_e_talon VALUES ('TD4A', NULL);
 
 
 --
 -- Data for Name: controle_e_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_e_type (e_type, description) FROM stdin;
-G0	\N
-G	\N
-G1	\N
-G2	\N
-G3	\N
-D	\N
-D1	\N
-D2	\N
-D3	\N
-D4	\N
-N	\N
-L	\N
-L0	\N
-LE1	\N
-LE2	\N
-LE3	\N
-LE4	\N
-LBN	\N
-LP1	\N
-LP2	\N
-LP3	\N
-LP4	\N
-LP5	\N
-LP6	\N
-LP7	\N
-LP8	\N
-LL1	\N
-LL2	\N
-LL3	\N
-NL	\N
-NL0	\N
-NLE1	\N
-NLE2	\N
-NLE3	\N
-NLE4	\N
-NLE5M	\N
-NLE6M	\N
-NLE7M	\N
-NLE5	\N
-NLE6	\N
-NLE7	\N
-NLBN	\N
-EP	\N
-EFB	\N
-NLP	\N
-NLPP1	\N
-NLPP2	\N
-NLPP3	\N
-NLL1	\N
-NLL2	\N
-NLL3	\N
-NLM	\N
-PE	\N
-PEE1	\N
-PEE2	\N
-PEL	\N
-ER	\N
-NLK	\N
-LK	\N
-ETH	\N
-NLBN7	\N
-NLBN6	\N
-NLE	\N
-NLPB	\N
-\.
+INSERT INTO controle_e_type VALUES ('G0', NULL);
+INSERT INTO controle_e_type VALUES ('G', NULL);
+INSERT INTO controle_e_type VALUES ('G1', NULL);
+INSERT INTO controle_e_type VALUES ('G2', NULL);
+INSERT INTO controle_e_type VALUES ('G3', NULL);
+INSERT INTO controle_e_type VALUES ('D', NULL);
+INSERT INTO controle_e_type VALUES ('D1', NULL);
+INSERT INTO controle_e_type VALUES ('D2', NULL);
+INSERT INTO controle_e_type VALUES ('D3', NULL);
+INSERT INTO controle_e_type VALUES ('D4', NULL);
+INSERT INTO controle_e_type VALUES ('N', NULL);
+INSERT INTO controle_e_type VALUES ('L', NULL);
+INSERT INTO controle_e_type VALUES ('L0', NULL);
+INSERT INTO controle_e_type VALUES ('LE1', NULL);
+INSERT INTO controle_e_type VALUES ('LE2', NULL);
+INSERT INTO controle_e_type VALUES ('LE3', NULL);
+INSERT INTO controle_e_type VALUES ('LE4', NULL);
+INSERT INTO controle_e_type VALUES ('LBN', NULL);
+INSERT INTO controle_e_type VALUES ('LP1', NULL);
+INSERT INTO controle_e_type VALUES ('LP2', NULL);
+INSERT INTO controle_e_type VALUES ('LP3', NULL);
+INSERT INTO controle_e_type VALUES ('LP4', NULL);
+INSERT INTO controle_e_type VALUES ('LP5', NULL);
+INSERT INTO controle_e_type VALUES ('LP6', NULL);
+INSERT INTO controle_e_type VALUES ('LP7', NULL);
+INSERT INTO controle_e_type VALUES ('LP8', NULL);
+INSERT INTO controle_e_type VALUES ('LL1', NULL);
+INSERT INTO controle_e_type VALUES ('LL2', NULL);
+INSERT INTO controle_e_type VALUES ('LL3', NULL);
+INSERT INTO controle_e_type VALUES ('NL', NULL);
+INSERT INTO controle_e_type VALUES ('NL0', NULL);
+INSERT INTO controle_e_type VALUES ('NLE1', NULL);
+INSERT INTO controle_e_type VALUES ('NLE2', NULL);
+INSERT INTO controle_e_type VALUES ('NLE3', NULL);
+INSERT INTO controle_e_type VALUES ('NLE4', NULL);
+INSERT INTO controle_e_type VALUES ('NLE5M', NULL);
+INSERT INTO controle_e_type VALUES ('NLE6M', NULL);
+INSERT INTO controle_e_type VALUES ('NLE7M', NULL);
+INSERT INTO controle_e_type VALUES ('NLE5', NULL);
+INSERT INTO controle_e_type VALUES ('NLE6', NULL);
+INSERT INTO controle_e_type VALUES ('NLE7', NULL);
+INSERT INTO controle_e_type VALUES ('NLBN', NULL);
+INSERT INTO controle_e_type VALUES ('EP', NULL);
+INSERT INTO controle_e_type VALUES ('EFB', NULL);
+INSERT INTO controle_e_type VALUES ('NLP', NULL);
+INSERT INTO controle_e_type VALUES ('NLPP1', NULL);
+INSERT INTO controle_e_type VALUES ('NLPP2', NULL);
+INSERT INTO controle_e_type VALUES ('NLPP3', NULL);
+INSERT INTO controle_e_type VALUES ('NLL1', NULL);
+INSERT INTO controle_e_type VALUES ('NLL2', NULL);
+INSERT INTO controle_e_type VALUES ('NLL3', NULL);
+INSERT INTO controle_e_type VALUES ('NLM', NULL);
+INSERT INTO controle_e_type VALUES ('PE', NULL);
+INSERT INTO controle_e_type VALUES ('PEE1', NULL);
+INSERT INTO controle_e_type VALUES ('PEE2', NULL);
+INSERT INTO controle_e_type VALUES ('PEL', NULL);
+INSERT INTO controle_e_type VALUES ('ER', NULL);
+INSERT INTO controle_e_type VALUES ('NLK', NULL);
+INSERT INTO controle_e_type VALUES ('LK', NULL);
+INSERT INTO controle_e_type VALUES ('ETH', NULL);
+INSERT INTO controle_e_type VALUES ('NLBN7', NULL);
+INSERT INTO controle_e_type VALUES ('NLBN6', NULL);
+INSERT INTO controle_e_type VALUES ('NLE', NULL);
+INSERT INTO controle_e_type VALUES ('NLPB', NULL);
 
 
 --
 -- Data for Name: controle_eg_element; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_element (eg_element, description) FROM stdin;
-IA	\N
-IA1	\N
-E	\N
-IA1E1	\N
-IA1E2	\N
-IA1ET	\N
-A	\N
-IA1A5	\N
-IA1A2	\N
-IA1AT	\N
-IA1A3	\N
-IA1A4	\N
-IA1A1	\N
-IA1A6	\N
-IA1B1	\N
-IA1B2	\N
-IA1BT	\N
-IA1B3	\N
-IA1B4	\N
-IA1B5	\N
-IA1B6	\N
-IA1C1	\N
-IA1C2	\N
-IA1CT	\N
-IA1C3	\N
-IA1C4	\N
-IA1C5	\N
-IA1C6	\N
-IA1D1	\N
-IA1D2	\N
-IA1DT	\N
-IA2	\N
-IA2SE1	\N
-IA2SE2	\N
-IA2SET	\N
-IA2SA1	\N
-IA2SA2	\N
-IA2SAT	\N
-IA2SA3	\N
-IA2SA4	\N
-IA2SA5	\N
-IA2SA6	\N
-IA2SB1	\N
-IA2SB2	\N
-IA2SBT	\N
-IA2SB3	\N
-IA2SB4	\N
-IA2SB5	\N
-IA2SB6	\N
-IA2SC1	\N
-IA2SC2	\N
-IA2SCT	\N
-IA2SC3	\N
-IA2SC4	\N
-IA2SC5	\N
-IA2SC6	\N
-IA2SD1	\N
-IA2SD2	\N
-IA2SDT	\N
-A2ME1	\N
-IA2ME2	\N
-IA2MET	\N
-IA2MA1	\N
-IA2MA2	\N
-IA2MAT	\N
-IA2MA3	\N
-IA2MA4	\N
-IA2MA5	\N
-IA2MA6	\N
-IA2MB1	\N
-IA2MB2	\N
-IA2MBT	\N
-IA2MB3	\N
-IA2MB4	\N
-IA2MB5	\N
-IA2MB6	\N
-IA2MC1	\N
-IA2MC2	\N
-IA2MCT	\N
-IA2MC3	\N
-IA2MC	\N
-IA2MC5	\N
-IA2MC6	\N
-IA2MD1	\N
-IA2MD2	\N
-IA2MDT	\N
-IA2MFA1	\N
-IA2MFAT	\N
-IA2MFA3	\N
-IA2MFA5	\N
-IA2MFB1	\N
-IA2MFBT	\N
-IA2MFB3	\N
-IA2MFB5	\N
-IA2MGA1	\N
-IA2MGAT	\N
-IA2MGA3	\N
-IA2MGA5	\N
-IA2MGB1	\N
-IA2MGBT	\N
-IA2MGB3	\N
-IA2MGB5	\N
-IA2MHA1	\N
-IA2MHAT	\N
-IA2MHA3	\N
-IA2MHA5	\N
-IA2MHB1	\N
-IA2MHBT	\N
-IA2MHB3	\N
-IA2MHB5	\N
-IA2MHC1	\N
-IA2MHCT	\N
-IA2MHC3	\N
-IA2MHC5	\N
-\.
+INSERT INTO controle_eg_element VALUES ('IA', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1', NULL);
+INSERT INTO controle_eg_element VALUES ('E', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1E1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1E2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1ET', NULL);
+INSERT INTO controle_eg_element VALUES ('A', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1A5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1A2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1AT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1A3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1A4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1A1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1A6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1B1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1B2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1BT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1B3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1B4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1B5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1B6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1C1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1C2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1CT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1C3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1C4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1C5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1C6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1D1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1D2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA1DT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SE1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SE2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SET', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SA1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SA2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SAT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SA3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SA4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SA5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SA6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SB1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SB2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SBT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SB3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SB4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SB5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SB6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SC1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SC2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SCT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SC3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SC4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SC5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SC6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SD1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SD2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2SDT', NULL);
+INSERT INTO controle_eg_element VALUES ('A2ME1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2ME2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MET', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MA1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MA2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MAT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MA3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MA4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MA5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MA6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MB1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MB2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MBT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MB3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MB4', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MB5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MB6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MC1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MC2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MCT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MC3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MC', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MC5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MC6', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MD1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MD2', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MDT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFA1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFAT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFA3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFA5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFB1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFBT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFB3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MFB5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGA1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGAT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGA3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGA5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGB1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGBT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGB3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MGB5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHA1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHAT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHA3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHA5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHB1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHBT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHB3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHB5', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHC1', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHCT', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHC3', NULL);
+INSERT INTO controle_eg_element VALUES ('IA2MHC5', NULL);
 
 
 --
 -- Data for Name: controle_eg_epaisseur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_epaisseur (eg_epaisseur, description) FROM stdin;
-I	\N
-E	\N
-N	\N
-M	\N
-\.
+INSERT INTO controle_eg_epaisseur VALUES ('I', NULL);
+INSERT INTO controle_eg_epaisseur VALUES ('E', NULL);
+INSERT INTO controle_eg_epaisseur VALUES ('N', NULL);
+INSERT INTO controle_eg_epaisseur VALUES ('M', NULL);
 
 
 --
 -- Data for Name: controle_eg_extremite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_extremite (eg_extremite, description) FROM stdin;
-I	\N
-ATN	\N
-PC	\N
-CR	\N
-COP	\N
-FP	\N
-\.
+INSERT INTO controle_eg_extremite VALUES ('I', NULL);
+INSERT INTO controle_eg_extremite VALUES ('ATN', NULL);
+INSERT INTO controle_eg_extremite VALUES ('PC', NULL);
+INSERT INTO controle_eg_extremite VALUES ('CR', NULL);
+INSERT INTO controle_eg_extremite VALUES ('COP', NULL);
+INSERT INTO controle_eg_extremite VALUES ('FP', NULL);
 
 
 --
 -- Data for Name: controle_eg_longueur_generale; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_longueur_generale (eg_longueur_generale, description) FROM stdin;
-C	\N
-SL	\N
-L	\N
-E	\N
-\.
+INSERT INTO controle_eg_longueur_generale VALUES ('C', NULL);
+INSERT INTO controle_eg_longueur_generale VALUES ('SL', NULL);
+INSERT INTO controle_eg_longueur_generale VALUES ('L', NULL);
+INSERT INTO controle_eg_longueur_generale VALUES ('E', NULL);
 
 
 --
 -- Data for Name: controle_eg_proeminence; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_proeminence (eg_proeminence, description) FROM stdin;
-N	\N
-P	\N
-\.
+INSERT INTO controle_eg_proeminence VALUES ('N', NULL);
+INSERT INTO controle_eg_proeminence VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_eg_profil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_profil (eg_profil, description) FROM stdin;
-P	\N
-CV	\N
-SC	\N
-CC	\N
-S	\N
-\.
+INSERT INTO controle_eg_profil VALUES ('P', NULL);
+INSERT INTO controle_eg_profil VALUES ('CV', NULL);
+INSERT INTO controle_eg_profil VALUES ('SC', NULL);
+INSERT INTO controle_eg_profil VALUES ('CC', NULL);
+INSERT INTO controle_eg_profil VALUES ('S', NULL);
 
 
 --
 -- Data for Name: controle_eg_profondeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_profondeur (eg_profondeur, description) FROM stdin;
-C	\N
-M	\N
-E	\N
-P	\N
-\.
+INSERT INTO controle_eg_profondeur VALUES ('C', NULL);
+INSERT INTO controle_eg_profondeur VALUES ('M', NULL);
+INSERT INTO controle_eg_profondeur VALUES ('E', NULL);
+INSERT INTO controle_eg_profondeur VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_eg_sens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_sens (eg_sens, description) FROM stdin;
-DIR	\N
-INV	\N
-MIX	\N
-MIXAL	\N
-PROFL	\N
-PROFT	\N
-PROFM	\N
-MP	\N
-\.
+INSERT INTO controle_eg_sens VALUES ('DIR', NULL);
+INSERT INTO controle_eg_sens VALUES ('INV', NULL);
+INSERT INTO controle_eg_sens VALUES ('MIX', NULL);
+INSERT INTO controle_eg_sens VALUES ('MIXAL', NULL);
+INSERT INTO controle_eg_sens VALUES ('PROFL', NULL);
+INSERT INTO controle_eg_sens VALUES ('PROFT', NULL);
+INSERT INTO controle_eg_sens VALUES ('PROFM', NULL);
+INSERT INTO controle_eg_sens VALUES ('MP', NULL);
 
 
 --
 -- Data for Name: controle_eg_situation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_situation (eg_situation, description) FROM stdin;
-I	\N
-P	\N
-B	\N
-\.
+INSERT INTO controle_eg_situation VALUES ('I', NULL);
+INSERT INTO controle_eg_situation VALUES ('P', NULL);
+INSERT INTO controle_eg_situation VALUES ('B', NULL);
 
 
 --
 -- Data for Name: controle_eg_support; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_eg_support (eg_support, description) FROM stdin;
-IND	\N
-ANGGPROX	\N
-LATGT	\N
-LATGPROX	\N
-LATGMES	\N
-LATGDIS	\N
-ANGGDIS	\N
-TRDIST	\N
-TRDISG	\N
-TRDISMES	\N
-TRDID	\N
-PTDIS	\N
-ANGDDIS	\N
-LATDT	\N
-LATDPROX	\N
-LATDMES	\N
-LATDDIS	\N
-ANGDPROX	\N
-TRPROXT	\N
-TRPROXG	\N
-TRPROXMES	\N
-TRPROXD	\N
-PTPROX	\N
-\.
+INSERT INTO controle_eg_support VALUES ('IND', NULL);
+INSERT INTO controle_eg_support VALUES ('ANGGPROX', NULL);
+INSERT INTO controle_eg_support VALUES ('LATGT', NULL);
+INSERT INTO controle_eg_support VALUES ('LATGPROX', NULL);
+INSERT INTO controle_eg_support VALUES ('LATGMES', NULL);
+INSERT INTO controle_eg_support VALUES ('LATGDIS', NULL);
+INSERT INTO controle_eg_support VALUES ('ANGGDIS', NULL);
+INSERT INTO controle_eg_support VALUES ('TRDIST', NULL);
+INSERT INTO controle_eg_support VALUES ('TRDISG', NULL);
+INSERT INTO controle_eg_support VALUES ('TRDISMES', NULL);
+INSERT INTO controle_eg_support VALUES ('TRDID', NULL);
+INSERT INTO controle_eg_support VALUES ('PTDIS', NULL);
+INSERT INTO controle_eg_support VALUES ('ANGDDIS', NULL);
+INSERT INTO controle_eg_support VALUES ('LATDT', NULL);
+INSERT INTO controle_eg_support VALUES ('LATDPROX', NULL);
+INSERT INTO controle_eg_support VALUES ('LATDMES', NULL);
+INSERT INTO controle_eg_support VALUES ('LATDDIS', NULL);
+INSERT INTO controle_eg_support VALUES ('ANGDPROX', NULL);
+INSERT INTO controle_eg_support VALUES ('TRPROXT', NULL);
+INSERT INTO controle_eg_support VALUES ('TRPROXG', NULL);
+INSERT INTO controle_eg_support VALUES ('TRPROXMES', NULL);
+INSERT INTO controle_eg_support VALUES ('TRPROXD', NULL);
+INSERT INTO controle_eg_support VALUES ('PTPROX', NULL);
 
 
 --
 -- Data for Name: controle_en_direction; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_en_direction (en_direction, description) FROM stdin;
-C	\N
-L	\N
-L1	\N
-L2	\N
-T	\N
-T1	\N
-T2	\N
-H	\N
-H1	\N
-H2	\N
-P	\N
-\.
+INSERT INTO controle_en_direction VALUES ('C', NULL);
+INSERT INTO controle_en_direction VALUES ('L', NULL);
+INSERT INTO controle_en_direction VALUES ('L1', NULL);
+INSERT INTO controle_en_direction VALUES ('L2', NULL);
+INSERT INTO controle_en_direction VALUES ('T', NULL);
+INSERT INTO controle_en_direction VALUES ('T1', NULL);
+INSERT INTO controle_en_direction VALUES ('T2', NULL);
+INSERT INTO controle_en_direction VALUES ('H', NULL);
+INSERT INTO controle_en_direction VALUES ('H1', NULL);
+INSERT INTO controle_en_direction VALUES ('H2', NULL);
+INSERT INTO controle_en_direction VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_en_dptimpact; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_en_dptimpact (en_dptimpact, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_en_frappe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_en_frappe (en_frappe, description) FROM stdin;
-PFC	\N
-PFF	\N
-PFAR	\N
-PFAE	\N
-\.
+INSERT INTO controle_en_frappe VALUES ('PFC', NULL);
+INSERT INTO controle_en_frappe VALUES ('PFF', NULL);
+INSERT INTO controle_en_frappe VALUES ('PFAR', NULL);
+INSERT INTO controle_en_frappe VALUES ('PFAE', NULL);
 
 
 --
 -- Data for Name: controle_en_inclinaison; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_en_inclinaison (en_inclinaison, description) FROM stdin;
-PAR	\N
-OBL	\N
-PER	\N
-PRO	\N
-\.
+INSERT INTO controle_en_inclinaison VALUES ('PAR', NULL);
+INSERT INTO controle_en_inclinaison VALUES ('OBL', NULL);
+INSERT INTO controle_en_inclinaison VALUES ('PER', NULL);
+INSERT INTO controle_en_inclinaison VALUES ('PRO', NULL);
 
 
 --
 -- Data for Name: controle_en_obliquite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_en_obliquite (en_obliquite, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_en_profondeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_en_profondeur (en_profondeur, description) FROM stdin;
-C	\N
-M	\N
-E	\N
-P	\N
-\.
+INSERT INTO controle_en_profondeur VALUES ('C', NULL);
+INSERT INTO controle_en_profondeur VALUES ('M', NULL);
+INSERT INTO controle_en_profondeur VALUES ('E', NULL);
+INSERT INTO controle_en_profondeur VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_ensemble; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ensemble (ensemble, description) FROM stdin;
-CII	\N
-CIII	\N
-\.
+INSERT INTO controle_ensemble VALUES ('CII', NULL);
+INSERT INTO controle_ensemble VALUES ('CIII', NULL);
 
 
 --
 -- Data for Name: controle_f_affespece; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_affespece (f_affespece, description) FROM stdin;
-AFF	\N
-CONF	\N
-\.
+INSERT INTO controle_f_affespece VALUES ('AFF', NULL);
+INSERT INTO controle_f_affespece VALUES ('CONF', NULL);
 
 
 --
 -- Data for Name: controle_f_affgenre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_affgenre (f_affgenre, description) FROM stdin;
-CONF	\N
-AFF	affinité
-\.
+INSERT INTO controle_f_affgenre VALUES ('CONF', NULL);
+INSERT INTO controle_f_affgenre VALUES ('AFF', 'affinité');
 
 
 --
 -- Data for Name: controle_f_agecl; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_agecl (f_agecl, description) FROM stdin;
-F	FOETUS
-JA	\N
-A	\N
-AA	\N
-ATA	\N
-J	\N
-\.
+INSERT INTO controle_f_agecl VALUES ('F', 'FOETUS');
+INSERT INTO controle_f_agecl VALUES ('JA', NULL);
+INSERT INTO controle_f_agecl VALUES ('A', NULL);
+INSERT INTO controle_f_agecl VALUES ('AA', NULL);
+INSERT INTO controle_f_agecl VALUES ('ATA', NULL);
+INSERT INTO controle_f_agecl VALUES ('J', NULL);
 
 
 --
 -- Data for Name: controle_f_agent; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_agent (f_agent, description) FROM stdin;
-S	STRIE
-L	RACLAGE
-C	CARNIVORE
-P	point impact
-\.
+INSERT INTO controle_f_agent VALUES ('S', 'STRIE');
+INSERT INTO controle_f_agent VALUES ('L', 'RACLAGE');
+INSERT INTO controle_f_agent VALUES ('C', 'CARNIVORE');
+INSERT INTO controle_f_agent VALUES ('P', 'point impact');
 
 
 --
 -- Data for Name: controle_f_agest; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_agest (f_agest, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_ancien_oss; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_ancien_oss (f_ancien_oss, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_association; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_association (f_association, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_calcouleur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_calcouleur (f_calcouleur, description) FROM stdin;
-NOI	\N
-GRI	\N
-MAR	\N
-BLA	\N
-N+M	\N
-BLE	\N
-B+B	\N
-GC	\N
-GF	\N
-G+M	\N
-N+BRR	\N
-BRR	\N
-G+BLA	\N
-G+BLE	\N
-G+N	\N
-G+G	\N
-BRG	\N
-N+BLE	\N
-N+BLA	\N
-N+BRG	\N
-\.
+INSERT INTO controle_f_calcouleur VALUES ('NOI', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('GRI', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('MAR', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('BLA', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('N+M', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('BLE', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('B+B', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('GC', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('GF', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('G+M', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('N+BRR', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('BRR', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('G+BLA', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('G+BLE', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('G+N', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('G+G', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('BRG', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('N+BLE', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('N+BLA', NULL);
+INSERT INTO controle_f_calcouleur VALUES ('N+BRG', NULL);
 
 
 --
 -- Data for Name: controle_f_caltype; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_caltype (f_caltype, description) FROM stdin;
-TOT	\N
-PAR	\N
-\.
+INSERT INTO controle_f_caltype VALUES ('TOT', NULL);
+INSERT INTO controle_f_caltype VALUES ('PAR', NULL);
 
 
 --
 -- Data for Name: controle_f_classe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_classe (f_classe, description) FROM stdin;
-MAMMALIA	\N
-AVES	\N
-REPTILIA	\N
-MOLLUSCA	\N
-AMPHIBIA	\N
-\.
+INSERT INTO controle_f_classe VALUES ('MAMMALIA', NULL);
+INSERT INTO controle_f_classe VALUES ('AVES', NULL);
+INSERT INTO controle_f_classe VALUES ('REPTILIA', NULL);
+INSERT INTO controle_f_classe VALUES ('MOLLUSCA', NULL);
+INSERT INTO controle_f_classe VALUES ('AMPHIBIA', NULL);
 
 
 --
 -- Data for Name: controle_f_complement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_complement (f_complement, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_composite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_composite (f_composite, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_concretion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_concretion (f_concretion, description) FROM stdin;
-P	\N
-.	\N
-Q	\N
-4	\N
-*	\N
-R	\N
-\.
+INSERT INTO controle_f_concretion VALUES ('P', NULL);
+INSERT INTO controle_f_concretion VALUES ('.', NULL);
+INSERT INTO controle_f_concretion VALUES ('Q', NULL);
+INSERT INTO controle_f_concretion VALUES ('4', NULL);
+INSERT INTO controle_f_concretion VALUES ('*', NULL);
+INSERT INTO controle_f_concretion VALUES ('R', NULL);
 
 
 --
 -- Data for Name: controle_f_conservation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_conservation (f_conservation, description) FROM stdin;
-898	\N
-PK	\N
-F01	\N
-P1	\N
-BRU	\N
-DIG	\N
-P2	\N
-R11	\N
-0	\N
-913	\N
-FC1	\N
-P6	\N
-470	\N
-464	\N
-151	\N
-P	\N
-P7	\N
-*	\N
-\.
+INSERT INTO controle_f_conservation VALUES ('898', NULL);
+INSERT INTO controle_f_conservation VALUES ('PK', NULL);
+INSERT INTO controle_f_conservation VALUES ('F01', NULL);
+INSERT INTO controle_f_conservation VALUES ('P1', NULL);
+INSERT INTO controle_f_conservation VALUES ('BRU', NULL);
+INSERT INTO controle_f_conservation VALUES ('DIG', NULL);
+INSERT INTO controle_f_conservation VALUES ('P2', NULL);
+INSERT INTO controle_f_conservation VALUES ('R11', NULL);
+INSERT INTO controle_f_conservation VALUES ('0', NULL);
+INSERT INTO controle_f_conservation VALUES ('913', NULL);
+INSERT INTO controle_f_conservation VALUES ('FC1', NULL);
+INSERT INTO controle_f_conservation VALUES ('P6', NULL);
+INSERT INTO controle_f_conservation VALUES ('470', NULL);
+INSERT INTO controle_f_conservation VALUES ('464', NULL);
+INSERT INTO controle_f_conservation VALUES ('151', NULL);
+INSERT INTO controle_f_conservation VALUES ('P', NULL);
+INSERT INTO controle_f_conservation VALUES ('P7', NULL);
+INSERT INTO controle_f_conservation VALUES ('*', NULL);
 
 
 --
 -- Data for Name: controle_f_coprolithe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_coprolithe (f_coprolithe, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_coraspect; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_coraspect (f_coraspect, description) FROM stdin;
-FIB	\N
-LES	\N
-COM	\N
-CAL	\N
-IND	\N
-\.
+INSERT INTO controle_f_coraspect VALUES ('FIB', NULL);
+INSERT INTO controle_f_coraspect VALUES ('LES', NULL);
+INSERT INTO controle_f_coraspect VALUES ('COM', NULL);
+INSERT INTO controle_f_coraspect VALUES ('CAL', NULL);
+INSERT INTO controle_f_coraspect VALUES ('IND', NULL);
 
 
 --
 -- Data for Name: controle_f_corfissure; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_corfissure (f_corfissure, description) FROM stdin;
-FNOM	\N
-FPEU	\N
-FDIF	\N
-COM	\N
-M	\N
-PNOM	\N
-FPEN	\N
-\.
+INSERT INTO controle_f_corfissure VALUES ('FNOM', NULL);
+INSERT INTO controle_f_corfissure VALUES ('FPEU', NULL);
+INSERT INTO controle_f_corfissure VALUES ('FDIF', NULL);
+INSERT INTO controle_f_corfissure VALUES ('COM', NULL);
+INSERT INTO controle_f_corfissure VALUES ('M', NULL);
+INSERT INTO controle_f_corfissure VALUES ('PNOM', NULL);
+INSERT INTO controle_f_corfissure VALUES ('FPEN', NULL);
 
 
 --
 -- Data for Name: controle_f_couleur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_couleur (f_couleur, description) FROM stdin;
-D	\N
-FIB	\N
-G	\N
-SPO	\N
-M2	\N
-M1	\N
-0	\N
-O	\N
-.	\N
-ORY	\N
-\.
+INSERT INTO controle_f_couleur VALUES ('D', NULL);
+INSERT INTO controle_f_couleur VALUES ('FIB', NULL);
+INSERT INTO controle_f_couleur VALUES ('G', NULL);
+INSERT INTO controle_f_couleur VALUES ('SPO', NULL);
+INSERT INTO controle_f_couleur VALUES ('M2', NULL);
+INSERT INTO controle_f_couleur VALUES ('M1', NULL);
+INSERT INTO controle_f_couleur VALUES ('0', NULL);
+INSERT INTO controle_f_couleur VALUES ('O', NULL);
+INSERT INTO controle_f_couleur VALUES ('.', NULL);
+INSERT INTO controle_f_couleur VALUES ('ORY', NULL);
 
 
 --
 -- Data for Name: controle_f_datation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_datation (f_datation, description) FROM stdin;
-M	\N
-D	\N
-\.
+INSERT INTO controle_f_datation VALUES ('M', NULL);
+INSERT INTO controle_f_datation VALUES ('D', NULL);
 
 
 --
 -- Data for Name: controle_f_description; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_description (f_description, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_dessin; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_dessin (f_dessin, description) FROM stdin;
-0	\N
-18	\N
-1	\N
-39	\N
-9	\N
-10	\N
-12	\N
-11	\N
-17	\N
-2	\N
-51	\N
-61	\N
-43	\N
-19	\N
-4	\N
-\.
+INSERT INTO controle_f_dessin VALUES ('0', NULL);
+INSERT INTO controle_f_dessin VALUES ('18', NULL);
+INSERT INTO controle_f_dessin VALUES ('1', NULL);
+INSERT INTO controle_f_dessin VALUES ('39', NULL);
+INSERT INTO controle_f_dessin VALUES ('9', NULL);
+INSERT INTO controle_f_dessin VALUES ('10', NULL);
+INSERT INTO controle_f_dessin VALUES ('12', NULL);
+INSERT INTO controle_f_dessin VALUES ('11', NULL);
+INSERT INTO controle_f_dessin VALUES ('17', NULL);
+INSERT INTO controle_f_dessin VALUES ('2', NULL);
+INSERT INTO controle_f_dessin VALUES ('51', NULL);
+INSERT INTO controle_f_dessin VALUES ('61', NULL);
+INSERT INTO controle_f_dessin VALUES ('43', NULL);
+INSERT INTO controle_f_dessin VALUES ('19', NULL);
+INSERT INTO controle_f_dessin VALUES ('4', NULL);
 
 
 --
 -- Data for Name: controle_f_eclat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_eclat (f_eclat, description) FROM stdin;
-P	pr�sent
-\.
+INSERT INTO controle_f_eclat VALUES ('P', 'pr�sent');
 
 
 --
 -- Data for Name: controle_f_espece; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_espece (f_espece, description) FROM stdin;
-LIVIA	\N
-ASPIS	\N
-BERUS	\N
-URSINI	\N
-GIRONDICA	\N
-AUSTRIACA	\N
-VIRIDIFLAVUS	\N
-SCALARIS	\N
-LONGISSIMA	\N
-FRAGILIS	\N
-LEPIDA	\N
-VIRIDIS	\N
-ERYTHROPUS	\N
-AGRESTIS	\N
-SP	\N
-GLAREOLUS	\N
-GLIS	\N
-QUERCINUS	\N
-CRICETUS	\N
-AVELLANARIUS	\N
-MALEI-OECONOMUS	\N
-LAGURUS	\N
-NIVALIS	\N
-GRACULUS	\N
-GREGALIS	\N
-GLANDARIUS	\N
-PUNCTATUS	\N
-CHRYSAETOS	\N
-ALUCO	\N
-SCOPS	\N
-OTUS	\N
-FUNEREUS	\N
-NOCTUA	\N
-FLAMMEUS	\N
-BUBO	\N
-FASCIATUS	\N
-CYANEUS	\N
-SUBBUTEO	\N
-BUTEO	\N
-TINNUNCULUS	\N
-VESPERTINUS	\N
-MONACHUS	\N
-BARBATUS	\N
-ELEONARAE	\N
-MACROURUS	\N
-COTURNIX	\N
-CALAMITA	\N
-BUFO	\N
-MONEDULA	\N
-PYRRHOCORAX	\N
-GRAECA	\N
-TEMPORARIA	\N
-PALAEOPERDIX	\N
-CORAX	\N
-VISCIVORUS	\N
-PICA	\N
-MERULA	\N
-CANORUS	\N
-ARVENSIS	\N
-PALUMBUS	\N
-OENAS	\N
-CREX	\N
-SCANDIACA	\N
-CHLORIS	\N
-CF.FLAVA	\N
-AQUATICUS	\N
-ALBICOLLIS	\N
-CARYOCATACTES	\N
-CF.VISCIVORUS	\N
-CALANDRA	\N
-RUSTICA	\N
-CF.OENAS	\N
-CF.PALUMBUS	\N
-HYBRIDA	\N
-COLUMBARIUS	\N
-ALBICILLA	\N
-STAGNATILIS	\N
-RUSTICOLA	\N
-CF.HIRUNDO	\N
-ARCTICA	\N
-AALGE/LOMVIA	\N
-SQUATAROLA	\N
-DUBIUS	\N
-CF. CANUS	\N
-PETRONIA	\N
-HISPANICA	\N
-PHOENICURUS	\N
-RUBECULA	\N
-URBICA	\N
-CINCLUS	\N
-PYTYOPSITTACUS	\N
-COCCOTHRAUSTES	\N
-ENUCLEATOR	\N
-PYRRHULA	\N
-ERYTHRINUS	\N
-COELEBS	\N
-HORTULANA	\N
-ALBA	\N
-PRATENSIS	\N
-VULGARIS	\N
-CORONE	\N
-ILIACUS	\N
-ARBOREA	\N
-CUITATA	\N
-CRISTATA	\N
-PILARIS	\N
-APUS	\N
-DAURICO	\N
-GALLUS	\N
-PALLIDUS	\N
-MELBA	\N
-MAJOR	\N
-MINOR	\N
-MEDIUS	\N
-MARILA	\N
-CLYPEATA	\N
-CF. ACUTA	\N
-CLANGULA	\N
-PARETI	\N
-NICIENSIS	\N
-CUNICULUS	\N
-SIMILIS	\N
-ELEGANS	\N
-UNIFASCIATA	\N
-OBVOLUTA	\N
-DECOLATTA	\N
-BIDENTATA	\N
-CESPITUM	\N
-GIGAXI	\N
-CANDIDISSIMA	\N
-ELAPHUS	\N
-AVENACEA	\N
-TRIPLICATA	\N
-PURA	\N
-RUGOSIUSCULA	\N
-ACICULA	\N
-EUROPEA	\N
-DEPRESSUS	\N
-ACICULOIDES	\N
-QUADRIDENS	\N
-SECALE	\N
-GEYERI	\N
-CANTIANA	\N
-CABALLUS	\N
-IBEX	\N
-CAPREOLUS	\N
-ANTIQUUS	\N
-LATREILLI	\N
-RETICULATUM	\N
-LUPUS	\N
-PRISCUS	\N
-SPELAEA	\N
-VULPES	\N
-SYLVATICUS	\N
-TARANDUS	\N
-PRIMIGENIUS	\N
-RUPICAPRA	\N
-ANTIQUITATIS	\N
-TERRESTRIS	\N
-LENKI	\N
-BRECCIENSIS	\N
-ARVALIS	\N
-NORVEGICUS	\N
-MUSCULUS	\N
-BORONENSIS	\N
-EUROPAEA	\N
-MINUTUS	\N
-FODIENS	\N
-HIPPOSIDEROS	\N
-SCHREIBERSI	\N
-BARBASTELLUS	\N
-DAMA	\N
-MYOTIS	\N
-PARDUS	\N
-ARCTOS	\N
-SPELAEUS	\N
-MELES	\N
-SILVESTRIS	\N
-OEDICNEMUS	\N
-NERITOIDES	\N
-SAXATILIS	\N
-FABALIS	\N
-CRUCIATUS	\N
-CORALLINUS	\N
-STRIATUS	\N
-EXASPERATUS	\N
-SANGUINEUM	\N
-FERRUGINEA	\N
-VULGATUM	\N
-CALYCULATA	\N
-COMMUNIS	\N
-NATRIX	\N
-DONOVANIA	\N
-SCABRIDA	\N
-VARIABILIS	\N
-TORQUATUS	\N
-PERDIX	\N
-MUSICUS	\N
-TETRIX	\N
-ARVALIS-AGRESTIS	\N
-DUODECIMCOSTATUS	\N
-ESCULENTA	\N
-MONTAGUI	\N
-ZIZYPHINUM	\N
-DISCORS	\N
-ALUCASTER	\N
-CRISTATUS	\N
-EDULIS	\N
-APERTUS	\N
-TRUNCATULA	\N
-VERMICULATA	\N
-VARIA	\N
-CAERULEA	\N
-ULYSSIPONENSIS	\N
-NOAE	\N
-TUBERCULATA	\N
-\.
+INSERT INTO controle_f_espece VALUES ('LIVIA', NULL);
+INSERT INTO controle_f_espece VALUES ('ASPIS', NULL);
+INSERT INTO controle_f_espece VALUES ('BERUS', NULL);
+INSERT INTO controle_f_espece VALUES ('URSINI', NULL);
+INSERT INTO controle_f_espece VALUES ('GIRONDICA', NULL);
+INSERT INTO controle_f_espece VALUES ('AUSTRIACA', NULL);
+INSERT INTO controle_f_espece VALUES ('VIRIDIFLAVUS', NULL);
+INSERT INTO controle_f_espece VALUES ('SCALARIS', NULL);
+INSERT INTO controle_f_espece VALUES ('LONGISSIMA', NULL);
+INSERT INTO controle_f_espece VALUES ('FRAGILIS', NULL);
+INSERT INTO controle_f_espece VALUES ('LEPIDA', NULL);
+INSERT INTO controle_f_espece VALUES ('VIRIDIS', NULL);
+INSERT INTO controle_f_espece VALUES ('ERYTHROPUS', NULL);
+INSERT INTO controle_f_espece VALUES ('AGRESTIS', NULL);
+INSERT INTO controle_f_espece VALUES ('SP', NULL);
+INSERT INTO controle_f_espece VALUES ('GLAREOLUS', NULL);
+INSERT INTO controle_f_espece VALUES ('GLIS', NULL);
+INSERT INTO controle_f_espece VALUES ('QUERCINUS', NULL);
+INSERT INTO controle_f_espece VALUES ('CRICETUS', NULL);
+INSERT INTO controle_f_espece VALUES ('AVELLANARIUS', NULL);
+INSERT INTO controle_f_espece VALUES ('MALEI-OECONOMUS', NULL);
+INSERT INTO controle_f_espece VALUES ('LAGURUS', NULL);
+INSERT INTO controle_f_espece VALUES ('NIVALIS', NULL);
+INSERT INTO controle_f_espece VALUES ('GRACULUS', NULL);
+INSERT INTO controle_f_espece VALUES ('GREGALIS', NULL);
+INSERT INTO controle_f_espece VALUES ('GLANDARIUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PUNCTATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('CHRYSAETOS', NULL);
+INSERT INTO controle_f_espece VALUES ('ALUCO', NULL);
+INSERT INTO controle_f_espece VALUES ('SCOPS', NULL);
+INSERT INTO controle_f_espece VALUES ('OTUS', NULL);
+INSERT INTO controle_f_espece VALUES ('FUNEREUS', NULL);
+INSERT INTO controle_f_espece VALUES ('NOCTUA', NULL);
+INSERT INTO controle_f_espece VALUES ('FLAMMEUS', NULL);
+INSERT INTO controle_f_espece VALUES ('BUBO', NULL);
+INSERT INTO controle_f_espece VALUES ('FASCIATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('CYANEUS', NULL);
+INSERT INTO controle_f_espece VALUES ('SUBBUTEO', NULL);
+INSERT INTO controle_f_espece VALUES ('BUTEO', NULL);
+INSERT INTO controle_f_espece VALUES ('TINNUNCULUS', NULL);
+INSERT INTO controle_f_espece VALUES ('VESPERTINUS', NULL);
+INSERT INTO controle_f_espece VALUES ('MONACHUS', NULL);
+INSERT INTO controle_f_espece VALUES ('BARBATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ELEONARAE', NULL);
+INSERT INTO controle_f_espece VALUES ('MACROURUS', NULL);
+INSERT INTO controle_f_espece VALUES ('COTURNIX', NULL);
+INSERT INTO controle_f_espece VALUES ('CALAMITA', NULL);
+INSERT INTO controle_f_espece VALUES ('BUFO', NULL);
+INSERT INTO controle_f_espece VALUES ('MONEDULA', NULL);
+INSERT INTO controle_f_espece VALUES ('PYRRHOCORAX', NULL);
+INSERT INTO controle_f_espece VALUES ('GRAECA', NULL);
+INSERT INTO controle_f_espece VALUES ('TEMPORARIA', NULL);
+INSERT INTO controle_f_espece VALUES ('PALAEOPERDIX', NULL);
+INSERT INTO controle_f_espece VALUES ('CORAX', NULL);
+INSERT INTO controle_f_espece VALUES ('VISCIVORUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PICA', NULL);
+INSERT INTO controle_f_espece VALUES ('MERULA', NULL);
+INSERT INTO controle_f_espece VALUES ('CANORUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ARVENSIS', NULL);
+INSERT INTO controle_f_espece VALUES ('PALUMBUS', NULL);
+INSERT INTO controle_f_espece VALUES ('OENAS', NULL);
+INSERT INTO controle_f_espece VALUES ('CREX', NULL);
+INSERT INTO controle_f_espece VALUES ('SCANDIACA', NULL);
+INSERT INTO controle_f_espece VALUES ('CHLORIS', NULL);
+INSERT INTO controle_f_espece VALUES ('CF.FLAVA', NULL);
+INSERT INTO controle_f_espece VALUES ('AQUATICUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ALBICOLLIS', NULL);
+INSERT INTO controle_f_espece VALUES ('CARYOCATACTES', NULL);
+INSERT INTO controle_f_espece VALUES ('CF.VISCIVORUS', NULL);
+INSERT INTO controle_f_espece VALUES ('CALANDRA', NULL);
+INSERT INTO controle_f_espece VALUES ('RUSTICA', NULL);
+INSERT INTO controle_f_espece VALUES ('CF.OENAS', NULL);
+INSERT INTO controle_f_espece VALUES ('CF.PALUMBUS', NULL);
+INSERT INTO controle_f_espece VALUES ('HYBRIDA', NULL);
+INSERT INTO controle_f_espece VALUES ('COLUMBARIUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ALBICILLA', NULL);
+INSERT INTO controle_f_espece VALUES ('STAGNATILIS', NULL);
+INSERT INTO controle_f_espece VALUES ('RUSTICOLA', NULL);
+INSERT INTO controle_f_espece VALUES ('CF.HIRUNDO', NULL);
+INSERT INTO controle_f_espece VALUES ('ARCTICA', NULL);
+INSERT INTO controle_f_espece VALUES ('AALGE/LOMVIA', NULL);
+INSERT INTO controle_f_espece VALUES ('SQUATAROLA', NULL);
+INSERT INTO controle_f_espece VALUES ('DUBIUS', NULL);
+INSERT INTO controle_f_espece VALUES ('CF. CANUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PETRONIA', NULL);
+INSERT INTO controle_f_espece VALUES ('HISPANICA', NULL);
+INSERT INTO controle_f_espece VALUES ('PHOENICURUS', NULL);
+INSERT INTO controle_f_espece VALUES ('RUBECULA', NULL);
+INSERT INTO controle_f_espece VALUES ('URBICA', NULL);
+INSERT INTO controle_f_espece VALUES ('CINCLUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PYTYOPSITTACUS', NULL);
+INSERT INTO controle_f_espece VALUES ('COCCOTHRAUSTES', NULL);
+INSERT INTO controle_f_espece VALUES ('ENUCLEATOR', NULL);
+INSERT INTO controle_f_espece VALUES ('PYRRHULA', NULL);
+INSERT INTO controle_f_espece VALUES ('ERYTHRINUS', NULL);
+INSERT INTO controle_f_espece VALUES ('COELEBS', NULL);
+INSERT INTO controle_f_espece VALUES ('HORTULANA', NULL);
+INSERT INTO controle_f_espece VALUES ('ALBA', NULL);
+INSERT INTO controle_f_espece VALUES ('PRATENSIS', NULL);
+INSERT INTO controle_f_espece VALUES ('VULGARIS', NULL);
+INSERT INTO controle_f_espece VALUES ('CORONE', NULL);
+INSERT INTO controle_f_espece VALUES ('ILIACUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ARBOREA', NULL);
+INSERT INTO controle_f_espece VALUES ('CUITATA', NULL);
+INSERT INTO controle_f_espece VALUES ('CRISTATA', NULL);
+INSERT INTO controle_f_espece VALUES ('PILARIS', NULL);
+INSERT INTO controle_f_espece VALUES ('APUS', NULL);
+INSERT INTO controle_f_espece VALUES ('DAURICO', NULL);
+INSERT INTO controle_f_espece VALUES ('GALLUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PALLIDUS', NULL);
+INSERT INTO controle_f_espece VALUES ('MELBA', NULL);
+INSERT INTO controle_f_espece VALUES ('MAJOR', NULL);
+INSERT INTO controle_f_espece VALUES ('MINOR', NULL);
+INSERT INTO controle_f_espece VALUES ('MEDIUS', NULL);
+INSERT INTO controle_f_espece VALUES ('MARILA', NULL);
+INSERT INTO controle_f_espece VALUES ('CLYPEATA', NULL);
+INSERT INTO controle_f_espece VALUES ('CF. ACUTA', NULL);
+INSERT INTO controle_f_espece VALUES ('CLANGULA', NULL);
+INSERT INTO controle_f_espece VALUES ('PARETI', NULL);
+INSERT INTO controle_f_espece VALUES ('NICIENSIS', NULL);
+INSERT INTO controle_f_espece VALUES ('CUNICULUS', NULL);
+INSERT INTO controle_f_espece VALUES ('SIMILIS', NULL);
+INSERT INTO controle_f_espece VALUES ('ELEGANS', NULL);
+INSERT INTO controle_f_espece VALUES ('UNIFASCIATA', NULL);
+INSERT INTO controle_f_espece VALUES ('OBVOLUTA', NULL);
+INSERT INTO controle_f_espece VALUES ('DECOLATTA', NULL);
+INSERT INTO controle_f_espece VALUES ('BIDENTATA', NULL);
+INSERT INTO controle_f_espece VALUES ('CESPITUM', NULL);
+INSERT INTO controle_f_espece VALUES ('GIGAXI', NULL);
+INSERT INTO controle_f_espece VALUES ('CANDIDISSIMA', NULL);
+INSERT INTO controle_f_espece VALUES ('ELAPHUS', NULL);
+INSERT INTO controle_f_espece VALUES ('AVENACEA', NULL);
+INSERT INTO controle_f_espece VALUES ('TRIPLICATA', NULL);
+INSERT INTO controle_f_espece VALUES ('PURA', NULL);
+INSERT INTO controle_f_espece VALUES ('RUGOSIUSCULA', NULL);
+INSERT INTO controle_f_espece VALUES ('ACICULA', NULL);
+INSERT INTO controle_f_espece VALUES ('EUROPEA', NULL);
+INSERT INTO controle_f_espece VALUES ('DEPRESSUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ACICULOIDES', NULL);
+INSERT INTO controle_f_espece VALUES ('QUADRIDENS', NULL);
+INSERT INTO controle_f_espece VALUES ('SECALE', NULL);
+INSERT INTO controle_f_espece VALUES ('GEYERI', NULL);
+INSERT INTO controle_f_espece VALUES ('CANTIANA', NULL);
+INSERT INTO controle_f_espece VALUES ('CABALLUS', NULL);
+INSERT INTO controle_f_espece VALUES ('IBEX', NULL);
+INSERT INTO controle_f_espece VALUES ('CAPREOLUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ANTIQUUS', NULL);
+INSERT INTO controle_f_espece VALUES ('LATREILLI', NULL);
+INSERT INTO controle_f_espece VALUES ('RETICULATUM', NULL);
+INSERT INTO controle_f_espece VALUES ('LUPUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PRISCUS', NULL);
+INSERT INTO controle_f_espece VALUES ('SPELAEA', NULL);
+INSERT INTO controle_f_espece VALUES ('VULPES', NULL);
+INSERT INTO controle_f_espece VALUES ('SYLVATICUS', NULL);
+INSERT INTO controle_f_espece VALUES ('TARANDUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PRIMIGENIUS', NULL);
+INSERT INTO controle_f_espece VALUES ('RUPICAPRA', NULL);
+INSERT INTO controle_f_espece VALUES ('ANTIQUITATIS', NULL);
+INSERT INTO controle_f_espece VALUES ('TERRESTRIS', NULL);
+INSERT INTO controle_f_espece VALUES ('LENKI', NULL);
+INSERT INTO controle_f_espece VALUES ('BRECCIENSIS', NULL);
+INSERT INTO controle_f_espece VALUES ('ARVALIS', NULL);
+INSERT INTO controle_f_espece VALUES ('NORVEGICUS', NULL);
+INSERT INTO controle_f_espece VALUES ('MUSCULUS', NULL);
+INSERT INTO controle_f_espece VALUES ('BORONENSIS', NULL);
+INSERT INTO controle_f_espece VALUES ('EUROPAEA', NULL);
+INSERT INTO controle_f_espece VALUES ('MINUTUS', NULL);
+INSERT INTO controle_f_espece VALUES ('FODIENS', NULL);
+INSERT INTO controle_f_espece VALUES ('HIPPOSIDEROS', NULL);
+INSERT INTO controle_f_espece VALUES ('SCHREIBERSI', NULL);
+INSERT INTO controle_f_espece VALUES ('BARBASTELLUS', NULL);
+INSERT INTO controle_f_espece VALUES ('DAMA', NULL);
+INSERT INTO controle_f_espece VALUES ('MYOTIS', NULL);
+INSERT INTO controle_f_espece VALUES ('PARDUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ARCTOS', NULL);
+INSERT INTO controle_f_espece VALUES ('SPELAEUS', NULL);
+INSERT INTO controle_f_espece VALUES ('MELES', NULL);
+INSERT INTO controle_f_espece VALUES ('SILVESTRIS', NULL);
+INSERT INTO controle_f_espece VALUES ('OEDICNEMUS', NULL);
+INSERT INTO controle_f_espece VALUES ('NERITOIDES', NULL);
+INSERT INTO controle_f_espece VALUES ('SAXATILIS', NULL);
+INSERT INTO controle_f_espece VALUES ('FABALIS', NULL);
+INSERT INTO controle_f_espece VALUES ('CRUCIATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('CORALLINUS', NULL);
+INSERT INTO controle_f_espece VALUES ('STRIATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('EXASPERATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('SANGUINEUM', NULL);
+INSERT INTO controle_f_espece VALUES ('FERRUGINEA', NULL);
+INSERT INTO controle_f_espece VALUES ('VULGATUM', NULL);
+INSERT INTO controle_f_espece VALUES ('CALYCULATA', NULL);
+INSERT INTO controle_f_espece VALUES ('COMMUNIS', NULL);
+INSERT INTO controle_f_espece VALUES ('NATRIX', NULL);
+INSERT INTO controle_f_espece VALUES ('DONOVANIA', NULL);
+INSERT INTO controle_f_espece VALUES ('SCABRIDA', NULL);
+INSERT INTO controle_f_espece VALUES ('VARIABILIS', NULL);
+INSERT INTO controle_f_espece VALUES ('TORQUATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('PERDIX', NULL);
+INSERT INTO controle_f_espece VALUES ('MUSICUS', NULL);
+INSERT INTO controle_f_espece VALUES ('TETRIX', NULL);
+INSERT INTO controle_f_espece VALUES ('ARVALIS-AGRESTIS', NULL);
+INSERT INTO controle_f_espece VALUES ('DUODECIMCOSTATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('ESCULENTA', NULL);
+INSERT INTO controle_f_espece VALUES ('MONTAGUI', NULL);
+INSERT INTO controle_f_espece VALUES ('ZIZYPHINUM', NULL);
+INSERT INTO controle_f_espece VALUES ('DISCORS', NULL);
+INSERT INTO controle_f_espece VALUES ('ALUCASTER', NULL);
+INSERT INTO controle_f_espece VALUES ('CRISTATUS', NULL);
+INSERT INTO controle_f_espece VALUES ('EDULIS', NULL);
+INSERT INTO controle_f_espece VALUES ('APERTUS', NULL);
+INSERT INTO controle_f_espece VALUES ('TRUNCATULA', NULL);
+INSERT INTO controle_f_espece VALUES ('VERMICULATA', NULL);
+INSERT INTO controle_f_espece VALUES ('VARIA', NULL);
+INSERT INTO controle_f_espece VALUES ('CAERULEA', NULL);
+INSERT INTO controle_f_espece VALUES ('ULYSSIPONENSIS', NULL);
+INSERT INTO controle_f_espece VALUES ('NOAE', NULL);
+INSERT INTO controle_f_espece VALUES ('TUBERCULATA', NULL);
 
 
 --
 -- Data for Name: controle_f_famille; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_famille (f_famille, description) FROM stdin;
-COLUMBIDAE	\N
-VIPERIDAE	\N
-COLUBRIDAE	\N
-ANGUIDAE	\N
-LACERTIDAE	\N
-SCOLOPACIDAE	\N
-ARVICOLIDAE	\N
-MURIDAE	\N
-GLIRIDAE	\N
-CRICETIDAE	\N
-CORVIDAE	\N
-PELODYTIDAE	\N
-HYLIDAE	\N
-BUFONIDAE	\N
-ACCIPITRIDAE	\N
-STRIGIDAE	\N
-FALCONIDAE	\N
-PHASIANIDAE	\N
-RANIDAE	\N
-TURDIDAE	\N
-CUCULIDAE	\N
-ALAUDIDAE	\N
-RALLIDAE	\N
-FRINGILLIDAE	\N
-MOTACILLIDAE	\N
-MUSCICAPIDAE	\N
-EMBERIZIDAE	\N
-HIRUNDINIDAE	\N
-STERNIDAE	\N
-ALCIDAE	\N
-CHARADRIIDAE	\N
-LARIDAE	\N
-PASSERIDAE	\N
-CINCLIDAE	\N
-STURNIDAE	\N
-APODIDAE	\N
-GALLINACAE	\N
-PICIDAE	\N
-ANATIDAE	\N
-HELICIDAE	\N
-LEPORIDAE	\N
-CHONDRINIDAE	\N
-POMATIIDAE	\N
-ZONITIDAE	\N
-CERVIDAE	\N
-PUPILLIDAE	\N
-FERUSSACIIDAE	\N
-TESTACELLIDAE	\N
-BOVIDAE	\N
-EQUIDAE	\N
-ELEPHANTIDAE	\N
-SYLVIDAE	\N
-MONTICILLIDAE	\N
-LANIIDAE	\N
-LUCINIDAE	\N
-LIMIDAE	\N
-CHAMIDAE	\N
-VENERIDAE	\N
-PRUNELLIDAE	\N
-CAPRIMULGIDAE	\N
-CORACIIDAE	\N
-TETRAONIDAE	\N
-TROGLODYTIDAE	\N
-PASSERIFORMA	\N
-SALAMANDRIDAE	\N
-CANIDAE	\N
-LITTORINIDAE	\N
-TURBINIDAE	\N
-PATELLIDAE	\N
-COLUMBELLIDAE	\N
-COLLONIDAE	\N
-CHIAMYS	\N
-ARCIDAE	\N
-TONNIDAE	\N
-MURICIDAE	\N
-TRIVIIDAE	\N
-CERITTHIM	\N
-FISSURELLIDAE	\N
-MITRIDAE	\N
-CYPRAEIDAE	\N
-SPONDYLIDAE	\N
-FELIDAE	\N
-OSTREIDAE	\N
-NEOTAENOGLOSSA	\N
-SUIDAE	\N
-RHINOCEROTIDAE	\N
-URSIDAE	\N
-OSD	\N
-PEPORIDAE	\N
-SCIURIDAE	\N
-TALPIDAE	\N
-MAMMIFERES	\N
-DE	\N
-GEKKONIDAE	\N
-PROCELLARIIDAE	\N
-HOMINIDAE	\N
-PELOBATIDAE	\N
-DIPODIDAE	\N
-SORICIDAE	\N
-RHINOLOPHIDAE	\N
-MUSTELIDAE	\N
-BURHINIDAE	\N
-CERCOPITHECIDAE	\N
-PONGIDAE	\N
-ERINACEIDAE	\N
-MOLOSSIDAE	\N
-VESPERTILIONIDAE	\N
-SPALACIDAE	\N
-CASTORIDAE	\N
-CAPROMYIDAE	\N
-HYSTRICIDAE	\N
-HYDROCHOERIDAE	\N
-LAGOMYIDAE	\N
-AILURIDAE	\N
-VIVERRIDAE	\N
-HYAENIDAE	\N
-ODOBAENIDAE	\N
-PHOCIDAE	\N
-HIPPOPOTAMIDAE	\N
-CAMELIDAE	\N
-GIRAFFIDAE	\N
-ANTILOCAPRIDAE	\N
-TAPIRIDAE	\N
-GOMPHOTERIIDAE	\N
-DELPHINIDAE	\N
-PHOCAENIDAE	\N
-MONODONLIDAE	\N
-PHYSETERIDAE	\N
-ZIPHIIDAE	\N
-BALAONOPTERIDAE	\N
-BALAENIDAE	\N
-GAVIIDAE	\N
-PODICIPEDIDAE	\N
-DIOMEDEIDAE	\N
-HYDROBATIDAE	\N
-SULIDAE	\N
-PELECANIDAE	\N
-PHALACROCORACIDAE	\N
-ARDEIDAE	\N
-THRESKIORNITHIDAE	\N
-CICONIIDAE	\N
-PHOENICOPTERIDAE	\N
-PANDIODIDAE	\N
-TURNICIDAE	\N
-GRUIDAE	\N
-OTITIDAE	\N
-PTEROCLIDIDAE	\N
-TYTONIDAE	\N
-ALCEDINIDAE	\N
-MEROPIDAE	\N
-UPUPIDAE	\N
-HAEMATOPODIDAE	\N
-PHALAROPIDAE	\N
-STERCORIIDAE	\N
-RECURVIROSTRIDAE	\N
-GLAREOLIDAE	\N
-ORIOLIDAE	\N
-BOMBYCILLIDAE	\N
-PARIDAE	\N
-AEGITHALIDAE	\N
-TIMALIIDAE	\N
-REMIZIDAE	\N
-SITTIDAE	\N
-TICHODROMADIDAE	\N
-TESTUDINIDAE	\N
-EMYDIDAE	\N
-DERMOCHELYDAE	\N
-CHELONIDAE	\N
-AMPHISBAENIDAE	\N
-GECKONIDAE	\N
-AGAMIDAE	\N
-CHAMELEONTIDAE	\N
-CARDITIDAE	\N
-ACANTHOCHITONIDAE	\N
-BARLEEIDAE	\N
-BUCCINIDAE	\N
-CERITHIOPSIDAE	\N
-MARGINELLIDAE	\N
-TRIPHORIDAE	\N
-CERITHIIDAE	\N
-SCINCIDAE	\N
-TURRITELLIDAE	\N
-RISSOIDAE	\N
-TYPHLOPIDAE	\N
-BOIDAE	\N
-TRIVIDAE	\N
-NASSARIIDAE	\N
-COSTELLARIIDAE	\N
-TURRIDAE	\N
-CLAUSILIIDAE	\N
-SUBULINIDAE	\N
-SUCCINEIDAE	\N
-DISCIDAE	\N
-HYGROMIIDAE	\N
-LIMACIDAE	\N
-PLETHODONTIDAE	\N
-PROTEIDAE	\N
-DISCOGLOSSIDAE	\N
-SERPENTES	\N
-BULIMINIDAE	\N
-RISSOINIDAE	\N
-FASCIOLARIIDAE	\N
-MYTILIDAE	\N
-ARGNIDAE	\N
-LYMNAEIDAE	\N
-SPHINCTEROCHILIDAE	\N
-HELICODONTIAE	\N
-ACICULIDAE	\N
-PECTINIDAE	\N
-VERMETIDAE	\N
-PHASIANELLIDAE	\N
-TROCHIDAE	\N
-NOETIIDAE	\N
-\.
+INSERT INTO controle_f_famille VALUES ('COLUMBIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('VIPERIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('COLUBRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ANGUIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LACERTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SCOLOPACIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ARVICOLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MURIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GLIRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CRICETIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CORVIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PELODYTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HYLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BUFONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ACCIPITRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('STRIGIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('FALCONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHASIANIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('RANIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TURDIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CUCULIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ALAUDIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('RALLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('FRINGILLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MOTACILLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MUSCICAPIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('EMBERIZIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HIRUNDINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('STERNIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ALCIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CHARADRIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LARIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PASSERIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CINCLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('STURNIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('APODIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GALLINACAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PICIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ANATIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HELICIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LEPORIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CHONDRINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('POMATIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ZONITIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CERVIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PUPILLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('FERUSSACIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TESTACELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BOVIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('EQUIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ELEPHANTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SYLVIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MONTICILLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LANIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LUCINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LIMIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CHAMIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('VENERIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PRUNELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CAPRIMULGIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CORACIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TETRAONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TROGLODYTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PASSERIFORMA', NULL);
+INSERT INTO controle_f_famille VALUES ('SALAMANDRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CANIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LITTORINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TURBINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PATELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('COLUMBELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('COLLONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CHIAMYS', NULL);
+INSERT INTO controle_f_famille VALUES ('ARCIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TONNIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MURICIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TRIVIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CERITTHIM', NULL);
+INSERT INTO controle_f_famille VALUES ('FISSURELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MITRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CYPRAEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SPONDYLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('FELIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('OSTREIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('NEOTAENOGLOSSA', NULL);
+INSERT INTO controle_f_famille VALUES ('SUIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('RHINOCEROTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('URSIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('OSD', NULL);
+INSERT INTO controle_f_famille VALUES ('PEPORIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SCIURIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TALPIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MAMMIFERES', NULL);
+INSERT INTO controle_f_famille VALUES ('DE', NULL);
+INSERT INTO controle_f_famille VALUES ('GEKKONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PROCELLARIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HOMINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PELOBATIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('DIPODIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SORICIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('RHINOLOPHIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MUSTELIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BURHINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CERCOPITHECIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PONGIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ERINACEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MOLOSSIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('VESPERTILIONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SPALACIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CASTORIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CAPROMYIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HYSTRICIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HYDROCHOERIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LAGOMYIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('AILURIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('VIVERRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HYAENIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ODOBAENIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHOCIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HIPPOPOTAMIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CAMELIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GIRAFFIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ANTILOCAPRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TAPIRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GOMPHOTERIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('DELPHINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHOCAENIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MONODONLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHYSETERIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ZIPHIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BALAONOPTERIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BALAENIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GAVIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PODICIPEDIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('DIOMEDEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HYDROBATIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SULIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PELECANIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHALACROCORACIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ARDEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('THRESKIORNITHIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CICONIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHOENICOPTERIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PANDIODIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TURNICIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GRUIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('OTITIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PTEROCLIDIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TYTONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ALCEDINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MEROPIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('UPUPIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HAEMATOPODIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHALAROPIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('STERCORIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('RECURVIROSTRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GLAREOLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ORIOLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BOMBYCILLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PARIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('AEGITHALIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TIMALIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('REMIZIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SITTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TICHODROMADIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TESTUDINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('EMYDIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('DERMOCHELYDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CHELONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('AMPHISBAENIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('GECKONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('AGAMIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CHAMELEONTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CARDITIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ACANTHOCHITONIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BARLEEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BUCCINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CERITHIOPSIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MARGINELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TRIPHORIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CERITHIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SCINCIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TURRITELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('RISSOIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TYPHLOPIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('BOIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TRIVIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('NASSARIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('COSTELLARIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TURRIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('CLAUSILIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SUBULINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SUCCINEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('DISCIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HYGROMIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LIMACIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PLETHODONTIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PROTEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('DISCOGLOSSIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SERPENTES', NULL);
+INSERT INTO controle_f_famille VALUES ('BULIMINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('RISSOINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('FASCIOLARIIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('MYTILIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ARGNIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('LYMNAEIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('SPHINCTEROCHILIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('HELICODONTIAE', NULL);
+INSERT INTO controle_f_famille VALUES ('ACICULIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PECTINIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('VERMETIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('PHASIANELLIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('TROCHIDAE', NULL);
+INSERT INTO controle_f_famille VALUES ('NOETIIDAE', NULL);
 
 
 --
 -- Data for Name: controle_f_fossilisation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_fossilisation (f_fossilisation, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_fragde; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_fragde (f_fragde, description) FROM stdin;
-DEF6	\N
-FEE	\N
-CODIE	\N
-CMCD	\N
-TITD	\N
-SCP	\N
-MDDDM2M3	\N
-HUD	\N
-MDS36	\N
-CADS27	\N
-MTP	\N
-MCE	\N
-MCP	\N
-PHE	\N
-MDS11	\N
-HUP	\N
-FEM	\N
-CRF	\N
-HUE	\N
-TIFE	\N
-CSSCF	\N
-MDDDP2P3P4M1M2	\N
-DEE3	\N
-HDS1	\N
-TIDS4	\N
-MX-P3-P4-M1-M2	\N
-TAE	\N
-FED	\N
-CSSCART	\N
-RAE	\N
-V3EU	\N
-ULP	\N
-ULPM	\N
-MD-P3-P4-M1-M2-M3	\N
-TIFD	\N
-TIFPM	\N
-CADS6	\N
-CMCSE	\N
-ULDM	\N
-MX-I1-I2D+I1G	\N
-TIFM	\N
-CE	\N
-CMCPM	\N
-MDDF	\N
-MX-I1-I2D+G	\N
-FEP	\N
-HUPM	\N
-MDLGD2D3	\N
-COQ F	\N
-CADS2	\N
-MDDDM2	\N
-HUDM	\N
-MDS346	\N
-MTE	\N
-FEDS4B	\N
-TMTPM	\N
-HUMP	\N
-M	\N
-HUM	\N
-DEF	\N
-DEE1	\N
-DEF5	\N
-RAPM	\N
-RAP	\N
-TIP0	\N
-CODM	\N
-MDS1	\N
-TIFMD	\N
-TMTP	\N
-CMCP	\N
-HP2	\N
-CADS234	\N
-FED6	\N
-TIFP	\N
-DEF3	\N
-COQ-F	\N
-PH6	\N
-MDDGP2	\N
-COPM	\N
-F-P	\N
-CAP2	\N
-TIDS24	\N
-FEPM	\N
-MDS4	\N
-FEDM	\N
-TMTSE	\N
-TITMD	\N
-HUMD	\N
-FEDSE	\N
-CNE	\N
-MD-I1-P3-P4-M1-M2-M3	\N
-CADS24	\N
-COE	\N
-RAM	\N
-VEF	\N
-SEE	\N
-MD-P3-P4-M1	\N
-PH3	\N
-PH3A	\N
-CHI	\N
-SM6	\N
-TITM	\N
-SCPM	\N
-MDS9	\N
-FB2	\N
-FEMD	\N
-FEDS	\N
-MDS8911	\N
-FB10	\N
-COP	\N
-CTF	\N
-ULMP	\N
-MDDDP2P3P4	\N
-TIDS2A	\N
-FED5	\N
-ULM	\N
-CTE	\N
-IF	\N
-PAE	\N
-PAF	\N
-RAMD	\N
-RAD	\N
-MDF	\N
-MX-P2-P3-P4-M1	\N
-MX-I1	\N
-MADF	\N
-MX-P2-P3-P4-M1-M2	\N
-MX-F	\N
-MX-I2	\N
-MX-P3-P4-M1	\N
-MX-M1	\N
-MX-I2D+G	\N
-MX-P4-M1	\N
-MD-P3-P4	\N
-MX-M1-M2-M3	\N
-MD-M3	\N
-CRAF	\N
-MPD	\N
-ULE	\N
-ULMD	\N
-MD-P4-M1-M2-M3	\N
-MD-M2-M3	\N
-MD-I1	\N
-MD-M2	\N
-MD-P3	\N
-MD-P4-M1-M2	\N
-MD-P4-M1	\N
-MD-P3-P4-M1-M2-	\N
-MXP2-M1	\N
-MD-M1-M2-M3	\N
-MD-P3-P4-M1-M2	\N
-MD-F	\N
-MD-I1-P3-P4-M1-M2	\N
-MD-I1-P3-P4-M1	\N
-MD-I1-P3	\N
-VEE	\N
-MD-M1-M2	\N
-MD-I1-P3-P4	\N
-MTD	\N
-MTM	\N
-PHF	\N
-ULD	\N
-MX-I1-I2	\N
-MX-I1D+G	\N
-MX-P2-P3-P4-M1-M2-M3	\N
-CRANE-SUB-COMPLET	\N
-MDD	\N
-MTMD	\N
-MCD	\N
-MDSF	\N
-MAS-F	\N
-CRAE	\N
-MDLGD4M1M2	\N
-MDDDP2	\N
-MDDDP3P4	\N
-MDDDP3	\N
-MDDGP2P3	\N
-MDDGP2P3P4	\N
-MDDGP3	\N
-MDDLD3D4M1	\N
-MDDDP3P4M1M2	\N
-MDDDP3P4M1M2M3	\N
-MDDGP2P3P4M1M2M3	\N
-MDDGM1M2	\N
-MDDGP3P4M1M2	\N
-MDDGP2P3P4M1	\N
-MDDGM1M2M3	\N
-MDDGP2M1M2M3	\N
-MDDGP2P3P4M1M2	\N
-MDDGM2M3	\N
-MDDDP2P3P4M1M2M3	\N
-MDDDM1M2M3	\N
-MDDDP4M1	\N
-MDDDP2P3P4M1	\N
-MDDDP3P4M1	\N
-MDDDM1	\N
-MDDDM1M2	\N
-MDDGP4M1M2	\N
-MDDGM1	\N
-MDGDM2	\N
-MDDGM3	\N
-MDGDM2M3	\N
-MDDDM3	\N
-MDGLD4M1	\N
-MDDLD3D4	\N
-MDLDD3D4	\N
-FEDS8	\N
-MXMDD3D4M1M2	\N
-MXMGD2D3D4M1	\N
-CSCSART	\N
-V81C2C456	\N
-VC24	\N
-V81C346	\N
-V3DC7ED	\N
-V83456	\N
-V81C2C3456	\N
-V3EE	\N
-VD	\N
-V81C2C46	\N
-VC14D	\N
-V2D	\N
-V2G	\N
-V3GU	\N
-VC26I	\N
-SACRF	\N
-V2I	\N
-SA1AB	\N
-V1D	\N
-VC14G	\N
-V82B	\N
-V5EE	\N
-V1G	\N
-V3A	\N
-V2E7ED	\N
-V81A2A3456	\N
-V81A	\N
-V3GC	\N
-V9	\N
-V81C2C4	\N
-VC11B	\N
-V3DD	\N
-V3DC	\N
-V7EI	\N
-V81B	\N
-V1G2G	\N
-V82A	\N
-V1B	\N
-V3EC	\N
-V3DU	\N
-V2E	\N
-V1E	\N
-SA2E	\N
-V81A2A4	\N
-V81C2C	\N
-SAAUG	\N
-VA12	\N
-VA13	\N
-SA1C	\N
-V81A2C3456	\N
-V81C2A	\N
-COCC	\N
-COCVT1	\N
-COCVC	\N
-CODITC	\N
-COCVE	\N
-COCVT2	\N
-COCVE1	\N
-CODICV1	\N
-CODICC	\N
-CODICA	\N
-CODICV	\N
-CODICR	\N
-COCVCV	\N
-STME	\N
-CODIC	\N
-FEEP1	\N
-V81A2A34	\N
-VSEU	\N
-SA1A	\N
-COACC	\N
-COCVA	\N
-STI	\N
-STMC	\N
-ST1	\N
-STXE	\N
-SD4M256	\N
-SM4	\N
-SM23	\N
-SM7	\N
-SM236	\N
-SM67	\N
-SM2	\N
-SD124	\N
-SM34	\N
-SM26	\N
-SD145M246	\N
-SD14	\N
-SD4M2	\N
-SD1	\N
-SM2356	\N
-SD145	\N
-SM4P4	\N
-SM235	\N
-SM16	\N
-SDE	\N
-HP23	\N
-HDS2B	\N
-HDS12C3	\N
-HDS12B3	\N
-HDS0C	\N
-HD4	\N
-HDS2B3	\N
-HDS2C	\N
-HDS0	\N
-HDN	\N
-HDS0C3C	\N
-HDS12A3	\N
-HDS0C3B	\N
-HDS0AC3	\N
-HD0	\N
-HDS1A	\N
-HDS12C	\N
-HDS12B	\N
-HDS0C3	\N
-HDS2A	\N
-HDS0D1	\N
-HDS0A3	\N
-HDS123	\N
-HDS2B3A	\N
-HDS1A2	\N
-HDS0B1A2A	\N
-HDS2	\N
-HDS1A23	\N
-HEP2	\N
-HDS23	\N
-HDS01	\N
-RDS1A	\N
-HDS0A13	\N
-HDS4	\N
-RP3	\N
-RDS123	\N
-RDS3A	\N
-RDS4A	\N
-RP0	\N
-RD1A	\N
-RD34UD0	\N
-RUD	\N
-RD0UD0	\N
-RP0UD0	\N
-UO346	\N
-UDS7	\N
-UTN56	\N
-UO3456	\N
-UO6	\N
-UO67	\N
-UTN0	\N
-UDS356	\N
-UDN	\N
-UO3467	\N
-UO23467	\N
-UD0	\N
-UO36	\N
-UO7	\N
-UO234	\N
-RDN	\N
-UED	\N
-UEP	\N
-UO15	\N
-UTN12356	\N
-HA2	\N
-RDS2	\N
-RD1	\N
-HAE	\N
-RP2	\N
-HA4	\N
-CT2	\N
-RDS134	\N
-RD34	\N
-RDS3A4	\N
-PIE	\N
-RDS23	\N
-REP3	\N
-PYE	\N
-RD0	\N
-RP23	\N
-RDS23A	\N
-SLE	\N
-SLD0	\N
-SCE	\N
-SC1	\N
-CAD1	\N
-CADS236	\N
-CAP12	\N
-CAD0	\N
-CAED1	\N
-CAP0	\N
-RED0	\N
-RDN0	\N
-RD23	\N
-RDS3A5	\N
-RDS12	\N
-CAP1	\N
-CADS123	\N
-CADS36	\N
-RDS34	\N
-RDS1	\N
-RD2	\N
-RED23	\N
-CADS56	\N
-CADS67	\N
-CAD3	\N
-CAP27	\N
-CAED0	\N
-CAD11	\N
-CADS267	\N
-CADS7	\N
-CADS0	\N
-CADS346	\N
-CADS46	\N
-CAE1	\N
-CADS456	\N
-CADN	\N
-CAED3	\N
-CAD2	\N
-MECE	\N
-MECSD	\N
-CAE	\N
-SEF	\N
-PH1	\N
-PHE1	\N
-PH2	\N
-PHEI	\N
-PH8	\N
-PH3H	\N
-IS3	\N
-IA3	\N
-IL1	\N
-FEP13	\N
-IL178	\N
-IL18	\N
-TID0	\N
-FEP2	\N
-TID13	\N
-IA6	\N
-FEEP1P3	\N
-IL6789	\N
-FEDS2A	\N
-TIDS1A23	\N
-IA4	\N
-TIP3	\N
-FED1	\N
-IP2	\N
-FEP1	\N
-IA3IS1	\N
-TIDS234A	\N
-IL2	\N
-FED2	\N
-TIDS1A2	\N
-IA2	\N
-FEDS3B4A	\N
-TIP2	\N
-IP13	\N
-IA24	\N
-TIEP1	\N
-IA2IL238	\N
-TIP1	\N
-IP1	\N
-IA4IPE	\N
-IS5	\N
-IS10	\N
-IL10	\N
-FEDS2A34C	\N
-TID5	\N
-TIDS234B	\N
-FEDS34C	\N
-TIDS2AP3	\N
-IS1	\N
-TIDS124	\N
-FEED6	\N
-TIDS24A	\N
-FEDS24B	\N
-FEDS1	\N
-TIDS34B	\N
-FEDS3B4AC	\N
-FEDS4C	\N
-TIED0	\N
-FEDS4D	\N
-TIDS1A23A	\N
-FEDS123	\N
-FEE3	\N
-TIP3DS2A	\N
-FEDS2B4	\N
-TIDS4A	\N
-TID3	\N
-FEDS4A	\N
-FEDS2B34A4C	\N
-TIDN	\N
-FEDS34A4C	\N
-FEDS34B	\N
-SM25	\N
-FEDS34A	\N
-TIDS4B	\N
-TIDS124A	\N
-TIDS234	\N
-FEDS234C	\N
-TIDS134B	\N
-TIDS34	\N
-TIED3	\N
-TIP3DS1A	\N
-TIP3DS1A23A	\N
-TIDS1A	\N
-FEEP2	\N
-FED123	\N
-TIDS13	\N
-FED56	\N
-TIPNDS34	\N
-FED0	\N
-TIDS3	\N
-FEDS234B	\N
-IL1789	\N
-IS35	\N
-TIDS1	\N
-MAE	\N
-CL4	\N
-CEE	\N
-CL2	\N
-CE1	\N
-CL1	\N
-CLE	\N
-CL245	\N
-CL6	\N
-CL7	\N
-CEF	\N
-CNE-CEE	\N
-TA125	\N
-CADS35	\N
-TA3	\N
-CAED2	\N
-CAD46	\N
-CADS23	\N
-CAP24	\N
-CAP234	\N
-CAP13	\N
-CAP23	\N
-CAP346	\N
-FED12	\N
-CAP4	\N
-DEE2	\N
-DB2	\N
-DEF1	\N
-DEF2	\N
-DEF7	\N
-DEF4	\N
-DEB2	\N
-MDDDP2P3	\N
-V7ED	\N
-FEDS24C	\N
-SDEM256	\N
-SM347	\N
-SD14SM2	\N
-SM56	\N
-SM4SP4	\N
-SD1A4SM246	\N
-SDESM234567	\N
-HD12	\N
-HDS0D2D	\N
-HDSE	\N
-HDS0A	\N
-HP0	\N
-RDS234	\N
-RD3	\N
-RDS13A4	\N
-RED1	\N
-RD12	\N
-RDS0	\N
-RP3DS3UO0DS7	\N
-RD0UO7	\N
-RD0U067	\N
-UO2346	\N
-UTN1235	\N
-PI2	\N
-CADS246	\N
-HA3	\N
-PH7	\N
-IL789	\N
-IAE	\N
-IP4	\N
-IPE	\N
-IA23ILE	\N
-IL12789	\N
-IAEIPE	\N
-I912	\N
-IA1IS1	\N
-FEP0	\N
-FED3456	\N
-FEEP1PN	\N
-FEDS4B4C	\N
-FEDS4	\N
-FEP3DS12A4	\N
-FEPN	\N
-FEDS3	\N
-TIDSE	\N
-TID45	\N
-TIEP2	\N
-TIDS1A3A	\N
-TIP4	\N
-PH3G	\N
-PH3F	\N
-PH5	\N
-PHE12	\N
-PH3D	\N
-CN1	\N
-FEDS10	\N
-TIPN	\N
-TIEP14	\N
-TIE	\N
-TIDS3A3B4	\N
-MDS5	\N
-TIDS123	\N
-MDS2	\N
-TA6	\N
-TA4	\N
-CAP3	\N
-CAP124	\N
-2DS23A	\N
-CADS257	\N
-MXMDD2D3D4M1	\N
-MXDDP4M1	\N
-MXLDD3D4	\N
-MXLGD2D3D4	\N
-MXDGP4M1	\N
-MXDDM1M2M3	\N
-MXDDP2P3P4	\N
-MXDGP2	\N
-CL14	\N
-MXDDP2P3	\N
-MXDGM1M2	\N
-CL124	\N
-MDDGM2	\N
-MDS8	\N
-MDLDD4	\N
-MDS15	\N
-MDS811	\N
-MDS3	\N
-MDS	\N
-MDS891011	\N
-MDMDI1I2I3D2D3D4M1	\N
-MDS10	\N
-MDMDD2D3D4M1	\N
-MDLDI2I3	\N
-MDDGP4M1M2M3	\N
-MDLDD2D3D4M1	\N
-MDDGP3P4M1M2M3	\N
-MDLGD3D4	\N
-MDDDP3P4M2	\N
-MDDGD3D4	\N
-MDDDI1	\N
-TIED34	\N
-TIDS243	\N
-COVT2	\N
-FEDS2A4	\N
-FEDS124C	\N
-ST7	\N
-V3E	\N
-MXSDC	\N
-MXSII	\N
-TIDS34A	\N
-HD2	\N
-FED3A	\N
-DEFE	\N
-DB3	\N
-HDS3A	\N
-DB1	\N
-ED0	\N
-TIP14	\N
-SM234567	\N
-SDEM24567	\N
-FB7	\N
-FB11	\N
-PHE2	\N
-CAP0DS0	\N
-CADS1	\N
-ND0	\N
-SDEM23456	\N
-CADS5	\N
-TIDS0	\N
-SA1B	\N
-SACRD	\N
-SACRG	\N
-V81C2C34	\N
-VC12A	\N
-SA10	\N
-VC11A	\N
-V2A	\N
-VE1	\N
-SA2F	\N
-V846	\N
-V82A346	\N
-MDDGP4M1	\N
-MDDDP4M1M2	\N
-IAEIL178	\N
-MXDGP4M1M2M3	\N
-TIDS3B4B	\N
-HDS0D13	\N
-SDEM2	\N
-HENT	\N
-HED0	\N
-IAF	\N
-MDDDP4M1M2M3	\N
-MXDGM3	\N
-MDS322	\N
-MDS89	\N
-SD4SM23457	\N
-CL5	\N
-FEDS2	\N
-FEDS1234	\N
-ZDSO	\N
-UO27	\N
-2D23	\N
-ZDO	\N
-IAE34IPE	\N
-IL145789	\N
-IA4IP3	\N
-HDO	\N
-SM3	\N
-MDMGD2D3M1	\N
-SD14SM246	\N
-FEDS0	\N
-TIDS1A2A4A	\N
-FED23	\N
-MDFM1-M2	\N
-MDM1-M2	\N
-MDM1-M3	\N
-MDM1-M2-M3	\N
-CH3	\N
-CH2	\N
-CHE	\N
-FB9	\N
-FB1	\N
-BO1258	\N
-HDS10	\N
-HDS03	\N
-HD1	\N
-UO56	\N
-SME	\N
-IL4	\N
-HUSE	\N
-TID4	\N
-TIDS1A34B	\N
-ULSE	\N
-TIDS2	\N
-PH4	\N
-PH3B	\N
-SAAUD	\N
-VC14I	\N
-TIFSE	\N
-CL2345	\N
-CE4	\N
-PY345	\N
-SC3	\N
-MDM3	\N
-MDP4	\N
-MDP2-P3-P4-M1-M2	\N
-MDM1	\N
-MDP1-M1-M2	\N
-MDP1-M1	\N
-MDM2-M3	\N
-MDP3	\N
-MDM2	\N
-MDP3-P4-M1-M2-M3	\N
-MDC	\N
-MDP1-P3-P4	\N
-MDE	\N
-MDP2-P3-P4	\N
-MDP3-P4	\N
-MDP4-M1-M2-M3	\N
-MDP1	\N
-MXS3	\N
-HYI	\N
-TIDS3A4	\N
-IL7	\N
-CH1	\N
-CRIN	\N
-CROI	\N
-MDP4-M1-M2	\N
-MDI-P3-P4-M1-M2-M3	\N
-MDP4-M1	\N
-MDI-P3-P4-M1	\N
-MDI-P3-P4	\N
-MDI-P3-P4-M1-M1-M3	\N
-MXM1-M2	\N
-MDI-P3-P4-M1-M2	\N
-FEDS3A	\N
-MDDGM12	\N
-UO5UDS2456	\N
-SD1ASM234567	\N
-MD-M1	\N
-MX-P3	\N
-MD-P3-P4-M3	\N
-MD-P4	\N
-MX-P4-M1-M2-M3	\N
-MD-I1-P4-M1-M2	\N
-MD-I1-P4	\N
-MDDIP3	\N
-MD-I1D+G	\N
-CMCE	\N
-MD-I1-P4-M1-M2-M3	\N
-CAD67	\N
-CADS2346	\N
-CAPN	\N
-CAD06	\N
-CAE3	\N
-PH3E	\N
-PH3DEF	\N
-MA1	\N
-FEDS46	\N
-MXLDD3	\N
-MXDGM1	\N
-MXDGM2	\N
-MXDDP4M1M2M3	\N
-MXMDD3D4M1	\N
-MXMGD4M1M2	\N
-MDDIMI	\N
-MXDGE	\N
-MXLGD2D3	\N
-MXDGP4M1M2	\N
-MXDDP4M1M2	\N
-MXDDM3	\N
-MXMDD4M1M2	\N
-MXDDM2M3	\N
-MXDDP3P4	\N
-MXDDP2	\N
-MXDGM2M3	\N
-MXDGM1M2M3	\N
-MXDDP3	\N
-MXDGP3P4	\N
-MXDDM1M2	\N
-MXDDP3P4M1	\N
-MXDDP2P3P4M1	\N
-MXDGP2P3P4	\N
-MDS6	\N
-MDS7	\N
-MDS46	\N
-MDS34	\N
-MDS234	\N
-MDS14	\N
-MDS58911	\N
-MDS1011	\N
-SDEM246	\N
-MDS124	\N
-MDS0	\N
-MDS23	\N
-MDS22	\N
-MDS911	\N
-MDS24	\N
-MDS236	\N
-MDS210	\N
-MDIDMI	\N
-MDDM2M3	\N
-MDDGP4	\N
-MDMDD4M1	\N
-MDDGI2I3CA	\N
-MDDGP3P4	\N
-MDMGD2D3D4M1M2	\N
-MDDJI	\N
-MDDDP4	\N
-MDDDI3CA	\N
-MDDGP3P4M1	\N
-MDMGD4M1M2	\N
-MDLDD2D3	\N
-MDLGD3	\N
-MDDGI2I3C	\N
-MDMDD4M1M2	\N
-MDMDD3D4M1	\N
-MDLGD2	\N
-MDLGD2D3D4	\N
-MDDDMI	\N
-FEP134	\N
-RUS	\N
-PH34	\N
-MXDM1-M2-M3	\N
-MDDM1-M2-M3	\N
-MXDP4-M1-M2-M3	\N
-DEE	\N
-SE	\N
-MDMGD2D3D4M1	\N
-MDGDP4M1M2	\N
-MXDGP3P4M1M2M3	\N
-MX	\N
-MDMGD3D4M1M2M3	\N
-TNAE	\N
-MT3P	\N
-CRE	\N
-INDGI1I2	\N
-MXDDP4	\N
-INS	\N
-MXDGP3P4M1M2	\N
-MXS	\N
-MXDGP4	\N
-MXDDP3P4M1M2	\N
-MDS111	\N
-MDS810	\N
-MDDDP1P2P3P4M1M2	\N
-MDDGI2CP2P3P4M1M2	\N
-MDDDP3M1M2	\N
-MDDDCP1P2P3M1M2	\N
-MDDGI3CP1P2P3P4M1M2M	\N
-MDDDI2	\N
-MDDGP1P2P3P4M1M2	\N
-MDDMI1I2I3C	\N
-MXCP1P2P3P4M1M2	\N
-MXDGI1I2I3CP1	\N
-MXDDCP1	\N
-MDDGCP2P3P4M1M2M3	\N
-MDDDCP2P3P4M1M2	\N
-MDDGP3M1	\N
-MDS13	\N
-MXMDD3P4	\N
-MDDGCP3P4M1	\N
-MDDDCP3P4M1	\N
-MXDDCP3P4	\N
-MXDGCP3P4	\N
-MXDGCP3P4M1	\N
-MXDDI2I3CP3P4	\N
-MXDMI2I3CP3P4	\N
-VF	\N
-VE	\N
-MID	\N
-UO0	\N
-FEED	\N
-FEED3	\N
-PHFD	\N
-RDS	\N
-RPN	\N
-ISE	\N
-MIE	\N
-MXLGD4	\N
-MXDDPI	\N
-MIDX	\N
-MIED	\N
-MIM6	\N
-MIM5	\N
-MIDF	\N
-MIMDX	\N
-MIM	\N
-TA1	\N
-CUE	\N
-NAE	\N
-FID	\N
-FIM	\N
-TIDS	\N
-ILE	\N
-SUE	\N
-HAF	\N
-UENT	\N
-UDS	\N
-RENT	\N
-HDS0123	\N
-HED234	\N
-STE	\N
-VC15G	\N
-VC14	\N
-VC15D	\N
-MIP	\N
-CIE	\N
-TAF	\N
-PHFP	\N
-IE	\N
-SAF	\N
-VC1A4D5D	\N
-HD14	\N
-TOE	\N
-CSF	\N
-CLF	\N
-HDS013	\N
-MDDDI1I2I3	\N
-MDS29	\N
-HDS0D	\N
-FRBE	\N
-TMTDM	\N
-CRTI	\N
-CRPI	\N
-IQ2	\N
-SM2467	\N
-CRFI	\N
-MXLDPI	\N
-MTF	\N
-MCF	\N
-ULF	\N
-RAF	\N
-TCAE	\N
-TCAF	\N
-TTAE	\N
-TTAF	\N
-CSSCE	\N
-PHD	\N
-PHP	\N
-HUF	\N
-MX-P2	\N
-MX-P3-M1	\N
-MX-M2	\N
-MDDP4	\N
-MX-P4-M1-M2	\N
-MX-P3-P4-M1-M2-M3	\N
-MD-COMPLETED+G	\N
-MD-I1+I2D+G	\N
-MD-I1-	\N
-FEF	\N
-VRF	\N
-TIFF	\N
-MD-P3-P4M1-M2-M3	\N
-MD-I1-P4-M1	\N
-MX-P2-P3	\N
-MX-P3-P4	\N
-MD-I1-P3-M1-M2	\N
-MD-I1G+I1D	\N
-MD-M1_M2-M3	\N
-MD-COMPLETE	\N
-MD-	\N
-CF	\N
-CR-F	\N
-MD-MIND	\N
-TTCAF	\N
-MXF	\N
-MX-SUBCOMPLET	\N
-MTPM	\N
-MCPM	\N
-FEMP	\N
-TIFMP	\N
-MD-M1-M3	\N
-MX-P3-M1-M2	\N
-UNE	\N
-PVXF	\N
-CMCMP	\N
-CMCDM	\N
-CMCM	\N
-CMCMD	\N
-RDE	\N
-CS-SC-PM	\N
-SCSE	\N
-VE-F	\N
-FE	\N
-FIB	\N
-TMTD	\N
-TMTM	\N
-TMTE	\N
-TITDM	\N
-TTS-MD	\N
-TITP	\N
-TITPM	\N
-STF	\N
-CSST	\N
-COSE	\N
-COD	\N
-COMD	\N
-COM	\N
-TIP0DS1A2A34	\N
-\.
+INSERT INTO controle_f_fragde VALUES ('DEF6', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODIE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCD', NULL);
+INSERT INTO controle_f_fragde VALUES ('TITD', NULL);
+INSERT INTO controle_f_fragde VALUES ('SCP', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDM2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS36', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS27', NULL);
+INSERT INTO controle_f_fragde VALUES ('MTP', NULL);
+INSERT INTO controle_f_fragde VALUES ('MCE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MCP', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS11', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUP', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEM', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRF', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CSSCF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP2P3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEE3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P3-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('TAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED', NULL);
+INSERT INTO controle_f_fragde VALUES ('CSSCART', NULL);
+INSERT INTO controle_f_fragde VALUES ('RAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3EU', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULP', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFD', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS6', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULDM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-I1-I2D+I1G', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFM', NULL);
+INSERT INTO controle_f_fragde VALUES ('CE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-I1-I2D+G', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEP', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLGD2D3', NULL);
+INSERT INTO controle_f_fragde VALUES ('COQ F', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUDM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS346', NULL);
+INSERT INTO controle_f_fragde VALUES ('MTE', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS4B', NULL);
+INSERT INTO controle_f_fragde VALUES ('TMTPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUMP', NULL);
+INSERT INTO controle_f_fragde VALUES ('M', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUM', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEF', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEE1', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEF5', NULL);
+INSERT INTO controle_f_fragde VALUES ('RAPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('RAP', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP0', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('TMTP', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCP', NULL);
+INSERT INTO controle_f_fragde VALUES ('HP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS234', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED6', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFP', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEF3', NULL);
+INSERT INTO controle_f_fragde VALUES ('COQ-F', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH6', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('COPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('F-P', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS24', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS4', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDM', NULL);
+INSERT INTO controle_f_fragde VALUES ('TMTSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TITMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CNE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P3-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS24', NULL);
+INSERT INTO controle_f_fragde VALUES ('COE', NULL);
+INSERT INTO controle_f_fragde VALUES ('RAM', NULL);
+INSERT INTO controle_f_fragde VALUES ('VEF', NULL);
+INSERT INTO controle_f_fragde VALUES ('SEE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('CHI', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM6', NULL);
+INSERT INTO controle_f_fragde VALUES ('TITM', NULL);
+INSERT INTO controle_f_fragde VALUES ('SCPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS9', NULL);
+INSERT INTO controle_f_fragde VALUES ('FB2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS8911', NULL);
+INSERT INTO controle_f_fragde VALUES ('FB10', NULL);
+INSERT INTO controle_f_fragde VALUES ('COP', NULL);
+INSERT INTO controle_f_fragde VALUES ('CTF', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULMP', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP2P3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS2A', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED5', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULM', NULL);
+INSERT INTO controle_f_fragde VALUES ('CTE', NULL);
+INSERT INTO controle_f_fragde VALUES ('IF', NULL);
+INSERT INTO controle_f_fragde VALUES ('PAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('PAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('RAMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('RAD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P2-P3-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-I1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MADF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P2-P3-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-F', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-I2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P3-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-I2D+G', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MPD', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULE', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3-P4-M1-M2-', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXP2-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-F', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P3-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P3-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('VEE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P3-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MTD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MTM', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHF', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-I1-I2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-I1D+G', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P2-P3-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRANE-SUB-COMPLET', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MTMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MCD', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDSF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MAS-F', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLGD4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP2P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP2P3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDLD3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP3P4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP2P3P4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGM1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP2P3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGM1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP2M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP2P3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGM2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP2P3P4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDM1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP2P3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDM1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDM1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGM1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDGDM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGM3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDGDM2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDM3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDGLD4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDLD3D4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLDD3D4', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS8', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXMDD3D4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXMGD2D3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CSCSART', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C2C456', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC24', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C346', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3DC7ED', NULL);
+INSERT INTO controle_f_fragde VALUES ('V83456', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C2C3456', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3EE', NULL);
+INSERT INTO controle_f_fragde VALUES ('VD', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C2C46', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC14D', NULL);
+INSERT INTO controle_f_fragde VALUES ('V2D', NULL);
+INSERT INTO controle_f_fragde VALUES ('V2G', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3GU', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC26I', NULL);
+INSERT INTO controle_f_fragde VALUES ('SACRF', NULL);
+INSERT INTO controle_f_fragde VALUES ('V2I', NULL);
+INSERT INTO controle_f_fragde VALUES ('SA1AB', NULL);
+INSERT INTO controle_f_fragde VALUES ('V1D', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC14G', NULL);
+INSERT INTO controle_f_fragde VALUES ('V82B', NULL);
+INSERT INTO controle_f_fragde VALUES ('V5EE', NULL);
+INSERT INTO controle_f_fragde VALUES ('V1G', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('V2E7ED', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81A2A3456', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81A', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3GC', NULL);
+INSERT INTO controle_f_fragde VALUES ('V9', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C2C4', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC11B', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3DD', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3DC', NULL);
+INSERT INTO controle_f_fragde VALUES ('V7EI', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81B', NULL);
+INSERT INTO controle_f_fragde VALUES ('V1G2G', NULL);
+INSERT INTO controle_f_fragde VALUES ('V82A', NULL);
+INSERT INTO controle_f_fragde VALUES ('V1B', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3EC', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3DU', NULL);
+INSERT INTO controle_f_fragde VALUES ('V2E', NULL);
+INSERT INTO controle_f_fragde VALUES ('V1E', NULL);
+INSERT INTO controle_f_fragde VALUES ('SA2E', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81A2A4', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C2C', NULL);
+INSERT INTO controle_f_fragde VALUES ('SAAUG', NULL);
+INSERT INTO controle_f_fragde VALUES ('VA12', NULL);
+INSERT INTO controle_f_fragde VALUES ('VA13', NULL);
+INSERT INTO controle_f_fragde VALUES ('SA1C', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81A2C3456', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C2A', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCC', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCVT1', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCVC', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODITC', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCVE', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCVT2', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCVE1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODICV1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODICC', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODICA', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODICV', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODICR', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCVCV', NULL);
+INSERT INTO controle_f_fragde VALUES ('STME', NULL);
+INSERT INTO controle_f_fragde VALUES ('CODIC', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEEP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81A2A34', NULL);
+INSERT INTO controle_f_fragde VALUES ('VSEU', NULL);
+INSERT INTO controle_f_fragde VALUES ('SA1A', NULL);
+INSERT INTO controle_f_fragde VALUES ('COACC', NULL);
+INSERT INTO controle_f_fragde VALUES ('COCVA', NULL);
+INSERT INTO controle_f_fragde VALUES ('STI', NULL);
+INSERT INTO controle_f_fragde VALUES ('STMC', NULL);
+INSERT INTO controle_f_fragde VALUES ('ST1', NULL);
+INSERT INTO controle_f_fragde VALUES ('STXE', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD4M256', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM4', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM23', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM7', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM236', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM67', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD124', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM34', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM26', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD145M246', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD14', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD4M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD1', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM2356', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD145', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM4P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM235', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM16', NULL);
+INSERT INTO controle_f_fragde VALUES ('SDE', NULL);
+INSERT INTO controle_f_fragde VALUES ('HP23', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS2B', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS12C3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS12B3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0C', NULL);
+INSERT INTO controle_f_fragde VALUES ('HD4', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS2B3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS2C', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDN', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0C3C', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS12A3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0C3B', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0AC3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS1A', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS12C', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS12B', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0C3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS2A', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0D1', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0A3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS123', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS2B3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS1A2', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0B1A2A', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS2', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS1A23', NULL);
+INSERT INTO controle_f_fragde VALUES ('HEP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS23', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS01', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS1A', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0A13', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS4', NULL);
+INSERT INTO controle_f_fragde VALUES ('RP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS123', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS4A', NULL);
+INSERT INTO controle_f_fragde VALUES ('RP0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD1A', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD34UD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RUD', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD0UD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RP0UD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO346', NULL);
+INSERT INTO controle_f_fragde VALUES ('UDS7', NULL);
+INSERT INTO controle_f_fragde VALUES ('UTN56', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO3456', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO6', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO67', NULL);
+INSERT INTO controle_f_fragde VALUES ('UTN0', NULL);
+INSERT INTO controle_f_fragde VALUES ('UDS356', NULL);
+INSERT INTO controle_f_fragde VALUES ('UDN', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO3467', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO23467', NULL);
+INSERT INTO controle_f_fragde VALUES ('UD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO36', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO7', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO234', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDN', NULL);
+INSERT INTO controle_f_fragde VALUES ('UED', NULL);
+INSERT INTO controle_f_fragde VALUES ('UEP', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO15', NULL);
+INSERT INTO controle_f_fragde VALUES ('UTN12356', NULL);
+INSERT INTO controle_f_fragde VALUES ('HA2', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS2', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD1', NULL);
+INSERT INTO controle_f_fragde VALUES ('HAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('RP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('HA4', NULL);
+INSERT INTO controle_f_fragde VALUES ('CT2', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS134', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD34', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS3A4', NULL);
+INSERT INTO controle_f_fragde VALUES ('PIE', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS23', NULL);
+INSERT INTO controle_f_fragde VALUES ('REP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('PYE', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RP23', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS23A', NULL);
+INSERT INTO controle_f_fragde VALUES ('SLE', NULL);
+INSERT INTO controle_f_fragde VALUES ('SLD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('SCE', NULL);
+INSERT INTO controle_f_fragde VALUES ('SC1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS236', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP12', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD0', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAED1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RED0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDN0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD23', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS3A5', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS12', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS123', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS36', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS34', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD2', NULL);
+INSERT INTO controle_f_fragde VALUES ('RED23', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS56', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS67', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP27', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAED0', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD11', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS267', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS7', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS0', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS346', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS46', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAE1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS456', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADN', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAED3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MECE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MECSD', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('SEF', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH1', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHE1', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH2', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHEI', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH8', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3H', NULL);
+INSERT INTO controle_f_fragde VALUES ('IS3', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA3', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL1', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEP13', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL178', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL18', NULL);
+INSERT INTO controle_f_fragde VALUES ('TID0', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('TID13', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA6', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEEP1P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL6789', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS2A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1A23', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA4', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED1', NULL);
+INSERT INTO controle_f_fragde VALUES ('IP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA3IS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS234A', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED2', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1A2', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS3B4A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('IP13', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA24', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIEP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA2IL238', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('IP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA4IPE', NULL);
+INSERT INTO controle_f_fragde VALUES ('IS5', NULL);
+INSERT INTO controle_f_fragde VALUES ('IS10', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL10', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS2A34C', NULL);
+INSERT INTO controle_f_fragde VALUES ('TID5', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS234B', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS34C', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS2AP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('IS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS124', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEED6', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS24A', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS24B', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS34B', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS3B4AC', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS4C', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIED0', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS4D', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1A23A', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS123', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEE3', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP3DS2A', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS2B4', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS4A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TID3', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS4A', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS2B34A4C', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDN', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS34A4C', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS34B', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM25', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS34A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS4B', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS124A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS234', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS234C', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS134B', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS34', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIED3', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP3DS1A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP3DS1A23A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1A', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEEP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED123', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS13', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED56', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIPNDS34', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED0', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS3', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS234B', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL1789', NULL);
+INSERT INTO controle_f_fragde VALUES ('IS35', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL4', NULL);
+INSERT INTO controle_f_fragde VALUES ('CEE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CE1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CLE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL245', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL6', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL7', NULL);
+INSERT INTO controle_f_fragde VALUES ('CEF', NULL);
+INSERT INTO controle_f_fragde VALUES ('CNE-CEE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TA125', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS35', NULL);
+INSERT INTO controle_f_fragde VALUES ('TA3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAED2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD46', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS23', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP24', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP234', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP13', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP23', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP346', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED12', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEE2', NULL);
+INSERT INTO controle_f_fragde VALUES ('DB2', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEF1', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEF2', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEF7', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEF4', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEB2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP2P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('V7ED', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS24C', NULL);
+INSERT INTO controle_f_fragde VALUES ('SDEM256', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM347', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD14SM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM56', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM4SP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD1A4SM246', NULL);
+INSERT INTO controle_f_fragde VALUES ('SDESM234567', NULL);
+INSERT INTO controle_f_fragde VALUES ('HD12', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0D2D', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0A', NULL);
+INSERT INTO controle_f_fragde VALUES ('HP0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS234', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD3', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS13A4', NULL);
+INSERT INTO controle_f_fragde VALUES ('RED1', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD12', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS0', NULL);
+INSERT INTO controle_f_fragde VALUES ('RP3DS3UO0DS7', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD0UO7', NULL);
+INSERT INTO controle_f_fragde VALUES ('RD0U067', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO2346', NULL);
+INSERT INTO controle_f_fragde VALUES ('UTN1235', NULL);
+INSERT INTO controle_f_fragde VALUES ('PI2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS246', NULL);
+INSERT INTO controle_f_fragde VALUES ('HA3', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH7', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL789', NULL);
+INSERT INTO controle_f_fragde VALUES ('IAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('IP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('IPE', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA23ILE', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL12789', NULL);
+INSERT INTO controle_f_fragde VALUES ('IAEIPE', NULL);
+INSERT INTO controle_f_fragde VALUES ('I912', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA1IS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEP0', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED3456', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEEP1PN', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS4B4C', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS4', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEP3DS12A4', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEPN', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS3', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TID45', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIEP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1A3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3G', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3F', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH5', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHE12', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3D', NULL);
+INSERT INTO controle_f_fragde VALUES ('CN1', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS10', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIPN', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIEP14', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS3A3B4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS5', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS123', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS2', NULL);
+INSERT INTO controle_f_fragde VALUES ('TA6', NULL);
+INSERT INTO controle_f_fragde VALUES ('TA4', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP124', NULL);
+INSERT INTO controle_f_fragde VALUES ('2DS23A', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS257', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXMDD2D3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXLDD3D4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXLGD2D3D4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDM1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP2P3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL14', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP2P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGM1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL124', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS8', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLDD4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS15', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS811', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS891011', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMDI1I2I3D2D3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS10', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMDD2D3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLDI2I3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLDD2D3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP3P4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLGD3D4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP3P4M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGD3D4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDI1', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIED34', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS243', NULL);
+INSERT INTO controle_f_fragde VALUES ('COVT2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS2A4', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS124C', NULL);
+INSERT INTO controle_f_fragde VALUES ('ST7', NULL);
+INSERT INTO controle_f_fragde VALUES ('V3E', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXSDC', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXSII', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS34A', NULL);
+INSERT INTO controle_f_fragde VALUES ('HD2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEFE', NULL);
+INSERT INTO controle_f_fragde VALUES ('DB3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('DB1', NULL);
+INSERT INTO controle_f_fragde VALUES ('ED0', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP14', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM234567', NULL);
+INSERT INTO controle_f_fragde VALUES ('SDEM24567', NULL);
+INSERT INTO controle_f_fragde VALUES ('FB7', NULL);
+INSERT INTO controle_f_fragde VALUES ('FB11', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHE2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAP0DS0', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS1', NULL);
+INSERT INTO controle_f_fragde VALUES ('ND0', NULL);
+INSERT INTO controle_f_fragde VALUES ('SDEM23456', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS5', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS0', NULL);
+INSERT INTO controle_f_fragde VALUES ('SA1B', NULL);
+INSERT INTO controle_f_fragde VALUES ('SACRD', NULL);
+INSERT INTO controle_f_fragde VALUES ('SACRG', NULL);
+INSERT INTO controle_f_fragde VALUES ('V81C2C34', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC12A', NULL);
+INSERT INTO controle_f_fragde VALUES ('SA10', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC11A', NULL);
+INSERT INTO controle_f_fragde VALUES ('V2A', NULL);
+INSERT INTO controle_f_fragde VALUES ('VE1', NULL);
+INSERT INTO controle_f_fragde VALUES ('SA2F', NULL);
+INSERT INTO controle_f_fragde VALUES ('V846', NULL);
+INSERT INTO controle_f_fragde VALUES ('V82A346', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('IAEIL178', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS3B4B', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0D13', NULL);
+INSERT INTO controle_f_fragde VALUES ('SDEM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('HENT', NULL);
+INSERT INTO controle_f_fragde VALUES ('HED0', NULL);
+INSERT INTO controle_f_fragde VALUES ('IAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGM3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS322', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS89', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD4SM23457', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL5', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS1234', NULL);
+INSERT INTO controle_f_fragde VALUES ('ZDSO', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO27', NULL);
+INSERT INTO controle_f_fragde VALUES ('2D23', NULL);
+INSERT INTO controle_f_fragde VALUES ('ZDO', NULL);
+INSERT INTO controle_f_fragde VALUES ('IAE34IPE', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL145789', NULL);
+INSERT INTO controle_f_fragde VALUES ('IA4IP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDO', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMGD2D3M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD14SM246', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS0', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1A2A4A', NULL);
+INSERT INTO controle_f_fragde VALUES ('FED23', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDFM1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDM1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDM1-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDM1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CH3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CH2', NULL);
+INSERT INTO controle_f_fragde VALUES ('CHE', NULL);
+INSERT INTO controle_f_fragde VALUES ('FB9', NULL);
+INSERT INTO controle_f_fragde VALUES ('FB1', NULL);
+INSERT INTO controle_f_fragde VALUES ('BO1258', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS10', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS03', NULL);
+INSERT INTO controle_f_fragde VALUES ('HD1', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO56', NULL);
+INSERT INTO controle_f_fragde VALUES ('SME', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL4', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TID4', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS1A34B', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS2', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH4', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3B', NULL);
+INSERT INTO controle_f_fragde VALUES ('SAAUD', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC14I', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CL2345', NULL);
+INSERT INTO controle_f_fragde VALUES ('CE4', NULL);
+INSERT INTO controle_f_fragde VALUES ('PY345', NULL);
+INSERT INTO controle_f_fragde VALUES ('SC3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDM3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP2-P3-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDM1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP1-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP1-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDM2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP3-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDC', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP1-P3-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP2-P3-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP3-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXS3', NULL);
+INSERT INTO controle_f_fragde VALUES ('HYI', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS3A4', NULL);
+INSERT INTO controle_f_fragde VALUES ('IL7', NULL);
+INSERT INTO controle_f_fragde VALUES ('CH1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRIN', NULL);
+INSERT INTO controle_f_fragde VALUES ('CROI', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDI-P3-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDP4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDI-P3-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDI-P3-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDI-P3-P4-M1-M1-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXM1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDI-P3-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS3A', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGM12', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO5UDS2456', NULL);
+INSERT INTO controle_f_fragde VALUES ('SD1ASM234567', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3-P4-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDIP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1D+G', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD67', NULL);
+INSERT INTO controle_f_fragde VALUES ('CADS2346', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAPN', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAD06', NULL);
+INSERT INTO controle_f_fragde VALUES ('CAE3', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3E', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH3DEF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MA1', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEDS46', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXLDD3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGM1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGM2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXMDD3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXMGD4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDIMI', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXLGD2D3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDM3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXMDD4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDM2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGM2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGM1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDM1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP2P3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP2P3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS6', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS7', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS46', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS34', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS234', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS14', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS58911', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS1011', NULL);
+INSERT INTO controle_f_fragde VALUES ('SDEM246', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS124', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS0', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS23', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS22', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS911', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS24', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS236', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS210', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDIDMI', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDM2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMDD4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGI2I3CA', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMGD2D3D4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDJI', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDI3CA', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMGD4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLDD2D3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLGD3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGI2I3C', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMDD4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMDD3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLGD2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDLGD2D3D4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDMI', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEP134', NULL);
+INSERT INTO controle_f_fragde VALUES ('RUS', NULL);
+INSERT INTO controle_f_fragde VALUES ('PH34', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDM1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDM1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDP4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('DEE', NULL);
+INSERT INTO controle_f_fragde VALUES ('SE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMGD2D3D4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDGDP4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP3P4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDMGD3D4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('TNAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MT3P', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRE', NULL);
+INSERT INTO controle_f_fragde VALUES ('INDGI1I2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('INS', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXS', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDP3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS111', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS810', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP1P2P3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGI2CP2P3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDP3M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDCP1P2P3M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGI3CP1P2P3P4M1M2M', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDI2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP1P2P3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDMI1I2I3C', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXCP1P2P3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGI1I2I3CP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDCP1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGCP2P3P4M1M2M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDCP2P3P4M1M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGP3M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS13', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXMDD3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDGCP3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDCP3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDCP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGCP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDGCP3P4M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDI2I3CP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDMI2I3CP3P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('VF', NULL);
+INSERT INTO controle_f_fragde VALUES ('VE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MID', NULL);
+INSERT INTO controle_f_fragde VALUES ('UO0', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEED', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEED3', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHFD', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDS', NULL);
+INSERT INTO controle_f_fragde VALUES ('RPN', NULL);
+INSERT INTO controle_f_fragde VALUES ('ISE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXLGD4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXDDPI', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIDX', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIED', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIM6', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIM5', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIDF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIMDX', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIM', NULL);
+INSERT INTO controle_f_fragde VALUES ('TA1', NULL);
+INSERT INTO controle_f_fragde VALUES ('CUE', NULL);
+INSERT INTO controle_f_fragde VALUES ('NAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('FID', NULL);
+INSERT INTO controle_f_fragde VALUES ('FIM', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIDS', NULL);
+INSERT INTO controle_f_fragde VALUES ('ILE', NULL);
+INSERT INTO controle_f_fragde VALUES ('SUE', NULL);
+INSERT INTO controle_f_fragde VALUES ('HAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('UENT', NULL);
+INSERT INTO controle_f_fragde VALUES ('UDS', NULL);
+INSERT INTO controle_f_fragde VALUES ('RENT', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0123', NULL);
+INSERT INTO controle_f_fragde VALUES ('HED234', NULL);
+INSERT INTO controle_f_fragde VALUES ('STE', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC15G', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC14', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC15D', NULL);
+INSERT INTO controle_f_fragde VALUES ('MIP', NULL);
+INSERT INTO controle_f_fragde VALUES ('CIE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHFP', NULL);
+INSERT INTO controle_f_fragde VALUES ('IE', NULL);
+INSERT INTO controle_f_fragde VALUES ('SAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('VC1A4D5D', NULL);
+INSERT INTO controle_f_fragde VALUES ('HD14', NULL);
+INSERT INTO controle_f_fragde VALUES ('TOE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CSF', NULL);
+INSERT INTO controle_f_fragde VALUES ('CLF', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS013', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDDI1I2I3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDS29', NULL);
+INSERT INTO controle_f_fragde VALUES ('HDS0D', NULL);
+INSERT INTO controle_f_fragde VALUES ('FRBE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TMTDM', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRTI', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRPI', NULL);
+INSERT INTO controle_f_fragde VALUES ('IQ2', NULL);
+INSERT INTO controle_f_fragde VALUES ('SM2467', NULL);
+INSERT INTO controle_f_fragde VALUES ('CRFI', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXLDPI', NULL);
+INSERT INTO controle_f_fragde VALUES ('MTF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MCF', NULL);
+INSERT INTO controle_f_fragde VALUES ('ULF', NULL);
+INSERT INTO controle_f_fragde VALUES ('RAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('TCAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TCAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('TTAE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TTAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('CSSCE', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHD', NULL);
+INSERT INTO controle_f_fragde VALUES ('PHP', NULL);
+INSERT INTO controle_f_fragde VALUES ('HUF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P3-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MDDP4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P4-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P3-P4-M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-COMPLETED+G', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1+I2D+G', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEF', NULL);
+INSERT INTO controle_f_fragde VALUES ('VRF', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-P3-P4M1-M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P4-M1', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P2-P3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P3-P4', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1-P3-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-I1G+I1D', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M1_M2-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-COMPLETE', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-', NULL);
+INSERT INTO controle_f_fragde VALUES ('CF', NULL);
+INSERT INTO controle_f_fragde VALUES ('CR-F', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-MIND', NULL);
+INSERT INTO controle_f_fragde VALUES ('TTCAF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MXF', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-SUBCOMPLET', NULL);
+INSERT INTO controle_f_fragde VALUES ('MTPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('MCPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('FEMP', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIFMP', NULL);
+INSERT INTO controle_f_fragde VALUES ('MD-M1-M3', NULL);
+INSERT INTO controle_f_fragde VALUES ('MX-P3-M1-M2', NULL);
+INSERT INTO controle_f_fragde VALUES ('UNE', NULL);
+INSERT INTO controle_f_fragde VALUES ('PVXF', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCMP', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCDM', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCM', NULL);
+INSERT INTO controle_f_fragde VALUES ('CMCMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('RDE', NULL);
+INSERT INTO controle_f_fragde VALUES ('CS-SC-PM', NULL);
+INSERT INTO controle_f_fragde VALUES ('SCSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('VE-F', NULL);
+INSERT INTO controle_f_fragde VALUES ('FE', NULL);
+INSERT INTO controle_f_fragde VALUES ('FIB', NULL);
+INSERT INTO controle_f_fragde VALUES ('TMTD', NULL);
+INSERT INTO controle_f_fragde VALUES ('TMTM', NULL);
+INSERT INTO controle_f_fragde VALUES ('TMTE', NULL);
+INSERT INTO controle_f_fragde VALUES ('TITDM', NULL);
+INSERT INTO controle_f_fragde VALUES ('TTS-MD', NULL);
+INSERT INTO controle_f_fragde VALUES ('TITP', NULL);
+INSERT INTO controle_f_fragde VALUES ('TITPM', NULL);
+INSERT INTO controle_f_fragde VALUES ('STF', NULL);
+INSERT INTO controle_f_fragde VALUES ('CSST', NULL);
+INSERT INTO controle_f_fragde VALUES ('COSE', NULL);
+INSERT INTO controle_f_fragde VALUES ('COD', NULL);
+INSERT INTO controle_f_fragde VALUES ('COMD', NULL);
+INSERT INTO controle_f_fragde VALUES ('COM', NULL);
+INSERT INTO controle_f_fragde VALUES ('TIP0DS1A2A34', NULL);
 
 
 --
 -- Data for Name: controle_f_fragge; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_fragge (f_fragge, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_genre (f_genre, description) FROM stdin;
-COLUMBA	\N
-VIPERA	\N
-NATRIX	\N
-CORONELLA	\N
-COLUBER	\N
-MALPOLON	\N
-ELAPHE	\N
-ANGUIS	\N
-LACERTA	\N
-TRINGA	\N
-MICROTUS	\N
-APODEMUS	\N
-ARVICOLA	\N
-PLIOMYS	\N
-TERRICOLA	\N
-CLETHRIONOMYS	\N
-GLIS	\N
-ELIOMYS	\N
-CRICETUS	\N
-MUSCARDINUS	\N
-LAGURUS	\N
-PYRRHOCORAX	\N
-GARRULUS	\N
-PELODYTES	\N
-HYLA	\N
-BUFO	\N
-AQUILA	\N
-STRIX	\N
-OTUS	\N
-ASIO	\N
-AEGOLIUS	\N
-ATHENE	\N
-BUBO	\N
-HIERAAETUS	\N
-CIRCUS	\N
-FALCO	\N
-CF.BUTEO	\N
-AEGYPIUS	\N
-GYPAETUS	\N
-COTURNIX	\N
-CORVUS	\N
-ALECTORIS	\N
-RANA	\N
-PERDIX	\N
-TURDUS	\N
-PICA	\N
-CUCULUS	\N
-ALAUDA	\N
-CREX	\N
-NYCTEA	\N
-CF.CARDUELIS	\N
-CARDUELIS	\N
-MOTACILLA	\N
-CF.RALLUS	\N
-CF.FICEDULA	\N
-CF.NUCIFRAGA	\N
-PHYLLOSCOPUS	\N
-EMBERIZA	\N
-HIRUNDO	\N
-CHLIDONIAS	\N
-HALIAETUS	\N
-SCOLOPAX	\N
-STERNA	\N
-FRATERCULA	\N
-URIA	\N
-PLUVIALIS	\N
-CHARADRIUS	\N
-LARUS	\N
-MONTIFRINGILLA	\N
-PETRONIA	\N
-OENANTHE	\N
-PHOENICURUS	\N
-ERITHACUS	\N
-DELICHON	\N
-CINCLUS	\N
-LOXIA	\N
-COCCOTHRAUSTES	\N
-PINICOLA	\N
-PYRRHULA	\N
-CARPODACUS	\N
-FRINGILLA	\N
-PLECTROPHENAX	\N
-ANTHUS	\N
-STURNUS	\N
-LULLULA	\N
-GALERIDA	\N
-APUS	\N
-GALLUS	\N
-RALLUS	\N
-DENDROCOPOS	\N
-AYTHYA	\N
-CF.ANAS	\N
-ANAS	\N
-BUCEPHALA	\N
-MACULARIA	\N
-ORYCTOLAGUS	\N
-CHONDRINA	\N
-CANDIDULA	\N
-HELICODONTA	\N
-RUMINA	\N
-CEPAEA	\N
-CLAUSILIA	\N
-HELICELLA	\N
-JAMINIA	\N
-OXYCHILUS	\N
-RETINELLA	\N
-EOBANIA	\N
-CERVUS	\N
-PUPILLA	\N
-CECILIOIDES	\N
-TESTACELLA	\N
-LIMAX	\N
-ACICULA	\N
-ABIDA	\N
-TROCHOIDEA	\N
-MONACHA	\N
-BOS/BISON	\N
-EQUUS	\N
-CAPRA	\N
-CAPREOLUS	\N
-ELEPHAS	\N
-BITTIUM	\N
-BOS	\N
-PASSER	\N
-PRUNELLA	\N
-SYLVIA	\N
-LANIUS	\N
-SERINUS	\N
-MYTILUS	\N
-LUCINOMA	\N
-LIMA	\N
-CHAMA	\N
-CARDITA	\N
-VENUS	\N
-STRIARCA	\N
-CHLAMYS	\N
-GIBBULA	\N
-ARCA	\N
-ACCIPITER	\N
-SAXICOLA	\N
-PTYONOPROGNE	\N
-CAPRIMULGUS	\N
-PICOIDES	\N
-JYNX	\N
-CORACIAS	\N
-EUDROMIAS	\N
-TETRAO	\N
-GALLINAGO	\N
-BUTEO	\N
-NUMENIUS	\N
-PORZANA	\N
-TROGLODYTES	\N
-CORACIA	\N
-TRITURUS	\N
-PODARCIS	\N
-DAMA	\N
-CANIS	\N
-LITTORINA	\N
-HOMALOPOMA	\N
-JUJUBINUS	\N
-PATELLA	\N
-VEXILLUM	\N
-IND	\N
-CALLIOSTOMA	\N
-VRAIA	\N
-CALLISTA	\N
-CLANCULUS	\N
-PECTENIDAE	\N
-MONODONTA	\N
-NASSARIUS	\N
-TRIVIA	\N
-RISSOA	\N
-DIODORA	\N
-COLUMBELLA	\N
-FUSINUS	\N
-TRICOLIA	\N
-PECTINIDAE	\N
-MITRA	\N
-EROSARIA	\N
-MELARAPHE	\N
-TUBERCULATA	\N
-SPONDYLUS	\N
-OSTREA	\N
-PANTHERA	\N
-ALVANIA	\N
-RUPICAPRA	\N
-SUS	\N
-BISON	\N
-DICERORHINUS	\N
-LYNX	\N
-URSUS	\N
-CF.RUPICAPRA	\N
-VULPES	\N
-MARMOTA	\N
-TALPA	\N
-CF.EQUUS	\N
-TARENTOLA	\N
-PUFFINUS	\N
-CF. AYTHYA	\N
-CF.CHARADRIUS	\N
-CF.EUDROMIAS	\N
-CF. CALIDRIS	\N
-HOMO	\N
-COELODONTA	\N
-PELOBATES	\N
-MUSCICAPA	\N
-CF.TURDUS	\N
-CF.AEGYPIUS	\N
-RANGIFER	\N
-MEGALOCEROS	\N
-RATTUS	\N
-MUS	\N
-SOREX	\N
-CROCIDURA	\N
-NEOMYS	\N
-RHINOLOPHUS	\N
-MINIOPTERUS	\N
-BARBASTELLA	\N
-MYOTIS	\N
-CF.CANIS	\N
-PANTHERA LEO	\N
-MELES	\N
-FELIS	\N
-CF.DAMA	\N
-BURHINUS	\N
-MACACA	\N
-PONGO	\N
-GORILLA	\N
-PAN	\N
-AUSTRALOPITHECUS	\N
-EUROPAEUS	\N
-ALGIRUS	\N
-DAVIDI	\N
-HEMIECHINUS	\N
-GALEMYS	\N
-DESMANA	\N
-SUNCUS	\N
-MYOSOREX	\N
-DEPRANOSOREX	\N
-PETENYIA	\N
-DEINSDORFIA	\N
-BLARINELLA	\N
-BERENENDIA	\N
-EPISORICULUS	\N
-SORICULUS	\N
-BLARINOIDES	\N
-TADARIDA	\N
-SAUROMYS	\N
-VESPERTILIO	\N
-EPTESICUS	\N
-NYCTALUS	\N
-PIPISTRELLUS	\N
-PLECOTUS	\N
-LASIURUS	\N
-ALLOPHAIOMYS	\N
-DYNAROMYS	\N
-ONDRATA	\N
-LEMMUS	\N
-MYOPUS	\N
-DICROSTONYX	\N
-ELLOBIUS	\N
-MIMOMYS	\N
-UNGAROMYS	\N
-SPALAX	\N
-PROSIPHNEUS	\N
-MYOSPALAX	\N
-SICISTA	\N
-ALLACTAGA	\N
-VILLANYIA	\N
-MESOCRICETUS	\N
-ALLOCRICETUS	\N
-PEROMYSCUS	\N
-CRICETULUS	\N
-MERIONES	\N
-CRICETINUS	\N
-CASTOR	\N
-TROGONTHERIUM	\N
-MYOCASTOR	\N
-HYSTRIX	\N
-GLIRULUS	\N
-MYOMIMUS	\N
-DRYOMYS	\N
-SCIURUS	\N
-PTEROMYS	\N
-TAMIAS	\N
-CITELLUS	\N
-CYNONYS	\N
-RHAGAMYS	\N
-ACOMYS	\N
-MICROMYS	\N
-LEMNISCONYS	\N
-HYDROCHOERUS	\N
-LEPUS	\N
-HYPOLAGUS	\N
-OCHOTONOIDES	\N
-PROLAGOMYS	\N
-OCHOTONA	\N
-PROLAGUS	\N
-MUSTELA	\N
-MARTES	\N
-GULO	\N
-LUTRA	\N
-GALICTIS	\N
-MEPHITIS	\N
-BARANOGALE	\N
-VORMELA	\N
-PANONICTIS	\N
-MELLIVORA	\N
-ENHYDRA	\N
-CUON	\N
-FENNECUS	\N
-ALOPEX	\N
-NYCTEREUTES	\N
-LYCAON	\N
-AILURUS	\N
-HELARCTOS	\N
-TREMARCTOS	\N
-MELUSUS	\N
-PLIONARCTOS	\N
-ACINONYX	\N
-CARACAL	\N
-PUMA	\N
-HOMOTHERIUM	\N
-MACHAIRODUS	\N
-MEGANTERON	\N
-GENETTA	\N
-HERPESTES	\N
-VIVERRA	\N
-MUNGO	\N
-FOSSA	\N
-SURICATA	\N
-CROCUTA	\N
-HYAENA	\N
-PROTELES	\N
-EURYBOAS	\N
-ODOBAENUS	\N
-PHOCA	\N
-PUSA	\N
-PAGOPHILUS	\N
-HALICHOERUS	\N
-ERIGNATHUS	\N
-CYSTOPHORA	\N
-MONACHUS	\N
-PHACOCHOERUS	\N
-HIPPOPOTAMUS	\N
-CAMELUS	\N
-LAMA	\N
-GIRAFFA	\N
-OKAPIA	\N
-SIVATHERIUM	\N
-CROIZETOCEROS	\N
-EUCLADOCEROS	\N
-ALCES	\N
-PRAEMEGACEROS	\N
-ARVERNOCEROS	\N
-MUNTIACUS	\N
-ELAPHURUS	\N
-AXIS	\N
-HYELOPHUS	\N
-SIKA	\N
-RUCERVUS	\N
-PRJEVALSKIUM	\N
-PUDU	\N
-OZOTOCEROS	\N
-MAZAMA	\N
-ODOCOILEUS	\N
-HYDROPOTES	\N
-ANTILOCAPRA	\N
-LEPTOBOS	\N
-BUBALUS	\N
-SYNCERUS	\N
-SOERGILIA	\N
-OVIBOS	\N
-PRAEOVIBOS	\N
-GAZELLOSPIRA	\N
-ALCELAPHUS	\N
-ANTIDORCAS	\N
-ADDAX	\N
-BOSELAPHUS	\N
-GAZELLA	\N
-CONNOCHAETES	\N
-DAMALISCUS	\N
-HIPPOTRAGUS	\N
-KOBUS	\N
-ORYX	\N
-SYLVICAPRA	\N
-TAUROTRAGUS	\N
-TRAGELAPHUS	\N
-SAIGA	\N
-MYOTRAGUS	\N
-GALLOGORAL	\N
-PROCAMPTOCERAS	\N
-OVIS	\N
-MEGALOVIS	\N
-AMNOTRAGUS	\N
-HEMITRAGUS	\N
-PLIOTRAGUS	\N
-HIPPARION	\N
-TAPIRUS	\N
-COELONDONTA	\N
-ELASMOTHERIUM	\N
-DICEROS	\N
-RHINOCEROS	\N
-CERAROTHERIUM	\N
-STEPHANORHINUS	\N
-ANANCUS	\N
-LOXODONTA	\N
-MAMMUTHUS	\N
-DELPHINUS	\N
-TURSIOPS	\N
-GLOBICEPHALA	\N
-GRAMPUS	\N
-ORCINUS	\N
-PHOCAENA	\N
-DELPHINAPTERUS	\N
-MONODON	\N
-PHYSETER	\N
-HYPEROODON	\N
-ZYPHIUS	\N
-BALAENOPTERA	\N
-MEGAPTERA	\N
-BALAENA	\N
-GAVIA	\N
-PODICEPS	\N
-TACHYBAPTUS	\N
-PODILYMBUS	\N
-DIOMEDEA	\N
-OCEANODROMA	\N
-OCEANITES	\N
-HYDROBATES	\N
-PELAGODROMA	\N
-BULWERIA	\N
-PTERODROMA	\N
-FULMARUS	\N
-CALONECTRIS	\N
-SULA 	\N
-PELECANUS	\N
-PHALACROCORAX	\N
-BOTAURUS	\N
-IXOBRYCHUS	\N
-ARDEOLA	\N
-NYCTICORAX	\N
-BULBUCUS	\N
-EGRETTA	\N
-ARDEA	\N
-PLATALEA	\N
-PLEGADIS	\N
-THRESKIORNIS	\N
-GERONTICUS	\N
-CICONIA	\N
-PHOENICOPTRUS	\N
-CYGNUS	\N
-BRANTA	\N
-ANSER	\N
-MARMARONETTA	\N
-ALOPOCHEN	\N
-AIX	\N
-TADORNA	\N
-NETTA	\N
-HISTRIONICUS	\N
-CLANGULA	\N
-MELANITTA	\N
-SOMATERIA	\N
-POLYCTICTA	\N
-MERGUS	\N
-OXYURA	\N
-NEOPHRON	\N
-GYPS	\N
-HALIAEETUS	\N
-CIRCAETUS	\N
-PERNIS	\N
-MILVUS	\N
-ELANUS	\N
-PANDION	\N
-LAGOPUS	\N
-TETRAOGALLUS	\N
-BONASA	\N
-FRANCOLINUS	\N
-PHASIANUS	\N
-CHRYSOLOPUS	\N
-TURNIX	\N
-GRUS	\N
-ANTHROPOIDES	\N
-OTIS	\N
-TETRAX	\N
-CHLAMYDOTIS	\N
-PORPHYRIO	\N
-PORPHYRULLA	\N
-GALLINULA	\N
-FULICA	\N
-SYRRHAPTES	\N
-PTEROCLES	\N
-STREPTOPELIA	\N
-CLAMATOR	\N
-COCCYZUS	\N
-TYTO	\N
-GLAUCIDIUM	\N
-CHORDEILES	\N
-ALCEDO	\N
-CERYLE	\N
-MEROPS	\N
-UPUPA	\N
-PICUS	\N
-DENDROCOPS	\N
-DRYOCOPUS	\N
-HAEMATOPUS	\N
-VANELLUS	\N
-HOPLOPTERUS	\N
-CHETTUSIA	\N
-ARENARIA	\N
-CALIDRIS	\N
-LIMICOLA	\N
-LIMNODROMUS	\N
-MICROPALAMA	\N
-LYMNOCRYPTES	\N
-PHALAROPUS	\N
-STERCORARIUS	\N
-PAGOPHILA	\N
-RHODOSTHETIA	\N
-RISSA	\N
-LIMOSA	\N
-ACTITIS	\N
-XENUS	\N
-PHILOMACHUS	\N
-TRYNGITES	\N
-BARTRAMIA	\N
-RECURVIROSTRA	\N
-HIMANTOPUS	\N
-CURSORIUS	\N
-GLAEROLA	\N
-GELOCHELIDON	\N
-ALCA	\N
-ALLE	\N
-CEPHUS	\N
-CHERSOPHILUS	\N
-CALANDRELLA	\N
-MELANOCRYPHA	\N
-EREMOPHILA	\N
-RIPARIA	\N
-ORIOLUS	\N
-BOMBYCILLA	\N
-PERISOREUS	\N
-CYANOPICA	\N
-NUCIFRAGA	\N
-CETTIA	\N
-LOCUSTELLA	\N
-ACROCEPHALUS	\N
-CISTICOLA	\N
-HIPPOLAIS	\N
-CERCOTRICHAS	\N
-REGULUS	\N
-CATHARUS	\N
-ZOOTHERA	\N
-PARUS	\N
-AEGITHALOS	\N
-REMIZ	\N
-SITTA	\N
-TICHODROMA	\N
-CERTHIA	\N
-BUCANETES	\N
-MILARIA	\N
-CALCARIUS	\N
-MUSICAPA	\N
-FICEDULA	\N
-ACANTHOCHITONA	\N
-BARLEEIA	\N
-CYCLOPE	\N
-POLLIA	\N
-PISANIA	\N
-CERITHIOPSIS	\N
-MARSHALLORA	\N
-FISSURELLA	\N
-TARSIGER	\N
-LUSCINIA	\N
-CERITHIUM	\N
-IRANIA	\N
-TESTUDO	\N
-TURRITELLA	\N
-EMYS	\N
-MAUREMYS	\N
-DERMOCHELYS	\N
-CARETTA	\N
-LEPIDOCHELYS	\N
-CHELONIA	\N
-ERETHMOCHELYS	\N
-BLANUS	\N
-HEMIDACTYLUS	\N
-PHYLLODACTYLUS	\N
-CYRTODACTYLUS	\N
-AGAMA	\N
-ALGYROIDES	\N
-OPHISOPS	\N
-PSAMMODROMUS	\N
-MUREX	\N
-ACANTHODACTYLUS	\N
-EREMIAS	\N
-MURICOPSIS	\N
-OCENEBRA	\N
-OCINEBRINA	\N
-MITRELLA	\N
-MANGELIA	\N
-POMATIAS	\N
-GRANARIA	\N
-SOLATOPUPA	\N
-SUCCINEA	\N
-DISCUS	\N
-VITREA	\N
-AEGOPINELLA	\N
-XEROTRICHA	\N
-CERNUELLA	\N
-OPHISAURUS	\N
-ABLEPHARUS	\N
-OPHIOMORUS	\N
-CHALCYDES	\N
-TYPHLOPS	\N
-ERYX	\N
-ARGNA	\N
-MACROPROTODON	\N
-TELESCOPUS	\N
-SALAMANDRA	\N
-SALAMANDRINA	\N
-CHIOGLOSSA	\N
-PLEURODELES	\N
-EUPROCTUS	\N
-PROTEUS	\N
-BOMBINA	\N
-DISCOGLOSSUS	\N
-ALYTES	\N
-PLIOLAGUS	\N
-SPELEOMANTES	\N
-CORNU	\N
-CHAMAELEO	\N
-VERMETUS	\N
-RISSOINA	\N
-CANTAREUS	\N
-GALBA	\N
-SPHINCTEROCHILA	\N
-XEROSECTA	\N
-TONNA	\N
-HALIOTIS	\N
-\.
+INSERT INTO controle_f_genre VALUES ('COLUMBA', NULL);
+INSERT INTO controle_f_genre VALUES ('VIPERA', NULL);
+INSERT INTO controle_f_genre VALUES ('NATRIX', NULL);
+INSERT INTO controle_f_genre VALUES ('CORONELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('COLUBER', NULL);
+INSERT INTO controle_f_genre VALUES ('MALPOLON', NULL);
+INSERT INTO controle_f_genre VALUES ('ELAPHE', NULL);
+INSERT INTO controle_f_genre VALUES ('ANGUIS', NULL);
+INSERT INTO controle_f_genre VALUES ('LACERTA', NULL);
+INSERT INTO controle_f_genre VALUES ('TRINGA', NULL);
+INSERT INTO controle_f_genre VALUES ('MICROTUS', NULL);
+INSERT INTO controle_f_genre VALUES ('APODEMUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ARVICOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PLIOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('TERRICOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('CLETHRIONOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('GLIS', NULL);
+INSERT INTO controle_f_genre VALUES ('ELIOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('CRICETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MUSCARDINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LAGURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PYRRHOCORAX', NULL);
+INSERT INTO controle_f_genre VALUES ('GARRULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PELODYTES', NULL);
+INSERT INTO controle_f_genre VALUES ('HYLA', NULL);
+INSERT INTO controle_f_genre VALUES ('BUFO', NULL);
+INSERT INTO controle_f_genre VALUES ('AQUILA', NULL);
+INSERT INTO controle_f_genre VALUES ('STRIX', NULL);
+INSERT INTO controle_f_genre VALUES ('OTUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ASIO', NULL);
+INSERT INTO controle_f_genre VALUES ('AEGOLIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ATHENE', NULL);
+INSERT INTO controle_f_genre VALUES ('BUBO', NULL);
+INSERT INTO controle_f_genre VALUES ('HIERAAETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CIRCUS', NULL);
+INSERT INTO controle_f_genre VALUES ('FALCO', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.BUTEO', NULL);
+INSERT INTO controle_f_genre VALUES ('AEGYPIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('GYPAETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('COTURNIX', NULL);
+INSERT INTO controle_f_genre VALUES ('CORVUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALECTORIS', NULL);
+INSERT INTO controle_f_genre VALUES ('RANA', NULL);
+INSERT INTO controle_f_genre VALUES ('PERDIX', NULL);
+INSERT INTO controle_f_genre VALUES ('TURDUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PICA', NULL);
+INSERT INTO controle_f_genre VALUES ('CUCULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALAUDA', NULL);
+INSERT INTO controle_f_genre VALUES ('CREX', NULL);
+INSERT INTO controle_f_genre VALUES ('NYCTEA', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.CARDUELIS', NULL);
+INSERT INTO controle_f_genre VALUES ('CARDUELIS', NULL);
+INSERT INTO controle_f_genre VALUES ('MOTACILLA', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.RALLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.FICEDULA', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.NUCIFRAGA', NULL);
+INSERT INTO controle_f_genre VALUES ('PHYLLOSCOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('EMBERIZA', NULL);
+INSERT INTO controle_f_genre VALUES ('HIRUNDO', NULL);
+INSERT INTO controle_f_genre VALUES ('CHLIDONIAS', NULL);
+INSERT INTO controle_f_genre VALUES ('HALIAETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SCOLOPAX', NULL);
+INSERT INTO controle_f_genre VALUES ('STERNA', NULL);
+INSERT INTO controle_f_genre VALUES ('FRATERCULA', NULL);
+INSERT INTO controle_f_genre VALUES ('URIA', NULL);
+INSERT INTO controle_f_genre VALUES ('PLUVIALIS', NULL);
+INSERT INTO controle_f_genre VALUES ('CHARADRIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LARUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MONTIFRINGILLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PETRONIA', NULL);
+INSERT INTO controle_f_genre VALUES ('OENANTHE', NULL);
+INSERT INTO controle_f_genre VALUES ('PHOENICURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ERITHACUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DELICHON', NULL);
+INSERT INTO controle_f_genre VALUES ('CINCLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LOXIA', NULL);
+INSERT INTO controle_f_genre VALUES ('COCCOTHRAUSTES', NULL);
+INSERT INTO controle_f_genre VALUES ('PINICOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PYRRHULA', NULL);
+INSERT INTO controle_f_genre VALUES ('CARPODACUS', NULL);
+INSERT INTO controle_f_genre VALUES ('FRINGILLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PLECTROPHENAX', NULL);
+INSERT INTO controle_f_genre VALUES ('ANTHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('STURNUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LULLULA', NULL);
+INSERT INTO controle_f_genre VALUES ('GALERIDA', NULL);
+INSERT INTO controle_f_genre VALUES ('APUS', NULL);
+INSERT INTO controle_f_genre VALUES ('GALLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('RALLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DENDROCOPOS', NULL);
+INSERT INTO controle_f_genre VALUES ('AYTHYA', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.ANAS', NULL);
+INSERT INTO controle_f_genre VALUES ('ANAS', NULL);
+INSERT INTO controle_f_genre VALUES ('BUCEPHALA', NULL);
+INSERT INTO controle_f_genre VALUES ('MACULARIA', NULL);
+INSERT INTO controle_f_genre VALUES ('ORYCTOLAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CHONDRINA', NULL);
+INSERT INTO controle_f_genre VALUES ('CANDIDULA', NULL);
+INSERT INTO controle_f_genre VALUES ('HELICODONTA', NULL);
+INSERT INTO controle_f_genre VALUES ('RUMINA', NULL);
+INSERT INTO controle_f_genre VALUES ('CEPAEA', NULL);
+INSERT INTO controle_f_genre VALUES ('CLAUSILIA', NULL);
+INSERT INTO controle_f_genre VALUES ('HELICELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('JAMINIA', NULL);
+INSERT INTO controle_f_genre VALUES ('OXYCHILUS', NULL);
+INSERT INTO controle_f_genre VALUES ('RETINELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('EOBANIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CERVUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PUPILLA', NULL);
+INSERT INTO controle_f_genre VALUES ('CECILIOIDES', NULL);
+INSERT INTO controle_f_genre VALUES ('TESTACELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('LIMAX', NULL);
+INSERT INTO controle_f_genre VALUES ('ACICULA', NULL);
+INSERT INTO controle_f_genre VALUES ('ABIDA', NULL);
+INSERT INTO controle_f_genre VALUES ('TROCHOIDEA', NULL);
+INSERT INTO controle_f_genre VALUES ('MONACHA', NULL);
+INSERT INTO controle_f_genre VALUES ('BOS/BISON', NULL);
+INSERT INTO controle_f_genre VALUES ('EQUUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CAPRA', NULL);
+INSERT INTO controle_f_genre VALUES ('CAPREOLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ELEPHAS', NULL);
+INSERT INTO controle_f_genre VALUES ('BITTIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('BOS', NULL);
+INSERT INTO controle_f_genre VALUES ('PASSER', NULL);
+INSERT INTO controle_f_genre VALUES ('PRUNELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('SYLVIA', NULL);
+INSERT INTO controle_f_genre VALUES ('LANIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SERINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MYTILUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LUCINOMA', NULL);
+INSERT INTO controle_f_genre VALUES ('LIMA', NULL);
+INSERT INTO controle_f_genre VALUES ('CHAMA', NULL);
+INSERT INTO controle_f_genre VALUES ('CARDITA', NULL);
+INSERT INTO controle_f_genre VALUES ('VENUS', NULL);
+INSERT INTO controle_f_genre VALUES ('STRIARCA', NULL);
+INSERT INTO controle_f_genre VALUES ('CHLAMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('GIBBULA', NULL);
+INSERT INTO controle_f_genre VALUES ('ARCA', NULL);
+INSERT INTO controle_f_genre VALUES ('ACCIPITER', NULL);
+INSERT INTO controle_f_genre VALUES ('SAXICOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PTYONOPROGNE', NULL);
+INSERT INTO controle_f_genre VALUES ('CAPRIMULGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PICOIDES', NULL);
+INSERT INTO controle_f_genre VALUES ('JYNX', NULL);
+INSERT INTO controle_f_genre VALUES ('CORACIAS', NULL);
+INSERT INTO controle_f_genre VALUES ('EUDROMIAS', NULL);
+INSERT INTO controle_f_genre VALUES ('TETRAO', NULL);
+INSERT INTO controle_f_genre VALUES ('GALLINAGO', NULL);
+INSERT INTO controle_f_genre VALUES ('BUTEO', NULL);
+INSERT INTO controle_f_genre VALUES ('NUMENIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PORZANA', NULL);
+INSERT INTO controle_f_genre VALUES ('TROGLODYTES', NULL);
+INSERT INTO controle_f_genre VALUES ('CORACIA', NULL);
+INSERT INTO controle_f_genre VALUES ('TRITURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PODARCIS', NULL);
+INSERT INTO controle_f_genre VALUES ('DAMA', NULL);
+INSERT INTO controle_f_genre VALUES ('CANIS', NULL);
+INSERT INTO controle_f_genre VALUES ('LITTORINA', NULL);
+INSERT INTO controle_f_genre VALUES ('HOMALOPOMA', NULL);
+INSERT INTO controle_f_genre VALUES ('JUJUBINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PATELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('VEXILLUM', NULL);
+INSERT INTO controle_f_genre VALUES ('IND', NULL);
+INSERT INTO controle_f_genre VALUES ('CALLIOSTOMA', NULL);
+INSERT INTO controle_f_genre VALUES ('VRAIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CALLISTA', NULL);
+INSERT INTO controle_f_genre VALUES ('CLANCULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PECTENIDAE', NULL);
+INSERT INTO controle_f_genre VALUES ('MONODONTA', NULL);
+INSERT INTO controle_f_genre VALUES ('NASSARIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TRIVIA', NULL);
+INSERT INTO controle_f_genre VALUES ('RISSOA', NULL);
+INSERT INTO controle_f_genre VALUES ('DIODORA', NULL);
+INSERT INTO controle_f_genre VALUES ('COLUMBELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('FUSINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TRICOLIA', NULL);
+INSERT INTO controle_f_genre VALUES ('PECTINIDAE', NULL);
+INSERT INTO controle_f_genre VALUES ('MITRA', NULL);
+INSERT INTO controle_f_genre VALUES ('EROSARIA', NULL);
+INSERT INTO controle_f_genre VALUES ('MELARAPHE', NULL);
+INSERT INTO controle_f_genre VALUES ('TUBERCULATA', NULL);
+INSERT INTO controle_f_genre VALUES ('SPONDYLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('OSTREA', NULL);
+INSERT INTO controle_f_genre VALUES ('PANTHERA', NULL);
+INSERT INTO controle_f_genre VALUES ('ALVANIA', NULL);
+INSERT INTO controle_f_genre VALUES ('RUPICAPRA', NULL);
+INSERT INTO controle_f_genre VALUES ('SUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BISON', NULL);
+INSERT INTO controle_f_genre VALUES ('DICERORHINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LYNX', NULL);
+INSERT INTO controle_f_genre VALUES ('URSUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.RUPICAPRA', NULL);
+INSERT INTO controle_f_genre VALUES ('VULPES', NULL);
+INSERT INTO controle_f_genre VALUES ('MARMOTA', NULL);
+INSERT INTO controle_f_genre VALUES ('TALPA', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.EQUUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TARENTOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PUFFINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF. AYTHYA', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.CHARADRIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.EUDROMIAS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF. CALIDRIS', NULL);
+INSERT INTO controle_f_genre VALUES ('HOMO', NULL);
+INSERT INTO controle_f_genre VALUES ('COELODONTA', NULL);
+INSERT INTO controle_f_genre VALUES ('PELOBATES', NULL);
+INSERT INTO controle_f_genre VALUES ('MUSCICAPA', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.TURDUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.AEGYPIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('RANGIFER', NULL);
+INSERT INTO controle_f_genre VALUES ('MEGALOCEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('RATTUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SOREX', NULL);
+INSERT INTO controle_f_genre VALUES ('CROCIDURA', NULL);
+INSERT INTO controle_f_genre VALUES ('NEOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('RHINOLOPHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MINIOPTERUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BARBASTELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('MYOTIS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.CANIS', NULL);
+INSERT INTO controle_f_genre VALUES ('PANTHERA LEO', NULL);
+INSERT INTO controle_f_genre VALUES ('MELES', NULL);
+INSERT INTO controle_f_genre VALUES ('FELIS', NULL);
+INSERT INTO controle_f_genre VALUES ('CF.DAMA', NULL);
+INSERT INTO controle_f_genre VALUES ('BURHINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MACACA', NULL);
+INSERT INTO controle_f_genre VALUES ('PONGO', NULL);
+INSERT INTO controle_f_genre VALUES ('GORILLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PAN', NULL);
+INSERT INTO controle_f_genre VALUES ('AUSTRALOPITHECUS', NULL);
+INSERT INTO controle_f_genre VALUES ('EUROPAEUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALGIRUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DAVIDI', NULL);
+INSERT INTO controle_f_genre VALUES ('HEMIECHINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('GALEMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('DESMANA', NULL);
+INSERT INTO controle_f_genre VALUES ('SUNCUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MYOSOREX', NULL);
+INSERT INTO controle_f_genre VALUES ('DEPRANOSOREX', NULL);
+INSERT INTO controle_f_genre VALUES ('PETENYIA', NULL);
+INSERT INTO controle_f_genre VALUES ('DEINSDORFIA', NULL);
+INSERT INTO controle_f_genre VALUES ('BLARINELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('BERENENDIA', NULL);
+INSERT INTO controle_f_genre VALUES ('EPISORICULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SORICULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BLARINOIDES', NULL);
+INSERT INTO controle_f_genre VALUES ('TADARIDA', NULL);
+INSERT INTO controle_f_genre VALUES ('SAUROMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('VESPERTILIO', NULL);
+INSERT INTO controle_f_genre VALUES ('EPTESICUS', NULL);
+INSERT INTO controle_f_genre VALUES ('NYCTALUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PIPISTRELLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PLECOTUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LASIURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALLOPHAIOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('DYNAROMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('ONDRATA', NULL);
+INSERT INTO controle_f_genre VALUES ('LEMMUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MYOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DICROSTONYX', NULL);
+INSERT INTO controle_f_genre VALUES ('ELLOBIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MIMOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('UNGAROMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('SPALAX', NULL);
+INSERT INTO controle_f_genre VALUES ('PROSIPHNEUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MYOSPALAX', NULL);
+INSERT INTO controle_f_genre VALUES ('SICISTA', NULL);
+INSERT INTO controle_f_genre VALUES ('ALLACTAGA', NULL);
+INSERT INTO controle_f_genre VALUES ('VILLANYIA', NULL);
+INSERT INTO controle_f_genre VALUES ('MESOCRICETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALLOCRICETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PEROMYSCUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CRICETULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MERIONES', NULL);
+INSERT INTO controle_f_genre VALUES ('CRICETINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CASTOR', NULL);
+INSERT INTO controle_f_genre VALUES ('TROGONTHERIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('MYOCASTOR', NULL);
+INSERT INTO controle_f_genre VALUES ('HYSTRIX', NULL);
+INSERT INTO controle_f_genre VALUES ('GLIRULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MYOMIMUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DRYOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('SCIURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PTEROMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('TAMIAS', NULL);
+INSERT INTO controle_f_genre VALUES ('CITELLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CYNONYS', NULL);
+INSERT INTO controle_f_genre VALUES ('RHAGAMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('ACOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('MICROMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('LEMNISCONYS', NULL);
+INSERT INTO controle_f_genre VALUES ('HYDROCHOERUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LEPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HYPOLAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('OCHOTONOIDES', NULL);
+INSERT INTO controle_f_genre VALUES ('PROLAGOMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('OCHOTONA', NULL);
+INSERT INTO controle_f_genre VALUES ('PROLAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MUSTELA', NULL);
+INSERT INTO controle_f_genre VALUES ('MARTES', NULL);
+INSERT INTO controle_f_genre VALUES ('GULO', NULL);
+INSERT INTO controle_f_genre VALUES ('LUTRA', NULL);
+INSERT INTO controle_f_genre VALUES ('GALICTIS', NULL);
+INSERT INTO controle_f_genre VALUES ('MEPHITIS', NULL);
+INSERT INTO controle_f_genre VALUES ('BARANOGALE', NULL);
+INSERT INTO controle_f_genre VALUES ('VORMELA', NULL);
+INSERT INTO controle_f_genre VALUES ('PANONICTIS', NULL);
+INSERT INTO controle_f_genre VALUES ('MELLIVORA', NULL);
+INSERT INTO controle_f_genre VALUES ('ENHYDRA', NULL);
+INSERT INTO controle_f_genre VALUES ('CUON', NULL);
+INSERT INTO controle_f_genre VALUES ('FENNECUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALOPEX', NULL);
+INSERT INTO controle_f_genre VALUES ('NYCTEREUTES', NULL);
+INSERT INTO controle_f_genre VALUES ('LYCAON', NULL);
+INSERT INTO controle_f_genre VALUES ('AILURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HELARCTOS', NULL);
+INSERT INTO controle_f_genre VALUES ('TREMARCTOS', NULL);
+INSERT INTO controle_f_genre VALUES ('MELUSUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PLIONARCTOS', NULL);
+INSERT INTO controle_f_genre VALUES ('ACINONYX', NULL);
+INSERT INTO controle_f_genre VALUES ('CARACAL', NULL);
+INSERT INTO controle_f_genre VALUES ('PUMA', NULL);
+INSERT INTO controle_f_genre VALUES ('HOMOTHERIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('MACHAIRODUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MEGANTERON', NULL);
+INSERT INTO controle_f_genre VALUES ('GENETTA', NULL);
+INSERT INTO controle_f_genre VALUES ('HERPESTES', NULL);
+INSERT INTO controle_f_genre VALUES ('VIVERRA', NULL);
+INSERT INTO controle_f_genre VALUES ('MUNGO', NULL);
+INSERT INTO controle_f_genre VALUES ('FOSSA', NULL);
+INSERT INTO controle_f_genre VALUES ('SURICATA', NULL);
+INSERT INTO controle_f_genre VALUES ('CROCUTA', NULL);
+INSERT INTO controle_f_genre VALUES ('HYAENA', NULL);
+INSERT INTO controle_f_genre VALUES ('PROTELES', NULL);
+INSERT INTO controle_f_genre VALUES ('EURYBOAS', NULL);
+INSERT INTO controle_f_genre VALUES ('ODOBAENUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PHOCA', NULL);
+INSERT INTO controle_f_genre VALUES ('PUSA', NULL);
+INSERT INTO controle_f_genre VALUES ('PAGOPHILUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HALICHOERUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ERIGNATHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CYSTOPHORA', NULL);
+INSERT INTO controle_f_genre VALUES ('MONACHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PHACOCHOERUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HIPPOPOTAMUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CAMELUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LAMA', NULL);
+INSERT INTO controle_f_genre VALUES ('GIRAFFA', NULL);
+INSERT INTO controle_f_genre VALUES ('OKAPIA', NULL);
+INSERT INTO controle_f_genre VALUES ('SIVATHERIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('CROIZETOCEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('EUCLADOCEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALCES', NULL);
+INSERT INTO controle_f_genre VALUES ('PRAEMEGACEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('ARVERNOCEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('MUNTIACUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ELAPHURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('AXIS', NULL);
+INSERT INTO controle_f_genre VALUES ('HYELOPHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SIKA', NULL);
+INSERT INTO controle_f_genre VALUES ('RUCERVUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PRJEVALSKIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('PUDU', NULL);
+INSERT INTO controle_f_genre VALUES ('OZOTOCEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('MAZAMA', NULL);
+INSERT INTO controle_f_genre VALUES ('ODOCOILEUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HYDROPOTES', NULL);
+INSERT INTO controle_f_genre VALUES ('ANTILOCAPRA', NULL);
+INSERT INTO controle_f_genre VALUES ('LEPTOBOS', NULL);
+INSERT INTO controle_f_genre VALUES ('BUBALUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SYNCERUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SOERGILIA', NULL);
+INSERT INTO controle_f_genre VALUES ('OVIBOS', NULL);
+INSERT INTO controle_f_genre VALUES ('PRAEOVIBOS', NULL);
+INSERT INTO controle_f_genre VALUES ('GAZELLOSPIRA', NULL);
+INSERT INTO controle_f_genre VALUES ('ALCELAPHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ANTIDORCAS', NULL);
+INSERT INTO controle_f_genre VALUES ('ADDAX', NULL);
+INSERT INTO controle_f_genre VALUES ('BOSELAPHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('GAZELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('CONNOCHAETES', NULL);
+INSERT INTO controle_f_genre VALUES ('DAMALISCUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HIPPOTRAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('KOBUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ORYX', NULL);
+INSERT INTO controle_f_genre VALUES ('SYLVICAPRA', NULL);
+INSERT INTO controle_f_genre VALUES ('TAUROTRAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TRAGELAPHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SAIGA', NULL);
+INSERT INTO controle_f_genre VALUES ('MYOTRAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('GALLOGORAL', NULL);
+INSERT INTO controle_f_genre VALUES ('PROCAMPTOCERAS', NULL);
+INSERT INTO controle_f_genre VALUES ('OVIS', NULL);
+INSERT INTO controle_f_genre VALUES ('MEGALOVIS', NULL);
+INSERT INTO controle_f_genre VALUES ('AMNOTRAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HEMITRAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PLIOTRAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HIPPARION', NULL);
+INSERT INTO controle_f_genre VALUES ('TAPIRUS', NULL);
+INSERT INTO controle_f_genre VALUES ('COELONDONTA', NULL);
+INSERT INTO controle_f_genre VALUES ('ELASMOTHERIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('DICEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('RHINOCEROS', NULL);
+INSERT INTO controle_f_genre VALUES ('CERAROTHERIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('STEPHANORHINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ANANCUS', NULL);
+INSERT INTO controle_f_genre VALUES ('LOXODONTA', NULL);
+INSERT INTO controle_f_genre VALUES ('MAMMUTHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DELPHINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TURSIOPS', NULL);
+INSERT INTO controle_f_genre VALUES ('GLOBICEPHALA', NULL);
+INSERT INTO controle_f_genre VALUES ('GRAMPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ORCINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PHOCAENA', NULL);
+INSERT INTO controle_f_genre VALUES ('DELPHINAPTERUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MONODON', NULL);
+INSERT INTO controle_f_genre VALUES ('PHYSETER', NULL);
+INSERT INTO controle_f_genre VALUES ('HYPEROODON', NULL);
+INSERT INTO controle_f_genre VALUES ('ZYPHIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BALAENOPTERA', NULL);
+INSERT INTO controle_f_genre VALUES ('MEGAPTERA', NULL);
+INSERT INTO controle_f_genre VALUES ('BALAENA', NULL);
+INSERT INTO controle_f_genre VALUES ('GAVIA', NULL);
+INSERT INTO controle_f_genre VALUES ('PODICEPS', NULL);
+INSERT INTO controle_f_genre VALUES ('TACHYBAPTUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PODILYMBUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DIOMEDEA', NULL);
+INSERT INTO controle_f_genre VALUES ('OCEANODROMA', NULL);
+INSERT INTO controle_f_genre VALUES ('OCEANITES', NULL);
+INSERT INTO controle_f_genre VALUES ('HYDROBATES', NULL);
+INSERT INTO controle_f_genre VALUES ('PELAGODROMA', NULL);
+INSERT INTO controle_f_genre VALUES ('BULWERIA', NULL);
+INSERT INTO controle_f_genre VALUES ('PTERODROMA', NULL);
+INSERT INTO controle_f_genre VALUES ('FULMARUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CALONECTRIS', NULL);
+INSERT INTO controle_f_genre VALUES ('SULA ', NULL);
+INSERT INTO controle_f_genre VALUES ('PELECANUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PHALACROCORAX', NULL);
+INSERT INTO controle_f_genre VALUES ('BOTAURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('IXOBRYCHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ARDEOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('NYCTICORAX', NULL);
+INSERT INTO controle_f_genre VALUES ('BULBUCUS', NULL);
+INSERT INTO controle_f_genre VALUES ('EGRETTA', NULL);
+INSERT INTO controle_f_genre VALUES ('ARDEA', NULL);
+INSERT INTO controle_f_genre VALUES ('PLATALEA', NULL);
+INSERT INTO controle_f_genre VALUES ('PLEGADIS', NULL);
+INSERT INTO controle_f_genre VALUES ('THRESKIORNIS', NULL);
+INSERT INTO controle_f_genre VALUES ('GERONTICUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CICONIA', NULL);
+INSERT INTO controle_f_genre VALUES ('PHOENICOPTRUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CYGNUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BRANTA', NULL);
+INSERT INTO controle_f_genre VALUES ('ANSER', NULL);
+INSERT INTO controle_f_genre VALUES ('MARMARONETTA', NULL);
+INSERT INTO controle_f_genre VALUES ('ALOPOCHEN', NULL);
+INSERT INTO controle_f_genre VALUES ('AIX', NULL);
+INSERT INTO controle_f_genre VALUES ('TADORNA', NULL);
+INSERT INTO controle_f_genre VALUES ('NETTA', NULL);
+INSERT INTO controle_f_genre VALUES ('HISTRIONICUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CLANGULA', NULL);
+INSERT INTO controle_f_genre VALUES ('MELANITTA', NULL);
+INSERT INTO controle_f_genre VALUES ('SOMATERIA', NULL);
+INSERT INTO controle_f_genre VALUES ('POLYCTICTA', NULL);
+INSERT INTO controle_f_genre VALUES ('MERGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('OXYURA', NULL);
+INSERT INTO controle_f_genre VALUES ('NEOPHRON', NULL);
+INSERT INTO controle_f_genre VALUES ('GYPS', NULL);
+INSERT INTO controle_f_genre VALUES ('HALIAEETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CIRCAETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PERNIS', NULL);
+INSERT INTO controle_f_genre VALUES ('MILVUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ELANUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PANDION', NULL);
+INSERT INTO controle_f_genre VALUES ('LAGOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TETRAOGALLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BONASA', NULL);
+INSERT INTO controle_f_genre VALUES ('FRANCOLINUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PHASIANUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CHRYSOLOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TURNIX', NULL);
+INSERT INTO controle_f_genre VALUES ('GRUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ANTHROPOIDES', NULL);
+INSERT INTO controle_f_genre VALUES ('OTIS', NULL);
+INSERT INTO controle_f_genre VALUES ('TETRAX', NULL);
+INSERT INTO controle_f_genre VALUES ('CHLAMYDOTIS', NULL);
+INSERT INTO controle_f_genre VALUES ('PORPHYRIO', NULL);
+INSERT INTO controle_f_genre VALUES ('PORPHYRULLA', NULL);
+INSERT INTO controle_f_genre VALUES ('GALLINULA', NULL);
+INSERT INTO controle_f_genre VALUES ('FULICA', NULL);
+INSERT INTO controle_f_genre VALUES ('SYRRHAPTES', NULL);
+INSERT INTO controle_f_genre VALUES ('PTEROCLES', NULL);
+INSERT INTO controle_f_genre VALUES ('STREPTOPELIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CLAMATOR', NULL);
+INSERT INTO controle_f_genre VALUES ('COCCYZUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TYTO', NULL);
+INSERT INTO controle_f_genre VALUES ('GLAUCIDIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('CHORDEILES', NULL);
+INSERT INTO controle_f_genre VALUES ('ALCEDO', NULL);
+INSERT INTO controle_f_genre VALUES ('CERYLE', NULL);
+INSERT INTO controle_f_genre VALUES ('MEROPS', NULL);
+INSERT INTO controle_f_genre VALUES ('UPUPA', NULL);
+INSERT INTO controle_f_genre VALUES ('PICUS', NULL);
+INSERT INTO controle_f_genre VALUES ('DENDROCOPS', NULL);
+INSERT INTO controle_f_genre VALUES ('DRYOCOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HAEMATOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('VANELLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HOPLOPTERUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CHETTUSIA', NULL);
+INSERT INTO controle_f_genre VALUES ('ARENARIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CALIDRIS', NULL);
+INSERT INTO controle_f_genre VALUES ('LIMICOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('LIMNODROMUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MICROPALAMA', NULL);
+INSERT INTO controle_f_genre VALUES ('LYMNOCRYPTES', NULL);
+INSERT INTO controle_f_genre VALUES ('PHALAROPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('STERCORARIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PAGOPHILA', NULL);
+INSERT INTO controle_f_genre VALUES ('RHODOSTHETIA', NULL);
+INSERT INTO controle_f_genre VALUES ('RISSA', NULL);
+INSERT INTO controle_f_genre VALUES ('LIMOSA', NULL);
+INSERT INTO controle_f_genre VALUES ('ACTITIS', NULL);
+INSERT INTO controle_f_genre VALUES ('XENUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PHILOMACHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('TRYNGITES', NULL);
+INSERT INTO controle_f_genre VALUES ('BARTRAMIA', NULL);
+INSERT INTO controle_f_genre VALUES ('RECURVIROSTRA', NULL);
+INSERT INTO controle_f_genre VALUES ('HIMANTOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CURSORIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('GLAEROLA', NULL);
+INSERT INTO controle_f_genre VALUES ('GELOCHELIDON', NULL);
+INSERT INTO controle_f_genre VALUES ('ALCA', NULL);
+INSERT INTO controle_f_genre VALUES ('ALLE', NULL);
+INSERT INTO controle_f_genre VALUES ('CEPHUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CHERSOPHILUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CALANDRELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('MELANOCRYPHA', NULL);
+INSERT INTO controle_f_genre VALUES ('EREMOPHILA', NULL);
+INSERT INTO controle_f_genre VALUES ('RIPARIA', NULL);
+INSERT INTO controle_f_genre VALUES ('ORIOLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BOMBYCILLA', NULL);
+INSERT INTO controle_f_genre VALUES ('PERISOREUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CYANOPICA', NULL);
+INSERT INTO controle_f_genre VALUES ('NUCIFRAGA', NULL);
+INSERT INTO controle_f_genre VALUES ('CETTIA', NULL);
+INSERT INTO controle_f_genre VALUES ('LOCUSTELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('ACROCEPHALUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CISTICOLA', NULL);
+INSERT INTO controle_f_genre VALUES ('HIPPOLAIS', NULL);
+INSERT INTO controle_f_genre VALUES ('CERCOTRICHAS', NULL);
+INSERT INTO controle_f_genre VALUES ('REGULUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CATHARUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ZOOTHERA', NULL);
+INSERT INTO controle_f_genre VALUES ('PARUS', NULL);
+INSERT INTO controle_f_genre VALUES ('AEGITHALOS', NULL);
+INSERT INTO controle_f_genre VALUES ('REMIZ', NULL);
+INSERT INTO controle_f_genre VALUES ('SITTA', NULL);
+INSERT INTO controle_f_genre VALUES ('TICHODROMA', NULL);
+INSERT INTO controle_f_genre VALUES ('CERTHIA', NULL);
+INSERT INTO controle_f_genre VALUES ('BUCANETES', NULL);
+INSERT INTO controle_f_genre VALUES ('MILARIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CALCARIUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MUSICAPA', NULL);
+INSERT INTO controle_f_genre VALUES ('FICEDULA', NULL);
+INSERT INTO controle_f_genre VALUES ('ACANTHOCHITONA', NULL);
+INSERT INTO controle_f_genre VALUES ('BARLEEIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CYCLOPE', NULL);
+INSERT INTO controle_f_genre VALUES ('POLLIA', NULL);
+INSERT INTO controle_f_genre VALUES ('PISANIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CERITHIOPSIS', NULL);
+INSERT INTO controle_f_genre VALUES ('MARSHALLORA', NULL);
+INSERT INTO controle_f_genre VALUES ('FISSURELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('TARSIGER', NULL);
+INSERT INTO controle_f_genre VALUES ('LUSCINIA', NULL);
+INSERT INTO controle_f_genre VALUES ('CERITHIUM', NULL);
+INSERT INTO controle_f_genre VALUES ('IRANIA', NULL);
+INSERT INTO controle_f_genre VALUES ('TESTUDO', NULL);
+INSERT INTO controle_f_genre VALUES ('TURRITELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('EMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('MAUREMYS', NULL);
+INSERT INTO controle_f_genre VALUES ('DERMOCHELYS', NULL);
+INSERT INTO controle_f_genre VALUES ('CARETTA', NULL);
+INSERT INTO controle_f_genre VALUES ('LEPIDOCHELYS', NULL);
+INSERT INTO controle_f_genre VALUES ('CHELONIA', NULL);
+INSERT INTO controle_f_genre VALUES ('ERETHMOCHELYS', NULL);
+INSERT INTO controle_f_genre VALUES ('BLANUS', NULL);
+INSERT INTO controle_f_genre VALUES ('HEMIDACTYLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PHYLLODACTYLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CYRTODACTYLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('AGAMA', NULL);
+INSERT INTO controle_f_genre VALUES ('ALGYROIDES', NULL);
+INSERT INTO controle_f_genre VALUES ('OPHISOPS', NULL);
+INSERT INTO controle_f_genre VALUES ('PSAMMODROMUS', NULL);
+INSERT INTO controle_f_genre VALUES ('MUREX', NULL);
+INSERT INTO controle_f_genre VALUES ('ACANTHODACTYLUS', NULL);
+INSERT INTO controle_f_genre VALUES ('EREMIAS', NULL);
+INSERT INTO controle_f_genre VALUES ('MURICOPSIS', NULL);
+INSERT INTO controle_f_genre VALUES ('OCENEBRA', NULL);
+INSERT INTO controle_f_genre VALUES ('OCINEBRINA', NULL);
+INSERT INTO controle_f_genre VALUES ('MITRELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('MANGELIA', NULL);
+INSERT INTO controle_f_genre VALUES ('POMATIAS', NULL);
+INSERT INTO controle_f_genre VALUES ('GRANARIA', NULL);
+INSERT INTO controle_f_genre VALUES ('SOLATOPUPA', NULL);
+INSERT INTO controle_f_genre VALUES ('SUCCINEA', NULL);
+INSERT INTO controle_f_genre VALUES ('DISCUS', NULL);
+INSERT INTO controle_f_genre VALUES ('VITREA', NULL);
+INSERT INTO controle_f_genre VALUES ('AEGOPINELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('XEROTRICHA', NULL);
+INSERT INTO controle_f_genre VALUES ('CERNUELLA', NULL);
+INSERT INTO controle_f_genre VALUES ('OPHISAURUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ABLEPHARUS', NULL);
+INSERT INTO controle_f_genre VALUES ('OPHIOMORUS', NULL);
+INSERT INTO controle_f_genre VALUES ('CHALCYDES', NULL);
+INSERT INTO controle_f_genre VALUES ('TYPHLOPS', NULL);
+INSERT INTO controle_f_genre VALUES ('ERYX', NULL);
+INSERT INTO controle_f_genre VALUES ('ARGNA', NULL);
+INSERT INTO controle_f_genre VALUES ('MACROPROTODON', NULL);
+INSERT INTO controle_f_genre VALUES ('TELESCOPUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SALAMANDRA', NULL);
+INSERT INTO controle_f_genre VALUES ('SALAMANDRINA', NULL);
+INSERT INTO controle_f_genre VALUES ('CHIOGLOSSA', NULL);
+INSERT INTO controle_f_genre VALUES ('PLEURODELES', NULL);
+INSERT INTO controle_f_genre VALUES ('EUPROCTUS', NULL);
+INSERT INTO controle_f_genre VALUES ('PROTEUS', NULL);
+INSERT INTO controle_f_genre VALUES ('BOMBINA', NULL);
+INSERT INTO controle_f_genre VALUES ('DISCOGLOSSUS', NULL);
+INSERT INTO controle_f_genre VALUES ('ALYTES', NULL);
+INSERT INTO controle_f_genre VALUES ('PLIOLAGUS', NULL);
+INSERT INTO controle_f_genre VALUES ('SPELEOMANTES', NULL);
+INSERT INTO controle_f_genre VALUES ('CORNU', NULL);
+INSERT INTO controle_f_genre VALUES ('CHAMAELEO', NULL);
+INSERT INTO controle_f_genre VALUES ('VERMETUS', NULL);
+INSERT INTO controle_f_genre VALUES ('RISSOINA', NULL);
+INSERT INTO controle_f_genre VALUES ('CANTAREUS', NULL);
+INSERT INTO controle_f_genre VALUES ('GALBA', NULL);
+INSERT INTO controle_f_genre VALUES ('SPHINCTEROCHILA', NULL);
+INSERT INTO controle_f_genre VALUES ('XEROSECTA', NULL);
+INSERT INTO controle_f_genre VALUES ('TONNA', NULL);
+INSERT INTO controle_f_genre VALUES ('HALIOTIS', NULL);
 
 
 --
 -- Data for Name: controle_f_icirconference; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_icirconference (f_icirconference, description) FROM stdin;
-1	\N
-2	\N
-3	\N
-\.
+INSERT INTO controle_f_icirconference VALUES ('1', NULL);
+INSERT INTO controle_f_icirconference VALUES ('2', NULL);
+INSERT INTO controle_f_icirconference VALUES ('3', NULL);
 
 
 --
 -- Data for Name: controle_f_ilongueur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_ilongueur (f_ilongueur, description) FROM stdin;
-1	\N
-2	\N
-3	\N
-4	\N
-\.
+INSERT INTO controle_f_ilongueur VALUES ('1', NULL);
+INSERT INTO controle_f_ilongueur VALUES ('2', NULL);
+INSERT INTO controle_f_ilongueur VALUES ('3', NULL);
+INSERT INTO controle_f_ilongueur VALUES ('4', NULL);
 
 
 --
 -- Data for Name: controle_f_lateralite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_lateralite (f_lateralite, description) FROM stdin;
-D	\N
-G	\N
-DG	\N
-I	\N
-...	\N
-\.
+INSERT INTO controle_f_lateralite VALUES ('D', NULL);
+INSERT INTO controle_f_lateralite VALUES ('G', NULL);
+INSERT INTO controle_f_lateralite VALUES ('DG', NULL);
+INSERT INTO controle_f_lateralite VALUES ('I', NULL);
+INSERT INTO controle_f_lateralite VALUES ('...', NULL);
 
 
 --
 -- Data for Name: controle_f_mode; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_mode (f_mode, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_moulage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_moulage (f_moulage, description) FROM stdin;
-0	\N
-412	\N
-493	\N
-165	\N
-502	\N
-1	\N
-508	\N
-2	\N
-475	\N
-153	\N
-12	\N
-16	\N
-807	\N
-\.
+INSERT INTO controle_f_moulage VALUES ('0', NULL);
+INSERT INTO controle_f_moulage VALUES ('412', NULL);
+INSERT INTO controle_f_moulage VALUES ('493', NULL);
+INSERT INTO controle_f_moulage VALUES ('165', NULL);
+INSERT INTO controle_f_moulage VALUES ('502', NULL);
+INSERT INTO controle_f_moulage VALUES ('1', NULL);
+INSERT INTO controle_f_moulage VALUES ('508', NULL);
+INSERT INTO controle_f_moulage VALUES ('2', NULL);
+INSERT INTO controle_f_moulage VALUES ('475', NULL);
+INSERT INTO controle_f_moulage VALUES ('153', NULL);
+INSERT INTO controle_f_moulage VALUES ('12', NULL);
+INSERT INTO controle_f_moulage VALUES ('16', NULL);
+INSERT INTO controle_f_moulage VALUES ('807', NULL);
 
 
 --
 -- Data for Name: controle_f_ordre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_ordre (f_ordre, description) FROM stdin;
-COLUMBIFORMA	\N
-CHARADRIIFORMA	\N
-PASSERIFORMA	\N
-ACCIPITRIFORMA	\N
-STRIGIFORMA	\N
-FALCONIFORMA	\N
-GALLIFORMA	\N
-CUCULIFORMA	\N
-GRUIFORMA	\N
-APODIFORMA	\N
-PICIFORMA	\N
-ANSERIFORMA	\N
-HERB	\N
-IND	\N
-MYTILOIDA	\N
-PTERIOIDA	\N
-CAPRIMULGIFORMA	\N
-CORACIIFORMA	\N
-URODELES	\N
-NEOGASTROPODA	\N
-ARCOIDA	\N
-CERITHIDAE	\N
-RISSOIDAT	\N
-LAGOMORPHA	\N
-SUP	\N
-PROCELLARIIFORM	\N
-PH	petit herbivore
-GH	grand herbivore
-PRIMATA	\N
-INSECTIVORA	\N
-CHIROPTERA	\N
-RODENTIA	\N
-CARNIVORA	\N
-ARTIODACTYLA	\N
-PERISSODACTYLA	\N
-PROBOSCIDEA	\N
-CETACEA	\N
-GAVIIFORMA	\N
-PODICIPEDIFORMA	\N
-PROCELLARIIFORMA	\N
-PELECANIFORMA	\N
-CICONIIFORMA	\N
-PHOENICOPTERIFORMA	\N
-PTEROCLIDIFORMA	\N
-CHELONIA	\N
-URODELA	\N
-ARCHAEOGASTROPODA	\N
-SQUAMATA	\N
-POLYPLACOPHORA	\N
-BIVALVIA	\N
-ANURA	\N
-APOGASTROPODA	\N
-PULMONATA	\N
-MESOGASTROPODA	\N
-VENEROIDA	\N
-\.
+INSERT INTO controle_f_ordre VALUES ('COLUMBIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CHARADRIIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PASSERIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('ACCIPITRIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('STRIGIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('FALCONIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('GALLIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CUCULIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('GRUIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('APODIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PICIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('ANSERIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('HERB', NULL);
+INSERT INTO controle_f_ordre VALUES ('IND', NULL);
+INSERT INTO controle_f_ordre VALUES ('MYTILOIDA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PTERIOIDA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CAPRIMULGIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CORACIIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('URODELES', NULL);
+INSERT INTO controle_f_ordre VALUES ('NEOGASTROPODA', NULL);
+INSERT INTO controle_f_ordre VALUES ('ARCOIDA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CERITHIDAE', NULL);
+INSERT INTO controle_f_ordre VALUES ('RISSOIDAT', NULL);
+INSERT INTO controle_f_ordre VALUES ('LAGOMORPHA', NULL);
+INSERT INTO controle_f_ordre VALUES ('SUP', NULL);
+INSERT INTO controle_f_ordre VALUES ('PROCELLARIIFORM', NULL);
+INSERT INTO controle_f_ordre VALUES ('PH', 'petit herbivore');
+INSERT INTO controle_f_ordre VALUES ('GH', 'grand herbivore');
+INSERT INTO controle_f_ordre VALUES ('PRIMATA', NULL);
+INSERT INTO controle_f_ordre VALUES ('INSECTIVORA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CHIROPTERA', NULL);
+INSERT INTO controle_f_ordre VALUES ('RODENTIA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CARNIVORA', NULL);
+INSERT INTO controle_f_ordre VALUES ('ARTIODACTYLA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PERISSODACTYLA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PROBOSCIDEA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CETACEA', NULL);
+INSERT INTO controle_f_ordre VALUES ('GAVIIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PODICIPEDIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PROCELLARIIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PELECANIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CICONIIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PHOENICOPTERIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PTEROCLIDIFORMA', NULL);
+INSERT INTO controle_f_ordre VALUES ('CHELONIA', NULL);
+INSERT INTO controle_f_ordre VALUES ('URODELA', NULL);
+INSERT INTO controle_f_ordre VALUES ('ARCHAEOGASTROPODA', NULL);
+INSERT INTO controle_f_ordre VALUES ('SQUAMATA', NULL);
+INSERT INTO controle_f_ordre VALUES ('POLYPLACOPHORA', NULL);
+INSERT INTO controle_f_ordre VALUES ('BIVALVIA', NULL);
+INSERT INTO controle_f_ordre VALUES ('ANURA', NULL);
+INSERT INTO controle_f_ordre VALUES ('APOGASTROPODA', NULL);
+INSERT INTO controle_f_ordre VALUES ('PULMONATA', NULL);
+INSERT INTO controle_f_ordre VALUES ('MESOGASTROPODA', NULL);
+INSERT INTO controle_f_ordre VALUES ('VENEROIDA', NULL);
 
 
 --
 -- Data for Name: controle_f_oxyde; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_oxyde (f_oxyde, description) FROM stdin;
-MN	\N
-\.
+INSERT INTO controle_f_oxyde VALUES ('MN', NULL);
 
 
 --
 -- Data for Name: controle_f_pathologie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_pathologie (f_pathologie, description) FROM stdin;
-P	\N
-\.
+INSERT INTO controle_f_pathologie VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_f_pelote; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_pelote (f_pelote, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_percussion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_percussion (f_percussion, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_photo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_photo (f_photo, description) FROM stdin;
-P1	\N
-O1	\N
---	\N
-T1	\N
-U1	\N
-S1	\N
-R	\N
-G1	\N
-IN	\N
-\.
+INSERT INTO controle_f_photo VALUES ('P1', NULL);
+INSERT INTO controle_f_photo VALUES ('O1', NULL);
+INSERT INTO controle_f_photo VALUES ('--', NULL);
+INSERT INTO controle_f_photo VALUES ('T1', NULL);
+INSERT INTO controle_f_photo VALUES ('U1', NULL);
+INSERT INTO controle_f_photo VALUES ('S1', NULL);
+INSERT INTO controle_f_photo VALUES ('R', NULL);
+INSERT INTO controle_f_photo VALUES ('G1', NULL);
+INSERT INTO controle_f_photo VALUES ('IN', NULL);
 
 
 --
 -- Data for Name: controle_f_reference; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_reference (f_reference, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_responsable; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_responsable (f_responsable, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_restauration; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_restauration (f_restauration, description) FROM stdin;
-P15	\N
-R13	\N
-G	\N
-I9	\N
-T13	\N
-Q13	\N
-\.
+INSERT INTO controle_f_restauration VALUES ('P15', NULL);
+INSERT INTO controle_f_restauration VALUES ('R13', NULL);
+INSERT INTO controle_f_restauration VALUES ('G', NULL);
+INSERT INTO controle_f_restauration VALUES ('I9', NULL);
+INSERT INTO controle_f_restauration VALUES ('T13', NULL);
+INSERT INTO controle_f_restauration VALUES ('Q13', NULL);
 
 
 --
 -- Data for Name: controle_f_saisie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_saisie (f_saisie, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_sauvefrag; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_sauvefrag (f_sauvefrag, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_sexe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_sexe (f_sexe, description) FROM stdin;
-M	\N
-F	\N
-\.
+INSERT INTO controle_f_sexe VALUES ('M', NULL);
+INSERT INTO controle_f_sexe VALUES ('F', NULL);
 
 
 --
 -- Data for Name: controle_f_ssespece; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_ssespece (f_ssespece, description) FROM stdin;
-VETUS	\N
-LAZARETENSIS	\N
-MEDITERRANEUS	\N
-PRIMIGENIUS	\N
-\.
+INSERT INTO controle_f_ssespece VALUES ('VETUS', NULL);
+INSERT INTO controle_f_ssespece VALUES ('LAZARETENSIS', NULL);
+INSERT INTO controle_f_ssespece VALUES ('MEDITERRANEUS', NULL);
+INSERT INTO controle_f_ssespece VALUES ('PRIMIGENIUS', NULL);
 
 
 --
 -- Data for Name: controle_f_ssfamille; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_ssfamille (f_ssfamille, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_stdent; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_stdent (f_stdent, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_stserie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_stserie (f_stserie, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_taille; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_taille (f_taille, description) FROM stdin;
-G	\N
-0	micro
-R	\N
-.	\N
-P	\N
-1	petite
-2	moy
-12	pet/moy
-3	gde
-4	tr�s gde
-34	gd/t.gd
-\.
+INSERT INTO controle_f_taille VALUES ('G', NULL);
+INSERT INTO controle_f_taille VALUES ('0', 'micro');
+INSERT INTO controle_f_taille VALUES ('R', NULL);
+INSERT INTO controle_f_taille VALUES ('.', NULL);
+INSERT INTO controle_f_taille VALUES ('P', NULL);
+INSERT INTO controle_f_taille VALUES ('1', 'petite');
+INSERT INTO controle_f_taille VALUES ('2', 'moy');
+INSERT INTO controle_f_taille VALUES ('12', 'pet/moy');
+INSERT INTO controle_f_taille VALUES ('3', 'gde');
+INSERT INTO controle_f_taille VALUES ('4', 'tr�s gde');
+INSERT INTO controle_f_taille VALUES ('34', 'gd/t.gd');
 
 
 --
 -- Data for Name: controle_f_tissu; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_tissu (f_tissu, description) FROM stdin;
-DEN	\N
-MIX	\N
-LAZ	\N
-COM	\N
-SPO	\N
-DE	\N
-IND	\N
-\.
+INSERT INTO controle_f_tissu VALUES ('DEN', NULL);
+INSERT INTO controle_f_tissu VALUES ('MIX', NULL);
+INSERT INTO controle_f_tissu VALUES ('LAZ', NULL);
+INSERT INTO controle_f_tissu VALUES ('COM', NULL);
+INSERT INTO controle_f_tissu VALUES ('SPO', NULL);
+INSERT INTO controle_f_tissu VALUES ('DE', NULL);
+INSERT INTO controle_f_tissu VALUES ('IND', NULL);
 
 
 --
 -- Data for Name: controle_f_traitement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_traitement (f_traitement, description) FROM stdin;
-U	\N
-O10	\N
-\.
+INSERT INTO controle_f_traitement VALUES ('U', NULL);
+INSERT INTO controle_f_traitement VALUES ('O10', NULL);
 
 
 --
 -- Data for Name: controle_f_tranchant; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_tranchant (f_tranchant, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_type (f_type, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_f_typedos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_typedos (f_typedos, description) FROM stdin;
-L	long
-P	plat
-C	court
-\.
+INSERT INTO controle_f_typedos VALUES ('L', 'long');
+INSERT INTO controle_f_typedos VALUES ('P', 'plat');
+INSERT INTO controle_f_typedos VALUES ('C', 'court');
 
 
 --
 -- Data for Name: controle_f_typos1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_typos1 (f_typos1, description) FROM stdin;
-1	\N
-2	\N
-3	\N
-I	\N
-5	\N
-6	\N
-\.
+INSERT INTO controle_f_typos1 VALUES ('1', NULL);
+INSERT INTO controle_f_typos1 VALUES ('2', NULL);
+INSERT INTO controle_f_typos1 VALUES ('3', NULL);
+INSERT INTO controle_f_typos1 VALUES ('I', NULL);
+INSERT INTO controle_f_typos1 VALUES ('5', NULL);
+INSERT INTO controle_f_typos1 VALUES ('6', NULL);
 
 
 --
 -- Data for Name: controle_f_typos2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_typos2 (f_typos2, description) FROM stdin;
-DE	\N
-FE	\N
-MP	\N
-TH	\N
-MD	\N
-HU	\N
-AN	\N
-MC	\N
-TA	\N
-CR	\N
-MT	\N
-PO	\N
-ZA	\N
-CS	\N
-AX	\N
-T	\N
-C	\N
-UL	\N
-PH	\N
-HY	\N
-RA	\N
-VE	\N
-IN	\N
-SC	\N
---	\N
-CT	\N
-PA	\N
-CP	\N
-MA	\N
-SE	\N
-IL	\N
-EQ	\N
-MI	\N
-\.
+INSERT INTO controle_f_typos2 VALUES ('DE', NULL);
+INSERT INTO controle_f_typos2 VALUES ('FE', NULL);
+INSERT INTO controle_f_typos2 VALUES ('MP', NULL);
+INSERT INTO controle_f_typos2 VALUES ('TH', NULL);
+INSERT INTO controle_f_typos2 VALUES ('MD', NULL);
+INSERT INTO controle_f_typos2 VALUES ('HU', NULL);
+INSERT INTO controle_f_typos2 VALUES ('AN', NULL);
+INSERT INTO controle_f_typos2 VALUES ('MC', NULL);
+INSERT INTO controle_f_typos2 VALUES ('TA', NULL);
+INSERT INTO controle_f_typos2 VALUES ('CR', NULL);
+INSERT INTO controle_f_typos2 VALUES ('MT', NULL);
+INSERT INTO controle_f_typos2 VALUES ('PO', NULL);
+INSERT INTO controle_f_typos2 VALUES ('ZA', NULL);
+INSERT INTO controle_f_typos2 VALUES ('CS', NULL);
+INSERT INTO controle_f_typos2 VALUES ('AX', NULL);
+INSERT INTO controle_f_typos2 VALUES ('T', NULL);
+INSERT INTO controle_f_typos2 VALUES ('C', NULL);
+INSERT INTO controle_f_typos2 VALUES ('UL', NULL);
+INSERT INTO controle_f_typos2 VALUES ('PH', NULL);
+INSERT INTO controle_f_typos2 VALUES ('HY', NULL);
+INSERT INTO controle_f_typos2 VALUES ('RA', NULL);
+INSERT INTO controle_f_typos2 VALUES ('VE', NULL);
+INSERT INTO controle_f_typos2 VALUES ('IN', NULL);
+INSERT INTO controle_f_typos2 VALUES ('SC', NULL);
+INSERT INTO controle_f_typos2 VALUES ('--', NULL);
+INSERT INTO controle_f_typos2 VALUES ('CT', NULL);
+INSERT INTO controle_f_typos2 VALUES ('PA', NULL);
+INSERT INTO controle_f_typos2 VALUES ('CP', NULL);
+INSERT INTO controle_f_typos2 VALUES ('MA', NULL);
+INSERT INTO controle_f_typos2 VALUES ('SE', NULL);
+INSERT INTO controle_f_typos2 VALUES ('IL', NULL);
+INSERT INTO controle_f_typos2 VALUES ('EQ', NULL);
+INSERT INTO controle_f_typos2 VALUES ('MI', NULL);
 
 
 --
 -- Data for Name: controle_f_typos3; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_typos3 (f_typos3, description) FROM stdin;
-INF	\N
-IND	\N
-O7	\N
-CMC	\N
-TIT	\N
-O1	\N
-SC	\N
-MET	\N
-4	\N
-PHI	\N
-I	\N
-HU	\N
-2	\N
-TIF	\N
-STY	\N
-ZEU	\N
-RU	\N
-MXD	\N
-BAS	\N
-FE	\N
-RA	\N
-T3	\N
-UL	\N
-CA	\N
-MDD	\N
-CRA	\N
-MAD	\N
-COQ	\N
-SUP	\N
-O11	\N
-TMT	\N
-CO	\N
-MAX	\N
-5	\N
-ACR	\N
-3	\N
-OI	\N
-SES	\N
-CH	\N
-BI	\N
-TA	\N
-MD	\N
-BA	\N
-ZY	\N
-PHQ	\N
-ST	\N
----	\N
-PHP	\N
-TC3	\N
-CU	\N
-NA	\N
-SA	\N
-C1	\N
-C2	\N
-DV	\N
-MDS	\N
-MAS	\N
-O6	\N
-SCA	\N
-T5	\N
-CI	\N
-TI	\N
-LI	\N
-T12	\N
-T6	\N
-T8	\N
-L3	\N
-C4	\N
-C6	\N
-C5	\N
-L1	\N
-L5	\N
-VI	\N
-C7	\N
-T9	\N
-C3	\N
-T7	\N
-T1	\N
-L6	\N
-T2	\N
-T4	\N
-L4	\N
-T13	\N
-L2	\N
-CDI	\N
-O3	\N
-O8	\N
-O10	\N
-O13	\N
-O2	\N
-O4	\N
-O5	\N
-O9	\N
-O12	\N
-T11	\N
-TL	\N
-P5	\N
-T10	\N
-INC	\N
-FRO	\N
-ZYG	\N
-PE	\N
-NAS	\N
-TEM	\N
-PAR	\N
-OCC	\N
-PAL	\N
-VOM	\N
-BM	\N
-BO	\N
-PRE	\N
-P	\N
-IN	\N
-CDD	\N
-CD9	\N
-CD5	\N
-CD2	\N
-CD7	\N
-CD4	\N
-CD8	\N
-L7	\N
-CD6	\N
-CD3	\N
-FR	\N
-3D	\N
-MXS	\N
-CN	\N
-CER	\N
-CR	\N
-1	\N
-MCV	\N
-MX	\N
-FEM	\N
-UN	\N
-PVX	\N
-RD	\N
-FIB	\N
-CL	\N
-VE	\N
-PHD	\N
-MT	\N
-MC	\N
-MP	\N
-PV	\N
-T	\N
-C	\N
-PA	\N
-DE	\N
-TE	\N
-PL	\N
-OC	\N
-SPH	\N
-QI	\N
-TIFI	\N
-RAU	\N
-UR	\N
-SQ	\N
-AGL	\N
-ANG	\N
-SPE	\N
-DEN	\N
-Q	\N
-ETH	\N
-LAC	\N
-SIND	\N
-PH	\N
-PT	\N
-SP	\N
-GS	\N
-PHT	\N
-PHC	\N
-\.
+INSERT INTO controle_f_typos3 VALUES ('INF', NULL);
+INSERT INTO controle_f_typos3 VALUES ('IND', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O7', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CMC', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TIT', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O1', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SC', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MET', NULL);
+INSERT INTO controle_f_typos3 VALUES ('4', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PHI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('I', NULL);
+INSERT INTO controle_f_typos3 VALUES ('HU', NULL);
+INSERT INTO controle_f_typos3 VALUES ('2', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TIF', NULL);
+INSERT INTO controle_f_typos3 VALUES ('STY', NULL);
+INSERT INTO controle_f_typos3 VALUES ('ZEU', NULL);
+INSERT INTO controle_f_typos3 VALUES ('RU', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MXD', NULL);
+INSERT INTO controle_f_typos3 VALUES ('BAS', NULL);
+INSERT INTO controle_f_typos3 VALUES ('FE', NULL);
+INSERT INTO controle_f_typos3 VALUES ('RA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T3', NULL);
+INSERT INTO controle_f_typos3 VALUES ('UL', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MDD', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CRA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MAD', NULL);
+INSERT INTO controle_f_typos3 VALUES ('COQ', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SUP', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O11', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TMT', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CO', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MAX', NULL);
+INSERT INTO controle_f_typos3 VALUES ('5', NULL);
+INSERT INTO controle_f_typos3 VALUES ('ACR', NULL);
+INSERT INTO controle_f_typos3 VALUES ('3', NULL);
+INSERT INTO controle_f_typos3 VALUES ('OI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SES', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CH', NULL);
+INSERT INTO controle_f_typos3 VALUES ('BI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MD', NULL);
+INSERT INTO controle_f_typos3 VALUES ('BA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('ZY', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PHQ', NULL);
+INSERT INTO controle_f_typos3 VALUES ('ST', NULL);
+INSERT INTO controle_f_typos3 VALUES ('---', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PHP', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TC3', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CU', NULL);
+INSERT INTO controle_f_typos3 VALUES ('NA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C1', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C2', NULL);
+INSERT INTO controle_f_typos3 VALUES ('DV', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MDS', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MAS', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O6', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SCA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T5', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('LI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T12', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T6', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T8', NULL);
+INSERT INTO controle_f_typos3 VALUES ('L3', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C4', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C6', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C5', NULL);
+INSERT INTO controle_f_typos3 VALUES ('L1', NULL);
+INSERT INTO controle_f_typos3 VALUES ('L5', NULL);
+INSERT INTO controle_f_typos3 VALUES ('VI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C7', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T9', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C3', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T7', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T1', NULL);
+INSERT INTO controle_f_typos3 VALUES ('L6', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T2', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T4', NULL);
+INSERT INTO controle_f_typos3 VALUES ('L4', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T13', NULL);
+INSERT INTO controle_f_typos3 VALUES ('L2', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CDI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O3', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O8', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O10', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O13', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O2', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O4', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O5', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O9', NULL);
+INSERT INTO controle_f_typos3 VALUES ('O12', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T11', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TL', NULL);
+INSERT INTO controle_f_typos3 VALUES ('P5', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T10', NULL);
+INSERT INTO controle_f_typos3 VALUES ('INC', NULL);
+INSERT INTO controle_f_typos3 VALUES ('FRO', NULL);
+INSERT INTO controle_f_typos3 VALUES ('ZYG', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PE', NULL);
+INSERT INTO controle_f_typos3 VALUES ('NAS', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TEM', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PAR', NULL);
+INSERT INTO controle_f_typos3 VALUES ('OCC', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PAL', NULL);
+INSERT INTO controle_f_typos3 VALUES ('VOM', NULL);
+INSERT INTO controle_f_typos3 VALUES ('BM', NULL);
+INSERT INTO controle_f_typos3 VALUES ('BO', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PRE', NULL);
+INSERT INTO controle_f_typos3 VALUES ('P', NULL);
+INSERT INTO controle_f_typos3 VALUES ('IN', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CDD', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD9', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD5', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD2', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD7', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD4', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD8', NULL);
+INSERT INTO controle_f_typos3 VALUES ('L7', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD6', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CD3', NULL);
+INSERT INTO controle_f_typos3 VALUES ('FR', NULL);
+INSERT INTO controle_f_typos3 VALUES ('3D', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MXS', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CN', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CER', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CR', NULL);
+INSERT INTO controle_f_typos3 VALUES ('1', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MCV', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MX', NULL);
+INSERT INTO controle_f_typos3 VALUES ('FEM', NULL);
+INSERT INTO controle_f_typos3 VALUES ('UN', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PVX', NULL);
+INSERT INTO controle_f_typos3 VALUES ('RD', NULL);
+INSERT INTO controle_f_typos3 VALUES ('FIB', NULL);
+INSERT INTO controle_f_typos3 VALUES ('CL', NULL);
+INSERT INTO controle_f_typos3 VALUES ('VE', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PHD', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MT', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MC', NULL);
+INSERT INTO controle_f_typos3 VALUES ('MP', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PV', NULL);
+INSERT INTO controle_f_typos3 VALUES ('T', NULL);
+INSERT INTO controle_f_typos3 VALUES ('C', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PA', NULL);
+INSERT INTO controle_f_typos3 VALUES ('DE', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TE', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PL', NULL);
+INSERT INTO controle_f_typos3 VALUES ('OC', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SPH', NULL);
+INSERT INTO controle_f_typos3 VALUES ('QI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('TIFI', NULL);
+INSERT INTO controle_f_typos3 VALUES ('RAU', NULL);
+INSERT INTO controle_f_typos3 VALUES ('UR', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SQ', NULL);
+INSERT INTO controle_f_typos3 VALUES ('AGL', NULL);
+INSERT INTO controle_f_typos3 VALUES ('ANG', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SPE', NULL);
+INSERT INTO controle_f_typos3 VALUES ('DEN', NULL);
+INSERT INTO controle_f_typos3 VALUES ('Q', NULL);
+INSERT INTO controle_f_typos3 VALUES ('ETH', NULL);
+INSERT INTO controle_f_typos3 VALUES ('LAC', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SIND', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PH', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PT', NULL);
+INSERT INTO controle_f_typos3 VALUES ('SP', NULL);
+INSERT INTO controle_f_typos3 VALUES ('GS', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PHT', NULL);
+INSERT INTO controle_f_typos3 VALUES ('PHC', NULL);
 
 
 --
 -- Data for Name: controle_f_typos4; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_typos4 (f_typos4, description) FROM stdin;
-DE	\N
-CA	\N
-IN	\N
-HU	\N
-TI	\N
-TA	\N
---	\N
-34	\N
-FE	\N
-P1	\N
-LA	\N
-CN	\N
-D	\N
-L	\N
-GR	\N
-P3	\N
-T	\N
-3	\N
-C	\N
-25	\N
-2	\N
-Q	\N
-RA	\N
-MA	\N
-C4	\N
-CL	\N
-UL	\N
-SL	\N
-PY	\N
-HA	\N
-CT	\N
-PI	\N
-SC	\N
-PA	\N
-RU	\N
-6	\N
-5	\N
-P2	\N
-C1	\N
-PE	\N
-CE	\N
-.	\N
-P	\N
-C3	\N
-AF	\N
-I	\N
-4	\N
-CU	\N
-NA	\N
-FI	\N
-1	\N
-SU	\N
-CI	\N
-TO	\N
-CS	\N
-MI	\N
-MD	\N
-GO	\N
-OI	\N
-BTY	\N
-PT	\N
-IL	\N
-E	\N
-TIF	\N
-MC	\N
-S	\N
-\.
+INSERT INTO controle_f_typos4 VALUES ('DE', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('IN', NULL);
+INSERT INTO controle_f_typos4 VALUES ('HU', NULL);
+INSERT INTO controle_f_typos4 VALUES ('TI', NULL);
+INSERT INTO controle_f_typos4 VALUES ('TA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('--', NULL);
+INSERT INTO controle_f_typos4 VALUES ('34', NULL);
+INSERT INTO controle_f_typos4 VALUES ('FE', NULL);
+INSERT INTO controle_f_typos4 VALUES ('P1', NULL);
+INSERT INTO controle_f_typos4 VALUES ('LA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CN', NULL);
+INSERT INTO controle_f_typos4 VALUES ('D', NULL);
+INSERT INTO controle_f_typos4 VALUES ('L', NULL);
+INSERT INTO controle_f_typos4 VALUES ('GR', NULL);
+INSERT INTO controle_f_typos4 VALUES ('P3', NULL);
+INSERT INTO controle_f_typos4 VALUES ('T', NULL);
+INSERT INTO controle_f_typos4 VALUES ('3', NULL);
+INSERT INTO controle_f_typos4 VALUES ('C', NULL);
+INSERT INTO controle_f_typos4 VALUES ('25', NULL);
+INSERT INTO controle_f_typos4 VALUES ('2', NULL);
+INSERT INTO controle_f_typos4 VALUES ('Q', NULL);
+INSERT INTO controle_f_typos4 VALUES ('RA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('MA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('C4', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CL', NULL);
+INSERT INTO controle_f_typos4 VALUES ('UL', NULL);
+INSERT INTO controle_f_typos4 VALUES ('SL', NULL);
+INSERT INTO controle_f_typos4 VALUES ('PY', NULL);
+INSERT INTO controle_f_typos4 VALUES ('HA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CT', NULL);
+INSERT INTO controle_f_typos4 VALUES ('PI', NULL);
+INSERT INTO controle_f_typos4 VALUES ('SC', NULL);
+INSERT INTO controle_f_typos4 VALUES ('PA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('RU', NULL);
+INSERT INTO controle_f_typos4 VALUES ('6', NULL);
+INSERT INTO controle_f_typos4 VALUES ('5', NULL);
+INSERT INTO controle_f_typos4 VALUES ('P2', NULL);
+INSERT INTO controle_f_typos4 VALUES ('C1', NULL);
+INSERT INTO controle_f_typos4 VALUES ('PE', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CE', NULL);
+INSERT INTO controle_f_typos4 VALUES ('.', NULL);
+INSERT INTO controle_f_typos4 VALUES ('P', NULL);
+INSERT INTO controle_f_typos4 VALUES ('C3', NULL);
+INSERT INTO controle_f_typos4 VALUES ('AF', NULL);
+INSERT INTO controle_f_typos4 VALUES ('I', NULL);
+INSERT INTO controle_f_typos4 VALUES ('4', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CU', NULL);
+INSERT INTO controle_f_typos4 VALUES ('NA', NULL);
+INSERT INTO controle_f_typos4 VALUES ('FI', NULL);
+INSERT INTO controle_f_typos4 VALUES ('1', NULL);
+INSERT INTO controle_f_typos4 VALUES ('SU', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CI', NULL);
+INSERT INTO controle_f_typos4 VALUES ('TO', NULL);
+INSERT INTO controle_f_typos4 VALUES ('CS', NULL);
+INSERT INTO controle_f_typos4 VALUES ('MI', NULL);
+INSERT INTO controle_f_typos4 VALUES ('MD', NULL);
+INSERT INTO controle_f_typos4 VALUES ('GO', NULL);
+INSERT INTO controle_f_typos4 VALUES ('OI', NULL);
+INSERT INTO controle_f_typos4 VALUES ('BTY', NULL);
+INSERT INTO controle_f_typos4 VALUES ('PT', NULL);
+INSERT INTO controle_f_typos4 VALUES ('IL', NULL);
+INSERT INTO controle_f_typos4 VALUES ('E', NULL);
+INSERT INTO controle_f_typos4 VALUES ('TIF', NULL);
+INSERT INTO controle_f_typos4 VALUES ('MC', NULL);
+INSERT INTO controle_f_typos4 VALUES ('S', NULL);
 
 
 --
 -- Data for Name: controle_f_typos5; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_typos5 (f_typos5, description) FROM stdin;
-J	\N
-L	\N
-34	doigt III ou IV
-I	\N
-4	\N
-6	\N
-3	\N
-D	\N
-F	\N
-M	\N
-E	\N
-A	\N
-2	\N
-5	\N
-1	\N
-P	\N
-7	\N
-25	doigt II ou V
-EX	\N
-IN	\N
-GR	\N
-\.
+INSERT INTO controle_f_typos5 VALUES ('J', NULL);
+INSERT INTO controle_f_typos5 VALUES ('L', NULL);
+INSERT INTO controle_f_typos5 VALUES ('34', 'doigt III ou IV');
+INSERT INTO controle_f_typos5 VALUES ('I', NULL);
+INSERT INTO controle_f_typos5 VALUES ('4', NULL);
+INSERT INTO controle_f_typos5 VALUES ('6', NULL);
+INSERT INTO controle_f_typos5 VALUES ('3', NULL);
+INSERT INTO controle_f_typos5 VALUES ('D', NULL);
+INSERT INTO controle_f_typos5 VALUES ('F', NULL);
+INSERT INTO controle_f_typos5 VALUES ('M', NULL);
+INSERT INTO controle_f_typos5 VALUES ('E', NULL);
+INSERT INTO controle_f_typos5 VALUES ('A', NULL);
+INSERT INTO controle_f_typos5 VALUES ('2', NULL);
+INSERT INTO controle_f_typos5 VALUES ('5', NULL);
+INSERT INTO controle_f_typos5 VALUES ('1', NULL);
+INSERT INTO controle_f_typos5 VALUES ('P', NULL);
+INSERT INTO controle_f_typos5 VALUES ('7', NULL);
+INSERT INTO controle_f_typos5 VALUES ('25', 'doigt II ou V');
+INSERT INTO controle_f_typos5 VALUES ('EX', NULL);
+INSERT INTO controle_f_typos5 VALUES ('IN', NULL);
+INSERT INTO controle_f_typos5 VALUES ('GR', NULL);
 
 
 --
 -- Data for Name: controle_f_typos6; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_f_typos6 (f_typos6, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_angle1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_angle1 (ff_angle1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_angle2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_angle2 (ff_angle2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_aspect1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_aspect1 (ff_aspect1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_aspect2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_aspect2 (ff_aspect2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_localisation1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_localisation1 (ff_localisation1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_localisation2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_localisation2 (ff_localisation2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_morphologie1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_morphologie1 (ff_morphologie1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_morphologie2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_morphologie2 (ff_morphologie2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_non1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_non1 (ff_non1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_non2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_non2 (ff_non2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_profil1; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_profil1 (ff_profil1, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ff_profil2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ff_profil2 (ff_profil2, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_fi_mode; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_fi_mode (fi_mode, description) FROM stdin;
-FD	\N
-PL	\N
-IR	\N
-TH	\N
-ST	\N
-CR	\N
-ON	\N
-OND	\N
-ONA	\N
-ONF	\N
-FF	\N
-\.
+INSERT INTO controle_fi_mode VALUES ('FD', NULL);
+INSERT INTO controle_fi_mode VALUES ('PL', NULL);
+INSERT INTO controle_fi_mode VALUES ('IR', NULL);
+INSERT INTO controle_fi_mode VALUES ('TH', NULL);
+INSERT INTO controle_fi_mode VALUES ('ST', NULL);
+INSERT INTO controle_fi_mode VALUES ('CR', NULL);
+INSERT INTO controle_fi_mode VALUES ('ON', NULL);
+INSERT INTO controle_fi_mode VALUES ('OND', NULL);
+INSERT INTO controle_fi_mode VALUES ('ONA', NULL);
+INSERT INTO controle_fi_mode VALUES ('ONF', NULL);
+INSERT INTO controle_fi_mode VALUES ('FF', NULL);
 
 
 --
 -- Data for Name: controle_fi_ordre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_fi_ordre (fi_ordre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_fi_percussion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_fi_percussion (fi_percussion, description) FROM stdin;
-A	\N
-P	\N
-\.
+INSERT INTO controle_fi_percussion VALUES ('A', NULL);
+INSERT INTO controle_fi_percussion VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_fi_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_fi_type (fi_type, description) FROM stdin;
-FI	\N
-FIA	\N
-FIB	\N
-FII	\N
-FII1	\N
-FII2	\N
-FII3	\N
-FII4	\N
-FII5	\N
-FII6	\N
-FII7	\N
-FII2BIS	\N
-FII3BIS	\N
-FII4BIS	\N
-FII5BIS	\N
-FII6BIS	\N
-FII7BIS	\N
-FII8	\N
-FII8BIS	\N
-FII9	\N
-FII10	\N
-FII11	\N
-FII12	\N
-FIII	\N
-FIII1	\N
-FIII2	\N
-FIII3	\N
-FIII4	\N
-FIII5	\N
-FIII5BIS	\N
-FIII6	\N
-FIII7	\N
-FIII8	\N
-FIII9	\N
-FIV	\N
-FIV1	\N
-FIV2	\N
-FIV3	\N
-FIV4	\N
-FIV5	\N
-IV5BIS	\N
-FIV6	\N
-FIV7	\N
-FIV8	\N
-FIV9	\N
-FV	\N
-FV0	\N
-FV1	\N
-FV2	\N
-FV2BIS	\N
-FV3	\N
-FV4	\N
-FV5	\N
-FV6	\N
-FVI	\N
-FVI0	\N
-FVI1	\N
-FVI2	\N
-FVI3	\N
-FVI4	\N
-FVI5	\N
-FVI6	\N
-FVI7	\N
-\.
+INSERT INTO controle_fi_type VALUES ('FI', NULL);
+INSERT INTO controle_fi_type VALUES ('FIA', NULL);
+INSERT INTO controle_fi_type VALUES ('FIB', NULL);
+INSERT INTO controle_fi_type VALUES ('FII', NULL);
+INSERT INTO controle_fi_type VALUES ('FII1', NULL);
+INSERT INTO controle_fi_type VALUES ('FII2', NULL);
+INSERT INTO controle_fi_type VALUES ('FII3', NULL);
+INSERT INTO controle_fi_type VALUES ('FII4', NULL);
+INSERT INTO controle_fi_type VALUES ('FII5', NULL);
+INSERT INTO controle_fi_type VALUES ('FII6', NULL);
+INSERT INTO controle_fi_type VALUES ('FII7', NULL);
+INSERT INTO controle_fi_type VALUES ('FII2BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FII3BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FII4BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FII5BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FII6BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FII7BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FII8', NULL);
+INSERT INTO controle_fi_type VALUES ('FII8BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FII9', NULL);
+INSERT INTO controle_fi_type VALUES ('FII10', NULL);
+INSERT INTO controle_fi_type VALUES ('FII11', NULL);
+INSERT INTO controle_fi_type VALUES ('FII12', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII1', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII2', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII3', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII4', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII5', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII5BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII6', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII7', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII8', NULL);
+INSERT INTO controle_fi_type VALUES ('FIII9', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV1', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV2', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV3', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV4', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV5', NULL);
+INSERT INTO controle_fi_type VALUES ('IV5BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV6', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV7', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV8', NULL);
+INSERT INTO controle_fi_type VALUES ('FIV9', NULL);
+INSERT INTO controle_fi_type VALUES ('FV', NULL);
+INSERT INTO controle_fi_type VALUES ('FV0', NULL);
+INSERT INTO controle_fi_type VALUES ('FV1', NULL);
+INSERT INTO controle_fi_type VALUES ('FV2', NULL);
+INSERT INTO controle_fi_type VALUES ('FV2BIS', NULL);
+INSERT INTO controle_fi_type VALUES ('FV3', NULL);
+INSERT INTO controle_fi_type VALUES ('FV4', NULL);
+INSERT INTO controle_fi_type VALUES ('FV5', NULL);
+INSERT INTO controle_fi_type VALUES ('FV6', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI0', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI1', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI2', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI3', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI4', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI5', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI6', NULL);
+INSERT INTO controle_fi_type VALUES ('FVI7', NULL);
 
 
 --
 -- Data for Name: controle_ga_arete; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_arete (ga_arete, description) FROM stdin;
-CRD	\N
-CRI	\N
-CS	\N
-DR	\N
-DS	\N
-\.
+INSERT INTO controle_ga_arete VALUES ('CRD', NULL);
+INSERT INTO controle_ga_arete VALUES ('CRI', NULL);
+INSERT INTO controle_ga_arete VALUES ('CS', NULL);
+INSERT INTO controle_ga_arete VALUES ('DR', NULL);
+INSERT INTO controle_ga_arete VALUES ('DS', NULL);
 
 
 --
 -- Data for Name: controle_ga_chf; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_chf (ga_chf, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ga_facture; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_facture (ga_facture, description) FROM stdin;
-M	\N
-R	\N
-T	\N
-\.
+INSERT INTO controle_ga_facture VALUES ('M', NULL);
+INSERT INTO controle_ga_facture VALUES ('R', NULL);
+INSERT INTO controle_ga_facture VALUES ('T', NULL);
 
 
 --
 -- Data for Name: controle_ga_forme; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_forme (ga_forme, description) FROM stdin;
-R	\N
-RD	\N
-CONV	\N
-CONVD	\N
-TR	\N
-TRD	\N
-CONC	\N
-CONCD	\N
-COCL	\N
-COCLD	\N
-SCONV	\N
-SCONVD	\N
-SCONC	\N
-SCONCD	\N
-CIRC	\N
-BCP	\N
-BCPD	\N
-BCM	\N
-BCMD	\N
-BCT	\N
-BCTD	\N
-BCMS	\N
-BCMSD	\N
-IND	\N
-\.
+INSERT INTO controle_ga_forme VALUES ('R', NULL);
+INSERT INTO controle_ga_forme VALUES ('RD', NULL);
+INSERT INTO controle_ga_forme VALUES ('CONV', NULL);
+INSERT INTO controle_ga_forme VALUES ('CONVD', NULL);
+INSERT INTO controle_ga_forme VALUES ('TR', NULL);
+INSERT INTO controle_ga_forme VALUES ('TRD', NULL);
+INSERT INTO controle_ga_forme VALUES ('CONC', NULL);
+INSERT INTO controle_ga_forme VALUES ('CONCD', NULL);
+INSERT INTO controle_ga_forme VALUES ('COCL', NULL);
+INSERT INTO controle_ga_forme VALUES ('COCLD', NULL);
+INSERT INTO controle_ga_forme VALUES ('SCONV', NULL);
+INSERT INTO controle_ga_forme VALUES ('SCONVD', NULL);
+INSERT INTO controle_ga_forme VALUES ('SCONC', NULL);
+INSERT INTO controle_ga_forme VALUES ('SCONCD', NULL);
+INSERT INTO controle_ga_forme VALUES ('CIRC', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCP', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCPD', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCM', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCMD', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCT', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCTD', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCMS', NULL);
+INSERT INTO controle_ga_forme VALUES ('BCMSD', NULL);
+INSERT INTO controle_ga_forme VALUES ('IND', NULL);
 
 
 --
 -- Data for Name: controle_ga_obliquite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_obliquite (ga_obliquite, description) FROM stdin;
-H	\N
-O	\N
-SA	\N
-A	\N
-\.
+INSERT INTO controle_ga_obliquite VALUES ('H', NULL);
+INSERT INTO controle_ga_obliquite VALUES ('O', NULL);
+INSERT INTO controle_ga_obliquite VALUES ('SA', NULL);
+INSERT INTO controle_ga_obliquite VALUES ('A', NULL);
 
 
 --
 -- Data for Name: controle_ga_orientation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_orientation (ga_orientation, description) FROM stdin;
-P	\N
-NP	\N
-I	\N
-\.
+INSERT INTO controle_ga_orientation VALUES ('P', NULL);
+INSERT INTO controle_ga_orientation VALUES ('NP', NULL);
+INSERT INTO controle_ga_orientation VALUES ('I', NULL);
 
 
 --
 -- Data for Name: controle_ga_qualite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_qualite (ga_qualite, description) FROM stdin;
-B	\N
-M	\N
-I	\N
-\.
+INSERT INTO controle_ga_qualite VALUES ('B', NULL);
+INSERT INTO controle_ga_qualite VALUES ('M', NULL);
+INSERT INTO controle_ga_qualite VALUES ('I', NULL);
 
 
 --
 -- Data for Name: controle_ga_retouche; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_retouche (ga_retouche, description) FROM stdin;
-A	\N
-M	\N
-MD	\N
-1/2E	\N
-1/2ED	\N
-E	\N
-ED	\N
-1/2Q	\N
-1/2QD	\N
-Q	\N
-QD	\N
-SE	\N
-SED	\N
-SA	\N
-SAD	\N
-AM	\N
-AMD	\N
-AE	\N
-AED	\N
-DM	\N
-D1/2E	\N
-DE	\N
-DSE	\N
-DSA	\N
-DAM	\N
-DAE	\N
-DEV	\N
-DEVS	\N
-P	\N
-PD	\N
-EV	\N
-EVD	\N
-EVS	\N
-EVSD	\N
-LSP	\N
-LP	\N
-LE	\N
-\.
+INSERT INTO controle_ga_retouche VALUES ('A', NULL);
+INSERT INTO controle_ga_retouche VALUES ('M', NULL);
+INSERT INTO controle_ga_retouche VALUES ('MD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('1/2E', NULL);
+INSERT INTO controle_ga_retouche VALUES ('1/2ED', NULL);
+INSERT INTO controle_ga_retouche VALUES ('E', NULL);
+INSERT INTO controle_ga_retouche VALUES ('ED', NULL);
+INSERT INTO controle_ga_retouche VALUES ('1/2Q', NULL);
+INSERT INTO controle_ga_retouche VALUES ('1/2QD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('Q', NULL);
+INSERT INTO controle_ga_retouche VALUES ('QD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('SE', NULL);
+INSERT INTO controle_ga_retouche VALUES ('SED', NULL);
+INSERT INTO controle_ga_retouche VALUES ('SA', NULL);
+INSERT INTO controle_ga_retouche VALUES ('SAD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('AM', NULL);
+INSERT INTO controle_ga_retouche VALUES ('AMD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('AE', NULL);
+INSERT INTO controle_ga_retouche VALUES ('AED', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DM', NULL);
+INSERT INTO controle_ga_retouche VALUES ('D1/2E', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DE', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DSE', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DSA', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DAM', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DAE', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DEV', NULL);
+INSERT INTO controle_ga_retouche VALUES ('DEVS', NULL);
+INSERT INTO controle_ga_retouche VALUES ('P', NULL);
+INSERT INTO controle_ga_retouche VALUES ('PD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('EV', NULL);
+INSERT INTO controle_ga_retouche VALUES ('EVD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('EVS', NULL);
+INSERT INTO controle_ga_retouche VALUES ('EVSD', NULL);
+INSERT INTO controle_ga_retouche VALUES ('LSP', NULL);
+INSERT INTO controle_ga_retouche VALUES ('LP', NULL);
+INSERT INTO controle_ga_retouche VALUES ('LE', NULL);
 
 
 --
 -- Data for Name: controle_ga_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ga_type (ga_type, description) FROM stdin;
-IA	\N
-IA1	\N
-E	\N
-IA1E1	\N
-IA1E2	\N
-IA1ET	\N
-A	\N
-IA1A5	\N
-IA1A2	\N
-IA1AT	\N
-IA1A3	\N
-IA1A4	\N
-IA1A1	\N
-IA1A6	\N
-IA1B1	\N
-IA1B2	\N
-IA1BT	\N
-IA1B3	\N
-IA1B4	\N
-IA1B5	\N
-IA1B6	\N
-IA1C1	\N
-IA1C2	\N
-IA1CT	\N
-IA1C3	\N
-IA1C4	\N
-IA1C5	\N
-IA1C6	\N
-IA1D1	\N
-IA1D2	\N
-IA1DT	\N
-IA2	\N
-IA2SE1	\N
-IA2SE2	\N
-IA2SET	\N
-IA2SA1	\N
-IA2SA2	\N
-IA2SAT	\N
-IA2SA3	\N
-IA2SA4	\N
-IA2SA5	\N
-IA2SA6	\N
-IA2SB1	\N
-IA2SB2	\N
-IA2SBT	\N
-IA2SB3	\N
-IA2SB4	\N
-IA2SB5	\N
-IA2SB6	\N
-IA2SC1	\N
-IA2SC2	\N
-IA2SCT	\N
-IA2SC3	\N
-IA2SC4	\N
-IA2SC5	\N
-IA2SC6	\N
-IA2SD1	\N
-IA2SD2	\N
-IA2SDT	\N
-A2ME1	\N
-IA2ME2	\N
-IA2MET	\N
-IA2MA1	\N
-IA2MA2	\N
-IA2MAT	\N
-IA2MA3	\N
-IA2MA4	\N
-IA2MA5	\N
-IA2MA6	\N
-IA2MB1	\N
-IA2MB2	\N
-IA2MBT	\N
-IA2MB3	\N
-IA2MB4	\N
-IA2MB5	\N
-IA2MB6	\N
-IA2MC1	\N
-IA2MC2	\N
-IA2MCT	\N
-IA2MC3	\N
-IA2MC	\N
-IA2MC5	\N
-IA2MC6	\N
-IA2MD1	\N
-IA2MD2	\N
-IA2MDT	\N
-IA2MFA1	\N
-IA2MFAT	\N
-IA2MFA3	\N
-IA2MFA5	\N
-IA2MFB1	\N
-IA2MFBT	\N
-IA2MFB3	\N
-IA2MFB5	\N
-IA2MGA1	\N
-IA2MGAT	\N
-IA2MGA3	\N
-IA2MGA5	\N
-IA2MGB1	\N
-IA2MGBT	\N
-IA2MGB3	\N
-IA2MGB5	\N
-IA2MHA1	\N
-IA2MHAT	\N
-IA2MHA3	\N
-IA2MHA5	\N
-IA2MHB1	\N
-IA2MHBT	\N
-IA2MHB3	\N
-IA2MHB5	\N
-IA2MHC1	\N
-IA2MHCT	\N
-IA2MHC3	\N
-IA2MHC5	\N
-IA3	\N
-IA31	\N
-IA32	\N
-IA33	\N
-IA34	\N
-ID	\N
-ID1	\N
-ID1A1	\N
-ID1A2	\N
-ID1A3	\N
-ID1A4	\N
-ID1A5	\N
-ID1A6	\N
-ID1A7	\N
-ID1A8	\N
-ID1A9	\N
-ID1B1	\N
-ID1B2	\N
-ID1B3	\N
-ID1B4	\N
-ID1B5	\N
-ID1B6	\N
-ID1B7	\N
-ID1B8	\N
-ID1B9	\N
-ID2	\N
-ID2A1	\N
-ID2A2	\N
-ID2A3	\N
-ID2A4	\N
-ID2B1	\N
-ID2B2	\N
-ID2B3	\N
-ID2B4	\N
-ID2C1	\N
-ID2C2	\N
-ID2C3	\N
-ID2C4	\N
-ID2D1	\N
-ID2D2	\N
-ID2D3	\N
-ID2D4	\N
-ID2E1	\N
-ID2E2	\N
-ID2E3	\N
-ID2E4	\N
-ID3	\N
-ID3A	\N
-ID3B	\N
-IM	\N
-IMS	\N
-MS1A1	\N
-IMS1A2	\N
-IMS2A	\N
-IMS2B1	\N
-IMS2B2	\N
-IMS3	\N
-IMS4	\N
-IMC	\N
-IMC1A1	\N
-IMC1A2	\N
-IMC1A3	\N
-IMC1B1	\N
-IMC1B2	\N
-IMC1B3	\N
-IMC2A1	\N
-IMC2A2	\N
-IMC2A3	\N
-IMC2A4	\N
-IMC2A5	\N
-IMC2A6	\N
-IMC2B1	\N
-IMC2B2	\N
-IMC2B3	\N
-IMC2B4	\N
-IMC2B5	\N
-IMC2B6	\N
-IMC2C1	\N
-MC2C2	\N
-IMC2C3	\N
-IMC2C4	\N
-IMC2C5	\N
-IMC2C6	\N
-IMC3A1	\N
-IMC3A2	\N
-IMC3A3	\N
-IMC3A4	\N
-IMC3A5	\N
-IMC3A6	\N
-IMC3	\N
-IMC3C	\N
-IMC4A1	\N
-IMC4A2	\N
-IMC4B	\N
-IIR	\N
-IIR1	\N
-IIR2	\N
-IIR3	\N
-IIS1	\N
-IIS1C1	\N
-IIS1C2	\N
-IS1C3	\N
-IIS1R1	\N
-IIS1R2	\N
-IIS1R3	\N
-IIS2	\N
-IIS2C1	\N
-IIS2C2	\N
-IIS2C3	\N
-IIS2R1	\N
-IIS2R2	\N
-IIS2R3	\N
-IISP	\N
-IISP1	\N
-IISP2	\N
-IISP3	\N
-IIS3	\N
-IIS3A	\N
-IIS3B	\N
-IIS3C	\N
-IIS3D	\N
-IIS3E	\N
-IIA	\N
-IIA1A	\N
-IIA1B	\N
-IIA1C	\N
-IIA1D	\N
-IIA2A	\N
-IIA2B	\N
-IIA2C	\N
-IIA2D	\N
-IIA3A	\N
-IIA3B	\N
-IIA3C	\N
-IIA3D	\N
-IIN	\N
-IIB	\N
-IIB1	\N
-IIB1A	\N
-IIB1B	\N
-IIB1C	\N
-IIB1D	\N
-IIB2	\N
-IIB2A	\N
-IIB2B	\N
-IIB2C	\N
-IIB2D	\N
-IIB3	\N
-IIB3A	\N
-IIB3B	\N
-IIB3C	\N
-IIB3D	\N
-IIB4	\N
-IIB4B	\N
-IIC	\N
-IIC1	\N
-IIC1AA	\N
-IIC1AB	\N
-IIC1BA	\N
-IIC1BB	\N
-IIC1CA	\N
-IIC1CB	\N
-IIC1DA	\N
-IIC1DB	\N
-IIC1EA	\N
-IIC1EB	\N
-IIC1FA	\N
-IIC1FB	\N
-IIC2	\N
-IIC2AA	\N
-IIC2AB	\N
-IIC2AC	\N
-IIC2AD	\N
-IIC2BA	\N
-IIC2BB	\N
-IIC2BC	\N
-IIC2BD	\N
-IIC2CA	\N
-IIC2CB	\N
-IIC2CC	\N
-IIC2CD	\N
-IIC3	\N
-IIC3A	\N
-IIC3B	\N
-IIC3C	\N
-IIC3D	\N
-IIC3E	\N
-IIC3F	\N
-IIC3G	\N
-IIC3H	\N
-IIT	\N
-IIT1	\N
-IIT2	\N
-IID	\N
-IID1	\N
-IID2	\N
-IIE	\N
-IIE1	\N
-IIE1AA	\N
-IIE2AB	\N
-IIE1BA	\N
-IIE1BB	\N
-IIE1CA	\N
-IIE1CB	\N
-IIE2	\N
-IIE2A1A	\N
-IIE2A1B	\N
-IIE2A2A	\N
-IIE2A2B	\N
-IIE2B1A	\N
-IIE2B1B	\N
-IIE2B2A	\N
-IIE2B2B	\N
-IIF	\N
-IIFE	\N
-IIFE1	\N
-IIFE2	\N
-IIFE3	\N
-IIFL	\N
-IIFL1	\N
-IIFL2	\N
-IIFL3	\N
-IIG	\N
-III	\N
-IIIA	\N
-IIIA1	\N
-IIIA2	\N
-IIIA3	\N
-IIIA4	\N
-IIIA5	\N
-IIIA6	\N
-IIIA7	\N
-IIIA8	\N
-IIIA9	\N
-IIIB	\N
-IIIBA1	\N
-IIIBA2	\N
-IIIBA3	\N
-IIIBA4	\N
-IIIBA5	\N
-IIIBA6	\N
-IIIBA7	\N
-IIIBA8	\N
-IIIBA9	\N
-IIIBB1	\N
-IIIBB3	\N
-IIIBB5	\N
-IIIBB7	\N
-IIIBB8	\N
-IIIBB9	\N
-IIIC	\N
-IIIC1	\N
-IIIC2	\N
-IIID	\N
-IIID1	\N
-IIID2	\N
-VR	\N
-IVR1	\N
-IVR2	\N
-IVR3	\N
-IVS1	\N
-IVS1C2	\N
-IVS1C3	\N
-IVS1R2	\N
-IVS1R3	\N
-IVS2	\N
-IVS2C2	\N
-IVS2C3	\N
-IVS2R2	\N
-IVS2R3	\N
-IVSP	\N
-IVSP2	\N
-IVSP3	\N
-IVS3	\N
-IVS3A	\N
-IVS3B	\N
-IVS3C	\N
-IVS3D	\N
-IVS3E	\N
-IVA	\N
-IVAA	\N
-IVAB	\N
-IVAC	\N
-IVAD	\N
-IVN	\N
-IVB	\N
-IVB1	\N
-IVB1A	\N
-IVB1B	\N
-IVB2	\N
-IVB2A	\N
-IVB2B	\N
-IVB3	\N
-IVB3A	\N
-IVB3B	\N
-IVB4	\N
-IVC	\N
-IVC1	\N
-IVC1AA	\N
-IVC1BA	\N
-IVC1AB	\N
-IVC1BB	\N
-IVC1CA	\N
-IVC1CB	\N
-IVC1DA	\N
-IVC1DB	\N
-IVC1EA	\N
-IVC1EB	\N
-IVC2	\N
-IVC2AA	\N
-IVC2BA	\N
-IVC2AB	\N
-IVC2BB	\N
-IVC2CA	\N
-IVC2CB	\N
-IVC3	\N
-IVC3A	\N
-IVC3B	\N
-IVD	\N
-IVD1	\N
-IVD2	\N
-IVE	\N
-V	\N
-V1	\N
-V2	\N
-V2BIS	\N
-V3	\N
-V4	\N
-V5	\N
-V6	\N
-V7	\N
-V8	\N
-V9	\N
-V10	\N
-V11	\N
-VI	\N
-VI1	\N
-VI2	\N
-VI2BIS	\N
-VI3	\N
-VI4	\N
-VI5	\N
-VI6	\N
-VI7	\N
-VI8	\N
-VI9	\N
-VI10	\N
-VI11	\N
-VI12	\N
-VII	\N
-VIIA	\N
-VIIA1	\N
-VIIA1A	\N
-VIIA1B	\N
-VIIA2	\N
-VIIA2A	\N
-VIIA2B	\N
-VIIB	\N
-VIIB1	\N
-VIIB1A	\N
-VIIB1B	\N
-VIIB2	\N
-VIIB2A	\N
-VIIB2B	\N
-VIIC	\N
-VIII	\N
-IX	\N
-IXA	\N
-IXB	\N
-\.
+INSERT INTO controle_ga_type VALUES ('IA', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1', NULL);
+INSERT INTO controle_ga_type VALUES ('E', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1E1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1E2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1ET', NULL);
+INSERT INTO controle_ga_type VALUES ('A', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1A5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1A2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1AT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1A3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1A4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1A1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1A6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1B1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1B2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1BT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1B3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1B4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1B5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1B6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1C1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1C2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1CT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1C3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1C4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1C5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1C6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1D1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1D2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA1DT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SE1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SE2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SET', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SA1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SA2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SAT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SA4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SA5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SA6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SB2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SBT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SB4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SB5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SB6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SC1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SC2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SCT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SC3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SC4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SC5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SC6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SD1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SD2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2SDT', NULL);
+INSERT INTO controle_ga_type VALUES ('A2ME1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2ME2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MET', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MA1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MA2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MAT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MA4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MA5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MA6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MB2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MBT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MB4', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MB5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MB6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MC1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MC2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MCT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MC3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MC', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MC5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MC6', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MD1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MD2', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MDT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFA1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFAT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFA5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFBT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MFB5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGA1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGAT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGA5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGBT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MGB5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHA1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHAT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHA5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHBT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHB5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHC1', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHCT', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHC3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA2MHC5', NULL);
+INSERT INTO controle_ga_type VALUES ('IA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IA31', NULL);
+INSERT INTO controle_ga_type VALUES ('IA32', NULL);
+INSERT INTO controle_ga_type VALUES ('IA33', NULL);
+INSERT INTO controle_ga_type VALUES ('IA34', NULL);
+INSERT INTO controle_ga_type VALUES ('ID', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A4', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A5', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A6', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A7', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A8', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1A9', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B4', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B5', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B6', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B7', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B8', NULL);
+INSERT INTO controle_ga_type VALUES ('ID1B9', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2A1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2A2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2A3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2A4', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2B1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2B2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2B3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2B4', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2C1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2C2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2C3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2C4', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2D1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2D2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2D3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2D4', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2E1', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2E2', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2E3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID2E4', NULL);
+INSERT INTO controle_ga_type VALUES ('ID3', NULL);
+INSERT INTO controle_ga_type VALUES ('ID3A', NULL);
+INSERT INTO controle_ga_type VALUES ('ID3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IM', NULL);
+INSERT INTO controle_ga_type VALUES ('IMS', NULL);
+INSERT INTO controle_ga_type VALUES ('MS1A1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMS1A2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMS2A', NULL);
+INSERT INTO controle_ga_type VALUES ('IMS2B1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMS2B2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMS3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMS4', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC1A1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC1A2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC1A3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC1B1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC1B2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC1B3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2A1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2A2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2A3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2A4', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2A5', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2A6', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2B1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2B2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2B3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2B4', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2B5', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2B6', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2C1', NULL);
+INSERT INTO controle_ga_type VALUES ('MC2C2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2C3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2C4', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2C5', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC2C6', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3A1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3A2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3A3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3A4', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3A5', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3A6', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC3C', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC4A1', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC4A2', NULL);
+INSERT INTO controle_ga_type VALUES ('IMC4B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIR', NULL);
+INSERT INTO controle_ga_type VALUES ('IIR1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIR2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIR3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS1C1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS1C2', NULL);
+INSERT INTO controle_ga_type VALUES ('IS1C3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS1R1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS1R2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS1R3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS2C1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS2C2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS2C3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS2R1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS2R2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS2R3', NULL);
+INSERT INTO controle_ga_type VALUES ('IISP', NULL);
+INSERT INTO controle_ga_type VALUES ('IISP1', NULL);
+INSERT INTO controle_ga_type VALUES ('IISP2', NULL);
+INSERT INTO controle_ga_type VALUES ('IISP3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS3A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS3C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS3D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIS3E', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA1A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA1B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA1C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA1D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA2A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA2B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA2C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA2D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA3A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA3C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIA3D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIN', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB1A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB1B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB1C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB1D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB2A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB2B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB2C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB2D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB3A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB3C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB3D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB4', NULL);
+INSERT INTO controle_ga_type VALUES ('IIB4B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1AA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1AB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1BA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1BB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1CA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1CB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1DA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1DB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1EA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1EB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1FA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC1FB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2AA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2AB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2AC', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2AD', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2BA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2BB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2BC', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2BD', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2CA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2CB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2CC', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC2CD', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3C', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3D', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3E', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3F', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3G', NULL);
+INSERT INTO controle_ga_type VALUES ('IIC3H', NULL);
+INSERT INTO controle_ga_type VALUES ('IIT', NULL);
+INSERT INTO controle_ga_type VALUES ('IIT1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIT2', NULL);
+INSERT INTO controle_ga_type VALUES ('IID', NULL);
+INSERT INTO controle_ga_type VALUES ('IID1', NULL);
+INSERT INTO controle_ga_type VALUES ('IID2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE1AA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2AB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE1BA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE1BB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE1CA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE1CB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2A1A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2A1B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2A2A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2A2B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2B1A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2B1B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2B2A', NULL);
+INSERT INTO controle_ga_type VALUES ('IIE2B2B', NULL);
+INSERT INTO controle_ga_type VALUES ('IIF', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFE', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFE1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFE2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFE3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFL', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFL1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFL2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIFL3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIG', NULL);
+INSERT INTO controle_ga_type VALUES ('III', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA4', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA5', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA6', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA7', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA8', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIA9', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIB', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA4', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA5', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA6', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA7', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA8', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBA9', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBB5', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBB7', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBB8', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIBB9', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIC', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIC1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIIC2', NULL);
+INSERT INTO controle_ga_type VALUES ('IIID', NULL);
+INSERT INTO controle_ga_type VALUES ('IIID1', NULL);
+INSERT INTO controle_ga_type VALUES ('IIID2', NULL);
+INSERT INTO controle_ga_type VALUES ('VR', NULL);
+INSERT INTO controle_ga_type VALUES ('IVR1', NULL);
+INSERT INTO controle_ga_type VALUES ('IVR2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVR3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS1', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS1C2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS1C3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS1R2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS1R3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS2C2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS2C3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS2R2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS2R3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVSP', NULL);
+INSERT INTO controle_ga_type VALUES ('IVSP2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVSP3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS3A', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS3C', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS3D', NULL);
+INSERT INTO controle_ga_type VALUES ('IVS3E', NULL);
+INSERT INTO controle_ga_type VALUES ('IVA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVAA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVAB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVAC', NULL);
+INSERT INTO controle_ga_type VALUES ('IVAD', NULL);
+INSERT INTO controle_ga_type VALUES ('IVN', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB1', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB1A', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB1B', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB2A', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB2B', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB3A', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IVB4', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1AA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1BA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1AB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1BB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1CA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1CB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1DA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1DB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1EA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC1EB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC2AA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC2BA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC2AB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC2BB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC2CA', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC2CB', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC3', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC3A', NULL);
+INSERT INTO controle_ga_type VALUES ('IVC3B', NULL);
+INSERT INTO controle_ga_type VALUES ('IVD', NULL);
+INSERT INTO controle_ga_type VALUES ('IVD1', NULL);
+INSERT INTO controle_ga_type VALUES ('IVD2', NULL);
+INSERT INTO controle_ga_type VALUES ('IVE', NULL);
+INSERT INTO controle_ga_type VALUES ('V', NULL);
+INSERT INTO controle_ga_type VALUES ('V1', NULL);
+INSERT INTO controle_ga_type VALUES ('V2', NULL);
+INSERT INTO controle_ga_type VALUES ('V2BIS', NULL);
+INSERT INTO controle_ga_type VALUES ('V3', NULL);
+INSERT INTO controle_ga_type VALUES ('V4', NULL);
+INSERT INTO controle_ga_type VALUES ('V5', NULL);
+INSERT INTO controle_ga_type VALUES ('V6', NULL);
+INSERT INTO controle_ga_type VALUES ('V7', NULL);
+INSERT INTO controle_ga_type VALUES ('V8', NULL);
+INSERT INTO controle_ga_type VALUES ('V9', NULL);
+INSERT INTO controle_ga_type VALUES ('V10', NULL);
+INSERT INTO controle_ga_type VALUES ('V11', NULL);
+INSERT INTO controle_ga_type VALUES ('VI', NULL);
+INSERT INTO controle_ga_type VALUES ('VI1', NULL);
+INSERT INTO controle_ga_type VALUES ('VI2', NULL);
+INSERT INTO controle_ga_type VALUES ('VI2BIS', NULL);
+INSERT INTO controle_ga_type VALUES ('VI3', NULL);
+INSERT INTO controle_ga_type VALUES ('VI4', NULL);
+INSERT INTO controle_ga_type VALUES ('VI5', NULL);
+INSERT INTO controle_ga_type VALUES ('VI6', NULL);
+INSERT INTO controle_ga_type VALUES ('VI7', NULL);
+INSERT INTO controle_ga_type VALUES ('VI8', NULL);
+INSERT INTO controle_ga_type VALUES ('VI9', NULL);
+INSERT INTO controle_ga_type VALUES ('VI10', NULL);
+INSERT INTO controle_ga_type VALUES ('VI11', NULL);
+INSERT INTO controle_ga_type VALUES ('VI12', NULL);
+INSERT INTO controle_ga_type VALUES ('VII', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIA', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIA1', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIA1A', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIA1B', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIA2', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIA2A', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIA2B', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIB', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIB1', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIB1A', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIB1B', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIB2', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIB2A', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIB2B', NULL);
+INSERT INTO controle_ga_type VALUES ('VIIC', NULL);
+INSERT INTO controle_ga_type VALUES ('VIII', NULL);
+INSERT INTO controle_ga_type VALUES ('IX', NULL);
+INSERT INTO controle_ga_type VALUES ('IXA', NULL);
+INSERT INTO controle_ga_type VALUES ('IXB', NULL);
 
 
 --
 -- Data for Name: controle_h_amenagement_bord; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_amenagement_bord (h_amenagement_bord, description) FROM stdin;
-AB0	\N
-AB1	\N
-AB2	\N
-AB3	\N
-\.
+INSERT INTO controle_h_amenagement_bord VALUES ('AB0', NULL);
+INSERT INTO controle_h_amenagement_bord VALUES ('AB1', NULL);
+INSERT INTO controle_h_amenagement_bord VALUES ('AB2', NULL);
+INSERT INTO controle_h_amenagement_bord VALUES ('AB3', NULL);
 
 
 --
 -- Data for Name: controle_h_amenagement_distal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_amenagement_distal (amenagement_h_distal, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_h_arete; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_arete (h_arete, description) FROM stdin;
-ALR	\N
-ALI	\N
-ALS	\N
-ALSI	\N
-ALSR	\N
-ALRI	\N
-ALRS	\N
-ALIS	\N
-AL0	\N
-\.
+INSERT INTO controle_h_arete VALUES ('ALR', NULL);
+INSERT INTO controle_h_arete VALUES ('ALI', NULL);
+INSERT INTO controle_h_arete VALUES ('ALS', NULL);
+INSERT INTO controle_h_arete VALUES ('ALSI', NULL);
+INSERT INTO controle_h_arete VALUES ('ALSR', NULL);
+INSERT INTO controle_h_arete VALUES ('ALRI', NULL);
+INSERT INTO controle_h_arete VALUES ('ALRS', NULL);
+INSERT INTO controle_h_arete VALUES ('ALIS', NULL);
+INSERT INTO controle_h_arete VALUES ('AL0', NULL);
 
 
 --
 -- Data for Name: controle_h_base; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_base (h_base, description) FROM stdin;
-B1	\N
-B2	\N
-\.
+INSERT INTO controle_h_base VALUES ('B1', NULL);
+INSERT INTO controle_h_base VALUES ('B2', NULL);
 
 
 --
 -- Data for Name: controle_h_bilaterale; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_bilaterale (h_bilaterale, description) FROM stdin;
-SB0	\N
-SB1	\N
-SMDI	\N
-\.
+INSERT INTO controle_h_bilaterale VALUES ('SB0', NULL);
+INSERT INTO controle_h_bilaterale VALUES ('SB1', NULL);
+INSERT INTO controle_h_bilaterale VALUES ('SMDI', NULL);
 
 
 --
 -- Data for Name: controle_h_biseau; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_biseau (h_biseau, description) FROM stdin;
-BT0	\N
-BT1	\N
-BT1A	\N
-BT1B	\N
-BT1C	\N
-\.
+INSERT INTO controle_h_biseau VALUES ('BT0', NULL);
+INSERT INTO controle_h_biseau VALUES ('BT1', NULL);
+INSERT INTO controle_h_biseau VALUES ('BT1A', NULL);
+INSERT INTO controle_h_biseau VALUES ('BT1B', NULL);
+INSERT INTO controle_h_biseau VALUES ('BT1C', NULL);
 
 
 --
 -- Data for Name: controle_h_bord; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_bord (h_bord, description) FROM stdin;
-FB1	\N
-FB2	\N
-FB3	\N
-FB4	\N
-FB23	\N
-FB12	\N
-FB13	\N
-\.
+INSERT INTO controle_h_bord VALUES ('FB1', NULL);
+INSERT INTO controle_h_bord VALUES ('FB2', NULL);
+INSERT INTO controle_h_bord VALUES ('FB3', NULL);
+INSERT INTO controle_h_bord VALUES ('FB4', NULL);
+INSERT INTO controle_h_bord VALUES ('FB23', NULL);
+INSERT INTO controle_h_bord VALUES ('FB12', NULL);
+INSERT INTO controle_h_bord VALUES ('FB13', NULL);
 
 
 --
 -- Data for Name: controle_h_distale; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_distale (h_distale, description) FROM stdin;
-1	\N
-2	\N
-\.
+INSERT INTO controle_h_distale VALUES ('1', NULL);
+INSERT INTO controle_h_distale VALUES ('2', NULL);
 
 
 --
 -- Data for Name: controle_h_extension; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_extension (h_extension, description) FROM stdin;
-ERU	\N
-EAU	\N
-EMU	\N
-ER	\N
-ERA	\N
-EA	\N
-EMA	\N
-EMM	\N
-EMR	\N
-\.
+INSERT INTO controle_h_extension VALUES ('ERU', NULL);
+INSERT INTO controle_h_extension VALUES ('EAU', NULL);
+INSERT INTO controle_h_extension VALUES ('EMU', NULL);
+INSERT INTO controle_h_extension VALUES ('ER', NULL);
+INSERT INTO controle_h_extension VALUES ('ERA', NULL);
+INSERT INTO controle_h_extension VALUES ('EA', NULL);
+INSERT INTO controle_h_extension VALUES ('EMA', NULL);
+INSERT INTO controle_h_extension VALUES ('EMM', NULL);
+INSERT INTO controle_h_extension VALUES ('EMR', NULL);
 
 
 --
 -- Data for Name: controle_h_facture; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_facture (h_facture, description) FROM stdin;
-FHB	\N
-FHM	\N
-HT	\N
-\.
+INSERT INTO controle_h_facture VALUES ('FHB', NULL);
+INSERT INTO controle_h_facture VALUES ('FHM', NULL);
+INSERT INTO controle_h_facture VALUES ('HT', NULL);
 
 
 --
 -- Data for Name: controle_h_meplat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_meplat (h_meplat, description) FROM stdin;
-MI0	\N
-MI1	\N
-MI1U	\N
-MI1B	\N
-\.
+INSERT INTO controle_h_meplat VALUES ('MI0', NULL);
+INSERT INTO controle_h_meplat VALUES ('MI1', NULL);
+INSERT INTO controle_h_meplat VALUES ('MI1U', NULL);
+INSERT INTO controle_h_meplat VALUES ('MI1B', NULL);
 
 
 --
 -- Data for Name: controle_h_retouche; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_retouche (h_retouche, description) FROM stdin;
-RS0	\N
-RS1	\N
-RS2	\N
-RS5	\N
-2	\N
-Q	\N
-\.
+INSERT INTO controle_h_retouche VALUES ('RS0', NULL);
+INSERT INTO controle_h_retouche VALUES ('RS1', NULL);
+INSERT INTO controle_h_retouche VALUES ('RS2', NULL);
+INSERT INTO controle_h_retouche VALUES ('RS5', NULL);
+INSERT INTO controle_h_retouche VALUES ('2', NULL);
+INSERT INTO controle_h_retouche VALUES ('Q', NULL);
 
 
 --
 -- Data for Name: controle_h_surface; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_surface (h_surface, description) FROM stdin;
-SO0	\N
-SO1	\N
-SO2	\N
-SO3	\N
-\.
+INSERT INTO controle_h_surface VALUES ('SO0', NULL);
+INSERT INTO controle_h_surface VALUES ('SO1', NULL);
+INSERT INTO controle_h_surface VALUES ('SO2', NULL);
+INSERT INTO controle_h_surface VALUES ('SO3', NULL);
 
 
 --
 -- Data for Name: controle_h_symetrie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_h_symetrie (h_symetrie, description) FROM stdin;
-SMD0	\N
-SMD1	\N
-\.
+INSERT INTO controle_h_symetrie VALUES ('SMD0', NULL);
+INSERT INTO controle_h_symetrie VALUES ('SMD1', NULL);
 
 
 --
 -- Data for Name: controle_i_action; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_action (i_action, description) FROM stdin;
-BL	\N
-GR	\N
-RB	\N
-RS	\N
-CQI	\N
-CQF	\N
-CQG	\N
-DPI	\N
-DPF	\N
-DPG	\N
-DCI	\N
-DCF	\N
-DCG	\N
-ECI	\N
-ECF	\N
-ECG	\N
-\.
+INSERT INTO controle_i_action VALUES ('BL', NULL);
+INSERT INTO controle_i_action VALUES ('GR', NULL);
+INSERT INTO controle_i_action VALUES ('RB', NULL);
+INSERT INTO controle_i_action VALUES ('RS', NULL);
+INSERT INTO controle_i_action VALUES ('CQI', NULL);
+INSERT INTO controle_i_action VALUES ('CQF', NULL);
+INSERT INTO controle_i_action VALUES ('CQG', NULL);
+INSERT INTO controle_i_action VALUES ('DPI', NULL);
+INSERT INTO controle_i_action VALUES ('DPF', NULL);
+INSERT INTO controle_i_action VALUES ('DPG', NULL);
+INSERT INTO controle_i_action VALUES ('DCI', NULL);
+INSERT INTO controle_i_action VALUES ('DCF', NULL);
+INSERT INTO controle_i_action VALUES ('DCG', NULL);
+INSERT INTO controle_i_action VALUES ('ECI', NULL);
+INSERT INTO controle_i_action VALUES ('ECF', NULL);
+INSERT INTO controle_i_action VALUES ('ECG', NULL);
 
 
 --
 -- Data for Name: controle_i_alteration; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_alteration (i_alteration, description) FROM stdin;
-NA	\N
-AF	\N
-AT	\N
-AM	\N
-\.
+INSERT INTO controle_i_alteration VALUES ('NA', NULL);
+INSERT INTO controle_i_alteration VALUES ('AF', NULL);
+INSERT INTO controle_i_alteration VALUES ('AT', NULL);
+INSERT INTO controle_i_alteration VALUES ('AM', NULL);
 
 
 --
 -- Data for Name: controle_i_desilicification; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_desilicification (i_desilicification, description) FROM stdin;
-ND	\N
-DF	\N
-DM	\N
-DT	\N
-\.
+INSERT INTO controle_i_desilicification VALUES ('ND', NULL);
+INSERT INTO controle_i_desilicification VALUES ('DF', NULL);
+INSERT INTO controle_i_desilicification VALUES ('DM', NULL);
+INSERT INTO controle_i_desilicification VALUES ('DT', NULL);
 
 
 --
 -- Data for Name: controle_i_dpatine; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_dpatine (i_dpatine, description) FROM stdin;
-H	\N
-RD	\N
-RDF	\N
-RDS	\N
-RN	\N
-RNP	\N
-RNO	\N
-RNR	\N
-RNI	\N
-RND	\N
-RNE	\N
-\.
+INSERT INTO controle_i_dpatine VALUES ('H', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RD', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RDF', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RDS', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RN', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RNP', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RNO', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RNR', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RNI', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RND', NULL);
+INSERT INTO controle_i_dpatine VALUES ('RNE', NULL);
 
 
 --
 -- Data for Name: controle_i_encroutement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_encroutement (i_encroutement, description) FROM stdin;
-ECC	\N
-ECE	\N
-ECP	\N
-ECF	\N
-ECT	\N
-\.
+INSERT INTO controle_i_encroutement VALUES ('ECC', NULL);
+INSERT INTO controle_i_encroutement VALUES ('ECE', NULL);
+INSERT INTO controle_i_encroutement VALUES ('ECP', NULL);
+INSERT INTO controle_i_encroutement VALUES ('ECF', NULL);
+INSERT INTO controle_i_encroutement VALUES ('ECT', NULL);
 
 
 --
 -- Data for Name: controle_i_eolisation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_eolisation (i_eolisation, description) FROM stdin;
-NE	\N
-FE	\N
-TE	\N
-\.
+INSERT INTO controle_i_eolisation VALUES ('NE', NULL);
+INSERT INTO controle_i_eolisation VALUES ('FE', NULL);
+INSERT INTO controle_i_eolisation VALUES ('TE', NULL);
 
 
 --
 -- Data for Name: controle_i_forme_galet; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_forme_galet (i_forme_galet, description) FROM stdin;
-O	\N
-PI	\N
-PC1	\N
-PC2	\N
-PC3	\N
-PC5	\N
-PC6	\N
-PC7	\N
-PC8	\N
-PL1	\N
-PL4	\N
-PL7	\N
-PL8	\N
-EA	\N
-EB	\N
-EBI	\N
-EBC1	\N
-EBC2	\N
-EBC3	\N
-EBC7	\N
-EBC8	\N
-EBL1	\N
-EBL4	\N
-EBL7	\N
-EBL8	\N
-EC	\N
-ECI	\N
-ECC1	\N
-ECC2	\N
-ECC3	\N
-ECC7	\N
-ECC8	\N
-ECL1	\N
-ECL4	\N
-ECL7	\N
-ECL8	\N
-D	\N
-EDI	\N
-EDC1	\N
-EDC2	\N
-EDC3	\N
-EDC7	\N
-EDC8	\N
-EDL1	\N
-EDL4	\N
-EDL7	\N
-EDL8	\N
-\.
+INSERT INTO controle_i_forme_galet VALUES ('O', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PI', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PC1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PC2', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PC3', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PC5', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PC6', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PC7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PC8', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PL1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PL4', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PL7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('PL8', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EA', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EB', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBI', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBC1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBC2', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBC3', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBC7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBC8', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBL1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBL4', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBL7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EBL8', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EC', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECI', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECC1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECC2', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECC3', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECC7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECC8', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECL1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECL4', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECL7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('ECL8', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('D', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDI', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDC1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDC2', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDC3', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDC7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDC8', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDL1', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDL4', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDL7', NULL);
+INSERT INTO controle_i_forme_galet VALUES ('EDL8', NULL);
 
 
 --
 -- Data for Name: controle_i_lustrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_lustrage (i_lustrage, description) FROM stdin;
-NL	\N
-FL	\N
-TL	\N
-\.
+INSERT INTO controle_i_lustrage VALUES ('NL', NULL);
+INSERT INTO controle_i_lustrage VALUES ('FL', NULL);
+INSERT INTO controle_i_lustrage VALUES ('TL', NULL);
 
 
 --
 -- Data for Name: controle_i_matiere; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_matiere (i_matiere, description) FROM stdin;
-IND	\N
-S	\N
-CAD	\N
-CAL	\N
-J	\N
-JS	\N
-CS	\N
-CH	\N
-Q	\N
-QI	\N
-QBO	\N
-QBT	\N
-QBB	\N
-QR	\N
-QZT	\N
-QZT0	\N
-QZT1	\N
-QZT2	\N
-QZT3	\N
-GQZT	\N
-GQZT1	\N
-GQZT2	\N
-G	\N
-SCH	\N
-V	\N
-VI	\N
-VA	\N
-VD	\N
-VR	\N
-VB	\N
-M	\N
-MI	\N
-MM	\N
-MGS	\N
-MG	\N
-GAB	\N
-CA	\N
-CAI	\N
-CAG	\N
-CAM	\N
-CAR	\N
-CSUB	\N
-CPS	\N
-CAGS	\N
-BS	\N
-CHT	\N
-ES	\N
-D	\N
-LYD	\N
-DNT	\N
-OS	\N
-CHC	\N
-\.
+INSERT INTO controle_i_matiere VALUES ('IND', NULL);
+INSERT INTO controle_i_matiere VALUES ('S', NULL);
+INSERT INTO controle_i_matiere VALUES ('CAD', NULL);
+INSERT INTO controle_i_matiere VALUES ('CAL', NULL);
+INSERT INTO controle_i_matiere VALUES ('J', NULL);
+INSERT INTO controle_i_matiere VALUES ('JS', NULL);
+INSERT INTO controle_i_matiere VALUES ('CS', NULL);
+INSERT INTO controle_i_matiere VALUES ('CH', NULL);
+INSERT INTO controle_i_matiere VALUES ('Q', NULL);
+INSERT INTO controle_i_matiere VALUES ('QI', NULL);
+INSERT INTO controle_i_matiere VALUES ('QBO', NULL);
+INSERT INTO controle_i_matiere VALUES ('QBT', NULL);
+INSERT INTO controle_i_matiere VALUES ('QBB', NULL);
+INSERT INTO controle_i_matiere VALUES ('QR', NULL);
+INSERT INTO controle_i_matiere VALUES ('QZT', NULL);
+INSERT INTO controle_i_matiere VALUES ('QZT0', NULL);
+INSERT INTO controle_i_matiere VALUES ('QZT1', NULL);
+INSERT INTO controle_i_matiere VALUES ('QZT2', NULL);
+INSERT INTO controle_i_matiere VALUES ('QZT3', NULL);
+INSERT INTO controle_i_matiere VALUES ('GQZT', NULL);
+INSERT INTO controle_i_matiere VALUES ('GQZT1', NULL);
+INSERT INTO controle_i_matiere VALUES ('GQZT2', NULL);
+INSERT INTO controle_i_matiere VALUES ('G', NULL);
+INSERT INTO controle_i_matiere VALUES ('SCH', NULL);
+INSERT INTO controle_i_matiere VALUES ('V', NULL);
+INSERT INTO controle_i_matiere VALUES ('VI', NULL);
+INSERT INTO controle_i_matiere VALUES ('VA', NULL);
+INSERT INTO controle_i_matiere VALUES ('VD', NULL);
+INSERT INTO controle_i_matiere VALUES ('VR', NULL);
+INSERT INTO controle_i_matiere VALUES ('VB', NULL);
+INSERT INTO controle_i_matiere VALUES ('M', NULL);
+INSERT INTO controle_i_matiere VALUES ('MI', NULL);
+INSERT INTO controle_i_matiere VALUES ('MM', NULL);
+INSERT INTO controle_i_matiere VALUES ('MGS', NULL);
+INSERT INTO controle_i_matiere VALUES ('MG', NULL);
+INSERT INTO controle_i_matiere VALUES ('GAB', NULL);
+INSERT INTO controle_i_matiere VALUES ('CA', NULL);
+INSERT INTO controle_i_matiere VALUES ('CAI', NULL);
+INSERT INTO controle_i_matiere VALUES ('CAG', NULL);
+INSERT INTO controle_i_matiere VALUES ('CAM', NULL);
+INSERT INTO controle_i_matiere VALUES ('CAR', NULL);
+INSERT INTO controle_i_matiere VALUES ('CSUB', NULL);
+INSERT INTO controle_i_matiere VALUES ('CPS', NULL);
+INSERT INTO controle_i_matiere VALUES ('CAGS', NULL);
+INSERT INTO controle_i_matiere VALUES ('BS', NULL);
+INSERT INTO controle_i_matiere VALUES ('CHT', NULL);
+INSERT INTO controle_i_matiere VALUES ('ES', NULL);
+INSERT INTO controle_i_matiere VALUES ('D', NULL);
+INSERT INTO controle_i_matiere VALUES ('LYD', NULL);
+INSERT INTO controle_i_matiere VALUES ('DNT', NULL);
+INSERT INTO controle_i_matiere VALUES ('OS', NULL);
+INSERT INTO controle_i_matiere VALUES ('CHC', NULL);
 
 
 --
 -- Data for Name: controle_i_objet; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_objet (i_objet, description) FROM stdin;
-ECL	\N
-LAM	\N
-PEC	\N
-LAML	\N
-ERT	\N
-DEB	\N
-PDE	\N
-MDE	\N
-GAL	\N
-GALF	\N
-PERC	\N
-BIF	\N
-HACH	\N
-NUC	\N
-OUT	\N
-GAM	\N
-CHBUR	\N
-PEL	\N
-RET	\N
-GALENLV	\N
-\.
+INSERT INTO controle_i_objet VALUES ('ECL', NULL);
+INSERT INTO controle_i_objet VALUES ('LAM', NULL);
+INSERT INTO controle_i_objet VALUES ('PEC', NULL);
+INSERT INTO controle_i_objet VALUES ('LAML', NULL);
+INSERT INTO controle_i_objet VALUES ('ERT', NULL);
+INSERT INTO controle_i_objet VALUES ('DEB', NULL);
+INSERT INTO controle_i_objet VALUES ('PDE', NULL);
+INSERT INTO controle_i_objet VALUES ('MDE', NULL);
+INSERT INTO controle_i_objet VALUES ('GAL', NULL);
+INSERT INTO controle_i_objet VALUES ('GALF', NULL);
+INSERT INTO controle_i_objet VALUES ('PERC', NULL);
+INSERT INTO controle_i_objet VALUES ('BIF', NULL);
+INSERT INTO controle_i_objet VALUES ('HACH', NULL);
+INSERT INTO controle_i_objet VALUES ('NUC', NULL);
+INSERT INTO controle_i_objet VALUES ('OUT', NULL);
+INSERT INTO controle_i_objet VALUES ('GAM', NULL);
+INSERT INTO controle_i_objet VALUES ('CHBUR', NULL);
+INSERT INTO controle_i_objet VALUES ('PEL', NULL);
+INSERT INTO controle_i_objet VALUES ('RET', NULL);
+INSERT INTO controle_i_objet VALUES ('GALENLV', NULL);
 
 
 --
 -- Data for Name: controle_i_patine; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_patine (i_patine, description) FROM stdin;
-N	\N
-G	\N
-GBG	\N
-GM	\N
-GBT	\N
-GBL	\N
-GR	\N
-GV	\N
-GVR	\N
-BG	\N
-BR	\N
-BL	\N
-J	\N
-M	\N
-RL	\N
-RG	\N
-GN	\N
-VIO	\N
-RS	\N
-V	\N
-\.
+INSERT INTO controle_i_patine VALUES ('N', NULL);
+INSERT INTO controle_i_patine VALUES ('G', NULL);
+INSERT INTO controle_i_patine VALUES ('GBG', NULL);
+INSERT INTO controle_i_patine VALUES ('GM', NULL);
+INSERT INTO controle_i_patine VALUES ('GBT', NULL);
+INSERT INTO controle_i_patine VALUES ('GBL', NULL);
+INSERT INTO controle_i_patine VALUES ('GR', NULL);
+INSERT INTO controle_i_patine VALUES ('GV', NULL);
+INSERT INTO controle_i_patine VALUES ('GVR', NULL);
+INSERT INTO controle_i_patine VALUES ('BG', NULL);
+INSERT INTO controle_i_patine VALUES ('BR', NULL);
+INSERT INTO controle_i_patine VALUES ('BL', NULL);
+INSERT INTO controle_i_patine VALUES ('J', NULL);
+INSERT INTO controle_i_patine VALUES ('M', NULL);
+INSERT INTO controle_i_patine VALUES ('RL', NULL);
+INSERT INTO controle_i_patine VALUES ('RG', NULL);
+INSERT INTO controle_i_patine VALUES ('GN', NULL);
+INSERT INTO controle_i_patine VALUES ('VIO', NULL);
+INSERT INTO controle_i_patine VALUES ('RS', NULL);
+INSERT INTO controle_i_patine VALUES ('V', NULL);
 
 
 --
 -- Data for Name: controle_i_pmycellium; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_pmycellium (i_pmycellium, description) FROM stdin;
-PMC	\N
-PME	\N
-PMP	\N
-PMF	\N
-PMT	\N
-\.
+INSERT INTO controle_i_pmycellium VALUES ('PMC', NULL);
+INSERT INTO controle_i_pmycellium VALUES ('PME', NULL);
+INSERT INTO controle_i_pmycellium VALUES ('PMP', NULL);
+INSERT INTO controle_i_pmycellium VALUES ('PMF', NULL);
+INSERT INTO controle_i_pmycellium VALUES ('PMT', NULL);
+
+
+--
+-- Data for Name: controle_i_responsable; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
 
 
 --
 -- Data for Name: controle_i_roulage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_roulage (i_roulage, description) FROM stdin;
-NR	\N
-FR	\N
-TR	\N
-\.
+INSERT INTO controle_i_roulage VALUES ('NR', NULL);
+INSERT INTO controle_i_roulage VALUES ('FR', NULL);
+INSERT INTO controle_i_roulage VALUES ('TR', NULL);
 
 
 --
 -- Data for Name: controle_i_support; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_support (i_support, description) FROM stdin;
-I	\N
-PE	\N
-NLE	\N
-D	\N
-N	\N
-B	\N
-DTH	\N
-G0	\N
-G1	\N
-G2	\N
-G3	\N
-PEE	\N
-ER	\N
-EFB	\N
-NL	\N
-L	\N
-OS	\N
-DNT	\N
-PLQ	\N
-D1	\N
-D2	\N
-D3	\N
-D4	\N
-\.
+INSERT INTO controle_i_support VALUES ('I', NULL);
+INSERT INTO controle_i_support VALUES ('PE', NULL);
+INSERT INTO controle_i_support VALUES ('NLE', NULL);
+INSERT INTO controle_i_support VALUES ('D', NULL);
+INSERT INTO controle_i_support VALUES ('N', NULL);
+INSERT INTO controle_i_support VALUES ('B', NULL);
+INSERT INTO controle_i_support VALUES ('DTH', NULL);
+INSERT INTO controle_i_support VALUES ('G0', NULL);
+INSERT INTO controle_i_support VALUES ('G1', NULL);
+INSERT INTO controle_i_support VALUES ('G2', NULL);
+INSERT INTO controle_i_support VALUES ('G3', NULL);
+INSERT INTO controle_i_support VALUES ('PEE', NULL);
+INSERT INTO controle_i_support VALUES ('ER', NULL);
+INSERT INTO controle_i_support VALUES ('EFB', NULL);
+INSERT INTO controle_i_support VALUES ('NL', NULL);
+INSERT INTO controle_i_support VALUES ('L', NULL);
+INSERT INTO controle_i_support VALUES ('OS', NULL);
+INSERT INTO controle_i_support VALUES ('DNT', NULL);
+INSERT INTO controle_i_support VALUES ('PLQ', NULL);
+INSERT INTO controle_i_support VALUES ('D1', NULL);
+INSERT INTO controle_i_support VALUES ('D2', NULL);
+INSERT INTO controle_i_support VALUES ('D3', NULL);
+INSERT INTO controle_i_support VALUES ('D4', NULL);
 
 
 --
 -- Data for Name: controle_i_support_originel; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_i_support_originel (i_support_originel, description) FROM stdin;
-GAL	
-PIE	
-ROG	
-BLOC	
-NOD	
-OS	
-PLQ	
-\.
+INSERT INTO controle_i_support_originel VALUES ('GAL', '');
+INSERT INTO controle_i_support_originel VALUES ('PIE', '');
+INSERT INTO controle_i_support_originel VALUES ('ROG', '');
+INSERT INTO controle_i_support_originel VALUES ('BLOC', '');
+INSERT INTO controle_i_support_originel VALUES ('NOD', '');
+INSERT INTO controle_i_support_originel VALUES ('OS', '');
+INSERT INTO controle_i_support_originel VALUES ('PLQ', '');
 
 
 --
 -- Data for Name: controle_localite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_localite (localite, description) FROM stdin;
-N	\N
-E	sol UA25
-ET	sol UA25
-A	sol UA25
-B	sol UA25
-C	sol UA25
-CT	sol UA25
-D	sol UA25
-F	sol UA25
-FF	sol UA25
-G	sol UA25
-H	sol UA25
-I1	sol UA25
-I2	sol UA25
-\.
+INSERT INTO controle_localite VALUES ('N', NULL);
+INSERT INTO controle_localite VALUES ('E', 'sol UA25');
+INSERT INTO controle_localite VALUES ('ET', 'sol UA25');
+INSERT INTO controle_localite VALUES ('A', 'sol UA25');
+INSERT INTO controle_localite VALUES ('B', 'sol UA25');
+INSERT INTO controle_localite VALUES ('C', 'sol UA25');
+INSERT INTO controle_localite VALUES ('CT', 'sol UA25');
+INSERT INTO controle_localite VALUES ('D', 'sol UA25');
+INSERT INTO controle_localite VALUES ('F', 'sol UA25');
+INSERT INTO controle_localite VALUES ('FF', 'sol UA25');
+INSERT INTO controle_localite VALUES ('G', 'sol UA25');
+INSERT INTO controle_localite VALUES ('H', 'sol UA25');
+INSERT INTO controle_localite VALUES ('I1', 'sol UA25');
+INSERT INTO controle_localite VALUES ('I2', 'sol UA25');
 
 
 --
 -- Data for Name: controle_locus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_locus (locus, description) FROM stdin;
-LO8	\N
-LO5	\N
--B	\N
--N	\N
-CEN	\N
-PUI	\N
--III	\N
---	\N
-ENT	\N
-LO6	\N
-LO7	\N
-\.
+INSERT INTO controle_locus VALUES ('LO8', NULL);
+INSERT INTO controle_locus VALUES ('LO5', NULL);
+INSERT INTO controle_locus VALUES ('-B', NULL);
+INSERT INTO controle_locus VALUES ('-N', NULL);
+INSERT INTO controle_locus VALUES ('CEN', NULL);
+INSERT INTO controle_locus VALUES ('PUI', NULL);
+INSERT INTO controle_locus VALUES ('-III', NULL);
+INSERT INTO controle_locus VALUES ('--', NULL);
+INSERT INTO controle_locus VALUES ('ENT', NULL);
+INSERT INTO controle_locus VALUES ('LO6', NULL);
+INSERT INTO controle_locus VALUES ('LO7', NULL);
 
 
 --
 -- Data for Name: controle_mf_serie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_mf_serie (mf_serie, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_mf_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_mf_type (mf_type, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_n_cortotal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_n_cortotal (n_cortotal, description) FROM stdin;
-3	\N
-2	\N
-1	\N
-0	\N
-\.
+INSERT INTO controle_n_cortotal VALUES (3, NULL);
+INSERT INTO controle_n_cortotal VALUES (2, NULL);
+INSERT INTO controle_n_cortotal VALUES (1, NULL);
+INSERT INTO controle_n_cortotal VALUES (0, NULL);
 
 
 --
 -- Data for Name: controle_n_epuisement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_n_epuisement (n_epuisement, descripion) FROM stdin;
-1	\N
-2	\N
-3	\N
-4	\N
-5	\N
-6	\N
-\.
+INSERT INTO controle_n_epuisement VALUES (1, NULL);
+INSERT INTO controle_n_epuisement VALUES (2, NULL);
+INSERT INTO controle_n_epuisement VALUES (3, NULL);
+INSERT INTO controle_n_epuisement VALUES (4, NULL);
+INSERT INTO controle_n_epuisement VALUES (5, NULL);
+INSERT INTO controle_n_epuisement VALUES (6, NULL);
 
 
 --
 -- Data for Name: controle_n_forme; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_n_forme (n_forme, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_n_orientation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_n_orientation (n_orientation, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_n_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_n_type (n_type, description) FROM stdin;
-N1	\N
-N1A	\N
-N1ARC	\N
-N1AEP	\N
-N1ARU	\N
-N1ARB	\N
-N1B	\N
-N1C	\N
-N1CRU	\N
-N1CRB	\N
-N2	\N
-N2DA	\N
-N2DB	\N
-N2DC	\N
-N2DD	\N
-N2DE	\N
-N2DF	\N
-N2RA	\N
-N2RB	\N
-N2RC	\N
-N2RD	\N
-N2RE	\N
-N2RF	\N
-N2IA	\N
-N2IB	\N
-N2IC	\N
-N2ID	\N
-N2IE	\N
-N2IF	\N
-N3	\N
-N3DA	\N
-N3DB	\N
-N3RA	\N
-N3RB	\N
-N3IA	\N
-N3IB	\N
-N4	\N
-N4A	\N
-N4B	\N
-N4B1	\N
-N4C	\N
-N4D	\N
-N4D1	\N
-N4E	\N
-N4F	\N
-N4F1	\N
-N5	\N
-N5U	\N
-N5UA	\N
-N5UB	\N
-N5UC	\N
-N5UD	\N
-N5BOA	\N
-N5BOB	\N
-N5BOC	\N
-N5BOD	\N
-N5BOE	\N
-N5BAA	\N
-N5BAB	\N
-N5BAC	\N
-N5BAD	\N
-N6	\N
-N6A	\N
-N6B	\N
-N6C	\N
-N6D	\N
-NO	\N
-NO2	\N
-NO3	\N
-NO4	\N
-NO5	\N
-N7	\N
-N7U	\N
-N7UA	\N
-N7UB	\N
-N7UC	\N
-N7UD	\N
-N7UE	\N
-N7UF	\N
-N7D	\N
-N7DA	\N
-N7DB	\N
-N7DC	\N
-N7DD	\N
-N7DE	\N
-N7DF	\N
-N7B	\N
-N7B1A	\N
-N7B1B	\N
-N7B1C	\N
-N7B1D	\N
-N7B1E	\N
-N7B1F	\N
-N7B1G	\N
-N7B2A	\N
-N7B2B	\N
-N7B2C	\N
-N7B2D	\N
-N7B2E	\N
-N7B2F	\N
-N7B2G	\N
-N7B3A	\N
-N7B3B	\N
-N7B3C	\N
-N7B3D	\N
-N7B3E	\N
-N7B3F	\N
-N7B3G	\N
-N7B4A	\N
-N7B4B	\N
-N7B4C	\N
-N7B4D	\N
-N7B4E	\N
-N7B4F	\N
-N7B4G	\N
-N7M	\N
-N7MA	\N
-N7MB	\N
-N7MC	\N
-NA	\N
-NA1	\N
-NA2	\N
-NA3	\N
-NA4	\N
-\.
+INSERT INTO controle_n_type VALUES ('N1', NULL);
+INSERT INTO controle_n_type VALUES ('N1A', NULL);
+INSERT INTO controle_n_type VALUES ('N1ARC', NULL);
+INSERT INTO controle_n_type VALUES ('N1AEP', NULL);
+INSERT INTO controle_n_type VALUES ('N1ARU', NULL);
+INSERT INTO controle_n_type VALUES ('N1ARB', NULL);
+INSERT INTO controle_n_type VALUES ('N1B', NULL);
+INSERT INTO controle_n_type VALUES ('N1C', NULL);
+INSERT INTO controle_n_type VALUES ('N1CRU', NULL);
+INSERT INTO controle_n_type VALUES ('N1CRB', NULL);
+INSERT INTO controle_n_type VALUES ('N2', NULL);
+INSERT INTO controle_n_type VALUES ('N2DA', NULL);
+INSERT INTO controle_n_type VALUES ('N2DB', NULL);
+INSERT INTO controle_n_type VALUES ('N2DC', NULL);
+INSERT INTO controle_n_type VALUES ('N2DD', NULL);
+INSERT INTO controle_n_type VALUES ('N2DE', NULL);
+INSERT INTO controle_n_type VALUES ('N2DF', NULL);
+INSERT INTO controle_n_type VALUES ('N2RA', NULL);
+INSERT INTO controle_n_type VALUES ('N2RB', NULL);
+INSERT INTO controle_n_type VALUES ('N2RC', NULL);
+INSERT INTO controle_n_type VALUES ('N2RD', NULL);
+INSERT INTO controle_n_type VALUES ('N2RE', NULL);
+INSERT INTO controle_n_type VALUES ('N2RF', NULL);
+INSERT INTO controle_n_type VALUES ('N2IA', NULL);
+INSERT INTO controle_n_type VALUES ('N2IB', NULL);
+INSERT INTO controle_n_type VALUES ('N2IC', NULL);
+INSERT INTO controle_n_type VALUES ('N2ID', NULL);
+INSERT INTO controle_n_type VALUES ('N2IE', NULL);
+INSERT INTO controle_n_type VALUES ('N2IF', NULL);
+INSERT INTO controle_n_type VALUES ('N3', NULL);
+INSERT INTO controle_n_type VALUES ('N3DA', NULL);
+INSERT INTO controle_n_type VALUES ('N3DB', NULL);
+INSERT INTO controle_n_type VALUES ('N3RA', NULL);
+INSERT INTO controle_n_type VALUES ('N3RB', NULL);
+INSERT INTO controle_n_type VALUES ('N3IA', NULL);
+INSERT INTO controle_n_type VALUES ('N3IB', NULL);
+INSERT INTO controle_n_type VALUES ('N4', NULL);
+INSERT INTO controle_n_type VALUES ('N4A', NULL);
+INSERT INTO controle_n_type VALUES ('N4B', NULL);
+INSERT INTO controle_n_type VALUES ('N4B1', NULL);
+INSERT INTO controle_n_type VALUES ('N4C', NULL);
+INSERT INTO controle_n_type VALUES ('N4D', NULL);
+INSERT INTO controle_n_type VALUES ('N4D1', NULL);
+INSERT INTO controle_n_type VALUES ('N4E', NULL);
+INSERT INTO controle_n_type VALUES ('N4F', NULL);
+INSERT INTO controle_n_type VALUES ('N4F1', NULL);
+INSERT INTO controle_n_type VALUES ('N5', NULL);
+INSERT INTO controle_n_type VALUES ('N5U', NULL);
+INSERT INTO controle_n_type VALUES ('N5UA', NULL);
+INSERT INTO controle_n_type VALUES ('N5UB', NULL);
+INSERT INTO controle_n_type VALUES ('N5UC', NULL);
+INSERT INTO controle_n_type VALUES ('N5UD', NULL);
+INSERT INTO controle_n_type VALUES ('N5BOA', NULL);
+INSERT INTO controle_n_type VALUES ('N5BOB', NULL);
+INSERT INTO controle_n_type VALUES ('N5BOC', NULL);
+INSERT INTO controle_n_type VALUES ('N5BOD', NULL);
+INSERT INTO controle_n_type VALUES ('N5BOE', NULL);
+INSERT INTO controle_n_type VALUES ('N5BAA', NULL);
+INSERT INTO controle_n_type VALUES ('N5BAB', NULL);
+INSERT INTO controle_n_type VALUES ('N5BAC', NULL);
+INSERT INTO controle_n_type VALUES ('N5BAD', NULL);
+INSERT INTO controle_n_type VALUES ('N6', NULL);
+INSERT INTO controle_n_type VALUES ('N6A', NULL);
+INSERT INTO controle_n_type VALUES ('N6B', NULL);
+INSERT INTO controle_n_type VALUES ('N6C', NULL);
+INSERT INTO controle_n_type VALUES ('N6D', NULL);
+INSERT INTO controle_n_type VALUES ('NO', NULL);
+INSERT INTO controle_n_type VALUES ('NO2', NULL);
+INSERT INTO controle_n_type VALUES ('NO3', NULL);
+INSERT INTO controle_n_type VALUES ('NO4', NULL);
+INSERT INTO controle_n_type VALUES ('NO5', NULL);
+INSERT INTO controle_n_type VALUES ('N7', NULL);
+INSERT INTO controle_n_type VALUES ('N7U', NULL);
+INSERT INTO controle_n_type VALUES ('N7UA', NULL);
+INSERT INTO controle_n_type VALUES ('N7UB', NULL);
+INSERT INTO controle_n_type VALUES ('N7UC', NULL);
+INSERT INTO controle_n_type VALUES ('N7UD', NULL);
+INSERT INTO controle_n_type VALUES ('N7UE', NULL);
+INSERT INTO controle_n_type VALUES ('N7UF', NULL);
+INSERT INTO controle_n_type VALUES ('N7D', NULL);
+INSERT INTO controle_n_type VALUES ('N7DA', NULL);
+INSERT INTO controle_n_type VALUES ('N7DB', NULL);
+INSERT INTO controle_n_type VALUES ('N7DC', NULL);
+INSERT INTO controle_n_type VALUES ('N7DD', NULL);
+INSERT INTO controle_n_type VALUES ('N7DE', NULL);
+INSERT INTO controle_n_type VALUES ('N7DF', NULL);
+INSERT INTO controle_n_type VALUES ('N7B', NULL);
+INSERT INTO controle_n_type VALUES ('N7B1A', NULL);
+INSERT INTO controle_n_type VALUES ('N7B1B', NULL);
+INSERT INTO controle_n_type VALUES ('N7B1C', NULL);
+INSERT INTO controle_n_type VALUES ('N7B1D', NULL);
+INSERT INTO controle_n_type VALUES ('N7B1E', NULL);
+INSERT INTO controle_n_type VALUES ('N7B1F', NULL);
+INSERT INTO controle_n_type VALUES ('N7B1G', NULL);
+INSERT INTO controle_n_type VALUES ('N7B2A', NULL);
+INSERT INTO controle_n_type VALUES ('N7B2B', NULL);
+INSERT INTO controle_n_type VALUES ('N7B2C', NULL);
+INSERT INTO controle_n_type VALUES ('N7B2D', NULL);
+INSERT INTO controle_n_type VALUES ('N7B2E', NULL);
+INSERT INTO controle_n_type VALUES ('N7B2F', NULL);
+INSERT INTO controle_n_type VALUES ('N7B2G', NULL);
+INSERT INTO controle_n_type VALUES ('N7B3A', NULL);
+INSERT INTO controle_n_type VALUES ('N7B3B', NULL);
+INSERT INTO controle_n_type VALUES ('N7B3C', NULL);
+INSERT INTO controle_n_type VALUES ('N7B3D', NULL);
+INSERT INTO controle_n_type VALUES ('N7B3E', NULL);
+INSERT INTO controle_n_type VALUES ('N7B3F', NULL);
+INSERT INTO controle_n_type VALUES ('N7B3G', NULL);
+INSERT INTO controle_n_type VALUES ('N7B4A', NULL);
+INSERT INTO controle_n_type VALUES ('N7B4B', NULL);
+INSERT INTO controle_n_type VALUES ('N7B4C', NULL);
+INSERT INTO controle_n_type VALUES ('N7B4D', NULL);
+INSERT INTO controle_n_type VALUES ('N7B4E', NULL);
+INSERT INTO controle_n_type VALUES ('N7B4F', NULL);
+INSERT INTO controle_n_type VALUES ('N7B4G', NULL);
+INSERT INTO controle_n_type VALUES ('N7M', NULL);
+INSERT INTO controle_n_type VALUES ('N7MA', NULL);
+INSERT INTO controle_n_type VALUES ('N7MB', NULL);
+INSERT INTO controle_n_type VALUES ('N7MC', NULL);
+INSERT INTO controle_n_type VALUES ('NA', NULL);
+INSERT INTO controle_n_type VALUES ('NA1', NULL);
+INSERT INTO controle_n_type VALUES ('NA2', NULL);
+INSERT INTO controle_n_type VALUES ('NA3', NULL);
+INSERT INTO controle_n_type VALUES ('NA4', NULL);
 
 
 --
 -- Data for Name: controle_nature; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_nature (nature, description) FROM stdin;
-OSD	\N
-ESQ	\N
-COQ	\N
-IND	\N
-GAL	\N
-OB	\N
-CHA	\N
-PIE	\N
-DNT	\N
-MDB	\N
-GCA	\N
-COP	\N
-NID	\N
-CAL	\N
-\.
+INSERT INTO controle_nature VALUES ('OSD', NULL);
+INSERT INTO controle_nature VALUES ('ESQ', NULL);
+INSERT INTO controle_nature VALUES ('COQ', NULL);
+INSERT INTO controle_nature VALUES ('IND', NULL);
+INSERT INTO controle_nature VALUES ('GAL', NULL);
+INSERT INTO controle_nature VALUES ('OB', NULL);
+INSERT INTO controle_nature VALUES ('CHA', NULL);
+INSERT INTO controle_nature VALUES ('PIE', NULL);
+INSERT INTO controle_nature VALUES ('DNT', NULL);
+INSERT INTO controle_nature VALUES ('MDB', NULL);
+INSERT INTO controle_nature VALUES ('GCA', NULL);
+INSERT INTO controle_nature VALUES ('COP', NULL);
+INSERT INTO controle_nature VALUES ('NID', NULL);
+INSERT INTO controle_nature VALUES ('CAL', NULL);
 
 
 --
 -- Data for Name: controle_niveau; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_niveau (niveau, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_o_chronologie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_chronologie (o_chronologie, description) FROM stdin;
-1	\N
-2	\N
-3	\N
-4	\N
-5	\N
-6	\N
-7	\N
-8	\N
-9	\N
-10	\N
-\.
+INSERT INTO controle_o_chronologie VALUES ('1', NULL);
+INSERT INTO controle_o_chronologie VALUES ('2', NULL);
+INSERT INTO controle_o_chronologie VALUES ('3', NULL);
+INSERT INTO controle_o_chronologie VALUES ('4', NULL);
+INSERT INTO controle_o_chronologie VALUES ('5', NULL);
+INSERT INTO controle_o_chronologie VALUES ('6', NULL);
+INSERT INTO controle_o_chronologie VALUES ('7', NULL);
+INSERT INTO controle_o_chronologie VALUES ('8', NULL);
+INSERT INTO controle_o_chronologie VALUES ('9', NULL);
+INSERT INTO controle_o_chronologie VALUES ('10', NULL);
 
 
 --
 -- Data for Name: controle_o_code; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_code (o_code, description) FROM stdin;
-RACLAT	\N
-RACANG	\N
-RACTRA	\N
-RACDLAT	\N
-RACDLATTRA	\N
-PTECT	\N
-PTLG	\N
-LIMPL	\N
-LIMEP	\N
-PROLIM	\N
-RACCONV	\N
-PTDEJD	\N
-PTDEJG	\N
-RACINCD	\N
-RACINCG	\N
-RACDEJD	\N
-RACDEJG	\N
-RACDEJLD	\N
-RACDEJLG	\N
-RACDB	\N
-RACTP	\N
-RACQU	\N
-RACDENLAT	\N
-RACDENANG	\N
-RACDENTRA	\N
-RACCAR	\N
-RACDDENLAT	\N
-RACDDENTRA	\N
-RACDDENLATTRA	\N
-PTQ	\N
-PTTYC	\N
-PTTYL	\N
-LIDPL	\N
-LIDEP	\N
-PRLID	\N
-RACCONVD	\N
-PTEDDEJD	\N
-PTEDDEJG	\N
-RACDINCD	\N
-RACDINCG	\N
-RACDDEJD	\N
-RACDDEJG	\N
-RACDDEJLD	\N
-RACDDEJLG	\N
-RACDDB	\N
-RACDTP	\N
-RACDQU	\N
-ENCRES	\N
-ENCRED	\N
-ENCREM	\N
-BEC1ENCRTT	\N
-BEC1ENCRTN	\N
-BEC1ENCRTR	\N
-BEC1ENCRTA	\N
-DENTRLAT	\N
-DENTRANG	\N
-DENTRTRA	\N
-DENTRDLAT	\N
-DENTRDANG	\N
-DENTRDTRA	\N
-PTYRC	\N
-PTYRL	\N
-DENTRCONV	\N
-DENTRDEJD	\N
-DENTRDEJG	\N
-DENTRDEJLD	\N
-DENTRDEJLG	\N
-DENTRDB	\N
-DENTRTP	\N
-DENTRQU	\N
-ENCCS	\N
-BEC1ENCCTT	\N
-BEC1ENCCTN	\N
-BEC1ENCCTR	\N
-BEC1ENCCTA	\N
-DENTCLAT	\N
-DENTCANG	\N
-DENTCTRA	\N
-ENCMD	\N
-ENCMM	\N
-BECENCM	\N
-DENTMLAT	\N
-DENTMANG	\N
-DENTMTRA	\N
-DENTMDLAT	\N
-DENTMDTRA	\N
-DENTMDLATTRA	\N
-PTYMC	\N
-PTYML	\N
-DENTMCONV	\N
-DENTMDEJD	\N
-DENTMDEJG	\N
-DENTMDEJLD	\N
-DENTMDEJLG	\N
-DENTMDB	\N
-DENTMTP	\N
-DENTMQU	\N
-GRFPLLN	\N
-GRFPLLR	\N
-GRFPLLA	\N
-GRFPLEMN	\N
-GRFPLEMR	\N
-GRFPLEEN	\N
-GRFPLEER	\N
-GRFPCL	\N
-GRFPCEM	\N
-GRFPCEE	\N
-GRFPCEU	\N
-GRFPCEC	\N
-GRFMLLN	\N
-GRFMLLR	\N
-GRFMLLA	\N
-GRFMLEMN	\N
-GRFMLEMR	\N
-GRFMLEEN	\N
-GRFMLEER	\N
-GRFMCL	\N
-GRFMCEM	\N
-GRFMCEL	\N
-GRFMCC	\N
-GRMPSE	\N
-GRMP1ER	\N
-GRMP1EC	\N
-GRMP2ER	\N
-GRMP2EC	\N
-GRMP2EM	\N
-GRMESE	\N
-GRME1ER	\N
-GRME1EC	\N
-GRME2ER	\N
-GRME2EC	\N
-GRME2EM	\N
-GRMMPSE	\N
-GRMMP1ER	\N
-GRMMP1EC	\N
-GRMMP2ER	\N
-GRMMP2EC	\N
-GRMMP2EM	\N
-GRMMESE	\N
-GRMME1ER	\N
-GRMME1EC	\N
-GRMME2ER	\N
-GRMME2EC	\N
-GRMME2EM	\N
-GRCMSE	\N
-GRCM1ER	\N
-GRCM1EC	\N
-GRCM2ER	\N
-GRCM2EC	\N
-GRCM2EM	\N
-GRCCA	\N
-GRCCN	\N
-GRCEV	\N
-GRN	\N
-RBC	\N
-RBN	\N
-BUUSLN1	\N
-BUUSLN2	\N
-BUUSLN3	\N
-BUUSLN4	\N
-BUUSLT1	\N
-BUUSLT2	\N
-BUUSLT3	\N
-BUUSLT4	\N
-BUUSLT5	\N
-BUUSLT6	\N
-BUUSLT7	\N
-BUUSLO1	\N
-BUUSLO2	\N
-BUUSLO3	\N
-BUUSLO4	\N
-BUUSLO5	\N
-BUUSLO6	\N
-BUUSLE1	\N
-BUUSLE2	\N
-BUUSTN1	\N
-BUUSTN2	\N
-BUUSTE1	\N
-BUUSTE2	\N
-BUUSTE3	\N
-BUUSTN	\N
-BUUSC	\N
-BUUMLN1	\N
-BUUMLN2	\N
-BUUMLN3	\N
-BUUMLN4	\N
-BUUMLT1	\N
-BUUMLT2	\N
-BUUMLT3	\N
-BUUMLT4	\N
-BUUMLT5	\N
-BUUMLT6	\N
-BUUMLE1	\N
-BUUMLE2	\N
-BUUMTN1	\N
-BUUMTN2	\N
-BUUMTE1	\N
-BUUMTE2	\N
-BUUMTE3	\N
-BUUMTN	\N
-BUBSA	\N
-BUBSDG	\N
-BUBSDD	\N
-BUBSADG	\N
-BUBSADD	\N
-BUBSAAG	\N
-BUBSAAD	\N
-BUBMA	\N
-BUBMDG	\N
-BUBMDD	\N
-BUBMADG	\N
-BUBMADD	\N
-BUBMAAG	\N
-BUBMAAD	\N
-PEU1	\N
-PEU2	\N
-PEU3	\N
-PEU4	\N
-PEU5	\N
-PEU6	\N
-PEB1	\N
-PEB2	\N
-PEB3	\N
-PEB4	\N
-PE1E1	\N
-PE1E2	\N
-PE1E3	\N
-PE1E4	\N
-PE1E5	\N
-PE1E6	\N
-PE1E7	\N
-PE1E8	\N
-PE2E1	\N
-PE2E2	\N
-PE2E3	\N
-PE2E4	\N
-PE2E5	\N
-PE2E6	\N
-PE2E7	\N
-PE2E8	\N
-PEZ1	\N
-PEZ2	\N
-PEZ3	\N
-MPEU	\N
-MPEB	\N
-MPE1E	\N
-MPE2E	\N
-PEDB	\N
-PETP	\N
-PEQU	\N
-PETR	\N
-TRP1	\N
-TRP2	\N
-TRP3	\N
-TRP4	\N
-TRP5	\N
-TRO1	\N
-TRO2	\N
-TRO3	\N
-TRO4	\N
-TRO5	\N
-TRO6	\N
-TRO7	\N
-TRO8	\N
-TRO9	\N
-TRO10	\N
-TRDB	\N
-RETTRP1	\N
-RETTRP2	\N
-RETTRP3	\N
-RETTRO1	\N
-RETTRO2	\N
-RETTRO3	\N
-RETTRO4	\N
-RETTRO5	\N
-RETTRO6	\N
-RETTRDB	\N
-EVSD	\N
-EVSI	\N
-EVSM	\N
-EVPD	\N
-EVPI	\N
-EVPM	\N
-ECD	\N
-ECI	\N
-ECM	\N
-AMCUG	\N
-AMCUD	\N
-AMCB	\N
-AMEUG	\N
-AMEUD	\N
-AMB	\N
-ENCABR1	\N
-ENCABR2	\N
-ENCABR3	\N
-ENCABC1	\N
-ENCABC2	\N
-ENCABC3	\N
-ENCAGR1	\N
-ENCAGR2	\N
-ENCAGR3	\N
-ENCAGC1	\N
-ENCAGC2	\N
-ENCAGC3	\N
-EPM	\N
-EPE	\N
-EPSAM	\N
-EPAM	\N
-EPAE	\N
-ENCEVBA	\N
-ENCEVBP	\N
-ENCEVGA	\N
-ENCEVGP	\N
-ENCEVPA	\N
-ENCEVPP	\N
-PTBIF	\N
-\.
+INSERT INTO controle_o_code VALUES ('RACLAT', NULL);
+INSERT INTO controle_o_code VALUES ('RACANG', NULL);
+INSERT INTO controle_o_code VALUES ('RACTRA', NULL);
+INSERT INTO controle_o_code VALUES ('RACDLAT', NULL);
+INSERT INTO controle_o_code VALUES ('RACDLATTRA', NULL);
+INSERT INTO controle_o_code VALUES ('PTECT', NULL);
+INSERT INTO controle_o_code VALUES ('PTLG', NULL);
+INSERT INTO controle_o_code VALUES ('LIMPL', NULL);
+INSERT INTO controle_o_code VALUES ('LIMEP', NULL);
+INSERT INTO controle_o_code VALUES ('PROLIM', NULL);
+INSERT INTO controle_o_code VALUES ('RACCONV', NULL);
+INSERT INTO controle_o_code VALUES ('PTDEJD', NULL);
+INSERT INTO controle_o_code VALUES ('PTDEJG', NULL);
+INSERT INTO controle_o_code VALUES ('RACINCD', NULL);
+INSERT INTO controle_o_code VALUES ('RACINCG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDEJD', NULL);
+INSERT INTO controle_o_code VALUES ('RACDEJG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDEJLD', NULL);
+INSERT INTO controle_o_code VALUES ('RACDEJLG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDB', NULL);
+INSERT INTO controle_o_code VALUES ('RACTP', NULL);
+INSERT INTO controle_o_code VALUES ('RACQU', NULL);
+INSERT INTO controle_o_code VALUES ('RACDENLAT', NULL);
+INSERT INTO controle_o_code VALUES ('RACDENANG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDENTRA', NULL);
+INSERT INTO controle_o_code VALUES ('RACCAR', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDENLAT', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDENTRA', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDENLATTRA', NULL);
+INSERT INTO controle_o_code VALUES ('PTQ', NULL);
+INSERT INTO controle_o_code VALUES ('PTTYC', NULL);
+INSERT INTO controle_o_code VALUES ('PTTYL', NULL);
+INSERT INTO controle_o_code VALUES ('LIDPL', NULL);
+INSERT INTO controle_o_code VALUES ('LIDEP', NULL);
+INSERT INTO controle_o_code VALUES ('PRLID', NULL);
+INSERT INTO controle_o_code VALUES ('RACCONVD', NULL);
+INSERT INTO controle_o_code VALUES ('PTEDDEJD', NULL);
+INSERT INTO controle_o_code VALUES ('PTEDDEJG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDINCD', NULL);
+INSERT INTO controle_o_code VALUES ('RACDINCG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDEJD', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDEJG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDEJLD', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDEJLG', NULL);
+INSERT INTO controle_o_code VALUES ('RACDDB', NULL);
+INSERT INTO controle_o_code VALUES ('RACDTP', NULL);
+INSERT INTO controle_o_code VALUES ('RACDQU', NULL);
+INSERT INTO controle_o_code VALUES ('ENCRES', NULL);
+INSERT INTO controle_o_code VALUES ('ENCRED', NULL);
+INSERT INTO controle_o_code VALUES ('ENCREM', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCRTT', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCRTN', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCRTR', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCRTA', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRLAT', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRANG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRTRA', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDLAT', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDANG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDTRA', NULL);
+INSERT INTO controle_o_code VALUES ('PTYRC', NULL);
+INSERT INTO controle_o_code VALUES ('PTYRL', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRCONV', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDEJD', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDEJG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDEJLD', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDEJLG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRDB', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRTP', NULL);
+INSERT INTO controle_o_code VALUES ('DENTRQU', NULL);
+INSERT INTO controle_o_code VALUES ('ENCCS', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCCTT', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCCTN', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCCTR', NULL);
+INSERT INTO controle_o_code VALUES ('BEC1ENCCTA', NULL);
+INSERT INTO controle_o_code VALUES ('DENTCLAT', NULL);
+INSERT INTO controle_o_code VALUES ('DENTCANG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTCTRA', NULL);
+INSERT INTO controle_o_code VALUES ('ENCMD', NULL);
+INSERT INTO controle_o_code VALUES ('ENCMM', NULL);
+INSERT INTO controle_o_code VALUES ('BECENCM', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMLAT', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMANG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMTRA', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDLAT', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDTRA', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDLATTRA', NULL);
+INSERT INTO controle_o_code VALUES ('PTYMC', NULL);
+INSERT INTO controle_o_code VALUES ('PTYML', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMCONV', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDEJD', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDEJG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDEJLD', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDEJLG', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMDB', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMTP', NULL);
+INSERT INTO controle_o_code VALUES ('DENTMQU', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPLLN', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPLLR', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPLLA', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPLEMN', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPLEMR', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPLEEN', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPLEER', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPCL', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPCEM', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPCEE', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPCEU', NULL);
+INSERT INTO controle_o_code VALUES ('GRFPCEC', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMLLN', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMLLR', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMLLA', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMLEMN', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMLEMR', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMLEEN', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMLEER', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMCL', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMCEM', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMCEL', NULL);
+INSERT INTO controle_o_code VALUES ('GRFMCC', NULL);
+INSERT INTO controle_o_code VALUES ('GRMPSE', NULL);
+INSERT INTO controle_o_code VALUES ('GRMP1ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRMP1EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRMP2ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRMP2EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRMP2EM', NULL);
+INSERT INTO controle_o_code VALUES ('GRMESE', NULL);
+INSERT INTO controle_o_code VALUES ('GRME1ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRME1EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRME2ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRME2EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRME2EM', NULL);
+INSERT INTO controle_o_code VALUES ('GRMMPSE', NULL);
+INSERT INTO controle_o_code VALUES ('GRMMP1ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRMMP1EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRMMP2ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRMMP2EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRMMP2EM', NULL);
+INSERT INTO controle_o_code VALUES ('GRMMESE', NULL);
+INSERT INTO controle_o_code VALUES ('GRMME1ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRMME1EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRMME2ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRMME2EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRMME2EM', NULL);
+INSERT INTO controle_o_code VALUES ('GRCMSE', NULL);
+INSERT INTO controle_o_code VALUES ('GRCM1ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRCM1EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRCM2ER', NULL);
+INSERT INTO controle_o_code VALUES ('GRCM2EC', NULL);
+INSERT INTO controle_o_code VALUES ('GRCM2EM', NULL);
+INSERT INTO controle_o_code VALUES ('GRCCA', NULL);
+INSERT INTO controle_o_code VALUES ('GRCCN', NULL);
+INSERT INTO controle_o_code VALUES ('GRCEV', NULL);
+INSERT INTO controle_o_code VALUES ('GRN', NULL);
+INSERT INTO controle_o_code VALUES ('RBC', NULL);
+INSERT INTO controle_o_code VALUES ('RBN', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLN1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLN2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLN3', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLN4', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLT1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLT2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLT3', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLT4', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLT5', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLT6', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLT7', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLO1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLO2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLO3', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLO4', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLO5', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLO6', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLE1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSLE2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSTN1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSTN2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSTE1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSTE2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSTE3', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSTN', NULL);
+INSERT INTO controle_o_code VALUES ('BUUSC', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLN1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLN2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLN3', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLN4', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLT1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLT2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLT3', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLT4', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLT5', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLT6', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLE1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMLE2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMTN1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMTN2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMTE1', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMTE2', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMTE3', NULL);
+INSERT INTO controle_o_code VALUES ('BUUMTN', NULL);
+INSERT INTO controle_o_code VALUES ('BUBSA', NULL);
+INSERT INTO controle_o_code VALUES ('BUBSDG', NULL);
+INSERT INTO controle_o_code VALUES ('BUBSDD', NULL);
+INSERT INTO controle_o_code VALUES ('BUBSADG', NULL);
+INSERT INTO controle_o_code VALUES ('BUBSADD', NULL);
+INSERT INTO controle_o_code VALUES ('BUBSAAG', NULL);
+INSERT INTO controle_o_code VALUES ('BUBSAAD', NULL);
+INSERT INTO controle_o_code VALUES ('BUBMA', NULL);
+INSERT INTO controle_o_code VALUES ('BUBMDG', NULL);
+INSERT INTO controle_o_code VALUES ('BUBMDD', NULL);
+INSERT INTO controle_o_code VALUES ('BUBMADG', NULL);
+INSERT INTO controle_o_code VALUES ('BUBMADD', NULL);
+INSERT INTO controle_o_code VALUES ('BUBMAAG', NULL);
+INSERT INTO controle_o_code VALUES ('BUBMAAD', NULL);
+INSERT INTO controle_o_code VALUES ('PEU1', NULL);
+INSERT INTO controle_o_code VALUES ('PEU2', NULL);
+INSERT INTO controle_o_code VALUES ('PEU3', NULL);
+INSERT INTO controle_o_code VALUES ('PEU4', NULL);
+INSERT INTO controle_o_code VALUES ('PEU5', NULL);
+INSERT INTO controle_o_code VALUES ('PEU6', NULL);
+INSERT INTO controle_o_code VALUES ('PEB1', NULL);
+INSERT INTO controle_o_code VALUES ('PEB2', NULL);
+INSERT INTO controle_o_code VALUES ('PEB3', NULL);
+INSERT INTO controle_o_code VALUES ('PEB4', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E1', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E2', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E3', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E4', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E5', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E6', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E7', NULL);
+INSERT INTO controle_o_code VALUES ('PE1E8', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E1', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E2', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E3', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E4', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E5', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E6', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E7', NULL);
+INSERT INTO controle_o_code VALUES ('PE2E8', NULL);
+INSERT INTO controle_o_code VALUES ('PEZ1', NULL);
+INSERT INTO controle_o_code VALUES ('PEZ2', NULL);
+INSERT INTO controle_o_code VALUES ('PEZ3', NULL);
+INSERT INTO controle_o_code VALUES ('MPEU', NULL);
+INSERT INTO controle_o_code VALUES ('MPEB', NULL);
+INSERT INTO controle_o_code VALUES ('MPE1E', NULL);
+INSERT INTO controle_o_code VALUES ('MPE2E', NULL);
+INSERT INTO controle_o_code VALUES ('PEDB', NULL);
+INSERT INTO controle_o_code VALUES ('PETP', NULL);
+INSERT INTO controle_o_code VALUES ('PEQU', NULL);
+INSERT INTO controle_o_code VALUES ('PETR', NULL);
+INSERT INTO controle_o_code VALUES ('TRP1', NULL);
+INSERT INTO controle_o_code VALUES ('TRP2', NULL);
+INSERT INTO controle_o_code VALUES ('TRP3', NULL);
+INSERT INTO controle_o_code VALUES ('TRP4', NULL);
+INSERT INTO controle_o_code VALUES ('TRP5', NULL);
+INSERT INTO controle_o_code VALUES ('TRO1', NULL);
+INSERT INTO controle_o_code VALUES ('TRO2', NULL);
+INSERT INTO controle_o_code VALUES ('TRO3', NULL);
+INSERT INTO controle_o_code VALUES ('TRO4', NULL);
+INSERT INTO controle_o_code VALUES ('TRO5', NULL);
+INSERT INTO controle_o_code VALUES ('TRO6', NULL);
+INSERT INTO controle_o_code VALUES ('TRO7', NULL);
+INSERT INTO controle_o_code VALUES ('TRO8', NULL);
+INSERT INTO controle_o_code VALUES ('TRO9', NULL);
+INSERT INTO controle_o_code VALUES ('TRO10', NULL);
+INSERT INTO controle_o_code VALUES ('TRDB', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRP1', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRP2', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRP3', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRO1', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRO2', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRO3', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRO4', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRO5', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRO6', NULL);
+INSERT INTO controle_o_code VALUES ('RETTRDB', NULL);
+INSERT INTO controle_o_code VALUES ('EVSD', NULL);
+INSERT INTO controle_o_code VALUES ('EVSI', NULL);
+INSERT INTO controle_o_code VALUES ('EVSM', NULL);
+INSERT INTO controle_o_code VALUES ('EVPD', NULL);
+INSERT INTO controle_o_code VALUES ('EVPI', NULL);
+INSERT INTO controle_o_code VALUES ('EVPM', NULL);
+INSERT INTO controle_o_code VALUES ('ECD', NULL);
+INSERT INTO controle_o_code VALUES ('ECI', NULL);
+INSERT INTO controle_o_code VALUES ('ECM', NULL);
+INSERT INTO controle_o_code VALUES ('AMCUG', NULL);
+INSERT INTO controle_o_code VALUES ('AMCUD', NULL);
+INSERT INTO controle_o_code VALUES ('AMCB', NULL);
+INSERT INTO controle_o_code VALUES ('AMEUG', NULL);
+INSERT INTO controle_o_code VALUES ('AMEUD', NULL);
+INSERT INTO controle_o_code VALUES ('AMB', NULL);
+INSERT INTO controle_o_code VALUES ('ENCABR1', NULL);
+INSERT INTO controle_o_code VALUES ('ENCABR2', NULL);
+INSERT INTO controle_o_code VALUES ('ENCABR3', NULL);
+INSERT INTO controle_o_code VALUES ('ENCABC1', NULL);
+INSERT INTO controle_o_code VALUES ('ENCABC2', NULL);
+INSERT INTO controle_o_code VALUES ('ENCABC3', NULL);
+INSERT INTO controle_o_code VALUES ('ENCAGR1', NULL);
+INSERT INTO controle_o_code VALUES ('ENCAGR2', NULL);
+INSERT INTO controle_o_code VALUES ('ENCAGR3', NULL);
+INSERT INTO controle_o_code VALUES ('ENCAGC1', NULL);
+INSERT INTO controle_o_code VALUES ('ENCAGC2', NULL);
+INSERT INTO controle_o_code VALUES ('ENCAGC3', NULL);
+INSERT INTO controle_o_code VALUES ('EPM', NULL);
+INSERT INTO controle_o_code VALUES ('EPE', NULL);
+INSERT INTO controle_o_code VALUES ('EPSAM', NULL);
+INSERT INTO controle_o_code VALUES ('EPAM', NULL);
+INSERT INTO controle_o_code VALUES ('EPAE', NULL);
+INSERT INTO controle_o_code VALUES ('ENCEVBA', NULL);
+INSERT INTO controle_o_code VALUES ('ENCEVBP', NULL);
+INSERT INTO controle_o_code VALUES ('ENCEVGA', NULL);
+INSERT INTO controle_o_code VALUES ('ENCEVGP', NULL);
+INSERT INTO controle_o_code VALUES ('ENCEVPA', NULL);
+INSERT INTO controle_o_code VALUES ('ENCEVPP', NULL);
+INSERT INTO controle_o_code VALUES ('PTBIF', NULL);
 
 
 --
 -- Data for Name: controle_o_destination; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_destination (o_destination, description) FROM stdin;
-A	\N
-B	\N
-P	\N
-AF	\N
-BF	\N
-PF	\N
-FL	\N
-BT	\N
-BC	\N
-BR	\N
-BD	\N
-BTA	\N
-BTC	\N
-BTP	\N
-BTE	\N
-BTDC	\N
-BTDN	\N
-BTT	\N
-BTPI	\N
-BTPC	\N
-BTPM	\N
-BTPT	\N
-BTPR	\N
-M	\N
-BTCBTP	\N
-BTPBTA	\N
-BA	\N
-BTABTP	\N
-BTABTC	\N
-\.
+INSERT INTO controle_o_destination VALUES ('A', NULL);
+INSERT INTO controle_o_destination VALUES ('B', NULL);
+INSERT INTO controle_o_destination VALUES ('P', NULL);
+INSERT INTO controle_o_destination VALUES ('AF', NULL);
+INSERT INTO controle_o_destination VALUES ('BF', NULL);
+INSERT INTO controle_o_destination VALUES ('PF', NULL);
+INSERT INTO controle_o_destination VALUES ('FL', NULL);
+INSERT INTO controle_o_destination VALUES ('BT', NULL);
+INSERT INTO controle_o_destination VALUES ('BC', NULL);
+INSERT INTO controle_o_destination VALUES ('BR', NULL);
+INSERT INTO controle_o_destination VALUES ('BD', NULL);
+INSERT INTO controle_o_destination VALUES ('BTA', NULL);
+INSERT INTO controle_o_destination VALUES ('BTC', NULL);
+INSERT INTO controle_o_destination VALUES ('BTP', NULL);
+INSERT INTO controle_o_destination VALUES ('BTE', NULL);
+INSERT INTO controle_o_destination VALUES ('BTDC', NULL);
+INSERT INTO controle_o_destination VALUES ('BTDN', NULL);
+INSERT INTO controle_o_destination VALUES ('BTT', NULL);
+INSERT INTO controle_o_destination VALUES ('BTPI', NULL);
+INSERT INTO controle_o_destination VALUES ('BTPC', NULL);
+INSERT INTO controle_o_destination VALUES ('BTPM', NULL);
+INSERT INTO controle_o_destination VALUES ('BTPT', NULL);
+INSERT INTO controle_o_destination VALUES ('BTPR', NULL);
+INSERT INTO controle_o_destination VALUES ('M', NULL);
+INSERT INTO controle_o_destination VALUES ('BTCBTP', NULL);
+INSERT INTO controle_o_destination VALUES ('BTPBTA', NULL);
+INSERT INTO controle_o_destination VALUES ('BA', NULL);
+INSERT INTO controle_o_destination VALUES ('BTABTP', NULL);
+INSERT INTO controle_o_destination VALUES ('BTABTC', NULL);
 
 
 --
 -- Data for Name: controle_o_etat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_etat (o_etat, description) FROM stdin;
-1	\N
-2A	\N
-2B	\N
-2C	\N
-2D	\N
-2E	\N
-2F	\N
-3	\N
-\.
+INSERT INTO controle_o_etat VALUES ('1', NULL);
+INSERT INTO controle_o_etat VALUES ('2A', NULL);
+INSERT INTO controle_o_etat VALUES ('2B', NULL);
+INSERT INTO controle_o_etat VALUES ('2C', NULL);
+INSERT INTO controle_o_etat VALUES ('2D', NULL);
+INSERT INTO controle_o_etat VALUES ('2E', NULL);
+INSERT INTO controle_o_etat VALUES ('2F', NULL);
+INSERT INTO controle_o_etat VALUES ('3', NULL);
 
 
 --
 -- Data for Name: controle_o_forme; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_forme (o_forme, description) FROM stdin;
-REC	\N
-CONV	\N
-CONC	\N
-SCONV	\N
-SCONC	\N
-GCD	\N
-GA1	\N
-GA1D	\N
-GA2	\N
-GA2D	\N
-GO	\N
-GOD	\N
-GV	\N
-GVD	\N
-BR	\N
-BCV	\N
-BGR	\N
-BT	\N
-BAR	\N
-BDC	\N
-BI	\N
-GC	\N
-\.
+INSERT INTO controle_o_forme VALUES ('REC', NULL);
+INSERT INTO controle_o_forme VALUES ('CONV', NULL);
+INSERT INTO controle_o_forme VALUES ('CONC', NULL);
+INSERT INTO controle_o_forme VALUES ('SCONV', NULL);
+INSERT INTO controle_o_forme VALUES ('SCONC', NULL);
+INSERT INTO controle_o_forme VALUES ('GCD', NULL);
+INSERT INTO controle_o_forme VALUES ('GA1', NULL);
+INSERT INTO controle_o_forme VALUES ('GA1D', NULL);
+INSERT INTO controle_o_forme VALUES ('GA2', NULL);
+INSERT INTO controle_o_forme VALUES ('GA2D', NULL);
+INSERT INTO controle_o_forme VALUES ('GO', NULL);
+INSERT INTO controle_o_forme VALUES ('GOD', NULL);
+INSERT INTO controle_o_forme VALUES ('GV', NULL);
+INSERT INTO controle_o_forme VALUES ('GVD', NULL);
+INSERT INTO controle_o_forme VALUES ('BR', NULL);
+INSERT INTO controle_o_forme VALUES ('BCV', NULL);
+INSERT INTO controle_o_forme VALUES ('BGR', NULL);
+INSERT INTO controle_o_forme VALUES ('BT', NULL);
+INSERT INTO controle_o_forme VALUES ('BAR', NULL);
+INSERT INTO controle_o_forme VALUES ('BDC', NULL);
+INSERT INTO controle_o_forme VALUES ('BI', NULL);
+INSERT INTO controle_o_forme VALUES ('GC', NULL);
 
 
 --
 -- Data for Name: controle_o_localisation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_localisation (o_localisation, description) FROM stdin;
-IND	\N
-ANGGPROX	\N
-LATGT	\N
-LATGPROX	\N
-LATGMES	\N
-LATGDIS	\N
-ANGGDIS	\N
-TRDIST	\N
-TRDISG	\N
-TRDISMES	\N
-TRDISD	\N
-PTDIS	\N
-ANGDDIS	\N
-LATDT	\N
-LATDDIS	\N
-LATDMES	\N
-LATDPROX	\N
-ANGDPROX	\N
-TRPROXT	\N
-TRPROXD	\N
-TRPROXMES	\N
-TRPROXG	\N
-PTPROX	\N
-ARMEDT	\N
-ARMEDPROX	\N
-ARMEDMES	\N
-ARMEDDIS	\N
-PERP	\N
-\.
+INSERT INTO controle_o_localisation VALUES ('IND', NULL);
+INSERT INTO controle_o_localisation VALUES ('ANGGPROX', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATGT', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATGPROX', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATGMES', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATGDIS', NULL);
+INSERT INTO controle_o_localisation VALUES ('ANGGDIS', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRDIST', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRDISG', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRDISMES', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRDISD', NULL);
+INSERT INTO controle_o_localisation VALUES ('PTDIS', NULL);
+INSERT INTO controle_o_localisation VALUES ('ANGDDIS', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATDT', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATDDIS', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATDMES', NULL);
+INSERT INTO controle_o_localisation VALUES ('LATDPROX', NULL);
+INSERT INTO controle_o_localisation VALUES ('ANGDPROX', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRPROXT', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRPROXD', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRPROXMES', NULL);
+INSERT INTO controle_o_localisation VALUES ('TRPROXG', NULL);
+INSERT INTO controle_o_localisation VALUES ('PTPROX', NULL);
+INSERT INTO controle_o_localisation VALUES ('ARMEDT', NULL);
+INSERT INTO controle_o_localisation VALUES ('ARMEDPROX', NULL);
+INSERT INTO controle_o_localisation VALUES ('ARMEDMES', NULL);
+INSERT INTO controle_o_localisation VALUES ('ARMEDDIS', NULL);
+INSERT INTO controle_o_localisation VALUES ('PERP', NULL);
 
 
 --
 -- Data for Name: controle_o_ordre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_ordre (o_ordre, description) FROM stdin;
-1	\N
-2	\N
-3	\N
-4	\N
-5	\N
-6	\N
-7	\N
-8	\N
-9	\N
-10	\N
-0	\N
-\.
+INSERT INTO controle_o_ordre VALUES ('1', NULL);
+INSERT INTO controle_o_ordre VALUES ('2', NULL);
+INSERT INTO controle_o_ordre VALUES ('3', NULL);
+INSERT INTO controle_o_ordre VALUES ('4', NULL);
+INSERT INTO controle_o_ordre VALUES ('5', NULL);
+INSERT INTO controle_o_ordre VALUES ('6', NULL);
+INSERT INTO controle_o_ordre VALUES ('7', NULL);
+INSERT INTO controle_o_ordre VALUES ('8', NULL);
+INSERT INTO controle_o_ordre VALUES ('9', NULL);
+INSERT INTO controle_o_ordre VALUES ('10', NULL);
+INSERT INTO controle_o_ordre VALUES ('0', NULL);
 
 
 --
 -- Data for Name: controle_o_orientation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_orientation (o_orientation, description) FROM stdin;
-P	\N
-NP	\N
-I	\N
-\.
+INSERT INTO controle_o_orientation VALUES ('P', NULL);
+INSERT INTO controle_o_orientation VALUES ('NP', NULL);
+INSERT INTO controle_o_orientation VALUES ('I', NULL);
 
 
 --
 -- Data for Name: controle_o_origine; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_origine (o_origine, description) FROM stdin;
-A	\N
-B	\N
-P	\N
-AF	\N
-BF	\N
-PF	\N
-FL	\N
-BT	\N
-BC	\N
-BR	\N
-BD	\N
-BTA	\N
-BTC	\N
-BTP	\N
-BTE	\N
-BTDC	\N
-BTDN	\N
-BTT	\N
-BTPI	\N
-BTPC	\N
-BTPM	\N
-BTPT	\N
-BTPR	\N
-M	\N
-BTPBTC	\N
-BTABTP	\N
-AB	\N
-BTPBTA	\N
-BTABTC	\N
-\.
+INSERT INTO controle_o_origine VALUES ('A', NULL);
+INSERT INTO controle_o_origine VALUES ('B', NULL);
+INSERT INTO controle_o_origine VALUES ('P', NULL);
+INSERT INTO controle_o_origine VALUES ('AF', NULL);
+INSERT INTO controle_o_origine VALUES ('BF', NULL);
+INSERT INTO controle_o_origine VALUES ('PF', NULL);
+INSERT INTO controle_o_origine VALUES ('FL', NULL);
+INSERT INTO controle_o_origine VALUES ('BT', NULL);
+INSERT INTO controle_o_origine VALUES ('BC', NULL);
+INSERT INTO controle_o_origine VALUES ('BR', NULL);
+INSERT INTO controle_o_origine VALUES ('BD', NULL);
+INSERT INTO controle_o_origine VALUES ('BTA', NULL);
+INSERT INTO controle_o_origine VALUES ('BTC', NULL);
+INSERT INTO controle_o_origine VALUES ('BTP', NULL);
+INSERT INTO controle_o_origine VALUES ('BTE', NULL);
+INSERT INTO controle_o_origine VALUES ('BTDC', NULL);
+INSERT INTO controle_o_origine VALUES ('BTDN', NULL);
+INSERT INTO controle_o_origine VALUES ('BTT', NULL);
+INSERT INTO controle_o_origine VALUES ('BTPI', NULL);
+INSERT INTO controle_o_origine VALUES ('BTPC', NULL);
+INSERT INTO controle_o_origine VALUES ('BTPM', NULL);
+INSERT INTO controle_o_origine VALUES ('BTPT', NULL);
+INSERT INTO controle_o_origine VALUES ('BTPR', NULL);
+INSERT INTO controle_o_origine VALUES ('M', NULL);
+INSERT INTO controle_o_origine VALUES ('BTPBTC', NULL);
+INSERT INTO controle_o_origine VALUES ('BTABTP', NULL);
+INSERT INTO controle_o_origine VALUES ('AB', NULL);
+INSERT INTO controle_o_origine VALUES ('BTPBTA', NULL);
+INSERT INTO controle_o_origine VALUES ('BTABTC', NULL);
 
 
 --
 -- Data for Name: controle_o_retouche; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_retouche (o_retouche, description) FROM stdin;
-M	\N
-MD	\N
-E/2	\N
-E	\N
-ED	\N
-Q/2	\N
-Q/2D	\N
-Q	\N
-QD	\N
-SE	\N
-SED	\N
-SA	\N
-SAD	\N
-AM	\N
-AMD	\N
-AE	\N
-AED	\N
-DM	\N
-DE	\N
-DES	\N
-DSA	\N
-DAM	\N
-DAE	\N
-DEV	\N
-DEVS	\N
-DQ2	\N
-P	\N
-PD	\N
-EV	\N
-EVD	\N
-EVS	\N
-EVSD	\N
-LSP	\N
-LP	\N
-LE	\N
-PM	\N
-DE/2	\N
-ED/2	\N
-\.
+INSERT INTO controle_o_retouche VALUES ('M', NULL);
+INSERT INTO controle_o_retouche VALUES ('MD', NULL);
+INSERT INTO controle_o_retouche VALUES ('E/2', NULL);
+INSERT INTO controle_o_retouche VALUES ('E', NULL);
+INSERT INTO controle_o_retouche VALUES ('ED', NULL);
+INSERT INTO controle_o_retouche VALUES ('Q/2', NULL);
+INSERT INTO controle_o_retouche VALUES ('Q/2D', NULL);
+INSERT INTO controle_o_retouche VALUES ('Q', NULL);
+INSERT INTO controle_o_retouche VALUES ('QD', NULL);
+INSERT INTO controle_o_retouche VALUES ('SE', NULL);
+INSERT INTO controle_o_retouche VALUES ('SED', NULL);
+INSERT INTO controle_o_retouche VALUES ('SA', NULL);
+INSERT INTO controle_o_retouche VALUES ('SAD', NULL);
+INSERT INTO controle_o_retouche VALUES ('AM', NULL);
+INSERT INTO controle_o_retouche VALUES ('AMD', NULL);
+INSERT INTO controle_o_retouche VALUES ('AE', NULL);
+INSERT INTO controle_o_retouche VALUES ('AED', NULL);
+INSERT INTO controle_o_retouche VALUES ('DM', NULL);
+INSERT INTO controle_o_retouche VALUES ('DE', NULL);
+INSERT INTO controle_o_retouche VALUES ('DES', NULL);
+INSERT INTO controle_o_retouche VALUES ('DSA', NULL);
+INSERT INTO controle_o_retouche VALUES ('DAM', NULL);
+INSERT INTO controle_o_retouche VALUES ('DAE', NULL);
+INSERT INTO controle_o_retouche VALUES ('DEV', NULL);
+INSERT INTO controle_o_retouche VALUES ('DEVS', NULL);
+INSERT INTO controle_o_retouche VALUES ('DQ2', NULL);
+INSERT INTO controle_o_retouche VALUES ('P', NULL);
+INSERT INTO controle_o_retouche VALUES ('PD', NULL);
+INSERT INTO controle_o_retouche VALUES ('EV', NULL);
+INSERT INTO controle_o_retouche VALUES ('EVD', NULL);
+INSERT INTO controle_o_retouche VALUES ('EVS', NULL);
+INSERT INTO controle_o_retouche VALUES ('EVSD', NULL);
+INSERT INTO controle_o_retouche VALUES ('LSP', NULL);
+INSERT INTO controle_o_retouche VALUES ('LP', NULL);
+INSERT INTO controle_o_retouche VALUES ('LE', NULL);
+INSERT INTO controle_o_retouche VALUES ('PM', NULL);
+INSERT INTO controle_o_retouche VALUES ('DE/2', NULL);
+INSERT INTO controle_o_retouche VALUES ('ED/2', NULL);
 
 
 --
 -- Data for Name: controle_o_sens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_sens (o_sens, description) FROM stdin;
-DIR	\N
-INV	\N
-MIX	\N
-MIXAL	\N
-PROFL	\N
-PROFT	\N
-PROFM	\N
-MSG	\N
-MSD	\N
-MSX	\N
-MIG	\N
-MID	\N
-\.
+INSERT INTO controle_o_sens VALUES ('DIR', NULL);
+INSERT INTO controle_o_sens VALUES ('INV', NULL);
+INSERT INTO controle_o_sens VALUES ('MIX', NULL);
+INSERT INTO controle_o_sens VALUES ('MIXAL', NULL);
+INSERT INTO controle_o_sens VALUES ('PROFL', NULL);
+INSERT INTO controle_o_sens VALUES ('PROFT', NULL);
+INSERT INTO controle_o_sens VALUES ('PROFM', NULL);
+INSERT INTO controle_o_sens VALUES ('MSG', NULL);
+INSERT INTO controle_o_sens VALUES ('MSD', NULL);
+INSERT INTO controle_o_sens VALUES ('MSX', NULL);
+INSERT INTO controle_o_sens VALUES ('MIG', NULL);
+INSERT INTO controle_o_sens VALUES ('MID', NULL);
 
 
 --
 -- Data for Name: controle_o_serie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_o_serie (o_serie, description) FROM stdin;
-1	\N
-2	\N
-3	\N
-4	\N
-5	\N
-\.
+INSERT INTO controle_o_serie VALUES ('1', NULL);
+INSERT INTO controle_o_serie VALUES ('2', NULL);
+INSERT INTO controle_o_serie VALUES ('3', NULL);
+INSERT INTO controle_o_serie VALUES ('4', NULL);
+INSERT INTO controle_o_serie VALUES ('5', NULL);
 
 
 --
 -- Data for Name: controle_orientation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_orientation (orientation, description) FROM stdin;
-NS	\N
-NESW	\N
-NWSE	\N
-EW	\N
-\.
+INSERT INTO controle_orientation VALUES ('NS', NULL);
+INSERT INTO controle_orientation VALUES ('NESW', NULL);
+INSERT INTO controle_orientation VALUES ('NWSE', NULL);
+INSERT INTO controle_orientation VALUES ('EW', NULL);
 
 
 --
 -- Data for Name: controle_pendage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_pendage (pendage, description) FROM stdin;
-P	\N
-O	\N
-C	\N
-V	\N
-SC	\N
-SV	\N
-S	\N
-\.
+INSERT INTO controle_pendage VALUES ('P', NULL);
+INSERT INTO controle_pendage VALUES ('O', NULL);
+INSERT INTO controle_pendage VALUES ('C', NULL);
+INSERT INTO controle_pendage VALUES ('V', NULL);
+INSERT INTO controle_pendage VALUES ('SC', NULL);
+INSERT INTO controle_pendage VALUES ('SV', NULL);
+INSERT INTO controle_pendage VALUES ('S', NULL);
 
 
 --
 -- Data for Name: controle_r_association; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_association (r_association, description) FROM stdin;
-1	\N
-1'	\N
-2	\N
-3	\N
-3'	\N
-4	\N
-4'	\N
-5	\N
-6	\N
-\.
+INSERT INTO controle_r_association VALUES ('1', NULL);
+INSERT INTO controle_r_association VALUES ('1''', NULL);
+INSERT INTO controle_r_association VALUES ('2', NULL);
+INSERT INTO controle_r_association VALUES ('3', NULL);
+INSERT INTO controle_r_association VALUES ('3''', NULL);
+INSERT INTO controle_r_association VALUES ('4', NULL);
+INSERT INTO controle_r_association VALUES ('4''', NULL);
+INSERT INTO controle_r_association VALUES ('5', NULL);
+INSERT INTO controle_r_association VALUES ('6', NULL);
 
 
 --
 -- Data for Name: controle_r_bord; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_bord (r_bord, description) FROM stdin;
-D	\N
-C	\N
-P	\N
-\.
+INSERT INTO controle_r_bord VALUES ('D', NULL);
+INSERT INTO controle_r_bord VALUES ('C', NULL);
+INSERT INTO controle_r_bord VALUES ('P', NULL);
 
 
 --
 -- Data for Name: controle_r_cas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_cas (r_cas, description) FROM stdin;
-UBT	\N
-I	\N
-DEB	\N
-BN	\N
-UO	\N
-U	\N
-IBT	\N
-\.
+INSERT INTO controle_r_cas VALUES ('UBT', NULL);
+INSERT INTO controle_r_cas VALUES ('I', NULL);
+INSERT INTO controle_r_cas VALUES ('DEB', NULL);
+INSERT INTO controle_r_cas VALUES ('BN', NULL);
+INSERT INTO controle_r_cas VALUES ('UO', NULL);
+INSERT INTO controle_r_cas VALUES ('U', NULL);
+INSERT INTO controle_r_cas VALUES ('IBT', NULL);
 
 
 --
 -- Data for Name: controle_r_denticulation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_denticulation (r_denticulation, description) FROM stdin;
-ND	\N
-DENT	\N
-ENC	\N
-\.
+INSERT INTO controle_r_denticulation VALUES ('ND', NULL);
+INSERT INTO controle_r_denticulation VALUES ('DENT', NULL);
+INSERT INTO controle_r_denticulation VALUES ('ENC', NULL);
 
 
 --
 -- Data for Name: controle_r_destination; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_destination (r_destination, description) FROM stdin;
-A	\N
-P	\N
-AF	\N
-B	\N
-PF	\N
-FL	\N
-BT	\N
-BC	\N
-BR	\N
-BD	\N
-BTA	\N
-BTC	\N
-BTP	\N
-BTE	\N
-BTDC	\N
-BTDN	\N
-BTT	\N
-BTPI	\N
-BTPC	\N
-BTPM	\N
-BTPT	\N
-BTPR	\N
-M	\N
-BTABTDF	\N
-BTABTDC	\N
-BBT	\N
-BTPBTDC	\N
-BTABTP	\N
-BTPBTA	\N
-BTABTC	\N
-BTCBTA	\N
-BTCBTP	\N
-BTDFBTDC	\N
-BTPBTC	\N
-BTDCBTDF	\N
-BTDF	\N
-BTABTDN	\N
-BF	\N
-\.
+INSERT INTO controle_r_destination VALUES ('A', NULL);
+INSERT INTO controle_r_destination VALUES ('P', NULL);
+INSERT INTO controle_r_destination VALUES ('AF', NULL);
+INSERT INTO controle_r_destination VALUES ('B', NULL);
+INSERT INTO controle_r_destination VALUES ('PF', NULL);
+INSERT INTO controle_r_destination VALUES ('FL', NULL);
+INSERT INTO controle_r_destination VALUES ('BT', NULL);
+INSERT INTO controle_r_destination VALUES ('BC', NULL);
+INSERT INTO controle_r_destination VALUES ('BR', NULL);
+INSERT INTO controle_r_destination VALUES ('BD', NULL);
+INSERT INTO controle_r_destination VALUES ('BTA', NULL);
+INSERT INTO controle_r_destination VALUES ('BTC', NULL);
+INSERT INTO controle_r_destination VALUES ('BTP', NULL);
+INSERT INTO controle_r_destination VALUES ('BTE', NULL);
+INSERT INTO controle_r_destination VALUES ('BTDC', NULL);
+INSERT INTO controle_r_destination VALUES ('BTDN', NULL);
+INSERT INTO controle_r_destination VALUES ('BTT', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPI', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPC', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPM', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPT', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPR', NULL);
+INSERT INTO controle_r_destination VALUES ('M', NULL);
+INSERT INTO controle_r_destination VALUES ('BTABTDF', NULL);
+INSERT INTO controle_r_destination VALUES ('BTABTDC', NULL);
+INSERT INTO controle_r_destination VALUES ('BBT', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPBTDC', NULL);
+INSERT INTO controle_r_destination VALUES ('BTABTP', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPBTA', NULL);
+INSERT INTO controle_r_destination VALUES ('BTABTC', NULL);
+INSERT INTO controle_r_destination VALUES ('BTCBTA', NULL);
+INSERT INTO controle_r_destination VALUES ('BTCBTP', NULL);
+INSERT INTO controle_r_destination VALUES ('BTDFBTDC', NULL);
+INSERT INTO controle_r_destination VALUES ('BTPBTC', NULL);
+INSERT INTO controle_r_destination VALUES ('BTDCBTDF', NULL);
+INSERT INTO controle_r_destination VALUES ('BTDF', NULL);
+INSERT INTO controle_r_destination VALUES ('BTABTDN', NULL);
+INSERT INTO controle_r_destination VALUES ('BF', NULL);
 
 
 --
 -- Data for Name: controle_r_dimension; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_dimension (r_dimension, description) FROM stdin;
-MR	\N
-RC	\N
-RM	\N
-RL	\N
-RLL	\N
-\.
+INSERT INTO controle_r_dimension VALUES ('MR', NULL);
+INSERT INTO controle_r_dimension VALUES ('RC', NULL);
+INSERT INTO controle_r_dimension VALUES ('RM', NULL);
+INSERT INTO controle_r_dimension VALUES ('RL', NULL);
+INSERT INTO controle_r_dimension VALUES ('RLL', NULL);
 
 
 --
 -- Data for Name: controle_r_ecrasement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_ecrasement (r_ecrasement, description) FROM stdin;
-EBT	\N
-ERI	\N
-ERC	\N
-ED	\N
-EBN	\N
-\.
+INSERT INTO controle_r_ecrasement VALUES ('EBT', NULL);
+INSERT INTO controle_r_ecrasement VALUES ('ERI', NULL);
+INSERT INTO controle_r_ecrasement VALUES ('ERC', NULL);
+INSERT INTO controle_r_ecrasement VALUES ('ED', NULL);
+INSERT INTO controle_r_ecrasement VALUES ('EBN', NULL);
 
 
 --
 -- Data for Name: controle_r_extremite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_extremite (r_extremite, description) FROM stdin;
-A	\N
-C	\N
-CA	\N
-R	\N
-\.
+INSERT INTO controle_r_extremite VALUES ('A', NULL);
+INSERT INTO controle_r_extremite VALUES ('C', NULL);
+INSERT INTO controle_r_extremite VALUES ('CA', NULL);
+INSERT INTO controle_r_extremite VALUES ('R', NULL);
 
 
 --
 -- Data for Name: controle_r_frequence; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_frequence (r_frequence, description) FROM stdin;
-U	\N
-QQI	\N
-1	\N
-QQ	\N
-NB	\N
-2	\N
-3	\N
-4	\N
-5	\N
-\.
+INSERT INTO controle_r_frequence VALUES ('U', NULL);
+INSERT INTO controle_r_frequence VALUES ('QQI', NULL);
+INSERT INTO controle_r_frequence VALUES ('1', NULL);
+INSERT INTO controle_r_frequence VALUES ('QQ', NULL);
+INSERT INTO controle_r_frequence VALUES ('NB', NULL);
+INSERT INTO controle_r_frequence VALUES ('2', NULL);
+INSERT INTO controle_r_frequence VALUES ('3', NULL);
+INSERT INTO controle_r_frequence VALUES ('4', NULL);
+INSERT INTO controle_r_frequence VALUES ('5', NULL);
 
 
 --
 -- Data for Name: controle_r_lustrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_lustrage (r_lustrage, description) FROM stdin;
-L	\N
-NL	\N
-\.
+INSERT INTO controle_r_lustrage VALUES ('L', NULL);
+INSERT INTO controle_r_lustrage VALUES ('NL', NULL);
 
 
 --
 -- Data for Name: controle_r_obliquite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_obliquite (r_obliquite, description) FROM stdin;
-NA	\N
-ABR	\N
-O	\N
-SA	\N
-\.
+INSERT INTO controle_r_obliquite VALUES ('NA', NULL);
+INSERT INTO controle_r_obliquite VALUES ('ABR', NULL);
+INSERT INTO controle_r_obliquite VALUES ('O', NULL);
+INSERT INTO controle_r_obliquite VALUES ('SA', NULL);
 
 
 --
 -- Data for Name: controle_r_ordre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_ordre (r_ordre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_r_origine; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_origine (r_origine, description) FROM stdin;
-A	\N
-B	\N
-P	\N
-AF	\N
-BF	\N
-PF	\N
-FL	\N
-BT	\N
-BC	\N
-BR	\N
-BD	\N
-BTA	\N
-BTC	\N
-BTP	\N
-BTE	\N
-BTDF	\N
-BTDC	\N
-BTDN	\N
-BTT	\N
-BTPC	\N
-BTPM	\N
-BTPT	\N
-BTPR	\N
-M	\N
-I	\N
-BTDFBTA	\N
-BTDCBTA	\N
- BTB	\N
-BTDCBTP	\N
-BTB	\N
-BTPBTA	\N
-BTABTP	\N
-BTABTC	\N
-BTCTBA	\N
-BTPBTC	\N
-BTDCBTDF	\N
-BTCBTP	\N
-BTDNBTA	\N
-\.
+INSERT INTO controle_r_origine VALUES ('A', NULL);
+INSERT INTO controle_r_origine VALUES ('B', NULL);
+INSERT INTO controle_r_origine VALUES ('P', NULL);
+INSERT INTO controle_r_origine VALUES ('AF', NULL);
+INSERT INTO controle_r_origine VALUES ('BF', NULL);
+INSERT INTO controle_r_origine VALUES ('PF', NULL);
+INSERT INTO controle_r_origine VALUES ('FL', NULL);
+INSERT INTO controle_r_origine VALUES ('BT', NULL);
+INSERT INTO controle_r_origine VALUES ('BC', NULL);
+INSERT INTO controle_r_origine VALUES ('BR', NULL);
+INSERT INTO controle_r_origine VALUES ('BD', NULL);
+INSERT INTO controle_r_origine VALUES ('BTA', NULL);
+INSERT INTO controle_r_origine VALUES ('BTC', NULL);
+INSERT INTO controle_r_origine VALUES ('BTP', NULL);
+INSERT INTO controle_r_origine VALUES ('BTE', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDF', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDC', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDN', NULL);
+INSERT INTO controle_r_origine VALUES ('BTT', NULL);
+INSERT INTO controle_r_origine VALUES ('BTPC', NULL);
+INSERT INTO controle_r_origine VALUES ('BTPM', NULL);
+INSERT INTO controle_r_origine VALUES ('BTPT', NULL);
+INSERT INTO controle_r_origine VALUES ('BTPR', NULL);
+INSERT INTO controle_r_origine VALUES ('M', NULL);
+INSERT INTO controle_r_origine VALUES ('I', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDFBTA', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDCBTA', NULL);
+INSERT INTO controle_r_origine VALUES (' BTB', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDCBTP', NULL);
+INSERT INTO controle_r_origine VALUES ('BTB', NULL);
+INSERT INTO controle_r_origine VALUES ('BTPBTA', NULL);
+INSERT INTO controle_r_origine VALUES ('BTABTP', NULL);
+INSERT INTO controle_r_origine VALUES ('BTABTC', NULL);
+INSERT INTO controle_r_origine VALUES ('BTCTBA', NULL);
+INSERT INTO controle_r_origine VALUES ('BTPBTC', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDCBTDF', NULL);
+INSERT INTO controle_r_origine VALUES ('BTCBTP', NULL);
+INSERT INTO controle_r_origine VALUES ('BTDNBTA', NULL);
 
 
 --
 -- Data for Name: controle_r_sens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_sens (r_sens, description) FROM stdin;
-DIR	\N
-INV	\N
-MIX	\N
-MIXAL	\N
-PROFL	\N
-PROFT	\N
-PROFM	\N
-MSG	\N
-MSD	\N
-MSX	\N
-MIG	\N
-MID	\N
-\.
+INSERT INTO controle_r_sens VALUES ('DIR', NULL);
+INSERT INTO controle_r_sens VALUES ('INV', NULL);
+INSERT INTO controle_r_sens VALUES ('MIX', NULL);
+INSERT INTO controle_r_sens VALUES ('MIXAL', NULL);
+INSERT INTO controle_r_sens VALUES ('PROFL', NULL);
+INSERT INTO controle_r_sens VALUES ('PROFT', NULL);
+INSERT INTO controle_r_sens VALUES ('PROFM', NULL);
+INSERT INTO controle_r_sens VALUES ('MSG', NULL);
+INSERT INTO controle_r_sens VALUES ('MSD', NULL);
+INSERT INTO controle_r_sens VALUES ('MSX', NULL);
+INSERT INTO controle_r_sens VALUES ('MIG', NULL);
+INSERT INTO controle_r_sens VALUES ('MID', NULL);
 
 
 --
 -- Data for Name: controle_r_strie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_strie (r_strie, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_r_superposition; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_superposition (r_superposition, description) FROM stdin;
-I	\N
-C	\N
-CHIRR	\N
-CHREG	\N
-SIRR	\N
-SREG	\N
-CH	\N
-\.
+INSERT INTO controle_r_superposition VALUES ('I', NULL);
+INSERT INTO controle_r_superposition VALUES ('C', NULL);
+INSERT INTO controle_r_superposition VALUES ('CHIRR', NULL);
+INSERT INTO controle_r_superposition VALUES ('CHREG', NULL);
+INSERT INTO controle_r_superposition VALUES ('SIRR', NULL);
+INSERT INTO controle_r_superposition VALUES ('SREG', NULL);
+INSERT INTO controle_r_superposition VALUES ('CH', NULL);
 
 
 --
 -- Data for Name: controle_r_tranchant; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_tranchant (r_tranchant, description) FROM stdin;
-IND	\N
-ARMEDT	\N
-ARMEDPROX	\N
-ARMEDMES	\N
-ARMEDDIS	\N
-PERIP	\N
-FAA	\N
-FAB	\N
-\.
+INSERT INTO controle_r_tranchant VALUES ('IND', NULL);
+INSERT INTO controle_r_tranchant VALUES ('ARMEDT', NULL);
+INSERT INTO controle_r_tranchant VALUES ('ARMEDPROX', NULL);
+INSERT INTO controle_r_tranchant VALUES ('ARMEDMES', NULL);
+INSERT INTO controle_r_tranchant VALUES ('ARMEDDIS', NULL);
+INSERT INTO controle_r_tranchant VALUES ('PERIP', NULL);
+INSERT INTO controle_r_tranchant VALUES ('FAA', NULL);
+INSERT INTO controle_r_tranchant VALUES ('FAB', NULL);
 
 
 --
 -- Data for Name: controle_r_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_type (r_type, description) FROM stdin;
-M	\N
-E	\N
-E/2	\N
-SUR	\N
-MI	\N
-PL	\N
-ENV	\N
-BUR S1	\N
-BUR S2	\N
-BUR S3	\N
-BUR M1	\N
-BUR M2	\N
-BUR M3	\N
-PM	\N
-Q	\N
-\.
+INSERT INTO controle_r_type VALUES ('M', NULL);
+INSERT INTO controle_r_type VALUES ('E', NULL);
+INSERT INTO controle_r_type VALUES ('E/2', NULL);
+INSERT INTO controle_r_type VALUES ('SUR', NULL);
+INSERT INTO controle_r_type VALUES ('MI', NULL);
+INSERT INTO controle_r_type VALUES ('PL', NULL);
+INSERT INTO controle_r_type VALUES ('ENV', NULL);
+INSERT INTO controle_r_type VALUES ('BUR S1', NULL);
+INSERT INTO controle_r_type VALUES ('BUR S2', NULL);
+INSERT INTO controle_r_type VALUES ('BUR S3', NULL);
+INSERT INTO controle_r_type VALUES ('BUR M1', NULL);
+INSERT INTO controle_r_type VALUES ('BUR M2', NULL);
+INSERT INTO controle_r_type VALUES ('BUR M3', NULL);
+INSERT INTO controle_r_type VALUES ('PM', NULL);
+INSERT INTO controle_r_type VALUES ('Q', NULL);
 
 
 --
 -- Data for Name: controle_r_utilisation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_r_utilisation (r_utilisation, description) FROM stdin;
-BP	\N
-BA	\N
-BB	\N
-BCE(r_strie)	\N
-SPL	\N
-SPR	\N
-SOB	\N
-SEN	\N
-SFPL	\N
-SFEN	\N
-\.
+INSERT INTO controle_r_utilisation VALUES ('BP', NULL);
+INSERT INTO controle_r_utilisation VALUES ('BA', NULL);
+INSERT INTO controle_r_utilisation VALUES ('BB', NULL);
+INSERT INTO controle_r_utilisation VALUES ('BCE(r_strie)', NULL);
+INSERT INTO controle_r_utilisation VALUES ('SPL', NULL);
+INSERT INTO controle_r_utilisation VALUES ('SPR', NULL);
+INSERT INTO controle_r_utilisation VALUES ('SOB', NULL);
+INSERT INTO controle_r_utilisation VALUES ('SEN', NULL);
+INSERT INTO controle_r_utilisation VALUES ('SFPL', NULL);
+INSERT INTO controle_r_utilisation VALUES ('SFEN', NULL);
 
 
 --
 -- Data for Name: controle_responsable_fouille; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_responsable_fouille (responsable_fouille, description) FROM stdin;
-DE LUMLEY	\N
-\.
+INSERT INTO controle_responsable_fouille VALUES ('DE LUMLEY', NULL);
 
 
 --
 -- Data for Name: controle_s_localisation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_localisation (s_localisation, description) FROM stdin;
-I	\N
-IND	\N
-ANGGPROX	\N
-LATGT	\N
-LATGPROX	\N
-LATGMES	\N
-LATGDIS	\N
-ANGGDIS	\N
-TRDIST	\N
-TRDISG	\N
-TRDISMES	\N
-TRDISD	\N
-PTDIS	\N
-ANGDDIS	\N
-LATDT	\N
-LATDDIS	\N
-LATDMES	\N
-LATDPROX	\N
-ANGDPROX	\N
-TRPROXT	\N
-TRPROXD	\N
-TRPROXMES	\N
-TRPROXG	\N
-PTMAX	\N
-ARMEDT	\N
-ARMEDPROX	\N
-ARMEDMES	\N
-ARMEDDIS	\N
-PERIP	\N
-FIND	\N
-FA	\N
-FAA	\N
-FAPT	\N
-FAPG	\N
-FAPM	\N
-FAPD	\N
-FAMT	\N
-FAMG	\N
-FAMM	\N
-FAMD	\N
-FADT	\N
-FADG	\N
-FADM	\N
-ADD	\N
-FB	\N
-FBB	\N
-FBPT	\N
-FBPG	\N
-FBPM	\N
-FBMT	\N
-FBMG	\N
-FBMM	\N
-FBMD	\N
-FBDT	\N
-FBDG	\N
-FBDM	\N
-FBDD	\N
-FADD	\N
-\.
+INSERT INTO controle_s_localisation VALUES ('I', NULL);
+INSERT INTO controle_s_localisation VALUES ('IND', NULL);
+INSERT INTO controle_s_localisation VALUES ('ANGGPROX', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATGT', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATGPROX', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATGMES', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATGDIS', NULL);
+INSERT INTO controle_s_localisation VALUES ('ANGGDIS', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRDIST', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRDISG', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRDISMES', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRDISD', NULL);
+INSERT INTO controle_s_localisation VALUES ('PTDIS', NULL);
+INSERT INTO controle_s_localisation VALUES ('ANGDDIS', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATDT', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATDDIS', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATDMES', NULL);
+INSERT INTO controle_s_localisation VALUES ('LATDPROX', NULL);
+INSERT INTO controle_s_localisation VALUES ('ANGDPROX', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRPROXT', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRPROXD', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRPROXMES', NULL);
+INSERT INTO controle_s_localisation VALUES ('TRPROXG', NULL);
+INSERT INTO controle_s_localisation VALUES ('PTMAX', NULL);
+INSERT INTO controle_s_localisation VALUES ('ARMEDT', NULL);
+INSERT INTO controle_s_localisation VALUES ('ARMEDPROX', NULL);
+INSERT INTO controle_s_localisation VALUES ('ARMEDMES', NULL);
+INSERT INTO controle_s_localisation VALUES ('ARMEDDIS', NULL);
+INSERT INTO controle_s_localisation VALUES ('PERIP', NULL);
+INSERT INTO controle_s_localisation VALUES ('FIND', NULL);
+INSERT INTO controle_s_localisation VALUES ('FA', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAA', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAPT', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAPG', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAPM', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAPD', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAMT', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAMG', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAMM', NULL);
+INSERT INTO controle_s_localisation VALUES ('FAMD', NULL);
+INSERT INTO controle_s_localisation VALUES ('FADT', NULL);
+INSERT INTO controle_s_localisation VALUES ('FADG', NULL);
+INSERT INTO controle_s_localisation VALUES ('FADM', NULL);
+INSERT INTO controle_s_localisation VALUES ('ADD', NULL);
+INSERT INTO controle_s_localisation VALUES ('FB', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBB', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBPT', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBPG', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBPM', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBMT', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBMG', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBMM', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBMD', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBDT', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBDG', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBDM', NULL);
+INSERT INTO controle_s_localisation VALUES ('FBDD', NULL);
+INSERT INTO controle_s_localisation VALUES ('FADD', NULL);
 
 
 --
 -- Data for Name: controle_s_lustrage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_lustrage (s_lustrage, description) FROM stdin;
-LL	\N
-LE	\N
-\.
+INSERT INTO controle_s_lustrage VALUES ('LL', NULL);
+INSERT INTO controle_s_lustrage VALUES ('LE', NULL);
 
 
 --
 -- Data for Name: controle_s_ordre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_ordre (s_ordre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_s_polissage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_polissage (s_polissage, description) FROM stdin;
-PA	\N
-PP	\N
-PI	\N
-\.
+INSERT INTO controle_s_polissage VALUES ('PA', NULL);
+INSERT INTO controle_s_polissage VALUES ('PP', NULL);
+INSERT INTO controle_s_polissage VALUES ('PI', NULL);
 
 
 --
 -- Data for Name: controle_s_relation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_relation (s_relation, description) FROM stdin;
-G	\N
-F	\N
-CF	\N
-AF	\N
-PL	\N
-O	\N
-CO	\N
-AO	\N
-AT	\N
-\.
+INSERT INTO controle_s_relation VALUES ('G', NULL);
+INSERT INTO controle_s_relation VALUES ('F', NULL);
+INSERT INTO controle_s_relation VALUES ('CF', NULL);
+INSERT INTO controle_s_relation VALUES ('AF', NULL);
+INSERT INTO controle_s_relation VALUES ('PL', NULL);
+INSERT INTO controle_s_relation VALUES ('O', NULL);
+INSERT INTO controle_s_relation VALUES ('CO', NULL);
+INSERT INTO controle_s_relation VALUES ('AO', NULL);
+INSERT INTO controle_s_relation VALUES ('AT', NULL);
 
 
 --
 -- Data for Name: controle_s_situation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_situation (s_situation, description) FROM stdin;
-I	\N
-P	\N
-B	\N
-F	\N
-\.
+INSERT INTO controle_s_situation VALUES ('I', NULL);
+INSERT INTO controle_s_situation VALUES ('P', NULL);
+INSERT INTO controle_s_situation VALUES ('B', NULL);
+INSERT INTO controle_s_situation VALUES ('F', NULL);
 
 
 --
 -- Data for Name: controle_s_sous_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_sous_type (s_sous_type, description) FROM stdin;
-FPC	\N
-FPFC	\N
-FE	\N
-FPE	\N
-FS	\N
-FEF	\N
-FEA	\N
-FC	\N
-FAS	\N
-FB	\N
-FF	\N
-FACC	\N
-FRF	\N
-FRA	\N
-UE	\N
-UL	\N
-UP	\N
-\.
+INSERT INTO controle_s_sous_type VALUES ('FPC', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FPFC', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FE', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FPE', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FS', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FEF', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FEA', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FC', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FAS', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FB', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FF', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FACC', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FRF', NULL);
+INSERT INTO controle_s_sous_type VALUES ('FRA', NULL);
+INSERT INTO controle_s_sous_type VALUES ('UE', NULL);
+INSERT INTO controle_s_sous_type VALUES ('UL', NULL);
+INSERT INTO controle_s_sous_type VALUES ('UP', NULL);
 
 
 --
 -- Data for Name: controle_s_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_s_type (s_type, description) FROM stdin;
-SI	\N
-SIST	\N
-SL	\N
-SLST	\N
-SP	\N
-SPST	\N
-ST	\N
-SIN	\N
-SD	\N
-SINST	\N
-\.
+INSERT INTO controle_s_type VALUES ('SI', NULL);
+INSERT INTO controle_s_type VALUES ('SIST', NULL);
+INSERT INTO controle_s_type VALUES ('SL', NULL);
+INSERT INTO controle_s_type VALUES ('SLST', NULL);
+INSERT INTO controle_s_type VALUES ('SP', NULL);
+INSERT INTO controle_s_type VALUES ('SPST', NULL);
+INSERT INTO controle_s_type VALUES ('ST', NULL);
+INSERT INTO controle_s_type VALUES ('SIN', NULL);
+INSERT INTO controle_s_type VALUES ('SD', NULL);
+INSERT INTO controle_s_type VALUES ('SINST', NULL);
 
 
 --
 -- Data for Name: controle_sol; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_sol (sol, description) FROM stdin;
-08	\N
-14	\N
-15	\N
-17	\N
-03	\N
-05	\N
-06	\N
-07	\N
-09	\N
-10	\N
-11	\N
-12	\N
-13	\N
-16	\N
-04	\N
-22	\N
-24	\N
-20	\N
-21	\N
-19	\N
-18	\N
-25	\N
-7	\N
-8	\N
-9	\N
-23	\N
-UA25	\N
-01	\N
-1	\N
-26	\N
-02	\N
-M2	\N
-27	\N
-28	\N
-A	\N
-B	\N
-C	\N
-D	\N
-E	\N
-F	\N
-G	\N
-H	\N
-I	\N
-J	\N
-K	\N
-29	\N
-30	\N
-20-21	\N
-21-22	\N
-22-23	\N
-23-24	\N
-24-25	\N
-25-26	\N
-19-20	\N
-\.
+INSERT INTO controle_sol VALUES ('08', NULL);
+INSERT INTO controle_sol VALUES ('14', NULL);
+INSERT INTO controle_sol VALUES ('15', NULL);
+INSERT INTO controle_sol VALUES ('17', NULL);
+INSERT INTO controle_sol VALUES ('03', NULL);
+INSERT INTO controle_sol VALUES ('05', NULL);
+INSERT INTO controle_sol VALUES ('06', NULL);
+INSERT INTO controle_sol VALUES ('07', NULL);
+INSERT INTO controle_sol VALUES ('09', NULL);
+INSERT INTO controle_sol VALUES ('10', NULL);
+INSERT INTO controle_sol VALUES ('11', NULL);
+INSERT INTO controle_sol VALUES ('12', NULL);
+INSERT INTO controle_sol VALUES ('13', NULL);
+INSERT INTO controle_sol VALUES ('16', NULL);
+INSERT INTO controle_sol VALUES ('04', NULL);
+INSERT INTO controle_sol VALUES ('22', NULL);
+INSERT INTO controle_sol VALUES ('24', NULL);
+INSERT INTO controle_sol VALUES ('20', NULL);
+INSERT INTO controle_sol VALUES ('21', NULL);
+INSERT INTO controle_sol VALUES ('19', NULL);
+INSERT INTO controle_sol VALUES ('18', NULL);
+INSERT INTO controle_sol VALUES ('25', NULL);
+INSERT INTO controle_sol VALUES ('7', NULL);
+INSERT INTO controle_sol VALUES ('8', NULL);
+INSERT INTO controle_sol VALUES ('9', NULL);
+INSERT INTO controle_sol VALUES ('23', NULL);
+INSERT INTO controle_sol VALUES ('UA25', NULL);
+INSERT INTO controle_sol VALUES ('01', NULL);
+INSERT INTO controle_sol VALUES ('1', NULL);
+INSERT INTO controle_sol VALUES ('26', NULL);
+INSERT INTO controle_sol VALUES ('02', NULL);
+INSERT INTO controle_sol VALUES ('M2', NULL);
+INSERT INTO controle_sol VALUES ('27', NULL);
+INSERT INTO controle_sol VALUES ('28', NULL);
+INSERT INTO controle_sol VALUES ('A', NULL);
+INSERT INTO controle_sol VALUES ('B', NULL);
+INSERT INTO controle_sol VALUES ('C', NULL);
+INSERT INTO controle_sol VALUES ('D', NULL);
+INSERT INTO controle_sol VALUES ('E', NULL);
+INSERT INTO controle_sol VALUES ('F', NULL);
+INSERT INTO controle_sol VALUES ('G', NULL);
+INSERT INTO controle_sol VALUES ('H', NULL);
+INSERT INTO controle_sol VALUES ('I', NULL);
+INSERT INTO controle_sol VALUES ('J', NULL);
+INSERT INTO controle_sol VALUES ('K', NULL);
+INSERT INTO controle_sol VALUES ('29', NULL);
+INSERT INTO controle_sol VALUES ('30', NULL);
+INSERT INTO controle_sol VALUES ('20-21', NULL);
+INSERT INTO controle_sol VALUES ('21-22', NULL);
+INSERT INTO controle_sol VALUES ('22-23', NULL);
+INSERT INTO controle_sol VALUES ('23-24', NULL);
+INSERT INTO controle_sol VALUES ('24-25', NULL);
+INSERT INTO controle_sol VALUES ('25-26', NULL);
+INSERT INTO controle_sol VALUES ('19-20', NULL);
 
 
 --
 -- Data for Name: controle_souscarre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_souscarre (souscarre, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_agent; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_agent (t_agent, description) FROM stdin;
-DM	\N
-ENT	\N
-EX	\N
-ES	\N
-DI	\N
-DP	\N
-EP	\N
-DD	\N
-ED	\N
-DT	\N
-EQ	\N
-FEDS4	\N
-\.
+INSERT INTO controle_t_agent VALUES ('DM', NULL);
+INSERT INTO controle_t_agent VALUES ('ENT', NULL);
+INSERT INTO controle_t_agent VALUES ('EX', NULL);
+INSERT INTO controle_t_agent VALUES ('ES', NULL);
+INSERT INTO controle_t_agent VALUES ('DI', NULL);
+INSERT INTO controle_t_agent VALUES ('DP', NULL);
+INSERT INTO controle_t_agent VALUES ('EP', NULL);
+INSERT INTO controle_t_agent VALUES ('DD', NULL);
+INSERT INTO controle_t_agent VALUES ('ED', NULL);
+INSERT INTO controle_t_agent VALUES ('DT', NULL);
+INSERT INTO controle_t_agent VALUES ('EQ', NULL);
+INSERT INTO controle_t_agent VALUES ('FEDS4', NULL);
 
 
 --
 -- Data for Name: controle_t_allure; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_allure (t_allure, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_classe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_classe (t_classe, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_dessin; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_dessin (t_dessin, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_direction; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_direction (t_direction, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_dstrie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_dstrie (t_dstrie, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_ensemble; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_ensemble (t_ensemble, description) FROM stdin;
-ST	\N
-RA	\N
-CU	\N
-RE	\N
-VE	\N
-EN	\N
-PO	\N
-PE	\N
-RO	\N
-TI	\N
-RL	\N
-\.
+INSERT INTO controle_t_ensemble VALUES ('ST', NULL);
+INSERT INTO controle_t_ensemble VALUES ('RA', NULL);
+INSERT INTO controle_t_ensemble VALUES ('CU', NULL);
+INSERT INTO controle_t_ensemble VALUES ('RE', NULL);
+INSERT INTO controle_t_ensemble VALUES ('VE', NULL);
+INSERT INTO controle_t_ensemble VALUES ('EN', NULL);
+INSERT INTO controle_t_ensemble VALUES ('PO', NULL);
+INSERT INTO controle_t_ensemble VALUES ('PE', NULL);
+INSERT INTO controle_t_ensemble VALUES ('RO', NULL);
+INSERT INTO controle_t_ensemble VALUES ('TI', NULL);
+INSERT INTO controle_t_ensemble VALUES ('RL', NULL);
 
 
 --
 -- Data for Name: controle_t_largeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_largeur (t_largeur, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_locmusc; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_locmusc (t_locmusc, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_nature; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_nature (t_nature, description) FROM stdin;
-ATBC	\N
-A-RO	\N
-ATBE	\N
-ATBD	\N
-ATBA	\N
-ARBA	\N
-ANDC	\N
-IN	\N
-ANDR	\N
-ATBI	\N
-NAV	\N
-NAI	\N
-ANI	\N
-ATB	\N
-ANGC	\N
-ATBP	\N
-ATBR	\N
-ST	\N
-ATUT	\N
-\.
+INSERT INTO controle_t_nature VALUES ('ATBC', NULL);
+INSERT INTO controle_t_nature VALUES ('A-RO', NULL);
+INSERT INTO controle_t_nature VALUES ('ATBE', NULL);
+INSERT INTO controle_t_nature VALUES ('ATBD', NULL);
+INSERT INTO controle_t_nature VALUES ('ATBA', NULL);
+INSERT INTO controle_t_nature VALUES ('ARBA', NULL);
+INSERT INTO controle_t_nature VALUES ('ANDC', NULL);
+INSERT INTO controle_t_nature VALUES ('IN', NULL);
+INSERT INTO controle_t_nature VALUES ('ANDR', NULL);
+INSERT INTO controle_t_nature VALUES ('ATBI', NULL);
+INSERT INTO controle_t_nature VALUES ('NAV', NULL);
+INSERT INTO controle_t_nature VALUES ('NAI', NULL);
+INSERT INTO controle_t_nature VALUES ('ANI', NULL);
+INSERT INTO controle_t_nature VALUES ('ATB', NULL);
+INSERT INTO controle_t_nature VALUES ('ANGC', NULL);
+INSERT INTO controle_t_nature VALUES ('ATBP', NULL);
+INSERT INTO controle_t_nature VALUES ('ATBR', NULL);
+INSERT INTO controle_t_nature VALUES ('ST', NULL);
+INSERT INTO controle_t_nature VALUES ('ATUT', NULL);
 
 
 --
 -- Data for Name: controle_t_phenomene; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_phenomene (t_phenomene, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_photo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_photo (t_photo, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_profondeur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_profondeur (t_profondeur, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_replique; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_replique (t_replique, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_section; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_section (t_section, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_sens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_sens (t_sens, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_t_trace; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_t_trace (t_trace, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ud_fragmentation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ud_fragmentation (ud_fragmentation, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ud_lateralite; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ud_lateralite (ud_lateralite, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ud_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ud_type (ud_type, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_ud_usure; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_ud_usure (ud_usure, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: controle_vers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_vers (vers, description) FROM stdin;
-N	\N
-S	\N
-SW	\N
-E	\N
-SE	\N
-NE	\N
-NW	\N
-W	\N
-EW	\N
-\.
+INSERT INTO controle_vers VALUES ('N', NULL);
+INSERT INTO controle_vers VALUES ('S', NULL);
+INSERT INTO controle_vers VALUES ('SW', NULL);
+INSERT INTO controle_vers VALUES ('E', NULL);
+INSERT INTO controle_vers VALUES ('SE', NULL);
+INSERT INTO controle_vers VALUES ('NE', NULL);
+INSERT INTO controle_vers VALUES ('NW', NULL);
+INSERT INTO controle_vers VALUES ('W', NULL);
+INSERT INTO controle_vers VALUES ('EW', NULL);
 
 
 --
 -- Data for Name: controle_zone; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY controle_zone ("zone", description) FROM stdin;
-\.
-
-
---
--- Data for Name: controlec__forme; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY controlec__forme (c_forme, description) FROM stdin;
-\.
 
 
 --
 -- Data for Name: coprolithe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY coprolithe ("zone", numero, bis, c_association, c_fragmentation, c_sediment, c_couleur, c_motif, c_motnat, c_motcou, c_forme, c_vol, c_volext, c_retrecissement, c_nombre, c_extremite, c_ext1, c_ext2, c_alteration, c_altnat, c_inclusion, c_incl1, c_incl2, c_incl3, c_element, c_granulometrie, c_liant, c_consistance, c_ordre, c_famille, c_genre, c_parasito, c_palyno, c_lame, c_autre, c_mif, c_macroreste, c_longueur, c_largeur, c_epaisseur, c_poids) FROM stdin;
-\.
 
 
 --
 -- Data for Name: dent; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY dent ("zone", numero, bis, d_serie, d_type, d_m1, d_m2, d_m3, d_m4, d_m5, d_m6, d_m7, d_m8, d_m9, d_m10, d_m11, d_m12, d_m13, d_m14, d_m15, d_m16, d_m17, d_m18, d_m19, d_m20, d_m21, d_m22, d_m23, d_m24, d_m25, d_m26, d_m27, d_m28, d_m29, d_m30) FROM stdin;
-\.
 
 
 --
 -- Data for Name: eclat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY eclat ("zone", numero, bis, e_code, e_debitage, e_section_long, e_section_trans, e_contour, e_enlevement, e_bulbe, e_talon, e_cone, e_onde, e_epi, e_strie, e_parasite, e_secondaire, e_charniere, e_carene, e_type, e_longm, e_largm, e_fa, e_fb, e_fc, e_fd, e_fe, e_ff, e_ta, e_tb, e_tc, e_td, e_te, e_tf, e_tg, e_thc, e_ti) FROM stdin;
-\.
 
 
 --
 -- Data for Name: enlevement_biface; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY enlevement_biface (bis, "zone", numero, eb_rang, eb_longueur, eb_largeur, eb_obliquite, eb_corde, eb_fleche, eb_tranche) FROM stdin;
-\.
 
 
 --
 -- Data for Name: enlevement_galet; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY enlevement_galet ("zone", numero, bis, ga_ordre, eg_rang, eg_element, eg_longueur_generale, eg_profil, eg_profondeur, eg_obliquite, eg_extremite, eg_proeminence, eg_sens, eg_localisation, eg_situation, eg_epaisseur, eg_longueur, eg_largeur, eg_tranchant, eg_obliquite_degre, eg_corde, eg_fleche, eg_dptimpact, eg_support, eg_relation) FROM stdin;
-\.
 
 
 --
 -- Data for Name: enlevement_nucleus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY enlevement_nucleus ("zone", numero, bis, n_ordre, en_rang, en_longueur, en_largeur, en_obliquite, en_obliquite_degre, en_corde, en_fleche, en_dptimpact, en_frappe, en_numero, en_inclinaison, en_direction) FROM stdin;
-\.
 
 
 --
 -- Data for Name: faune; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY faune ("zone", numero, bis, f_longueur, f_largeur, f_epaisseur, f_poids, f_ancien_oss, f_classe, f_ordre, f_famille, f_ssfamille, f_genre, f_espece, f_ssespece, f_typos1, f_typos2, f_typos3, f_typos4, f_typos5, f_typos6, f_lateralite, f_sexe, f_agecl, f_agest, f_epins, f_stserie, f_stdent, f_taille, f_association, f_pathologie, f_description, f_fragge, f_fragde, f_sauvefrag, f_couleur, f_caltype, f_calcouleur, f_concretion, f_oxyde, f_coraspect, f_corfissure, f_trace, f_fossilisation, f_tissu, f_typedos, f_ilongueur, f_icirconference, f_eclat, f_agent, f_photo, f_dessin, f_traitement, f_datation, f_moulage, f_conservation, f_restauration, f_coprolithe, f_pelote, f_saisie, f_reference, f_complement, responsable, controle_f_ancien_oss, f_responsable, f_affgenre, f_affespece) FROM stdin;
-\.
 
 
 --
 -- Data for Name: fracture_faune; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY fracture_faune ("zone", numero, bis, ff_localisation1, ff_non1, ff_angle1, ff_aspect1, ff_profil1, ff_morphologie1, ff_localisation2, ff_non2, ff_angle2, ff_aspect2, ff_profil2, ff_morphologie2) FROM stdin;
-\.
 
 
 --
 -- Data for Name: fracture_industrie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY fracture_industrie ("zone", numero, bis, fi_ordre, fi_type, fi_percussion, fi_mode, fi_anciennete, fi_localisation, old_support, fi_relation) FROM stdin;
-\.
 
 
 --
 -- Data for Name: galet_amenage; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY galet_amenage ("zone", numero, bis, ga_ordre, ga_type, ga_facture, ga_qualite, ga_nba, ga_nbb, ga_nbp, ga_forme, ga_arete, ga_orientation, ga_retouche, ga_cha, ga_chb, ga_chc, ga_chd, ga_che, ga_chde, ga_chf, old_ga_chg, ga_chh, ga_chi, ga_chj, ga_chk, ga_chl, ga_chm, ga_chna, ga_chnb, ga_cho, ga_chp, ga_chq, ga_chqq, ga_chr, ga_chrg, ga_chrd, ga_chrr, ga_chs, ga_cht, ga_chu, ga_chw1, ga_chw2, ga_chv1, ga_chv2, ga_chv3, ga_chx, ga_chxx, ga_chy, ga_chyy, ga_chz1, ga_chz2, ga_chz3, ga_chz4, ga_chg, ga_obliquite, ga_relation) FROM stdin;
-\.
 
 
 --
 -- Data for Name: hachereau; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY hachereau ("zone", numero, bis, h_type, h_base, h_surface, h_amenagement_bord, h_distale, h_biseau, h_bord, h_meplat, h_extension, h_symetrie, h_bilaterale, h_facture, h_arete, h_retouche, h_long1, h_long2, h_long3, h_l1, h_l1a, h_l2, h_l3, h_l4, h_l5, h_e1, h_e2, h_poids, h_ind1, h_ind2, h_ind3, h_ind4, h_ind5, h_ind6, h_ind7, h_ind8, h_ind9, h_ind10, h_ind11, h_ind12, h_ind13, h_ind14, h_ind15, h_hc, h_hd, h_he, h_hb1a, h_hb1b, h_hb1, h_hb2a, h_hb2b, h_hb2, h_hde1, h_hg1, h_hg2, h_hh, h_hi, h_hj, h_hk, h_hla1, h_hlb1, h_hl1, h_hla2, h_hlb2, h_hl2, h_hm, h_hs, h_hng, h_hnd, h_ho, h_hp, h_hq, h_hr, h_hu, h_hx, h_hya1, h_hya2, h_hya, h_hyb1, h_hyb2, h_hyb, h_hy, h_hyax, h_hybx, h_hyx, h_hf, h_ntf, old_h_de2, h_hde2) FROM stdin;
-\.
 
 
 --
 -- Data for Name: industrie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY industrie ("zone", numero, bis, i_oa, i_ob, i_oc, i_poids, i_forme_galet, i_matiere, i_objet, i_support_originel, i_patine, i_dpatine, i_alteration, i_encroutement, i_pmycellium, i_eolisation, i_lustrage, i_roulage, i_action, i_desilicification, old_support, i_observation, i_support) FROM stdin;
-\.
 
 
 --
 -- Data for Name: microfaune; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY microfaune ("zone", numero, bis, mf_serie, mf_type, mf_m1, mf_m2, mf_m3, mf_m4, mf_m5, mf_m6, mf_m7, mf_m8, mf_m9, mf_m10, mf_m11, mf_m12, mf_m13, mf_m14, mf_m15, mf_m16, mf_m17, mf_m18, mf_m19, mf_m20, mf_m21, mf_m22, mf_m23, mf_m24, mf_m25, mf_m26, mf_m27, mf_m28, mf_m29, mf_m30) FROM stdin;
-\.
 
 
 --
 -- Data for Name: nucleus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY nucleus ("zone", numero, bis, n_ordre, n_type, n_nbplan, n_nba, n_nbb, n_nbp, n_orientation, n_dirtotal, n_dirfacea, n_dirfaceb, n_dirprofil, n_formule, n_rotation, n_cortotal, n_corfacea, n_corfaceb, n_corprofil, n_epuisement) FROM stdin;
-\.
 
 
 --
 -- Data for Name: os; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY os ("zone", numero, bis, o_serie, o_type, o_m1, o_m2, o_m3, o_m4, o_m5, o_m6, o_m7, o_m8, o_m9, o_m10, o_m11, o_m12, o_m13, o_m14, o_m15, o_m16, o_m17, o_m18, o_m19, o_m20, o_m21, o_m22, o_m23, o_m24, o_m25, o_m26, o_m27, o_m28, o_m29, o_m30, o_m31, o_m32, o_m33, o_m34, o_m35, o_m36, o_m37, o_m38, o_m39, o_m40, o_m41, o_m42, o_m43, o_m44, o_m45, o_m46, o_m47, o_m48, o_m49, o_m50) FROM stdin;
-\.
 
 
 --
 -- Data for Name: outil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY outil ("zone", numero, bis, o_ordre, o_code, o_code_comp, o_retouche, o_orientation, o_origine, o_destination, o_etat, o_localisation, o_sens, o_serie, o_forme, o_chronologie, o_a, o_b, o_c, o_d, o_e, o_f, o_g, o_h, o_tranchant, o_relation) FROM stdin;
-\.
 
 
 --
 -- Data for Name: photocoprolithe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY photocoprolithe (idphoto, "zone", numero, bis, t_ensemble, legende) FROM stdin;
-\.
 
 
 --
 -- Data for Name: photofaune; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY photofaune (idphoto, "zone", numero, bis, legende) FROM stdin;
-\.
 
 
 --
 -- Data for Name: photoindustrie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY photoindustrie (idphoto, "zone", numero, bis, legende) FROM stdin;
-\.
 
 
 --
 -- Data for Name: phototrace; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY phototrace (idphoto, "zone", numero, bis, t_ensemble, legende) FROM stdin;
-\.
 
 
 --
 -- Data for Name: remonte_famille; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY remonte_famille (famille, ordre, classe) FROM stdin;
-CERCOPITHECIDAE	PRIMATA	MAMMALIA
-PONGIDAE	PRIMATA	MAMMALIA
-HOMINIDAE	PRIMATA	MAMMALIA
-ERINACEIDAE	INSECTIVORA	MAMMALIA
-TALPIDAE	INSECTIVORA	MAMMALIA
-SORICIDAE	INSECTIVORA	MAMMALIA
-MOLOSSIDAE	CHIROPTERA	MAMMALIA
-RHINOLOPHIDAE	CHIROPTERA	MAMMALIA
-VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-ARVICOLIDAE	RODENTIA	MAMMALIA
-SPALACIDAE	RODENTIA	MAMMALIA
-DIPODIDAE	RODENTIA	MAMMALIA
-CRICETIDAE	RODENTIA	MAMMALIA
-CASTORIDAE	RODENTIA	MAMMALIA
-CAPROMYIDAE	RODENTIA	MAMMALIA
-HYSTRICIDAE	RODENTIA	MAMMALIA
-GLIRIDAE	RODENTIA	MAMMALIA
-SCIURIDAE	RODENTIA	MAMMALIA
-MURIDAE	RODENTIA	MAMMALIA
-HYDROCHOERIDAE	RODENTIA	MAMMALIA
-LEPORIDAE	LAGOMORPHA	MAMMALIA
-LAGOMYIDAE	LAGOMORPHA	MAMMALIA
-MUSTELIDAE	CARNIVORA	MAMMALIA
-CANIDAE	CARNIVORA	MAMMALIA
-AILURIDAE	CARNIVORA	MAMMALIA
-URSIDAE	CARNIVORA	MAMMALIA
-FELIDAE	CARNIVORA	MAMMALIA
-VIVERRIDAE	CARNIVORA	MAMMALIA
-HYAENIDAE	CARNIVORA	MAMMALIA
-ODOBAENIDAE	CARNIVORA	MAMMALIA
-PHOCIDAE	CARNIVORA	MAMMALIA
-SUIDAE	ARTIODACTYLA	MAMMALIA
-HIPPOPOTAMIDAE	ARTIODACTYLA	MAMMALIA
-CAMELIDAE	ARTIODACTYLA	MAMMALIA
-GIRAFFIDAE	ARTIODACTYLA	MAMMALIA
-CERVIDAE	ARTIODACTYLA	MAMMALIA
-ANTILOCAPRIDAE	ARTIODACTYLA	MAMMALIA
-BOVIDAE	ARTIODACTYLA	MAMMALIA
-EQUIDAE	PERISSODACTYLA	MAMMALIA
-TAPIRIDAE	PERISSODACTYLA	MAMMALIA
-RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-GOMPHOTERIIDAE	PROBOSCIDEA	MAMMALIA
-ELEPHANTIDAE	PROBOSCIDEA	MAMMALIA
-DELPHINIDAE	CETACEA	MAMMALIA
-PHOCAENIDAE	CETACEA	MAMMALIA
-MONODONLIDAE	CETACEA	MAMMALIA
-PHYSETERIDAE	CETACEA	MAMMALIA
-ZIPHIIDAE	CETACEA	MAMMALIA
-BALAONOPTERIDAE	CETACEA	MAMMALIA
-BALAENIDAE	CETACEA	MAMMALIA
-PODICIPEDIDAE	PODICIPEDIFORMA	AVES
-DIOMEDEIDAE	PROCELLARIIFORMA	AVES
-HYDROBATIDAE	PROCELLARIIFORMA	AVES
-PROCELLARIIDAE	PROCELLARIIFORMA	AVES
-SULIDAE	PELECANIFORMA	AVES
-PELECANIDAE	PELECANIFORMA	AVES
-PHALACROCORACIDAE	PELECANIFORMA	AVES
-ARDEIDAE	CICONIIFORMA	AVES
-THRESKIORNITHIDAE	CICONIIFORMA	AVES
-CICONIIDAE	CICONIIFORMA	AVES
-PHOENICOPTERIDAE	PHOENICOPTERIFORMA	AVES
-ANATIDAE	ANSERIFORMA	AVES
-ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-PANDIODIDAE	ACCIPITRIFORMA	AVES
-TETRAONIDAE	GALLIFORMA	AVES
-PHASIANIDAE	GALLIFORMA	AVES
-TURNICIDAE	GRUIFORMA	AVES
-GRUIDAE	GRUIFORMA	AVES
-OTITIDAE	GRUIFORMA	AVES
-RALLIDAE	GRUIFORMA	AVES
-PTEROCLIDIDAE	PTEROCLIDIFORMA	AVES
-COLUMBIDAE	COLUMBIFORMA	AVES
-CUCULIDAE	CUCULIFORMA	AVES
-TYTONIDAE	STRIGIFORMA	AVES
-STRIGIDAE	STRIGIFORMA	AVES
-CAPRIMULGIDAE	CAPRIMULGIFORMA	AVES
-APODIDAE	APODIFORMA	AVES
-ALCEDINIDAE	CORACIIFORMA	AVES
-CORACIIDAE	CORACIIFORMA	AVES
-MEROPIDAE	CORACIIFORMA	AVES
-UPUPIDAE	CORACIIFORMA	AVES
-PICIDAE	PICIFORMA	AVES
-HAEMATOPODIDAE	CHARADRIIFORMA	AVES
-CHARADRIIDAE	CHARADRIIFORMA	AVES
-SCOLOPACIDAE	CHARADRIIFORMA	AVES
-PHALAROPIDAE	CHARADRIIFORMA	AVES
-STERCORIIDAE	CHARADRIIFORMA	AVES
-LARIDAE	CHARADRIIFORMA	AVES
-RECURVIROSTRIDAE	CHARADRIIFORMA	AVES
-BURHINIDAE	CHARADRIIFORMA	AVES
-GLAREOLIDAE	CHARADRIIFORMA	AVES
-STERNIDAE	CHARADRIIFORMA	AVES
-ALCIDAE	CHARADRIIFORMA	AVES
-ALAUDIDAE	PASSERIFORMA	AVES
-HIRUNDINIDAE	PASSERIFORMA	AVES
-MOTACILLIDAE	PASSERIFORMA	AVES
-ORIOLIDAE	PASSERIFORMA	AVES
-LANIIDAE	PASSERIFORMA	AVES
-STURNIDAE	PASSERIFORMA	AVES
-BOMBYCILLIDAE	PASSERIFORMA	AVES
-CORVIDAE	PASSERIFORMA	AVES
-CINCLIDAE	PASSERIFORMA	AVES
-TROGLODYTIDAE	PASSERIFORMA	AVES
-PRUNELLIDAE	PASSERIFORMA	AVES
-SYLVIDAE	PASSERIFORMA	AVES
-TURDIDAE	PASSERIFORMA	AVES
-PARIDAE	PASSERIFORMA	AVES
-AEGITHALIDAE	PASSERIFORMA	AVES
-TIMALIIDAE	PASSERIFORMA	AVES
-REMIZIDAE	PASSERIFORMA	AVES
-SITTIDAE	PASSERIFORMA	AVES
-TICHODROMADIDAE	PASSERIFORMA	AVES
-CERTHIIDAE	PASSERIFORMA	AVES
-PASSERIDAE	PASSERIFORMA	AVES
-FRINGILLIDAE	PASSERIFORMA	AVES
-EMBERIZIDAE	PASSERIFORMA	AVES
-MUSCICAPIDAE	PASSERIFORMA	AVES
-TESTUDINIDAE	CHELONIA	REPTILIA
-EMYDIDAE	CHELONIA	REPTILIA
-DERMOCHELYDAE	CHELONIA	REPTILIA
-CHELONIDAE	CHELONIA	REPTILIA
-DISCOGLOSSIDAE	ANURA	AMPHIBIA
-LACERTIDAE	SQUAMATA	REPTILIA
-AMPHISBAENIDAE	SQUAMATA	REPTILIA
-GECKONIDAE	SQUAMATA	REPTILIA
-AGAMIDAE	SQUAMATA	REPTILIA
-ANGUIDAE	SQUAMATA	REPTILIA
-SCINCIDAE	SQUAMATA	REPTILIA
-CHAMELEONTIDAE	SQUAMATA	REPTILIA
-TYPHLOPIDAE	SERPENTES	REPTILIA
-BOIDAE	SERPENTES	REPTILIA
-SALAMANDRIDAE	URODELA	AMPHIBIA
-PLETHODONTIDAE	URODELA	AMPHIBIA
-PROTEIDAE	URODELA	AMPHIBIA
-CERITHIIDAE	APOGASTROPODA	MOLLUSCA
-TURRITELLIDAE	APOGASTROPODA	MOLLUSCA
-RISSOIDAE	APOGASTROPODA	MOLLUSCA
-TRIVIDAE	APOGASTROPODA	MOLLUSCA
-MURCIIDAE	APOGASTROPODA	MOLLUSCA
-NASSARIIDAE	APOGASTROPODA	MOLLUSCA
-COSTELLARIIDAE	APOGASTROPODA	MOLLUSCA
-TURRIDAE	APOGASTROPODA	MOLLUSCA
-POMATIASIDAE+C61	NEOTAENIOGLOSSA	MOLLUSCA
-BUFONIDAE	ANURA	AMPHIBIA
-PELODYTIDAE	ANURA	AMPHIBIA
-PELOBATIDAE	ANURA	AMPHIBIA
-HYLIDAE	ANURA	AMPHIBIA
-RANIDAE	ANURA	AMPHIBIA
-PATELLIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-TURBINIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-CLAUSILIIDAE	STYLOMMATOPHORA	MOLLUSCA
-TROCHIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-SUBULINIDAE	STYLOMMATOPHORA	MOLLUSCA
-SUCCINEIDAE	STYLOMMATOPHORA	MOLLUSCA
-DISCIDAE	STYLOMMATOPHORA	MOLLUSCA
-HYGROMIIDAE	STYLOMMATOPHORA	MOLLUSCA
-FISSURELLIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-LIMACIDAE	STYLOMMATOPHORA	MOLLUSCA
-CHONDRINIDAE	STYLOMMATOPHORA	MOLLUSCA
-ENIDAE	STYLOMMATOPHORA	MOLLUSCA
-LITTORINIDAE	APOGASTROPODA	MOLLUSCA
-TESTACELLIDAE	STYLOMMATOPHORA	MOLLUSCA
-ZONITIDAE	STYLOMMATOPHORA	MOLLUSCA
-HELICIDAE	STYLOMMATOPHORA	MOLLUSCA
-PUPILLIDAE	STYLOMMATOPHORA	MOLLUSCA
-COLUMBELLIDAE	APOGASTROPODA	MOLLUSCA
-MITRIDAE	APOGASTROPODA	MOLLUSCA
-FALCONIDAE	FALCONIFORMA	AVES
-GAVIIDAE	GAVIIFORMA	AVES
-COLUBRIDAE	SQUAMATA	REPTILIA
-VIPERIDAE	SQUAMATA	REPTILIA
-\.
+INSERT INTO remonte_famille VALUES ('CERCOPITHECIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('PONGIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('HOMINIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('ERINACEIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('TALPIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('MOLOSSIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('RHINOLOPHIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('SPALACIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('DIPODIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('CASTORIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('CAPROMYIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('HYSTRICIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('GLIRIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('SCIURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('HYDROCHOERIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('LEPORIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('LAGOMYIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('AILURIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('URSIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('VIVERRIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('HYAENIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('ODOBAENIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('SUIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('HIPPOPOTAMIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('CAMELIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('GIRAFFIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('ANTILOCAPRIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('EQUIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('TAPIRIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('GOMPHOTERIIDAE', 'PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('ELEPHANTIDAE', 'PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('DELPHINIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('PHOCAENIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('MONODONLIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('PHYSETERIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('ZIPHIIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('BALAONOPTERIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('BALAENIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_famille VALUES ('PODICIPEDIDAE', 'PODICIPEDIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('DIOMEDEIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('HYDROBATIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PROCELLARIIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('SULIDAE', 'PELECANIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PELECANIDAE', 'PELECANIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PHALACROCORACIDAE', 'PELECANIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('THRESKIORNITHIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CICONIIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PHOENICOPTERIDAE', 'PHOENICOPTERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PANDIODIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TETRAONIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TURNICIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('GRUIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('OTITIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PTEROCLIDIDAE', 'PTEROCLIDIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('COLUMBIDAE', 'COLUMBIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CUCULIDAE', 'CUCULIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TYTONIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CAPRIMULGIDAE', 'CAPRIMULGIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('APODIDAE', 'APODIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('ALCEDINIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CORACIIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('MEROPIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('UPUPIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PICIDAE', 'PICIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('HAEMATOPODIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PHALAROPIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('STERCORIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('RECURVIROSTRIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('BURHINIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('GLAREOLIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('STERNIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('ALCIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('HIRUNDINIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('MOTACILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('ORIOLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('LANIIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('STURNIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('BOMBYCILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CINCLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TROGLODYTIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PRUNELLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('SYLVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TURDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PARIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('AEGITHALIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TIMALIIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('REMIZIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('SITTIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TICHODROMADIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('CERTHIIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('PASSERIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('EMBERIZIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('TESTUDINIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('EMYDIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('DERMOCHELYDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('CHELONIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('DISCOGLOSSIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('AMPHISBAENIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('GECKONIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('AGAMIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('ANGUIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('SCINCIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('CHAMELEONTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('TYPHLOPIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('BOIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('SALAMANDRIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('PLETHODONTIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('PROTEIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('CERITHIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('TURRITELLIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('RISSOIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('TRIVIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('MURCIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('NASSARIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('COSTELLARIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('TURRIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('POMATIASIDAE+C61', 'NEOTAENIOGLOSSA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('BUFONIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('PELODYTIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('PELOBATIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('HYLIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('RANIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_famille VALUES ('PATELLIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('TURBINIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('CLAUSILIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('TROCHIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('SUBULINIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('SUCCINEIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('DISCIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('HYGROMIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('FISSURELLIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('LIMACIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('CHONDRINIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('ENIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('LITTORINIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('TESTACELLIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('ZONITIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('HELICIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('PUPILLIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('COLUMBELLIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('MITRIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_famille VALUES ('FALCONIDAE', 'FALCONIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('GAVIIDAE', 'GAVIIFORMA', 'AVES');
+INSERT INTO remonte_famille VALUES ('COLUBRIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_famille VALUES ('VIPERIDAE', 'SQUAMATA', 'REPTILIA');
 
 
 --
 -- Data for Name: remonte_genre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY remonte_genre (genre, famille, ordre, classe) FROM stdin;
-MACACA	CERCOPITHECIDAE	PRIMATA	MAMMALIA
-PONGO	PONGIDAE	PRIMATA	MAMMALIA
-GORILLA	PONGIDAE	PRIMATA	MAMMALIA
-PAN	PONGIDAE	PRIMATA	MAMMALIA
-HOMO	HOMINIDAE	PRIMATA	MAMMALIA
-AUSTRALOPITHECUS	HOMINIDAE	PRIMATA	MAMMALIA
-EUROPAEUS	ERINACEIDAE	INSECTIVORA	MAMMALIA
-ALGIRUS	ERINACEIDAE	INSECTIVORA	MAMMALIA
-DAVIDI	ERINACEIDAE	INSECTIVORA	MAMMALIA
-HEMIECHINUS	ERINACEIDAE	INSECTIVORA	MAMMALIA
-GALEMYS	TALPIDAE	INSECTIVORA	MAMMALIA
-TALPA	TALPIDAE	INSECTIVORA	MAMMALIA
-DESMANA	TALPIDAE	INSECTIVORA	MAMMALIA
-SOREX	SORICIDAE	INSECTIVORA	MAMMALIA
-NEOMYS	SORICIDAE	INSECTIVORA	MAMMALIA
-SUNCUS	SORICIDAE	INSECTIVORA	MAMMALIA
-CROCIDURA	SORICIDAE	INSECTIVORA	MAMMALIA
-MYOSOREX	SORICIDAE	INSECTIVORA	MAMMALIA
-DEPRANOSOREX	SORICIDAE	INSECTIVORA	MAMMALIA
-PETENYIA	SORICIDAE	INSECTIVORA	MAMMALIA
-DEINSDORFIA	SORICIDAE	INSECTIVORA	MAMMALIA
-BLARINELLA	SORICIDAE	INSECTIVORA	MAMMALIA
-BERENENDIA	SORICIDAE	INSECTIVORA	MAMMALIA
-EPISORICULUS	SORICIDAE	INSECTIVORA	MAMMALIA
-SORICULUS	SORICIDAE	INSECTIVORA	MAMMALIA
-BLARINOIDES	SORICIDAE	INSECTIVORA	MAMMALIA
-TADARIDA	MOLOSSIDAE	CHIROPTERA	MAMMALIA
-SAUROMYS	MOLOSSIDAE	CHIROPTERA	MAMMALIA
-RHINOLOPHUS	RHINOLOPHIDAE	CHIROPTERA	MAMMALIA
-MYOTIS	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-VESPERTILIO	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-EPTESICUS	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-NYCTALUS	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-PIPISTRELLUS	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-BARBASTELLA	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-PLECOTUS	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-MINIOPTERUS	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-LASIURUS	VESPERTILIONIDAE	CHIROPTERA	MAMMALIA
-MICROTUS	ARVICOLIDAE	RODENTIA	MAMMALIA
-TERRICOLA	ARVICOLIDAE	RODENTIA	MAMMALIA
-ALLOPHAIOMYS	ARVICOLIDAE	RODENTIA	MAMMALIA
-DYNAROMYS	ARVICOLIDAE	RODENTIA	MAMMALIA
-ARVICOLA	ARVICOLIDAE	RODENTIA	MAMMALIA
-ONDRATA	ARVICOLIDAE	RODENTIA	MAMMALIA
-CLETHRIONOMYS	ARVICOLIDAE	RODENTIA	MAMMALIA
-LEMMUS	ARVICOLIDAE	RODENTIA	MAMMALIA
-MYOPUS	ARVICOLIDAE	RODENTIA	MAMMALIA
-DICROSTONYX	ARVICOLIDAE	RODENTIA	MAMMALIA
-ELLOBIUS	ARVICOLIDAE	RODENTIA	MAMMALIA
-LAGURUS	ARVICOLIDAE	RODENTIA	MAMMALIA
-MIMOMYS	ARVICOLIDAE	RODENTIA	MAMMALIA
-PLIOMYS	ARVICOLIDAE	RODENTIA	MAMMALIA
-UNGAROMYS	ARVICOLIDAE	RODENTIA	MAMMALIA
-SPALAX	SPALACIDAE	RODENTIA	MAMMALIA
-PROSIPHNEUS	SPALACIDAE	RODENTIA	MAMMALIA
-MYOSPALAX	SPALACIDAE	RODENTIA	MAMMALIA
-SICISTA	DIPODIDAE	RODENTIA	MAMMALIA
-ALLACTAGA	DIPODIDAE	RODENTIA	MAMMALIA
-CRICETUS	CRICETIDAE	RODENTIA	MAMMALIA
-VILLANYIA	CRICETIDAE	RODENTIA	MAMMALIA
-MESOCRICETUS	CRICETIDAE	RODENTIA	MAMMALIA
-ALLOCRICETUS	CRICETIDAE	RODENTIA	MAMMALIA
-PEROMYSCUS	CRICETIDAE	RODENTIA	MAMMALIA
-CRICETULUS	CRICETIDAE	RODENTIA	MAMMALIA
-MERIONES	CRICETIDAE	RODENTIA	MAMMALIA
-CRICETINUS	CRICETIDAE	RODENTIA	MAMMALIA
-CASTOR	CASTORIDAE	RODENTIA	MAMMALIA
-TROGONTHERIUM	CASTORIDAE	RODENTIA	MAMMALIA
-MYOCASTOR	CAPROMYIDAE	RODENTIA	MAMMALIA
-HYSTRIX	HYSTRICIDAE	RODENTIA	MAMMALIA
-GLIRULUS	GLIRIDAE	RODENTIA	MAMMALIA
-ELIOMYS	GLIRIDAE	RODENTIA	MAMMALIA
-MYOMIMUS	GLIRIDAE	RODENTIA	MAMMALIA
-DRYOMYS	GLIRIDAE	RODENTIA	MAMMALIA
-MUSCARDINUS	GLIRIDAE	RODENTIA	MAMMALIA
-GLIS	GLIRIDAE	RODENTIA	MAMMALIA
-SCIURUS	SCIURIDAE	RODENTIA	MAMMALIA
-PLIOLAGUS 	LEPORIDAE	LAGOMORPHA	MAMMALIA
-PTEROMYS	SCIURIDAE	RODENTIA	MAMMALIA
-TAMIAS	SCIURIDAE	RODENTIA	MAMMALIA
-CITELLUS	SCIURIDAE	RODENTIA	MAMMALIA
-MARMOTA	SCIURIDAE	RODENTIA	MAMMALIA
-CYNONYS	SCIURIDAE	RODENTIA	MAMMALIA
-RHAGAMYS	MURIDAE	RODENTIA	MAMMALIA
-ACOMYS	MURIDAE	RODENTIA	MAMMALIA
-MICROMYS	MURIDAE	RODENTIA	MAMMALIA
-APODEMUS	MURIDAE	RODENTIA	MAMMALIA
-RATTUS	MURIDAE	RODENTIA	MAMMALIA
-LEMNISCONYS	MURIDAE	RODENTIA	MAMMALIA
-HYDROCHOERUS	HYDROCHOERIDAE	RODENTIA	MAMMALIA
-ORYCTOLAGUS	LEPORIDAE	LAGOMORPHA	MAMMALIA
-LEPUS	LEPORIDAE	LAGOMORPHA	MAMMALIA
-HYPOLAGUS	LEPORIDAE	LAGOMORPHA	MAMMALIA
-OCHOTONOIDES	LAGOMYIDAE	LAGOMORPHA	MAMMALIA
-PROLAGOMYS	LAGOMYIDAE	LAGOMORPHA	MAMMALIA
-OCHOTONA	LAGOMYIDAE	LAGOMORPHA	MAMMALIA
-PROLAGUS	LAGOMYIDAE	LAGOMORPHA	MAMMALIA
-MUSTELA	MUSTELIDAE	CARNIVORA	MAMMALIA
-MARTES	MUSTELIDAE	CARNIVORA	MAMMALIA
-GULO	MUSTELIDAE	CARNIVORA	MAMMALIA
-MELES	MUSTELIDAE	CARNIVORA	MAMMALIA
-LUTRA	MUSTELIDAE	CARNIVORA	MAMMALIA
-GALICTIS	MUSTELIDAE	CARNIVORA	MAMMALIA
-MEPHITIS	MUSTELIDAE	CARNIVORA	MAMMALIA
-BARANOGALE	MUSTELIDAE	CARNIVORA	MAMMALIA
-VORMELA	MUSTELIDAE	CARNIVORA	MAMMALIA
-MEGANTEREON	FELIDAE	CARNIVORA	MAMMALIA
-PANONICTIS	MUSTELIDAE	CARNIVORA	MAMMALIA
-MELLIVORA	MUSTELIDAE	CARNIVORA	MAMMALIA
-ENHYDRA	MUSTELIDAE	CARNIVORA	MAMMALIA
-CANIS	CANIDAE	CARNIVORA	MAMMALIA
-CUON	CANIDAE	CARNIVORA	MAMMALIA
-FENNECUS	CANIDAE	CARNIVORA	MAMMALIA
-ALOPEX	CANIDAE	CARNIVORA	MAMMALIA
-VULPES	CANIDAE	CARNIVORA	MAMMALIA
-NYCTEREUTES	CANIDAE	CARNIVORA	MAMMALIA
-LYCAON	CANIDAE	CARNIVORA	MAMMALIA
-AILURUS	AILURIDAE	CARNIVORA	MAMMALIA
-URSUS	URSIDAE	CARNIVORA	MAMMALIA
-HELARCTOS	URSIDAE	CARNIVORA	MAMMALIA
-TREMARCTOS	URSIDAE	CARNIVORA	MAMMALIA
-MELUSUS	URSIDAE	CARNIVORA	MAMMALIA
-PLIONARCTOS	URSIDAE	CARNIVORA	MAMMALIA
-ACINONYX	FELIDAE	CARNIVORA	MAMMALIA
-FELIS	FELIDAE	CARNIVORA	MAMMALIA
-CARACAL	FELIDAE	CARNIVORA	MAMMALIA
-PUMA	FELIDAE	CARNIVORA	MAMMALIA
-LYNX	FELIDAE	CARNIVORA	MAMMALIA
-PANTHERA	FELIDAE	CARNIVORA	MAMMALIA
-HOMOTHERIUM	FELIDAE	CARNIVORA	MAMMALIA
-MACHAIRODUS	FELIDAE	CARNIVORA	MAMMALIA
-GENETTA	VIVERRIDAE	CARNIVORA	MAMMALIA
-HERPESTES	VIVERRIDAE	CARNIVORA	MAMMALIA
-VIVERRA	VIVERRIDAE	CARNIVORA	MAMMALIA
-MUNGO	VIVERRIDAE	CARNIVORA	MAMMALIA
-FOSSA	VIVERRIDAE	CARNIVORA	MAMMALIA
-SURICATA	VIVERRIDAE	CARNIVORA	MAMMALIA
-CROCUTA	HYAENIDAE	CARNIVORA	MAMMALIA
-HYAENA	HYAENIDAE	CARNIVORA	MAMMALIA
-PROTELES	HYAENIDAE	CARNIVORA	MAMMALIA
-EURYBOAS	HYAENIDAE	CARNIVORA	MAMMALIA
-ODOBAENUS	ODOBAENIDAE	CARNIVORA	MAMMALIA
-PHOCA	PHOCIDAE	CARNIVORA	MAMMALIA
-PUSA	PHOCIDAE	CARNIVORA	MAMMALIA
-PAGOPHILUS	PHOCIDAE	CARNIVORA	MAMMALIA
-HALICHOERUS	PHOCIDAE	CARNIVORA	MAMMALIA
-ERIGNATHUS	PHOCIDAE	CARNIVORA	MAMMALIA
-CYSTOPHORA	PHOCIDAE	CARNIVORA	MAMMALIA
-MONACHUS	PHOCIDAE	CARNIVORA	MAMMALIA
-PHACOCHOERUS	SUIDAE	ARTIODACTYLA	MAMMALIA
-SUS	SUIDAE	ARTIODACTYLA	MAMMALIA
-HIPPOPOTAMUS	HIPPOPOTAMIDAE	ARTIODACTYLA	MAMMALIA
-CAMELUS	CAMELIDAE	ARTIODACTYLA	MAMMALIA
-LAMA	CAMELIDAE	ARTIODACTYLA	MAMMALIA
-GIRAFFA	GIRAFFIDAE	ARTIODACTYLA	MAMMALIA
-OKAPIA	GIRAFFIDAE	ARTIODACTYLA	MAMMALIA
-SIVATHERIUM	GIRAFFIDAE	ARTIODACTYLA	MAMMALIA
-CERVUS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-CROIZETOCEROS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-EUCLADOCEROS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-DAMA	CERVIDAE	ARTIODACTYLA	MAMMALIA
-ALCES	CERVIDAE	ARTIODACTYLA	MAMMALIA
-RANGIFER	CERVIDAE	ARTIODACTYLA	MAMMALIA
-MEGALOCEROS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-PRAEMEGACEROS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-ARVERNOCEROS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-CAPREOLUS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-MUNTIACUS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-ELAPHURUS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-AXIS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-HYELOPHUS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-SIKA	CERVIDAE	ARTIODACTYLA	MAMMALIA
-RUCERVUS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-PRJEVALSKIUM	CERVIDAE	ARTIODACTYLA	MAMMALIA
-PUDU	CERVIDAE	ARTIODACTYLA	MAMMALIA
-OZOTOCEROS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-MAZAMA	CERVIDAE	ARTIODACTYLA	MAMMALIA
-ODOCOILEUS	CERVIDAE	ARTIODACTYLA	MAMMALIA
-HYDROPOTES	CERVIDAE	ARTIODACTYLA	MAMMALIA
-ANTILOCAPRA	ANTILOCAPRIDAE	ARTIODACTYLA	MAMMALIA
-LEPTOBOS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-BOS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-BISON	BOVIDAE	ARTIODACTYLA	MAMMALIA
-BUBALUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-SYNCERUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-SOERGILIA	BOVIDAE	ARTIODACTYLA	MAMMALIA
-OVIBOS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-PRAEOVIBOS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-GAZELLOSPIRA	BOVIDAE	ARTIODACTYLA	MAMMALIA
-ALCELAPHUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-ANTIDORCAS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-ADDAX	BOVIDAE	ARTIODACTYLA	MAMMALIA
-BOSELAPHUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-GAZELLA	BOVIDAE	ARTIODACTYLA	MAMMALIA
-CONNOCHAETES	BOVIDAE	ARTIODACTYLA	MAMMALIA
-DAMALISCUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-HIPPOTRAGUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-KOBUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-ORYX	BOVIDAE	ARTIODACTYLA	MAMMALIA
-SYLVICAPRA	BOVIDAE	ARTIODACTYLA	MAMMALIA
-TAUROTRAGUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-TRAGELAPHUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-SAIGA	BOVIDAE	ARTIODACTYLA	MAMMALIA
-MYOTRAGUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-RUPICAPRA	BOVIDAE	ARTIODACTYLA	MAMMALIA
-GALLOGORAL	BOVIDAE	ARTIODACTYLA	MAMMALIA
-PROCAMPTOCERAS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-OVIS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-CAPRA	BOVIDAE	ARTIODACTYLA	MAMMALIA
-MEGALOVIS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-AMNOTRAGUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-HEMITRAGUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-PLIOTRAGUS	BOVIDAE	ARTIODACTYLA	MAMMALIA
-HIPPARION	EQUIDAE	PERISSODACTYLA	MAMMALIA
-EQUUS	EQUIDAE	PERISSODACTYLA	MAMMALIA
-TAPIRUS	TAPIRIDAE	PERISSODACTYLA	MAMMALIA
-DICERORHINUS	RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-ELASMOTHERIUM	RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-DICEROS	RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-RHINOCEROS	RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-CERAROTHERIUM	RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-STEPHANORHINUS	RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-ANANCUS	GOMPHOTERIIDAE	PROBOSCIDEA	MAMMALIA
-ELEPHAS	ELEPHANTIDAE	PROBOSCIDEA	MAMMALIA
-LOXODONTA	ELEPHANTIDAE	PROBOSCIDEA	MAMMALIA
-MAMMUTHUS	ELEPHANTIDAE	PROBOSCIDEA	MAMMALIA
-DELPHINUS	DELPHINIDAE	CETACEA	MAMMALIA
-TURSIOPS	DELPHINIDAE	CETACEA	MAMMALIA
-GLOBICEPHALA	DELPHINIDAE	CETACEA	MAMMALIA
-GRAMPUS	DELPHINIDAE	CETACEA	MAMMALIA
-ORCINUS	DELPHINIDAE	CETACEA	MAMMALIA
-PHOCAENA	PHOCAENIDAE	CETACEA	MAMMALIA
-DELPHINAPTERUS	MONODONLIDAE	CETACEA	MAMMALIA
-MONODON	MONODONLIDAE	CETACEA	MAMMALIA
-PHYSETER	PHYSETERIDAE	CETACEA	MAMMALIA
-HYPEROODON	ZIPHIIDAE	CETACEA	MAMMALIA
-ZYPHIUS	ZIPHIIDAE	CETACEA	MAMMALIA
-BALAENOPTERA	BALAONOPTERIDAE	CETACEA	MAMMALIA
-MEGAPTERA	BALAONOPTERIDAE	CETACEA	MAMMALIA
-BALAENA	BALAENIDAE	CETACEA	MAMMALIA
-GAVIA	GAVIIDAE	GAVIIFORMA	AVES
-PODICEPS	PODICIPEDIDAE	PODICIPEDIFORMA	AVES
-TACHYBAPTUS	PODICIPEDIDAE	PODICIPEDIFORMA	AVES
-PODILYMBUS	PODICIPEDIDAE	PODICIPEDIFORMA	AVES
-DIOMEDEA	DIOMEDEIDAE	PROCELLARIIFORMA	AVES
-OCEANODROMA	HYDROBATIDAE	PROCELLARIIFORMA	AVES
-OCEANITES	HYDROBATIDAE	PROCELLARIIFORMA	AVES
-HYDROBATES	HYDROBATIDAE	PROCELLARIIFORMA	AVES
-PELAGODROMA	HYDROBATIDAE	PROCELLARIIFORMA	AVES
-BULWERIA	PROCELLARIIDAE	PROCELLARIIFORMA	AVES
-PTERODROMA	PROCELLARIIDAE	PROCELLARIIFORMA	AVES
-FULMARUS	PROCELLARIIDAE	PROCELLARIIFORMA	AVES
-CALONECTRIS	PROCELLARIIDAE	PROCELLARIIFORMA	AVES
-PUFFINUS	PROCELLARIIDAE	PROCELLARIIFORMA	AVES
-SULA 	SULIDAE	PELECANIFORMA	AVES
-PELECANUS	PELECANIDAE	PELECANIFORMA	AVES
-PHALACROCORAX	PHALACROCORACIDAE	PELECANIFORMA	AVES
-BOTAURUS	ARDEIDAE	CICONIIFORMA	AVES
-IXOBRYCHUS	ARDEIDAE	CICONIIFORMA	AVES
-ARDEOLA	ARDEIDAE	CICONIIFORMA	AVES
-NYCTICORAX	ARDEIDAE	CICONIIFORMA	AVES
-BULBUCUS	ARDEIDAE	CICONIIFORMA	AVES
-EGRETTA	ARDEIDAE	CICONIIFORMA	AVES
-ARDEA	ARDEIDAE	CICONIIFORMA	AVES
-PLATALEA	THRESKIORNITHIDAE	CICONIIFORMA	AVES
-PLEGADIS	THRESKIORNITHIDAE	CICONIIFORMA	AVES
-THRESKIORNIS	THRESKIORNITHIDAE	CICONIIFORMA	AVES
-GERONTICUS	THRESKIORNITHIDAE	CICONIIFORMA	AVES
-CICONIA	CICONIIDAE	CICONIIFORMA	AVES
-PHOENICOPTRUS	PHOENICOPTERIDAE	PHOENICOPTERIFORMA	AVES
-CYGNUS	ANATIDAE	ANSERIFORMA	AVES
-BRANTA	ANATIDAE	ANSERIFORMA	AVES
-ANSER	ANATIDAE	ANSERIFORMA	AVES
-ANAS	ANATIDAE	ANSERIFORMA	AVES
-MARMARONETTA	ANATIDAE	ANSERIFORMA	AVES
-ALOPOCHEN	ANATIDAE	ANSERIFORMA	AVES
-AIX	ANATIDAE	ANSERIFORMA	AVES
-TADORNA	ANATIDAE	ANSERIFORMA	AVES
-NETTA	ANATIDAE	ANSERIFORMA	AVES
-AYTHYA	ANATIDAE	ANSERIFORMA	AVES
-BUCEPHALA	ANATIDAE	ANSERIFORMA	AVES
-HISTRIONICUS	ANATIDAE	ANSERIFORMA	AVES
-CLANGULA	ANATIDAE	ANSERIFORMA	AVES
-MELANITTA	ANATIDAE	ANSERIFORMA	AVES
-SOMATERIA	ANATIDAE	ANSERIFORMA	AVES
-POLYCTICTA	ANATIDAE	ANSERIFORMA	AVES
-MERGUS	ANATIDAE	ANSERIFORMA	AVES
-OXYURA	ANATIDAE	ANSERIFORMA	AVES
-NEOPHRON	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-GYPS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-AEGYPIUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-GYPAETUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-HALIAEETUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-AQUILA	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-HIERAAETUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-CIRCAETUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-BUTEO	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-PERNIS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-ACCIPITER	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-MILVUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-ELANUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-CIRCUS	ACCIPITRIDAE	ACCIPITRIFORMA	AVES
-PANDION	PANDIODIDAE	ACCIPITRIFORMA	AVES
-LAGOPUS	TETRAONIDAE	GALLIFORMA	AVES
-TETRAOGALLUS	TETRAONIDAE	GALLIFORMA	AVES
-TETRAO	TETRAONIDAE	GALLIFORMA	AVES
-BONASA	TETRAONIDAE	GALLIFORMA	AVES
-ALECTORIS	PHASIANIDAE	GALLIFORMA	AVES
-PERDIX	PHASIANIDAE	GALLIFORMA	AVES
-FRANCOLINUS	PHASIANIDAE	GALLIFORMA	AVES
-PHASIANUS	PHASIANIDAE	GALLIFORMA	AVES
-CHRYSOLOPUS	PHASIANIDAE	GALLIFORMA	AVES
-COTURNIX	PHASIANIDAE	GALLIFORMA	AVES
-TURNIX	TURNICIDAE	GRUIFORMA	AVES
-GRUS	GRUIDAE	GRUIFORMA	AVES
-ANTHROPOIDES	GRUIDAE	GRUIFORMA	AVES
-OTIS	OTITIDAE	GRUIFORMA	AVES
-TETRAX	OTITIDAE	GRUIFORMA	AVES
-CHLAMYDOTIS	OTITIDAE	GRUIFORMA	AVES
-RALLUS	RALLIDAE	GRUIFORMA	AVES
-CREX	RALLIDAE	GRUIFORMA	AVES
-PORZANA	RALLIDAE	GRUIFORMA	AVES
-PORPHYRIO	RALLIDAE	GRUIFORMA	AVES
-PORPHYRULLA	RALLIDAE	GRUIFORMA	AVES
-GALLINULA	RALLIDAE	GRUIFORMA	AVES
-FULICA	RALLIDAE	GRUIFORMA	AVES
-SYRRHAPTES	PTEROCLIDIDAE	PTEROCLIDIFORMA	AVES
-PTEROCLES	PTEROCLIDIDAE	PTEROCLIDIFORMA	AVES
-COLUMBA	COLUMBIDAE	COLUMBIFORMA	AVES
-STREPTOPELIA	COLUMBIDAE	COLUMBIFORMA	AVES
-CUCULUS	CUCULIDAE	CUCULIFORMA	AVES
-CLAMATOR	CUCULIDAE	CUCULIFORMA	AVES
-COCCYZUS	CUCULIDAE	CUCULIFORMA	AVES
-TYTO	TYTONIDAE	STRIGIFORMA	AVES
-OTUS	STRIGIDAE	STRIGIFORMA	AVES
-GLAUCIDIUM	STRIGIDAE	STRIGIFORMA	AVES
-ATHENE	STRIGIDAE	STRIGIFORMA	AVES
-AEGOLIUS	STRIGIDAE	STRIGIFORMA	AVES
-BUBO	STRIGIDAE	STRIGIFORMA	AVES
-NYCTEA	STRIGIDAE	STRIGIFORMA	AVES
-STRIX	STRIGIDAE	STRIGIFORMA	AVES
-CAPRIMULGUS	CAPRIMULGIDAE	CAPRIMULGIFORMA	AVES
-CHORDEILES	CAPRIMULGIDAE	CAPRIMULGIFORMA	AVES
-APUS	APODIDAE	APODIFORMA	AVES
-ALCEDO	ALCEDINIDAE	CORACIIFORMA	AVES
-CERYLE	ALCEDINIDAE	CORACIIFORMA	AVES
-CORACIA	CORACIIDAE	CORACIIFORMA	AVES
-MEROPS	MEROPIDAE	CORACIIFORMA	AVES
-UPUPA	UPUPIDAE	CORACIIFORMA	AVES
-PICUS	PICIDAE	PICIFORMA	AVES
-PICOIDES	PICIDAE	PICIFORMA	AVES
-DRYOCOPUS	PICIDAE	PICIFORMA	AVES
-JYNX	PICIDAE	PICIFORMA	AVES
-HAEMATOPUS	HAEMATOPODIDAE	CHARADRIIFORMA	AVES
-PLUVIALIS	CHARADRIIDAE	CHARADRIIFORMA	AVES
-EUDROMIAS	CHARADRIIDAE	CHARADRIIFORMA	AVES
-VANELLUS	CHARADRIIDAE	CHARADRIIFORMA	AVES
-HOPLOPTERUS	CHARADRIIDAE	CHARADRIIFORMA	AVES
-CHETTUSIA	CHARADRIIDAE	CHARADRIIFORMA	AVES
-ARENARIA	CHARADRIIDAE	CHARADRIIFORMA	AVES
-CHARADRIUS	CHARADRIIDAE	CHARADRIIFORMA	AVES
-CALIDRIS	SCOLOPACIDAE	CHARADRIIFORMA	AVES
-LIMICOLA	SCOLOPACIDAE	CHARADRIIFORMA	AVES
-LIMNODROMUS	SCOLOPACIDAE	CHARADRIIFORMA	AVES
-MICROPALAMA	SCOLOPACIDAE	CHARADRIIFORMA	AVES
-SCOLOPAX	SCOLOPACIDAE	CHARADRIIFORMA	AVES
-GALLINAGO	SCOLOPACIDAE	CHARADRIIFORMA	AVES
-LYMNOCRYPTES	SCOLOPACIDAE	CHARADRIIFORMA	AVES
-PHALAROPUS	PHALAROPIDAE	CHARADRIIFORMA	AVES
-STERCORARIUS	STERCORIIDAE	CHARADRIIFORMA	AVES
-PAGOPHILA	LARIDAE	CHARADRIIFORMA	AVES
-RHODOSTHETIA	LARIDAE	CHARADRIIFORMA	AVES
-LARUS	LARIDAE	CHARADRIIFORMA	AVES
-RISSA	LARIDAE	CHARADRIIFORMA	AVES
-NUMENIUS	LARIDAE	CHARADRIIFORMA	AVES
-LIMOSA	LARIDAE	CHARADRIIFORMA	AVES
-ACTITIS	LARIDAE	CHARADRIIFORMA	AVES
-TRINGA	LARIDAE	CHARADRIIFORMA	AVES
-XENUS	LARIDAE	CHARADRIIFORMA	AVES
-PHILOMACHUS	LARIDAE	CHARADRIIFORMA	AVES
-TRYNGITES	LARIDAE	CHARADRIIFORMA	AVES
-BARTRAMIA	LARIDAE	CHARADRIIFORMA	AVES
-RECURVIROSTRA	RECURVIROSTRIDAE	CHARADRIIFORMA	AVES
-HIMANTOPUS	RECURVIROSTRIDAE	CHARADRIIFORMA	AVES
-BURHINUS	BURHINIDAE	CHARADRIIFORMA	AVES
-CURSORIUS	GLAREOLIDAE	CHARADRIIFORMA	AVES
-GLAEROLA	GLAREOLIDAE	CHARADRIIFORMA	AVES
-GELOCHELIDON	STERNIDAE	CHARADRIIFORMA	AVES
-CHLIDONIAS	STERNIDAE	CHARADRIIFORMA	AVES
-STERNA	STERNIDAE	CHARADRIIFORMA	AVES
-ALCA	ALCIDAE	CHARADRIIFORMA	AVES
-URIA	ALCIDAE	CHARADRIIFORMA	AVES
-ALLE	ALCIDAE	CHARADRIIFORMA	AVES
-CEPHUS	ALCIDAE	CHARADRIIFORMA	AVES
-FRATERCULA	ALCIDAE	CHARADRIIFORMA	AVES
-CHERSOPHILUS	ALAUDIDAE	PASSERIFORMA	AVES
-CALANDRELLA	ALAUDIDAE	PASSERIFORMA	AVES
-MELANOCRYPHA	ALAUDIDAE	PASSERIFORMA	AVES
-GALERIDA	ALAUDIDAE	PASSERIFORMA	AVES
-ALAUDA	ALAUDIDAE	PASSERIFORMA	AVES
-LULLULA	ALAUDIDAE	PASSERIFORMA	AVES
-EREMOPHILA	ALAUDIDAE	PASSERIFORMA	AVES
-RIPARIA	HIRUNDINIDAE	PASSERIFORMA	AVES
-PTYONOPROGNE	HIRUNDINIDAE	PASSERIFORMA	AVES
-DELICHON	HIRUNDINIDAE	PASSERIFORMA	AVES
-HIRUNDO	HIRUNDINIDAE	PASSERIFORMA	AVES
-ANTHUS	MOTACILLIDAE	PASSERIFORMA	AVES
-MOTACILLA	MOTACILLIDAE	PASSERIFORMA	AVES
-ORIOLUS	ORIOLIDAE	PASSERIFORMA	AVES
-LANIUS	LANIIDAE	PASSERIFORMA	AVES
-STURNUS	STURNIDAE	PASSERIFORMA	AVES
-BOMBYCILLA	BOMBYCILLIDAE	PASSERIFORMA	AVES
-PERISOREUS	CORVIDAE	PASSERIFORMA	AVES
-CYANOPICA	CORVIDAE	PASSERIFORMA	AVES
-PICA	CORVIDAE	PASSERIFORMA	AVES
-NUCIFRAGA	CORVIDAE	PASSERIFORMA	AVES
-PYRRHOCORAX	CORVIDAE	PASSERIFORMA	AVES
-CORVUS	CORVIDAE	PASSERIFORMA	AVES
-CINCLUS	CINCLIDAE	PASSERIFORMA	AVES
-TROGLODYTES	TROGLODYTIDAE	PASSERIFORMA	AVES
-PRUNELLA	PRUNELLIDAE	PASSERIFORMA	AVES
-CETTIA	SYLVIDAE	PASSERIFORMA	AVES
-LOCUSTELLA	SYLVIDAE	PASSERIFORMA	AVES
-ACROCEPHALUS	SYLVIDAE	PASSERIFORMA	AVES
-CISTICOLA	SYLVIDAE	PASSERIFORMA	AVES
-HIPPOLAIS	SYLVIDAE	PASSERIFORMA	AVES
-SYLVIA	SYLVIDAE	PASSERIFORMA	AVES
-CERCOTRICHAS	TURDIDAE	PASSERIFORMA	AVES
-PHYLLOSCOPUS	TURDIDAE	PASSERIFORMA	AVES
-REGULUS	TURDIDAE	PASSERIFORMA	AVES
-CATHARUS	TURDIDAE	PASSERIFORMA	AVES
-TURDUS	TURDIDAE	PASSERIFORMA	AVES
-ZOOTHERA	TURDIDAE	PASSERIFORMA	AVES
-PARUS	PARIDAE	PASSERIFORMA	AVES
-AEGITHALOS	AEGITHALIDAE	PASSERIFORMA	AVES
-REMIZ	REMIZIDAE	PASSERIFORMA	AVES
-SITTA	SITTIDAE	PASSERIFORMA	AVES
-TICHODROMA	TICHODROMADIDAE	PASSERIFORMA	AVES
-CERTHIA	CERTHIIDAE	PASSERIFORMA	AVES
-PASSER	PASSERIDAE	PASSERIFORMA	AVES
-PETRONIA	PASSERIDAE	PASSERIFORMA	AVES
-FRINGILLA	FRINGILLIDAE	PASSERIFORMA	AVES
-PYRRHULA	FRINGILLIDAE	PASSERIFORMA	AVES
-COCCOTHRAUSTES	FRINGILLIDAE	PASSERIFORMA	AVES
-SERINUS	FRINGILLIDAE	PASSERIFORMA	AVES
-CARDUELIS	FRINGILLIDAE	PASSERIFORMA	AVES
-BUCANETES	FRINGILLIDAE	PASSERIFORMA	AVES
-PINICOLA	FRINGILLIDAE	PASSERIFORMA	AVES
-CARPODACUS	FRINGILLIDAE	PASSERIFORMA	AVES
-LOXIA	FRINGILLIDAE	PASSERIFORMA	AVES
-MILARIA	EMBERIZIDAE	PASSERIFORMA	AVES
-CALCARIUS	EMBERIZIDAE	PASSERIFORMA	AVES
-PLECTROPHENAX	EMBERIZIDAE	PASSERIFORMA	AVES
-EMBERIZA	EMBERIZIDAE	PASSERIFORMA	AVES
-MUSICAPA	MUSCICAPIDAE	PASSERIFORMA	AVES
-FICEDULA	MUSCICAPIDAE	PASSERIFORMA	AVES
-OENANTHE	MUSCICAPIDAE	PASSERIFORMA	AVES
-SAXICOLA	MUSCICAPIDAE	PASSERIFORMA	AVES
-MONTICOLA	MUSCICAPIDAE	PASSERIFORMA	AVES
-TARSIGER	MUSCICAPIDAE	PASSERIFORMA	AVES
-LUSCINIA	MUSCICAPIDAE	PASSERIFORMA	AVES
-IRANIA	MUSCICAPIDAE	PASSERIFORMA	AVES
-TESTUDO	TESTUDINIDAE	CHELONIA	REPTILIA
-ANGUIS	ANGUIDAE	SQUAMATA	REPTILIA
-OPHISAURUS	ANGUIDAE	SQUAMATA	REPTILIA
-EMYS	EMYDIDAE	CHELONIA	REPTILIA
-MAUREMYS	EMYDIDAE	CHELONIA	REPTILIA
-DERMOCHELYS	DERMOCHELYDAE	CHELONIA	REPTILIA
-CARETTA	CHELONIDAE	CHELONIA	REPTILIA
-LEPIDOCHELYS	CHELONIDAE	CHELONIA	REPTILIA
-CHELONIA	CHELONIDAE	CHELONIA	REPTILIA
-ERETHMOCHELYS	CHELONIDAE	CHELONIA	REPTILIA
-ALGYROIDES	LACERTIDAE	SQUAMATA	REPTILIA
-OPHISOPS	LACERTIDAE	SQUAMATA	REPTILIA
-PSAMMODROMUS	LACERTIDAE	SQUAMATA	REPTILIA
-EREMIAS	LACERTIDAE	SQUAMATA	REPTILIA
-ACANTHODACTYLUS	LACERTIDAE	SQUAMATA	REPTILIA
-LACERTA	LACERTIDAE	SQUAMATA	REPTILIA
-PODARCIS	LACERTIDAE	SQUAMATA	REPTILIA
-BLANUS	AMPHISBAENIDAE	SQUAMATA	REPTILIA
-TARENTOLA	GECKONIDAE	SQUAMATA	REPTILIA
-HEMIDACTYLUS	GECKONIDAE	SQUAMATA	REPTILIA
-CYRTODACTYLUS	GECKONIDAE	SQUAMATA	REPTILIA
-PHYLLODACTYLUS	GECKONIDAE	SQUAMATA	REPTILIA
-AGAMA	AGAMIDAE	SQUAMATA	REPTILIA
-ABLEPHARUS	SCINCIDAE	SQUAMATA	REPTILIA
-OPHIOMORUS	SCINCIDAE	SQUAMATA	REPTILIA
-CHALCYDES	SCINCIDAE	SQUAMATA	REPTILIA
-CHAMELEO	CHAMELEONTIDAE	SQUAMATA	REPTILIA
-TYPHLOPS	TYPHLOPIDAE	SERPENTES	REPTILIA
-ERYX	BOIDAE	SERPENTES	REPTILIA
-VIPERA	VIPERIDAE	SERPENTES	REPTILIA
-MALPOLON	COLUBRIDAE	SERPENTES	REPTILIA
-ELAPHE	COLUBRIDAE	SERPENTES	REPTILIA
-CORONELLA	COLUBRIDAE	SERPENTES	REPTILIA
-TELESCOPUS	COLUBRIDAE	SERPENTES	REPTILIA
-MACROPROTODON	COLUBRIDAE	SERPENTES	REPTILIA
-NATRIX	COLUBRIDAE	SERPENTES	REPTILIA
-SALAMANDRA	SALAMANDRIDAE	URODELA	AMPHIBIA
-BOS/BISON	BOVIDAE	ARTIODACTYLA	MAMMALIA
-FISSURELLA	FISSURELLIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-SALAMANDRINA	SALAMANDRIDAE	URODELA	AMPHIBIA
-CHIOGLOSSA	SALAMANDRIDAE	URODELA	AMPHIBIA
-PLEURODELES	SALAMANDRIDAE	URODELA	AMPHIBIA
-EUPROCTUS	SALAMANDRIDAE	URODELA	AMPHIBIA
-CERITHIUM	CERITHIIDAE	APOGASTROPODA	MOLLUSCA
-TURRITELLA	TURRITELLIDAE	APOGASTROPODA	MOLLUSCA
-TRITURUS	SALAMANDRIDAE	URODELA	AMPHIBIA
-MUREX	MURCIIDAE	APOGASTROPODA	MOLLUSCA
-MURICOPSIS	MURCIIDAE	APOGASTROPODA	MOLLUSCA
-OCENEBRA	MURCIIDAE	APOGASTROPODA	MOLLUSCA
-OCINEBRINA	MURCIIDAE	APOGASTROPODA	MOLLUSCA
-MITRELLA	COLUMBELLIDAE	APOGASTROPODA	MOLLUSCA
-MANGELIA	TURRIDAE	APOGASTROPODA	MOLLUSCA
-HYDROMANTES	PLETHODONTIDAE	URODELA	AMPHIBIA
-PROTEUS	PROTEIDAE	URODELA	AMPHIBIA
-PATELLA	PATELLIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-BOLMA	TURBINIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-HOMALOPOMA	TURBINIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-CLANCULUS	TROCHIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-CALLIOSTOMA	TROCHIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-GIBBULA	TROCHIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-MONODONTA	TROCHIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-JUJUBINUS	TROCHIDAE	ARCHAEOGASTROPODA	MOLLUSCA
-GRANARIA	CHONDRINIDAE	STYLOMMATOPHORA	MOLLUSCA
-SOLATOPUPA	CHONDRINIDAE	STYLOMMATOPHORA	MOLLUSCA
-BITTIUM	CERITHIIDAE	APOGASTROPODA	MOLLUSCA
-SUCCINEA	SUCCINEIDAE	STYLOMMATOPHORA	MOLLUSCA
-LITTORINA	LITTORINIDAE	APOGASTROPODA	MOLLUSCA
-MELARAPHE	LITTORINIDAE	APOGASTROPODA	MOLLUSCA
-RISSOA	RISSOIDAE	APOGASTROPODA	MOLLUSCA
-ALVANIA	RISSOIDAE	APOGASTROPODA	MOLLUSCA
-TRIVIA	TRIVIDAE	APOGASTROPODA	MOLLUSCA
-DISCUS	DISCIDAE	STYLOMMATOPHORA	MOLLUSCA
-VITREA	ZONITIDAE	STYLOMMATOPHORA	MOLLUSCA
-AEGOPINELLA	ZONITIDAE	STYLOMMATOPHORA	MOLLUSCA
-XEROTRICHA	HYGROMIIDAE	STYLOMMATOPHORA	MOLLUSCA
-NASSARIUS	NASSARIIDAE	APOGASTROPODA	MOLLUSCA
-COLUMBELLA	COLUMBELLIDAE	APOGASTROPODA	MOLLUSCA
-CERNUELLA	HYGROMIIDAE	STYLOMMATOPHORA	MOLLUSCA
-VEXILLUM	COSTELLARIIDAE	APOGASTROPODA	MOLLUSCA
-MITRA	MITRIDAE	APOGASTROPODA	MOLLUSCA
-CANTAREUS	HELICIDAE	STYLOMMATOPHORA	MOLLUSCA
-ARGNA	PUPILLIDAE	STYLOMMATOPHORA	MOLLUSCA
-CHONDRINA	CHONDRINIDAE	STYLOMMATOPHORA	MOLLUSCA
-JAMINIA	ENIDAE	STYLOMMATOPHORA	MOLLUSCA
-CLAUSILIA	CLAUSILIIDAE	STYLOMMATOPHORA	MOLLUSCA
-RUMINA	SUBULINIDAE	STYLOMMATOPHORA	MOLLUSCA
-TESTACELLA	TESTACELLIDAE	STYLOMMATOPHORA	MOLLUSCA
-OXYCHILUS	ZONITIDAE	STYLOMMATOPHORA	MOLLUSCA
-RETINELLA	ZONITIDAE	STYLOMMATOPHORA	MOLLUSCA
-MONACHA	HYGROMIIDAE	STYLOMMATOPHORA	MOLLUSCA
-CARDITA	CARDITIDAE	BIVALVIA	MOLLUSCA
-COELODONTA	RHINOCEROTIDAE	PERISSODACTYLA	MAMMALIA
-GARRULUS	CORVIDAE	PASSERIFORMA	AVES
-MONTIFRINGILLA	PASSERIDAE	PASSERIFORMA	AVES
-ASIO	STRIGIDAE	STRIGIFORMA	AVES
-CANDIDULA	HYGROMIIDAE	STYLOMMATOPHORA	MOLLUSCA
-DENDROCOPOS	PICIDAE	PICIFORMA	AVES
-HELICODONTA	HYGROMIIDAE	STYLOMMATOPHORA	MOLLUSCA
-CEPAEA	HELICIDAE	STYLOMMATOPHORA	MOLLUSCA
-HELIX	HELICIDAE	STYLOMMATOPHORA	MOLLUSCA
-MACULARIA	HELICIDAE	STYLOMMATOPHORA	MOLLUSCA
-THEBA	HELICIDAE	STYLOMMATOPHORA	MOLLUSCA
-EOBANIA	HELICIDAE	STYLOMMATOPHORA	MOLLUSCA
-LIMAX	LIMACIDAE	STYLOMMATOPHORA	MOLLUSCA
-PUPILLA	PUPILLIDAE	STYLOMMATOPHORA	MOLLUSCA
-ABIDA	CHONDRINIDAE	PULMONATA	MOLLUSCA
-BUFO	BUFONIDAE	ANURA	AMPHIBIA
-COLUBER	COLUBRIDAE	SQUAMATA	REPTILIA
-ERITHACUS	MUSCICAPIDAE	PASSERIFORMA	AVES
-FALCO	FALCONIDAE	FALCONIFORMA	AVES
-GALLUS	PHASIANIDAE	GALLIFORMA	AVES
-MUS	MURIDAE	RODENTIA	MAMMALIA
-PALAEOLOXODON	ELEPHANTIDAE	PROBOSCIDEA	MAMMALIA
-PHOENICURUS	MUSCICAPIDAE	PASSERIFORMA	AVES
-BOMBINA	DISCOGLOSSIDAE	ANURA	AMPHIBIA
-ALYTES	DISCOGLOSSIDAE	ANURA	AMPHIBIA
-DISCOGLOSSUS	DISCOGLOSSIDAE	ANURA	AMPHIBIA
-PELOBATES	PELOBATIDAE	ANURA	AMPHIBIA
-PELODYTES	PELOBATIDAE	ANURA	AMPHIBIA
-HYLA	HYLIDAE	ANURA	AMPHIBIA
-RANA	RANIDAE	ANURA	AMPHIBIA
-POMATIAS	POMATIASIDAE	NEOTAENIOGLOSSA	MOLLUSCA
-\.
+INSERT INTO remonte_genre VALUES ('MACACA', 'CERCOPITHECIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PONGO', 'PONGIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GORILLA', 'PONGIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PAN', 'PONGIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HOMO', 'HOMINIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('AUSTRALOPITHECUS', 'HOMINIDAE', 'PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('EUROPAEUS', 'ERINACEIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ALGIRUS', 'ERINACEIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DAVIDI', 'ERINACEIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HEMIECHINUS', 'ERINACEIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GALEMYS', 'TALPIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TALPA', 'TALPIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DESMANA', 'TALPIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SOREX', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('NEOMYS', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SUNCUS', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CROCIDURA', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MYOSOREX', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DEPRANOSOREX', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PETENYIA', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DEINSDORFIA', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BLARINELLA', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BERENENDIA', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('EPISORICULUS', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SORICULUS', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BLARINOIDES', 'SORICIDAE', 'INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TADARIDA', 'MOLOSSIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SAUROMYS', 'MOLOSSIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('RHINOLOPHUS', 'RHINOLOPHIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MYOTIS', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('VESPERTILIO', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('EPTESICUS', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('NYCTALUS', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PIPISTRELLUS', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BARBASTELLA', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PLECOTUS', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MINIOPTERUS', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LASIURUS', 'VESPERTILIONIDAE', 'CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MICROTUS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TERRICOLA', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ALLOPHAIOMYS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DYNAROMYS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ARVICOLA', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ONDRATA', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CLETHRIONOMYS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LEMMUS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MYOPUS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DICROSTONYX', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ELLOBIUS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LAGURUS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MIMOMYS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PLIOMYS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('UNGAROMYS', 'ARVICOLIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SPALAX', 'SPALACIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PROSIPHNEUS', 'SPALACIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MYOSPALAX', 'SPALACIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SICISTA', 'DIPODIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ALLACTAGA', 'DIPODIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CRICETUS', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('VILLANYIA', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MESOCRICETUS', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ALLOCRICETUS', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PEROMYSCUS', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CRICETULUS', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MERIONES', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CRICETINUS', 'CRICETIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CASTOR', 'CASTORIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TROGONTHERIUM', 'CASTORIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MYOCASTOR', 'CAPROMYIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HYSTRIX', 'HYSTRICIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GLIRULUS', 'GLIRIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ELIOMYS', 'GLIRIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MYOMIMUS', 'GLIRIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DRYOMYS', 'GLIRIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MUSCARDINUS', 'GLIRIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GLIS', 'GLIRIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SCIURUS', 'SCIURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PLIOLAGUS ', 'LEPORIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PTEROMYS', 'SCIURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TAMIAS', 'SCIURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CITELLUS', 'SCIURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MARMOTA', 'SCIURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CYNONYS', 'SCIURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('RHAGAMYS', 'MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ACOMYS', 'MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MICROMYS', 'MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('APODEMUS', 'MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('RATTUS', 'MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LEMNISCONYS', 'MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HYDROCHOERUS', 'HYDROCHOERIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ORYCTOLAGUS', 'LEPORIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LEPUS', 'LEPORIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HYPOLAGUS', 'LEPORIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('OCHOTONOIDES', 'LAGOMYIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PROLAGOMYS', 'LAGOMYIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('OCHOTONA', 'LAGOMYIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PROLAGUS', 'LAGOMYIDAE', 'LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MUSTELA', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MARTES', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GULO', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MELES', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LUTRA', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GALICTIS', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MEPHITIS', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BARANOGALE', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('VORMELA', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MEGANTEREON', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PANONICTIS', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MELLIVORA', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ENHYDRA', 'MUSTELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CANIS', 'CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CUON', 'CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('FENNECUS', 'CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ALOPEX', 'CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('VULPES', 'CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('NYCTEREUTES', 'CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LYCAON', 'CANIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('AILURUS', 'AILURIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('URSUS', 'URSIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HELARCTOS', 'URSIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TREMARCTOS', 'URSIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MELUSUS', 'URSIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PLIONARCTOS', 'URSIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ACINONYX', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('FELIS', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CARACAL', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PUMA', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LYNX', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PANTHERA', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HOMOTHERIUM', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MACHAIRODUS', 'FELIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GENETTA', 'VIVERRIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HERPESTES', 'VIVERRIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('VIVERRA', 'VIVERRIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MUNGO', 'VIVERRIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('FOSSA', 'VIVERRIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SURICATA', 'VIVERRIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CROCUTA', 'HYAENIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HYAENA', 'HYAENIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PROTELES', 'HYAENIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('EURYBOAS', 'HYAENIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ODOBAENUS', 'ODOBAENIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PHOCA', 'PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PUSA', 'PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PAGOPHILUS', 'PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HALICHOERUS', 'PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ERIGNATHUS', 'PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CYSTOPHORA', 'PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MONACHUS', 'PHOCIDAE', 'CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PHACOCHOERUS', 'SUIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SUS', 'SUIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HIPPOPOTAMUS', 'HIPPOPOTAMIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CAMELUS', 'CAMELIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LAMA', 'CAMELIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GIRAFFA', 'GIRAFFIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('OKAPIA', 'GIRAFFIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SIVATHERIUM', 'GIRAFFIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CERVUS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CROIZETOCEROS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('EUCLADOCEROS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DAMA', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ALCES', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('RANGIFER', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MEGALOCEROS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PRAEMEGACEROS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ARVERNOCEROS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CAPREOLUS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MUNTIACUS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ELAPHURUS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('AXIS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HYELOPHUS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SIKA', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('RUCERVUS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PRJEVALSKIUM', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PUDU', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('OZOTOCEROS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MAZAMA', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ODOCOILEUS', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HYDROPOTES', 'CERVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ANTILOCAPRA', 'ANTILOCAPRIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LEPTOBOS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BOS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BISON', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BUBALUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SYNCERUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SOERGILIA', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('OVIBOS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PRAEOVIBOS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GAZELLOSPIRA', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ALCELAPHUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ANTIDORCAS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ADDAX', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BOSELAPHUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GAZELLA', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CONNOCHAETES', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DAMALISCUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HIPPOTRAGUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('KOBUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ORYX', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SYLVICAPRA', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TAUROTRAGUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TRAGELAPHUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('SAIGA', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MYOTRAGUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('RUPICAPRA', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GALLOGORAL', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PROCAMPTOCERAS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('OVIS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CAPRA', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MEGALOVIS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('AMNOTRAGUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HEMITRAGUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PLIOTRAGUS', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HIPPARION', 'EQUIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('EQUUS', 'EQUIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TAPIRUS', 'TAPIRIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DICERORHINUS', 'RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ELASMOTHERIUM', 'RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DICEROS', 'RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('RHINOCEROS', 'RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('CERAROTHERIUM', 'RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('STEPHANORHINUS', 'RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ANANCUS', 'GOMPHOTERIIDAE', 'PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ELEPHAS', 'ELEPHANTIDAE', 'PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('LOXODONTA', 'ELEPHANTIDAE', 'PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MAMMUTHUS', 'ELEPHANTIDAE', 'PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DELPHINUS', 'DELPHINIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('TURSIOPS', 'DELPHINIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GLOBICEPHALA', 'DELPHINIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GRAMPUS', 'DELPHINIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ORCINUS', 'DELPHINIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PHOCAENA', 'PHOCAENIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('DELPHINAPTERUS', 'MONODONLIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MONODON', 'MONODONLIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PHYSETER', 'PHYSETERIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('HYPEROODON', 'ZIPHIIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('ZYPHIUS', 'ZIPHIIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BALAENOPTERA', 'BALAONOPTERIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('MEGAPTERA', 'BALAONOPTERIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('BALAENA', 'BALAENIDAE', 'CETACEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GAVIA', 'GAVIIDAE', 'GAVIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PODICEPS', 'PODICIPEDIDAE', 'PODICIPEDIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TACHYBAPTUS', 'PODICIPEDIDAE', 'PODICIPEDIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PODILYMBUS', 'PODICIPEDIDAE', 'PODICIPEDIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('DIOMEDEA', 'DIOMEDEIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('OCEANODROMA', 'HYDROBATIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('OCEANITES', 'HYDROBATIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HYDROBATES', 'HYDROBATIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PELAGODROMA', 'HYDROBATIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BULWERIA', 'PROCELLARIIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PTERODROMA', 'PROCELLARIIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('FULMARUS', 'PROCELLARIIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CALONECTRIS', 'PROCELLARIIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PUFFINUS', 'PROCELLARIIDAE', 'PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SULA ', 'SULIDAE', 'PELECANIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PELECANUS', 'PELECANIDAE', 'PELECANIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PHALACROCORAX', 'PHALACROCORACIDAE', 'PELECANIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BOTAURUS', 'ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('IXOBRYCHUS', 'ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ARDEOLA', 'ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('NYCTICORAX', 'ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BULBUCUS', 'ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('EGRETTA', 'ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ARDEA', 'ARDEIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PLATALEA', 'THRESKIORNITHIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PLEGADIS', 'THRESKIORNITHIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('THRESKIORNIS', 'THRESKIORNITHIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GERONTICUS', 'THRESKIORNITHIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CICONIA', 'CICONIIDAE', 'CICONIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PHOENICOPTRUS', 'PHOENICOPTERIDAE', 'PHOENICOPTERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CYGNUS', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BRANTA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ANSER', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ANAS', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MARMARONETTA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ALOPOCHEN', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('AIX', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TADORNA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('NETTA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('AYTHYA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BUCEPHALA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HISTRIONICUS', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CLANGULA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MELANITTA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SOMATERIA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('POLYCTICTA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MERGUS', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('OXYURA', 'ANATIDAE', 'ANSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('NEOPHRON', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GYPS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('AEGYPIUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GYPAETUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HALIAEETUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('AQUILA', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HIERAAETUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CIRCAETUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BUTEO', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PERNIS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ACCIPITER', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MILVUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ELANUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CIRCUS', 'ACCIPITRIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PANDION', 'PANDIODIDAE', 'ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LAGOPUS', 'TETRAONIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TETRAOGALLUS', 'TETRAONIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TETRAO', 'TETRAONIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BONASA', 'TETRAONIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ALECTORIS', 'PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PERDIX', 'PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('FRANCOLINUS', 'PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PHASIANUS', 'PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CHRYSOLOPUS', 'PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('COTURNIX', 'PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TURNIX', 'TURNICIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GRUS', 'GRUIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ANTHROPOIDES', 'GRUIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('OTIS', 'OTITIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TETRAX', 'OTITIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CHLAMYDOTIS', 'OTITIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('RALLUS', 'RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CREX', 'RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PORZANA', 'RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PORPHYRIO', 'RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PORPHYRULLA', 'RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GALLINULA', 'RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('FULICA', 'RALLIDAE', 'GRUIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SYRRHAPTES', 'PTEROCLIDIDAE', 'PTEROCLIDIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PTEROCLES', 'PTEROCLIDIDAE', 'PTEROCLIDIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('COLUMBA', 'COLUMBIDAE', 'COLUMBIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('STREPTOPELIA', 'COLUMBIDAE', 'COLUMBIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CUCULUS', 'CUCULIDAE', 'CUCULIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CLAMATOR', 'CUCULIDAE', 'CUCULIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('COCCYZUS', 'CUCULIDAE', 'CUCULIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TYTO', 'TYTONIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('OTUS', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GLAUCIDIUM', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ATHENE', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('AEGOLIUS', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BUBO', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('NYCTEA', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('STRIX', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CAPRIMULGUS', 'CAPRIMULGIDAE', 'CAPRIMULGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CHORDEILES', 'CAPRIMULGIDAE', 'CAPRIMULGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('APUS', 'APODIDAE', 'APODIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ALCEDO', 'ALCEDINIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CERYLE', 'ALCEDINIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CORACIA', 'CORACIIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MEROPS', 'MEROPIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('UPUPA', 'UPUPIDAE', 'CORACIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PICUS', 'PICIDAE', 'PICIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PICOIDES', 'PICIDAE', 'PICIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('DRYOCOPUS', 'PICIDAE', 'PICIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('JYNX', 'PICIDAE', 'PICIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HAEMATOPUS', 'HAEMATOPODIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PLUVIALIS', 'CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('EUDROMIAS', 'CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('VANELLUS', 'CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HOPLOPTERUS', 'CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CHETTUSIA', 'CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ARENARIA', 'CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CHARADRIUS', 'CHARADRIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CALIDRIS', 'SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LIMICOLA', 'SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LIMNODROMUS', 'SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MICROPALAMA', 'SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SCOLOPAX', 'SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GALLINAGO', 'SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LYMNOCRYPTES', 'SCOLOPACIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PHALAROPUS', 'PHALAROPIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('STERCORARIUS', 'STERCORIIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PAGOPHILA', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('RHODOSTHETIA', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LARUS', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('RISSA', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('NUMENIUS', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LIMOSA', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ACTITIS', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TRINGA', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('XENUS', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PHILOMACHUS', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TRYNGITES', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BARTRAMIA', 'LARIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('RECURVIROSTRA', 'RECURVIROSTRIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HIMANTOPUS', 'RECURVIROSTRIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BURHINUS', 'BURHINIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CURSORIUS', 'GLAREOLIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GLAEROLA', 'GLAREOLIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GELOCHELIDON', 'STERNIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CHLIDONIAS', 'STERNIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('STERNA', 'STERNIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ALCA', 'ALCIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('URIA', 'ALCIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ALLE', 'ALCIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CEPHUS', 'ALCIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('FRATERCULA', 'ALCIDAE', 'CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CHERSOPHILUS', 'ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CALANDRELLA', 'ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MELANOCRYPHA', 'ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GALERIDA', 'ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ALAUDA', 'ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LULLULA', 'ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('EREMOPHILA', 'ALAUDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('RIPARIA', 'HIRUNDINIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PTYONOPROGNE', 'HIRUNDINIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('DELICHON', 'HIRUNDINIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HIRUNDO', 'HIRUNDINIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ANTHUS', 'MOTACILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MOTACILLA', 'MOTACILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ORIOLUS', 'ORIOLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LANIUS', 'LANIIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('STURNUS', 'STURNIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BOMBYCILLA', 'BOMBYCILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PERISOREUS', 'CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CYANOPICA', 'CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PICA', 'CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('NUCIFRAGA', 'CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PYRRHOCORAX', 'CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CORVUS', 'CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CINCLUS', 'CINCLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TROGLODYTES', 'TROGLODYTIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PRUNELLA', 'PRUNELLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CETTIA', 'SYLVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LOCUSTELLA', 'SYLVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ACROCEPHALUS', 'SYLVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CISTICOLA', 'SYLVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HIPPOLAIS', 'SYLVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SYLVIA', 'SYLVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CERCOTRICHAS', 'TURDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PHYLLOSCOPUS', 'TURDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('REGULUS', 'TURDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CATHARUS', 'TURDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TURDUS', 'TURDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ZOOTHERA', 'TURDIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PARUS', 'PARIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('AEGITHALOS', 'AEGITHALIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('REMIZ', 'REMIZIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SITTA', 'SITTIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TICHODROMA', 'TICHODROMADIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CERTHIA', 'CERTHIIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PASSER', 'PASSERIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PETRONIA', 'PASSERIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('FRINGILLA', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PYRRHULA', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('COCCOTHRAUSTES', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SERINUS', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CARDUELIS', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BUCANETES', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PINICOLA', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CARPODACUS', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LOXIA', 'FRINGILLIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MILARIA', 'EMBERIZIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CALCARIUS', 'EMBERIZIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('PLECTROPHENAX', 'EMBERIZIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('EMBERIZA', 'EMBERIZIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MUSICAPA', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('FICEDULA', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('OENANTHE', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('SAXICOLA', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MONTICOLA', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TARSIGER', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('LUSCINIA', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('IRANIA', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('TESTUDO', 'TESTUDINIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ANGUIS', 'ANGUIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('OPHISAURUS', 'ANGUIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('EMYS', 'EMYDIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('MAUREMYS', 'EMYDIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('DERMOCHELYS', 'DERMOCHELYDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('CARETTA', 'CHELONIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('LEPIDOCHELYS', 'CHELONIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('CHELONIA', 'CHELONIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ERETHMOCHELYS', 'CHELONIDAE', 'CHELONIA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ALGYROIDES', 'LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('OPHISOPS', 'LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('PSAMMODROMUS', 'LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('EREMIAS', 'LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ACANTHODACTYLUS', 'LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('LACERTA', 'LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('PODARCIS', 'LACERTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('BLANUS', 'AMPHISBAENIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('TARENTOLA', 'GECKONIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('HEMIDACTYLUS', 'GECKONIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('CYRTODACTYLUS', 'GECKONIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('PHYLLODACTYLUS', 'GECKONIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('AGAMA', 'AGAMIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ABLEPHARUS', 'SCINCIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('OPHIOMORUS', 'SCINCIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('CHALCYDES', 'SCINCIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('CHAMELEO', 'CHAMELEONTIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('TYPHLOPS', 'TYPHLOPIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ERYX', 'BOIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('VIPERA', 'VIPERIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('MALPOLON', 'COLUBRIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ELAPHE', 'COLUBRIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('CORONELLA', 'COLUBRIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('TELESCOPUS', 'COLUBRIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('MACROPROTODON', 'COLUBRIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('NATRIX', 'COLUBRIDAE', 'SERPENTES', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('SALAMANDRA', 'SALAMANDRIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('BOS/BISON', 'BOVIDAE', 'ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('FISSURELLA', 'FISSURELLIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('SALAMANDRINA', 'SALAMANDRIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('CHIOGLOSSA', 'SALAMANDRIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('PLEURODELES', 'SALAMANDRIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('EUPROCTUS', 'SALAMANDRIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('CERITHIUM', 'CERITHIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('TURRITELLA', 'TURRITELLIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('TRITURUS', 'SALAMANDRIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('MUREX', 'MURCIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MURICOPSIS', 'MURCIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('OCENEBRA', 'MURCIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('OCINEBRINA', 'MURCIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MITRELLA', 'COLUMBELLIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MANGELIA', 'TURRIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('HYDROMANTES', 'PLETHODONTIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('PROTEUS', 'PROTEIDAE', 'URODELA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('PATELLA', 'PATELLIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('BOLMA', 'TURBINIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('HOMALOPOMA', 'TURBINIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CLANCULUS', 'TROCHIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CALLIOSTOMA', 'TROCHIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('GIBBULA', 'TROCHIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MONODONTA', 'TROCHIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('JUJUBINUS', 'TROCHIDAE', 'ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('GRANARIA', 'CHONDRINIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('SOLATOPUPA', 'CHONDRINIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('BITTIUM', 'CERITHIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('SUCCINEA', 'SUCCINEIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('LITTORINA', 'LITTORINIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MELARAPHE', 'LITTORINIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('RISSOA', 'RISSOIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('ALVANIA', 'RISSOIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('TRIVIA', 'TRIVIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('DISCUS', 'DISCIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('VITREA', 'ZONITIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('AEGOPINELLA', 'ZONITIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('XEROTRICHA', 'HYGROMIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('NASSARIUS', 'NASSARIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('COLUMBELLA', 'COLUMBELLIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CERNUELLA', 'HYGROMIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('VEXILLUM', 'COSTELLARIIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MITRA', 'MITRIDAE', 'APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CANTAREUS', 'HELICIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('ARGNA', 'PUPILLIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CHONDRINA', 'CHONDRINIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('JAMINIA', 'ENIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CLAUSILIA', 'CLAUSILIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('RUMINA', 'SUBULINIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('TESTACELLA', 'TESTACELLIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('OXYCHILUS', 'ZONITIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('RETINELLA', 'ZONITIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MONACHA', 'HYGROMIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CARDITA', 'CARDITIDAE', 'BIVALVIA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('COELODONTA', 'RHINOCEROTIDAE', 'PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('GARRULUS', 'CORVIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MONTIFRINGILLA', 'PASSERIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('ASIO', 'STRIGIDAE', 'STRIGIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('CANDIDULA', 'HYGROMIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('DENDROCOPOS', 'PICIDAE', 'PICIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('HELICODONTA', 'HYGROMIIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('CEPAEA', 'HELICIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('HELIX', 'HELICIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('MACULARIA', 'HELICIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('THEBA', 'HELICIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('EOBANIA', 'HELICIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('LIMAX', 'LIMACIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('PUPILLA', 'PUPILLIDAE', 'STYLOMMATOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('ABIDA', 'CHONDRINIDAE', 'PULMONATA', 'MOLLUSCA');
+INSERT INTO remonte_genre VALUES ('BUFO', 'BUFONIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('COLUBER', 'COLUBRIDAE', 'SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_genre VALUES ('ERITHACUS', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('FALCO', 'FALCONIDAE', 'FALCONIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('GALLUS', 'PHASIANIDAE', 'GALLIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('MUS', 'MURIDAE', 'RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PALAEOLOXODON', 'ELEPHANTIDAE', 'PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_genre VALUES ('PHOENICURUS', 'MUSCICAPIDAE', 'PASSERIFORMA', 'AVES');
+INSERT INTO remonte_genre VALUES ('BOMBINA', 'DISCOGLOSSIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('ALYTES', 'DISCOGLOSSIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('DISCOGLOSSUS', 'DISCOGLOSSIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('PELOBATES', 'PELOBATIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('PELODYTES', 'PELOBATIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('HYLA', 'HYLIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('RANA', 'RANIDAE', 'ANURA', 'AMPHIBIA');
+INSERT INTO remonte_genre VALUES ('POMATIAS', 'POMATIASIDAE', 'NEOTAENIOGLOSSA', 'MOLLUSCA');
 
 
 --
 -- Data for Name: remonte_ordre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY remonte_ordre (ordre, classe) FROM stdin;
-PRIMATA	MAMMALIA
-INSECTIVORA	MAMMALIA
-CHIROPTERA	MAMMALIA
-RODENTIA	MAMMALIA
-LAGOMORPHA	MAMMALIA
-CARNIVORA	MAMMALIA
-ARTIODACTYLA	MAMMALIA
-PERISSODACTYLA	MAMMALIA
-PROBOSCIDEA	MAMMALIA
-CETACEA	MAMMALIA
-PODICIPEDIFORMA	AVES
-PROCELLARIIFORMA	AVES
-PELECANIFORMA	AVES
-CICONIIFORMA	AVES
-PHOENICOPTERIFORMA	AVES
-ANSERIFORMA	AVES
-ACCIPITRIFORMA	AVES
-FALCONIFORMA	AVES
-GALLIFORMA	AVES
-GRUIFORMA	AVES
-PTEROCLIDIFORMA	AVES
-COLUMBIFORMA	AVES
-CUCULIFORMA	AVES
-STRIGIFORMA	AVES
-CAPRIMULGIFORMA	AVES
-APODIFORMA	AVES
-CORACIIFORMA	AVES
-PICIFORMA	AVES
-CHARADRIIFORMA	AVES
-PASSERIFORMA	AVES
-IND	MAMMALIA
-HERB	MAMMALIA
-PH	MAMMALIA
-GH	MAMMALIA
-ARCHAEOGASTROPODA	MOLLUSCA
-APOGASTROPODA	MOLLUSCA
-ANURA	AMPHIBIA
-SQUAMATA	REPTILIA
-URODELA	AMPHIBIA
-TESTUDINES	REPTILIA
-PULMONATA	MOLLUSCA
-MYTILOIDA	MOLLUSCA
-MESOGASTROPODA	MOLLUSCA
-ARCOIDA	MOLLUSCA
-BIVALVIA	MOLLUSCA
-NEOGASTROPODA	MOLLUSCA
-POLYPLACOPHORA	MOLLUSCA
-PTEROIDA	MOLLUSCA
-GAVIIFORMA	AVES
-\.
+INSERT INTO remonte_ordre VALUES ('PRIMATA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('INSECTIVORA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('CHIROPTERA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('RODENTIA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('LAGOMORPHA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('CARNIVORA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('ARTIODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('PERISSODACTYLA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('PROBOSCIDEA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('CETACEA', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('PODICIPEDIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('PROCELLARIIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('PELECANIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('CICONIIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('PHOENICOPTERIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('ANSERIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('ACCIPITRIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('FALCONIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('GALLIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('GRUIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('PTEROCLIDIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('COLUMBIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('CUCULIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('STRIGIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('CAPRIMULGIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('APODIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('CORACIIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('PICIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('CHARADRIIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('PASSERIFORMA', 'AVES');
+INSERT INTO remonte_ordre VALUES ('IND', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('HERB', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('PH', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('GH', 'MAMMALIA');
+INSERT INTO remonte_ordre VALUES ('ARCHAEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('APOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('ANURA', 'AMPHIBIA');
+INSERT INTO remonte_ordre VALUES ('SQUAMATA', 'REPTILIA');
+INSERT INTO remonte_ordre VALUES ('URODELA', 'AMPHIBIA');
+INSERT INTO remonte_ordre VALUES ('TESTUDINES', 'REPTILIA');
+INSERT INTO remonte_ordre VALUES ('PULMONATA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('MYTILOIDA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('MESOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('ARCOIDA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('BIVALVIA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('NEOGASTROPODA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('POLYPLACOPHORA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('PTEROIDA', 'MOLLUSCA');
+INSERT INTO remonte_ordre VALUES ('GAVIIFORMA', 'AVES');
 
 
 --
 -- Data for Name: requete; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY requete (nomrequete, coderequete) FROM stdin;
-\.
 
 
 --
 -- Data for Name: retouche; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY retouche ("zone", numero, bis, r_ordre, r_type, r_obliquite, r_denticulation, r_cas, r_utilisation, r_dimension, r_association, r_superposition, r_extremite, r_bord, r_frequence, r_ecrasement, r_lustrage, r_strie, r_origine, r_destination, r_sens, r_tranchant, r_relation, r_extension) FROM stdin;
-\.
 
 
 --
 -- Data for Name: stigmate; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY stigmate ("zone", numero, bis, s_ordre, s_type, s_sous_type, s_lustrage, s_polissage, s_sub, s_localisation, s_situation, s_relation, s_composite, s_simple, s_support, s_roche, s_geometrie, s_alteration, s_concretion, s_plan, s_dessin, s_coupe, s_photo, s_analyse, s_longueur, s_largeur, s_epaisseur, s_poids, s_outil, s_cimx, s_cimn, s_cr1s, s_cr2s, s_timx2, s_timn2, s_tr1s, s_tr2s, s_tang, s_numero) FROM stdin;
-\.
 
 
 --
 -- Data for Name: trace; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY trace ("zone", numero, bis, t_ensemble, t_nature, t_nombre, t_agent, t_phenomene, t_localisation, t_position, t_locmusc, t_longueur, t_classe, t_largeur, t_profondeur, t_section, t_diametre, t_dstrie, t_trace, t_direction, t_sens, t_allure, t_description, t_dessin, t_replique, t_photo) FROM stdin;
-\.
 
 
 --
 -- Data for Name: usure_dent; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY usure_dent ("zone", numero, bis, ud_serie, ud_type, ud_lateralite, ud_usure, ud_fragmentation) FROM stdin;
-\.
 
 
 --
@@ -15871,14 +15236,6 @@ ALTER TABLE ONLY controle_zone
 
 
 --
--- Name: controlec__forme_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY controlec__forme
-    ADD CONSTRAINT controlec__forme_pkey PRIMARY KEY (c_forme);
-
-
---
 -- Name: coprolithe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -17003,9 +16360,9 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 REVOKE ALL ON TABLE biface FROM PUBLIC;
 REVOKE ALL ON TABLE biface FROM postgres;
 GRANT ALL ON TABLE biface TO postgres;
-GRANT ALL ON TABLE biface TO lazaret;
-GRANT ALL ON TABLE biface TO superlazaret;
-GRANT SELECT ON TABLE biface TO visiteurlazaret;
+GRANT ALL ON TABLE biface TO databasename;
+GRANT ALL ON TABLE biface TO superdatabasename;
+GRANT SELECT ON TABLE biface TO visiteurdatabasename;
 GRANT SELECT ON TABLE biface TO PUBLIC;
 
 
@@ -17016,9 +16373,9 @@ GRANT SELECT ON TABLE biface TO PUBLIC;
 REVOKE ALL ON TABLE bord FROM PUBLIC;
 REVOKE ALL ON TABLE bord FROM postgres;
 GRANT ALL ON TABLE bord TO postgres;
-GRANT ALL ON TABLE bord TO lazaret;
-GRANT ALL ON TABLE bord TO superlazaret;
-GRANT SELECT ON TABLE bord TO visiteurlazaret;
+GRANT ALL ON TABLE bord TO databasename;
+GRANT ALL ON TABLE bord TO superdatabasename;
+GRANT SELECT ON TABLE bord TO visiteurdatabasename;
 
 
 --
@@ -17028,9 +16385,9 @@ GRANT SELECT ON TABLE bord TO visiteurlazaret;
 REVOKE ALL ON TABLE carnet FROM PUBLIC;
 REVOKE ALL ON TABLE carnet FROM postgres;
 GRANT ALL ON TABLE carnet TO postgres;
-GRANT ALL ON TABLE carnet TO lazaret;
-GRANT ALL ON TABLE carnet TO superlazaret;
-GRANT SELECT ON TABLE carnet TO visiteurlazaret;
+GRANT ALL ON TABLE carnet TO databasename;
+GRANT ALL ON TABLE carnet TO superdatabasename;
+GRANT SELECT ON TABLE carnet TO visiteurdatabasename;
 
 
 --
@@ -17041,8 +16398,8 @@ REVOKE ALL ON TABLE controle_b_amenagement_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amenagement_bord FROM postgres;
 GRANT ALL ON TABLE controle_b_amenagement_bord TO postgres;
 GRANT SELECT ON TABLE controle_b_amenagement_bord TO PUBLIC;
-GRANT SELECT ON TABLE controle_b_amenagement_bord TO lazaret;
-GRANT ALL ON TABLE controle_b_amenagement_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_b_amenagement_bord TO databasename;
+GRANT ALL ON TABLE controle_b_amenagement_bord TO superdatabasename;
 
 
 --
@@ -17052,8 +16409,8 @@ GRANT ALL ON TABLE controle_b_amenagement_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_b_amenagement_distal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amenagement_distal FROM postgres;
 GRANT ALL ON TABLE controle_b_amenagement_distal TO postgres;
-GRANT SELECT ON TABLE controle_b_amenagement_distal TO lazaret;
-GRANT ALL ON TABLE controle_b_amenagement_distal TO superlazaret;
+GRANT SELECT ON TABLE controle_b_amenagement_distal TO databasename;
+GRANT ALL ON TABLE controle_b_amenagement_distal TO superdatabasename;
 
 
 --
@@ -17063,8 +16420,8 @@ GRANT ALL ON TABLE controle_b_amenagement_distal TO superlazaret;
 REVOKE ALL ON TABLE controle_b_amincissement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_amincissement FROM postgres;
 GRANT ALL ON TABLE controle_b_amincissement TO postgres;
-GRANT SELECT ON TABLE controle_b_amincissement TO lazaret;
-GRANT ALL ON TABLE controle_b_amincissement TO superlazaret;
+GRANT SELECT ON TABLE controle_b_amincissement TO databasename;
+GRANT ALL ON TABLE controle_b_amincissement TO superdatabasename;
 
 
 --
@@ -17074,8 +16431,8 @@ GRANT ALL ON TABLE controle_b_amincissement TO superlazaret;
 REVOKE ALL ON TABLE controle_b_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_arete FROM postgres;
 GRANT ALL ON TABLE controle_b_arete TO postgres;
-GRANT SELECT ON TABLE controle_b_arete TO lazaret;
-GRANT ALL ON TABLE controle_b_arete TO superlazaret;
+GRANT SELECT ON TABLE controle_b_arete TO databasename;
+GRANT ALL ON TABLE controle_b_arete TO superdatabasename;
 
 
 --
@@ -17085,8 +16442,8 @@ GRANT ALL ON TABLE controle_b_arete TO superlazaret;
 REVOKE ALL ON TABLE controle_b_base FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_base FROM postgres;
 GRANT ALL ON TABLE controle_b_base TO postgres;
-GRANT SELECT ON TABLE controle_b_base TO lazaret;
-GRANT ALL ON TABLE controle_b_base TO superlazaret;
+GRANT SELECT ON TABLE controle_b_base TO databasename;
+GRANT ALL ON TABLE controle_b_base TO superdatabasename;
 
 
 --
@@ -17096,8 +16453,8 @@ GRANT ALL ON TABLE controle_b_base TO superlazaret;
 REVOKE ALL ON TABLE controle_b_bifaciale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bifaciale FROM postgres;
 GRANT ALL ON TABLE controle_b_bifaciale TO postgres;
-GRANT SELECT ON TABLE controle_b_bifaciale TO lazaret;
-GRANT ALL ON TABLE controle_b_bifaciale TO superlazaret;
+GRANT SELECT ON TABLE controle_b_bifaciale TO databasename;
+GRANT ALL ON TABLE controle_b_bifaciale TO superdatabasename;
 
 
 --
@@ -17107,8 +16464,8 @@ GRANT ALL ON TABLE controle_b_bifaciale TO superlazaret;
 REVOKE ALL ON TABLE controle_b_bilaterale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bilaterale FROM postgres;
 GRANT ALL ON TABLE controle_b_bilaterale TO postgres;
-GRANT SELECT ON TABLE controle_b_bilaterale TO lazaret;
-GRANT ALL ON TABLE controle_b_bilaterale TO superlazaret;
+GRANT SELECT ON TABLE controle_b_bilaterale TO databasename;
+GRANT ALL ON TABLE controle_b_bilaterale TO superdatabasename;
 
 
 --
@@ -17118,8 +16475,8 @@ GRANT ALL ON TABLE controle_b_bilaterale TO superlazaret;
 REVOKE ALL ON TABLE controle_b_biseau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_biseau FROM postgres;
 GRANT ALL ON TABLE controle_b_biseau TO postgres;
-GRANT SELECT ON TABLE controle_b_biseau TO lazaret;
-GRANT ALL ON TABLE controle_b_biseau TO superlazaret;
+GRANT SELECT ON TABLE controle_b_biseau TO databasename;
+GRANT ALL ON TABLE controle_b_biseau TO superdatabasename;
 
 
 --
@@ -17129,8 +16486,8 @@ GRANT ALL ON TABLE controle_b_biseau TO superlazaret;
 REVOKE ALL ON TABLE controle_b_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_bord FROM postgres;
 GRANT ALL ON TABLE controle_b_bord TO postgres;
-GRANT SELECT ON TABLE controle_b_bord TO lazaret;
-GRANT ALL ON TABLE controle_b_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_b_bord TO databasename;
+GRANT ALL ON TABLE controle_b_bord TO superdatabasename;
 
 
 --
@@ -17140,8 +16497,8 @@ GRANT ALL ON TABLE controle_b_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_b_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_code FROM postgres;
 GRANT ALL ON TABLE controle_b_code TO postgres;
-GRANT SELECT ON TABLE controle_b_code TO lazaret;
-GRANT ALL ON TABLE controle_b_code TO superlazaret;
+GRANT SELECT ON TABLE controle_b_code TO databasename;
+GRANT ALL ON TABLE controle_b_code TO superdatabasename;
 
 
 --
@@ -17151,8 +16508,8 @@ GRANT ALL ON TABLE controle_b_code TO superlazaret;
 REVOKE ALL ON TABLE controle_b_dat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat FROM postgres;
 GRANT ALL ON TABLE controle_b_dat TO postgres;
-GRANT SELECT ON TABLE controle_b_dat TO lazaret;
-GRANT ALL ON TABLE controle_b_dat TO superlazaret;
+GRANT SELECT ON TABLE controle_b_dat TO databasename;
+GRANT ALL ON TABLE controle_b_dat TO superdatabasename;
 
 
 --
@@ -17162,8 +16519,8 @@ GRANT ALL ON TABLE controle_b_dat TO superlazaret;
 REVOKE ALL ON TABLE controle_b_dat1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat1 FROM postgres;
 GRANT ALL ON TABLE controle_b_dat1 TO postgres;
-GRANT SELECT ON TABLE controle_b_dat1 TO lazaret;
-GRANT ALL ON TABLE controle_b_dat1 TO superlazaret;
+GRANT SELECT ON TABLE controle_b_dat1 TO databasename;
+GRANT ALL ON TABLE controle_b_dat1 TO superdatabasename;
 
 
 --
@@ -17173,8 +16530,8 @@ GRANT ALL ON TABLE controle_b_dat1 TO superlazaret;
 REVOKE ALL ON TABLE controle_b_dat2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_dat2 FROM postgres;
 GRANT ALL ON TABLE controle_b_dat2 TO postgres;
-GRANT SELECT ON TABLE controle_b_dat2 TO lazaret;
-GRANT ALL ON TABLE controle_b_dat2 TO superlazaret;
+GRANT SELECT ON TABLE controle_b_dat2 TO databasename;
+GRANT ALL ON TABLE controle_b_dat2 TO superdatabasename;
 
 
 --
@@ -17184,8 +16541,8 @@ GRANT ALL ON TABLE controle_b_dat2 TO superlazaret;
 REVOKE ALL ON TABLE controle_b_distale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_distale FROM postgres;
 GRANT ALL ON TABLE controle_b_distale TO postgres;
-GRANT SELECT ON TABLE controle_b_distale TO lazaret;
-GRANT ALL ON TABLE controle_b_distale TO superlazaret;
+GRANT SELECT ON TABLE controle_b_distale TO databasename;
+GRANT ALL ON TABLE controle_b_distale TO superdatabasename;
 
 
 --
@@ -17195,8 +16552,8 @@ GRANT ALL ON TABLE controle_b_distale TO superlazaret;
 REVOKE ALL ON TABLE controle_b_enlevement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_enlevement FROM postgres;
 GRANT ALL ON TABLE controle_b_enlevement TO postgres;
-GRANT SELECT ON TABLE controle_b_enlevement TO lazaret;
-GRANT ALL ON TABLE controle_b_enlevement TO superlazaret;
+GRANT SELECT ON TABLE controle_b_enlevement TO databasename;
+GRANT ALL ON TABLE controle_b_enlevement TO superdatabasename;
 
 
 --
@@ -17206,8 +16563,8 @@ GRANT ALL ON TABLE controle_b_enlevement TO superlazaret;
 REVOKE ALL ON TABLE controle_b_extension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_extension FROM postgres;
 GRANT ALL ON TABLE controle_b_extension TO postgres;
-GRANT SELECT ON TABLE controle_b_extension TO lazaret;
-GRANT ALL ON TABLE controle_b_extension TO superlazaret;
+GRANT SELECT ON TABLE controle_b_extension TO databasename;
+GRANT ALL ON TABLE controle_b_extension TO superdatabasename;
 
 
 --
@@ -17217,8 +16574,8 @@ GRANT ALL ON TABLE controle_b_extension TO superlazaret;
 REVOKE ALL ON TABLE controle_b_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_extremite FROM postgres;
 GRANT ALL ON TABLE controle_b_extremite TO postgres;
-GRANT SELECT ON TABLE controle_b_extremite TO lazaret;
-GRANT ALL ON TABLE controle_b_extremite TO superlazaret;
+GRANT SELECT ON TABLE controle_b_extremite TO databasename;
+GRANT ALL ON TABLE controle_b_extremite TO superdatabasename;
 
 
 --
@@ -17228,8 +16585,8 @@ GRANT ALL ON TABLE controle_b_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_b_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_facture FROM postgres;
 GRANT ALL ON TABLE controle_b_facture TO postgres;
-GRANT SELECT ON TABLE controle_b_facture TO lazaret;
-GRANT ALL ON TABLE controle_b_facture TO superlazaret;
+GRANT SELECT ON TABLE controle_b_facture TO databasename;
+GRANT ALL ON TABLE controle_b_facture TO superdatabasename;
 
 
 --
@@ -17239,8 +16596,8 @@ GRANT ALL ON TABLE controle_b_facture TO superlazaret;
 REVOKE ALL ON TABLE controle_b_meplat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_meplat FROM postgres;
 GRANT ALL ON TABLE controle_b_meplat TO postgres;
-GRANT SELECT ON TABLE controle_b_meplat TO lazaret;
-GRANT ALL ON TABLE controle_b_meplat TO superlazaret;
+GRANT SELECT ON TABLE controle_b_meplat TO databasename;
+GRANT ALL ON TABLE controle_b_meplat TO superdatabasename;
 
 
 --
@@ -17250,8 +16607,8 @@ GRANT ALL ON TABLE controle_b_meplat TO superlazaret;
 REVOKE ALL ON TABLE controle_b_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_retouche FROM postgres;
 GRANT ALL ON TABLE controle_b_retouche TO postgres;
-GRANT SELECT ON TABLE controle_b_retouche TO lazaret;
-GRANT ALL ON TABLE controle_b_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_b_retouche TO databasename;
+GRANT ALL ON TABLE controle_b_retouche TO superdatabasename;
 
 
 --
@@ -17261,8 +16618,8 @@ GRANT ALL ON TABLE controle_b_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_b_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_support FROM postgres;
 GRANT ALL ON TABLE controle_b_support TO postgres;
-GRANT ALL ON TABLE controle_b_support TO lazaret;
-GRANT ALL ON TABLE controle_b_support TO superlazaret;
+GRANT ALL ON TABLE controle_b_support TO databasename;
+GRANT ALL ON TABLE controle_b_support TO superdatabasename;
 
 
 --
@@ -17272,8 +16629,8 @@ GRANT ALL ON TABLE controle_b_support TO superlazaret;
 REVOKE ALL ON TABLE controle_b_surface FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_surface FROM postgres;
 GRANT ALL ON TABLE controle_b_surface TO postgres;
-GRANT SELECT ON TABLE controle_b_surface TO lazaret;
-GRANT ALL ON TABLE controle_b_surface TO superlazaret;
+GRANT SELECT ON TABLE controle_b_surface TO databasename;
+GRANT ALL ON TABLE controle_b_surface TO superdatabasename;
 
 
 --
@@ -17283,8 +16640,8 @@ GRANT ALL ON TABLE controle_b_surface TO superlazaret;
 REVOKE ALL ON TABLE controle_b_symetrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_symetrie FROM postgres;
 GRANT ALL ON TABLE controle_b_symetrie TO postgres;
-GRANT SELECT ON TABLE controle_b_symetrie TO lazaret;
-GRANT ALL ON TABLE controle_b_symetrie TO superlazaret;
+GRANT SELECT ON TABLE controle_b_symetrie TO databasename;
+GRANT ALL ON TABLE controle_b_symetrie TO superdatabasename;
 
 
 --
@@ -17294,8 +16651,8 @@ GRANT ALL ON TABLE controle_b_symetrie TO superlazaret;
 REVOKE ALL ON TABLE controle_b_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_b_type FROM postgres;
 GRANT ALL ON TABLE controle_b_type TO postgres;
-GRANT SELECT ON TABLE controle_b_type TO lazaret;
-GRANT ALL ON TABLE controle_b_type TO superlazaret;
+GRANT SELECT ON TABLE controle_b_type TO databasename;
+GRANT ALL ON TABLE controle_b_type TO superdatabasename;
 
 
 --
@@ -17305,8 +16662,8 @@ GRANT ALL ON TABLE controle_b_type TO superlazaret;
 REVOKE ALL ON TABLE controle_bis FROM PUBLIC;
 REVOKE ALL ON TABLE controle_bis FROM postgres;
 GRANT ALL ON TABLE controle_bis TO postgres;
-GRANT SELECT ON TABLE controle_bis TO lazaret;
-GRANT ALL ON TABLE controle_bis TO superlazaret;
+GRANT SELECT ON TABLE controle_bis TO databasename;
+GRANT ALL ON TABLE controle_bis TO superdatabasename;
 
 
 --
@@ -17316,8 +16673,8 @@ GRANT ALL ON TABLE controle_bis TO superlazaret;
 REVOKE ALL ON TABLE controle_c_alteration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_alteration FROM postgres;
 GRANT ALL ON TABLE controle_c_alteration TO postgres;
-GRANT ALL ON TABLE controle_c_alteration TO superlazaret;
-GRANT SELECT ON TABLE controle_c_alteration TO lazaret;
+GRANT ALL ON TABLE controle_c_alteration TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_alteration TO databasename;
 
 
 --
@@ -17327,8 +16684,8 @@ GRANT SELECT ON TABLE controle_c_alteration TO lazaret;
 REVOKE ALL ON TABLE controle_c_altnat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_altnat FROM postgres;
 GRANT ALL ON TABLE controle_c_altnat TO postgres;
-GRANT ALL ON TABLE controle_c_altnat TO superlazaret;
-GRANT SELECT ON TABLE controle_c_altnat TO lazaret;
+GRANT ALL ON TABLE controle_c_altnat TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_altnat TO databasename;
 
 
 --
@@ -17338,7 +16695,7 @@ GRANT SELECT ON TABLE controle_c_altnat TO lazaret;
 REVOKE ALL ON TABLE controle_c_autre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_autre FROM postgres;
 GRANT ALL ON TABLE controle_c_autre TO postgres;
-GRANT ALL ON TABLE controle_c_autre TO superlazaret;
+GRANT ALL ON TABLE controle_c_autre TO superdatabasename;
 
 
 --
@@ -17348,8 +16705,8 @@ GRANT ALL ON TABLE controle_c_autre TO superlazaret;
 REVOKE ALL ON TABLE controle_c_consistance FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_consistance FROM postgres;
 GRANT ALL ON TABLE controle_c_consistance TO postgres;
-GRANT ALL ON TABLE controle_c_consistance TO superlazaret;
-GRANT SELECT ON TABLE controle_c_consistance TO lazaret;
+GRANT ALL ON TABLE controle_c_consistance TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_consistance TO databasename;
 
 
 --
@@ -17359,8 +16716,8 @@ GRANT SELECT ON TABLE controle_c_consistance TO lazaret;
 REVOKE ALL ON TABLE controle_c_couleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_couleur FROM postgres;
 GRANT ALL ON TABLE controle_c_couleur TO postgres;
-GRANT ALL ON TABLE controle_c_couleur TO superlazaret;
-GRANT SELECT ON TABLE controle_c_couleur TO lazaret;
+GRANT ALL ON TABLE controle_c_couleur TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_couleur TO databasename;
 
 
 --
@@ -17370,7 +16727,7 @@ GRANT SELECT ON TABLE controle_c_couleur TO lazaret;
 REVOKE ALL ON TABLE controle_c_element FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_element FROM postgres;
 GRANT ALL ON TABLE controle_c_element TO postgres;
-GRANT ALL ON TABLE controle_c_element TO superlazaret;
+GRANT ALL ON TABLE controle_c_element TO superdatabasename;
 
 
 --
@@ -17380,8 +16737,8 @@ GRANT ALL ON TABLE controle_c_element TO superlazaret;
 REVOKE ALL ON TABLE controle_c_ext1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_ext1 FROM postgres;
 GRANT ALL ON TABLE controle_c_ext1 TO postgres;
-GRANT ALL ON TABLE controle_c_ext1 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_ext1 TO lazaret;
+GRANT ALL ON TABLE controle_c_ext1 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_ext1 TO databasename;
 
 
 --
@@ -17391,8 +16748,8 @@ GRANT SELECT ON TABLE controle_c_ext1 TO lazaret;
 REVOKE ALL ON TABLE controle_c_ext2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_ext2 FROM postgres;
 GRANT ALL ON TABLE controle_c_ext2 TO postgres;
-GRANT ALL ON TABLE controle_c_ext2 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_ext2 TO lazaret;
+GRANT ALL ON TABLE controle_c_ext2 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_ext2 TO databasename;
 
 
 --
@@ -17402,7 +16759,7 @@ GRANT SELECT ON TABLE controle_c_ext2 TO lazaret;
 REVOKE ALL ON TABLE controle_c_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_extremite FROM postgres;
 GRANT ALL ON TABLE controle_c_extremite TO postgres;
-GRANT ALL ON TABLE controle_c_extremite TO superlazaret;
+GRANT ALL ON TABLE controle_c_extremite TO superdatabasename;
 
 
 --
@@ -17412,7 +16769,7 @@ GRANT ALL ON TABLE controle_c_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_c_famille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_famille FROM postgres;
 GRANT ALL ON TABLE controle_c_famille TO postgres;
-GRANT ALL ON TABLE controle_c_famille TO superlazaret;
+GRANT ALL ON TABLE controle_c_famille TO superdatabasename;
 
 
 --
@@ -17422,8 +16779,8 @@ GRANT ALL ON TABLE controle_c_famille TO superlazaret;
 REVOKE ALL ON TABLE controle_c_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_forme FROM postgres;
 GRANT ALL ON TABLE controle_c_forme TO postgres;
-GRANT ALL ON TABLE controle_c_forme TO lazaret;
-GRANT ALL ON TABLE controle_c_forme TO superlazaret;
+GRANT ALL ON TABLE controle_c_forme TO databasename;
+GRANT ALL ON TABLE controle_c_forme TO superdatabasename;
 
 
 --
@@ -17433,7 +16790,7 @@ GRANT ALL ON TABLE controle_c_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_c_genre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_genre FROM postgres;
 GRANT ALL ON TABLE controle_c_genre TO postgres;
-GRANT ALL ON TABLE controle_c_genre TO superlazaret;
+GRANT ALL ON TABLE controle_c_genre TO superdatabasename;
 
 
 --
@@ -17443,8 +16800,8 @@ GRANT ALL ON TABLE controle_c_genre TO superlazaret;
 REVOKE ALL ON TABLE controle_c_granulometrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_granulometrie FROM postgres;
 GRANT ALL ON TABLE controle_c_granulometrie TO postgres;
-GRANT ALL ON TABLE controle_c_granulometrie TO superlazaret;
-GRANT SELECT ON TABLE controle_c_granulometrie TO lazaret;
+GRANT ALL ON TABLE controle_c_granulometrie TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_granulometrie TO databasename;
 
 
 --
@@ -17454,8 +16811,8 @@ GRANT SELECT ON TABLE controle_c_granulometrie TO lazaret;
 REVOKE ALL ON TABLE controle_c_incl1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl1 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl1 TO postgres;
-GRANT ALL ON TABLE controle_c_incl1 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_incl1 TO lazaret;
+GRANT ALL ON TABLE controle_c_incl1 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_incl1 TO databasename;
 
 
 --
@@ -17465,7 +16822,7 @@ GRANT SELECT ON TABLE controle_c_incl1 TO lazaret;
 REVOKE ALL ON TABLE controle_c_incl2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl2 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl2 TO postgres;
-GRANT ALL ON TABLE controle_c_incl2 TO superlazaret;
+GRANT ALL ON TABLE controle_c_incl2 TO superdatabasename;
 
 
 --
@@ -17475,8 +16832,8 @@ GRANT ALL ON TABLE controle_c_incl2 TO superlazaret;
 REVOKE ALL ON TABLE controle_c_incl3 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_incl3 FROM postgres;
 GRANT ALL ON TABLE controle_c_incl3 TO postgres;
-GRANT ALL ON TABLE controle_c_incl3 TO superlazaret;
-GRANT SELECT ON TABLE controle_c_incl3 TO lazaret;
+GRANT ALL ON TABLE controle_c_incl3 TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_incl3 TO databasename;
 
 
 --
@@ -17486,7 +16843,7 @@ GRANT SELECT ON TABLE controle_c_incl3 TO lazaret;
 REVOKE ALL ON TABLE controle_c_inclusion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_inclusion FROM postgres;
 GRANT ALL ON TABLE controle_c_inclusion TO postgres;
-GRANT ALL ON TABLE controle_c_inclusion TO superlazaret;
+GRANT ALL ON TABLE controle_c_inclusion TO superdatabasename;
 
 
 --
@@ -17496,8 +16853,8 @@ GRANT ALL ON TABLE controle_c_inclusion TO superlazaret;
 REVOKE ALL ON TABLE controle_c_lame FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_lame FROM postgres;
 GRANT ALL ON TABLE controle_c_lame TO postgres;
-GRANT ALL ON TABLE controle_c_lame TO superlazaret;
-GRANT SELECT ON TABLE controle_c_lame TO lazaret;
+GRANT ALL ON TABLE controle_c_lame TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_lame TO databasename;
 
 
 --
@@ -17507,7 +16864,7 @@ GRANT SELECT ON TABLE controle_c_lame TO lazaret;
 REVOKE ALL ON TABLE controle_c_liant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_liant FROM postgres;
 GRANT ALL ON TABLE controle_c_liant TO postgres;
-GRANT ALL ON TABLE controle_c_liant TO superlazaret;
+GRANT ALL ON TABLE controle_c_liant TO superdatabasename;
 
 
 --
@@ -17517,8 +16874,8 @@ GRANT ALL ON TABLE controle_c_liant TO superlazaret;
 REVOKE ALL ON TABLE controle_c_macroreste FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_macroreste FROM postgres;
 GRANT ALL ON TABLE controle_c_macroreste TO postgres;
-GRANT ALL ON TABLE controle_c_macroreste TO superlazaret;
-GRANT SELECT ON TABLE controle_c_macroreste TO lazaret;
+GRANT ALL ON TABLE controle_c_macroreste TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_macroreste TO databasename;
 
 
 --
@@ -17528,8 +16885,8 @@ GRANT SELECT ON TABLE controle_c_macroreste TO lazaret;
 REVOKE ALL ON TABLE controle_c_mif FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_mif FROM postgres;
 GRANT ALL ON TABLE controle_c_mif TO postgres;
-GRANT ALL ON TABLE controle_c_mif TO superlazaret;
-GRANT SELECT ON TABLE controle_c_mif TO lazaret;
+GRANT ALL ON TABLE controle_c_mif TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_mif TO databasename;
 
 
 --
@@ -17539,8 +16896,8 @@ GRANT SELECT ON TABLE controle_c_mif TO lazaret;
 REVOKE ALL ON TABLE controle_c_motcou FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motcou FROM postgres;
 GRANT ALL ON TABLE controle_c_motcou TO postgres;
-GRANT ALL ON TABLE controle_c_motcou TO superlazaret;
-GRANT SELECT ON TABLE controle_c_motcou TO lazaret;
+GRANT ALL ON TABLE controle_c_motcou TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_motcou TO databasename;
 
 
 --
@@ -17550,8 +16907,8 @@ GRANT SELECT ON TABLE controle_c_motcou TO lazaret;
 REVOKE ALL ON TABLE controle_c_motif FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motif FROM postgres;
 GRANT ALL ON TABLE controle_c_motif TO postgres;
-GRANT ALL ON TABLE controle_c_motif TO superlazaret;
-GRANT SELECT ON TABLE controle_c_motif TO lazaret;
+GRANT ALL ON TABLE controle_c_motif TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_motif TO databasename;
 
 
 --
@@ -17561,8 +16918,8 @@ GRANT SELECT ON TABLE controle_c_motif TO lazaret;
 REVOKE ALL ON TABLE controle_c_motnat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_motnat FROM postgres;
 GRANT ALL ON TABLE controle_c_motnat TO postgres;
-GRANT ALL ON TABLE controle_c_motnat TO superlazaret;
-GRANT SELECT ON TABLE controle_c_motnat TO lazaret;
+GRANT ALL ON TABLE controle_c_motnat TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_motnat TO databasename;
 
 
 --
@@ -17572,8 +16929,8 @@ GRANT SELECT ON TABLE controle_c_motnat TO lazaret;
 REVOKE ALL ON TABLE controle_c_palyno FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_palyno FROM postgres;
 GRANT ALL ON TABLE controle_c_palyno TO postgres;
-GRANT ALL ON TABLE controle_c_palyno TO superlazaret;
-GRANT SELECT ON TABLE controle_c_palyno TO lazaret;
+GRANT ALL ON TABLE controle_c_palyno TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_palyno TO databasename;
 
 
 --
@@ -17583,7 +16940,7 @@ GRANT SELECT ON TABLE controle_c_palyno TO lazaret;
 REVOKE ALL ON TABLE controle_c_parasito FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_parasito FROM postgres;
 GRANT ALL ON TABLE controle_c_parasito TO postgres;
-GRANT ALL ON TABLE controle_c_parasito TO superlazaret;
+GRANT ALL ON TABLE controle_c_parasito TO superdatabasename;
 
 
 --
@@ -17593,7 +16950,7 @@ GRANT ALL ON TABLE controle_c_parasito TO superlazaret;
 REVOKE ALL ON TABLE controle_c_retrecissement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_retrecissement FROM postgres;
 GRANT ALL ON TABLE controle_c_retrecissement TO postgres;
-GRANT ALL ON TABLE controle_c_retrecissement TO superlazaret;
+GRANT ALL ON TABLE controle_c_retrecissement TO superdatabasename;
 
 
 --
@@ -17603,8 +16960,8 @@ GRANT ALL ON TABLE controle_c_retrecissement TO superlazaret;
 REVOKE ALL ON TABLE controle_c_sediment FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_sediment FROM postgres;
 GRANT ALL ON TABLE controle_c_sediment TO postgres;
-GRANT ALL ON TABLE controle_c_sediment TO superlazaret;
-GRANT SELECT ON TABLE controle_c_sediment TO lazaret;
+GRANT ALL ON TABLE controle_c_sediment TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_sediment TO databasename;
 
 
 --
@@ -17614,8 +16971,8 @@ GRANT SELECT ON TABLE controle_c_sediment TO lazaret;
 REVOKE ALL ON TABLE controle_c_vol FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_vol FROM postgres;
 GRANT ALL ON TABLE controle_c_vol TO postgres;
-GRANT ALL ON TABLE controle_c_vol TO superlazaret;
-GRANT SELECT ON TABLE controle_c_vol TO lazaret;
+GRANT ALL ON TABLE controle_c_vol TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_vol TO databasename;
 
 
 --
@@ -17625,8 +16982,8 @@ GRANT SELECT ON TABLE controle_c_vol TO lazaret;
 REVOKE ALL ON TABLE controle_c_volext FROM PUBLIC;
 REVOKE ALL ON TABLE controle_c_volext FROM postgres;
 GRANT ALL ON TABLE controle_c_volext TO postgres;
-GRANT ALL ON TABLE controle_c_volext TO superlazaret;
-GRANT SELECT ON TABLE controle_c_volext TO lazaret;
+GRANT ALL ON TABLE controle_c_volext TO superdatabasename;
+GRANT SELECT ON TABLE controle_c_volext TO databasename;
 
 
 --
@@ -17636,8 +16993,8 @@ GRANT SELECT ON TABLE controle_c_volext TO lazaret;
 REVOKE ALL ON TABLE controle_carre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_carre FROM postgres;
 GRANT ALL ON TABLE controle_carre TO postgres;
-GRANT SELECT ON TABLE controle_carre TO lazaret;
-GRANT ALL ON TABLE controle_carre TO superlazaret;
+GRANT SELECT ON TABLE controle_carre TO databasename;
+GRANT ALL ON TABLE controle_carre TO superdatabasename;
 
 
 --
@@ -17647,8 +17004,8 @@ GRANT ALL ON TABLE controle_carre TO superlazaret;
 REVOKE ALL ON TABLE controle_d_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_d_serie FROM postgres;
 GRANT ALL ON TABLE controle_d_serie TO postgres;
-GRANT SELECT ON TABLE controle_d_serie TO lazaret;
-GRANT ALL ON TABLE controle_d_serie TO superlazaret;
+GRANT SELECT ON TABLE controle_d_serie TO databasename;
+GRANT ALL ON TABLE controle_d_serie TO superdatabasename;
 
 
 --
@@ -17658,8 +17015,8 @@ GRANT ALL ON TABLE controle_d_serie TO superlazaret;
 REVOKE ALL ON TABLE controle_d_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_d_type FROM postgres;
 GRANT ALL ON TABLE controle_d_type TO postgres;
-GRANT SELECT ON TABLE controle_d_type TO lazaret;
-GRANT ALL ON TABLE controle_d_type TO superlazaret;
+GRANT SELECT ON TABLE controle_d_type TO databasename;
+GRANT ALL ON TABLE controle_d_type TO superdatabasename;
 
 
 --
@@ -17669,8 +17026,8 @@ GRANT ALL ON TABLE controle_d_type TO superlazaret;
 REVOKE ALL ON TABLE controle_e_bulbe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_bulbe FROM postgres;
 GRANT ALL ON TABLE controle_e_bulbe TO postgres;
-GRANT SELECT ON TABLE controle_e_bulbe TO lazaret;
-GRANT ALL ON TABLE controle_e_bulbe TO superlazaret;
+GRANT SELECT ON TABLE controle_e_bulbe TO databasename;
+GRANT ALL ON TABLE controle_e_bulbe TO superdatabasename;
 
 
 --
@@ -17680,8 +17037,8 @@ GRANT ALL ON TABLE controle_e_bulbe TO superlazaret;
 REVOKE ALL ON TABLE controle_e_carene FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_carene FROM postgres;
 GRANT ALL ON TABLE controle_e_carene TO postgres;
-GRANT SELECT ON TABLE controle_e_carene TO lazaret;
-GRANT ALL ON TABLE controle_e_carene TO superlazaret;
+GRANT SELECT ON TABLE controle_e_carene TO databasename;
+GRANT ALL ON TABLE controle_e_carene TO superdatabasename;
 
 
 --
@@ -17691,8 +17048,8 @@ GRANT ALL ON TABLE controle_e_carene TO superlazaret;
 REVOKE ALL ON TABLE controle_e_charniere FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_charniere FROM postgres;
 GRANT ALL ON TABLE controle_e_charniere TO postgres;
-GRANT SELECT ON TABLE controle_e_charniere TO lazaret;
-GRANT ALL ON TABLE controle_e_charniere TO superlazaret;
+GRANT SELECT ON TABLE controle_e_charniere TO databasename;
+GRANT ALL ON TABLE controle_e_charniere TO superdatabasename;
 
 
 --
@@ -17702,8 +17059,8 @@ GRANT ALL ON TABLE controle_e_charniere TO superlazaret;
 REVOKE ALL ON TABLE controle_e_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_code FROM postgres;
 GRANT ALL ON TABLE controle_e_code TO postgres;
-GRANT SELECT ON TABLE controle_e_code TO lazaret;
-GRANT ALL ON TABLE controle_e_code TO superlazaret;
+GRANT SELECT ON TABLE controle_e_code TO databasename;
+GRANT ALL ON TABLE controle_e_code TO superdatabasename;
 
 
 --
@@ -17713,8 +17070,8 @@ GRANT ALL ON TABLE controle_e_code TO superlazaret;
 REVOKE ALL ON TABLE controle_e_cone FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_cone FROM postgres;
 GRANT ALL ON TABLE controle_e_cone TO postgres;
-GRANT SELECT ON TABLE controle_e_cone TO lazaret;
-GRANT ALL ON TABLE controle_e_cone TO superlazaret;
+GRANT SELECT ON TABLE controle_e_cone TO databasename;
+GRANT ALL ON TABLE controle_e_cone TO superdatabasename;
 
 
 --
@@ -17724,8 +17081,8 @@ GRANT ALL ON TABLE controle_e_cone TO superlazaret;
 REVOKE ALL ON TABLE controle_e_contour FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_contour FROM postgres;
 GRANT ALL ON TABLE controle_e_contour TO postgres;
-GRANT SELECT ON TABLE controle_e_contour TO lazaret;
-GRANT ALL ON TABLE controle_e_contour TO superlazaret;
+GRANT SELECT ON TABLE controle_e_contour TO databasename;
+GRANT ALL ON TABLE controle_e_contour TO superdatabasename;
 
 
 --
@@ -17735,8 +17092,8 @@ GRANT ALL ON TABLE controle_e_contour TO superlazaret;
 REVOKE ALL ON TABLE controle_e_debitage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_debitage FROM postgres;
 GRANT ALL ON TABLE controle_e_debitage TO postgres;
-GRANT SELECT ON TABLE controle_e_debitage TO lazaret;
-GRANT ALL ON TABLE controle_e_debitage TO superlazaret;
+GRANT SELECT ON TABLE controle_e_debitage TO databasename;
+GRANT ALL ON TABLE controle_e_debitage TO superdatabasename;
 
 
 --
@@ -17746,8 +17103,8 @@ GRANT ALL ON TABLE controle_e_debitage TO superlazaret;
 REVOKE ALL ON TABLE controle_e_enlevement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_enlevement FROM postgres;
 GRANT ALL ON TABLE controle_e_enlevement TO postgres;
-GRANT SELECT ON TABLE controle_e_enlevement TO lazaret;
-GRANT ALL ON TABLE controle_e_enlevement TO superlazaret;
+GRANT SELECT ON TABLE controle_e_enlevement TO databasename;
+GRANT ALL ON TABLE controle_e_enlevement TO superdatabasename;
 
 
 --
@@ -17757,8 +17114,8 @@ GRANT ALL ON TABLE controle_e_enlevement TO superlazaret;
 REVOKE ALL ON TABLE controle_e_epi FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_epi FROM postgres;
 GRANT ALL ON TABLE controle_e_epi TO postgres;
-GRANT SELECT ON TABLE controle_e_epi TO lazaret;
-GRANT ALL ON TABLE controle_e_epi TO superlazaret;
+GRANT SELECT ON TABLE controle_e_epi TO databasename;
+GRANT ALL ON TABLE controle_e_epi TO superdatabasename;
 
 
 --
@@ -17768,8 +17125,8 @@ GRANT ALL ON TABLE controle_e_epi TO superlazaret;
 REVOKE ALL ON TABLE controle_e_onde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_onde FROM postgres;
 GRANT ALL ON TABLE controle_e_onde TO postgres;
-GRANT SELECT ON TABLE controle_e_onde TO lazaret;
-GRANT ALL ON TABLE controle_e_onde TO superlazaret;
+GRANT SELECT ON TABLE controle_e_onde TO databasename;
+GRANT ALL ON TABLE controle_e_onde TO superdatabasename;
 
 
 --
@@ -17779,8 +17136,8 @@ GRANT ALL ON TABLE controle_e_onde TO superlazaret;
 REVOKE ALL ON TABLE controle_e_parasite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_parasite FROM postgres;
 GRANT ALL ON TABLE controle_e_parasite TO postgres;
-GRANT SELECT ON TABLE controle_e_parasite TO lazaret;
-GRANT ALL ON TABLE controle_e_parasite TO superlazaret;
+GRANT SELECT ON TABLE controle_e_parasite TO databasename;
+GRANT ALL ON TABLE controle_e_parasite TO superdatabasename;
 
 
 --
@@ -17790,8 +17147,8 @@ GRANT ALL ON TABLE controle_e_parasite TO superlazaret;
 REVOKE ALL ON TABLE controle_e_secondaire FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_secondaire FROM postgres;
 GRANT ALL ON TABLE controle_e_secondaire TO postgres;
-GRANT SELECT ON TABLE controle_e_secondaire TO lazaret;
-GRANT ALL ON TABLE controle_e_secondaire TO superlazaret;
+GRANT SELECT ON TABLE controle_e_secondaire TO databasename;
+GRANT ALL ON TABLE controle_e_secondaire TO superdatabasename;
 
 
 --
@@ -17801,8 +17158,8 @@ GRANT ALL ON TABLE controle_e_secondaire TO superlazaret;
 REVOKE ALL ON TABLE controle_e_section_long FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_section_long FROM postgres;
 GRANT ALL ON TABLE controle_e_section_long TO postgres;
-GRANT SELECT ON TABLE controle_e_section_long TO lazaret;
-GRANT ALL ON TABLE controle_e_section_long TO superlazaret;
+GRANT SELECT ON TABLE controle_e_section_long TO databasename;
+GRANT ALL ON TABLE controle_e_section_long TO superdatabasename;
 
 
 --
@@ -17812,8 +17169,8 @@ GRANT ALL ON TABLE controle_e_section_long TO superlazaret;
 REVOKE ALL ON TABLE controle_e_section_trans FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_section_trans FROM postgres;
 GRANT ALL ON TABLE controle_e_section_trans TO postgres;
-GRANT SELECT ON TABLE controle_e_section_trans TO lazaret;
-GRANT ALL ON TABLE controle_e_section_trans TO superlazaret;
+GRANT SELECT ON TABLE controle_e_section_trans TO databasename;
+GRANT ALL ON TABLE controle_e_section_trans TO superdatabasename;
 
 
 --
@@ -17823,8 +17180,8 @@ GRANT ALL ON TABLE controle_e_section_trans TO superlazaret;
 REVOKE ALL ON TABLE controle_e_strie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_strie FROM postgres;
 GRANT ALL ON TABLE controle_e_strie TO postgres;
-GRANT SELECT ON TABLE controle_e_strie TO lazaret;
-GRANT ALL ON TABLE controle_e_strie TO superlazaret;
+GRANT SELECT ON TABLE controle_e_strie TO databasename;
+GRANT ALL ON TABLE controle_e_strie TO superdatabasename;
 
 
 --
@@ -17834,8 +17191,8 @@ GRANT ALL ON TABLE controle_e_strie TO superlazaret;
 REVOKE ALL ON TABLE controle_e_talon FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_talon FROM postgres;
 GRANT ALL ON TABLE controle_e_talon TO postgres;
-GRANT SELECT ON TABLE controle_e_talon TO lazaret;
-GRANT ALL ON TABLE controle_e_talon TO superlazaret;
+GRANT SELECT ON TABLE controle_e_talon TO databasename;
+GRANT ALL ON TABLE controle_e_talon TO superdatabasename;
 
 
 --
@@ -17845,8 +17202,8 @@ GRANT ALL ON TABLE controle_e_talon TO superlazaret;
 REVOKE ALL ON TABLE controle_e_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_e_type FROM postgres;
 GRANT ALL ON TABLE controle_e_type TO postgres;
-GRANT SELECT ON TABLE controle_e_type TO lazaret;
-GRANT ALL ON TABLE controle_e_type TO superlazaret;
+GRANT SELECT ON TABLE controle_e_type TO databasename;
+GRANT ALL ON TABLE controle_e_type TO superdatabasename;
 
 
 --
@@ -17856,8 +17213,8 @@ GRANT ALL ON TABLE controle_e_type TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_element FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_element FROM postgres;
 GRANT ALL ON TABLE controle_eg_element TO postgres;
-GRANT SELECT ON TABLE controle_eg_element TO lazaret;
-GRANT ALL ON TABLE controle_eg_element TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_element TO databasename;
+GRANT ALL ON TABLE controle_eg_element TO superdatabasename;
 
 
 --
@@ -17867,8 +17224,8 @@ GRANT ALL ON TABLE controle_eg_element TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_epaisseur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_epaisseur FROM postgres;
 GRANT ALL ON TABLE controle_eg_epaisseur TO postgres;
-GRANT SELECT ON TABLE controle_eg_epaisseur TO lazaret;
-GRANT ALL ON TABLE controle_eg_epaisseur TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_epaisseur TO databasename;
+GRANT ALL ON TABLE controle_eg_epaisseur TO superdatabasename;
 
 
 --
@@ -17878,8 +17235,8 @@ GRANT ALL ON TABLE controle_eg_epaisseur TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_extremite FROM postgres;
 GRANT ALL ON TABLE controle_eg_extremite TO postgres;
-GRANT SELECT ON TABLE controle_eg_extremite TO lazaret;
-GRANT ALL ON TABLE controle_eg_extremite TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_extremite TO databasename;
+GRANT ALL ON TABLE controle_eg_extremite TO superdatabasename;
 
 
 --
@@ -17889,8 +17246,8 @@ GRANT ALL ON TABLE controle_eg_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_longueur_generale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_longueur_generale FROM postgres;
 GRANT ALL ON TABLE controle_eg_longueur_generale TO postgres;
-GRANT SELECT ON TABLE controle_eg_longueur_generale TO lazaret;
-GRANT ALL ON TABLE controle_eg_longueur_generale TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_longueur_generale TO databasename;
+GRANT ALL ON TABLE controle_eg_longueur_generale TO superdatabasename;
 
 
 --
@@ -17900,8 +17257,8 @@ GRANT ALL ON TABLE controle_eg_longueur_generale TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_proeminence FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_proeminence FROM postgres;
 GRANT ALL ON TABLE controle_eg_proeminence TO postgres;
-GRANT SELECT ON TABLE controle_eg_proeminence TO lazaret;
-GRANT ALL ON TABLE controle_eg_proeminence TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_proeminence TO databasename;
+GRANT ALL ON TABLE controle_eg_proeminence TO superdatabasename;
 
 
 --
@@ -17911,8 +17268,8 @@ GRANT ALL ON TABLE controle_eg_proeminence TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_profil FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_profil FROM postgres;
 GRANT ALL ON TABLE controle_eg_profil TO postgres;
-GRANT SELECT ON TABLE controle_eg_profil TO lazaret;
-GRANT ALL ON TABLE controle_eg_profil TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_profil TO databasename;
+GRANT ALL ON TABLE controle_eg_profil TO superdatabasename;
 
 
 --
@@ -17922,8 +17279,8 @@ GRANT ALL ON TABLE controle_eg_profil TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_eg_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_eg_profondeur TO lazaret;
-GRANT ALL ON TABLE controle_eg_profondeur TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_profondeur TO databasename;
+GRANT ALL ON TABLE controle_eg_profondeur TO superdatabasename;
 
 
 --
@@ -17933,8 +17290,8 @@ GRANT ALL ON TABLE controle_eg_profondeur TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_sens FROM postgres;
 GRANT ALL ON TABLE controle_eg_sens TO postgres;
-GRANT SELECT ON TABLE controle_eg_sens TO lazaret;
-GRANT ALL ON TABLE controle_eg_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_sens TO databasename;
+GRANT ALL ON TABLE controle_eg_sens TO superdatabasename;
 
 
 --
@@ -17944,8 +17301,8 @@ GRANT ALL ON TABLE controle_eg_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_situation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_situation FROM postgres;
 GRANT ALL ON TABLE controle_eg_situation TO postgres;
-GRANT SELECT ON TABLE controle_eg_situation TO lazaret;
-GRANT ALL ON TABLE controle_eg_situation TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_situation TO databasename;
+GRANT ALL ON TABLE controle_eg_situation TO superdatabasename;
 
 
 --
@@ -17955,8 +17312,8 @@ GRANT ALL ON TABLE controle_eg_situation TO superlazaret;
 REVOKE ALL ON TABLE controle_eg_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_eg_support FROM postgres;
 GRANT ALL ON TABLE controle_eg_support TO postgres;
-GRANT SELECT ON TABLE controle_eg_support TO lazaret;
-GRANT ALL ON TABLE controle_eg_support TO superlazaret;
+GRANT SELECT ON TABLE controle_eg_support TO databasename;
+GRANT ALL ON TABLE controle_eg_support TO superdatabasename;
 
 
 --
@@ -17966,8 +17323,8 @@ GRANT ALL ON TABLE controle_eg_support TO superlazaret;
 REVOKE ALL ON TABLE controle_en_direction FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_direction FROM postgres;
 GRANT ALL ON TABLE controle_en_direction TO postgres;
-GRANT SELECT ON TABLE controle_en_direction TO lazaret;
-GRANT ALL ON TABLE controle_en_direction TO superlazaret;
+GRANT SELECT ON TABLE controle_en_direction TO databasename;
+GRANT ALL ON TABLE controle_en_direction TO superdatabasename;
 
 
 --
@@ -17977,8 +17334,8 @@ GRANT ALL ON TABLE controle_en_direction TO superlazaret;
 REVOKE ALL ON TABLE controle_en_dptimpact FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_dptimpact FROM postgres;
 GRANT ALL ON TABLE controle_en_dptimpact TO postgres;
-GRANT SELECT ON TABLE controle_en_dptimpact TO lazaret;
-GRANT ALL ON TABLE controle_en_dptimpact TO superlazaret;
+GRANT SELECT ON TABLE controle_en_dptimpact TO databasename;
+GRANT ALL ON TABLE controle_en_dptimpact TO superdatabasename;
 
 
 --
@@ -17988,8 +17345,8 @@ GRANT ALL ON TABLE controle_en_dptimpact TO superlazaret;
 REVOKE ALL ON TABLE controle_en_frappe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_frappe FROM postgres;
 GRANT ALL ON TABLE controle_en_frappe TO postgres;
-GRANT SELECT ON TABLE controle_en_frappe TO lazaret;
-GRANT ALL ON TABLE controle_en_frappe TO superlazaret;
+GRANT SELECT ON TABLE controle_en_frappe TO databasename;
+GRANT ALL ON TABLE controle_en_frappe TO superdatabasename;
 
 
 --
@@ -17999,8 +17356,8 @@ GRANT ALL ON TABLE controle_en_frappe TO superlazaret;
 REVOKE ALL ON TABLE controle_en_inclinaison FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_inclinaison FROM postgres;
 GRANT ALL ON TABLE controle_en_inclinaison TO postgres;
-GRANT SELECT ON TABLE controle_en_inclinaison TO lazaret;
-GRANT ALL ON TABLE controle_en_inclinaison TO superlazaret;
+GRANT SELECT ON TABLE controle_en_inclinaison TO databasename;
+GRANT ALL ON TABLE controle_en_inclinaison TO superdatabasename;
 
 
 --
@@ -18010,8 +17367,8 @@ GRANT ALL ON TABLE controle_en_inclinaison TO superlazaret;
 REVOKE ALL ON TABLE controle_en_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_en_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_en_obliquite TO lazaret;
-GRANT ALL ON TABLE controle_en_obliquite TO superlazaret;
+GRANT SELECT ON TABLE controle_en_obliquite TO databasename;
+GRANT ALL ON TABLE controle_en_obliquite TO superdatabasename;
 
 
 --
@@ -18021,8 +17378,8 @@ GRANT ALL ON TABLE controle_en_obliquite TO superlazaret;
 REVOKE ALL ON TABLE controle_en_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_en_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_en_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_en_profondeur TO lazaret;
-GRANT ALL ON TABLE controle_en_profondeur TO superlazaret;
+GRANT SELECT ON TABLE controle_en_profondeur TO databasename;
+GRANT ALL ON TABLE controle_en_profondeur TO superdatabasename;
 
 
 --
@@ -18032,8 +17389,8 @@ GRANT ALL ON TABLE controle_en_profondeur TO superlazaret;
 REVOKE ALL ON TABLE controle_ensemble FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ensemble FROM postgres;
 GRANT ALL ON TABLE controle_ensemble TO postgres;
-GRANT SELECT ON TABLE controle_ensemble TO lazaret;
-GRANT ALL ON TABLE controle_ensemble TO superlazaret;
+GRANT SELECT ON TABLE controle_ensemble TO databasename;
+GRANT ALL ON TABLE controle_ensemble TO superdatabasename;
 
 
 --
@@ -18043,8 +17400,8 @@ GRANT ALL ON TABLE controle_ensemble TO superlazaret;
 REVOKE ALL ON TABLE controle_f_affespece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_affespece FROM postgres;
 GRANT ALL ON TABLE controle_f_affespece TO postgres;
-GRANT ALL ON TABLE controle_f_affespece TO lazaret;
-GRANT ALL ON TABLE controle_f_affespece TO superlazaret;
+GRANT ALL ON TABLE controle_f_affespece TO databasename;
+GRANT ALL ON TABLE controle_f_affespece TO superdatabasename;
 
 
 --
@@ -18054,8 +17411,8 @@ GRANT ALL ON TABLE controle_f_affespece TO superlazaret;
 REVOKE ALL ON TABLE controle_f_affgenre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_affgenre FROM postgres;
 GRANT ALL ON TABLE controle_f_affgenre TO postgres;
-GRANT ALL ON TABLE controle_f_affgenre TO lazaret;
-GRANT ALL ON TABLE controle_f_affgenre TO superlazaret;
+GRANT ALL ON TABLE controle_f_affgenre TO databasename;
+GRANT ALL ON TABLE controle_f_affgenre TO superdatabasename;
 
 
 --
@@ -18065,8 +17422,8 @@ GRANT ALL ON TABLE controle_f_affgenre TO superlazaret;
 REVOKE ALL ON TABLE controle_f_agecl FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agecl FROM postgres;
 GRANT ALL ON TABLE controle_f_agecl TO postgres;
-GRANT SELECT ON TABLE controle_f_agecl TO lazaret;
-GRANT ALL ON TABLE controle_f_agecl TO superlazaret;
+GRANT SELECT ON TABLE controle_f_agecl TO databasename;
+GRANT ALL ON TABLE controle_f_agecl TO superdatabasename;
 
 
 --
@@ -18076,8 +17433,8 @@ GRANT ALL ON TABLE controle_f_agecl TO superlazaret;
 REVOKE ALL ON TABLE controle_f_agent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agent FROM postgres;
 GRANT ALL ON TABLE controle_f_agent TO postgres;
-GRANT SELECT ON TABLE controle_f_agent TO lazaret;
-GRANT ALL ON TABLE controle_f_agent TO superlazaret;
+GRANT SELECT ON TABLE controle_f_agent TO databasename;
+GRANT ALL ON TABLE controle_f_agent TO superdatabasename;
 
 
 --
@@ -18087,8 +17444,8 @@ GRANT ALL ON TABLE controle_f_agent TO superlazaret;
 REVOKE ALL ON TABLE controle_f_agest FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_agest FROM postgres;
 GRANT ALL ON TABLE controle_f_agest TO postgres;
-GRANT SELECT ON TABLE controle_f_agest TO lazaret;
-GRANT ALL ON TABLE controle_f_agest TO superlazaret;
+GRANT SELECT ON TABLE controle_f_agest TO databasename;
+GRANT ALL ON TABLE controle_f_agest TO superdatabasename;
 
 
 --
@@ -18098,8 +17455,8 @@ GRANT ALL ON TABLE controle_f_agest TO superlazaret;
 REVOKE ALL ON TABLE controle_f_association FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_association FROM postgres;
 GRANT ALL ON TABLE controle_f_association TO postgres;
-GRANT SELECT ON TABLE controle_f_association TO lazaret;
-GRANT ALL ON TABLE controle_f_association TO superlazaret;
+GRANT SELECT ON TABLE controle_f_association TO databasename;
+GRANT ALL ON TABLE controle_f_association TO superdatabasename;
 
 
 --
@@ -18109,8 +17466,8 @@ GRANT ALL ON TABLE controle_f_association TO superlazaret;
 REVOKE ALL ON TABLE controle_f_calcouleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_calcouleur FROM postgres;
 GRANT ALL ON TABLE controle_f_calcouleur TO postgres;
-GRANT SELECT ON TABLE controle_f_calcouleur TO lazaret;
-GRANT ALL ON TABLE controle_f_calcouleur TO superlazaret;
+GRANT SELECT ON TABLE controle_f_calcouleur TO databasename;
+GRANT ALL ON TABLE controle_f_calcouleur TO superdatabasename;
 
 
 --
@@ -18120,8 +17477,8 @@ GRANT ALL ON TABLE controle_f_calcouleur TO superlazaret;
 REVOKE ALL ON TABLE controle_f_caltype FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_caltype FROM postgres;
 GRANT ALL ON TABLE controle_f_caltype TO postgres;
-GRANT SELECT ON TABLE controle_f_caltype TO lazaret;
-GRANT ALL ON TABLE controle_f_caltype TO superlazaret;
+GRANT SELECT ON TABLE controle_f_caltype TO databasename;
+GRANT ALL ON TABLE controle_f_caltype TO superdatabasename;
 
 
 --
@@ -18131,8 +17488,8 @@ GRANT ALL ON TABLE controle_f_caltype TO superlazaret;
 REVOKE ALL ON TABLE controle_f_classe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_classe FROM postgres;
 GRANT ALL ON TABLE controle_f_classe TO postgres;
-GRANT SELECT ON TABLE controle_f_classe TO lazaret;
-GRANT ALL ON TABLE controle_f_classe TO superlazaret;
+GRANT SELECT ON TABLE controle_f_classe TO databasename;
+GRANT ALL ON TABLE controle_f_classe TO superdatabasename;
 
 
 --
@@ -18142,8 +17499,8 @@ GRANT ALL ON TABLE controle_f_classe TO superlazaret;
 REVOKE ALL ON TABLE controle_f_complement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_complement FROM postgres;
 GRANT ALL ON TABLE controle_f_complement TO postgres;
-GRANT ALL ON TABLE controle_f_complement TO lazaret;
-GRANT ALL ON TABLE controle_f_complement TO superlazaret;
+GRANT ALL ON TABLE controle_f_complement TO databasename;
+GRANT ALL ON TABLE controle_f_complement TO superdatabasename;
 
 
 --
@@ -18153,8 +17510,8 @@ GRANT ALL ON TABLE controle_f_complement TO superlazaret;
 REVOKE ALL ON TABLE controle_f_composite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_composite FROM postgres;
 GRANT ALL ON TABLE controle_f_composite TO postgres;
-GRANT SELECT ON TABLE controle_f_composite TO lazaret;
-GRANT ALL ON TABLE controle_f_composite TO superlazaret;
+GRANT SELECT ON TABLE controle_f_composite TO databasename;
+GRANT ALL ON TABLE controle_f_composite TO superdatabasename;
 
 
 --
@@ -18164,8 +17521,8 @@ GRANT ALL ON TABLE controle_f_composite TO superlazaret;
 REVOKE ALL ON TABLE controle_f_concretion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_concretion FROM postgres;
 GRANT ALL ON TABLE controle_f_concretion TO postgres;
-GRANT SELECT ON TABLE controle_f_concretion TO lazaret;
-GRANT ALL ON TABLE controle_f_concretion TO superlazaret;
+GRANT SELECT ON TABLE controle_f_concretion TO databasename;
+GRANT ALL ON TABLE controle_f_concretion TO superdatabasename;
 
 
 --
@@ -18175,8 +17532,8 @@ GRANT ALL ON TABLE controle_f_concretion TO superlazaret;
 REVOKE ALL ON TABLE controle_f_conservation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_conservation FROM postgres;
 GRANT ALL ON TABLE controle_f_conservation TO postgres;
-GRANT SELECT ON TABLE controle_f_conservation TO lazaret;
-GRANT ALL ON TABLE controle_f_conservation TO superlazaret;
+GRANT SELECT ON TABLE controle_f_conservation TO databasename;
+GRANT ALL ON TABLE controle_f_conservation TO superdatabasename;
 
 
 --
@@ -18186,8 +17543,8 @@ GRANT ALL ON TABLE controle_f_conservation TO superlazaret;
 REVOKE ALL ON TABLE controle_f_coprolithe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_coprolithe FROM postgres;
 GRANT ALL ON TABLE controle_f_coprolithe TO postgres;
-GRANT SELECT ON TABLE controle_f_coprolithe TO lazaret;
-GRANT ALL ON TABLE controle_f_coprolithe TO superlazaret;
+GRANT SELECT ON TABLE controle_f_coprolithe TO databasename;
+GRANT ALL ON TABLE controle_f_coprolithe TO superdatabasename;
 
 
 --
@@ -18197,8 +17554,8 @@ GRANT ALL ON TABLE controle_f_coprolithe TO superlazaret;
 REVOKE ALL ON TABLE controle_f_coraspect FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_coraspect FROM postgres;
 GRANT ALL ON TABLE controle_f_coraspect TO postgres;
-GRANT SELECT ON TABLE controle_f_coraspect TO lazaret;
-GRANT ALL ON TABLE controle_f_coraspect TO superlazaret;
+GRANT SELECT ON TABLE controle_f_coraspect TO databasename;
+GRANT ALL ON TABLE controle_f_coraspect TO superdatabasename;
 
 
 --
@@ -18208,8 +17565,8 @@ GRANT ALL ON TABLE controle_f_coraspect TO superlazaret;
 REVOKE ALL ON TABLE controle_f_corfissure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_corfissure FROM postgres;
 GRANT ALL ON TABLE controle_f_corfissure TO postgres;
-GRANT SELECT ON TABLE controle_f_corfissure TO lazaret;
-GRANT ALL ON TABLE controle_f_corfissure TO superlazaret;
+GRANT SELECT ON TABLE controle_f_corfissure TO databasename;
+GRANT ALL ON TABLE controle_f_corfissure TO superdatabasename;
 
 
 --
@@ -18219,8 +17576,8 @@ GRANT ALL ON TABLE controle_f_corfissure TO superlazaret;
 REVOKE ALL ON TABLE controle_f_couleur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_couleur FROM postgres;
 GRANT ALL ON TABLE controle_f_couleur TO postgres;
-GRANT SELECT ON TABLE controle_f_couleur TO lazaret;
-GRANT ALL ON TABLE controle_f_couleur TO superlazaret;
+GRANT SELECT ON TABLE controle_f_couleur TO databasename;
+GRANT ALL ON TABLE controle_f_couleur TO superdatabasename;
 
 
 --
@@ -18230,8 +17587,8 @@ GRANT ALL ON TABLE controle_f_couleur TO superlazaret;
 REVOKE ALL ON TABLE controle_f_datation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_datation FROM postgres;
 GRANT ALL ON TABLE controle_f_datation TO postgres;
-GRANT SELECT ON TABLE controle_f_datation TO lazaret;
-GRANT ALL ON TABLE controle_f_datation TO superlazaret;
+GRANT SELECT ON TABLE controle_f_datation TO databasename;
+GRANT ALL ON TABLE controle_f_datation TO superdatabasename;
 
 
 --
@@ -18241,8 +17598,8 @@ GRANT ALL ON TABLE controle_f_datation TO superlazaret;
 REVOKE ALL ON TABLE controle_f_description FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_description FROM postgres;
 GRANT ALL ON TABLE controle_f_description TO postgres;
-GRANT SELECT ON TABLE controle_f_description TO lazaret;
-GRANT ALL ON TABLE controle_f_description TO superlazaret;
+GRANT SELECT ON TABLE controle_f_description TO databasename;
+GRANT ALL ON TABLE controle_f_description TO superdatabasename;
 
 
 --
@@ -18252,8 +17609,8 @@ GRANT ALL ON TABLE controle_f_description TO superlazaret;
 REVOKE ALL ON TABLE controle_f_dessin FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_dessin FROM postgres;
 GRANT ALL ON TABLE controle_f_dessin TO postgres;
-GRANT SELECT ON TABLE controle_f_dessin TO lazaret;
-GRANT ALL ON TABLE controle_f_dessin TO superlazaret;
+GRANT SELECT ON TABLE controle_f_dessin TO databasename;
+GRANT ALL ON TABLE controle_f_dessin TO superdatabasename;
 
 
 --
@@ -18263,8 +17620,8 @@ GRANT ALL ON TABLE controle_f_dessin TO superlazaret;
 REVOKE ALL ON TABLE controle_f_eclat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_eclat FROM postgres;
 GRANT ALL ON TABLE controle_f_eclat TO postgres;
-GRANT SELECT ON TABLE controle_f_eclat TO lazaret;
-GRANT ALL ON TABLE controle_f_eclat TO superlazaret;
+GRANT SELECT ON TABLE controle_f_eclat TO databasename;
+GRANT ALL ON TABLE controle_f_eclat TO superdatabasename;
 
 
 --
@@ -18274,8 +17631,8 @@ GRANT ALL ON TABLE controle_f_eclat TO superlazaret;
 REVOKE ALL ON TABLE controle_f_espece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_espece FROM postgres;
 GRANT ALL ON TABLE controle_f_espece TO postgres;
-GRANT SELECT ON TABLE controle_f_espece TO lazaret;
-GRANT ALL ON TABLE controle_f_espece TO superlazaret;
+GRANT SELECT ON TABLE controle_f_espece TO databasename;
+GRANT ALL ON TABLE controle_f_espece TO superdatabasename;
 
 
 --
@@ -18285,8 +17642,8 @@ GRANT ALL ON TABLE controle_f_espece TO superlazaret;
 REVOKE ALL ON TABLE controle_f_famille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_famille FROM postgres;
 GRANT ALL ON TABLE controle_f_famille TO postgres;
-GRANT SELECT ON TABLE controle_f_famille TO lazaret;
-GRANT ALL ON TABLE controle_f_famille TO superlazaret;
+GRANT SELECT ON TABLE controle_f_famille TO databasename;
+GRANT ALL ON TABLE controle_f_famille TO superdatabasename;
 
 
 --
@@ -18296,8 +17653,8 @@ GRANT ALL ON TABLE controle_f_famille TO superlazaret;
 REVOKE ALL ON TABLE controle_f_fossilisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fossilisation FROM postgres;
 GRANT ALL ON TABLE controle_f_fossilisation TO postgres;
-GRANT SELECT ON TABLE controle_f_fossilisation TO lazaret;
-GRANT ALL ON TABLE controle_f_fossilisation TO superlazaret;
+GRANT SELECT ON TABLE controle_f_fossilisation TO databasename;
+GRANT ALL ON TABLE controle_f_fossilisation TO superdatabasename;
 
 
 --
@@ -18307,8 +17664,8 @@ GRANT ALL ON TABLE controle_f_fossilisation TO superlazaret;
 REVOKE ALL ON TABLE controle_f_fragde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fragde FROM postgres;
 GRANT ALL ON TABLE controle_f_fragde TO postgres;
-GRANT SELECT ON TABLE controle_f_fragde TO lazaret;
-GRANT ALL ON TABLE controle_f_fragde TO superlazaret;
+GRANT SELECT ON TABLE controle_f_fragde TO databasename;
+GRANT ALL ON TABLE controle_f_fragde TO superdatabasename;
 
 
 --
@@ -18318,8 +17675,8 @@ GRANT ALL ON TABLE controle_f_fragde TO superlazaret;
 REVOKE ALL ON TABLE controle_f_fragge FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_fragge FROM postgres;
 GRANT ALL ON TABLE controle_f_fragge TO postgres;
-GRANT SELECT ON TABLE controle_f_fragge TO lazaret;
-GRANT ALL ON TABLE controle_f_fragge TO superlazaret;
+GRANT SELECT ON TABLE controle_f_fragge TO databasename;
+GRANT ALL ON TABLE controle_f_fragge TO superdatabasename;
 
 
 --
@@ -18329,8 +17686,8 @@ GRANT ALL ON TABLE controle_f_fragge TO superlazaret;
 REVOKE ALL ON TABLE controle_f_genre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_genre FROM postgres;
 GRANT ALL ON TABLE controle_f_genre TO postgres;
-GRANT SELECT ON TABLE controle_f_genre TO lazaret;
-GRANT ALL ON TABLE controle_f_genre TO superlazaret;
+GRANT SELECT ON TABLE controle_f_genre TO databasename;
+GRANT ALL ON TABLE controle_f_genre TO superdatabasename;
 
 
 --
@@ -18340,8 +17697,8 @@ GRANT ALL ON TABLE controle_f_genre TO superlazaret;
 REVOKE ALL ON TABLE controle_f_icirconference FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_icirconference FROM postgres;
 GRANT ALL ON TABLE controle_f_icirconference TO postgres;
-GRANT SELECT ON TABLE controle_f_icirconference TO lazaret;
-GRANT ALL ON TABLE controle_f_icirconference TO superlazaret;
+GRANT SELECT ON TABLE controle_f_icirconference TO databasename;
+GRANT ALL ON TABLE controle_f_icirconference TO superdatabasename;
 
 
 --
@@ -18351,8 +17708,8 @@ GRANT ALL ON TABLE controle_f_icirconference TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ilongueur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ilongueur FROM postgres;
 GRANT ALL ON TABLE controle_f_ilongueur TO postgres;
-GRANT SELECT ON TABLE controle_f_ilongueur TO lazaret;
-GRANT ALL ON TABLE controle_f_ilongueur TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ilongueur TO databasename;
+GRANT ALL ON TABLE controle_f_ilongueur TO superdatabasename;
 
 
 --
@@ -18362,8 +17719,8 @@ GRANT ALL ON TABLE controle_f_ilongueur TO superlazaret;
 REVOKE ALL ON TABLE controle_f_lateralite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_lateralite FROM postgres;
 GRANT ALL ON TABLE controle_f_lateralite TO postgres;
-GRANT SELECT ON TABLE controle_f_lateralite TO lazaret;
-GRANT ALL ON TABLE controle_f_lateralite TO superlazaret;
+GRANT SELECT ON TABLE controle_f_lateralite TO databasename;
+GRANT ALL ON TABLE controle_f_lateralite TO superdatabasename;
 
 
 --
@@ -18373,8 +17730,8 @@ GRANT ALL ON TABLE controle_f_lateralite TO superlazaret;
 REVOKE ALL ON TABLE controle_f_mode FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_mode FROM postgres;
 GRANT ALL ON TABLE controle_f_mode TO postgres;
-GRANT SELECT ON TABLE controle_f_mode TO lazaret;
-GRANT ALL ON TABLE controle_f_mode TO superlazaret;
+GRANT SELECT ON TABLE controle_f_mode TO databasename;
+GRANT ALL ON TABLE controle_f_mode TO superdatabasename;
 
 
 --
@@ -18384,8 +17741,8 @@ GRANT ALL ON TABLE controle_f_mode TO superlazaret;
 REVOKE ALL ON TABLE controle_f_moulage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_moulage FROM postgres;
 GRANT ALL ON TABLE controle_f_moulage TO postgres;
-GRANT SELECT ON TABLE controle_f_moulage TO lazaret;
-GRANT ALL ON TABLE controle_f_moulage TO superlazaret;
+GRANT SELECT ON TABLE controle_f_moulage TO databasename;
+GRANT ALL ON TABLE controle_f_moulage TO superdatabasename;
 
 
 --
@@ -18395,8 +17752,8 @@ GRANT ALL ON TABLE controle_f_moulage TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ordre FROM postgres;
 GRANT ALL ON TABLE controle_f_ordre TO postgres;
-GRANT SELECT ON TABLE controle_f_ordre TO lazaret;
-GRANT ALL ON TABLE controle_f_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ordre TO databasename;
+GRANT ALL ON TABLE controle_f_ordre TO superdatabasename;
 
 
 --
@@ -18406,8 +17763,8 @@ GRANT ALL ON TABLE controle_f_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_f_oxyde FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_oxyde FROM postgres;
 GRANT ALL ON TABLE controle_f_oxyde TO postgres;
-GRANT SELECT ON TABLE controle_f_oxyde TO lazaret;
-GRANT ALL ON TABLE controle_f_oxyde TO superlazaret;
+GRANT SELECT ON TABLE controle_f_oxyde TO databasename;
+GRANT ALL ON TABLE controle_f_oxyde TO superdatabasename;
 
 
 --
@@ -18417,8 +17774,8 @@ GRANT ALL ON TABLE controle_f_oxyde TO superlazaret;
 REVOKE ALL ON TABLE controle_f_pathologie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_pathologie FROM postgres;
 GRANT ALL ON TABLE controle_f_pathologie TO postgres;
-GRANT SELECT ON TABLE controle_f_pathologie TO lazaret;
-GRANT ALL ON TABLE controle_f_pathologie TO superlazaret;
+GRANT SELECT ON TABLE controle_f_pathologie TO databasename;
+GRANT ALL ON TABLE controle_f_pathologie TO superdatabasename;
 
 
 --
@@ -18428,8 +17785,8 @@ GRANT ALL ON TABLE controle_f_pathologie TO superlazaret;
 REVOKE ALL ON TABLE controle_f_pelote FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_pelote FROM postgres;
 GRANT ALL ON TABLE controle_f_pelote TO postgres;
-GRANT SELECT ON TABLE controle_f_pelote TO lazaret;
-GRANT ALL ON TABLE controle_f_pelote TO superlazaret;
+GRANT SELECT ON TABLE controle_f_pelote TO databasename;
+GRANT ALL ON TABLE controle_f_pelote TO superdatabasename;
 
 
 --
@@ -18439,8 +17796,8 @@ GRANT ALL ON TABLE controle_f_pelote TO superlazaret;
 REVOKE ALL ON TABLE controle_f_percussion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_percussion FROM postgres;
 GRANT ALL ON TABLE controle_f_percussion TO postgres;
-GRANT SELECT ON TABLE controle_f_percussion TO lazaret;
-GRANT ALL ON TABLE controle_f_percussion TO superlazaret;
+GRANT SELECT ON TABLE controle_f_percussion TO databasename;
+GRANT ALL ON TABLE controle_f_percussion TO superdatabasename;
 
 
 --
@@ -18450,8 +17807,8 @@ GRANT ALL ON TABLE controle_f_percussion TO superlazaret;
 REVOKE ALL ON TABLE controle_f_photo FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_photo FROM postgres;
 GRANT ALL ON TABLE controle_f_photo TO postgres;
-GRANT SELECT ON TABLE controle_f_photo TO lazaret;
-GRANT ALL ON TABLE controle_f_photo TO superlazaret;
+GRANT SELECT ON TABLE controle_f_photo TO databasename;
+GRANT ALL ON TABLE controle_f_photo TO superdatabasename;
 
 
 --
@@ -18461,8 +17818,8 @@ GRANT ALL ON TABLE controle_f_photo TO superlazaret;
 REVOKE ALL ON TABLE controle_f_reference FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_reference FROM postgres;
 GRANT ALL ON TABLE controle_f_reference TO postgres;
-GRANT ALL ON TABLE controle_f_reference TO lazaret;
-GRANT ALL ON TABLE controle_f_reference TO superlazaret;
+GRANT ALL ON TABLE controle_f_reference TO databasename;
+GRANT ALL ON TABLE controle_f_reference TO superdatabasename;
 
 
 --
@@ -18472,8 +17829,8 @@ GRANT ALL ON TABLE controle_f_reference TO superlazaret;
 REVOKE ALL ON TABLE controle_f_responsable FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_responsable FROM postgres;
 GRANT ALL ON TABLE controle_f_responsable TO postgres;
-GRANT SELECT ON TABLE controle_f_responsable TO lazaret;
-GRANT ALL ON TABLE controle_f_responsable TO superlazaret;
+GRANT SELECT ON TABLE controle_f_responsable TO databasename;
+GRANT ALL ON TABLE controle_f_responsable TO superdatabasename;
 
 
 --
@@ -18483,8 +17840,8 @@ GRANT ALL ON TABLE controle_f_responsable TO superlazaret;
 REVOKE ALL ON TABLE controle_f_restauration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_restauration FROM postgres;
 GRANT ALL ON TABLE controle_f_restauration TO postgres;
-GRANT SELECT ON TABLE controle_f_restauration TO lazaret;
-GRANT ALL ON TABLE controle_f_restauration TO superlazaret;
+GRANT SELECT ON TABLE controle_f_restauration TO databasename;
+GRANT ALL ON TABLE controle_f_restauration TO superdatabasename;
 
 
 --
@@ -18494,8 +17851,8 @@ GRANT ALL ON TABLE controle_f_restauration TO superlazaret;
 REVOKE ALL ON TABLE controle_f_saisie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_saisie FROM postgres;
 GRANT ALL ON TABLE controle_f_saisie TO postgres;
-GRANT SELECT ON TABLE controle_f_saisie TO lazaret;
-GRANT ALL ON TABLE controle_f_saisie TO superlazaret;
+GRANT SELECT ON TABLE controle_f_saisie TO databasename;
+GRANT ALL ON TABLE controle_f_saisie TO superdatabasename;
 
 
 --
@@ -18505,8 +17862,8 @@ GRANT ALL ON TABLE controle_f_saisie TO superlazaret;
 REVOKE ALL ON TABLE controle_f_sauvefrag FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_sauvefrag FROM postgres;
 GRANT ALL ON TABLE controle_f_sauvefrag TO postgres;
-GRANT SELECT ON TABLE controle_f_sauvefrag TO lazaret;
-GRANT ALL ON TABLE controle_f_sauvefrag TO superlazaret;
+GRANT SELECT ON TABLE controle_f_sauvefrag TO databasename;
+GRANT ALL ON TABLE controle_f_sauvefrag TO superdatabasename;
 
 
 --
@@ -18516,8 +17873,8 @@ GRANT ALL ON TABLE controle_f_sauvefrag TO superlazaret;
 REVOKE ALL ON TABLE controle_f_sexe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_sexe FROM postgres;
 GRANT ALL ON TABLE controle_f_sexe TO postgres;
-GRANT SELECT ON TABLE controle_f_sexe TO lazaret;
-GRANT ALL ON TABLE controle_f_sexe TO superlazaret;
+GRANT SELECT ON TABLE controle_f_sexe TO databasename;
+GRANT ALL ON TABLE controle_f_sexe TO superdatabasename;
 
 
 --
@@ -18527,8 +17884,8 @@ GRANT ALL ON TABLE controle_f_sexe TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ssespece FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ssespece FROM postgres;
 GRANT ALL ON TABLE controle_f_ssespece TO postgres;
-GRANT SELECT ON TABLE controle_f_ssespece TO lazaret;
-GRANT ALL ON TABLE controle_f_ssespece TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ssespece TO databasename;
+GRANT ALL ON TABLE controle_f_ssespece TO superdatabasename;
 
 
 --
@@ -18538,8 +17895,8 @@ GRANT ALL ON TABLE controle_f_ssespece TO superlazaret;
 REVOKE ALL ON TABLE controle_f_ssfamille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_ssfamille FROM postgres;
 GRANT ALL ON TABLE controle_f_ssfamille TO postgres;
-GRANT SELECT ON TABLE controle_f_ssfamille TO lazaret;
-GRANT ALL ON TABLE controle_f_ssfamille TO superlazaret;
+GRANT SELECT ON TABLE controle_f_ssfamille TO databasename;
+GRANT ALL ON TABLE controle_f_ssfamille TO superdatabasename;
 
 
 --
@@ -18549,8 +17906,8 @@ GRANT ALL ON TABLE controle_f_ssfamille TO superlazaret;
 REVOKE ALL ON TABLE controle_f_stdent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_stdent FROM postgres;
 GRANT ALL ON TABLE controle_f_stdent TO postgres;
-GRANT SELECT ON TABLE controle_f_stdent TO lazaret;
-GRANT ALL ON TABLE controle_f_stdent TO superlazaret;
+GRANT SELECT ON TABLE controle_f_stdent TO databasename;
+GRANT ALL ON TABLE controle_f_stdent TO superdatabasename;
 
 
 --
@@ -18560,8 +17917,8 @@ GRANT ALL ON TABLE controle_f_stdent TO superlazaret;
 REVOKE ALL ON TABLE controle_f_stserie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_stserie FROM postgres;
 GRANT ALL ON TABLE controle_f_stserie TO postgres;
-GRANT SELECT ON TABLE controle_f_stserie TO lazaret;
-GRANT ALL ON TABLE controle_f_stserie TO superlazaret;
+GRANT SELECT ON TABLE controle_f_stserie TO databasename;
+GRANT ALL ON TABLE controle_f_stserie TO superdatabasename;
 
 
 --
@@ -18571,8 +17928,8 @@ GRANT ALL ON TABLE controle_f_stserie TO superlazaret;
 REVOKE ALL ON TABLE controle_f_taille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_taille FROM postgres;
 GRANT ALL ON TABLE controle_f_taille TO postgres;
-GRANT SELECT ON TABLE controle_f_taille TO lazaret;
-GRANT ALL ON TABLE controle_f_taille TO superlazaret;
+GRANT SELECT ON TABLE controle_f_taille TO databasename;
+GRANT ALL ON TABLE controle_f_taille TO superdatabasename;
 
 
 --
@@ -18582,8 +17939,8 @@ GRANT ALL ON TABLE controle_f_taille TO superlazaret;
 REVOKE ALL ON TABLE controle_f_tissu FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_tissu FROM postgres;
 GRANT ALL ON TABLE controle_f_tissu TO postgres;
-GRANT SELECT ON TABLE controle_f_tissu TO lazaret;
-GRANT ALL ON TABLE controle_f_tissu TO superlazaret;
+GRANT SELECT ON TABLE controle_f_tissu TO databasename;
+GRANT ALL ON TABLE controle_f_tissu TO superdatabasename;
 
 
 --
@@ -18593,8 +17950,8 @@ GRANT ALL ON TABLE controle_f_tissu TO superlazaret;
 REVOKE ALL ON TABLE controle_f_traitement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_traitement FROM postgres;
 GRANT ALL ON TABLE controle_f_traitement TO postgres;
-GRANT SELECT ON TABLE controle_f_traitement TO lazaret;
-GRANT ALL ON TABLE controle_f_traitement TO superlazaret;
+GRANT SELECT ON TABLE controle_f_traitement TO databasename;
+GRANT ALL ON TABLE controle_f_traitement TO superdatabasename;
 
 
 --
@@ -18604,8 +17961,8 @@ GRANT ALL ON TABLE controle_f_traitement TO superlazaret;
 REVOKE ALL ON TABLE controle_f_tranchant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_tranchant FROM postgres;
 GRANT ALL ON TABLE controle_f_tranchant TO postgres;
-GRANT SELECT ON TABLE controle_f_tranchant TO lazaret;
-GRANT ALL ON TABLE controle_f_tranchant TO superlazaret;
+GRANT SELECT ON TABLE controle_f_tranchant TO databasename;
+GRANT ALL ON TABLE controle_f_tranchant TO superdatabasename;
 
 
 --
@@ -18615,8 +17972,8 @@ GRANT ALL ON TABLE controle_f_tranchant TO superlazaret;
 REVOKE ALL ON TABLE controle_f_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_type FROM postgres;
 GRANT ALL ON TABLE controle_f_type TO postgres;
-GRANT SELECT ON TABLE controle_f_type TO lazaret;
-GRANT ALL ON TABLE controle_f_type TO superlazaret;
+GRANT SELECT ON TABLE controle_f_type TO databasename;
+GRANT ALL ON TABLE controle_f_type TO superdatabasename;
 
 
 --
@@ -18626,8 +17983,8 @@ GRANT ALL ON TABLE controle_f_type TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typedos FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typedos FROM postgres;
 GRANT ALL ON TABLE controle_f_typedos TO postgres;
-GRANT SELECT ON TABLE controle_f_typedos TO lazaret;
-GRANT ALL ON TABLE controle_f_typedos TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typedos TO databasename;
+GRANT ALL ON TABLE controle_f_typedos TO superdatabasename;
 
 
 --
@@ -18637,8 +17994,8 @@ GRANT ALL ON TABLE controle_f_typedos TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos1 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos1 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos1 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos1 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos1 TO databasename;
+GRANT ALL ON TABLE controle_f_typos1 TO superdatabasename;
 
 
 --
@@ -18648,8 +18005,8 @@ GRANT ALL ON TABLE controle_f_typos1 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos2 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos2 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos2 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos2 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos2 TO databasename;
+GRANT ALL ON TABLE controle_f_typos2 TO superdatabasename;
 
 
 --
@@ -18659,8 +18016,8 @@ GRANT ALL ON TABLE controle_f_typos2 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos3 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos3 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos3 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos3 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos3 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos3 TO databasename;
+GRANT ALL ON TABLE controle_f_typos3 TO superdatabasename;
 
 
 --
@@ -18670,8 +18027,8 @@ GRANT ALL ON TABLE controle_f_typos3 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos4 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos4 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos4 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos4 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos4 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos4 TO databasename;
+GRANT ALL ON TABLE controle_f_typos4 TO superdatabasename;
 
 
 --
@@ -18681,8 +18038,8 @@ GRANT ALL ON TABLE controle_f_typos4 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos5 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos5 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos5 TO postgres;
-GRANT SELECT ON TABLE controle_f_typos5 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos5 TO superlazaret;
+GRANT SELECT ON TABLE controle_f_typos5 TO databasename;
+GRANT ALL ON TABLE controle_f_typos5 TO superdatabasename;
 
 
 --
@@ -18692,8 +18049,8 @@ GRANT ALL ON TABLE controle_f_typos5 TO superlazaret;
 REVOKE ALL ON TABLE controle_f_typos6 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_f_typos6 FROM postgres;
 GRANT ALL ON TABLE controle_f_typos6 TO postgres;
-GRANT ALL ON TABLE controle_f_typos6 TO lazaret;
-GRANT ALL ON TABLE controle_f_typos6 TO superlazaret;
+GRANT ALL ON TABLE controle_f_typos6 TO databasename;
+GRANT ALL ON TABLE controle_f_typos6 TO superdatabasename;
 
 
 --
@@ -18703,8 +18060,8 @@ GRANT ALL ON TABLE controle_f_typos6 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_angle1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_angle1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_angle1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_angle1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_angle1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_angle1 TO databasename;
+GRANT ALL ON TABLE controle_ff_angle1 TO superdatabasename;
 
 
 --
@@ -18714,8 +18071,8 @@ GRANT ALL ON TABLE controle_ff_angle1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_angle2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_angle2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_angle2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_angle2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_angle2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_angle2 TO databasename;
+GRANT ALL ON TABLE controle_ff_angle2 TO superdatabasename;
 
 
 --
@@ -18725,8 +18082,8 @@ GRANT ALL ON TABLE controle_ff_angle2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_aspect1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_aspect1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_aspect1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_aspect1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_aspect1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_aspect1 TO databasename;
+GRANT ALL ON TABLE controle_ff_aspect1 TO superdatabasename;
 
 
 --
@@ -18736,8 +18093,8 @@ GRANT ALL ON TABLE controle_ff_aspect1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_aspect2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_aspect2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_aspect2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_aspect2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_aspect2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_aspect2 TO databasename;
+GRANT ALL ON TABLE controle_ff_aspect2 TO superdatabasename;
 
 
 --
@@ -18747,8 +18104,8 @@ GRANT ALL ON TABLE controle_ff_aspect2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_localisation1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_localisation1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_localisation1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_localisation1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_localisation1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_localisation1 TO databasename;
+GRANT ALL ON TABLE controle_ff_localisation1 TO superdatabasename;
 
 
 --
@@ -18758,8 +18115,8 @@ GRANT ALL ON TABLE controle_ff_localisation1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_localisation2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_localisation2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_localisation2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_localisation2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_localisation2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_localisation2 TO databasename;
+GRANT ALL ON TABLE controle_ff_localisation2 TO superdatabasename;
 
 
 --
@@ -18769,8 +18126,8 @@ GRANT ALL ON TABLE controle_ff_localisation2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_morphologie1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_morphologie1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_morphologie1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_morphologie1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_morphologie1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_morphologie1 TO databasename;
+GRANT ALL ON TABLE controle_ff_morphologie1 TO superdatabasename;
 
 
 --
@@ -18780,8 +18137,8 @@ GRANT ALL ON TABLE controle_ff_morphologie1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_morphologie2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_morphologie2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_morphologie2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_morphologie2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_morphologie2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_morphologie2 TO databasename;
+GRANT ALL ON TABLE controle_ff_morphologie2 TO superdatabasename;
 
 
 --
@@ -18791,8 +18148,8 @@ GRANT ALL ON TABLE controle_ff_morphologie2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_non1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_non1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_non1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_non1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_non1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_non1 TO databasename;
+GRANT ALL ON TABLE controle_ff_non1 TO superdatabasename;
 
 
 --
@@ -18802,8 +18159,8 @@ GRANT ALL ON TABLE controle_ff_non1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_non2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_non2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_non2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_non2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_non2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_non2 TO databasename;
+GRANT ALL ON TABLE controle_ff_non2 TO superdatabasename;
 
 
 --
@@ -18813,8 +18170,8 @@ GRANT ALL ON TABLE controle_ff_non2 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_profil1 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_profil1 FROM postgres;
 GRANT ALL ON TABLE controle_ff_profil1 TO postgres;
-GRANT SELECT ON TABLE controle_ff_profil1 TO lazaret;
-GRANT ALL ON TABLE controle_ff_profil1 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_profil1 TO databasename;
+GRANT ALL ON TABLE controle_ff_profil1 TO superdatabasename;
 
 
 --
@@ -18824,8 +18181,8 @@ GRANT ALL ON TABLE controle_ff_profil1 TO superlazaret;
 REVOKE ALL ON TABLE controle_ff_profil2 FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ff_profil2 FROM postgres;
 GRANT ALL ON TABLE controle_ff_profil2 TO postgres;
-GRANT SELECT ON TABLE controle_ff_profil2 TO lazaret;
-GRANT ALL ON TABLE controle_ff_profil2 TO superlazaret;
+GRANT SELECT ON TABLE controle_ff_profil2 TO databasename;
+GRANT ALL ON TABLE controle_ff_profil2 TO superdatabasename;
 
 
 --
@@ -18835,8 +18192,8 @@ GRANT ALL ON TABLE controle_ff_profil2 TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_mode FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_mode FROM postgres;
 GRANT ALL ON TABLE controle_fi_mode TO postgres;
-GRANT SELECT ON TABLE controle_fi_mode TO lazaret;
-GRANT ALL ON TABLE controle_fi_mode TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_mode TO databasename;
+GRANT ALL ON TABLE controle_fi_mode TO superdatabasename;
 
 
 --
@@ -18846,8 +18203,8 @@ GRANT ALL ON TABLE controle_fi_mode TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_ordre FROM postgres;
 GRANT ALL ON TABLE controle_fi_ordre TO postgres;
-GRANT SELECT ON TABLE controle_fi_ordre TO lazaret;
-GRANT ALL ON TABLE controle_fi_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_ordre TO databasename;
+GRANT ALL ON TABLE controle_fi_ordre TO superdatabasename;
 
 
 --
@@ -18857,8 +18214,8 @@ GRANT ALL ON TABLE controle_fi_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_percussion FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_percussion FROM postgres;
 GRANT ALL ON TABLE controle_fi_percussion TO postgres;
-GRANT SELECT ON TABLE controle_fi_percussion TO lazaret;
-GRANT ALL ON TABLE controle_fi_percussion TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_percussion TO databasename;
+GRANT ALL ON TABLE controle_fi_percussion TO superdatabasename;
 
 
 --
@@ -18868,8 +18225,8 @@ GRANT ALL ON TABLE controle_fi_percussion TO superlazaret;
 REVOKE ALL ON TABLE controle_fi_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_fi_type FROM postgres;
 GRANT ALL ON TABLE controle_fi_type TO postgres;
-GRANT SELECT ON TABLE controle_fi_type TO lazaret;
-GRANT ALL ON TABLE controle_fi_type TO superlazaret;
+GRANT SELECT ON TABLE controle_fi_type TO databasename;
+GRANT ALL ON TABLE controle_fi_type TO superdatabasename;
 
 
 --
@@ -18879,8 +18236,8 @@ GRANT ALL ON TABLE controle_fi_type TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_arete FROM postgres;
 GRANT ALL ON TABLE controle_ga_arete TO postgres;
-GRANT SELECT ON TABLE controle_ga_arete TO lazaret;
-GRANT ALL ON TABLE controle_ga_arete TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_arete TO databasename;
+GRANT ALL ON TABLE controle_ga_arete TO superdatabasename;
 
 
 --
@@ -18890,8 +18247,8 @@ GRANT ALL ON TABLE controle_ga_arete TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_chf FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_chf FROM postgres;
 GRANT ALL ON TABLE controle_ga_chf TO postgres;
-GRANT SELECT ON TABLE controle_ga_chf TO lazaret;
-GRANT ALL ON TABLE controle_ga_chf TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_chf TO databasename;
+GRANT ALL ON TABLE controle_ga_chf TO superdatabasename;
 
 
 --
@@ -18901,8 +18258,8 @@ GRANT ALL ON TABLE controle_ga_chf TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_facture FROM postgres;
 GRANT ALL ON TABLE controle_ga_facture TO postgres;
-GRANT SELECT ON TABLE controle_ga_facture TO lazaret;
-GRANT ALL ON TABLE controle_ga_facture TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_facture TO databasename;
+GRANT ALL ON TABLE controle_ga_facture TO superdatabasename;
 
 
 --
@@ -18912,8 +18269,8 @@ GRANT ALL ON TABLE controle_ga_facture TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_forme FROM postgres;
 GRANT ALL ON TABLE controle_ga_forme TO postgres;
-GRANT SELECT ON TABLE controle_ga_forme TO lazaret;
-GRANT ALL ON TABLE controle_ga_forme TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_forme TO databasename;
+GRANT ALL ON TABLE controle_ga_forme TO superdatabasename;
 
 
 --
@@ -18923,8 +18280,8 @@ GRANT ALL ON TABLE controle_ga_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_ga_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_ga_obliquite TO lazaret;
-GRANT ALL ON TABLE controle_ga_obliquite TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_obliquite TO databasename;
+GRANT ALL ON TABLE controle_ga_obliquite TO superdatabasename;
 
 
 --
@@ -18934,8 +18291,8 @@ GRANT ALL ON TABLE controle_ga_obliquite TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_orientation FROM postgres;
 GRANT ALL ON TABLE controle_ga_orientation TO postgres;
-GRANT SELECT ON TABLE controle_ga_orientation TO lazaret;
-GRANT ALL ON TABLE controle_ga_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_orientation TO databasename;
+GRANT ALL ON TABLE controle_ga_orientation TO superdatabasename;
 
 
 --
@@ -18945,8 +18302,8 @@ GRANT ALL ON TABLE controle_ga_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_qualite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_qualite FROM postgres;
 GRANT ALL ON TABLE controle_ga_qualite TO postgres;
-GRANT SELECT ON TABLE controle_ga_qualite TO lazaret;
-GRANT ALL ON TABLE controle_ga_qualite TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_qualite TO databasename;
+GRANT ALL ON TABLE controle_ga_qualite TO superdatabasename;
 
 
 --
@@ -18956,8 +18313,8 @@ GRANT ALL ON TABLE controle_ga_qualite TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_retouche FROM postgres;
 GRANT ALL ON TABLE controle_ga_retouche TO postgres;
-GRANT SELECT ON TABLE controle_ga_retouche TO lazaret;
-GRANT ALL ON TABLE controle_ga_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_retouche TO databasename;
+GRANT ALL ON TABLE controle_ga_retouche TO superdatabasename;
 
 
 --
@@ -18967,8 +18324,8 @@ GRANT ALL ON TABLE controle_ga_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_ga_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ga_type FROM postgres;
 GRANT ALL ON TABLE controle_ga_type TO postgres;
-GRANT SELECT ON TABLE controle_ga_type TO lazaret;
-GRANT ALL ON TABLE controle_ga_type TO superlazaret;
+GRANT SELECT ON TABLE controle_ga_type TO databasename;
+GRANT ALL ON TABLE controle_ga_type TO superdatabasename;
 
 
 --
@@ -18978,8 +18335,8 @@ GRANT ALL ON TABLE controle_ga_type TO superlazaret;
 REVOKE ALL ON TABLE controle_h_amenagement_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_amenagement_bord FROM postgres;
 GRANT ALL ON TABLE controle_h_amenagement_bord TO postgres;
-GRANT SELECT ON TABLE controle_h_amenagement_bord TO lazaret;
-GRANT ALL ON TABLE controle_h_amenagement_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_h_amenagement_bord TO databasename;
+GRANT ALL ON TABLE controle_h_amenagement_bord TO superdatabasename;
 
 
 --
@@ -18989,8 +18346,8 @@ GRANT ALL ON TABLE controle_h_amenagement_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_h_amenagement_distal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_amenagement_distal FROM postgres;
 GRANT ALL ON TABLE controle_h_amenagement_distal TO postgres;
-GRANT SELECT ON TABLE controle_h_amenagement_distal TO lazaret;
-GRANT ALL ON TABLE controle_h_amenagement_distal TO superlazaret;
+GRANT SELECT ON TABLE controle_h_amenagement_distal TO databasename;
+GRANT ALL ON TABLE controle_h_amenagement_distal TO superdatabasename;
 
 
 --
@@ -19000,8 +18357,8 @@ GRANT ALL ON TABLE controle_h_amenagement_distal TO superlazaret;
 REVOKE ALL ON TABLE controle_h_arete FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_arete FROM postgres;
 GRANT ALL ON TABLE controle_h_arete TO postgres;
-GRANT SELECT ON TABLE controle_h_arete TO lazaret;
-GRANT ALL ON TABLE controle_h_arete TO superlazaret;
+GRANT SELECT ON TABLE controle_h_arete TO databasename;
+GRANT ALL ON TABLE controle_h_arete TO superdatabasename;
 
 
 --
@@ -19011,8 +18368,8 @@ GRANT ALL ON TABLE controle_h_arete TO superlazaret;
 REVOKE ALL ON TABLE controle_h_base FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_base FROM postgres;
 GRANT ALL ON TABLE controle_h_base TO postgres;
-GRANT SELECT ON TABLE controle_h_base TO lazaret;
-GRANT ALL ON TABLE controle_h_base TO superlazaret;
+GRANT SELECT ON TABLE controle_h_base TO databasename;
+GRANT ALL ON TABLE controle_h_base TO superdatabasename;
 
 
 --
@@ -19022,8 +18379,8 @@ GRANT ALL ON TABLE controle_h_base TO superlazaret;
 REVOKE ALL ON TABLE controle_h_bilaterale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_bilaterale FROM postgres;
 GRANT ALL ON TABLE controle_h_bilaterale TO postgres;
-GRANT SELECT ON TABLE controle_h_bilaterale TO lazaret;
-GRANT ALL ON TABLE controle_h_bilaterale TO superlazaret;
+GRANT SELECT ON TABLE controle_h_bilaterale TO databasename;
+GRANT ALL ON TABLE controle_h_bilaterale TO superdatabasename;
 
 
 --
@@ -19033,8 +18390,8 @@ GRANT ALL ON TABLE controle_h_bilaterale TO superlazaret;
 REVOKE ALL ON TABLE controle_h_biseau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_biseau FROM postgres;
 GRANT ALL ON TABLE controle_h_biseau TO postgres;
-GRANT SELECT ON TABLE controle_h_biseau TO lazaret;
-GRANT ALL ON TABLE controle_h_biseau TO superlazaret;
+GRANT SELECT ON TABLE controle_h_biseau TO databasename;
+GRANT ALL ON TABLE controle_h_biseau TO superdatabasename;
 
 
 --
@@ -19044,8 +18401,8 @@ GRANT ALL ON TABLE controle_h_biseau TO superlazaret;
 REVOKE ALL ON TABLE controle_h_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_bord FROM postgres;
 GRANT ALL ON TABLE controle_h_bord TO postgres;
-GRANT SELECT ON TABLE controle_h_bord TO lazaret;
-GRANT ALL ON TABLE controle_h_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_h_bord TO databasename;
+GRANT ALL ON TABLE controle_h_bord TO superdatabasename;
 
 
 --
@@ -19055,8 +18412,8 @@ GRANT ALL ON TABLE controle_h_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_h_distale FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_distale FROM postgres;
 GRANT ALL ON TABLE controle_h_distale TO postgres;
-GRANT SELECT ON TABLE controle_h_distale TO lazaret;
-GRANT ALL ON TABLE controle_h_distale TO superlazaret;
+GRANT SELECT ON TABLE controle_h_distale TO databasename;
+GRANT ALL ON TABLE controle_h_distale TO superdatabasename;
 
 
 --
@@ -19066,8 +18423,8 @@ GRANT ALL ON TABLE controle_h_distale TO superlazaret;
 REVOKE ALL ON TABLE controle_h_extension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_extension FROM postgres;
 GRANT ALL ON TABLE controle_h_extension TO postgres;
-GRANT SELECT ON TABLE controle_h_extension TO lazaret;
-GRANT ALL ON TABLE controle_h_extension TO superlazaret;
+GRANT SELECT ON TABLE controle_h_extension TO databasename;
+GRANT ALL ON TABLE controle_h_extension TO superdatabasename;
 
 
 --
@@ -19077,8 +18434,8 @@ GRANT ALL ON TABLE controle_h_extension TO superlazaret;
 REVOKE ALL ON TABLE controle_h_facture FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_facture FROM postgres;
 GRANT ALL ON TABLE controle_h_facture TO postgres;
-GRANT SELECT ON TABLE controle_h_facture TO lazaret;
-GRANT ALL ON TABLE controle_h_facture TO superlazaret;
+GRANT SELECT ON TABLE controle_h_facture TO databasename;
+GRANT ALL ON TABLE controle_h_facture TO superdatabasename;
 
 
 --
@@ -19088,8 +18445,8 @@ GRANT ALL ON TABLE controle_h_facture TO superlazaret;
 REVOKE ALL ON TABLE controle_h_meplat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_meplat FROM postgres;
 GRANT ALL ON TABLE controle_h_meplat TO postgres;
-GRANT SELECT ON TABLE controle_h_meplat TO lazaret;
-GRANT ALL ON TABLE controle_h_meplat TO superlazaret;
+GRANT SELECT ON TABLE controle_h_meplat TO databasename;
+GRANT ALL ON TABLE controle_h_meplat TO superdatabasename;
 
 
 --
@@ -19099,8 +18456,8 @@ GRANT ALL ON TABLE controle_h_meplat TO superlazaret;
 REVOKE ALL ON TABLE controle_h_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_retouche FROM postgres;
 GRANT ALL ON TABLE controle_h_retouche TO postgres;
-GRANT SELECT ON TABLE controle_h_retouche TO lazaret;
-GRANT ALL ON TABLE controle_h_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_h_retouche TO databasename;
+GRANT ALL ON TABLE controle_h_retouche TO superdatabasename;
 
 
 --
@@ -19110,8 +18467,8 @@ GRANT ALL ON TABLE controle_h_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_h_surface FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_surface FROM postgres;
 GRANT ALL ON TABLE controle_h_surface TO postgres;
-GRANT SELECT ON TABLE controle_h_surface TO lazaret;
-GRANT ALL ON TABLE controle_h_surface TO superlazaret;
+GRANT SELECT ON TABLE controle_h_surface TO databasename;
+GRANT ALL ON TABLE controle_h_surface TO superdatabasename;
 
 
 --
@@ -19121,8 +18478,8 @@ GRANT ALL ON TABLE controle_h_surface TO superlazaret;
 REVOKE ALL ON TABLE controle_h_symetrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_h_symetrie FROM postgres;
 GRANT ALL ON TABLE controle_h_symetrie TO postgres;
-GRANT SELECT ON TABLE controle_h_symetrie TO lazaret;
-GRANT ALL ON TABLE controle_h_symetrie TO superlazaret;
+GRANT SELECT ON TABLE controle_h_symetrie TO databasename;
+GRANT ALL ON TABLE controle_h_symetrie TO superdatabasename;
 
 
 --
@@ -19132,8 +18489,8 @@ GRANT ALL ON TABLE controle_h_symetrie TO superlazaret;
 REVOKE ALL ON TABLE controle_i_action FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_action FROM postgres;
 GRANT ALL ON TABLE controle_i_action TO postgres;
-GRANT SELECT ON TABLE controle_i_action TO lazaret;
-GRANT ALL ON TABLE controle_i_action TO superlazaret;
+GRANT SELECT ON TABLE controle_i_action TO databasename;
+GRANT ALL ON TABLE controle_i_action TO superdatabasename;
 
 
 --
@@ -19143,8 +18500,8 @@ GRANT ALL ON TABLE controle_i_action TO superlazaret;
 REVOKE ALL ON TABLE controle_i_alteration FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_alteration FROM postgres;
 GRANT ALL ON TABLE controle_i_alteration TO postgres;
-GRANT SELECT ON TABLE controle_i_alteration TO lazaret;
-GRANT ALL ON TABLE controle_i_alteration TO superlazaret;
+GRANT SELECT ON TABLE controle_i_alteration TO databasename;
+GRANT ALL ON TABLE controle_i_alteration TO superdatabasename;
 
 
 --
@@ -19154,8 +18511,8 @@ GRANT ALL ON TABLE controle_i_alteration TO superlazaret;
 REVOKE ALL ON TABLE controle_i_desilicification FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_desilicification FROM postgres;
 GRANT ALL ON TABLE controle_i_desilicification TO postgres;
-GRANT SELECT ON TABLE controle_i_desilicification TO lazaret;
-GRANT ALL ON TABLE controle_i_desilicification TO superlazaret;
+GRANT SELECT ON TABLE controle_i_desilicification TO databasename;
+GRANT ALL ON TABLE controle_i_desilicification TO superdatabasename;
 
 
 --
@@ -19165,8 +18522,8 @@ GRANT ALL ON TABLE controle_i_desilicification TO superlazaret;
 REVOKE ALL ON TABLE controle_i_dpatine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_dpatine FROM postgres;
 GRANT ALL ON TABLE controle_i_dpatine TO postgres;
-GRANT SELECT ON TABLE controle_i_dpatine TO lazaret;
-GRANT ALL ON TABLE controle_i_dpatine TO superlazaret;
+GRANT SELECT ON TABLE controle_i_dpatine TO databasename;
+GRANT ALL ON TABLE controle_i_dpatine TO superdatabasename;
 
 
 --
@@ -19176,8 +18533,8 @@ GRANT ALL ON TABLE controle_i_dpatine TO superlazaret;
 REVOKE ALL ON TABLE controle_i_encroutement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_encroutement FROM postgres;
 GRANT ALL ON TABLE controle_i_encroutement TO postgres;
-GRANT SELECT ON TABLE controle_i_encroutement TO lazaret;
-GRANT ALL ON TABLE controle_i_encroutement TO superlazaret;
+GRANT SELECT ON TABLE controle_i_encroutement TO databasename;
+GRANT ALL ON TABLE controle_i_encroutement TO superdatabasename;
 
 
 --
@@ -19187,8 +18544,8 @@ GRANT ALL ON TABLE controle_i_encroutement TO superlazaret;
 REVOKE ALL ON TABLE controle_i_eolisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_eolisation FROM postgres;
 GRANT ALL ON TABLE controle_i_eolisation TO postgres;
-GRANT SELECT ON TABLE controle_i_eolisation TO lazaret;
-GRANT ALL ON TABLE controle_i_eolisation TO superlazaret;
+GRANT SELECT ON TABLE controle_i_eolisation TO databasename;
+GRANT ALL ON TABLE controle_i_eolisation TO superdatabasename;
 
 
 --
@@ -19198,8 +18555,8 @@ GRANT ALL ON TABLE controle_i_eolisation TO superlazaret;
 REVOKE ALL ON TABLE controle_i_forme_galet FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_forme_galet FROM postgres;
 GRANT ALL ON TABLE controle_i_forme_galet TO postgres;
-GRANT SELECT ON TABLE controle_i_forme_galet TO lazaret;
-GRANT ALL ON TABLE controle_i_forme_galet TO superlazaret;
+GRANT SELECT ON TABLE controle_i_forme_galet TO databasename;
+GRANT ALL ON TABLE controle_i_forme_galet TO superdatabasename;
 
 
 --
@@ -19209,8 +18566,8 @@ GRANT ALL ON TABLE controle_i_forme_galet TO superlazaret;
 REVOKE ALL ON TABLE controle_i_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_i_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_i_lustrage TO lazaret;
-GRANT ALL ON TABLE controle_i_lustrage TO superlazaret;
+GRANT SELECT ON TABLE controle_i_lustrage TO databasename;
+GRANT ALL ON TABLE controle_i_lustrage TO superdatabasename;
 
 
 --
@@ -19220,8 +18577,8 @@ GRANT ALL ON TABLE controle_i_lustrage TO superlazaret;
 REVOKE ALL ON TABLE controle_i_matiere FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_matiere FROM postgres;
 GRANT ALL ON TABLE controle_i_matiere TO postgres;
-GRANT SELECT ON TABLE controle_i_matiere TO lazaret;
-GRANT ALL ON TABLE controle_i_matiere TO superlazaret;
+GRANT SELECT ON TABLE controle_i_matiere TO databasename;
+GRANT ALL ON TABLE controle_i_matiere TO superdatabasename;
 
 
 --
@@ -19231,8 +18588,8 @@ GRANT ALL ON TABLE controle_i_matiere TO superlazaret;
 REVOKE ALL ON TABLE controle_i_objet FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_objet FROM postgres;
 GRANT ALL ON TABLE controle_i_objet TO postgres;
-GRANT SELECT ON TABLE controle_i_objet TO lazaret;
-GRANT ALL ON TABLE controle_i_objet TO superlazaret;
+GRANT SELECT ON TABLE controle_i_objet TO databasename;
+GRANT ALL ON TABLE controle_i_objet TO superdatabasename;
 
 
 --
@@ -19242,8 +18599,8 @@ GRANT ALL ON TABLE controle_i_objet TO superlazaret;
 REVOKE ALL ON TABLE controle_i_patine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_patine FROM postgres;
 GRANT ALL ON TABLE controle_i_patine TO postgres;
-GRANT SELECT ON TABLE controle_i_patine TO lazaret;
-GRANT ALL ON TABLE controle_i_patine TO superlazaret;
+GRANT SELECT ON TABLE controle_i_patine TO databasename;
+GRANT ALL ON TABLE controle_i_patine TO superdatabasename;
 
 
 --
@@ -19253,8 +18610,19 @@ GRANT ALL ON TABLE controle_i_patine TO superlazaret;
 REVOKE ALL ON TABLE controle_i_pmycellium FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_pmycellium FROM postgres;
 GRANT ALL ON TABLE controle_i_pmycellium TO postgres;
-GRANT SELECT ON TABLE controle_i_pmycellium TO lazaret;
-GRANT ALL ON TABLE controle_i_pmycellium TO superlazaret;
+GRANT SELECT ON TABLE controle_i_pmycellium TO databasename;
+GRANT ALL ON TABLE controle_i_pmycellium TO superdatabasename;
+
+
+--
+-- Name: controle_i_responsable; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE controle_i_responsable FROM PUBLIC;
+REVOKE ALL ON TABLE controle_i_responsable FROM postgres;
+GRANT ALL ON TABLE controle_i_responsable TO postgres;
+GRANT SELECT ON TABLE controle_i_responsable TO databasename;
+GRANT ALL ON TABLE controle_i_responsable TO superdatabasename;
 
 
 --
@@ -19264,8 +18632,8 @@ GRANT ALL ON TABLE controle_i_pmycellium TO superlazaret;
 REVOKE ALL ON TABLE controle_i_roulage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_roulage FROM postgres;
 GRANT ALL ON TABLE controle_i_roulage TO postgres;
-GRANT SELECT ON TABLE controle_i_roulage TO lazaret;
-GRANT ALL ON TABLE controle_i_roulage TO superlazaret;
+GRANT SELECT ON TABLE controle_i_roulage TO databasename;
+GRANT ALL ON TABLE controle_i_roulage TO superdatabasename;
 
 
 --
@@ -19275,8 +18643,8 @@ GRANT ALL ON TABLE controle_i_roulage TO superlazaret;
 REVOKE ALL ON TABLE controle_i_support FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_support FROM postgres;
 GRANT ALL ON TABLE controle_i_support TO postgres;
-GRANT SELECT ON TABLE controle_i_support TO lazaret;
-GRANT ALL ON TABLE controle_i_support TO superlazaret;
+GRANT SELECT ON TABLE controle_i_support TO databasename;
+GRANT ALL ON TABLE controle_i_support TO superdatabasename;
 
 
 --
@@ -19286,8 +18654,8 @@ GRANT ALL ON TABLE controle_i_support TO superlazaret;
 REVOKE ALL ON TABLE controle_i_support_originel FROM PUBLIC;
 REVOKE ALL ON TABLE controle_i_support_originel FROM postgres;
 GRANT ALL ON TABLE controle_i_support_originel TO postgres;
-GRANT SELECT ON TABLE controle_i_support_originel TO lazaret;
-GRANT ALL ON TABLE controle_i_support_originel TO superlazaret;
+GRANT SELECT ON TABLE controle_i_support_originel TO databasename;
+GRANT ALL ON TABLE controle_i_support_originel TO superdatabasename;
 
 
 --
@@ -19297,8 +18665,8 @@ GRANT ALL ON TABLE controle_i_support_originel TO superlazaret;
 REVOKE ALL ON TABLE controle_localite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_localite FROM postgres;
 GRANT ALL ON TABLE controle_localite TO postgres;
-GRANT SELECT ON TABLE controle_localite TO lazaret;
-GRANT ALL ON TABLE controle_localite TO superlazaret;
+GRANT SELECT ON TABLE controle_localite TO databasename;
+GRANT ALL ON TABLE controle_localite TO superdatabasename;
 
 
 --
@@ -19308,8 +18676,8 @@ GRANT ALL ON TABLE controle_localite TO superlazaret;
 REVOKE ALL ON TABLE controle_locus FROM PUBLIC;
 REVOKE ALL ON TABLE controle_locus FROM postgres;
 GRANT ALL ON TABLE controle_locus TO postgres;
-GRANT SELECT ON TABLE controle_locus TO lazaret;
-GRANT ALL ON TABLE controle_locus TO superlazaret;
+GRANT SELECT ON TABLE controle_locus TO databasename;
+GRANT ALL ON TABLE controle_locus TO superdatabasename;
 
 
 --
@@ -19319,8 +18687,8 @@ GRANT ALL ON TABLE controle_locus TO superlazaret;
 REVOKE ALL ON TABLE controle_mf_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_mf_serie FROM postgres;
 GRANT ALL ON TABLE controle_mf_serie TO postgres;
-GRANT SELECT ON TABLE controle_mf_serie TO lazaret;
-GRANT ALL ON TABLE controle_mf_serie TO superlazaret;
+GRANT SELECT ON TABLE controle_mf_serie TO databasename;
+GRANT ALL ON TABLE controle_mf_serie TO superdatabasename;
 
 
 --
@@ -19330,8 +18698,8 @@ GRANT ALL ON TABLE controle_mf_serie TO superlazaret;
 REVOKE ALL ON TABLE controle_mf_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_mf_type FROM postgres;
 GRANT ALL ON TABLE controle_mf_type TO postgres;
-GRANT SELECT ON TABLE controle_mf_type TO lazaret;
-GRANT ALL ON TABLE controle_mf_type TO superlazaret;
+GRANT SELECT ON TABLE controle_mf_type TO databasename;
+GRANT ALL ON TABLE controle_mf_type TO superdatabasename;
 
 
 --
@@ -19341,8 +18709,8 @@ GRANT ALL ON TABLE controle_mf_type TO superlazaret;
 REVOKE ALL ON TABLE controle_n_cortotal FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_cortotal FROM postgres;
 GRANT ALL ON TABLE controle_n_cortotal TO postgres;
-GRANT SELECT ON TABLE controle_n_cortotal TO lazaret;
-GRANT ALL ON TABLE controle_n_cortotal TO superlazaret;
+GRANT SELECT ON TABLE controle_n_cortotal TO databasename;
+GRANT ALL ON TABLE controle_n_cortotal TO superdatabasename;
 
 
 --
@@ -19352,9 +18720,9 @@ GRANT ALL ON TABLE controle_n_cortotal TO superlazaret;
 REVOKE ALL ON TABLE controle_n_epuisement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_epuisement FROM postgres;
 GRANT ALL ON TABLE controle_n_epuisement TO postgres;
-GRANT ALL ON TABLE controle_n_epuisement TO lazaret;
-GRANT ALL ON TABLE controle_n_epuisement TO superlazaret;
-GRANT SELECT ON TABLE controle_n_epuisement TO visiteurlazaret;
+GRANT ALL ON TABLE controle_n_epuisement TO databasename;
+GRANT ALL ON TABLE controle_n_epuisement TO superdatabasename;
+GRANT SELECT ON TABLE controle_n_epuisement TO visiteurdatabasename;
 
 
 --
@@ -19364,8 +18732,8 @@ GRANT SELECT ON TABLE controle_n_epuisement TO visiteurlazaret;
 REVOKE ALL ON TABLE controle_n_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_forme FROM postgres;
 GRANT ALL ON TABLE controle_n_forme TO postgres;
-GRANT SELECT ON TABLE controle_n_forme TO lazaret;
-GRANT ALL ON TABLE controle_n_forme TO superlazaret;
+GRANT SELECT ON TABLE controle_n_forme TO databasename;
+GRANT ALL ON TABLE controle_n_forme TO superdatabasename;
 
 
 --
@@ -19375,8 +18743,8 @@ GRANT ALL ON TABLE controle_n_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_n_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_orientation FROM postgres;
 GRANT ALL ON TABLE controle_n_orientation TO postgres;
-GRANT SELECT ON TABLE controle_n_orientation TO lazaret;
-GRANT ALL ON TABLE controle_n_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_n_orientation TO databasename;
+GRANT ALL ON TABLE controle_n_orientation TO superdatabasename;
 
 
 --
@@ -19386,8 +18754,8 @@ GRANT ALL ON TABLE controle_n_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_n_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_n_type FROM postgres;
 GRANT ALL ON TABLE controle_n_type TO postgres;
-GRANT SELECT ON TABLE controle_n_type TO lazaret;
-GRANT ALL ON TABLE controle_n_type TO superlazaret;
+GRANT SELECT ON TABLE controle_n_type TO databasename;
+GRANT ALL ON TABLE controle_n_type TO superdatabasename;
 
 
 --
@@ -19397,8 +18765,8 @@ GRANT ALL ON TABLE controle_n_type TO superlazaret;
 REVOKE ALL ON TABLE controle_nature FROM PUBLIC;
 REVOKE ALL ON TABLE controle_nature FROM postgres;
 GRANT ALL ON TABLE controle_nature TO postgres;
-GRANT SELECT ON TABLE controle_nature TO lazaret;
-GRANT ALL ON TABLE controle_nature TO superlazaret;
+GRANT SELECT ON TABLE controle_nature TO databasename;
+GRANT ALL ON TABLE controle_nature TO superdatabasename;
 
 
 --
@@ -19408,8 +18776,8 @@ GRANT ALL ON TABLE controle_nature TO superlazaret;
 REVOKE ALL ON TABLE controle_niveau FROM PUBLIC;
 REVOKE ALL ON TABLE controle_niveau FROM postgres;
 GRANT ALL ON TABLE controle_niveau TO postgres;
-GRANT SELECT ON TABLE controle_niveau TO lazaret;
-GRANT ALL ON TABLE controle_niveau TO superlazaret;
+GRANT SELECT ON TABLE controle_niveau TO databasename;
+GRANT ALL ON TABLE controle_niveau TO superdatabasename;
 
 
 --
@@ -19419,8 +18787,8 @@ GRANT ALL ON TABLE controle_niveau TO superlazaret;
 REVOKE ALL ON TABLE controle_o_chronologie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_chronologie FROM postgres;
 GRANT ALL ON TABLE controle_o_chronologie TO postgres;
-GRANT SELECT ON TABLE controle_o_chronologie TO lazaret;
-GRANT ALL ON TABLE controle_o_chronologie TO superlazaret;
+GRANT SELECT ON TABLE controle_o_chronologie TO databasename;
+GRANT ALL ON TABLE controle_o_chronologie TO superdatabasename;
 
 
 --
@@ -19430,8 +18798,8 @@ GRANT ALL ON TABLE controle_o_chronologie TO superlazaret;
 REVOKE ALL ON TABLE controle_o_code FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_code FROM postgres;
 GRANT ALL ON TABLE controle_o_code TO postgres;
-GRANT SELECT ON TABLE controle_o_code TO lazaret;
-GRANT ALL ON TABLE controle_o_code TO superlazaret;
+GRANT SELECT ON TABLE controle_o_code TO databasename;
+GRANT ALL ON TABLE controle_o_code TO superdatabasename;
 
 
 --
@@ -19441,8 +18809,8 @@ GRANT ALL ON TABLE controle_o_code TO superlazaret;
 REVOKE ALL ON TABLE controle_o_destination FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_destination FROM postgres;
 GRANT ALL ON TABLE controle_o_destination TO postgres;
-GRANT SELECT ON TABLE controle_o_destination TO lazaret;
-GRANT ALL ON TABLE controle_o_destination TO superlazaret;
+GRANT SELECT ON TABLE controle_o_destination TO databasename;
+GRANT ALL ON TABLE controle_o_destination TO superdatabasename;
 
 
 --
@@ -19452,8 +18820,8 @@ GRANT ALL ON TABLE controle_o_destination TO superlazaret;
 REVOKE ALL ON TABLE controle_o_etat FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_etat FROM postgres;
 GRANT ALL ON TABLE controle_o_etat TO postgres;
-GRANT SELECT ON TABLE controle_o_etat TO lazaret;
-GRANT ALL ON TABLE controle_o_etat TO superlazaret;
+GRANT SELECT ON TABLE controle_o_etat TO databasename;
+GRANT ALL ON TABLE controle_o_etat TO superdatabasename;
 
 
 --
@@ -19463,8 +18831,8 @@ GRANT ALL ON TABLE controle_o_etat TO superlazaret;
 REVOKE ALL ON TABLE controle_o_forme FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_forme FROM postgres;
 GRANT ALL ON TABLE controle_o_forme TO postgres;
-GRANT SELECT ON TABLE controle_o_forme TO lazaret;
-GRANT ALL ON TABLE controle_o_forme TO superlazaret;
+GRANT SELECT ON TABLE controle_o_forme TO databasename;
+GRANT ALL ON TABLE controle_o_forme TO superdatabasename;
 
 
 --
@@ -19474,8 +18842,8 @@ GRANT ALL ON TABLE controle_o_forme TO superlazaret;
 REVOKE ALL ON TABLE controle_o_localisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_localisation FROM postgres;
 GRANT ALL ON TABLE controle_o_localisation TO postgres;
-GRANT SELECT ON TABLE controle_o_localisation TO lazaret;
-GRANT ALL ON TABLE controle_o_localisation TO superlazaret;
+GRANT SELECT ON TABLE controle_o_localisation TO databasename;
+GRANT ALL ON TABLE controle_o_localisation TO superdatabasename;
 
 
 --
@@ -19485,8 +18853,8 @@ GRANT ALL ON TABLE controle_o_localisation TO superlazaret;
 REVOKE ALL ON TABLE controle_o_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_ordre FROM postgres;
 GRANT ALL ON TABLE controle_o_ordre TO postgres;
-GRANT SELECT ON TABLE controle_o_ordre TO lazaret;
-GRANT ALL ON TABLE controle_o_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_o_ordre TO databasename;
+GRANT ALL ON TABLE controle_o_ordre TO superdatabasename;
 
 
 --
@@ -19496,8 +18864,8 @@ GRANT ALL ON TABLE controle_o_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_o_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_orientation FROM postgres;
 GRANT ALL ON TABLE controle_o_orientation TO postgres;
-GRANT SELECT ON TABLE controle_o_orientation TO lazaret;
-GRANT ALL ON TABLE controle_o_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_o_orientation TO databasename;
+GRANT ALL ON TABLE controle_o_orientation TO superdatabasename;
 
 
 --
@@ -19507,8 +18875,8 @@ GRANT ALL ON TABLE controle_o_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_o_origine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_origine FROM postgres;
 GRANT ALL ON TABLE controle_o_origine TO postgres;
-GRANT SELECT ON TABLE controle_o_origine TO lazaret;
-GRANT ALL ON TABLE controle_o_origine TO superlazaret;
+GRANT SELECT ON TABLE controle_o_origine TO databasename;
+GRANT ALL ON TABLE controle_o_origine TO superdatabasename;
 
 
 --
@@ -19518,8 +18886,8 @@ GRANT ALL ON TABLE controle_o_origine TO superlazaret;
 REVOKE ALL ON TABLE controle_o_retouche FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_retouche FROM postgres;
 GRANT ALL ON TABLE controle_o_retouche TO postgres;
-GRANT SELECT ON TABLE controle_o_retouche TO lazaret;
-GRANT ALL ON TABLE controle_o_retouche TO superlazaret;
+GRANT SELECT ON TABLE controle_o_retouche TO databasename;
+GRANT ALL ON TABLE controle_o_retouche TO superdatabasename;
 
 
 --
@@ -19529,8 +18897,8 @@ GRANT ALL ON TABLE controle_o_retouche TO superlazaret;
 REVOKE ALL ON TABLE controle_o_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_sens FROM postgres;
 GRANT ALL ON TABLE controle_o_sens TO postgres;
-GRANT SELECT ON TABLE controle_o_sens TO lazaret;
-GRANT ALL ON TABLE controle_o_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_o_sens TO databasename;
+GRANT ALL ON TABLE controle_o_sens TO superdatabasename;
 
 
 --
@@ -19540,8 +18908,8 @@ GRANT ALL ON TABLE controle_o_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_o_serie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_o_serie FROM postgres;
 GRANT ALL ON TABLE controle_o_serie TO postgres;
-GRANT SELECT ON TABLE controle_o_serie TO lazaret;
-GRANT ALL ON TABLE controle_o_serie TO superlazaret;
+GRANT SELECT ON TABLE controle_o_serie TO databasename;
+GRANT ALL ON TABLE controle_o_serie TO superdatabasename;
 
 
 --
@@ -19551,8 +18919,8 @@ GRANT ALL ON TABLE controle_o_serie TO superlazaret;
 REVOKE ALL ON TABLE controle_orientation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_orientation FROM postgres;
 GRANT ALL ON TABLE controle_orientation TO postgres;
-GRANT SELECT ON TABLE controle_orientation TO lazaret;
-GRANT ALL ON TABLE controle_orientation TO superlazaret;
+GRANT SELECT ON TABLE controle_orientation TO databasename;
+GRANT ALL ON TABLE controle_orientation TO superdatabasename;
 
 
 --
@@ -19562,8 +18930,8 @@ GRANT ALL ON TABLE controle_orientation TO superlazaret;
 REVOKE ALL ON TABLE controle_pendage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_pendage FROM postgres;
 GRANT ALL ON TABLE controle_pendage TO postgres;
-GRANT SELECT ON TABLE controle_pendage TO lazaret;
-GRANT ALL ON TABLE controle_pendage TO superlazaret;
+GRANT SELECT ON TABLE controle_pendage TO databasename;
+GRANT ALL ON TABLE controle_pendage TO superdatabasename;
 
 
 --
@@ -19573,8 +18941,8 @@ GRANT ALL ON TABLE controle_pendage TO superlazaret;
 REVOKE ALL ON TABLE controle_r_association FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_association FROM postgres;
 GRANT ALL ON TABLE controle_r_association TO postgres;
-GRANT SELECT ON TABLE controle_r_association TO lazaret;
-GRANT ALL ON TABLE controle_r_association TO superlazaret;
+GRANT SELECT ON TABLE controle_r_association TO databasename;
+GRANT ALL ON TABLE controle_r_association TO superdatabasename;
 
 
 --
@@ -19584,8 +18952,8 @@ GRANT ALL ON TABLE controle_r_association TO superlazaret;
 REVOKE ALL ON TABLE controle_r_bord FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_bord FROM postgres;
 GRANT ALL ON TABLE controle_r_bord TO postgres;
-GRANT SELECT ON TABLE controle_r_bord TO lazaret;
-GRANT ALL ON TABLE controle_r_bord TO superlazaret;
+GRANT SELECT ON TABLE controle_r_bord TO databasename;
+GRANT ALL ON TABLE controle_r_bord TO superdatabasename;
 
 
 --
@@ -19595,8 +18963,8 @@ GRANT ALL ON TABLE controle_r_bord TO superlazaret;
 REVOKE ALL ON TABLE controle_r_cas FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_cas FROM postgres;
 GRANT ALL ON TABLE controle_r_cas TO postgres;
-GRANT SELECT ON TABLE controle_r_cas TO lazaret;
-GRANT ALL ON TABLE controle_r_cas TO superlazaret;
+GRANT SELECT ON TABLE controle_r_cas TO databasename;
+GRANT ALL ON TABLE controle_r_cas TO superdatabasename;
 
 
 --
@@ -19606,8 +18974,8 @@ GRANT ALL ON TABLE controle_r_cas TO superlazaret;
 REVOKE ALL ON TABLE controle_r_denticulation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_denticulation FROM postgres;
 GRANT ALL ON TABLE controle_r_denticulation TO postgres;
-GRANT SELECT ON TABLE controle_r_denticulation TO lazaret;
-GRANT ALL ON TABLE controle_r_denticulation TO superlazaret;
+GRANT SELECT ON TABLE controle_r_denticulation TO databasename;
+GRANT ALL ON TABLE controle_r_denticulation TO superdatabasename;
 
 
 --
@@ -19617,8 +18985,8 @@ GRANT ALL ON TABLE controle_r_denticulation TO superlazaret;
 REVOKE ALL ON TABLE controle_r_destination FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_destination FROM postgres;
 GRANT ALL ON TABLE controle_r_destination TO postgres;
-GRANT SELECT ON TABLE controle_r_destination TO lazaret;
-GRANT ALL ON TABLE controle_r_destination TO superlazaret;
+GRANT SELECT ON TABLE controle_r_destination TO databasename;
+GRANT ALL ON TABLE controle_r_destination TO superdatabasename;
 
 
 --
@@ -19628,8 +18996,8 @@ GRANT ALL ON TABLE controle_r_destination TO superlazaret;
 REVOKE ALL ON TABLE controle_r_dimension FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_dimension FROM postgres;
 GRANT ALL ON TABLE controle_r_dimension TO postgres;
-GRANT SELECT ON TABLE controle_r_dimension TO lazaret;
-GRANT ALL ON TABLE controle_r_dimension TO superlazaret;
+GRANT SELECT ON TABLE controle_r_dimension TO databasename;
+GRANT ALL ON TABLE controle_r_dimension TO superdatabasename;
 
 
 --
@@ -19639,8 +19007,8 @@ GRANT ALL ON TABLE controle_r_dimension TO superlazaret;
 REVOKE ALL ON TABLE controle_r_ecrasement FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_ecrasement FROM postgres;
 GRANT ALL ON TABLE controle_r_ecrasement TO postgres;
-GRANT SELECT ON TABLE controle_r_ecrasement TO lazaret;
-GRANT ALL ON TABLE controle_r_ecrasement TO superlazaret;
+GRANT SELECT ON TABLE controle_r_ecrasement TO databasename;
+GRANT ALL ON TABLE controle_r_ecrasement TO superdatabasename;
 
 
 --
@@ -19650,8 +19018,8 @@ GRANT ALL ON TABLE controle_r_ecrasement TO superlazaret;
 REVOKE ALL ON TABLE controle_r_extremite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_extremite FROM postgres;
 GRANT ALL ON TABLE controle_r_extremite TO postgres;
-GRANT SELECT ON TABLE controle_r_extremite TO lazaret;
-GRANT ALL ON TABLE controle_r_extremite TO superlazaret;
+GRANT SELECT ON TABLE controle_r_extremite TO databasename;
+GRANT ALL ON TABLE controle_r_extremite TO superdatabasename;
 
 
 --
@@ -19661,8 +19029,8 @@ GRANT ALL ON TABLE controle_r_extremite TO superlazaret;
 REVOKE ALL ON TABLE controle_r_frequence FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_frequence FROM postgres;
 GRANT ALL ON TABLE controle_r_frequence TO postgres;
-GRANT SELECT ON TABLE controle_r_frequence TO lazaret;
-GRANT ALL ON TABLE controle_r_frequence TO superlazaret;
+GRANT SELECT ON TABLE controle_r_frequence TO databasename;
+GRANT ALL ON TABLE controle_r_frequence TO superdatabasename;
 
 
 --
@@ -19672,8 +19040,8 @@ GRANT ALL ON TABLE controle_r_frequence TO superlazaret;
 REVOKE ALL ON TABLE controle_r_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_r_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_r_lustrage TO lazaret;
-GRANT ALL ON TABLE controle_r_lustrage TO superlazaret;
+GRANT SELECT ON TABLE controle_r_lustrage TO databasename;
+GRANT ALL ON TABLE controle_r_lustrage TO superdatabasename;
 
 
 --
@@ -19683,8 +19051,8 @@ GRANT ALL ON TABLE controle_r_lustrage TO superlazaret;
 REVOKE ALL ON TABLE controle_r_obliquite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_obliquite FROM postgres;
 GRANT ALL ON TABLE controle_r_obliquite TO postgres;
-GRANT SELECT ON TABLE controle_r_obliquite TO lazaret;
-GRANT ALL ON TABLE controle_r_obliquite TO superlazaret;
+GRANT SELECT ON TABLE controle_r_obliquite TO databasename;
+GRANT ALL ON TABLE controle_r_obliquite TO superdatabasename;
 
 
 --
@@ -19694,8 +19062,8 @@ GRANT ALL ON TABLE controle_r_obliquite TO superlazaret;
 REVOKE ALL ON TABLE controle_r_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_ordre FROM postgres;
 GRANT ALL ON TABLE controle_r_ordre TO postgres;
-GRANT SELECT ON TABLE controle_r_ordre TO lazaret;
-GRANT ALL ON TABLE controle_r_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_r_ordre TO databasename;
+GRANT ALL ON TABLE controle_r_ordre TO superdatabasename;
 
 
 --
@@ -19705,8 +19073,8 @@ GRANT ALL ON TABLE controle_r_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_r_origine FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_origine FROM postgres;
 GRANT ALL ON TABLE controle_r_origine TO postgres;
-GRANT SELECT ON TABLE controle_r_origine TO lazaret;
-GRANT ALL ON TABLE controle_r_origine TO superlazaret;
+GRANT SELECT ON TABLE controle_r_origine TO databasename;
+GRANT ALL ON TABLE controle_r_origine TO superdatabasename;
 
 
 --
@@ -19716,8 +19084,8 @@ GRANT ALL ON TABLE controle_r_origine TO superlazaret;
 REVOKE ALL ON TABLE controle_r_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_sens FROM postgres;
 GRANT ALL ON TABLE controle_r_sens TO postgres;
-GRANT SELECT ON TABLE controle_r_sens TO lazaret;
-GRANT ALL ON TABLE controle_r_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_r_sens TO databasename;
+GRANT ALL ON TABLE controle_r_sens TO superdatabasename;
 
 
 --
@@ -19727,8 +19095,8 @@ GRANT ALL ON TABLE controle_r_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_r_strie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_strie FROM postgres;
 GRANT ALL ON TABLE controle_r_strie TO postgres;
-GRANT SELECT ON TABLE controle_r_strie TO lazaret;
-GRANT ALL ON TABLE controle_r_strie TO superlazaret;
+GRANT SELECT ON TABLE controle_r_strie TO databasename;
+GRANT ALL ON TABLE controle_r_strie TO superdatabasename;
 
 
 --
@@ -19738,8 +19106,8 @@ GRANT ALL ON TABLE controle_r_strie TO superlazaret;
 REVOKE ALL ON TABLE controle_r_superposition FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_superposition FROM postgres;
 GRANT ALL ON TABLE controle_r_superposition TO postgres;
-GRANT SELECT ON TABLE controle_r_superposition TO lazaret;
-GRANT ALL ON TABLE controle_r_superposition TO superlazaret;
+GRANT SELECT ON TABLE controle_r_superposition TO databasename;
+GRANT ALL ON TABLE controle_r_superposition TO superdatabasename;
 
 
 --
@@ -19749,8 +19117,8 @@ GRANT ALL ON TABLE controle_r_superposition TO superlazaret;
 REVOKE ALL ON TABLE controle_r_tranchant FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_tranchant FROM postgres;
 GRANT ALL ON TABLE controle_r_tranchant TO postgres;
-GRANT SELECT ON TABLE controle_r_tranchant TO lazaret;
-GRANT ALL ON TABLE controle_r_tranchant TO superlazaret;
+GRANT SELECT ON TABLE controle_r_tranchant TO databasename;
+GRANT ALL ON TABLE controle_r_tranchant TO superdatabasename;
 
 
 --
@@ -19760,8 +19128,8 @@ GRANT ALL ON TABLE controle_r_tranchant TO superlazaret;
 REVOKE ALL ON TABLE controle_r_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_type FROM postgres;
 GRANT ALL ON TABLE controle_r_type TO postgres;
-GRANT SELECT ON TABLE controle_r_type TO lazaret;
-GRANT ALL ON TABLE controle_r_type TO superlazaret;
+GRANT SELECT ON TABLE controle_r_type TO databasename;
+GRANT ALL ON TABLE controle_r_type TO superdatabasename;
 
 
 --
@@ -19771,8 +19139,8 @@ GRANT ALL ON TABLE controle_r_type TO superlazaret;
 REVOKE ALL ON TABLE controle_r_utilisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_r_utilisation FROM postgres;
 GRANT ALL ON TABLE controle_r_utilisation TO postgres;
-GRANT SELECT ON TABLE controle_r_utilisation TO lazaret;
-GRANT ALL ON TABLE controle_r_utilisation TO superlazaret;
+GRANT SELECT ON TABLE controle_r_utilisation TO databasename;
+GRANT ALL ON TABLE controle_r_utilisation TO superdatabasename;
 
 
 --
@@ -19782,8 +19150,8 @@ GRANT ALL ON TABLE controle_r_utilisation TO superlazaret;
 REVOKE ALL ON TABLE controle_responsable_fouille FROM PUBLIC;
 REVOKE ALL ON TABLE controle_responsable_fouille FROM postgres;
 GRANT ALL ON TABLE controle_responsable_fouille TO postgres;
-GRANT SELECT ON TABLE controle_responsable_fouille TO lazaret;
-GRANT ALL ON TABLE controle_responsable_fouille TO superlazaret;
+GRANT SELECT ON TABLE controle_responsable_fouille TO databasename;
+GRANT ALL ON TABLE controle_responsable_fouille TO superdatabasename;
 GRANT ALL ON TABLE controle_responsable_fouille TO superchoukoutien;
 GRANT SELECT ON TABLE controle_responsable_fouille TO choukoutien;
 GRANT SELECT ON TABLE controle_responsable_fouille TO visiteurchoukoutien;
@@ -19796,8 +19164,8 @@ GRANT SELECT ON TABLE controle_responsable_fouille TO visiteurchoukoutien;
 REVOKE ALL ON TABLE controle_s_localisation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_localisation FROM postgres;
 GRANT ALL ON TABLE controle_s_localisation TO postgres;
-GRANT SELECT ON TABLE controle_s_localisation TO lazaret;
-GRANT ALL ON TABLE controle_s_localisation TO superlazaret;
+GRANT SELECT ON TABLE controle_s_localisation TO databasename;
+GRANT ALL ON TABLE controle_s_localisation TO superdatabasename;
 
 
 --
@@ -19807,8 +19175,8 @@ GRANT ALL ON TABLE controle_s_localisation TO superlazaret;
 REVOKE ALL ON TABLE controle_s_lustrage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_lustrage FROM postgres;
 GRANT ALL ON TABLE controle_s_lustrage TO postgres;
-GRANT SELECT ON TABLE controle_s_lustrage TO lazaret;
-GRANT ALL ON TABLE controle_s_lustrage TO superlazaret;
+GRANT SELECT ON TABLE controle_s_lustrage TO databasename;
+GRANT ALL ON TABLE controle_s_lustrage TO superdatabasename;
 
 
 --
@@ -19818,8 +19186,8 @@ GRANT ALL ON TABLE controle_s_lustrage TO superlazaret;
 REVOKE ALL ON TABLE controle_s_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_ordre FROM postgres;
 GRANT ALL ON TABLE controle_s_ordre TO postgres;
-GRANT SELECT ON TABLE controle_s_ordre TO lazaret;
-GRANT ALL ON TABLE controle_s_ordre TO superlazaret;
+GRANT SELECT ON TABLE controle_s_ordre TO databasename;
+GRANT ALL ON TABLE controle_s_ordre TO superdatabasename;
 
 
 --
@@ -19829,8 +19197,8 @@ GRANT ALL ON TABLE controle_s_ordre TO superlazaret;
 REVOKE ALL ON TABLE controle_s_polissage FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_polissage FROM postgres;
 GRANT ALL ON TABLE controle_s_polissage TO postgres;
-GRANT SELECT ON TABLE controle_s_polissage TO lazaret;
-GRANT ALL ON TABLE controle_s_polissage TO superlazaret;
+GRANT SELECT ON TABLE controle_s_polissage TO databasename;
+GRANT ALL ON TABLE controle_s_polissage TO superdatabasename;
 
 
 --
@@ -19840,8 +19208,8 @@ GRANT ALL ON TABLE controle_s_polissage TO superlazaret;
 REVOKE ALL ON TABLE controle_s_relation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_relation FROM postgres;
 GRANT ALL ON TABLE controle_s_relation TO postgres;
-GRANT SELECT ON TABLE controle_s_relation TO lazaret;
-GRANT ALL ON TABLE controle_s_relation TO superlazaret;
+GRANT SELECT ON TABLE controle_s_relation TO databasename;
+GRANT ALL ON TABLE controle_s_relation TO superdatabasename;
 
 
 --
@@ -19851,8 +19219,8 @@ GRANT ALL ON TABLE controle_s_relation TO superlazaret;
 REVOKE ALL ON TABLE controle_s_situation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_situation FROM postgres;
 GRANT ALL ON TABLE controle_s_situation TO postgres;
-GRANT SELECT ON TABLE controle_s_situation TO lazaret;
-GRANT ALL ON TABLE controle_s_situation TO superlazaret;
+GRANT SELECT ON TABLE controle_s_situation TO databasename;
+GRANT ALL ON TABLE controle_s_situation TO superdatabasename;
 
 
 --
@@ -19862,8 +19230,8 @@ GRANT ALL ON TABLE controle_s_situation TO superlazaret;
 REVOKE ALL ON TABLE controle_s_sous_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_sous_type FROM postgres;
 GRANT ALL ON TABLE controle_s_sous_type TO postgres;
-GRANT SELECT ON TABLE controle_s_sous_type TO lazaret;
-GRANT ALL ON TABLE controle_s_sous_type TO superlazaret;
+GRANT SELECT ON TABLE controle_s_sous_type TO databasename;
+GRANT ALL ON TABLE controle_s_sous_type TO superdatabasename;
 
 
 --
@@ -19873,8 +19241,8 @@ GRANT ALL ON TABLE controle_s_sous_type TO superlazaret;
 REVOKE ALL ON TABLE controle_s_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_s_type FROM postgres;
 GRANT ALL ON TABLE controle_s_type TO postgres;
-GRANT SELECT ON TABLE controle_s_type TO lazaret;
-GRANT ALL ON TABLE controle_s_type TO superlazaret;
+GRANT SELECT ON TABLE controle_s_type TO databasename;
+GRANT ALL ON TABLE controle_s_type TO superdatabasename;
 
 
 --
@@ -19884,8 +19252,8 @@ GRANT ALL ON TABLE controle_s_type TO superlazaret;
 REVOKE ALL ON TABLE controle_sol FROM PUBLIC;
 REVOKE ALL ON TABLE controle_sol FROM postgres;
 GRANT ALL ON TABLE controle_sol TO postgres;
-GRANT SELECT ON TABLE controle_sol TO lazaret;
-GRANT ALL ON TABLE controle_sol TO superlazaret;
+GRANT SELECT ON TABLE controle_sol TO databasename;
+GRANT ALL ON TABLE controle_sol TO superdatabasename;
 
 
 --
@@ -19895,8 +19263,8 @@ GRANT ALL ON TABLE controle_sol TO superlazaret;
 REVOKE ALL ON TABLE controle_souscarre FROM PUBLIC;
 REVOKE ALL ON TABLE controle_souscarre FROM postgres;
 GRANT ALL ON TABLE controle_souscarre TO postgres;
-GRANT SELECT ON TABLE controle_souscarre TO lazaret;
-GRANT ALL ON TABLE controle_souscarre TO superlazaret;
+GRANT SELECT ON TABLE controle_souscarre TO databasename;
+GRANT ALL ON TABLE controle_souscarre TO superdatabasename;
 
 
 --
@@ -19906,8 +19274,8 @@ GRANT ALL ON TABLE controle_souscarre TO superlazaret;
 REVOKE ALL ON TABLE controle_t_agent FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_agent FROM postgres;
 GRANT ALL ON TABLE controle_t_agent TO postgres;
-GRANT SELECT ON TABLE controle_t_agent TO lazaret;
-GRANT ALL ON TABLE controle_t_agent TO superlazaret;
+GRANT SELECT ON TABLE controle_t_agent TO databasename;
+GRANT ALL ON TABLE controle_t_agent TO superdatabasename;
 
 
 --
@@ -19917,8 +19285,8 @@ GRANT ALL ON TABLE controle_t_agent TO superlazaret;
 REVOKE ALL ON TABLE controle_t_allure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_allure FROM postgres;
 GRANT ALL ON TABLE controle_t_allure TO postgres;
-GRANT SELECT ON TABLE controle_t_allure TO lazaret;
-GRANT ALL ON TABLE controle_t_allure TO superlazaret;
+GRANT SELECT ON TABLE controle_t_allure TO databasename;
+GRANT ALL ON TABLE controle_t_allure TO superdatabasename;
 
 
 --
@@ -19928,8 +19296,8 @@ GRANT ALL ON TABLE controle_t_allure TO superlazaret;
 REVOKE ALL ON TABLE controle_t_classe FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_classe FROM postgres;
 GRANT ALL ON TABLE controle_t_classe TO postgres;
-GRANT SELECT ON TABLE controle_t_classe TO lazaret;
-GRANT ALL ON TABLE controle_t_classe TO superlazaret;
+GRANT SELECT ON TABLE controle_t_classe TO databasename;
+GRANT ALL ON TABLE controle_t_classe TO superdatabasename;
 
 
 --
@@ -19939,8 +19307,8 @@ GRANT ALL ON TABLE controle_t_classe TO superlazaret;
 REVOKE ALL ON TABLE controle_t_dessin FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_dessin FROM postgres;
 GRANT ALL ON TABLE controle_t_dessin TO postgres;
-GRANT SELECT ON TABLE controle_t_dessin TO lazaret;
-GRANT ALL ON TABLE controle_t_dessin TO superlazaret;
+GRANT SELECT ON TABLE controle_t_dessin TO databasename;
+GRANT ALL ON TABLE controle_t_dessin TO superdatabasename;
 
 
 --
@@ -19950,8 +19318,8 @@ GRANT ALL ON TABLE controle_t_dessin TO superlazaret;
 REVOKE ALL ON TABLE controle_t_direction FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_direction FROM postgres;
 GRANT ALL ON TABLE controle_t_direction TO postgres;
-GRANT SELECT ON TABLE controle_t_direction TO lazaret;
-GRANT ALL ON TABLE controle_t_direction TO superlazaret;
+GRANT SELECT ON TABLE controle_t_direction TO databasename;
+GRANT ALL ON TABLE controle_t_direction TO superdatabasename;
 
 
 --
@@ -19961,8 +19329,8 @@ GRANT ALL ON TABLE controle_t_direction TO superlazaret;
 REVOKE ALL ON TABLE controle_t_dstrie FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_dstrie FROM postgres;
 GRANT ALL ON TABLE controle_t_dstrie TO postgres;
-GRANT SELECT ON TABLE controle_t_dstrie TO lazaret;
-GRANT ALL ON TABLE controle_t_dstrie TO superlazaret;
+GRANT SELECT ON TABLE controle_t_dstrie TO databasename;
+GRANT ALL ON TABLE controle_t_dstrie TO superdatabasename;
 
 
 --
@@ -19972,8 +19340,8 @@ GRANT ALL ON TABLE controle_t_dstrie TO superlazaret;
 REVOKE ALL ON TABLE controle_t_ensemble FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_ensemble FROM postgres;
 GRANT ALL ON TABLE controle_t_ensemble TO postgres;
-GRANT SELECT ON TABLE controle_t_ensemble TO lazaret;
-GRANT ALL ON TABLE controle_t_ensemble TO superlazaret;
+GRANT SELECT ON TABLE controle_t_ensemble TO databasename;
+GRANT ALL ON TABLE controle_t_ensemble TO superdatabasename;
 
 
 --
@@ -19983,8 +19351,8 @@ GRANT ALL ON TABLE controle_t_ensemble TO superlazaret;
 REVOKE ALL ON TABLE controle_t_largeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_largeur FROM postgres;
 GRANT ALL ON TABLE controle_t_largeur TO postgres;
-GRANT SELECT ON TABLE controle_t_largeur TO lazaret;
-GRANT ALL ON TABLE controle_t_largeur TO superlazaret;
+GRANT SELECT ON TABLE controle_t_largeur TO databasename;
+GRANT ALL ON TABLE controle_t_largeur TO superdatabasename;
 
 
 --
@@ -19994,8 +19362,8 @@ GRANT ALL ON TABLE controle_t_largeur TO superlazaret;
 REVOKE ALL ON TABLE controle_t_locmusc FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_locmusc FROM postgres;
 GRANT ALL ON TABLE controle_t_locmusc TO postgres;
-GRANT SELECT ON TABLE controle_t_locmusc TO lazaret;
-GRANT ALL ON TABLE controle_t_locmusc TO superlazaret;
+GRANT SELECT ON TABLE controle_t_locmusc TO databasename;
+GRANT ALL ON TABLE controle_t_locmusc TO superdatabasename;
 
 
 --
@@ -20005,8 +19373,8 @@ GRANT ALL ON TABLE controle_t_locmusc TO superlazaret;
 REVOKE ALL ON TABLE controle_t_nature FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_nature FROM postgres;
 GRANT ALL ON TABLE controle_t_nature TO postgres;
-GRANT SELECT ON TABLE controle_t_nature TO lazaret;
-GRANT ALL ON TABLE controle_t_nature TO superlazaret;
+GRANT SELECT ON TABLE controle_t_nature TO databasename;
+GRANT ALL ON TABLE controle_t_nature TO superdatabasename;
 
 
 --
@@ -20016,8 +19384,8 @@ GRANT ALL ON TABLE controle_t_nature TO superlazaret;
 REVOKE ALL ON TABLE controle_t_phenomene FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_phenomene FROM postgres;
 GRANT ALL ON TABLE controle_t_phenomene TO postgres;
-GRANT SELECT ON TABLE controle_t_phenomene TO lazaret;
-GRANT ALL ON TABLE controle_t_phenomene TO superlazaret;
+GRANT SELECT ON TABLE controle_t_phenomene TO databasename;
+GRANT ALL ON TABLE controle_t_phenomene TO superdatabasename;
 
 
 --
@@ -20027,8 +19395,8 @@ GRANT ALL ON TABLE controle_t_phenomene TO superlazaret;
 REVOKE ALL ON TABLE controle_t_photo FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_photo FROM postgres;
 GRANT ALL ON TABLE controle_t_photo TO postgres;
-GRANT SELECT ON TABLE controle_t_photo TO lazaret;
-GRANT ALL ON TABLE controle_t_photo TO superlazaret;
+GRANT SELECT ON TABLE controle_t_photo TO databasename;
+GRANT ALL ON TABLE controle_t_photo TO superdatabasename;
 
 
 --
@@ -20038,8 +19406,8 @@ GRANT ALL ON TABLE controle_t_photo TO superlazaret;
 REVOKE ALL ON TABLE controle_t_profondeur FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_profondeur FROM postgres;
 GRANT ALL ON TABLE controle_t_profondeur TO postgres;
-GRANT SELECT ON TABLE controle_t_profondeur TO lazaret;
-GRANT ALL ON TABLE controle_t_profondeur TO superlazaret;
+GRANT SELECT ON TABLE controle_t_profondeur TO databasename;
+GRANT ALL ON TABLE controle_t_profondeur TO superdatabasename;
 
 
 --
@@ -20049,8 +19417,8 @@ GRANT ALL ON TABLE controle_t_profondeur TO superlazaret;
 REVOKE ALL ON TABLE controle_t_replique FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_replique FROM postgres;
 GRANT ALL ON TABLE controle_t_replique TO postgres;
-GRANT SELECT ON TABLE controle_t_replique TO lazaret;
-GRANT ALL ON TABLE controle_t_replique TO superlazaret;
+GRANT SELECT ON TABLE controle_t_replique TO databasename;
+GRANT ALL ON TABLE controle_t_replique TO superdatabasename;
 
 
 --
@@ -20060,8 +19428,8 @@ GRANT ALL ON TABLE controle_t_replique TO superlazaret;
 REVOKE ALL ON TABLE controle_t_section FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_section FROM postgres;
 GRANT ALL ON TABLE controle_t_section TO postgres;
-GRANT SELECT ON TABLE controle_t_section TO lazaret;
-GRANT ALL ON TABLE controle_t_section TO superlazaret;
+GRANT SELECT ON TABLE controle_t_section TO databasename;
+GRANT ALL ON TABLE controle_t_section TO superdatabasename;
 
 
 --
@@ -20071,8 +19439,8 @@ GRANT ALL ON TABLE controle_t_section TO superlazaret;
 REVOKE ALL ON TABLE controle_t_sens FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_sens FROM postgres;
 GRANT ALL ON TABLE controle_t_sens TO postgres;
-GRANT SELECT ON TABLE controle_t_sens TO lazaret;
-GRANT ALL ON TABLE controle_t_sens TO superlazaret;
+GRANT SELECT ON TABLE controle_t_sens TO databasename;
+GRANT ALL ON TABLE controle_t_sens TO superdatabasename;
 
 
 --
@@ -20082,8 +19450,8 @@ GRANT ALL ON TABLE controle_t_sens TO superlazaret;
 REVOKE ALL ON TABLE controle_t_trace FROM PUBLIC;
 REVOKE ALL ON TABLE controle_t_trace FROM postgres;
 GRANT ALL ON TABLE controle_t_trace TO postgres;
-GRANT SELECT ON TABLE controle_t_trace TO lazaret;
-GRANT ALL ON TABLE controle_t_trace TO superlazaret;
+GRANT SELECT ON TABLE controle_t_trace TO databasename;
+GRANT ALL ON TABLE controle_t_trace TO superdatabasename;
 
 
 --
@@ -20093,8 +19461,8 @@ GRANT ALL ON TABLE controle_t_trace TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_fragmentation FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_fragmentation FROM postgres;
 GRANT ALL ON TABLE controle_ud_fragmentation TO postgres;
-GRANT ALL ON TABLE controle_ud_fragmentation TO lazaret;
-GRANT ALL ON TABLE controle_ud_fragmentation TO superlazaret;
+GRANT ALL ON TABLE controle_ud_fragmentation TO databasename;
+GRANT ALL ON TABLE controle_ud_fragmentation TO superdatabasename;
 
 
 --
@@ -20104,8 +19472,8 @@ GRANT ALL ON TABLE controle_ud_fragmentation TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_lateralite FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_lateralite FROM postgres;
 GRANT ALL ON TABLE controle_ud_lateralite TO postgres;
-GRANT ALL ON TABLE controle_ud_lateralite TO lazaret;
-GRANT ALL ON TABLE controle_ud_lateralite TO superlazaret;
+GRANT ALL ON TABLE controle_ud_lateralite TO databasename;
+GRANT ALL ON TABLE controle_ud_lateralite TO superdatabasename;
 
 
 --
@@ -20115,8 +19483,8 @@ GRANT ALL ON TABLE controle_ud_lateralite TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_type FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_type FROM postgres;
 GRANT ALL ON TABLE controle_ud_type TO postgres;
-GRANT ALL ON TABLE controle_ud_type TO lazaret;
-GRANT ALL ON TABLE controle_ud_type TO superlazaret;
+GRANT ALL ON TABLE controle_ud_type TO databasename;
+GRANT ALL ON TABLE controle_ud_type TO superdatabasename;
 
 
 --
@@ -20126,8 +19494,8 @@ GRANT ALL ON TABLE controle_ud_type TO superlazaret;
 REVOKE ALL ON TABLE controle_ud_usure FROM PUBLIC;
 REVOKE ALL ON TABLE controle_ud_usure FROM postgres;
 GRANT ALL ON TABLE controle_ud_usure TO postgres;
-GRANT ALL ON TABLE controle_ud_usure TO lazaret;
-GRANT ALL ON TABLE controle_ud_usure TO superlazaret;
+GRANT ALL ON TABLE controle_ud_usure TO databasename;
+GRANT ALL ON TABLE controle_ud_usure TO superdatabasename;
 
 
 --
@@ -20137,8 +19505,8 @@ GRANT ALL ON TABLE controle_ud_usure TO superlazaret;
 REVOKE ALL ON TABLE controle_vers FROM PUBLIC;
 REVOKE ALL ON TABLE controle_vers FROM postgres;
 GRANT ALL ON TABLE controle_vers TO postgres;
-GRANT SELECT ON TABLE controle_vers TO lazaret;
-GRANT ALL ON TABLE controle_vers TO superlazaret;
+GRANT SELECT ON TABLE controle_vers TO databasename;
+GRANT ALL ON TABLE controle_vers TO superdatabasename;
 
 
 --
@@ -20148,8 +19516,8 @@ GRANT ALL ON TABLE controle_vers TO superlazaret;
 REVOKE ALL ON TABLE controle_zone FROM PUBLIC;
 REVOKE ALL ON TABLE controle_zone FROM postgres;
 GRANT ALL ON TABLE controle_zone TO postgres;
-GRANT SELECT ON TABLE controle_zone TO lazaret;
-GRANT ALL ON TABLE controle_zone TO superlazaret;
+GRANT SELECT ON TABLE controle_zone TO databasename;
+GRANT ALL ON TABLE controle_zone TO superdatabasename;
 
 
 --
@@ -20159,8 +19527,8 @@ GRANT ALL ON TABLE controle_zone TO superlazaret;
 REVOKE ALL ON TABLE dent FROM PUBLIC;
 REVOKE ALL ON TABLE dent FROM postgres;
 GRANT ALL ON TABLE dent TO postgres;
-GRANT ALL ON TABLE dent TO lazaret;
-GRANT ALL ON TABLE dent TO superlazaret;
+GRANT ALL ON TABLE dent TO databasename;
+GRANT ALL ON TABLE dent TO superdatabasename;
 
 
 --
@@ -20170,8 +19538,8 @@ GRANT ALL ON TABLE dent TO superlazaret;
 REVOKE ALL ON TABLE eclat FROM PUBLIC;
 REVOKE ALL ON TABLE eclat FROM postgres;
 GRANT ALL ON TABLE eclat TO postgres;
-GRANT ALL ON TABLE eclat TO lazaret;
-GRANT ALL ON TABLE eclat TO superlazaret;
+GRANT ALL ON TABLE eclat TO databasename;
+GRANT ALL ON TABLE eclat TO superdatabasename;
 
 
 --
@@ -20182,8 +19550,8 @@ REVOKE ALL ON TABLE enlevement_biface FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_biface FROM postgres;
 GRANT ALL ON TABLE enlevement_biface TO postgres;
 GRANT SELECT ON TABLE enlevement_biface TO PUBLIC;
-GRANT ALL ON TABLE enlevement_biface TO lazaret;
-GRANT ALL ON TABLE enlevement_biface TO superlazaret;
+GRANT ALL ON TABLE enlevement_biface TO databasename;
+GRANT ALL ON TABLE enlevement_biface TO superdatabasename;
 
 
 --
@@ -20193,9 +19561,9 @@ GRANT ALL ON TABLE enlevement_biface TO superlazaret;
 REVOKE ALL ON TABLE enlevement_galet FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_galet FROM postgres;
 GRANT ALL ON TABLE enlevement_galet TO postgres;
-GRANT ALL ON TABLE enlevement_galet TO lazaret;
-GRANT ALL ON TABLE enlevement_galet TO superlazaret;
-GRANT SELECT ON TABLE enlevement_galet TO visiteurlazaret;
+GRANT ALL ON TABLE enlevement_galet TO databasename;
+GRANT ALL ON TABLE enlevement_galet TO superdatabasename;
+GRANT SELECT ON TABLE enlevement_galet TO visiteurdatabasename;
 
 
 --
@@ -20205,9 +19573,9 @@ GRANT SELECT ON TABLE enlevement_galet TO visiteurlazaret;
 REVOKE ALL ON TABLE enlevement_nucleus FROM PUBLIC;
 REVOKE ALL ON TABLE enlevement_nucleus FROM postgres;
 GRANT ALL ON TABLE enlevement_nucleus TO postgres;
-GRANT ALL ON TABLE enlevement_nucleus TO lazaret;
-GRANT ALL ON TABLE enlevement_nucleus TO superlazaret;
-GRANT SELECT ON TABLE enlevement_nucleus TO visiteurlazaret;
+GRANT ALL ON TABLE enlevement_nucleus TO databasename;
+GRANT ALL ON TABLE enlevement_nucleus TO superdatabasename;
+GRANT SELECT ON TABLE enlevement_nucleus TO visiteurdatabasename;
 
 
 --
@@ -20217,9 +19585,9 @@ GRANT SELECT ON TABLE enlevement_nucleus TO visiteurlazaret;
 REVOKE ALL ON TABLE faune FROM PUBLIC;
 REVOKE ALL ON TABLE faune FROM postgres;
 GRANT ALL ON TABLE faune TO postgres;
-GRANT ALL ON TABLE faune TO lazaret;
-GRANT ALL ON TABLE faune TO superlazaret;
-GRANT SELECT ON TABLE faune TO visiteurlazaret;
+GRANT ALL ON TABLE faune TO databasename;
+GRANT ALL ON TABLE faune TO superdatabasename;
+GRANT SELECT ON TABLE faune TO visiteurdatabasename;
 
 
 --
@@ -20229,8 +19597,8 @@ GRANT SELECT ON TABLE faune TO visiteurlazaret;
 REVOKE ALL ON TABLE fracture_faune FROM PUBLIC;
 REVOKE ALL ON TABLE fracture_faune FROM postgres;
 GRANT ALL ON TABLE fracture_faune TO postgres;
-GRANT ALL ON TABLE fracture_faune TO lazaret;
-GRANT ALL ON TABLE fracture_faune TO superlazaret;
+GRANT ALL ON TABLE fracture_faune TO databasename;
+GRANT ALL ON TABLE fracture_faune TO superdatabasename;
 
 
 --
@@ -20240,8 +19608,8 @@ GRANT ALL ON TABLE fracture_faune TO superlazaret;
 REVOKE ALL ON TABLE fracture_industrie FROM PUBLIC;
 REVOKE ALL ON TABLE fracture_industrie FROM postgres;
 GRANT ALL ON TABLE fracture_industrie TO postgres;
-GRANT ALL ON TABLE fracture_industrie TO lazaret;
-GRANT ALL ON TABLE fracture_industrie TO superlazaret;
+GRANT ALL ON TABLE fracture_industrie TO databasename;
+GRANT ALL ON TABLE fracture_industrie TO superdatabasename;
 
 
 --
@@ -20251,8 +19619,8 @@ GRANT ALL ON TABLE fracture_industrie TO superlazaret;
 REVOKE ALL ON TABLE galet_amenage FROM PUBLIC;
 REVOKE ALL ON TABLE galet_amenage FROM postgres;
 GRANT ALL ON TABLE galet_amenage TO postgres;
-GRANT ALL ON TABLE galet_amenage TO lazaret;
-GRANT ALL ON TABLE galet_amenage TO superlazaret;
+GRANT ALL ON TABLE galet_amenage TO databasename;
+GRANT ALL ON TABLE galet_amenage TO superdatabasename;
 
 
 --
@@ -20262,8 +19630,8 @@ GRANT ALL ON TABLE galet_amenage TO superlazaret;
 REVOKE ALL ON TABLE hachereau FROM PUBLIC;
 REVOKE ALL ON TABLE hachereau FROM postgres;
 GRANT ALL ON TABLE hachereau TO postgres;
-GRANT ALL ON TABLE hachereau TO lazaret;
-GRANT ALL ON TABLE hachereau TO superlazaret;
+GRANT ALL ON TABLE hachereau TO databasename;
+GRANT ALL ON TABLE hachereau TO superdatabasename;
 
 
 --
@@ -20273,8 +19641,8 @@ GRANT ALL ON TABLE hachereau TO superlazaret;
 REVOKE ALL ON TABLE industrie FROM PUBLIC;
 REVOKE ALL ON TABLE industrie FROM postgres;
 GRANT ALL ON TABLE industrie TO postgres;
-GRANT ALL ON TABLE industrie TO lazaret;
-GRANT ALL ON TABLE industrie TO superlazaret;
+GRANT ALL ON TABLE industrie TO databasename;
+GRANT ALL ON TABLE industrie TO superdatabasename;
 
 
 --
@@ -20284,8 +19652,8 @@ GRANT ALL ON TABLE industrie TO superlazaret;
 REVOKE ALL ON TABLE microfaune FROM PUBLIC;
 REVOKE ALL ON TABLE microfaune FROM postgres;
 GRANT ALL ON TABLE microfaune TO postgres;
-GRANT ALL ON TABLE microfaune TO lazaret;
-GRANT ALL ON TABLE microfaune TO superlazaret;
+GRANT ALL ON TABLE microfaune TO databasename;
+GRANT ALL ON TABLE microfaune TO superdatabasename;
 
 
 --
@@ -20295,8 +19663,8 @@ GRANT ALL ON TABLE microfaune TO superlazaret;
 REVOKE ALL ON TABLE nucleus FROM PUBLIC;
 REVOKE ALL ON TABLE nucleus FROM postgres;
 GRANT ALL ON TABLE nucleus TO postgres;
-GRANT ALL ON TABLE nucleus TO lazaret;
-GRANT ALL ON TABLE nucleus TO superlazaret;
+GRANT ALL ON TABLE nucleus TO databasename;
+GRANT ALL ON TABLE nucleus TO superdatabasename;
 
 
 --
@@ -20306,8 +19674,8 @@ GRANT ALL ON TABLE nucleus TO superlazaret;
 REVOKE ALL ON TABLE os FROM PUBLIC;
 REVOKE ALL ON TABLE os FROM postgres;
 GRANT ALL ON TABLE os TO postgres;
-GRANT ALL ON TABLE os TO lazaret;
-GRANT ALL ON TABLE os TO superlazaret;
+GRANT ALL ON TABLE os TO databasename;
+GRANT ALL ON TABLE os TO superdatabasename;
 
 
 --
@@ -20317,8 +19685,8 @@ GRANT ALL ON TABLE os TO superlazaret;
 REVOKE ALL ON TABLE outil FROM PUBLIC;
 REVOKE ALL ON TABLE outil FROM postgres;
 GRANT ALL ON TABLE outil TO postgres;
-GRANT ALL ON TABLE outil TO lazaret;
-GRANT ALL ON TABLE outil TO superlazaret;
+GRANT ALL ON TABLE outil TO databasename;
+GRANT ALL ON TABLE outil TO superdatabasename;
 
 
 --
@@ -20328,8 +19696,8 @@ GRANT ALL ON TABLE outil TO superlazaret;
 REVOKE ALL ON TABLE photocoprolithe FROM PUBLIC;
 REVOKE ALL ON TABLE photocoprolithe FROM postgres;
 GRANT ALL ON TABLE photocoprolithe TO postgres;
-GRANT ALL ON TABLE photocoprolithe TO lazaret;
-GRANT ALL ON TABLE photocoprolithe TO superlazaret;
+GRANT ALL ON TABLE photocoprolithe TO databasename;
+GRANT ALL ON TABLE photocoprolithe TO superdatabasename;
 
 
 --
@@ -20339,8 +19707,8 @@ GRANT ALL ON TABLE photocoprolithe TO superlazaret;
 REVOKE ALL ON TABLE photofaune FROM PUBLIC;
 REVOKE ALL ON TABLE photofaune FROM postgres;
 GRANT ALL ON TABLE photofaune TO postgres;
-GRANT ALL ON TABLE photofaune TO lazaret;
-GRANT ALL ON TABLE photofaune TO superlazaret;
+GRANT ALL ON TABLE photofaune TO databasename;
+GRANT ALL ON TABLE photofaune TO superdatabasename;
 
 
 --
@@ -20350,8 +19718,8 @@ GRANT ALL ON TABLE photofaune TO superlazaret;
 REVOKE ALL ON TABLE photoindustrie FROM PUBLIC;
 REVOKE ALL ON TABLE photoindustrie FROM postgres;
 GRANT ALL ON TABLE photoindustrie TO postgres;
-GRANT ALL ON TABLE photoindustrie TO lazaret;
-GRANT ALL ON TABLE photoindustrie TO superlazaret;
+GRANT ALL ON TABLE photoindustrie TO databasename;
+GRANT ALL ON TABLE photoindustrie TO superdatabasename;
 
 
 --
@@ -20361,8 +19729,8 @@ GRANT ALL ON TABLE photoindustrie TO superlazaret;
 REVOKE ALL ON TABLE phototrace FROM PUBLIC;
 REVOKE ALL ON TABLE phototrace FROM postgres;
 GRANT ALL ON TABLE phototrace TO postgres;
-GRANT ALL ON TABLE phototrace TO lazaret;
-GRANT ALL ON TABLE phototrace TO superlazaret;
+GRANT ALL ON TABLE phototrace TO databasename;
+GRANT ALL ON TABLE phototrace TO superdatabasename;
 
 
 --
@@ -20372,8 +19740,8 @@ GRANT ALL ON TABLE phototrace TO superlazaret;
 REVOKE ALL ON TABLE remonte_famille FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_famille FROM postgres;
 GRANT ALL ON TABLE remonte_famille TO postgres;
-GRANT ALL ON TABLE remonte_famille TO lazaret;
-GRANT ALL ON TABLE remonte_famille TO superlazaret;
+GRANT ALL ON TABLE remonte_famille TO databasename;
+GRANT ALL ON TABLE remonte_famille TO superdatabasename;
 
 
 --
@@ -20383,8 +19751,8 @@ GRANT ALL ON TABLE remonte_famille TO superlazaret;
 REVOKE ALL ON TABLE remonte_genre FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_genre FROM postgres;
 GRANT ALL ON TABLE remonte_genre TO postgres;
-GRANT ALL ON TABLE remonte_genre TO lazaret;
-GRANT ALL ON TABLE remonte_genre TO superlazaret;
+GRANT ALL ON TABLE remonte_genre TO databasename;
+GRANT ALL ON TABLE remonte_genre TO superdatabasename;
 
 
 --
@@ -20394,8 +19762,8 @@ GRANT ALL ON TABLE remonte_genre TO superlazaret;
 REVOKE ALL ON TABLE remonte_ordre FROM PUBLIC;
 REVOKE ALL ON TABLE remonte_ordre FROM postgres;
 GRANT ALL ON TABLE remonte_ordre TO postgres;
-GRANT ALL ON TABLE remonte_ordre TO lazaret;
-GRANT ALL ON TABLE remonte_ordre TO superlazaret;
+GRANT ALL ON TABLE remonte_ordre TO databasename;
+GRANT ALL ON TABLE remonte_ordre TO superdatabasename;
 
 
 --
@@ -20405,8 +19773,8 @@ GRANT ALL ON TABLE remonte_ordre TO superlazaret;
 REVOKE ALL ON TABLE requete FROM PUBLIC;
 REVOKE ALL ON TABLE requete FROM postgres;
 GRANT ALL ON TABLE requete TO postgres;
-GRANT ALL ON TABLE requete TO lazaret;
-GRANT ALL ON TABLE requete TO superlazaret;
+GRANT ALL ON TABLE requete TO databasename;
+GRANT ALL ON TABLE requete TO superdatabasename;
 
 
 --
@@ -20416,8 +19784,8 @@ GRANT ALL ON TABLE requete TO superlazaret;
 REVOKE ALL ON TABLE retouche FROM PUBLIC;
 REVOKE ALL ON TABLE retouche FROM postgres;
 GRANT ALL ON TABLE retouche TO postgres;
-GRANT ALL ON TABLE retouche TO lazaret;
-GRANT ALL ON TABLE retouche TO superlazaret;
+GRANT ALL ON TABLE retouche TO databasename;
+GRANT ALL ON TABLE retouche TO superdatabasename;
 
 
 --
@@ -20427,8 +19795,8 @@ GRANT ALL ON TABLE retouche TO superlazaret;
 REVOKE ALL ON TABLE seq_bord FROM PUBLIC;
 REVOKE ALL ON TABLE seq_bord FROM postgres;
 GRANT ALL ON TABLE seq_bord TO postgres;
-GRANT ALL ON TABLE seq_bord TO lazaret;
-GRANT ALL ON TABLE seq_bord TO superlazaret;
+GRANT ALL ON TABLE seq_bord TO databasename;
+GRANT ALL ON TABLE seq_bord TO superdatabasename;
 
 
 --
@@ -20438,8 +19806,8 @@ GRANT ALL ON TABLE seq_bord TO superlazaret;
 REVOKE ALL ON TABLE seq_photofaune FROM PUBLIC;
 REVOKE ALL ON TABLE seq_photofaune FROM postgres;
 GRANT ALL ON TABLE seq_photofaune TO postgres;
-GRANT ALL ON TABLE seq_photofaune TO lazaret;
-GRANT ALL ON TABLE seq_photofaune TO superlazaret;
+GRANT ALL ON TABLE seq_photofaune TO databasename;
+GRANT ALL ON TABLE seq_photofaune TO superdatabasename;
 
 
 --
@@ -20449,8 +19817,8 @@ GRANT ALL ON TABLE seq_photofaune TO superlazaret;
 REVOKE ALL ON TABLE seq_photoindustrie FROM PUBLIC;
 REVOKE ALL ON TABLE seq_photoindustrie FROM postgres;
 GRANT ALL ON TABLE seq_photoindustrie TO postgres;
-GRANT ALL ON TABLE seq_photoindustrie TO lazaret;
-GRANT ALL ON TABLE seq_photoindustrie TO superlazaret;
+GRANT ALL ON TABLE seq_photoindustrie TO databasename;
+GRANT ALL ON TABLE seq_photoindustrie TO superdatabasename;
 
 
 --
@@ -20460,8 +19828,8 @@ GRANT ALL ON TABLE seq_photoindustrie TO superlazaret;
 REVOKE ALL ON TABLE seq_phototrace FROM PUBLIC;
 REVOKE ALL ON TABLE seq_phototrace FROM postgres;
 GRANT ALL ON TABLE seq_phototrace TO postgres;
-GRANT ALL ON TABLE seq_phototrace TO lazaret;
-GRANT ALL ON TABLE seq_phototrace TO superlazaret;
+GRANT ALL ON TABLE seq_phototrace TO databasename;
+GRANT ALL ON TABLE seq_phototrace TO superdatabasename;
 
 
 --
@@ -20471,8 +19839,8 @@ GRANT ALL ON TABLE seq_phototrace TO superlazaret;
 REVOKE ALL ON TABLE stigmate FROM PUBLIC;
 REVOKE ALL ON TABLE stigmate FROM postgres;
 GRANT ALL ON TABLE stigmate TO postgres;
-GRANT ALL ON TABLE stigmate TO lazaret;
-GRANT ALL ON TABLE stigmate TO superlazaret;
+GRANT ALL ON TABLE stigmate TO databasename;
+GRANT ALL ON TABLE stigmate TO superdatabasename;
 
 
 --
@@ -20482,8 +19850,8 @@ GRANT ALL ON TABLE stigmate TO superlazaret;
 REVOKE ALL ON TABLE trace FROM PUBLIC;
 REVOKE ALL ON TABLE trace FROM postgres;
 GRANT ALL ON TABLE trace TO postgres;
-GRANT ALL ON TABLE trace TO lazaret;
-GRANT ALL ON TABLE trace TO superlazaret;
+GRANT ALL ON TABLE trace TO databasename;
+GRANT ALL ON TABLE trace TO superdatabasename;
 
 
 --
@@ -20493,9 +19861,9 @@ GRANT ALL ON TABLE trace TO superlazaret;
 REVOKE ALL ON TABLE usure_dent FROM PUBLIC;
 REVOKE ALL ON TABLE usure_dent FROM postgres;
 GRANT ALL ON TABLE usure_dent TO postgres;
-GRANT ALL ON TABLE usure_dent TO lazaret;
-GRANT ALL ON TABLE usure_dent TO superlazaret;
-GRANT SELECT ON TABLE usure_dent TO visiteurlazaret;
+GRANT ALL ON TABLE usure_dent TO databasename;
+GRANT ALL ON TABLE usure_dent TO superdatabasename;
+GRANT SELECT ON TABLE usure_dent TO visiteurdatabasename;
 
 
 --

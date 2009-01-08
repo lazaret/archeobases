@@ -34,7 +34,7 @@ class Fracture_Industrie(archeodata.Data):
                     "fi_percussion": {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "fi_mode"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0},
                     "fi_localisation": {"type": "text", "default": "", "mandatory": 0, "longueur": 10},
-                    "fi_anciennete": {"type": "text", "default": "", "mandatory": 0, "longueur": 3},
+                    "fi_anciennete": {"type": "text", "default": "", "mandatory": 0, "longueur": 5},
                     "fi_relation"  : {"type": "text", "default": "", "mandatory": 0, "longueur": 7},
                     }
     #
@@ -137,7 +137,7 @@ class Fracture_Industrie(archeodata.Data):
         afficheclefs.champ_saisie(self, "fi_localisation", "localisation", 10, 20, " ", enreg, penreg)
 
     def fi_anciennete_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_saisie(self, "fi_anciennete", "anciennete", 3, 20, "", enreg, penreg)
+        afficheclefs.champ_saisie(self, "fi_anciennete", "anciennete", 5, 20, "", enreg, penreg)
 
     def fi_relation_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_saisie(self, "fi_relation", "relation", 5, 20, "", enreg, penreg)

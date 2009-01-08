@@ -40,7 +40,7 @@ page.br()
 page.td(align="center", valign="center")
 page.push()
 cpt = 0
-for chaine in ("h_base", "h_surface", "h_amenagement_bord", "h_distale", "h_biseau", "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_bilaterale", "h_facture", "h_arete", "h_retouche"):
+for chaine in ("h_base", "h_surface", "h_enlevement", "h_amenagement_bord", "h_distale", "h_biseau", "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_bilaterale", "h_bifaciale", "h_facture", "h_arete", "h_retouche"):
     if (cpt == 6 ):
         page.pop()
         page.push()

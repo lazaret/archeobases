@@ -660,7 +660,7 @@ class Biface(archeodata.Data):
 
     def b_bg_base_to_form(self, enreg, penreg=None):
         afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-        afficheclefs.champ_saisie_area(self, "b_bg", "bg", 3, 50, 5, "", enreg, penreg)
+        afficheclefs.champ_saisie_area(self, "b_bg", "bg", 3, 50, 5, " ", enreg, penreg)
 
 ###########################
     def b_bntf_base_to_form(self, enreg, penreg=None):

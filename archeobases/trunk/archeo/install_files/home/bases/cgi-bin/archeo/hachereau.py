@@ -15,6 +15,7 @@
 import archeoconf
 import archeodata
 import afficheclefs
+import enlevement_hachereau
 
 
 class Hachereau(archeodata.Data):
@@ -127,14 +128,15 @@ class Hachereau(archeodata.Data):
     __vraiparent__ = "industrie"
     #
     # liste des seuls champs que l'on veut pouvoir modifier
-    __listechamps__ = ("zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_enlevement", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_facture", "h_bifaciale", "h_bilaterale",  "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_ind16", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hy", "h_hyax", "h_hybx", "h_hyx", "h_hf")
+    __listechamps__ = ("zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_enlevement", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_bilaterale", "h_facture", "h_bifaciale", "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_ind16", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hy", "h_hyax", "h_hybx", "h_hyx", "h_hf")
     #
     # liste des champs dans leur ordre de saisie
-    __ordrechamps__ = ("zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_enlevement", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_facture", "h_bifaciale", "h_bilaterale",  "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_ind16", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hy", "h_hyax", "h_hybx", "h_hyx", "h_hf")
+    __ordrechamps__ = ("zone", "numero", "bis", "h_type", "h_base", "h_surface", "h_enlevement", "h_amenagement_bord", "h_distale", "h_biseau",  "h_bord", "h_meplat", "h_extension", "h_symetrie", "h_bilaterale", "h_facture", "h_bifaciale", "h_arete", "h_retouche", "h_long1", "h_long2", "h_long3", "h_l1", "h_l1a", "h_l2", "h_l3", "h_l4", "h_l5", "h_e1", "h_e2", "h_poids", "h_ind1", "h_ind2", "h_ind3", "h_ind4", "h_ind5", "h_ind6", "h_ind7", "h_ind8", "h_ind9", "h_ind10", "h_ind11", "h_ind12", "h_ind13", "h_ind14", "h_ind15", "h_ind16", "h_hc", "h_hd", "h_he", "h_hb1a", "h_hb1b", "h_hb1", "h_hb2a", "h_hb2b", "h_hb2", "h_hde1", "h_hde2", "h_hg1", "h_hg2", "h_hh", "h_hi", "h_hj", "h_hk", "h_hla1", "h_hlb1", "h_hl1", "h_hla2", "h_hlb2", "h_hl2", "h_hm", "h_hs", "h_hng", "h_hnd", "h_ho", "h_hp", "h_hq", "h_hr", "h_hu", "h_hx", "h_hya1", "h_hya2", "h_hya", "h_hyb1", "h_hyb2", "h_hyb", "h_hy", "h_hyax", "h_hybx", "h_hyx", "h_hf")
     __orderby__ = " ORDER BY zone, numero, bis ASC;"
     #
     # liste des formulaires supplementaires
-    __formsupp__ = ("",)
+    __formsupp__ = ("enlevements",)
+
 
     def zone_verify(self, fieldname, value):
         if value == '':
@@ -196,46 +198,48 @@ class Hachereau(archeodata.Data):
 
     def h_surface_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "h_surface", "surface réservée", enreg, penreg, "", dontchange=0)
+        self.__doc__.pop()
 
+###########################
     def h_enlevement_base_to_form(self, enreg, penreg=None):
         self.__doc__.push()
         afficheclefs.champ_liste(self, "h_enlevement", "Loc.enlevement", enreg, penreg, " ", dontchange=0)
 
     def h_amenagement_bord_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "h_amenagement_bord", "amenag bord", enreg, penreg, "", dontchange=0)
+
+    def h_distale_base_to_form(self, enreg, penreg=None):
+        afficheclefs.champ_liste(self, "h_distale", "amenag ext.dist", enreg, penreg, "", dontchange=0)
         self.__doc__.pop()
 
 ###########################
-    def h_distale_base_to_form(self, enreg, penreg=None):
-        self.__doc__.push()
-        afficheclefs.champ_liste(self, "h_distale", "amenag ext.dist", enreg, penreg, " ", dontchange=0)
-
     def h_biseau_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_liste(self, "h_biseau", "biseau terminal", enreg, penreg, "", dontchange=0)
+        self.__doc__.push()
+        afficheclefs.champ_liste(self, "h_biseau", "biseau terminal", enreg, penreg, " ", dontchange=0)
 
     def h_bord_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "h_bord", "forme bords", enreg, penreg, "", dontchange=0)
 
     def h_meplat_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "h_meplat", "meplat latéral", enreg, penreg, "", dontchange=0)
+
+    def h_extension_base_to_form(self, enreg, penreg=None):
+        afficheclefs.champ_liste(self, "h_extension", "extension enlev", enreg, penreg, "", dontchange=0)
         self.__doc__.pop()
 
 ###########################
-    def h_extension_base_to_form(self, enreg, penreg=None):
-        self.__doc__.push()
-        afficheclefs.champ_liste(self, "h_extension", "extension enlev", enreg, penreg, " ", dontchange=0)
-
     def h_symetrie_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_liste(self, "h_symetrie", "sym medisbilat", enreg, penreg, "", dontchange=0)
+        self.__doc__.push()
+        afficheclefs.champ_liste(self, "h_symetrie", "sym medisbilat", enreg, penreg, " ", dontchange=0)
+
+    def h_bilaterale_base_to_form(self, enreg, penreg=None):
+        afficheclefs.champ_liste(self, "h_bilaterale", "sym bilat", enreg, penreg, "", dontchange=0)
 
     def h_facture_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "h_facture", "facture bifac", enreg, penreg, "", dontchange=0)
 
     def h_bifaciale_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "h_bifaciale", "sym bifaciale", enreg, penreg, "", dontchange=0)
-
-    def h_bilaterale_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_liste(self, "h_bilaterale", "sym bilat", enreg, penreg, "", dontchange=0)
         self.__doc__.pop()
 
 ###########################
@@ -348,7 +352,6 @@ class Hachereau(archeodata.Data):
 
     def h_ind15_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_saisie(self, "h_ind15", "ind15", 5, 20, "", enreg, penreg)
-        self.__doc__.pop()
 
     def h_ind16_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_saisie(self, "h_ind16", "ind16", 5, 20, "", enreg, penreg)
@@ -514,12 +517,23 @@ class Hachereau(archeodata.Data):
     def h_hyx_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_saisie(self, "h_hyx", "hyx", 5, 20, "", enreg, penreg)
         self.__doc__.pop()
-#        self.__doc__.pop()
 
     def h_hf_base_to_form(self, enreg, penreg=None):
         afficheclefs.ajoute_ligne(self, "100%", "1", "10", "5")
-        afficheclefs.champ_saisie_area(self, "h_hf", "hf", 3, 50, 5, "", enreg, penreg)
-        self.__doc__.pop()
+        afficheclefs.champ_saisie_area(self, "h_hf", "hf", 3, 50, 5, " ", enreg, penreg)
+
+###############################################################################
+#                               ENLEVEMENTS
+###############################################################################
+    def enlevements(self, enreg, penreg=None):
+        if enreg != None:
+            self.__doc__.push()
+            self.__doc__.tr()
+            self.__doc__.td(bgcolor=archeoconf.basform_bgcolorcenter, colspan="2")
+            self.__doc__.font(size=archeoconf.font_size)
+            penreg = {"zone": enreg["zone"], "numero": enreg["numero"], "bis": enreg["bis"]}
+            enlevement_hachereau.Enlevement_Hachereau(self).traite_saisie(("zone", "numero", "bis", "eh_rang"), parent=self.__tablename__, penreg=penreg)
+            self.__doc__.pop()
 
 ##############################################################################################################################
 #                                               METHODES

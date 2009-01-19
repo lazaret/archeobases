@@ -122,7 +122,7 @@ class Nucleus(archeodata.Data):
         afficheclefs.display_bis(self, enreg, penreg)
 
     def n_ordre_base_to_form(self, enreg, penreg=None):
-        afficheclefs.display_x_ordre(self, "n_ordre", 0, 15, enreg, penreg)
+        afficheclefs.display_x_ordre(self, "n_ordre", 0, 31, enreg, penreg)
         self.__doc__.pop()
 
 ################################### En entrée ##############################################

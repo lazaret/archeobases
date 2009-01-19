@@ -156,7 +156,7 @@ class Galet_amenage(archeodata.Data):
         afficheclefs.display_bis(self, enreg, penreg)
 
     def ga_ordre_base_to_form(self, enreg, penreg=None):
-        afficheclefs.display_x_ordre(self, "ga_ordre", 0, 15, enreg, penreg)
+        afficheclefs.display_x_ordre(self, "ga_ordre", 0, 31, enreg, penreg)
         self.__doc__.pop()
 
 ################################### En entrée

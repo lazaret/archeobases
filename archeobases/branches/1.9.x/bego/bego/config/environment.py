@@ -29,7 +29,7 @@ def load_environment(global_conf, app_conf):
 
     config['routes.map'] = make_map()
     config['pylons.app_globals'] = app_globals.Globals()
-    config['pylons.h'] = begos.lib.helpers
+    config['pylons.h'] = bego.lib.helpers
 
     # Create the Mako TemplateLookup, with the default auto-escaping
     config['pylons.app_globals'].mako_lookup = TemplateLookup(

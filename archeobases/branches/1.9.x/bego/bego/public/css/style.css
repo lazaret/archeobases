@@ -1,0 +1,166 @@
+/*
+ * Style Sheet.
+ * Inspired from 'Internet center' free template http://www.solucija.com/templates/demo/Internet_Center
+ */
+
+html, body {
+  margin: 0;
+  height: 100%;
+  color: #454545;
+  background-color: #fff;
+  font: Arial, sans-serif;
+}
+
+td, th {padding:3px;border:none;}
+tr th {text-align:left;background-color:#f0f0f0;color:#333;}
+tr.odd td {background-color:#edf3fe;}
+tr.even td {background-color:#fff;}
+
+a.link, a, a.active {
+  color: #185DA0;
+}
+
+a:hover {
+  color: #9EC068;
+}
+
+div#wrapper {
+  min-height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+
+/* ==================== H E A D E R ==================== */
+
+div#header {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  background: #DCF2B8;
+  background-image:url('../images/barbg.gif');
+  background-repeat:no-repeat;
+  border-bottom: 1px solid #9EC068;
+}
+
+div#header .headtext {
+  width:753px;
+  margin: 0 auto;
+  padding-left: 5px;
+  padding-top : 2px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+div#header a{
+  text-decoration: none;
+}
+
+/* ----- header navbar ----- */
+div#navbar {
+  width:753px;
+  margin: 0 auto;
+}
+
+ul#tabnav {
+  position: absolute;
+  bottom: 1px;
+  margin: 0;
+  padding: 0;
+  width:753px;
+  text-align:right;
+}
+
+ul#tabnav li {
+  display: inline;
+  list-style-type: none;
+  font-size: 12px;
+  margin-right: 3px;
+}
+
+ul#tabnav a:link, ul#tabnav a:visited {
+  background: #f4ffe2;
+  padding: 2px 10px 2px 10px;
+  border: 1px solid #9EC068;
+  color: #808080;
+}
+
+ul#tabnav a:link.active, ul#tabnav a:visited.active {
+  border-bottom: 1px solid #f4f4f4;
+  background: #f4f4f4;
+  color: #454545;
+}
+
+ul#tabnav a:hover {
+  background: #fff;
+}
+
+
+/* ==================== BREADCRUMB ==================== */
+
+div#breadcrumb {
+  background: #f4f4f4;
+  color: #808080;
+  border-bottom: 1px solid #ccc;
+}
+
+div#breadcrumb .breadcrumbtext {
+  width:753px;
+  margin: 0 auto;
+  padding-left: 5px;
+  background-image:url('../images/subheaderbg.gif');
+  background-repeat:no-repeat;
+  background-position:right;
+}
+
+div#breadcrumb a {
+  text-decoration: none;
+  color: #808080;
+}
+
+div#breadcrumb a:hover {
+  color: #9EC068;
+}
+
+
+/* ==================== TWO COLLUMNS MAIN CONTENT ==================== */
+
+div#main_content {
+  width:753px;
+  margin: 0 auto;
+  padding: 15px 0px 30px 0px;
+}
+
+div#content {
+  float: left;
+  width: 565px;
+  padding-left: 5px
+}
+
+div#sidebar {
+  float: right;
+  width: 170px;
+  font-size: 0.75em;
+}
+
+
+/* ==================== FOOTER ==================== */
+
+div#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #808080;
+  text-align: center;
+  padding: 5px 0 4px 0;
+  color: #808080;
+  border-top: 1px solid #eee;
+  font-size: 0.8em;
+}
+
+div#footer a {
+  color: #9EC068;
+}
+
+div#footer .foottext{
+}

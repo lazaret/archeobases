@@ -136,7 +136,7 @@ class Enlevement_Galet(archeodata.Data):
         afficheclefs.display_bis(self, enreg, penreg)
 
     def ga_ordre_base_to_form(self, enreg, penreg=None):
-        afficheclefs.display_x_ordre(self, "ga_ordre", 1, 15, enreg, penreg)
+        afficheclefs.display_x_ordre(self, "ga_ordre", 1, 31, enreg, penreg)
 
     def eg_rang_base_to_form(self, enreg, penreg=None):
         afficheclefs.display_x_rang(self, "eg_rang", "30", enreg, penreg)

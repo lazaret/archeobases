@@ -41,7 +41,7 @@ page.br()
 page.td(align="center", valign="center")
 page.push()
 cpt = 0
-for chaine in ("e_code", "e_debitage", "e_section", "e_contour", "e_enlevement", "e_bulbe", "e_talon", "e_cone", "e_onde", "e_epi", "e_strie", "e_parasite", "e_secondaire", "e_charniere", "e_carene", "e_type"):
+for chaine in ("e_code", "e_debitage", "e_section_long", "e_section_trans", "e_contour", "e_enlevement", "e_bulbe", "e_talon", "e_cone", "e_onde", "e_epi", "e_strie", "e_parasite", "e_secondaire", "e_charniere", "e_carene", "e_type"):
     if (cpt == 6 ):
         page.pop()
         page.push()

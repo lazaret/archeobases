@@ -47,7 +47,7 @@ class Faune(archeodata.Data):
                     "f_ssespece"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
                     "f_typos1"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 1, "memory": 1},
                     "f_typos2"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 4, "memory": 1},
-                    "f_typos3"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
+                    "f_typos3"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 4, "memory": 1},
                     "f_typos4"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
                     "f_typos5"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
                     "f_typos6"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 3, "memory": 1},
@@ -292,7 +292,7 @@ class Faune(archeodata.Data):
         afficheclefs.champ_simple_saisie(self, "f_typos2", "f_typos2", 4, 20, enreg, penreg)
 
     def f_typos3_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_simple_saisie(self, "f_typos3", "f_typos3", 3, 20, enreg, penreg)
+        afficheclefs.champ_simple_saisie(self, "f_typos3", "f_typos3", 4, 20, enreg, penreg)
 
     def f_typos4_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_simple_saisie(self, "f_typos4", "f_typos4", 3, 20, enreg, penreg)

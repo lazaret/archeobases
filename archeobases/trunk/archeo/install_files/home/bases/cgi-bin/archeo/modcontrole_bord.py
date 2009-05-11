@@ -40,7 +40,7 @@ page.br()
 page.td(align="center", valign="center")
 page.push()
 cpt = 0
-for chaine in ("b_extremite", "b_code"):
+for chaine in ("b_amincissement", "b_extremite", "b_code"):
     if (cpt == 6 ):
         page.pop()
         page.push()

@@ -49,7 +49,7 @@ class Anthropologie(collectiondata.Data):
                 "m_synonymes"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 100, "memory": 0},
                 "m_description_anatomique": {"type": "text", "default": "", "mandatory": 0 , "longueur": 300, "memory": 0},
                 "m_date_decouverte"    : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},
-                "m_inventeur"          : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},
+                "m_inventeur"          : {"type": "text", "default": "", "mandatory": 0 , "longueur": 20,   "memory": 0},
                 "m_origine"            : {"type": "text", "default": "", "mandatory": 0 , "longueur": 30,  "memory": 0},
                 "m_date"               : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},
                 "m_date_acquisition"   : {"type": "text", "default": "", "mandatory": 0 , "longueur": 4,   "memory": 0},

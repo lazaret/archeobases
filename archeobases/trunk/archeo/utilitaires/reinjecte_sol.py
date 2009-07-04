@@ -15,6 +15,12 @@
 #       INJECTE LE SOL D'UNE BASE
 #
 #le fichier a traiter doit etre de la forme zone,numero,bis,sol
+#pour les fichier csv, penser à retirer les guilemets
+#
+# les fichiers doivent être placé temporairement dans /home/bases/cgi-bin/archeo
+# usage : ./reinjecte_sol.py nom_de_la_base < fichier.txt
+# exemple : ./reinjecte_sol.py Le_Lazaret < sols.csv
+# Pour obtenir le resustat de l'execution dans un fichier : ./reinjecte_sol.py Le_Lazaret < sols.csv > resultat.txt
 
 import sys
 import string

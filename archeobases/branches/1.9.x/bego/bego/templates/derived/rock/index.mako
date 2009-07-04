@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 <%inherit file="/base/base.mako" />
-<%namespace file="/component/sidebar.mako" import="*"/>
+<%namespace file="/component/sideboxes.mako" import="*"/>
 
 <%def name="page_name()">${_("Rock")}</%def>
 
@@ -17,7 +17,7 @@
 ## sidebar
 <%def name="sidebar()">
   ${sidebox_login()}
-  ${sidebox_search()}
+  ${sidebox_actions()}
 </%def>
 
 ## main content

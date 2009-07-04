@@ -10,8 +10,10 @@ from pylons.wsgiapp import PylonsApp
 from routes.middleware import RoutesMiddleware
 
 from bego.config.environment import load_environment
+from bego.lib.auth import add_auth
 
-def make_app(global_conf, full_stack=True, **app_conf):
+
+def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
     """Create a Pylons WSGI application and return it
 
     ``global_conf``
@@ -19,10 +21,14 @@ def make_app(global_conf, full_stack=True, **app_conf):
         the [DEFAULT] section of the Paste ini file.
 
     ``full_stack``
-        Whether or not this application provides a full WSGI stack (by
-        default, meaning it handles its own exceptions and errors).
-        Disable full_stack when this application is "managed" by
-        another WSGI middleware.
+        Whether this application provides a full WSGI stack (by default,
+        meaning it handles its own exceptions and errors). Disable
+        full_stack when this application is "managed" by another WSGI
+        middleware.
+
+    ``static_files``
+        Whether this application serves its own static files; disable
+        when another web server is responsible for serving them.
 
     ``app_conf``
         The application's local configuration. Normally specified in
@@ -37,6 +43,7 @@ def make_app(global_conf, full_stack=True, **app_conf):
     app = PylonsApp()
 
     # CUSTOM MIDDLEWARE HERE (filtered by error handling middlewares)
+    app = add_auth(app) # Add repoze.what Auth & Auth
 
     # Routing/Session/Cache Middleware
     app = RoutesMiddleware(app, config['routes.map'])
@@ -57,8 +64,13 @@ def make_app(global_conf, full_stack=True, **app_conf):
     # Establish the Registry for this application
     app = RegistryManager(app)
 
-    # Static files (If running in production, and Apache or another web
-    # server is handling this static content, remove the following 2 lines)
-    static_app = StaticURLParser(config['pylons.paths']['static_files'])
-    app = Cascade([static_app, app])
+    if asbool(static_files):
+        # Serve static files
+        static_app = StaticURLParser(config['pylons.paths']['static_files'])
+        app = Cascade([static_app, app])
+
+    if config.has_key('upload_dir'):
+        upload_app = StaticURLParser(config['upload_dir'])
+        app = Cascade([upload_app, app])
+
     return app

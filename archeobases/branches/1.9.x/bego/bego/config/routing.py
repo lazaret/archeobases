@@ -22,20 +22,22 @@ def make_map():
 
     # Default Pylons controler
     map.connect('/{controller}/{action}')
+    map.connect('/{controller}/{action}/')
     map.connect('/{controller}/{action}/{id}')
+    map.connect('/{controller}/{action}/{id}/')
 
     # Sub-index pages controler
-    #map.connect('/{controller}.html', action='index')
+    map.connect('/{controller}.html', action='index')
     map.connect('/{controller}', action='index')
     map.connect('/{controller}/', action='index')
 
-    # Main index page controler
-    map.connect('/', controller='main', action='index')
-    map.connect('/index.html', controller='main', action='index')
+    # Root controler action (index, login, logout, etc...)
+    map.connect('/', controller='root', action='index')
+    map.connect('/{action}.html', controller='root')
+    map.connect('/{action}', controller='root')
+    map.connect('/{action}/', controller='root')
 
-    # About page controler
-    #map.connect('/about', controller='main', action='about')
-    map.connect('/about.html', controller='main', action='about')
-
+    # Display image with filename controler
+    map.connect('/image/display/{id}/{filename}', controller='image', action='display')
 
     return map

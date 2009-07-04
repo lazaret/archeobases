@@ -3,11 +3,13 @@
 import logging
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
-from bego.lib.base import BaseController, render
 from pylons.i18n.translation import _
+from routes.util import url_for
 
+from bego.lib.base import BaseController, render
+from bego.lib.helpers import flash_message
 from bego import model
-from routes import url_for
+
 
 log = logging.getLogger(__name__)
 
@@ -15,14 +17,16 @@ log = logging.getLogger(__name__)
 class RockController(BaseController):
     """Rock controler who work on the `rock` table"""
 
-    ### FIXME ajouter des flashoulles
-
     def index(self):
         #return the rock index page
         return render("/derived/rock/index.mako")
 
     def new(self):
         """New record form and redirect to save"""
+        flash_message(_("success message"), "success")
+        flash_message(_("warning message"), "warning")
+        flash_message(_("error message"), "error")
+        flash_message(_("notice message"), "notice")
         return render('/derived/rock/new.mako')
 
     def edit(self, id=None):

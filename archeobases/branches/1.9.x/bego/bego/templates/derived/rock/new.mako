@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 <%inherit file="/base/base.mako" />
-<%namespace file="/component/sidebar.mako" import="*"/>
-
+<%namespace file="/component/sideboxes.mako" import="*"/>
+<%namespace file="/component/flash_message.mako" import="*"/>
 <%namespace file="/derived/rock/main_form.mako" import="*"/>
 
 <%def name="page_name()">${_("Rock")}</%def>
@@ -21,18 +21,21 @@
 ## breadcrumb
 <%def name="breadcrumb()">
   ${h.link_to(c.site_short_name , "/")}&nbsp;&nbsp;&rsaquo;&nbsp;&nbsp;
-  ${h.link_to(_("rock"), h.url_for(action="index"))}&nbsp;&nbsp;&rsaquo;&nbsp;&nbsp;${_("new")}
+  ${h.link_to(_("rock"), h.url_for(action="index"))}&nbsp;&nbsp;&rsaquo;&nbsp;&nbsp;${_("add new")}
 </%def>
 
 ## right sidebar
 <%def name="sidebar()">
   ${sidebox_login()}
-  ${sidebox_search()}
+  ${sidebox_actions()}
+  ${sidebox_helptip()}
+  ${sidebox_image()}
 </%def>
 
-
 ## main content
-${h.form(h.url_for(action="save", id=None))}
+${flash_message()}
+
+${h.form(h.url_for(action="save", id=None), name="form")}
 ${main_form()}
 <div id="footForm">
   <button name="new_button" type="submit" class="positive"><img src="/images/tick.png"/>${_("Save & New")}</button>

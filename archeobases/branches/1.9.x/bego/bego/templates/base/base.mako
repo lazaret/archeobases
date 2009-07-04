@@ -5,15 +5,24 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="/css/form.css" type="text/css" media="screen" />
+    ${h.stylesheet_link("/css/style.css")}
+    ${h.stylesheet_link("/css/messages.css")}
+    ${h.stylesheet_link("/css/form.css")}
+    ${h.javascript_link("/javascripts/functions.js")}
     <title>${c.site_full_name} - ${self.page_name()}</title>
   </head>
-
-  <body>
+  <body onLoad="hideFlashMessage()">
+    ## LIGHTBOX MESSAGES
+    <div id="lightbox">
+      <div id="alertbox">
+        ${self.lightbox()}
+      </div>
+    </div>
+    <div id="filter">
+    </div>
+    ## WRAPPER TO STICK FOOTER
     <div id="wrapper">
-
-    ## HEADER & TOP NAVBAR
+      ## HEADER & TOP NAVBAR
       <div id="header">
         <div class="headtext">
           ${h.link_to(c.site_full_name, "/")}
@@ -22,16 +31,14 @@
           ${self.navbar()}
         </div>
       </div>
-
-    ## BREADCRUMB
+      ## BREADCRUMB
       <div id="breadcrumb">
         <div class="breadcrumbtext">
           ${self.breadcrumb()}
         </div>
       </div>
-
-    ## SIDEBAR & CONTENT
-      <div id="main_content">
+      ## SIDEBAR & CONTENT
+      <div id="main_content" class="clearfix">
         <div id="sidebar">
           ## right sidebar
           ${self.sidebar()}
@@ -41,13 +48,10 @@
           ${next.body()}
         </div>
       </div>
-
+    </div>
     ## FOOTER
-      <div id="footer">
-        <div class="foottext">
-          Bego ${c.version} &copy; 2009 ${h.link_to("LDLP", "http://lazaret.unice.fr/opensource/")}&nbsp;&nbsp;|&nbsp;&nbsp;${h.link_to(_("About"), "/about")}&nbsp;&nbsp;|&nbsp;&nbsp;${h.link_to(_("Admin"), "/admin")}
-        </div>
-      </div>
+    <div id="footer">
+      Bego ${c.version} &copy; 2009 ${h.link_to("LDLP", "http://lazaret.unice.fr/opensource/")}&nbsp;&nbsp;|&nbsp;&nbsp;${h.link_to(_("About"), "/about")}&nbsp;&nbsp;|&nbsp;&nbsp;${h.link_to(_("Admin"), "/admin")}
     </div>
   </body>
 </html>
@@ -71,3 +75,6 @@
 <%def name="sidebar()">
 </%def>
 
+## DEFAULT LIGHTBOX CONTENT
+<%def name="lightbox()">
+</%def>

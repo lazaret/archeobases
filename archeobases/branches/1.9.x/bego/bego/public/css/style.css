@@ -3,12 +3,17 @@
  * Inspired from 'Internet center' free template http://www.solucija.com/templates/demo/Internet_Center
  */
 
-html, body {
+html, body, div#wrapper {
   margin: 0;
   height: 100%;
   color: #454545;
   background-color: #fff;
-  font: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+}
+
+body > div#wrapper {
+  height: auto;
+  min-height: 100%;
 }
 
 td, th {padding:3px;border:none;}
@@ -24,21 +29,12 @@ a:hover {
   color: #9EC068;
 }
 
-div#wrapper {
-  min-height: 100%;
-  position: relative;
-  margin: 0 auto;
-}
-
-
-/* ==================== H E A D E R ==================== */
+/* ==================== H E A D E R =================== */
 
 div#header {
-  position: relative;
-  width: 100%;
   height: 45px;
   background: #DCF2B8;
-  background-image:url('../images/barbg.gif');
+  background-image:url("../images/barbg.gif");
   background-repeat:no-repeat;
   border-bottom: 1px solid #9EC068;
 }
@@ -57,19 +53,18 @@ div#header a{
 }
 
 /* ----- header navbar ----- */
+
 div#navbar {
   width:753px;
   margin: 0 auto;
 }
 
 ul#tabnav {
-  position: absolute;
-  bottom: 1px;
-  margin: 0;
-  padding: 0;
+  margin-top: -2px;
   width:753px;
   text-align:right;
 }
+
 
 ul#tabnav li {
   display: inline;
@@ -79,7 +74,7 @@ ul#tabnav li {
 }
 
 ul#tabnav a:link, ul#tabnav a:visited {
-  background: #f4ffe2;
+  background: #F4FFE2;
   padding: 2px 10px 2px 10px;
   border: 1px solid #9EC068;
   color: #808080;
@@ -87,30 +82,29 @@ ul#tabnav a:link, ul#tabnav a:visited {
 
 ul#tabnav a:link.active, ul#tabnav a:visited.active {
   border-bottom: 1px solid #f4f4f4;
-  background: #f4f4f4;
+  background: #F4F4F4;
   color: #454545;
 }
 
 ul#tabnav a:hover {
-  background: #fff;
+  background: #FFF;
 }
-
 
 /* ==================== BREADCRUMB ==================== */
 
 div#breadcrumb {
-  background: #f4f4f4;
+  background: #F4F4F4;
   color: #808080;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #CCC;
 }
 
 div#breadcrumb .breadcrumbtext {
-  width:753px;
+  width: 753px;
   margin: 0 auto;
   padding-left: 5px;
-  background-image:url('../images/subheaderbg.gif');
-  background-repeat:no-repeat;
-  background-position:right;
+  background-image: url("../images/subheaderbg.gif");
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 div#breadcrumb a {
@@ -123,44 +117,99 @@ div#breadcrumb a:hover {
 }
 
 
-/* ==================== TWO COLLUMNS MAIN CONTENT ==================== */
+/* ============= TWO COLLUMNS MAIN CONTENT ============ */
 
 div#main_content {
-  width:753px;
+  width: 753px;
   margin: 0 auto;
-  padding: 15px 0px 30px 0px;
+  padding: 15px 0px 24px 0px;
+}
+
+div#main_content .clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+div#main_content .clearfix {
+  display: inline-block;
 }
 
 div#content {
   float: left;
   width: 565px;
-  padding-left: 5px
+  padding-left: 5px;
+  font-size: 0.95em;
 }
 
 div#sidebar {
   float: right;
   width: 170px;
   font-size: 0.75em;
+  color: #666;
+  padding-top: 8px;
 }
 
+/* ----- main content ----- */
+div#image_preview {
+  text-align: center;
+  margin-top: 15px;
+}
 
-/* ==================== FOOTER ==================== */
+/* ------ sideboxes ------- */
+div#sidebox_login {
+    padding: 10px;
+    border:2px solid #C2E1EF;
+    margin-bottom: 10px;
+}
+
+div#sidebox_actions {
+    padding: 10px;
+    border: 2px solid #EEE;
+    margin-bottom: 10px;
+}
+
+div#sidebox_actions:hover {
+    border: 2px solid #DDD;
+}
+
+div#sidebox_helptip {
+    padding: 10px;
+    border:2px solid #C2E1EF;
+    background-color: #F0F8FF;
+    color: #00529B;
+    margin-bottom: 10px;
+    display: none;
+}
+
+div#sidebox_image {
+    padding: 10px;
+    border:2px solid #EEE;
+    margin-bottom: 10px;
+}
+
+div#sidebox_image:hover {
+    border: 2px solid #DDD;
+}
+
+/* ==================== FOOTER ======================== */
 
 div#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: #808080;
+  position: relative;
+  margin-top: -25px; /* negative value of footer height */
+  height: 20px;
+  clear:both;
+  background: #FFF;
   text-align: center;
-  padding: 5px 0 4px 0;
   color: #808080;
-  border-top: 1px solid #eee;
   font-size: 0.8em;
+  padding-top: 4px;
+/*  padding: 4px 0 0px 0;*/
+  border-top: 1px solid #eee;
 }
 
 div#footer a {
   color: #9EC068;
-}
-
-div#footer .foottext{
 }

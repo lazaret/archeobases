@@ -136,8 +136,7 @@ class Materiel(collectiondata.Data):
             return 0
 
     def champ_verify(self, fieldname, value):
-        # si la longueur de la valeur issue du formulaire est > a la longueur
-        # definie dans l'attribut longueur des champs
+
         if  (value != None) and (len(value) > (self.__champs__[fieldname]["longueur"])*2):
             return -1       # erreur
         else:

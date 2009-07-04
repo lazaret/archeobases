@@ -9,8 +9,9 @@ available to Controllers. This module is available to both as 'h'.
 # from webhelpers.html.tags import checkbox, password
 
 from routes import url_for
-
 from webhelpers.html.tags import *
+from webhelpers.pylonslib import Flash as _Flash
 
-#from webhelpers import *
+
+flash_message = _Flash()
 

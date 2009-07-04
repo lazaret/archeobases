@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 <%inherit file="/base/base.mako" />
-<%namespace file="/component/sidebar.mako" import="*"/>
+<%namespace file="/component/sideboxes.mako" import="*"/>
 
 <%namespace file="/derived/rock/main_form.mako" import="*"/>
 
@@ -32,7 +32,6 @@
 ${h.form(h.url_for(action="save", id=c.rock.id))}
 ##<div id="titleForm">${self.page_name()}</div>
 ${main_form()}
-## Ajouter chanp "desciption"
 <div id="footForm">
   <button name="delete_button" type="submit" class="negative"><img src="/images/cross.png"/>${_("Delete")}</button>
   <button name="new_button" type="submit" class="positive"><img src="/images/tick.png"/>${_("Save & New")}</button>

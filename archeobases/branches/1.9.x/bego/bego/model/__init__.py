@@ -14,32 +14,12 @@ def init_model(engine):
     #                           autoload_with=engine)
     #orm.mapper(Reflected, reflected_table)
 
-    sm = orm.sessionmaker(autoflush=True, autocommit=False, bind=engine)
-
+    meta.Session.configure(bind=engine)
     meta.engine = engine
-    meta.Session = orm.scoped_session(sm)
 
 
-## Non-reflected tables may be defined and mapped at module level
-#foo_table = sa.Table("Foo", meta.metadata,
-#    sa.Column("id", sa.types.Integer, primary_key=True),
-#    sa.Column("bar", sa.types.String(255), nullable=False),
-#    )
-#
-#class Foo(object):
-#    pass
-#
-#orm.mapper(Foo, foo_table)
+# import tables models
+from bego.model.image import Image
+from bego.model.rock import Rock
+from bego.model.auth import User, Group, Permission
 
-
-## Classes for reflected tables may be defined here, but the table and
-## mapping itself must be done in the init_model function
-#reflected_table = None
-#
-#class Reflected(object):
-#    pass
-
-
-# import the test table model
-from bego.model.test_table import Dictionary
-from bego.model.rock_table import Rock

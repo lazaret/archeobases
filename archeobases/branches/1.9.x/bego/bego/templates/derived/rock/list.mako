@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 <%inherit file="/base/base.mako" />
-<%namespace file="/component/sidebar.mako" import="*"/>
+<%namespace file="/component/sideboxes.mako" import="*"/>
 
 
 <%def name="page_name()">${_("Rock list")}</%def>

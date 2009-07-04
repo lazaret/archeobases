@@ -8,23 +8,31 @@ div#topForm {
 }
 
 div#topForm fieldset {
-    background: #F4FFE2;
+    background: #F7F7F7;
     border: 0;
     margin: 0;
     border-top: 1px solid #9EC068;
+    border: 1px solid #D9D9D9;
+}
+
+div#topForm fieldset:hover {
+    border: 1px solid #B3B3B3;
 }
 
 div#mainForm fieldset {
-    background: #F8F8FF;
+/*    background: #F8F8FF;*/
+    background: #FFFFF0;
+    background: #FCFCFC;
     margin: 0;
     border: 0;
     border-top: 1px solid #ccc;
+    border: 1px solid #EEE;
 }
 
-div#mainForm .legend {  /*** Mise en forme des aides contextuelles ***/
-    font-style: italic;
-    color: #666;
+div#mainForm fieldset:hover {
+    border: 1px solid #CCC;
 }
+
 
 div#form_left {
     float: left;
@@ -51,20 +59,16 @@ div#fieldset_left {
 
 div#fieldset_buttons {
     float: right;
-    margin-top:-14px;
-    margin-right:-10px;
+    margin-top:-12px;
+    margin-right:-8px;
+}
+
+div#fieldset_buttons img:hover{
+    cursor:pointer;
 }
 
 div#clear {
     clear: both;
-}
-
-div#footForm {
-    text-align: right;
-    background: #f4ffe2;
-    margin-top: 10px;
-    border-top: 1px solid #9EC068;
-    padding: .5em;
 }
 
 p {
@@ -77,7 +81,6 @@ fieldset p label {  /*** Mise en forme des intitulés de champs texte***/
     width: 4em;
     text-align: right;
     padding: 0 .5em 0 0;
-
 }
 
 fieldset p label.large_label {  /*** Mise en forme des intitulés de champs texte***/
@@ -88,27 +91,29 @@ fieldset p label.little_label {  /*** Mise en forme des intitulés de champs tex
     width: 1em;
 }
 
+legend{
+  color: #CCC;
+  font-weight: bold;
+  font-size: 0.90em;
+}
 
-
-#input {
-#    padding:0.20em;
-#    border-top: 1px solid #AAA;
-#    border-left: 1px solid #AAA;
-#    border-right: 1px solid #CCC;
-#    border-bottom: 1px solid #CCC;
-#}
-
-#input:focus {
-#    background-color: #F5FFFA;
-#    border:1px solid #9EC068;
-#}
+div#footForm {
+    text-align: right;
+    background: #F4FFE2;
+    background: #F0F8FF;
+    margin-top: 15px;
+    border-top: 1px solid #9EC068;
+    border-top: 1px solid #C2E1EF;
+    padding: .5em;
+}
 
 
 /*** submit buttons ***/
 
+
 div#footForm button{
     margin:0 7px 0 0;
-    background-color:#f5f5f5;
+    background-color:#F5F5F5;
     border:1px solid #ccc;
     font-weight:bold;
     color:#565656;
@@ -123,11 +128,11 @@ div#footForm button img {
 }
 
 div#footForm button:hover {
-    background-color:#dff4ff;
-    border:1px solid #c2e1ef;
+    background-color:#DFF4FF;
+    border:1px solid #C2E1EF;
 }
 
-div#footForm button.positive:hover{
+div#footForm button.positive:hover {
     background-color:#DCF2B8;
     border:1px solid #9EC068;
 }
@@ -143,7 +148,7 @@ div#footForm button.negative{
 }
 
 div#footForm button.negative:hover{
-    background-color:#fbe3e4;
+    background-color:#FBE3E4;
     border:1px solid #F69;
 }
 
@@ -153,14 +158,3 @@ div#footForm button.negative:active{
     color:#fff;
 }
 
-/* sideboxes */
-div#sidebox_login {
-    padding: 10px;
-    border:2px solid #c2e1ef;
-    margin-bottom: 10px;
-}
-
-div#sidebox_search {
-    padding: 10px;
-    border:2px solid #c2e1ef;
-}

@@ -1,0 +1,3 @@
+include uploadimages/config/deployment.ini_tmpl
+recursive-include uploadimages/public *
+recursive-include uploadimages/templates *

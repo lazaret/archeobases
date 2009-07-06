@@ -83,6 +83,8 @@ class ImageController(BaseController):
         """ Save the image to the filesystem with filename and directory
         hashing. Save the image metadatas to database."""
         image_file = request.POST["image_file"]
+        # check uloaded file type
+
         # hash path calulation
         hash = hashlib.sha1(image_file.value).hexdigest()
         dir1, dir2, dir3, filename = config["image_dir"], hash[0:3], hash[3:6], hash[6:]+".jpg"

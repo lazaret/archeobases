@@ -13,7 +13,7 @@ profile=no
 
 # Add <file or directory> to the black list. It should be a base name, not a
 # path. You may set this option multiple times.
-ignore=CVS
+ignore=
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -44,8 +44,13 @@ files-output=no
 # Tells wether to display a full report or only the messages
 reports=yes
 
-disable-report=R0801,R0701,R0101,R0401,R0001,R0003
+#disable-report=R0001,R0003,R0101,R0401,R0701,R0801
+disable-report=
 
+#disabled warnings
+# W0611 = unused import
+# W0614 = unused import from wildcard
+disable-msg=W0611, W0614
 
 # Python expression which should return a note less than 10 (10 is the highest
 # note).You have access to the variables errors warning, statement which
@@ -72,7 +77,6 @@ comment=no
 [BASIC]
 
 # Required attributes for module, separated by a comma
-#required-attributes=__version__,__author__,__license__
 required-attributes=
 
 # Regular expression which should only match functions or classes name which do

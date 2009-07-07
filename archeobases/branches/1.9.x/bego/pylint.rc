@@ -50,7 +50,7 @@ disable-report=
 #disabled warnings
 # W0611 = unused import
 # W0614 = unused import from wildcard
-disable-msg=W0611, W0614
+disable-msg=W0611,W0614
 
 # Python expression which should return a note less than 10 (10 is the highest
 # note).You have access to the variables errors warning, statement which

@@ -7,7 +7,7 @@ except ImportError:
 
 setup(
     name='Bego',
-    version='1.9.alpha',
+    version='1.9.a1',
     description='',
     author='LDPL - Laboratoire Departemental de Prehistoire du Lazaret',
     author_email='opensource@lazaret.unice.fr',

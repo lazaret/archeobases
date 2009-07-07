@@ -53,7 +53,8 @@ load-plugins=
 #enable-msg=
 
 # Disable the message(s) with the given id(s).
-disable-msg=W0611,W0614
+# disable imports warnings
+disable-msg=E0611,F0401,W0401,W0611,W0614,
 
 
 [REPORTS]

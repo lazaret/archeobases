@@ -11,6 +11,7 @@ from routes.middleware import RoutesMiddleware
 
 from bego.config.environment import load_environment
 from bego.lib.auth import add_auth
+from bego.lib.thumbs import add_thumbs
 
 
 def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
@@ -44,6 +45,7 @@ def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
 
     # CUSTOM MIDDLEWARE HERE (filtered by error handling middlewares)
     app = add_auth(app) # Add repoze.what Auth & Auth
+    app = add_thumbs(app) # Add iw.thumbs Thumbnail generation
 
     # Routing/Session/Cache Middleware
     app = RoutesMiddleware(app, config['routes.map'])

@@ -25,12 +25,18 @@ for the building and testing of the Bego"""
 __version__ = "0.1"
 
 import os
+import subprocess
 
 def install_deps():
     """Install the project dependencies for build
     and test purpose"""
-    os.system('env/bin/easy_install nose')
+    devnull = open(os.devnull, 'w')
+    result = subprocess.call('env/bin/easy_install nose', shell=True, stdout=devnull, stderr=devnull)
+    devnull.close()
+    #os.system('env/bin/easy_install nose')
+    os.system('env/bin/easy_install Pylons')
     #    <sh:exec file="env/bin/easy_install" args="--quiet nose"/>
+    #<sh:exec file="env/bin/easy_install" args="--quiet Pylons"/>
     print "nose"
 
 

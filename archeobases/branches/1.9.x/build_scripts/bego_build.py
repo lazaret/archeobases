@@ -37,7 +37,13 @@ def install_deps():
     print "Pylons setup done"
     result = subprocess.call('env/bin/easy_install Pylons', shell=True, stdout=devnull, stderr=devnull)
     print "SQLachemy setup done"
+    result = subprocess.call('env/bin/easy_install repoze.what-pylons', shell=True, stdout=devnull, stderr=devnull)
+    result = subprocess.call('env/bin/easy_install repoze.what-quickstart', shell=True, stdout=devnull, stderr=devnull)
+    print "repoze.what setup done"
+#    result = subprocess.call('wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz',
+#                            shell=True, stdout=devnull, stderr=devnull)
     devnull.close()
+    os.system('wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz')
     #os.system('env/bin/easy_install nose')
     #os.system('env/bin/easy_install Pylons')
     print "test"

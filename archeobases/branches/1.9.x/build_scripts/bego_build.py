@@ -31,14 +31,15 @@ def install_deps():
     """Install the project dependencies for build
     and test purpose"""
     devnull = open(os.devnull, 'w')
-    result = subprocess.call('env/bin/easy_install nose', shell=True, stdout=None, stderr=devnull)
-    result = subprocess.call('env/bin/easy_install Pylons', shell=True, stdout=devnull, stderr=devnull)
+    result = subprocess.call('env/bin/easy_install nose', shell=True, stdout=devnull, stderr=devnull)
+    result = subprocess.call('env/bin/easy_install Pylons', shell=True, stdout=None, stderr=devnull)
     result = subprocess.call('env/bin/easy_install SQLalchemy', shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call('env/bin/easy_install repoze.what-pylons', shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call('env/bin/easy_install repoze.what-quickstart', shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call('wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz',
                             shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call('tar zxvf Imaging-1.1.6.tar.gz', shell=True, stdout=devnull, stderr=devnull)
+    result = subprocess.call('env/bin/python Imaging-1.1.6/setup.py install', shell=True, stdout=None, stderr=devnull)
     devnull.close()
     #os.system('wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz')
     #os.system('tar zxvf Imaging-1.1.6.tar.gz')

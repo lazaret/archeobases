@@ -54,7 +54,7 @@ def main():
     parser.add_option("-i", "--install-deps", action="callback", callback=install_deps,
                      help="Install the project dependencies")
     (options, args) = parser.parse_args()
-    if options) == None:
+    if options == None:
         parser.error("incorrect number of options")
 
 

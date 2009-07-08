@@ -52,10 +52,10 @@ def main():
     project dependencies"""
     parser = OptionParser(version="%prog - "+__version__, description="Build script used by the Bitten build tool.")
     parser.add_option("-i", "--install-deps", action="callback", callback=install_deps,
-                     help="Install the project dependencies")
+                     help="Install the project dependencies", dest="mandatory")
     (options, args) = parser.parse_args()
-    if options == None:
-        parser.error("incorrect number of options")
+    if not options.mandatory:
+        parser.error("One option is requiered")
 
 
 if __name__ == "__main__":

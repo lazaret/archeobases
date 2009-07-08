@@ -26,7 +26,7 @@ import subprocess
 from optparse import OptionParser
 
 
-def install_deps():
+def install_deps(option, opt_str, value, parser):
     """Install the project dependencies for build and test purpose"""
     print "Setup nose, Pylons, SQLAlchemy, repoze.what, PIL, iw.thumbs"
     devnull = open(os.devnull, 'w')

@@ -38,12 +38,12 @@ def install_deps(option, opt_str, value, parser):
     result = subprocess.call("env/bin/easy_install repoze.what-quickstart", shell=True, stdout=devnull, stderr=devnull)
     # TODO : comment this when webhelper 1.0 will be stable
     result = subprocess.call("env/bin/easy_install http://bitbucket.org/bbangert/webhelpers/get/8658ea32d22a.gz",
-                            shell=True, stdout=None, stderr=devnull)
+                            shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call("wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz",
                             shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call("tar zxvf Imaging-1.1.6.tar.gz", shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call("env/bin/python Imaging-1.1.6/setup.py install", shell=True, stdout=devnull, stderr=devnull)
-    result = subprocess.call("env/bin/easy_install iw.thumbs", shell=True, stdout=None, stderr=devnull)
+    result = subprocess.call("env/bin/easy_install iw.thumbs", shell=True, stdout=devnull , stderr=devnull)
     devnull.close()
 
 
@@ -54,6 +54,9 @@ def main():
     parser.add_option("-i", "--install-deps", action="callback", callback=install_deps,
                      help="Install the project dependencies")
     (options, args) = parser.parse_args()
+    if len(options) != 1:
+        parser.error("incorrect number of options")
+
 
 if __name__ == "__main__":
     main()

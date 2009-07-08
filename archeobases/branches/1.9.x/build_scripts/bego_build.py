@@ -30,7 +30,6 @@ from optparse import OptionParser
 def install_deps(option, opt_str, value, parser):
     """Install the project dependencies for build and test purpose.
     The dependencies are installed without outputs for clean build logs."""
-    print "Setup nose, Pylons, SQLAlchemy, repoze.what, PIL, iw.thumbs..."
     devnull = open(os.devnull, 'w')
     result = subprocess.call("env/bin/easy_install nose", shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call("env/bin/easy_install Pylons", shell=True, stdout=devnull, stderr=devnull)
@@ -50,7 +49,6 @@ def install_deps(option, opt_str, value, parser):
 def build_sdist(option, opt_str, value, parser):
     """Build project source tarball with distutils.
     Only the errors are displayed for clean build logs."""
-    print "Build source package..."
     devnull = open(os.devnull, 'w')
     result = subprocess.call("env/bin/python setup.py sdist", shell=True, stdout=None, stderr=None)
     devnull.close()

@@ -32,12 +32,15 @@ def install_deps():
     and test purpose"""
     devnull = open(os.devnull, 'w')
     result = subprocess.call('env/bin/easy_install nose', shell=True, stdout=devnull, stderr=devnull)
+    print "nose setup done"
+    result = subprocess.call('env/bin/easy_install Pylons', shell=True, stdout=devnull, stderr=devnull)
+    print "Pylons setup done"
+    result = subprocess.call('env/bin/easy_install Pylons', shell=True, stdout=devnull, stderr=devnull)
+    print "SQLachemy setup done"
     devnull.close()
     #os.system('env/bin/easy_install nose')
-    os.system('env/bin/easy_install Pylons')
-    #    <sh:exec file="env/bin/easy_install" args="--quiet nose"/>
-    #<sh:exec file="env/bin/easy_install" args="--quiet Pylons"/>
-    print "nose"
+    #os.system('env/bin/easy_install Pylons')
+    print "test"
 
 
 def main():

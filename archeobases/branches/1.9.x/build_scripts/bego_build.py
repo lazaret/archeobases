@@ -61,7 +61,7 @@ def main():
     parser = OptionParser(version="%prog - "+__version__, description="Build script used by the Bitten build tool.")
     parser.add_option("-i", "--install-deps", action="callback", callback=install_deps,
                      help="Install the project dependencies", dest="mandatory")
-        parser.add_option("-s", "--build-sdist", action="callback", callback=build_sdist,
+    parser.add_option("-s", "--build-sdist", action="callback", callback=build_sdist,
                      help="Build the project source tarball", dest="mandatory")
     (options, args) = parser.parse_args()
     if not options.mandatory:

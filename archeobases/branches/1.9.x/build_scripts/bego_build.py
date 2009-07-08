@@ -62,10 +62,10 @@ def main():
     parser.add_option("-i", "--install-deps", action="callback", callback=install_deps,
                      help="Install the project dependencies", dest="mandatory")
     parser.add_option("-s", "--build-sdist", action="callback", callback=build_sdist,
-                     help="Build the project source tarball", dest="mandatory")
+                     help="Build the project source tarball", dest="test")
     (options, args) = parser.parse_args()
-    if not options.mandatory:
-        parser.error("One option is requiered")
+    #if not options.mandatory:
+        #parser.error("One option is requiered")
 
 
 if __name__ == "__main__":

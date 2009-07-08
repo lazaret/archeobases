@@ -50,7 +50,14 @@ def build_sdist(option, opt_str, value, parser):
     """Build project source tarball with distutils.
     Only the errors are displayed for clean build logs."""
     devnull = open(os.devnull, 'w')
-    result = subprocess.call("env/bin/python setup.py sdist", shell=True, stdout=None, stderr=None)
+    result = subprocess.call("env/bin/python setup.py sdist", shell=True, stdout=devnull, stderr=None)
+    devnull.close()
+
+def build_bytecode(option, opt_str, value, parser):
+    """Build project bytecode with distutils.
+    Only the errors are displayed for clean build logs."""
+    devnull = open(os.devnull, 'w')
+    result = subprocess.call("env/bin/python setup.py build", shell=True, stdout=None, stderr=None)
     devnull.close()
 
 def main():
@@ -58,14 +65,12 @@ def main():
     project dependencies"""
     parser = OptionParser(version="%prog - "+__version__, description="Build script used by the Bitten build tool.")
     parser.add_option("-i", "--install-deps", action="callback", callback=install_deps,
-                     help="Install the project dependencies", dest="mandatory")
+                     help="Install the project dependencies")
     parser.add_option("-s", "--build-sdist", action="callback", callback=build_sdist,
-                     help="Build the project source tarball", dest="test")
+                     help="Build the project source tarball")
+    parser.add_option("-b", "--build-bytecode", action="callback", callback=build_bytecode,
+                     help="Build the project bytecode")
     (options, args) = parser.parse_args()
-    if options.mandatory:
-        print "YES !"
-    #if not options.mandatory:
-        #parser.error("One option is requiered")
 
 
 if __name__ == "__main__":

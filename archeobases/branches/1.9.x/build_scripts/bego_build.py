@@ -22,6 +22,7 @@
 
 __version__ = "0.2"
 
+import os
 import subprocess
 from optparse import OptionParser
 

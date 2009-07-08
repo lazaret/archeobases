@@ -28,8 +28,9 @@ from optparse import OptionParser
 
 
 def install_deps(option, opt_str, value, parser):
-    """Install the project dependencies for build and test purpose"""
-    print "Setup nose, Pylons, SQLAlchemy, repoze.what, PIL, iw.thumbs"
+    """Install the project dependencies for build and test purpose.
+    The dependencies are installed without outputs for clean build logs."""
+    print "Setup nose, Pylons, SQLAlchemy, repoze.what, PIL, iw.thumbs..."
     devnull = open(os.devnull, 'w')
     result = subprocess.call("env/bin/easy_install nose", shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call("env/bin/easy_install Pylons", shell=True, stdout=devnull, stderr=devnull)
@@ -46,6 +47,13 @@ def install_deps(option, opt_str, value, parser):
     result = subprocess.call("env/bin/easy_install iw.thumbs", shell=True, stdout=devnull , stderr=devnull)
     devnull.close()
 
+def build_sdist(option, opt_str, value, parser):
+    """Build project source tarball with distutils.
+    Only the errors are displayed for clean build logs."""
+    print "Build source package..."
+    devnull = open(os.devnull, 'w')
+    result = subprocess.call("env/bin/python setup.py sdist", shell=True, stdout=None, stderr=None)
+    devnull.close()
 
 def main():
     """Create a virtualenv environment and install the
@@ -53,6 +61,8 @@ def main():
     parser = OptionParser(version="%prog - "+__version__, description="Build script used by the Bitten build tool.")
     parser.add_option("-i", "--install-deps", action="callback", callback=install_deps,
                      help="Install the project dependencies", dest="mandatory")
+        parser.add_option("-s", "--build-sdist", action="callback", callback=build_sdist,
+                     help="Build the project source tarball", dest="mandatory")
     (options, args) = parser.parse_args()
     if not options.mandatory:
         parser.error("One option is requiered")

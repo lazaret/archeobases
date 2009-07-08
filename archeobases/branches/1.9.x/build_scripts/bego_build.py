@@ -40,7 +40,7 @@ def install_deps():
     result = subprocess.call('tar zxvf Imaging-1.1.6.tar.gz', shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call('env/bin/python Imaging-1.1.6/setup.py install', shell=True, stdout=devnull, stderr=devnull)
     result = subprocess.call('env/bin/easy_install iw.thumbs', shell=True, stdout=None, stderr=devnull)
-    subprocess.call('env/bin/easy_install http://bitbucket.org/bbangert/webhelpers/get/8658ea32d22a.gz',
+    result = subprocess.call('env/bin/easy_install http://bitbucket.org/bbangert/webhelpers/get/8658ea32d22a.gz',
                             shell=True, stdout=None, stderr=devnull)
     devnull.close()
     print "test"

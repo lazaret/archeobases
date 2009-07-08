@@ -10,8 +10,8 @@ for the building and testing of the Bego"""
 #
 # THIS SCRIPT IS FOR BUILDING AND TESTING PURPOSE ONLY !
 #
-# This script create an 'env' virtual environment
-# This script install the following packages in the isolated environment
+# This script install the following packages and may be used in
+# a virtualemnv  isolated environment
 # nose
 # Pylons
 # SQLalchemy
@@ -26,23 +26,18 @@ __version__ = "0.1"
 
 import os
 
-
-def create_environment():
-    """Create an isolated virtualenv environment"""
-    pass
-
 def install_deps():
     """Install the project dependencies for build
     and test purpose"""
-    pass
+    os.system('env/bin/easy_install nose')
+    #    <sh:exec file="env/bin/easy_install" args="--quiet nose"/>
+    print "nose"
 
 
 def main():
     """Create a virtualenv environment and install the
     project dependencies"""
-    create_environment()
     install_deps()
-    print "test"
 
 
 if __name__ == "__main__":

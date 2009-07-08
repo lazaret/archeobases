@@ -4,3 +4,4 @@
 
     [paste.app_install]
     main = pylons.util:PylonsInstaller
+    

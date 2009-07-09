@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ## WARNING: This file is generated
 #!/usr/bin/env python
-"""Create a "virtual" Python installation with packages required for the bego project.
+"""Create a "virtual" Python installation with packages required for a Pylons project.
 """
 # See `after_install` for installed packages in the environment
 

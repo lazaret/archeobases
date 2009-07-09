@@ -17,6 +17,7 @@ setup(
         "SQLAlchemy>=0.5",
         "Mako>=0.2.4",
         "WebHelpers>=1.0b1dev",
+        "Babel>=0.9.4 ",
         "repoze.what-pylons>=1.0",
         "repoze.what-quickstart>=1.0",
         "iw.thumbs>=1.2",

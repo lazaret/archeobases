@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Helper functions
 
 Consists of functions to typically be used within templates, but also

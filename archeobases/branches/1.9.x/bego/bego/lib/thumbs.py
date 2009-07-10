@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+""" Image thumbnail generation middleware."""
 
 import os
 
@@ -8,7 +8,7 @@ from iw.thumbs.middleware import Thumbs
 
 
 def add_thumbs(app):
-    """ Add image thumbnails generation middleware to the ``app``."""
+    """Add the image thumbnails generation middleware to the ``app``."""
 
     preview = (560, 480)
     sidebox = (170, 255)

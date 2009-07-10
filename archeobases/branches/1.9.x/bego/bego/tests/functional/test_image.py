@@ -1,4 +1,7 @@
+"""Image controler fonctional tests"""
+
 from bego.tests import *
+
 
 class TestImageController(TestController):
 

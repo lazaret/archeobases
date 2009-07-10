@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+"""Help controler"""
 
 import logging
+
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 from pylons.i18n.translation import _
@@ -12,9 +13,9 @@ log = logging.getLogger(__name__)
 
 
 class HelpController(BaseController):
-    """ Help controler witch serve the Help pages."""
+    """Help controler witch serve the help pages."""
 
     def index(self):
-        """ Display the main Help page."""
+        """Render the main help page."""
         return render("/derived/help/help.mako")
 

@@ -15,14 +15,14 @@ log = logging.getLogger(__name__)
 
 
 class RockController(BaseController):
-    """Rock controler who work on the `rock` table"""
+    """ Rock controler who work on the `rock` table"""
 
     def index(self):
-        #return the rock index page
+        """ Display the Rock main index page."""
         return render("/derived/rock/index.mako")
 
     def new(self):
-        """New record form and redirect to save"""
+        """ New record form and redirect to save."""
         flash_message(_("success message"), "success")
         flash_message(_("warning message"), "warning")
         flash_message(_("error message"), "error")
@@ -30,7 +30,7 @@ class RockController(BaseController):
         return render('/derived/rock/new.mako')
 
     def edit(self, id=None):
-        """Edit existing record form and redirect to save"""
+        """ Edit existing record form and redirect to save."""
         rock_q = model.meta.Session.query(model.Rock)
         c.rock = rock_q.filter_by(id=id).first()
         if c.rock:
@@ -39,7 +39,7 @@ class RockController(BaseController):
             abort(404)
 
     def save(self, id=None):
-        """Save a record and redirect to new or edit"""
+        """ Save a record and redirect to new or edit."""
         rock_q = model.meta.Session.query(model.Rock)
         rock = rock_q.filter_by(id=id).first()
         if not rock:
@@ -74,7 +74,7 @@ class RockController(BaseController):
             return redirect_to(url_for(action="delete", id=rock.id))
 
     def delete(self, id=None):
-        """Delete a record """
+        """ Delete a record """
         rock_q = model.meta.Session.query(model.Rock)
         rock = rock_q.filter_by(id=id).first()
         if rock:
@@ -85,7 +85,7 @@ class RockController(BaseController):
             abort(404)
 
     def list(self):
-        """List the selected records"""
+        """ List the selected records"""
         c.rock = model.meta.Session.query(model.Rock).all()
         return render('/derived/rock/list.mako')
 

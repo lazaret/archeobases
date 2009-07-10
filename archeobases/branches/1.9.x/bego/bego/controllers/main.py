@@ -11,10 +11,9 @@ log = logging.getLogger(__name__)
 
 
 class MainController(BaseController):
-    """Main controler witch serve the main Index page
-    """
+    """ Main controler witch serve the main Index page. """
 
     def index(self):
-        #return the main Index page
+        """ Return the main Index page."""
         return render("/derived/index.mako")
 

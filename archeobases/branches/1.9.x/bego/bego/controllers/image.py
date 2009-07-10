@@ -24,10 +24,8 @@ class ImageController(BaseController):
 
 
     def index(self):
-        # Return a rendered template
-        #return render('/image.mako')
-        # or, return a response
-        return render("test.mako")
+        """ Display the Image main index page."""
+        return render("/derived/image/index.mako")
 
     def list(self):
         """ Seclect all images and display a list."""
@@ -80,14 +78,14 @@ class ImageController(BaseController):
         return render("/derived/image/new.mako")
 
     def create(self):
-        """ Save the image to the filesystem with filename and directory
+        """Save the image to the filesystem with filename and directory
         hashing. Save the image metadatas to database."""
         image_file = request.POST["image_file"]
         # check uloaded file type
-
+        # TODO
         # hash path calulation
-        hash = hashlib.sha1(image_file.value).hexdigest()
-        dir1, dir2, dir3, filename = config["image_dir"], hash[0:3], hash[3:6], hash[6:]+".jpg"
+        image_hash = hashlib.sha1(image_file.value).hexdigest()
+        dir1, dir2, dir3, filename = config["image_dir"], image_hash[0:3], image_hash[3:6], image_hash[6:]+".jpg"
         image_dir = os.path.join(dir1, dir2, dir3)
         path = os.path.join(dir2, dir3, filename)
         # create folder if necessary and check for duplicate image
@@ -110,6 +108,7 @@ class ImageController(BaseController):
         ### TODO form & file validation
 
     def delete(self, id=None):
+        """ Delete the image.""" #TODO update docstring
         if id is None:
             abort(404)
         # Delete the database record

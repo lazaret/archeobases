@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 class AboutController(BaseController):
     """About controler witch serve the About page
-    """
+    """ #TODO move this into the help controler
 
     def index(self):
         #return the About page

@@ -12,10 +12,9 @@ log = logging.getLogger(__name__)
 
 
 class HelpController(BaseController):
-    """Help controler witch serve the Help page
-    """
+    """ Help controler witch serve the Help pages."""
 
     def index(self):
-        #return the main Help page
+        """ Display the main Help page."""
         return render("/derived/help/help.mako")
 

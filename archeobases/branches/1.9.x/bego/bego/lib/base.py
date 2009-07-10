@@ -14,7 +14,7 @@ from bego.model import meta
 class BaseController(WSGIController):
 
     def __call__(self, environ, start_response):
-        """Invoke the Controller"""
+        """ Invoke the Controller."""
         # set the language fallback to english
         add_fallback("en")
         # define the language based on browser preference

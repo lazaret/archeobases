@@ -8,12 +8,10 @@ from iw.thumbs.middleware import Thumbs
 
 
 def add_thumbs(app):
-    """
-    Add image thumbnails generation middleware to the ``app``.
-    """
+    """ Add image thumbnails generation middleware to the ``app``."""
 
-    preview = (560,480)
-    sidebox = (170,255)
+    preview = (560, 480)
+    sidebox = (170, 255)
 
     return Thumbs(app,
                   image_dir = config['app_conf']['image_dir'],

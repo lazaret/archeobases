@@ -53,8 +53,9 @@ load-plugins=
 #enable-msg=
 
 # Disable the message(s) with the given id(s).
-# disable imports warnings
-disable-msg=E0611,F0401,W0232,W0401,W0611,W0614
+# disable warnings with did not fit with Pylons framework
+# and disable import warnings
+disable-msg=E0611,F0401,R0201,W0232,W0401,W0611,W0614
 
 
 [REPORTS]
@@ -72,7 +73,7 @@ include-ids=yes
 files-output=no
 
 # Tells wether to display a full report or only the messages
-reports=no
+reports=yes
 
 # Python expression which should return a note less than 10 (10 is the highest
 # note). You have access to the variables errors warning, statement which
@@ -180,7 +181,7 @@ variable-rgx=[a-z_][a-z0-9_]{2,30}$
 inlinevar-rgx=[A-Za-z_][A-Za-z0-9_]*$
 
 # Good variable names which should always be accepted, separated by a comma
-good-names=i,j,k,ex,Run,_
+good-names=id
 
 # Bad variable names which should always be refused, separated by a comma
 bad-names=foo,bar,baz,toto,tutu,tata

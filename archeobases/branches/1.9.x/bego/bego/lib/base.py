@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """The base Controller API
 
 Provides the BaseController class for subclassing.
@@ -11,10 +10,12 @@ from pylons.i18n import add_fallback, set_lang
 from bego import __version__
 from bego.model import meta
 
+
 class BaseController(WSGIController):
+    """Base WSGI controler"""
 
     def __call__(self, environ, start_response):
-        """ Invoke the Controller."""
+        """Invoke the Controller."""
         # set the language fallback to english
         add_fallback("en")
         # define the language based on browser preference

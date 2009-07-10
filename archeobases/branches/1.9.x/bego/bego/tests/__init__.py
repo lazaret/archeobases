@@ -17,6 +17,7 @@ from webtest import TestApp
 
 import pylons.test
 
+
 __all__ = ['environ', 'url', 'TestController']
 
 # Invoke websetup with the current config file
@@ -24,7 +25,9 @@ SetupCommand('setup-app').run([config['__file__']])
 
 environ = {}
 
+
 class TestController(TestCase):
+    """Base testing controler"""
 
     def __init__(self, *args, **kwargs):
         if pylons.test.pylonsapp:

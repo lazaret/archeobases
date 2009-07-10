@@ -1,16 +1,15 @@
-# -*- coding: utf-8 -*-
-"""
-SQLAlchemy model definition for authentification and authorization with
+"""SQLAlchemy model definition for authentification and authorization with
 the repoze.what SQL plugin.
 
 This model definition has been taken from a quickstarted TurboGears 2 project.
 """
-
 from os import urandom
 from hashlib import sha1
 from datetime import datetime
+
 import sqlalchemy as sa
 from sqlalchemy import orm
+
 from bego.model import meta
 
 
@@ -28,8 +27,7 @@ group_permission_table = sa.Table("tg_group_permission", meta.metadata,
 
 
 class User(meta.DeclarativeBase):
-    """User definition
-    """
+    """User definition"""
     __tablename__ = "tg_user"
 
     user_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
@@ -48,9 +46,9 @@ class User(meta.DeclarativeBase):
             password_8bit = password
         salt = sha1()
         salt.update(urandom(60))
-        hash = sha1()
-        hash.update(password_8bit + salt.hexdigest())
-        hashed_password = salt.hexdigest() + hash.hexdigest()
+        sha1_hash = sha1()
+        sha1_hash.update(password_8bit + salt.hexdigest())
+        hashed_password = salt.hexdigest() + sha1_hash.hexdigest()
         if not isinstance(hashed_password, unicode):
             hashed_password = hashed_password.decode("UTF-8")
         self._password = hashed_password
@@ -62,16 +60,14 @@ class User(meta.DeclarativeBase):
     password = orm.synonym("_password", descriptor=property(_get_password, _set_password))
 
     def validate_password(self, password):
-        """Check the password against existing credentials.
-        """
+        """Check the password against existing credentials."""
         hashed_pass = sha1()
         hashed_pass.update(password + self.password[:40])
         return self.password[40:] == hashed_pass.hexdigest()
 
 
 class Group(meta.DeclarativeBase):
-    """Group definition
-    """
+    """Group definition"""
     __tablename__ = "tg_group"
 
     group_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
@@ -82,8 +78,7 @@ class Group(meta.DeclarativeBase):
 
 
 class Permission(meta.DeclarativeBase):
-    """A relationship that determines what each Group can do
-    """
+    """A relationship that determines what each Group can do"""
     __tablename__ = "tg_permission"
 
     permission_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)

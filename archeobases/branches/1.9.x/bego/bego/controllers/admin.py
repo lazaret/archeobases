@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+"""Admin controler"""
 
 import logging
+
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 from pylons.i18n.translation import _
@@ -12,9 +13,9 @@ log = logging.getLogger(__name__)
 
 
 class AdminController(BaseController):
-    """ Help controler witch serve the Help page and the About page.""" #TODO about page
+    """Admin controler witch serve the adminstrative tasl pages."""
 
     def index(self):
-        """ Display the main Admin page."""
+        """Display the main admin page."""
         return render("/derived/admin/admin.mako")
 

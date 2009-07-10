@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+"""Main controler for the application"""
 
 import logging
+
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 from pylons.i18n.translation import _
@@ -14,15 +15,14 @@ log = logging.getLogger(__name__)
 
 
 class RootController(BaseController):
-    """ Main controler witch serve the main Index page
-    """
+    """Main controler witch serve the main index page."""
 
     def index(self):
-        """ Display the default index page."""
+        """Render the default index page."""
         return render("/derived/index.mako")
 
     def login(self):
-        """ Login form."""
+        """Render the authentification login form."""
         login_counter = request.environ['repoze.who.logins']
         if login_counter > 0:
             flash_message('Wrong credentials')

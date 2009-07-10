@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
+"""Image controler"""
 
 import hashlib
 import logging
 import os
 import shutil
+
 from paste.fileapp import FileApp
 from pylons import config, request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
@@ -19,21 +20,21 @@ log = logging.getLogger(__name__)
 
 
 class ImageController(BaseController):
-    """Image controler. Images files are saved in the filesystem and
-    metadatas are stored in the database."""
+    """Image controler
 
+    Images files are saved into the filesystem and metadatas are stored into the database."""
 
     def index(self):
-        """ Display the Image main index page."""
+        """Render the main index page for images."""
         return render("/derived/image/index.mako")
 
     def list(self):
-        """ Seclect all images and display a list."""
+        """Seclect all images and display the list."""
         c.image = model.meta.Session.query(model.Image).all()
         return render("/derived/image/list.mako")
 
     def view(self, id=None):
-        """ Display a preview image and related metadatas"""
+        """Render a preview image and related metadatas."""
         if id is None:
             abort(404)
         image_q = model.meta.Session.query(model.Image)
@@ -56,7 +57,7 @@ class ImageController(BaseController):
         ### TODO if file deleted
 
     def display(self, id=None, filename=None):
-        """ Display the full image from filesystem"""
+        """Render the full image from the filesystem."""
         if id is None or filename is None:
             abort(404)
         image_q = model.meta.Session.query(model.Image)
@@ -74,18 +75,21 @@ class ImageController(BaseController):
         return app(request.environ, self.start_response)
 
     def new(self):
-        """Display the upload image form"""
+        """Render the upload image form."""
         return render("/derived/image/new.mako")
 
     def create(self):
-        """Save the image to the filesystem with filename and directory
-        hashing. Save the image metadatas to database."""
+        """Save the image.
+
+        Save the image to the filesystem with filename and directory
+        hashing. The image metadatas are recorded intot the database.
+        """
         image_file = request.POST["image_file"]
         # check uloaded file type
         # TODO
         # hash path calulation
-        image_hash = hashlib.sha1(image_file.value).hexdigest()
-        dir1, dir2, dir3, filename = config["image_dir"], image_hash[0:3], image_hash[3:6], image_hash[6:]+".jpg"
+        sha1_hash = hashlib.sha1(image_file.value).hexdigest()
+        dir1, dir2, dir3, filename = config["image_dir"], sha1_hash[0:3], sha1_hash[3:6], sha1_hash[6:]+".jpg"
         image_dir = os.path.join(dir1, dir2, dir3)
         path = os.path.join(dir2, dir3, filename)
         # create folder if necessary and check for duplicate image
@@ -108,7 +112,7 @@ class ImageController(BaseController):
         ### TODO form & file validation
 
     def delete(self, id=None):
-        """ Delete the image.""" #TODO update docstring
+        """Delete the image.""" #TODO update docstring
         if id is None:
             abort(404)
         # Delete the database record
@@ -121,7 +125,7 @@ class ImageController(BaseController):
         return render('/derived/image/deleted.mako')
 
     def update(self, id=None):
-        """ Redirect to the relevant action based on the submit button"""
+        """Redirect to the relevant action based on the submit button."""
         if "edit_button" in request.POST.keys():
             pass
             #return redirect_to(url_for(action="edit", id=rock.id))

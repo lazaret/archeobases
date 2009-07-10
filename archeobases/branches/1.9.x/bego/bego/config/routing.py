@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Routes configuration
 
 The more specific and detailed routes should be defined first so they
@@ -8,6 +6,7 @@ refer to the routes manual at http://routes.groovie.org/docs/
 """
 from pylons import config
 from routes import Mapper
+
 
 def make_map():
     """Create, configure and return the routes Mapper"""

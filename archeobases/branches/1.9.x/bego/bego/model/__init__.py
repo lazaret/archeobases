@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
-
 """The application's model objects"""
+
 import sqlalchemy as sa
 from sqlalchemy import orm
 
 from bego.model import meta
+
 
 def init_model(engine):
     """Call me before using any of the tables or classes in the model"""

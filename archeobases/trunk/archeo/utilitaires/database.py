@@ -10,21 +10,20 @@
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
-#
 
+"""Définition d'une classe d'accès à une base de données PostrgreSQL sous Python.
+
+ Cette classe encapsule les fonctions importantes du modules Pg et ajoute
+ la possibilite de tracer toutes les requetes en les envoyant sur stderr.
+ Dans le cas de l'utilisation de cette classe dans un script CGI alors les
+ messages d'erreurs et de trace sont recuperables dans le fichier de log du
+ logiciel serveur WEB (teste uniquement avec Apache).
+"""
 import sys
 import os
 import time
 import pg
 
-
-#
-# Définition d'une classe d'accès à une base de données PostrgreSQL sous Python
-# Cette classe encapsule les fonctions importantes du modules Pg et ajoute
-# la possibilite de tracer toutes les requetes en les envoyant sur stderr.
-# Dans le cas de l'utilisation de cette classe dans un script CGI alors les
-# messages d'erreurs et de trace sont recuperables dans le fichier de log du
-# logiciel serveur WEB (teste uniquement avec Apache).
 
 class DataBase:
     __database  = None

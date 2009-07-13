@@ -1,6 +1,19 @@
--- Utilitaires --
+== Utilitaires ==
 
-* archeo_passwd.py: permet de changer les mots de passe de l'une des bases.
+ * archeo_passwd.py : Permet de changer les mots de passe de l'une des bases.
 
-* archeo_update_base.py: permet d'effectuer des requetes sur toutes les bases simultanement. Ce programme est essentiellement utile lors de modifications de structure.
- 
+ * archeo_update_base.py : Permet d'effectuer des requetes sur toutes les bases simultanement. Ce programme est essentiellement utile lors de modifications de structure.
+
+ * base_instert_champ.py :
+
+ * databse.py : classe d'eccès à Postgres pour les scripts
+
+ * doublons_bna.py :
+
+ * import_base_utf8.py : script de conversion et de migration de bases
+
+ * pgsql_create_passwd.py : Permet de changer les mots de passe de l'une des bases.
+
+ * reinjecte_sol.py : Injection des sols dans un base de données.
+
+ * sol_couche.py

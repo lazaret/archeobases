@@ -10,7 +10,7 @@
 # You can read the complete GNU GPL in the file COPYING
 # which should come along with this software, or visit
 # the Free Software Foundation's WEB site http://www.fsf.org
-#
+
 
 import sys
 import string
@@ -29,15 +29,15 @@ for ligne in lignes:
         champs = string.split(ligne, ",")
         for i in range(0, len(champs)):
             champs[i] = string.strip(champs[i])
-            if champs[i] == '-':
-                champs[i] = ''
-            elif champs[i] in ('999', '9999.99', '999.99'):
-                champs[i] = '0'
+            if champs[i] == "-":
+                champs[i] = ""
+            elif champs[i] in ("999", "9999.99", "999.99"):
+                champs[i] = "0"
         new_ga = []
         new_eg = []
         new_en = []
         new_n  = []
-        if champs[5] !='' and (champs[5][0] == "N"):
+        if champs[5] !="" and (champs[5][0] == "N"):
             ###### NUCLEUS #####
             new_n.append(champs[0])  #0 zone
             new_n.append(champs[1])  #1 numero
@@ -50,7 +50,7 @@ for ligne in lignes:
             for i in range(0, len(new_n)):
                 if i  in [0, 2, 3]:
                     new_n[i] = db.quote(string.upper(new_n[i]), "text")
-                elif new_n[i]!= '-' or new_n[i]!='99':
+                elif new_n[i]!= "-" or new_n[i]!="99":
                     new_n[i] = db.quote(new_n[i], "")
             verify = "select * from industrie where zone=" + new_n[0]+ " and numero =" + new_n[1] + " and bis=" + new_n[2] + ";"
             existe = db.query(verify)
@@ -59,12 +59,12 @@ for ligne in lignes:
             existe2 = db.query(verify2)
             existe2 = existe2.dictresult()
             if not existe:
-                print ("erreur: pas de parents nucleus", (string.join(new_n, ', ')))
+                print ("erreur: pas de parents nucleus", (string.join(new_n, ", ")))
             elif existe2:
-                print ("erreur: doublon nucleus", (string.join(new_n, ', ')))
-            elif new_n[0] != 'null' and new_n[1] != 'null' and new_n[2] != 'null':
+                print ("erreur: doublon nucleus", (string.join(new_n, ", ")))
+            elif new_n[0] != "null" and new_n[1] != "null" and new_n[2] != "null":
                 insert = "INSERT INTO nucleus (zone, numero, bis, n_ordre, n_type, n_nba, n_nbb, n_nbp) VALUES ("
-                insert = insert+string.join(new_n, ', ')
+                insert = insert+string.join(new_n, ", ")
                 insert = insert + ");"
                 db.query(insert)
                 where = " WHERE zone = " + new_n[0] + " AND numero=" + new_n[1] + " AND bis=" + new_n[2] +";"
@@ -88,7 +88,7 @@ for ligne in lignes:
             for i in range(0, len(new_en)):
                 if i  in [0, 2, 4, 11, 13, 14]:
                     new_en[i] = db.quote(string.upper(new_en[i]), "text")
-                elif new_en[i] != '-' or new_en[i] != '99':
+                elif new_en[i] != "-" or new_en[i] != "99":
                     new_en[i] = db.quote(new_en[i], "")
             verify = "select * from nucleus where zone=" + new_en[0]+ " and numero =" + new_en[1] + " and bis=" + new_en[2] + " and n_ordre = 1;"
             existe = db.query(verify)
@@ -97,12 +97,12 @@ for ligne in lignes:
             existe2 = db.query(verify2)
             existe2 = existe2.dictresult()
             if not existe:
-                print "erreur: pas de parents enlevement nucleus", (string.join(new_en, ', '))
+                print "erreur: pas de parents enlevement nucleus", (string.join(new_en, ", "))
             elif existe2:
                 print ("")
-            elif new_en[0] != 'null' and new_en[1] != 'null' and new_en[2] != 'null' and new_en[3] != 'null':
+            elif new_en[0] != "null" and new_en[1] != "null" and new_en[2] != "null" and new_en[3] != "null":
                 insert = "INSERT INTO enlevement_nucleus (zone, numero, bis,n_ordre,en_rang,  en_longueur, en_largeur,en_obliquite_degre, en_corde, en_fleche, en_dptimpact, en_frappe,en_numero, en_inclinaison, en_direction) VALUES ("
-                insert = insert+string.join(new_en, ', ')
+                insert = insert+string.join(new_en, ", ")
                 insert = insert + ");"
                 db.query(insert)
         else:
@@ -112,14 +112,14 @@ for ligne in lignes:
             new_ga.append(champs[2])  # bis
             new_ga.append(champs[3])  # ordre
             new_ga.append(champs[5])  # type
-            if champs[5] in ('1', '12', 'PL4'):
-                champs[5] = ''
-            elif champs[5] == 'FA1C5':
-                champs[5] = 'IA1C5'
-            elif champs[5] in ('G2', 'GALC', 'GLF'):
-                champs[5] = 'GALF'
-            elif champs[5] in ('GALENT', 'GALENTR', 'GALENTER'):
-                champs[5] = 'GALF'
+            if champs[5] in ("1", "12", "PL4"):
+                champs[5] = ""
+            elif champs[5] == "FA1C5":
+                champs[5] = "IA1C5"
+            elif champs[5] in ("G2", "GALC", "GLF"):
+                champs[5] = "GALF"
+            elif champs[5] in ("GALENT", "GALENTR", "GALENTER"):
+                champs[5] = "GALF"
             new_ga.append(champs[6])  #   facture
             new_ga.append(champs[7])  # qualite
             new_ga.append(champs[8])  # A
@@ -133,7 +133,7 @@ for ligne in lignes:
             for i in range(0, len(new_ga)):
                 if i  in [0, 2, 3, 4, 5, 6, 10, 11, 12, 13, 14, 15]:
                     new_ga[i] = db.quote(string.upper(new_ga[i]), "text")
-                elif new_ga[i]!= '-' or new_ga[i]!='99':
+                elif new_ga[i]!= "-" or new_ga[i]!="99":
                     new_ga[i] = db.quote(new_ga[i], "")
             verify = "select * from industrie where zone=" + new_ga[0]+ " and numero =" + new_ga[1] + " and bis=" + new_ga[2] + ";"
             existe = db.query(verify)
@@ -142,12 +142,12 @@ for ligne in lignes:
             existe2 = db.query(verify2)
             existe2 = existe2.dictresult()
             if not existe:
-                print "erreur: pas de parents galet", (string.join(new_ga, ', '))
+                print "erreur: pas de parents galet", (string.join(new_ga, ", "))
             elif existe2:
-                print "erreur: doublon galet", (string.join(new_ga, ', '))
-            elif new_ga[0] != 'null' and new_ga[1] != 'null' and new_ga[2] != 'null':
+                print "erreur: doublon galet", (string.join(new_ga, ", "))
+            elif new_ga[0] != "null" and new_ga[1] != "null" and new_ga[2] != "null":
                 insert = "INSERT INTO galet_amenage (zone, numero, bis,ga_ordre,ga_type, ga_facture, ga_qualite, ga_nba, ga_nbb, ga_nbp, ga_forme, ga_arete, ga_orientation, ga_obliquite ,ga_retouche) VALUES ("
-                insert = insert+string.join(new_ga, ', ')
+                insert = insert+string.join(new_ga, ", ")
                 insert = insert + ");"
                 db.query(insert)
                 where = " WHERE zone = " + new_ga[0] + " AND numero=" + new_ga[1] + " AND bis=" + new_ga[2] +";"
@@ -167,7 +167,7 @@ for ligne in lignes:
                 elif type == "'GALF'":
                     update = "update industrie set i_objet='GALF' " + where
                     db.query(update)
-                elif champs[5][:1] =='I':
+                elif champs[5][:1] =="I":
                     update = "update industrie set i_objet='GAM' " + where
                     db.query(update)
                 elif type =="'PERC'":
@@ -176,7 +176,7 @@ for ligne in lignes:
                 elif type =="'RET'":
                     update = "update industrie set i_objet='RET' " + where
                     db.query(update)
-                elif champs[5][:1] =='V':
+                elif champs[5][:1] =="V":
                     update = "update industrie set i_objet='GAM' " + where
                     db.query(update)
             ##### ENLEVEMENT GALET #####
@@ -205,7 +205,7 @@ for ligne in lignes:
             for i in range(0, len(new_eg)):
                 if i  in [0, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]:
                     new_eg[i] = db.quote(string.upper(new_eg[i]), "text")
-                elif new_eg[i]!= '-' or new_eg[i]!='99':
+                elif new_eg[i]!= "-" or new_eg[i]!="99":
                     new_eg[i] = db.quote(new_eg[i], "")
             verify = "select * from galet_amenage where zone=" + new_eg[0]+ " and numero =" + new_eg[1] + " and bis=" + new_eg[2]  + " and ga_ordre=" + new_eg[3] + ";"
             existe = db.query(verify)
@@ -214,12 +214,12 @@ for ligne in lignes:
             existe2 = db.query(verify2)
             existe2 = existe2.dictresult()
             if not existe:
-                print "erreur: pas de parents enlevement galet", (string.join(new_eg, ', '))
+                print "erreur: pas de parents enlevement galet", (string.join(new_eg, ", "))
             elif existe2:
-                print ("erreur: doublon enlevement galet", (string.join(new_eg, ', ')))
-            elif (new_eg[0] != 'null') and (new_eg[1] != 'null') and (new_eg[2] !='null') and (new_eg[3] != 'null') and (new_eg[4] != 'null'):
+                print ("erreur: doublon enlevement galet", (string.join(new_eg, ", ")))
+            elif (new_eg[0] != "null") and (new_eg[1] != "null") and (new_eg[2] !="null") and (new_eg[3] != "null") and (new_eg[4] != "null"):
                 insert = "INSERT INTO enlevement_galet (zone, numero, bis,ga_ordre,eg_rang,eg_element,  eg_longueur_generale, eg_profil, eg_profondeur, eg_extremite, eg_proeminence, eg_sens,eg_support, eg_localisation, eg_situation,eg_epaisseur, eg_longueur, eg_largeur, eg_obliquite_degre, eg_corde, eg_fleche, eg_dptimpact) VALUES ("
-                insert = insert+string.join(new_eg, ', ')
+                insert = insert+string.join(new_eg, ", ")
                 insert = insert + ");"
                 db.query(insert)
                 where2 = " WHERE zone = " + new_ga[0] + " AND numero=" + new_ga[1] + " AND bis=" + new_ga[2] + " AND eg_ordre=" + new_eg[3]

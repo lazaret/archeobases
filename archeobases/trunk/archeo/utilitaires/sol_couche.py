@@ -17,10 +17,9 @@ Le fichier à traiter doit être de la forme zone,couche,sol
 pour les fichier csv, penser à retirer les guilemets.
 
 Les fichiers doivent être placé temporairement dans /home/bases/cgi-bin/archeo
-et il faut être connecté en tant qu'utilisateur postgres
 Usage : ./sol_couche.py nom_de_la_base < fichier.txt
-Exemple : ./sol_couche.py.py Le_Lazaret < sols.csv
-Pour obtenir le résustat de l'execution dans un fichier : ./reinjecte_sol.py Le_Lazaret < sols.csv > resultat.txt
+Exemple : ./sol_couche.py Le_Lazaret < sols.csv
+Pour obtenir le résustat de l'execution dans un fichier : ./sol_couche.py Le_Lazaret < sols.csv > resultat.txt
 """
 
 import sys

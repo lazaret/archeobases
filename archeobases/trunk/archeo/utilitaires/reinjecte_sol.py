@@ -17,7 +17,6 @@ Le fichier à traiter doit être de la forme zone,numero,bis,sol
 pour les fichier csv, penser à retirer les guilemets.
 
 Les fichiers doivent être placé temporairement dans /home/bases/cgi-bin/archeo
-et il faut être connecté en tant qu'utilisateur postgres
 Usage : ./reinjecte_sol.py nom_de_la_base < fichier.txt
 Exemple : ./reinjecte_sol.py Le_Lazaret < sols.csv
 Pour obtenir le résustat de l'execution dans un fichier : ./reinjecte_sol.py Le_Lazaret < sols.csv > resultat.txt

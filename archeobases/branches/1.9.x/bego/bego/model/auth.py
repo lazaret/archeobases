@@ -21,8 +21,10 @@ user_group_table = sa.Table("tg_user_group", meta.metadata,
 
 # many-to-many relation table between groups and permisions
 group_permission_table = sa.Table("tg_group_permission", meta.metadata,
-    sa.Column("group_id", sa.types.Integer, sa.ForeignKey("tg_group.group_id", onupdate="CASCADE", ondelete="CASCADE")),
-    sa.Column("permission_id", sa.types.Integer, sa.ForeignKey("tg_permission.permission_id", onupdate="CASCADE", ondelete="CASCADE"))
+    sa.Column("group_id", sa.types.Integer,
+             sa.ForeignKey("tg_group.group_id", onupdate="CASCADE", ondelete="CASCADE")),
+    sa.Column("permission_id", sa.types.Integer,
+             sa.ForeignKey("tg_permission.permission_id", onupdate="CASCADE", ondelete="CASCADE"))
 )
 
 

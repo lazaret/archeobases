@@ -952,22 +952,10 @@ def after_install(options, home_dir):
                     'repoze.what-pylons'], stdout=devnull)
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'repoze.what-quickstart'], stdout=devnull)
-    # PIL install without setuptools
+    # PIL install from repoze (setuptools compatible)
     print "=> Install Python Image Library"
-    os.chdir(home_dir)
-    if not os.path.isdir('tmp'):
-        os.mkdir('tmp')
-    os.chdir('tmp')
-    subprocess.call(['wget', '--quiet',
-                    'http://effbot.org/downloads/Imaging-1.1.6.tar.gz'])
-    subprocess.call(['tar', 'xzvf',
-                    'Imaging-1.1.6.tar.gz'], stdout=devnull)
-    #print os.getcwd()
-    os.chdir(os.path.dirname(os.getcwd()))
-    os.chdir(os.path.dirname(os.getcwd()))
-    subprocess.call([join(home_dir, 'bin', 'python'),
-                    join(home_dir, 'tmp', 'Imaging-1.1.6', 'setup.py'), 'install'], stdout=devnull, stderr=devnull)
-    subprocess.call(['rm', '-R', join(home_dir, 'tmp')])
+    subprocess.call([join(home_dir, 'bin', 'easy_install'),
+                    'http://dist.repoze.org/PIL-1.1.6.tar.gz'], stdout=devnull, stderr=devnull)
     print "=> Install iw.thumbs"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'iw.thumbs'], stdout=devnull)

@@ -59,7 +59,7 @@ div#fieldset_left {
 
 div#fieldset_buttons {
     float: right;
-    margin-top:-12px;
+    margin-top:-11px;
     margin-right:-8px;
 }
 
@@ -71,31 +71,51 @@ div#clear {
     clear: both;
 }
 
-p {
-    margin: 0px;
-    margin-bottom: 5px;
+fieldset legend{
+    color: #B3B3B3;
+    font-weight: bold;
+    font-size: 0.90em;
 }
 
-fieldset p label {  /*** Mise en forme des intitulés de champs texte***/
+fieldset p {
+    margin: 0;
+    padding-top: 10px;
+}
+
+fieldset p label {
     float: left;
-    width: 4em;
+    margin-right : 7px;
     text-align: right;
-    padding: 0 .5em 0 0;
 }
 
-fieldset p label.large_label {  /*** Mise en forme des intitulés de champs texte***/
-    width: 7.5em;
+fieldset p input,
+fieldset p textarea {
+    color: #666;
 }
 
-fieldset p label.little_label {  /*** Mise en forme des intitulés de champs texte***/
-    width: 1em;
+input:focus,
+input.error:focus,
+textarea:focus,
+textarea.error:focus {
+    color: #333;
 }
 
-legend{
-  color: #CCC;
-  font-weight: bold;
-  font-size: 0.90em;
+fieldset p input.error,
+fieldset p textarea.error {
+    color: #FF4040;
 }
+
+fieldset div#error-message {
+    color: #FF4040;
+    font-size: 0.90em;
+    font-style: italic;
+    padding-left: 7px;
+}
+
+fieldset div#error-message img {
+    vertical-align:middle;
+}
+
 
 div#footForm {
     text-align: right;
@@ -110,15 +130,12 @@ div#footForm {
 
 /*** submit buttons ***/
 
-
 div#footForm button{
-    margin:0 7px 0 0;
-    background-color:#F5F5F5;
-    border:1px solid #ccc;
-    font-weight:bold;
-    color:#565656;
-    cursor:pointer;
-    padding:3px 7px 4px 5px;
+    margin: 0 5px 0 0;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+    padding:1px 4px 1px 3px;
 }
 
 div#footForm button img {
@@ -126,7 +143,7 @@ div#footForm button img {
     padding:0;
     border:none;
 }
-
+/*
 div#footForm button:hover {
     background-color:#DFF4FF;
     border:1px solid #C2E1EF;
@@ -157,4 +174,4 @@ div#footForm button.negative:active{
     border:1px solid #F69;
     color:#fff;
 }
-
+*/

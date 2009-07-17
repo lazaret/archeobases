@@ -8,10 +8,11 @@
     ${h.stylesheet_link("/css/style.css")}
     ${h.stylesheet_link("/css/messages.css")}
     ${h.stylesheet_link("/css/form.css")}
+    ${h.javascript_link("/javascripts/jquery.min.js")}
     ${h.javascript_link("/javascripts/functions.js")}
     <title>${c.site_full_name} - ${self.page_name()}</title>
   </head>
-  <body onLoad="hideFlashMessage()">
+  <body>
     ## LIGHTBOX MESSAGES
     <div id="lightbox">
       <div id="alertbox">

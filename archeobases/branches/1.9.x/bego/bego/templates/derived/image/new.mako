@@ -2,7 +2,7 @@
 <%inherit file="/base/base.mako" />
 <%namespace file="/component/sideboxes.mako" import="*"/>
 <%namespace file="/component/flash_message.mako" import="*"/>
-<%namespace file="/derived/rock/main_form.mako" import="*"/>
+<%namespace file="/component/forms/fieldset_buttons.mako" import="*"/>
 
 <%def name="page_name()">${_("Image")}</%def>
 
@@ -15,8 +15,19 @@
 ## main content
 ${flash_message()}
 
+
 ${h.form(h.url_for(action="create"), name="form", multipart=True)}
-Upload file: ${h.file("image_file")} <br />
-File description: ${h.text("description")} <br />
-${h.submit("Submit", "Submit")}
+  <div id="mainForm">
+    <fieldset>
+      <legend>${_("Image upload")}</legend>
+      <div id="fieldset_buttons">
+          ${helptip_button(_("Image upload help tip"))}
+      </div>
+      <p><label for="image_file"><strong>${_("Upload file")}</strong></label> ${h.file("image_file")} </p>
+      <p><label for="description">${_("Description")}</label> ${h.textarea(name="description", cols=52, maxlength=500)} </p>
+    </fieldset>
+  </div>
+  <div id="footForm">
+    <button name="new_button" type="submit" class="positive"><img src="/images/tick.png"/>${_("Submit")}</button>
+  </div>
 ${h.end_form()}

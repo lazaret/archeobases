@@ -16,11 +16,11 @@
         <div id="fieldset_buttons">
           ${helptip_button(_("Lambert III fieldset helptip"))}
         </div>
-        <p><label for="x" class="little_label">X</label> ${h.text(name="x", size=10, maxlength=10)}</p>
-        <p><label for="y" class="little_label">Y</label> ${h.text(name="y", size=10, maxlength=10)}</p>
-        <p><label for="z" class="little_label">Z</label> ${h.text(name="z", size=10, maxlength=10)}</p>
+        <p><label for="x">X</label> ${h.text(name="x", size=10, maxlength=10)}</p>
+        <p><label for="y">Y</label> ${h.text(name="y", size=10, maxlength=10)}</p>
+        <p><label for="z">Z</label> ${h.text(name="z", size=10, maxlength=10)}</p>
       </fieldset>
-      <fieldset >
+      <fieldset>
         <legend>${_("Rock measures")}</legend>
         <div id="fieldset_buttons">
           ${helptip_button(_("rock measures fieldset helptip"))}
@@ -59,7 +59,6 @@
         <fieldset>
           <legend>${_("Outcrop type")}</legend>
           <div id="fieldset_buttons">
-            ${reset_button("outcrop_type")}
             ${helptip_button(_("outcrop type fieldset helptip"))}
           </div>
           <div id="fieldset_left">
@@ -75,7 +74,6 @@
         <fieldset>
           <legend>${_("Provision")}</legend>
           <div id="fieldset_buttons">
-            ${reset_button("provision")}
             ${helptip_button(_("provision fieldset helptip"))}
           </div>
           ${h.radio("provision", "test", label=(u"Caché"))}<br>

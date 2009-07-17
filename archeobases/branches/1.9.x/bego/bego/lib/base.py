@@ -2,6 +2,7 @@
 
 Provides the BaseController class for subclassing.
 """
+import formencode
 from pylons import c, request, config
 from pylons.controllers import WSGIController
 from pylons.templating import render_mako as render
@@ -21,11 +22,12 @@ class BaseController(WSGIController):
         # define the language based on browser preference
         user_agent_language = request.languages[0][0:2]
         set_lang(user_agent_language)
+        formencode.api.set_stdtranslation(user_agent_language)
 
         # common values mostly inherited from config file
-        c.version = __version__
-        c.site_full_name = config["site_full_name"]
-        c.site_short_name = config["site_short_name"]
+        c.version = __version__ # TODO move this into the development.ini file
+        c.site_full_name = config["site_full_name"] # TODO move this into the development.ini file
+        c.site_short_name = config["site_short_name"] # TODO move this into the development.ini file
 
         # controler and action named for use in templates
         #c.controller = request.environ['pylons.routes_dict']['controller']

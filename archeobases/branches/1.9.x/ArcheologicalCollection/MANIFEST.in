@@ -1,0 +1,3 @@
+include archeologicalcollection/config/deployment.ini_tmpl
+recursive-include archeologicalcollection/public *
+recursive-include archeologicalcollection/templates *

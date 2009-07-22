@@ -36,7 +36,7 @@ class Carnet(archeodata.Data):
                     "ensemble"   : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
                     "niveau"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
                     "sol"        : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
-                    "couche"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 6, "memory": 1},
+                    "couche"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 7, "memory": 1},
                     "foyer"      : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0},
                     "nature"     : {"type": "text", "default": "",  "mandatory": 0, "longueur": 0, "memory": 1},
                     "nofouille"  : {"type": "int", "mandatory": 0, "longueur": 4},
@@ -153,7 +153,7 @@ class Carnet(archeodata.Data):
         afficheclefs.champ_liste(self, "sol", "sol", enreg, penreg, " ", dontchange=0)
 
     def couche_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_saisie(self, "couche", "couche", 6, 20, "", enreg, penreg)
+        afficheclefs.champ_saisie(self, "couche", "couche", 7, 20, "", enreg, penreg)
 
     def nature_base_to_form(self, enreg, penreg=None):
         afficheclefs.champ_liste(self, "nature", "nature", enreg, penreg, "", dontchange=0)

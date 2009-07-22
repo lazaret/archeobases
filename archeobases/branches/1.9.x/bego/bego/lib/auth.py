@@ -1,4 +1,4 @@
-""" Auth & Auth middleware"""
+"""Auth & Auth middleware."""
 
 from repoze.what.plugins.quickstart import setup_sql_auth
 

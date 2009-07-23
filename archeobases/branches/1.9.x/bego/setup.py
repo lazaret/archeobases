@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""  Install script for The Bego package based on Distutils"""
+"""  Install script for The `Bego` package."""
 
 try:
     from setuptools import setup, find_packages
@@ -11,7 +11,7 @@ except ImportError:
 setup(
     name="Bego",
     version="1.9.a1",
-    description="Archeolical web application for the studies of the stone age petroglyphs \
+    description="Web application for the studies of the stone age petroglyphs \
                  of the 'vallée des Merveilles'.",
     author="LDPL - Laboratoire Départemental de Préhistoire du Lazaret",
     author_email="opensource@lazaret.unice.fr",
@@ -26,14 +26,14 @@ setup(
         "repoze.what-quickstart>=1.0",
         "iw.thumbs>=1.2",
     ],
-    setup_requires=["PasteScript==dev,>=1.6.3dev-r7326"],
+    setup_requires=["PasteScript>=1.6.3"],
     packages=find_packages(exclude=["ez_setup"]),
     include_package_data=True,
     test_suite="nose.collector",
     package_data={"bego": ["i18n/*/LC_MESSAGES/*.mo"]},
     message_extractors = {"bego": [
             ("**.py", "python", None),
-            ("templates/**.mako", "mako", None),
+            ("templates/**.mako", "mako", {'input_encoding': 'utf-8'}),
             ("public/**", "ignore", None)]},
     zip_safe=False,
     paster_plugins=["PasteScript", "Pylons"],

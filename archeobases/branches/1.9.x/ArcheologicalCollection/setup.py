@@ -18,6 +18,7 @@ setup(
     install_requires=[
         "Pylons>=0.9.7",
         "SQLAlchemy>=0.5",
+        "formalchemy>=1.2",
         "Mako>=0.2.4",
         "Babel>=0.9.4 ",
         "repoze.what-pylons>=1.0",

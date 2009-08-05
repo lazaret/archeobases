@@ -1,28 +1,37 @@
-This files are used to lauch a bitten-slave inside a virtualenv environment
-with all the required packages for testing and building our Pylons projects
+This files are used to lauch a bitten-slave with buildout.
 
-You need :
+This will install all the required packages for the project, and some more build
+and testing packages (bitten, cheesecake, nose, pylint) and finaly run builds, lints and tests.
+
+
+Prerequistes :
+ - python --> http://www.python.org/
  - setuptools --> http://peak.telecommunity.com/DevCenter/setuptools
- - virtualenv --> http://pypi.python.org/pypi/virtualenv
  - a working Bitten master --> http://bitten.edgewall.org/
 
 
-You may change the bitten-slave.ini file to adapt it to you build-slave machine
-
-You may change the the `after_install` section inside the build_boostrap.py to
- - add/remove python packages
- - change the bitten-slave script options to adjust it to you Bitten master
-see : http://bitten.edgewall.org/wiki/BittenSlaveOptions
-
 usage :
-$ python build_boostrap.py ENV
+$ python build.py
 
-This will :
-- create the virtualenv `ENV` environment
-- install Pylons, nose, pylint & Bitten and additional packages inside this environment
-- run the bitten-slave script
 
-You do not need to activate the environment and you can safely remove the ENV folder
+The buid.py script do :
+- bootstrap zc.buildout
+- lauch buildout with buildout.cfg + developement.cfg
+- lauch the bitten slave
+
+The bitten slave then :
+- get the project revision
+- create source and eggs builds
+- run the pylint check
+
+Notes :
+ * You probably have to change the bitten-slave.ini file to adapt it to your needs
+ * buildout.cfg is Pylons specific and install the project prerequistes
+ * developement.cfg install the unstables part of the project and the build & test tools
+
+
+
+
 
 
 

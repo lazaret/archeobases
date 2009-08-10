@@ -1,17 +1,20 @@
-<build description="Building" revision="${revision}" path="${path}"
+<build description="Building bego" revision="${revision}" path="${path}"
     xmlns:python="http://bitten.cmlenz.net/tools/python"
     xmlns:sh="http://bitten.cmlenz.net/tools/sh">
 
-  <step id="Checkout" description="Get source code from svn">
-    <sh:exec executable="echo" args="Svn checkout of the project"/>
+  <step id="Checkout" description="Subversion checkout">
+    <sh:exec executable="echo" args="Subversion checkout"/>
     <sh:exec executable="svn" args="co http://lazaret.unice.fr/svn/${path} . -r ${revision} --quiet"/>
   </step>
 
-  <step id="Buid" description="Build package and source distribution">
+  <step id="Sdist" description="Build source distribution"  onerror="continue">
+    <sh:exec executable="echo" args="Building source distribution"/>
+    <python:distutils command="sdist"/>
+  </step>
+
+  <step id="Bdist_egg" description="Build egg packages" onerror="continue">
     <sh:exec executable="echo" args="Building egg package"/>
     <python:distutils command="bdist_egg"/>
-    <sh:exec executable="echo" args="Create source package"/>
-    <python:distutils command="sdist"/>
   </step>
 
   <step id="Test" description="Execute tests" onerror="continue">
@@ -26,7 +29,7 @@
   </step>
 
   <step id="Pylint" description="Pylint check" onerror="ignore">
-    <sh:exec executable="pylint" args="--rcfile=pylint.rc project" output="build/pylint-results.out"/>
+    <sh:exec executable="pylint" args="--rcfile=pylint.rc bego" output="build/pylint-results.out"/>
     <python:pylint file="build/pylint-results.out"/>
   </step>
 

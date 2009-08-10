@@ -22,67 +22,69 @@ import database
 
 sys.path.append("../cgi")
 db = database.DataBase(database=sys.argv[1], username = "postgres")
-cpt = 0
-cpt_ok = 0
-pb = 0
 lignes = sys.stdin.readlines()
 l = 0
 
 for ligne in lignes:
     ligne = string.strip(ligne[:-1])
     l = l + 1
-    champs = string.split(ligne, ";")
-    for i in range(0, len(champs)) :
-        champs[i] = string.strip(champs[i])
-        new_objet = []
-        new_biblio  = []
-        if (len(champs) >= 12):
-            new_biblio.append('DRET-BIB-00' + champs[0])  #identifiant
-            new_biblio.append('LIVRE')  #type_biblio
-            new_biblio.append(champs[1])  #indice
-            new_biblio.append(champs[2])  #auteur
-            new_biblio.append(champs[3])  #titre
-            new_biblio.append(champs[4])  #mots-clefs
-            new_biblio.append(champs[5])  #ville_edition
-            new_biblio.append(champs[6])  #maison_edition
-            if (champs[7] <'1700' or champs[7] > '2010'):
-                champs[7] = '0'
-            new_biblio.append(champs[7])  #annee
-            new_biblio.append(champs[8])  #pages
-            new_biblio.append(champs[9])  #nombre_exemplaire
-            new_biblio.append(champs[10])  #langue
-            new_biblio.append('ESSAI_INSERTION_LIVRE')         #resume
-            for i in range(0, len(new_biblio)):
+    if (ligne != ""):
+        champs = string.split(ligne, ";")
+        for i in range(0, len(champs)):
+            champs[i] = string.strip(champs[i])
+        new_biblio = []
+        new_biblio.append(champs[0])  #identifiant
+        new_biblio.append(champs[1])  #type_biblio
+        new_biblio.append(champs[2])  #indice
+        new_biblio.append(champs[3])  #titre ouvrage
+        new_biblio.append(champs[4])  #auteur
+        new_biblio.append(champs[5])  #titre article
+        new_biblio.append(champs[6])  #titre periodique
+        new_biblio.append(champs[7])  #pages
+        new_biblio.append(champs[8])  #maison edition
+        new_biblio.append(champs[9])  #ville edition
+        new_biblio.append(champs[10]) #dir pub
+        new_biblio.append(champs[11]) #annee
+        new_biblio.append(champs[12]) #mois
+        if champs[13] == '': #nb volumes
+            new_biblio.append("NULL")
+        else:
+            new_biblio.append(champs[13])
+        new_biblio.append(champs[14]) #serie
+        new_biblio.append(champs[15]) #fasc
+        new_biblio.append(champs[16]) #tome
+        new_biblio.append(champs[17]) #numero
+        new_biblio.append(champs[18]) #volume
+        new_biblio.append(champs[19]) #langue doc
+        new_biblio.append(champs[20]) #langue resume
+        new_biblio.append(champs[21]) #etablissement
+        new_biblio.append(champs[22]) #description
+        new_biblio.append(champs[23]) #isbn
+        new_biblio.append(champs[24]) #issn
+        new_biblio.append(champs[25]) #resume
+        new_biblio.append(champs[26]) #mots-clefs
+        for i in range(0, len(new_biblio)):
+            if i == 13:
+                pass
+            else:
                 new_biblio[i] = db.quote((new_biblio[i]), "text")
+        verify = "SELECT * FROM biblio WHERE identifiant =" +new_biblio[0]+ ";"
+        existe = db.query(verify)
+        existe = existe.dictresult()
+        if existe:
+            print ("Enregistrement existant : " +new_biblio[0])
         else:
-            pb = 1
-    try:
-        delete = "DELETE FROM biblio WHERE identifiant=" + new_biblio[0] + ";"
-        delete = delete.encode("UTF-8")
-    except:
-        print "erreur delete"
-    if pb:
-        print ligne
-        print ("probleme longueur: ", len(champs))
-        pb = 0
-    else:
-        q = "SELECT COUNT(*) FROM biblio "
-        q = q + "WHERE identifiant=" + new_biblio[0] + ";"
-        q = q.encode("UTF-8")
-        res = db.query(q)
-        res = res.dictresult()
-        res = res[0]["count"]
-        if res:
-            cpt = cpt + 1
-        else:
-            insert_biblio = "INSERT INTO biblio (identifiant,b_type_biblio,b_indice,b_auteur,b_titre_ouvrage,b_mots_clefs,b_ville_edition,b_maison_edition,b_annee,b_pages,b_nombre_ex_supp,b_langue_document,b_resume) VALUES ("
-            insert_biblio = insert_biblio+string.join(new_biblio, ', ')
+            insert_biblio = "INSERT INTO biblio (identifiant,b_type_biblio,b_indice,b_titre_ouvrage,b_auteur, \
+                            b_titre_article,b_titre_periodique,b_pages,b_maison_edition,b_ville_edition,b_dir_pub, \
+                            b_annee,b_mois,b_nombre_volume,b_serie,b_fascicule,b_tome,b_numero,b_volume, \
+                            b_langue_document,b_langue_resume,b_etablissement,b_description,b_isbn,b_issn,b_resume, \
+                            b_mots_clefs) VALUES ("
+            insert_biblio = insert_biblio+string.join(new_biblio, ", ")
             insert_biblio = insert_biblio + ");"
             try:
                 db.query(insert_biblio)
-                cpt_ok = cpt_ok + 1
+                print ("OK identifiant : " + champs[0])
             except:
-                print ("probleme ligne", insert_biblio)
-print(cpt, " doublons")
-print(cpt_ok, " OK")
+                print ("Problem : " + insert_biblio)
+
 

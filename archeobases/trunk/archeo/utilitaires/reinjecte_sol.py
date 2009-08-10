@@ -35,9 +35,9 @@ l = 0
 for ligne in lignes:
     ligne = string.strip(ligne[:-1])
     l = l + 1
-    if (ligne != "") :
+    if (ligne != ""):
         champs = string.split(ligne, ",")
-        for i in range(0, len(champs)) :
+        for i in range(0, len(champs)):
             champs[i] = string.strip(champs[i])
         new = []
         new.append(champs[0])  # zone
@@ -60,4 +60,15 @@ for ligne in lignes:
                 db.query(update)
             except:
                 print ("pb update: ", (string.join(new, ",")))
+
+
+
+
+
+
+
+
+
+
+
 

@@ -161,7 +161,7 @@ Les utilitaires sont peu nombreux pour l'instant.
 
 archeo_passwd.py: permet de changer les mots de passe de l'une des bases.
 
-archeo_update_base.py: permet d'effectuer des requêtes sur toutes les bases simultanément. Ce programme est essentiellement utile lors de modifications de structure et est exclusivement réservé à la personne qui centralise l'appliaction..
+archeo_update_base.py: permet d'effectuer des requêtes sur toutes les bases simultanément. Ce programme est essentiellement utile lors de modifications de structure et est exclusivement réservé à la personne qui centralise l'application..
 
 
 

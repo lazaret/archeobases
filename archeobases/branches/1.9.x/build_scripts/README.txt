@@ -1,7 +1,7 @@
-This files are used to lauch a bitten-slave with buildout.
+This files are used to lauch a bitten-slave with a virtualenv environment.
 
 This will install all the required packages for the project, and some more build
-and testing packages (bitten, cheesecake, nose, pylint) and finaly run builds, lints and tests.
+and testing packages (bitten, nose, pylint) and finaly run builds, lints and tests.
 
 
 Prerequistes :
@@ -15,19 +15,18 @@ $ python build.py
 
 
 The buid.py script do :
-- bootstrap zc.buildout
-- lauch buildout with buildout.cfg + developement.cfg
+- bootstrap the virtualenv environment
+- install ne necessary prerequistes
 - lauch the bitten slave
 
 The bitten slave then :
 - get the project revision
 - create source and eggs builds
 - run the pylint check
+- run the tests
 
 Notes :
  * You probably have to change the bitten-slave.ini file to adapt it to your needs
- * buildout.cfg is Pylons specific and install the project prerequistes
- * developement.cfg install the unstables part of the project and the build & test tools
 
 
 

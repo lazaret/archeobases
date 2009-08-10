@@ -27,11 +27,3 @@ The bitten slave then :
 
 Notes :
  * You probably have to change the bitten-slave.ini file to adapt it to your needs
-
-
-
-
-
-
-
-

@@ -18,4 +18,5 @@ def init_model(engine):
 
 
 # import tables models
-from archeologicalcollection.model.auth import User, Group, Permission
+#from archeologicalcollection.model.auth import User, Group, Permission
+

@@ -581,6 +581,7 @@ class Faune(archeodata.Data):
         if g != "''":
             recup = "SELECT * FROM remonte_genre WHERE genre=%s;" % g
             res = self.__db__.query(recup).dictresult()
+
             if res:
                 update_genre = ("UPDATE %s SET f_classe =" % table) + self.__db__.quote(res[0]["classe"], "text") + \
                 ", f_ordre="   + self.__db__.quote(res[0]["ordre"], "text") + \

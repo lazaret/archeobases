@@ -318,7 +318,7 @@ class Data:
                     ####TODO VERIFIER #####ATTENTION
                     query = query + v + ", " # alors on verifie que la valeur cherchee s'y trouve bien
                 elif v:
-                    archeoconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide !" %(v, champ))
+                    archeoconf.fatalerror_message("La valeur [%s] saisie dans le champ %s est invalide ! Vérifiez le champ ou ses controles ." %(v, champ))
                     return None
             else:
                 query = query + v + ", "

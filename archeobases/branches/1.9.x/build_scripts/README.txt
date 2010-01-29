@@ -11,12 +11,14 @@ Prerequistes :
 
 
 usage :
-$ python build.py
+$ python build.py --no-site-package buildenv
+
+This script is based on the virtualenv bootscrapt, so his usage is nearly the same.
 
 
 The buid.py script do :
 - bootstrap the virtualenv environment
-- install ne necessary prerequistes
+- install the necessary prerequistes
 - lauch the bitten slave
 
 The bitten slave then :

@@ -12,6 +12,11 @@ def init_model(engine):
     meta.Session.configure(bind=engine)
     meta.engine = engine
 
-
-# import tables classes
+# Import tables models
 from archeologicaladdressbook.model.auth import User, Group, Permission
+from archeologicaladdressbook.model.person import Person, VoluntaryMember
+from archeologicaladdressbook.model.excavation import Excavation
+from archeologicaladdressbook.model.address import Address
+from archeologicaladdressbook.model.phone import Phone
+from archeologicaladdressbook.model.email import Email
+from archeologicaladdressbook.model.photo import Photo

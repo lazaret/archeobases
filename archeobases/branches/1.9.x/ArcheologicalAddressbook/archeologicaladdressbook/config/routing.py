@@ -20,6 +20,17 @@ def make_map():
 
     # CUSTOM ROUTES HERE
 
+    # Map static files - You can bind it to any path but you **must** keep fa_static as route name
+    map.connect('fa_static', '/admin/_static/{path_info:.*}', controller='admin', action='static')
+
+    # Map the /admin url to FA's AdminController
+    # Index page
+    map.connect('admin', '/admin', controller='admin', action='models')
+    map.connect('formatted_admin', '/admin.json', controller='admin', action='models', format='json')
+    # Model resources
+    map.resource('model', 'models', path_prefix='/admin/{model_name}', controller='admin')
+
+
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')
 

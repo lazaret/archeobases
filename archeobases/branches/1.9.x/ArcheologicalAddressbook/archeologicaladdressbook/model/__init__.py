@@ -12,7 +12,8 @@ def init_model(engine):
     meta.Session.configure(bind=engine)
     meta.engine = engine
 
-# Import tables models
+
+# import tables classes
 from archeologicaladdressbook.model.auth import User, Group, Permission
 from archeologicaladdressbook.model.person import Person, VoluntaryMember
 from archeologicaladdressbook.model.excavation import Excavation

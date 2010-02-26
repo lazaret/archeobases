@@ -7,6 +7,7 @@ command.
 This module initializes the application via ``websetup`` (`paster
 setup-app`) and provides the base testing objects.
 """
+
 from unittest import TestCase
 
 from paste.deploy import loadapp
@@ -17,6 +18,7 @@ from webtest import TestApp
 
 import pylons.test
 
+
 __all__ = ['environ', 'url', 'TestController']
 
 # Invoke websetup with the current config file
@@ -24,7 +26,9 @@ SetupCommand('setup-app').run([config['__file__']])
 
 environ = {}
 
+
 class TestController(TestCase):
+    """Base functional test case for the controllers."""
 
     def __init__(self, *args, **kwargs):
         if pylons.test.pylonsapp:
@@ -34,3 +38,4 @@ class TestController(TestCase):
         self.app = TestApp(wsgiapp)
         url._push_object(URLGenerator(config['routes.map'], environ))
         TestCase.__init__(self, *args, **kwargs)
+

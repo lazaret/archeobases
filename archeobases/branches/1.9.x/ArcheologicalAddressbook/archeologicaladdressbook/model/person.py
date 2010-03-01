@@ -27,24 +27,20 @@ class Person(meta.DeclarativeBase):
     birth_date = sa.Column(sa.types.Date, nullable=False)
     # Work/studies...
     activity = sa.Column(sa.types.Unicode(25), nullable=False)
-    person_type = sa.Column(sa.types.Unicode(16), nullable=False)
+    person_type = sa.Column(sa.types.Unicode(16))
 
     # relations
     #emails = relation(Email, order_by=Email.email_id, backref='person', cascade='all, delete, delete-orphan')
     emails = relation(Email, order_by=Email.email_id, backref='person')
 
-#    __mapper_args__ = {'polymorphic_on': person_type,
-#                       'polymorphic_identity': 'Person'}
+    __mapper_args__ = {'polymorphic_on': person_type,
+                       'polymorphic_identity': 'Person'}
 
 
-class VoluntaryMember(meta.DeclarativeBase):
+class VoluntaryMember(Person):
     """voluntary_member table model"""
     __tablename__ = 'voluntary_member'
     __mapper_args__ = {'polymorphic_identity': 'voluntary_member'}
-    #mapper(Person, person, properties={
-    #    'excavation':relation(Excavation, cascade='all, delete-orphan')
-    #    })
-    #mapper(Excavation, excavation)
 
     # Child table
 

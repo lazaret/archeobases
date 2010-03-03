@@ -1,4 +1,4 @@
-"""SQLAlchemy model definition for addresses"""
+""" SQLAlchemy model definition for addresses."""
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -7,9 +7,10 @@ from archeologicaladdressbook.model import meta
 
 
 class Address(meta.DeclarativeBase):
-    """address table model"""
+    """ Address model definition."""
     __tablename__ = 'address'
-    
+    #__table_args__  = (sa.UniqueConstraint('person_id', 'address_type'), {})
+
     address_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
     person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
     address_line1 = sa.Column(sa.types.Unicode(100), nullable=False)

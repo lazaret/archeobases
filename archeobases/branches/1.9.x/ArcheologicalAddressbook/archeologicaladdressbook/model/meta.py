@@ -1,4 +1,4 @@
-"""SQLAlchemy Metadata and Session object"""
+""" SQLAlchemy Metadata and Session object."""
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker

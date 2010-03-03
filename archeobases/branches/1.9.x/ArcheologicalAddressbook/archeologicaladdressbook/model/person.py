@@ -1,4 +1,4 @@
-"""SQLAlchemy model definition for persons"""
+""" SQLAlchemy model definition for persons and voluntary members."""
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -6,14 +6,11 @@ from sqlalchemy import orm
 from archeologicaladdressbook.model.email import Email
 from archeologicaladdressbook.model import meta
 
-
 from sqlalchemy.orm import relation, backref
 
 
-# person and voluntary_member tables definition
-
 class Person(meta.DeclarativeBase):
-    """person table model"""
+    """ Person model definition."""
     __tablename__ = 'person'
     __table_args__  = (sa.UniqueConstraint('last_name', 'first_name', 'birth_date'), {})
 
@@ -29,16 +26,15 @@ class Person(meta.DeclarativeBase):
     activity = sa.Column(sa.types.Unicode(25), nullable=False)
     person_type = sa.Column(sa.types.Unicode(16))
 
-    # relations
-    #emails = relation(Email, order_by=Email.email_id, backref='person', cascade='all, delete, delete-orphan')
-    emails = relation(Email, order_by=Email.email_id, backref='person')
+    # child relations
+    emails = relation(Email, backref='person', cascade='all, delete-orphan')
 
     __mapper_args__ = {'polymorphic_on': person_type,
                        'polymorphic_identity': 'Person'}
 
 
 class VoluntaryMember(Person):
-    """voluntary_member table model"""
+    """ VoluntaryMember model definition."""
     __tablename__ = 'voluntary_member'
     __mapper_args__ = {'polymorphic_identity': 'voluntary_member'}
 

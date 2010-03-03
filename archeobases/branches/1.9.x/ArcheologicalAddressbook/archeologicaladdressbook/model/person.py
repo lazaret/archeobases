@@ -3,8 +3,12 @@
 import sqlalchemy as sa
 from sqlalchemy import orm
 
-from archeologicaladdressbook.model.email import Email
 from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.address import Address
+from archeologicaladdressbook.model.email import Email
+from archeologicaladdressbook.model.excavation import Excavation
+from archeologicaladdressbook.model.phone import Phone
+from archeologicaladdressbook.model.photo import Photo
 
 from sqlalchemy.orm import relation, backref
 
@@ -27,7 +31,11 @@ class Person(meta.DeclarativeBase):
     person_type = sa.Column(sa.types.Unicode(16))
 
     # child relations
+    addresses = relation(Address, backref='person', cascade='all, delete-orphan')
     emails = relation(Email, backref='person', cascade='all, delete-orphan')
+    excavations = relation(Excavation, backref='person', cascade='all, delete-orphan')
+    phones = relation(Phone, backref='person', cascade='all, delete-orphan')
+    photos = relation(Photo, backref='person', cascade='all, delete-orphan')
 
     __mapper_args__ = {'polymorphic_on': person_type,
                        'polymorphic_identity': 'Person'}

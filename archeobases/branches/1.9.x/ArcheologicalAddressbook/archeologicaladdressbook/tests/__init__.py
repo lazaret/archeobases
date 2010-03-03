@@ -1,4 +1,4 @@
-"""Pylons application test package
+""" Pylons application test package
 
 This package assumes the Pylons environment is already loaded, such as
 when this script is imported from the `nosetests --with-pylons=test.ini`
@@ -28,7 +28,7 @@ environ = {}
 
 
 class TestController(TestCase):
-    """Base functional test case for the controllers."""
+    """ Base functional test case for the controllers."""
 
     def __init__(self, *args, **kwargs):
         if pylons.test.pylonsapp:

@@ -1,4 +1,4 @@
-"""SQLAlchemy model definition for phones"""
+""" SQLAlchemy model definition for phones."""
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -7,9 +7,10 @@ from archeologicaladdressbook.model import meta
 
 
 class Phone(meta.DeclarativeBase):
-    """phone table model"""
+    """ Phone model definition."""
     __tablename__ = 'phone'
-    
+    __table_args__  = (sa.UniqueConstraint('person_id', 'phone_number'), {})
+
     phone_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
     person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
     prefix = sa.Column(sa.types.Integer, nullable=False)

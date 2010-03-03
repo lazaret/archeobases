@@ -1,4 +1,4 @@
-"""SQLAlchemy model definition for changes in the database"""
+""" SQLAlchemy model definition for log changes in the database."""
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -9,9 +9,9 @@ from archeologicaladdressbook.model import meta
 # Table provided for managing logs later but not yet implemented
 
 class HistoryLog(meta.DeclarativeBase):
-    """history_log table model"""
+    """ HistoryLog model definition."""
     __tablename__ = 'history_log'
-    
+
     log_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
     person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
     username = sa.Column(sa.types.Unicode(25), nullable=False)

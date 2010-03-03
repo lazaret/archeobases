@@ -1,6 +1,5 @@
 """ Unit test cases for the ``Email`` model."""
 
-
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
@@ -32,7 +31,7 @@ class TestEmailModel(TestModel):
         person.emails.append(
             model.Email(
                 email_address = test_email.email_address,
-                email_type = test_email.email_type,
+                email_type = test_email.email_type
             )
         )
         try:
@@ -59,7 +58,7 @@ class TestEmailModel(TestModel):
         test_email = OrphanEmailData.john_smith_mail()
         email = model.Email(
             email_address = test_email.email_address,
-            email_type = test_email.email_type,
+            email_type = test_email.email_type
         )
         meta.Session.add(email)
         try:

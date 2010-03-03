@@ -1,13 +1,12 @@
 """ Unit test cases for the ``Person`` model."""
 
-
 import datetime
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import DuplicatePersonData, email_fixture
+from archeologicaladdressbook.tests.model.fixtures import *
 
 
 class TestPersonModel(TestModel):
@@ -44,8 +43,14 @@ class TestPersonModel(TestModel):
 
     def test_child_relations(self):
         """ Test the `Person` model childs relations."""
+        address_fixture()
         email_fixture()
+        phone_fixture()
+        photo_fixture()
         person = meta.Session.query(model.Person).filter_by().first()
+        assert person.addresses, '`Address` child relation is missing.'
         assert person.emails, '`Email` child relation is missing.'
+        assert person.phones, '`Phone` child relation is missing.'
+        assert person.photos, '`Photo` child relation is missing.'
 
 

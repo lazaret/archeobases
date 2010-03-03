@@ -13,6 +13,6 @@ class Photo(meta.DeclarativeBase):
 
     photo_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
     person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
-    # Path of the photo on the file server
+    # hash generated image file path on the filesystem
     path = sa.Column(sa.types.Unicode(255), nullable=False)
 

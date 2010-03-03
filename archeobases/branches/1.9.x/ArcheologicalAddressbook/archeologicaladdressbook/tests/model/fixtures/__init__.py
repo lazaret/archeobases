@@ -6,8 +6,22 @@ import sqlalchemy as sa
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 
+# data fixtures imports
 from archeologicaladdressbook.tests.model.fixtures.person import *
+from archeologicaladdressbook.tests.model.fixtures.address import *
 from archeologicaladdressbook.tests.model.fixtures.email import *
+from archeologicaladdressbook.tests.model.fixtures.excavation import *
+from archeologicaladdressbook.tests.model.fixtures.phone import *
+from archeologicaladdressbook.tests.model.fixtures.photo import *
+
+
+def commit():
+    """ Try to save the datas fixtures in the test database."""
+    try:
+        meta.Session.commit()
+    except sa.exc.IntegrityError:
+        meta.Session.rollback()
+        raise AssertionError('The model may have changed.')
 
 
 def person_fixture():
@@ -22,11 +36,27 @@ def person_fixture():
         person_type = test_person.person_type
     )
     meta.Session.add(person)
-    try:
-        meta.Session.commit()
-    except sa.exc.IntegrityError:
-        meta.Session.rollback()
-        raise AssertionError('The model may have changed.')
+    commit()
+
+
+def address_fixture():
+    """ Add an address test fixture in the database."""
+    pass
+    test_address = AddressData.john_doe_address()
+    person = meta.Session.query(model.Person).filter_by().first()
+    #person.addresses is a list of objects
+    person.addresses.append(
+        model.Address(
+            address_line1 = test_address.address_line1,
+            address_line2 = test_address.address_line2,
+            address_line3 = test_address.address_line3,
+            zip_code = test_address.zip_code,
+            city = test_address.city,
+            country = test_address.country,
+            address_type = test_address.address_type
+        )
+    )
+    commit()
 
 
 def email_fixture():
@@ -40,10 +70,46 @@ def email_fixture():
             email_type = test_email.email_type
         )
     )
-    try:
-        meta.Session.commit()
-    except sa.exc.IntegrityError:
-        meta.Session.rollback()
-        raise AssertionError('The model may have changed.')
+    commit()
+
+
+def excavation_fixture():
+    """ Add an excavation test fixture in the database."""
+    test_excavation = ExcavationData.excavation_site_1()
+    person = meta.Session.query(model.Person).filter_by().first()
+    person.excavations.append(
+        model.Excavation(
+            site_name = test_excavation.site_name,
+            start_date = test_excavation.start_date,
+            end_date = test_excavation.end_date,
+            appreciation = test_excavation.appreciation
+        )
+    )
+    commit()
+
+
+def phone_fixture():
+    """ Add a phone test fixture in the database."""
+    test_phone = PhoneData.john_doe_phone()
+    person = meta.Session.query(model.Person).filter_by().first()
+    person.phones.append(
+        model.Phone(
+            phone_number = test_phone.phone_number,
+            phone_type = test_phone.phone_type
+        )
+    )
+    commit()
+
+
+def photo_fixture():
+    """ Add a photo test fixture in the database."""
+    test_photo = PhotoData.john_doe_photo()
+    person = meta.Session.query(model.Person).filter_by().first()
+    person.photos.append(
+        model.Photo(
+            path = test_photo.path
+        )
+    )
+    commit()
 
 

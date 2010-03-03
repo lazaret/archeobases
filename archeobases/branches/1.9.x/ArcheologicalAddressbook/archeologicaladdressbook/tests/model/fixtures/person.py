@@ -1,6 +1,5 @@
 """ Datas used for testing the `Person` model of the application."""
 
-
 import datetime
 
 

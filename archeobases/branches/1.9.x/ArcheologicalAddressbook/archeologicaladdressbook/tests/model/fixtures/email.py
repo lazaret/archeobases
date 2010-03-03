@@ -1,7 +1,6 @@
 """ Datas used for testing the `Email` model of the application."""
 
 
-
 class EmailData:
     """Datas used for testing the `Email` model"""
 

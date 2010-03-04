@@ -20,11 +20,10 @@ setup(
         'Pylons>=0.9.7',
         'SQLAlchemy>=0.5.8',
         'Mako>=0.2.4',
-        'Alchemy>=1.3.1',
+        'FormAlchemy>=1.3.1',
 #       'Babel>=0.9.4',
         'repoze.what-pylons>=1.0',
         'repoze.what-quickstart>=1.0.5',
-
     ],
     setup_requires=['PasteScript>=1.7.3'],
     packages=find_packages(exclude=['ez_setup']),

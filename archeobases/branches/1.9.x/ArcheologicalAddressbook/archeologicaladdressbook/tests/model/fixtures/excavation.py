@@ -13,7 +13,6 @@ class ExcavationData:
         appreciation = u'Good Job'
 
 
-
 class OrphanExcavationData:
     """Datas used for testing orphans constrain on the `Excavation` model."""
 

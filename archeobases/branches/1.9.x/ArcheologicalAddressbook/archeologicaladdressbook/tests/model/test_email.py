@@ -25,7 +25,10 @@ class TestEmailModel(TestModel):
         assert isinstance(email.email_type, unicode), '`email_type` column is missing or have changed.'
 
     def test_unique_constraint(self):
-        """ Test for unique constraint for the `Email` model."""
+        """ Test for unique constraint for the `Email` model.
+
+        Test the unique constraint on `person_id` and `email_address`.
+        """
         test_email = DuplicateEmailData.john_doe_mail()
         person = meta.Session.query(model.Person).filter_by().first()
         person.emails.append(
@@ -36,7 +39,7 @@ class TestEmailModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Email` unique constrain is missing.')
+            raise AssertionError('`Email` unique constrain on `person_id` and `email_address` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 

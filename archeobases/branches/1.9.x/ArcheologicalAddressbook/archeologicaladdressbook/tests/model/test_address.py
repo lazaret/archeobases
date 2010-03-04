@@ -29,7 +29,9 @@ class TestAddressModel(TestModel):
         assert isinstance(address.address_type, unicode), '`address_type` column is missing or have changed.'
 
     def test_unique_constraint(self):
-        """ Test for unique constraint for the `Address` model."""
+        """ Test for unique constraint for the `Address` model.
+
+        Test the unique constraint on `person_id` and `address_type`."""
         test_address = DuplicateAddressData.john_doe_address()
         person = meta.Session.query(model.Person).filter_by().first()
         person.addresses.append(
@@ -45,7 +47,7 @@ class TestAddressModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Address` unique constrain is missing.')
+            raise AssertionError('`Address` unique constrain on `person_id` and `address_type` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 

@@ -8,6 +8,7 @@ from archeologicaladdressbook.model import meta
 
 # data fixtures imports
 from archeologicaladdressbook.tests.model.fixtures.person import *
+from archeologicaladdressbook.tests.model.fixtures.voluntary_member import *
 from archeologicaladdressbook.tests.model.fixtures.address import *
 from archeologicaladdressbook.tests.model.fixtures.email import *
 from archeologicaladdressbook.tests.model.fixtures.excavation import *
@@ -32,16 +33,30 @@ def person_fixture():
         first_name = test_person.first_name,
         title = test_person.title,
         birth_date = test_person.birth_date,
-        activity = test_person.activity,
-        person_type = test_person.person_type
+        activity = test_person.activity
     )
     meta.Session.add(person)
     commit()
 
 
+def voluntary_member_fixture():
+    """ Add a voluntary member test fixture in the database."""
+    test_v_member = VoluntaryMemberData.john_smith()
+    v_member = model.VoluntaryMember(
+        last_name = test_v_member.last_name,
+        first_name = test_v_member.first_name,
+        title = test_v_member.title,
+        birth_date = test_v_member.birth_date,
+        activity = test_v_member.activity,
+        member_number = test_v_member.member_number,
+        last_fee_date = test_v_member.last_fee_date
+    )
+    meta.Session.add(v_member)
+    commit()
+
+
 def address_fixture():
     """ Add an address test fixture in the database."""
-    pass
     test_address = AddressData.john_doe_address()
     person = meta.Session.query(model.Person).filter_by().first()
     #person.addresses is a list of objects

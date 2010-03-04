@@ -24,7 +24,10 @@ class TestPhotoModel(TestModel):
         assert isinstance(photo.path, unicode), '`path` column is missing or have changed.'
 
     def test_unique_constraint(self):
-        """ Test for unique constraint for the `Photo` model."""
+        """ Test for unique constraint for the `Photo` model.
+
+        Test the unique constraint on `path`.
+        """
         test_photo = DuplicatePhotoData.john_doe_photo()
         person = meta.Session.query(model.Person).filter_by().first()
         person.photos.append(
@@ -34,7 +37,7 @@ class TestPhotoModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Photo` unique constrain is missing.')
+            raise AssertionError('`Photo` unique constrain on `path` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 

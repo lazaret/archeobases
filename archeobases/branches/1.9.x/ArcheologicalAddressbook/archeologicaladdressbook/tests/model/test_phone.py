@@ -26,7 +26,10 @@ class TestPhoneModel(TestModel):
         assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or have changed.'
 
     def test_unique_constraint(self):
-        """ Test for unique constraint for the `Phone` model."""
+        """ Test for unique constraint for the `Phone` model.
+
+        Test the unique constraint on `person_id` and `phone_number`.
+        """
         test_phone = DuplicatePhoneData.john_doe_phone()
         person = meta.Session.query(model.Person).filter_by().first()
         person.phones.append(
@@ -37,7 +40,7 @@ class TestPhoneModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Phone` unique constrain is missing.')
+            raise AssertionError('`Phone` unique constrain `person_id` and `phone_number` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 

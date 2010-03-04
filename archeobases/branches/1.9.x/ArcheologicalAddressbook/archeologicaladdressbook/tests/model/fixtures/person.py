@@ -12,7 +12,6 @@ class PersonData:
         title = u'Mr'
         birth_date = datetime.date(1969, 9, 6)
         activity = u'Test person 1'
-        person_type = u'Voluntary Member'
 
 
 class DuplicatePersonData:
@@ -24,4 +23,3 @@ class DuplicatePersonData:
         title = u'Mrs'
         birth_date = PersonData.john_doe.birth_date
         activity = u'Test person 2'
-        person_type = u'Voluntary Member'

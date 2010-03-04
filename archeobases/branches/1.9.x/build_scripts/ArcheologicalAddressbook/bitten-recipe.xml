@@ -1,0 +1,36 @@
+<build description="Building ArcheologicalAddressbook" revision="${revision}" path="${path}"
+    xmlns:python="http://bitten.cmlenz.net/tools/python"
+    xmlns:sh="http://bitten.cmlenz.net/tools/sh">
+
+  <step id="Checkout" description="Subversion checkout">
+    <sh:exec executable="echo" args="Subversion checkout"/>
+    <sh:exec executable="svn" args="co http://lazaret.unice.fr/svn/${path} . -r ${revision} --quiet"/>
+  </step>
+
+  <step id="Sdist" description="Build source distribution"  onerror="continue">
+    <sh:exec executable="echo" args="Building source distribution"/>
+    <python:distutils command="sdist"/>
+  </step>
+
+  <step id="Bdist_egg" description="Build egg packages" onerror="continue">
+    <sh:exec executable="echo" args="Building egg package"/>
+    <python:distutils command="bdist_egg"/>
+  </step>
+
+  <step id="Test" description="Execute tests" onerror="continue">
+    <sh:exec executable="echo" args="Execute tests"/>
+      <python:distutils command="unittest" options="
+      --xml-output build/test-results.xml
+      --coverage-summary build/test-coverage.txt
+      --coverage-dir build/coverage"/>
+      <python:unittest file="build/test-results.xml"/>
+      <python:trace summary="build/test-coverage.txt"
+      coverdir="build/coverage"/>
+  </step>
+
+  <step id="Pylint" description="Pylint check" onerror="ignore">
+    <sh:exec executable="pylint" args="--rcfile=pylint.rc bego" output="build/pylint-results.out"/>
+    <python:pylint file="build/pylint-results.out"/>
+  </step>
+
+</build>

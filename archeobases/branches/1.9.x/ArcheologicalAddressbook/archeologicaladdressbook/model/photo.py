@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ SQLAlchemy model definition for photos."""
 
 import sqlalchemy as sa

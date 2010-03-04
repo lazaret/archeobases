@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Testing fixtures used to test the application model."""
 
 import datetime

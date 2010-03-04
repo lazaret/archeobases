@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ SQLAlchemy model definition for log changes in the database."""
 
 import sqlalchemy as sa

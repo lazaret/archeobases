@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Pylons middleware initialization"""
 from beaker.middleware import CacheMiddleware, SessionMiddleware
 from paste.cascade import Cascade

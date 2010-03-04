@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Root controler fonctional tests."""
 
 from archeologicaladdressbook.tests import *

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ SQLAlchemy model definition for emails."""
 
 import sqlalchemy as sa

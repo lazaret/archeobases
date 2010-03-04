@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ The application's model objects."""
 
 import sqlalchemy as sa

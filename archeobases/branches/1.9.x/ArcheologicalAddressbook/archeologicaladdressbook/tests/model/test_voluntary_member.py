@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Unit test cases for the `VoluntaryMember` model."""
 
 import datetime

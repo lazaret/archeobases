@@ -1,4 +1,4 @@
-""" Unit test cases for the ``Person`` model."""
+""" Unit test cases for the `Person` model."""
 
 import datetime
 import sqlalchemy as sa
@@ -10,7 +10,7 @@ from archeologicaladdressbook.tests.model.fixtures import *
 
 
 class TestPersonModel(TestModel):
-    """ Unit test cases for the ``Person`` model."""
+    """ Unit test cases for the `Person` model."""
 
     def test_columns(self):
         """ Test the `Person` model columns and types."""
@@ -24,20 +24,22 @@ class TestPersonModel(TestModel):
         assert isinstance(person.person_type, unicode), '`person_type` column is missing or have changed.'
 
     def test_unique_constraint(self):
-        """ Test for unique constraint for the `Person` model."""
+        """ Test for unique constraint for the `Person` model.
+
+        Test the unique constraint on `last_name`, `first_name` and `birth_date`.
+        """
         test_person = DuplicatePersonData.john_doe()
         person = model.Person(
             last_name = test_person.last_name,
             first_name = test_person.first_name,
             title = test_person.title,
             birth_date = test_person.birth_date,
-            activity = test_person.activity,
-            person_type = test_person.person_type
+            activity = test_person.activity
         )
         meta.Session.add(person)
         try:
             meta.Session.commit()
-            raise AssertionError('`Person` unique constrain is missing.')
+            raise AssertionError('`Person` unique constrain on `last_name`, `first_name` and `birth_date` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 

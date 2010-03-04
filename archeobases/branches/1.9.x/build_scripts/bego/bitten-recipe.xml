@@ -1,4 +1,4 @@
-<build description="Building bego" revision="${revision}" path="${path}"
+<build description="Building ArcheologicalAddressbook" revision="${revision}" path="${path}"
     xmlns:python="http://bitten.cmlenz.net/tools/python"
     xmlns:sh="http://bitten.cmlenz.net/tools/sh">
 

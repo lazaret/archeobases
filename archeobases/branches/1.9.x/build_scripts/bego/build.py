@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 ## WARNING: This file is generated
-#!/usr/bin/env python
 """Create a "virtual" Python installation with packages required for a Pylons project.
 """
 # See `after_install` for installed packages in the environment
@@ -937,26 +936,29 @@ def after_install(options, home_dir):
     print "=> Install Pylons"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'Pylons'], stdout=devnull)
-    print "=> Install Webhelpers devel"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'http://bitbucket.org/bbangert/webhelpers/get/8658ea32d22a.gz'], stdout=devnull)
+    #print "=> Install Webhelpers devel"
+    #subprocess.call([join(home_dir, 'bin', 'easy_install'),
+    #                'http://bitbucket.org/bbangert/webhelpers/get/8658ea32d22a.gz'], stdout=devnull)
     print "=> Install Babel"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'Babel'], stdout=devnull)
     print "=> Install SQLAlchemy"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'SQLalchemy'], stdout=devnull)
+    print "=> Install FormAlchemy"
+    subprocess.call([join(home_dir, 'bin', 'easy_install'),
+                    'FormAlchemy'], stdout=devnull)
     print "=> Install repoze.what"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'repoze.what-pylons'], stdout=devnull)
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'repoze.what-quickstart'], stdout=devnull)
-    print "=> Install Python Image Library"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'http://dist.repoze.org/PIL-1.1.6.tar.gz'], stdout=devnull)
-    print "=> Install iw.thumbs"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'iw.thumbs'], stdout=devnull)
+    #print "=> Install Python Image Library"
+    #subprocess.call([join(home_dir, 'bin', 'easy_install'),
+    #                'http://dist.repoze.org/PIL-1.1.6.tar.gz'], stdout=devnull)
+    #print "=> Install iw.thumbs"
+    #subprocess.call([join(home_dir, 'bin', 'easy_install'),
+    #                'iw.thumbs'], stdout=devnull)
     # kwalytee and build tools install
     print "=> Install Pylint"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),

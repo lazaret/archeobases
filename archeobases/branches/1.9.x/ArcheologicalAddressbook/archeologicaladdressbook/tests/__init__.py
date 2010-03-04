@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Pylons application test package
 
 This package assumes the Pylons environment is already loaded, such as

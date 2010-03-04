@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Unit test cases for the ``Email`` model."""
 
 import sqlalchemy as sa

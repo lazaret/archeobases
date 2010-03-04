@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ SQLAlchemy model definition for persons and voluntary members.
 
 `voluntary_member` is a joined table inheritence of `person`.

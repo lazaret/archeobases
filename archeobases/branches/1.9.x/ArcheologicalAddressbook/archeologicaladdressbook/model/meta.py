@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ SQLAlchemy Metadata and Session object."""
 
 from sqlalchemy.ext.declarative import declarative_base

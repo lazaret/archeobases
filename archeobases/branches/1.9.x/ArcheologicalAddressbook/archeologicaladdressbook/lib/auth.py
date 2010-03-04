@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Auth & Auth middleware."""
 
 from repoze.what.plugins.quickstart import setup_sql_auth

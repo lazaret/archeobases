@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ SQLAlchemy model definition for addresses."""
 
 import sqlalchemy as sa

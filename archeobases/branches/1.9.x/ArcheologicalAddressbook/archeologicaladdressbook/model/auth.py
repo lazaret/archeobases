@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """SQLAlchemy model definition for authentification and authorization with
 the repoze.what SQL plugin.
 

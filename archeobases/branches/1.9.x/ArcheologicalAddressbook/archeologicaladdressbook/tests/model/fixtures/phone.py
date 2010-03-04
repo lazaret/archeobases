@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Datas used for testing the `Phone` model of the application."""
 
 

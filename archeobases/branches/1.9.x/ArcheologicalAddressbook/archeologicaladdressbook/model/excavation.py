@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ SQLAlchemy model definition for excavation sites."""
 
 import sqlalchemy as sa

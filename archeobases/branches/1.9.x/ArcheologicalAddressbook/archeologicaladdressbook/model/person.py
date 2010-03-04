@@ -1,4 +1,7 @@
-""" SQLAlchemy model definition for persons and voluntary members."""
+""" SQLAlchemy model definition for persons and voluntary members.
+
+`voluntary_member` is a joined table inheritence of `person`.
+"""
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -18,17 +21,14 @@ class Person(meta.DeclarativeBase):
     __tablename__ = 'person'
     __table_args__  = (sa.UniqueConstraint('last_name', 'first_name', 'birth_date'), {})
 
-    # Parent table
-
     person_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
     last_name = sa.Column(sa.types.Unicode(25), nullable=False, index=True)
     first_name = sa.Column(sa.types.Unicode(25), nullable=False)
-    # Mrs/Ms/Mr/Pr/Dr/Esq...
-    title = sa.Column(sa.types.Unicode(25))
+    title = sa.Column(sa.types.Unicode(25))                         # Mrs/Ms/Mr/Pr/Dr/Esq...
     birth_date = sa.Column(sa.types.Date, nullable=False)
-    # Work/studies...
-    activity = sa.Column(sa.types.Unicode(25), nullable=False)
-    person_type = sa.Column(sa.types.Unicode(16))
+    activity = sa.Column(sa.types.Unicode(25), nullable=False)     # Work/studies...
+    # discriminator used for inheritance and polymorphism
+    person_type = sa.Column(sa.types.Unicode(16), nullable=False)
 
     # child relations
     addresses = relation(Address, backref='person', cascade='all, delete-orphan')
@@ -37,18 +37,16 @@ class Person(meta.DeclarativeBase):
     phones = relation(Phone, backref='person', cascade='all, delete-orphan')
     photos = relation(Photo, backref='person', cascade='all, delete-orphan')
 
-    __mapper_args__ = {'polymorphic_on': person_type,
-                       'polymorphic_identity': 'Person'}
+    # add polymorphism args for joined table inheritence with `VoluntaryMember`
+    __mapper_args__ = {'polymorphic_on': person_type, 'polymorphic_identity': u'person'}
 
 
 class VoluntaryMember(Person):
     """ VoluntaryMember model definition."""
     __tablename__ = 'voluntary_member'
-    __mapper_args__ = {'polymorphic_identity': 'voluntary_member'}
+    __table_args__  = (sa.UniqueConstraint('member_number'), {})
+    __mapper_args__ = {'polymorphic_identity': u'voluntary_member'}
 
-    # Child table
-
-    member_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id', onupdate="CASCADE", ondelete="CASCADE"))
+    person_id = sa.Column(sa.types.Integer,sa.ForeignKey('person.person_id'), primary_key=True)
     member_number = sa.Column(sa.types.Integer, nullable=False)
     last_fee_date = sa.Column(sa.types.Date, nullable=False)

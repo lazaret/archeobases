@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-""" Datas used for testing the `Photo` model of the application."""
+""" data used for testing the `Photo` model of the application."""
 
 
 class PhotoData:
-    """Datas used for testing the `Photo` model"""
+    """data used for testing the `Photo` model"""
 
     class john_doe_photo:
         path = u'000/000/0000000000000000000000000000000000.jpg'
 
 
 class DuplicatePhotoData:
-    """Datas used for testing unique constraint on the `Photo` model."""
+    """data used for testing the unique constraint on the `Photo` model."""
 
     class john_doe_photo:
         path = PhotoData.john_doe_photo.path
 
 
 class OrphanPhotoData:
-    """Datas used for testing orphans constraint on the `Photo` model."""
+    """data used for testing the orphans constraint on the `Photo` model."""
 
     class john_smith_photo:
         path = u'FFF/FFF/0000000000000000000000000000000000.jpg'

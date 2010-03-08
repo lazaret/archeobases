@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-""" Datas used for testing the `Email` model of the application."""
+""" data used for testing the `Email` model of the application."""
 
 
 class EmailData:
-    """Datas used for testing the `Email` model"""
+    """data used for testing the `Email` model"""
 
     class john_doe_mail:
         email_address = u'john.doe@work.com'
@@ -11,7 +11,7 @@ class EmailData:
 
 
 class DuplicateEmailData:
-    """Datas used for testing unique constraint on the `Email` model."""
+    """data used for testing the unique constraint on the `Email` model."""
 
     class john_doe_mail:
         email_address = EmailData.john_doe_mail.email_address
@@ -19,7 +19,7 @@ class DuplicateEmailData:
 
 
 class OrphanEmailData:
-    """Datas used for testing orphans constraint on the `Email` model."""
+    """data used for testing the orphans constraint on the `Email` model."""
 
     class john_smith_mail:
         email_address = u'john.smith@home.net'

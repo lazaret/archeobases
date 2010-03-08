@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-""" Datas used for testing the `Phone` model of the application."""
+""" data used for testing the `Phone` model of the application."""
 
 
 class AddressData:
-    """Datas used for testing the `Address` model"""
+    """data used for testing the `Address` model"""
 
     class john_doe_address:
         address_line1 = u'The Test Company'
@@ -16,7 +16,7 @@ class AddressData:
 
 
 class DuplicateAddressData:
-    """Datas used for testing unique constraintt on the `Address` model."""
+    """data used for testing the unique constraint on the `Address` model."""
 
     class john_doe_address:
         address_line1 = u'The Test Organisation'
@@ -29,7 +29,7 @@ class DuplicateAddressData:
 
 
 class OrphanAddressData:
-    """Datas used for testing orphans constraint on the `Address` model."""
+    """data used for testing the orphans constraint on the `Address` model."""
 
     class john_smith_address:
         address_line1 = u'Some Random Village'

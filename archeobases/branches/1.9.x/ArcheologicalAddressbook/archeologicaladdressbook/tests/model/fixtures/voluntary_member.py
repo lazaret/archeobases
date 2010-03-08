@@ -18,7 +18,7 @@ class VoluntaryMemberData:
 
 
 class DuplicateVoluntaryMemberData:
-    """ Datas used for testing unique constrain on the `VoluntaryMember` model."""
+    """ Datas used for testing unique constraint on the `VoluntaryMember` model."""
 
     class mary_johnes:
         last_name = u'Johnes'

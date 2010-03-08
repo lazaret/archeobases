@@ -16,7 +16,7 @@ class AddressData:
 
 
 class DuplicateAddressData:
-    """Datas used for testing unique constrain on the `Address` model."""
+    """Datas used for testing unique constraintt on the `Address` model."""
 
     class john_doe_address:
         address_line1 = u'The Test Organisation'
@@ -29,7 +29,7 @@ class DuplicateAddressData:
 
 
 class OrphanAddressData:
-    """Datas used for testing orphans constrain on the `Address` model."""
+    """Datas used for testing orphans constraint on the `Address` model."""
 
     class john_smith_address:
         address_line1 = u'Some Random Village'

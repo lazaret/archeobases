@@ -16,13 +16,13 @@ class TestPersonModel(TestModel):
     def test_columns(self):
         """ Test the `Person` model columns and types."""
         person = meta.Session.query(model.Person).filter_by().first()
-        assert isinstance(person.person_id, int), '`person_id` column is missing or have changed.'
-        assert isinstance(person.last_name, unicode), '`last_name` column is missing or have changed.'
-        assert isinstance(person.first_name, unicode), '`first_name` column is missing or have changed.'
-        assert isinstance(person.title, unicode), '`title` column is missing or have changed.'
-        assert isinstance(person.birth_date, datetime.date), '`birth_date` column is missing or have changed.'
-        assert isinstance(person.activity, unicode), '`activity` column is missing or have changed.'
-        assert isinstance(person.person_type, unicode), '`person_type` column is missing or have changed.'
+        assert isinstance(person.person_id, int), '`person_id` column is missing or has changed.'
+        assert isinstance(person.last_name, unicode), '`last_name` column is missing or has changed.'
+        assert isinstance(person.first_name, unicode), '`first_name` column is missing or has changed.'
+        assert isinstance(person.title, unicode), '`title` column is missing or has changed.'
+        assert isinstance(person.birth_date, datetime.date), '`birth_date` column is missing or has changed.'
+        assert isinstance(person.activity, unicode), '`activity` column is missing or has changed.'
+        assert isinstance(person.person_type, unicode), '`person_type` column is missing or has changed.'
 
     def test_unique_constraint(self):
         """ Test for unique constraint for the `Person` model.
@@ -40,12 +40,12 @@ class TestPersonModel(TestModel):
         meta.Session.add(person)
         try:
             meta.Session.commit()
-            raise AssertionError('`Person` unique constrain on `last_name`, `first_name` and `birth_date` is missing.')
+            raise AssertionError('`Person` unique constraint on `last_name`, `first_name` and `birth_date` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 
     def test_child_relations(self):
-        """ Test the `Person` model childs relations."""
+        """ Test the `Person` model child relations."""
         address_fixture()
         email_fixture()
         phone_fixture()

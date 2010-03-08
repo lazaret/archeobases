@@ -20,11 +20,11 @@ class TestPhoneModel(TestModel):
     def test_columns(self):
         """ Test the `Phone` model columns and types."""
         phone = meta.Session.query(model.Phone).filter_by().first()
-        assert isinstance(phone.phone_id, int), '`phone_id` column is missing or have changed.'
-        assert isinstance(phone.person_id, int), '`person_id` column is missing or have changed.'
-        #assert isinstance(phone.prefix, int), '`prefix` column is missing or have changed.'
-        assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or have changed.'
-        assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or have changed.'
+        assert isinstance(phone.phone_id, int), '`phone_id` column is missing or has changed.'
+        assert isinstance(phone.person_id, int), '`person_id` column is missing or has changed.'
+        #assert isinstance(phone.prefix, int), '`prefix` column is missing or has changed.'
+        assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or has changed.'
+        assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or has changed.'
 
     def test_unique_constraint(self):
         """ Test for unique constraint for the `Phone` model.
@@ -41,7 +41,7 @@ class TestPhoneModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Phone` unique constrain `person_id` and `phone_number` is missing.')
+            raise AssertionError('`Phone` unique constraint `person_id` and `phone_number` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 
@@ -59,7 +59,7 @@ class TestPhoneModel(TestModel):
         assert phones == 0
 
     def test_orphans(self):
-        """ Test than orphans are forbiden for the `Phone` model."""
+        """ Test that orphans are forbidden for the `Phone` model."""
         test_phone = OrphanPhoneData.john_smith_phone()
         phone = model.Phone(
             phone_number = test_phone.phone_number,
@@ -68,7 +68,7 @@ class TestPhoneModel(TestModel):
         meta.Session.add(phone)
         try:
             meta.Session.commit()
-            raise AssertionError('`Phone` delete-orphans constrain is missing.')
+            raise AssertionError('`Phone` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             meta.Session.rollback()
 

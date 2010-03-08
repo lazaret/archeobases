@@ -21,12 +21,12 @@ class TestExcavationModel(TestModel):
     def test_columns(self):
         """ Test the `Excavation` model columns and types."""
         excavation = meta.Session.query(model.Excavation).filter_by().first()
-        assert isinstance(excavation.excavation_id, int), '`excavation_id` column is missing or have changed.'
-        assert isinstance(excavation.person_id, int), '`person_id` column is missing or have changed.'
-        assert isinstance(excavation.site_name, unicode), '`site_name` column is missing or have changed.'
-        assert isinstance(excavation.start_date, datetime.date), '`birth_date` column is missing or have changed.'
-        assert isinstance(excavation.end_date, datetime.date), '`birth_date` column is missing or have changed.'
-        assert isinstance(excavation.appreciation, unicode), '`appreciation` column is missing or have changed.'
+        assert isinstance(excavation.excavation_id, int), '`excavation_id` column is missing or has changed.'
+        assert isinstance(excavation.person_id, int), '`person_id` column is missing or has changed.'
+        assert isinstance(excavation.site_name, unicode), '`site_name` column is missing or has changed.'
+        assert isinstance(excavation.start_date, datetime.date), '`start_date` column is missing or has changed.'
+        assert isinstance(excavation.end_date, datetime.date), '`end_date` column is missing or has changed.'
+        assert isinstance(excavation.appreciation, unicode), '`appreciation` column is missing or has changed.'
 
     def test_parent_relation(self):
         """ Test the `Excavation` model parent relation."""
@@ -42,7 +42,7 @@ class TestExcavationModel(TestModel):
         assert excavations == 0
 
     def test_orphans(self):
-        """ Test than orphans are forbiden for the `Excavation` model."""
+        """ Test that orphans are forbidden for the `Excavation` model."""
         test_excavation = OrphanExcavationData.excavation_site_2()
         excavation = model.Excavation(
             site_name = test_excavation.site_name,
@@ -53,7 +53,7 @@ class TestExcavationModel(TestModel):
         meta.Session.add(excavation)
         try:
             meta.Session.commit()
-            raise AssertionError('`Excavation` delete-orphans constrain is missing.')
+            raise AssertionError('`Excavation` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             meta.Session.rollback()
 

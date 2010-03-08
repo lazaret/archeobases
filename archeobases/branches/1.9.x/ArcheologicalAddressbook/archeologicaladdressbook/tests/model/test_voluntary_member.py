@@ -21,18 +21,18 @@ class TestVoluntaryMemberModel(TestModel):
     def test_columns(self):
         """ Test the `VoluntaryMember` model columns and types."""
         v_member = meta.Session.query(model.VoluntaryMember).filter_by().first()
-        assert isinstance(v_member.person_id, int), '`person_id` column is missing or have changed.'
-        assert isinstance(v_member.last_name, unicode), '`last_name` column is missing or have changed.'
-        assert isinstance(v_member.first_name, unicode), '`first_name` column is missing or have changed.'
-        assert isinstance(v_member.title, unicode), '`title` column is missing or have changed.'
-        assert isinstance(v_member.birth_date, datetime.date), '`birth_date` column is missing or have changed.'
-        assert isinstance(v_member.activity, unicode), '`activity` column is missing or have changed.'
-        assert isinstance(v_member.person_type, unicode), '`person_type` column is missing or have changed.'
-        assert isinstance(v_member.member_number, int), '`member_number` column is missing or have changed.'
-        assert isinstance(v_member.last_fee_date, datetime.date), '`last_fee_date` column is missing or have changed.'
+        assert isinstance(v_member.person_id, int), '`person_id` column is missing or has changed.'
+        assert isinstance(v_member.last_name, unicode), '`last_name` column is missing or has changed.'
+        assert isinstance(v_member.first_name, unicode), '`first_name` column is missing or has changed.'
+        assert isinstance(v_member.title, unicode), '`title` column is missing or has changed.'
+        assert isinstance(v_member.birth_date, datetime.date), '`birth_date` column is missing or has changed.'
+        assert isinstance(v_member.activity, unicode), '`activity` column is missing or has changed.'
+        assert isinstance(v_member.person_type, unicode), '`person_type` column is missing or has changed.'
+        assert isinstance(v_member.member_number, int), '`member_number` column is missing or has changed.'
+        assert isinstance(v_member.last_fee_date, datetime.date), '`last_fee_date` column is missing or has changed.'
 
     def test_inherinting(self):
-        """ Test than `VoluntaryMember` model inherit from `Person` model."""
+        """ Test that `VoluntaryMember` model inherit from `Person` model."""
         test_v_member = VoluntaryMemberData.john_smith()
         person = meta.Session.query(model.Person).filter_by(last_name=test_v_member.last_name).one()
         v_member = meta.Session.query(model.VoluntaryMember).filter_by(last_name=test_v_member.last_name).one()
@@ -56,7 +56,7 @@ class TestVoluntaryMemberModel(TestModel):
         meta.Session.add(v_member)
         try:
             meta.Session.commit()
-            raise AssertionError('`VoluntaryMember` unique constrain on `member_number` is missing.')
+            raise AssertionError('`VoluntaryMember` unique constraint on `member_number` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 
@@ -69,6 +69,6 @@ class TestVoluntaryMemberModel(TestModel):
         assert person == 0
 
 
-# `VoluntaryMember` childs relations are not tested as the test for this in test_person.py may be sufficient
+# `VoluntaryMember` child relations are not tested as the test for this in test_person.py may be sufficient
 
 

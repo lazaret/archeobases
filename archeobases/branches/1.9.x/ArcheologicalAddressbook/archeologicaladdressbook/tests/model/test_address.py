@@ -20,14 +20,14 @@ class TestAddressModel(TestModel):
     def test_columns(self):
         """ Test the `Address` model columns and types."""
         address = meta.Session.query(model.Address).filter_by().first()
-        assert isinstance(address.address_id, int), '`address_id` column is missing or have changed.'
-        assert isinstance(address.person_id, int), '`person_id` column is missing or have changed.'
-        assert isinstance(address.address_line1, unicode), '`address_line1` column is missing or have changed.'
-        assert isinstance(address.address_line2, unicode), '`address_line2` column is missing or have changed.'
-        assert isinstance(address.address_line3, unicode), '`address_line3` column is missing or have changed.'
-        assert isinstance(address.zip_code, unicode), '`zip_code` column is missing or have changed.'
-        assert isinstance(address.country, unicode), '`country` column is missing or have changed.'
-        assert isinstance(address.address_type, unicode), '`address_type` column is missing or have changed.'
+        assert isinstance(address.address_id, int), '`address_id` column is missing or has changed.'
+        assert isinstance(address.person_id, int), '`person_id` column is missing or has changed.'
+        assert isinstance(address.address_line1, unicode), '`address_line1` column is missing or has changed.'
+        assert isinstance(address.address_line2, unicode), '`address_line2` column is missing or has changed.'
+        assert isinstance(address.address_line3, unicode), '`address_line3` column is missing or has changed.'
+        assert isinstance(address.zip_code, unicode), '`zip_code` column is missing or has changed.'
+        assert isinstance(address.country, unicode), '`country` column is missing or has changed.'
+        assert isinstance(address.address_type, unicode), '`address_type` column is missing or has changed.'
 
     def test_unique_constraint(self):
         """ Test for unique constraint for the `Address` model.
@@ -48,7 +48,7 @@ class TestAddressModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Address` unique constrain on `person_id` and `address_type` is missing.')
+            raise AssertionError('`Address` unique constraint on `person_id` and `address_type` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 
@@ -66,7 +66,7 @@ class TestAddressModel(TestModel):
         assert addresses == 0
 
     def test_orphans(self):
-        """ Test than orphans are forbiden for the `Address` model."""
+        """ Test that orphans are forbidden for the `Address` model."""
         test_address = OrphanAddressData.john_smith_address()
         address = model.Address(
             address_line1 = test_address.address_line1,
@@ -80,7 +80,7 @@ class TestAddressModel(TestModel):
         meta.Session.add(address)
         try:
             meta.Session.commit()
-            raise AssertionError('`Address` delete-orphans constrain is missing.')
+            raise AssertionError('`Address` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             meta.Session.rollback()
 

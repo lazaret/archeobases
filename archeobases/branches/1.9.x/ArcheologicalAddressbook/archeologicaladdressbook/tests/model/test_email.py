@@ -20,10 +20,10 @@ class TestEmailModel(TestModel):
     def test_columns(self):
         """ Test the `Email` model columns and types."""
         email = meta.Session.query(model.Email).filter_by().first()
-        assert isinstance(email.email_id, int), '`email_id` column is missing or have changed.'
-        assert isinstance(email.person_id, int), '`person_id` column is missing or have changed.'
-        assert isinstance(email.email_address, unicode), '`email_address` column is missing or have changed.'
-        assert isinstance(email.email_type, unicode), '`email_type` column is missing or have changed.'
+        assert isinstance(email.email_id, int), '`email_id` column is missing or has changed.'
+        assert isinstance(email.person_id, int), '`person_id` column is missing or has changed.'
+        assert isinstance(email.email_address, unicode), '`email_address` column is missing or has changed.'
+        assert isinstance(email.email_type, unicode), '`email_type` column is missing or has changed.'
 
     def test_unique_constraint(self):
         """ Test for unique constraint for the `Email` model.
@@ -40,7 +40,7 @@ class TestEmailModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Email` unique constrain on `person_id` and `email_address` is missing.')
+            raise AssertionError('`Email` unique constraint on `person_id` and `email_address` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 
@@ -58,7 +58,7 @@ class TestEmailModel(TestModel):
         assert emails == 0
 
     def test_orphans(self):
-        """ Test than orphans are forbiden for the `Email` model."""
+        """ Test that orphans are forbidden for the `Email` model."""
         test_email = OrphanEmailData.john_smith_mail()
         email = model.Email(
             email_address = test_email.email_address,
@@ -67,7 +67,7 @@ class TestEmailModel(TestModel):
         meta.Session.add(email)
         try:
             meta.Session.commit()
-            raise AssertionError('`Email` delete-orphans constrain is missing.')
+            raise AssertionError('`Email` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             meta.Session.rollback()
 

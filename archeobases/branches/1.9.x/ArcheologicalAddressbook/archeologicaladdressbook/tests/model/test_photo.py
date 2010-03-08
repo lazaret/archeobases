@@ -20,9 +20,9 @@ class TestPhotoModel(TestModel):
     def test_columns(self):
         """ Test the `Photo` model columns and types."""
         photo = meta.Session.query(model.Photo).filter_by().first()
-        assert isinstance(photo.photo_id, int), '`photo_id` column is missing or have changed.'
-        assert isinstance(photo.person_id, int), '`person_id` column is missing or have changed.'
-        assert isinstance(photo.path, unicode), '`path` column is missing or have changed.'
+        assert isinstance(photo.photo_id, int), '`photo_id` column is missing or has changed.'
+        assert isinstance(photo.person_id, int), '`person_id` column is missing or has changed.'
+        assert isinstance(photo.path, unicode), '`path` column is missing or has changed.'
 
     def test_unique_constraint(self):
         """ Test for unique constraint for the `Photo` model.
@@ -38,7 +38,7 @@ class TestPhotoModel(TestModel):
         )
         try:
             meta.Session.commit()
-            raise AssertionError('`Photo` unique constrain on `path` is missing.')
+            raise AssertionError('`Photo` unique constraint on `path` is missing.')
         except sa.exc.IntegrityError:
             meta.Session.rollback()
 
@@ -56,7 +56,7 @@ class TestPhotoModel(TestModel):
         assert photos == 0
 
     def test_orphans(self):
-        """ Test than orphans are forbiden for the `Photo` model."""
+        """ Test that orphans are forbidden for the `Photo` model."""
         test_photo = OrphanPhotoData.john_smith_photo()
         photo = model.Photo(
             path = test_photo.path
@@ -64,7 +64,7 @@ class TestPhotoModel(TestModel):
         meta.Session.add(photo)
         try:
             meta.Session.commit()
-            raise AssertionError('`Photo` delete-orphans constrain is missing.')
+            raise AssertionError('`Photo` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             meta.Session.rollback()
 

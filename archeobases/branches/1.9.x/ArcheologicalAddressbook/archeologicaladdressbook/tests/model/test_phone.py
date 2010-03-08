@@ -24,7 +24,7 @@ class TestPhoneModel(TestModel):
         assert isinstance(phone.person_id, int), '`person_id` column is missing or has changed.'
         #assert isinstance(phone.prefix, int), '`prefix` column is missing or has changed.'
         assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or has changed.'
-        assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or has changed.'
+        assert isinstance(phone.phone_type, unicode), '`phone_type` column is missing or has changed.'
 
     def test_unique_constraint(self):
         """ Test for unique constraint for the `Phone` model.

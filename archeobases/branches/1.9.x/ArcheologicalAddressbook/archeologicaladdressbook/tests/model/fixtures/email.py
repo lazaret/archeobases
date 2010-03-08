@@ -11,7 +11,7 @@ class EmailData:
 
 
 class DuplicateEmailData:
-    """Datas used for testing unique constrain on the `Email` model."""
+    """Datas used for testing unique constraint on the `Email` model."""
 
     class john_doe_mail:
         email_address = EmailData.john_doe_mail.email_address
@@ -19,7 +19,7 @@ class DuplicateEmailData:
 
 
 class OrphanEmailData:
-    """Datas used for testing orphans constrain on the `Email` model."""
+    """Datas used for testing orphans constraint on the `Email` model."""
 
     class john_smith_mail:
         email_address = u'john.smith@home.net'

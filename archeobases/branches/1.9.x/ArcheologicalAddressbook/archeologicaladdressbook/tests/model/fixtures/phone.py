@@ -11,7 +11,7 @@ class PhoneData:
 
 
 class DuplicatePhoneData:
-    """Datas used for testing unique constrain on the `Phone` model."""
+    """Datas used for testing unique constraint on the `Phone` model."""
 
     class john_doe_phone:
         phone_number = PhoneData.john_doe_phone.phone_number
@@ -19,7 +19,7 @@ class DuplicatePhoneData:
 
 
 class OrphanPhoneData:
-    """Datas used for testing orphans constrain on the `Phone` model."""
+    """Datas used for testing orphans constraint on the `Phone` model."""
 
     class john_smith_phone:
         phone_number = u'00 01 02 03 04'

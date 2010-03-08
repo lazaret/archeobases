@@ -16,7 +16,7 @@ class PersonData:
 
 
 class DuplicatePersonData:
-    """ Datas used for testing unique constrain on the `Person` model."""
+    """ Datas used for testing unique constraint on the `Person` model."""
 
     class john_doe:
         last_name = PersonData.john_doe.last_name

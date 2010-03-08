@@ -10,14 +10,14 @@ class PhotoData:
 
 
 class DuplicatePhotoData:
-    """Datas used for testing unique constrain on the `Photo` model."""
+    """Datas used for testing unique constraint on the `Photo` model."""
 
     class john_doe_photo:
         path = PhotoData.john_doe_photo.path
 
 
 class OrphanPhotoData:
-    """Datas used for testing orphans constrain on the `Photo` model."""
+    """Datas used for testing orphans constraint on the `Photo` model."""
 
     class john_smith_photo:
         path = u'FFF/FFF/0000000000000000000000000000000000.jpg'

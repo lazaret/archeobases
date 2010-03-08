@@ -15,7 +15,7 @@ class ExcavationData:
 
 
 class OrphanExcavationData:
-    """Datas used for testing orphans constrain on the `Excavation` model."""
+    """Datas used for testing orphans constraint on the `Excavation` model."""
 
     class excavation_site_2:
         site_name = u'Excavation Site Two'

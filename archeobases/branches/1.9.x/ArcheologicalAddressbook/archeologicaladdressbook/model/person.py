@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ SQLAlchemy model definition for persons and voluntary members.
 
-`voluntary_member` is a joined table inheritence of `person`.
+`voluntary_member` is a joined table inheritance of `person`.
 """
 
 import sqlalchemy as sa
@@ -38,7 +38,7 @@ class Person(meta.DeclarativeBase):
     phones = relation(Phone, backref='person', cascade='all, delete-orphan')
     photos = relation(Photo, backref='person', cascade='all, delete-orphan')
 
-    # add polymorphism args for joined table inheritence with `VoluntaryMember`
+    # add polymorphism args for joined table inheritance with `VoluntaryMember`
     __mapper_args__ = {'polymorphic_on': person_type, 'polymorphic_identity': u'person'}
 
 

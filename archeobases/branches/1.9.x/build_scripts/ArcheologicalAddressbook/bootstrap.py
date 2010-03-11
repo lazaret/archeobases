@@ -931,43 +931,43 @@ def create_bootstrap_script(extra_text, python_version=''):
 def after_install(options, home_dir):
     devnull = open(os.devnull, 'w')
     # install packaging and testing tools
-    print "=> Update Setuptools"
+    print "=> Install pip"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    '-U', 'setuptools'], stdout=devnull)
-    print "=> Install Coverage"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'coverage'], stdout=devnull)
-    print "=> Install Nose"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'nose'], stdout=devnull)
-    print "=> Install Pylint"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'pylint'], stdout=devnull, stderr=devnull)
+                    'pip'], stdout=devnull)
+    print "=> Install coverage"
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'coverage'], stdout=devnull)
+    print "=> Install nose"
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'nose'], stdout=devnull)
+    print "=> Install pylint"
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'pylint'], stdout=devnull, stderr=devnull)
     print "=> Install Cheesecake"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'cheesecake'], stdout=devnull, stderr=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install Cheesecake'], stdout=devnull, stderr=devnull)
     print "=> Install Bitten"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'http://svn.edgewall.org/repos/bitten/trunk/'], stdout=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'http://svn.edgewall.org/repos/bitten/trunk/'], stdout=devnull)
     # install Pylons
     print "--------------------"
     print "=> Install Pylons"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'Pylons==0.9.7'], stdout=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'Pylons==0.9.7'], stdout=devnull)
     print "=> Install Babel"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'Babel'], stdout=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'Babel'], stdout=devnull)
     print "=> Install SQLAlchemy"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'SQLalchemy'], stdout=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'SQLalchemy'], stdout=devnull)
     print "=> Install FormAlchemy"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'FormAlchemy'], stdout=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'FormAlchemy'], stdout=devnull)
     print "=> Install repoze.what"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'repoze.what-pylons'], stdout=devnull)
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'repoze.what-quickstart'], stdout=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'repoze.what-pylons'], stdout=devnull)
+    subprocess.call([join(home_dir, 'bin', 'pip'),
+                    'install', 'repoze.what-quickstart'], stdout=devnull)
     print "You now have to activate the environment and lauch the bitten-slave"
     devnull.close()
 

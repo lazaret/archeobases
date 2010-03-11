@@ -930,15 +930,30 @@ def create_bootstrap_script(extra_text, python_version=''):
 
 def after_install(options, home_dir):
     devnull = open(os.devnull, 'w')
-    print "=> Install nose"
+    # install packaging and testing tools
+    print "=> Update Setuptools"
+    subprocess.call([join(home_dir, 'bin', 'easy_install'),
+                    '-U', 'setuptools'], stdout=devnull)
+    print "=> Install Coverage"
+    subprocess.call([join(home_dir, 'bin', 'easy_install'),
+                    'coverage'], stdout=devnull)
+    print "=> Install Nose"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'nose'], stdout=devnull)
+    print "=> Install Pylint"
+    subprocess.call([join(home_dir, 'bin', 'easy_install'),
+                    'pylint'], stdout=devnull, stderr=devnull)
+    print "=> Install Cheesecake"
+    subprocess.call([join(home_dir, 'bin', 'easy_install'),
+                    'cheesecake'], stdout=devnull, stderr=devnull)
+    print "=> Install Bitten"
+    subprocess.call([join(home_dir, 'bin', 'easy_install'),
+                    'http://svn.edgewall.org/repos/bitten/trunk/'], stdout=devnull)
+    # install Pylons
+    print "--------------------"
     print "=> Install Pylons"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'Pylons'], stdout=devnull)
-    #print "=> Install Webhelpers devel"
-    #subprocess.call([join(home_dir, 'bin', 'easy_install'),
-    #                'http://bitbucket.org/bbangert/webhelpers/get/8658ea32d22a.gz'], stdout=devnull)
+                    'Pylons==0.9.7'], stdout=devnull)
     print "=> Install Babel"
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'Babel'], stdout=devnull)
@@ -953,25 +968,7 @@ def after_install(options, home_dir):
                     'repoze.what-pylons'], stdout=devnull)
     subprocess.call([join(home_dir, 'bin', 'easy_install'),
                     'repoze.what-quickstart'], stdout=devnull)
-    #print "=> Install Python Image Library"
-    #subprocess.call([join(home_dir, 'bin', 'easy_install'),
-    #                'http://dist.repoze.org/PIL-1.1.6.tar.gz'], stdout=devnull)
-    #print "=> Install iw.thumbs"
-    #subprocess.call([join(home_dir, 'bin', 'easy_install'),
-    #                'iw.thumbs'], stdout=devnull)
-    # kwalytee and build tools install
-    print "=> Install Pylint"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'pylint'], stdout=devnull, stderr=devnull)
-    print "=> Install Bitten"
-    subprocess.call([join(home_dir, 'bin', 'easy_install'),
-                    'http://svn.edgewall.org/repos/bitten/trunk/'], stdout=devnull)
-    #run the bitten slave
-    print "=> Lauch bitten-slave"
-    subprocess.call([join(home_dir, 'bin', 'bitten-slave'),
-                    '--config=bitten-slave.ini',
-                    '--no-loop',
-                    'http://lazaret.unice.fr/opensource/builds'])
+    print "You now have to activate the environment and lauch the bitten-slave"
     devnull.close()
 
 

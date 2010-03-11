@@ -1,36 +1,53 @@
 <build description="Building ArcheologicalAddressbook" revision="${revision}" path="${path}"
-    xmlns:python="http://bitten.cmlenz.net/tools/python"
-    xmlns:sh="http://bitten.cmlenz.net/tools/sh">
+    xmlns:python="http://bitten.edgewall.org/tools/python"
+    xmlns:sh="http://bitten.edgewall.org/tools/sh">
 
-  <step id="Checkout" description="Subversion checkout">
-    <sh:exec executable="echo" args="Subversion checkout"/>
+  <step id="Svn checkout" description="Subversion checkout">
+    <sh:exec executable="echo" args="Subversion checkout at revision ${revision}"/>
     <sh:exec executable="svn" args="co http://lazaret.unice.fr/svn/${path} . -r ${revision} --quiet"/>
   </step>
 
-  <step id="Sdist" description="Build source distribution"  onerror="continue">
+  <step id="Source dist build" description="Build source distribution"  onerror="continue">
     <sh:exec executable="echo" args="Building source distribution"/>
     <python:distutils command="sdist"/>
   </step>
 
-  <step id="Bdist_egg" description="Build egg packages" onerror="continue">
+  <step id="Egg dist build" description="Build egg packages" onerror="continue">
     <sh:exec executable="echo" args="Building egg package"/>
     <python:distutils command="bdist_egg"/>
   </step>
 
-  <step id="Test" description="Execute tests" onerror="continue">
-    <sh:exec executable="echo" args="Execute tests"/>
-      <python:distutils command="unittest" options="
-      --xml-output build/test-results.xml
+  <step id="Tests" description="Execute tests" onerror="continue">
+    <sh:exec executable="echo" args="Runing tests"/>
+    <python:distutils command="unittest"
+      options="--xml-output build/test-results.xml
       --coverage-summary build/test-coverage.txt
-      --coverage-dir build/coverage"/>
-      <python:unittest file="build/test-results.xml"/>
-      <python:trace summary="build/test-coverage.txt"
-      coverdir="build/coverage"/>
+      --coverage-dir build/coverage
+      --coverage-method coverage" />
+    <python:unittest file="build/test-results.xml"/>
+    <python:coverage summary="build/test-coverage.txt"
+      coverdir="build/coverage"
+      include="archeologicaladdressbook/*"
+      exclude="*/tests/*" />
   </step>
 
   <step id="Pylint" description="Pylint check" onerror="ignore">
-    <sh:exec executable="pylint" args="--rcfile=pylint.rc bego" output="build/pylint-results.out"/>
+    <sh:exec executable="echo" args="Runing pylint"/>
+    <sh:exec executable="python"
+    args="-c 'from subprocess import call;
+              import sys;
+              ret = call([&quot;pylint&quot;,
+                          &quot;--rcfile=pylint.rc&quot;,
+                          &quot;archeologicaladdressbook&quot;]);
+              sys.exit(ret if (ret &gt; 31 or ret &lt; 0) else 0);'"
+    output="build/pylint-results.out"/>
     <python:pylint file="build/pylint-results.out"/>
+  </step>
+
+  <step id="Cheesecake" description="Compute Cheesecake index" onerror="ignore">
+    <sh:exec executable="echo" args="Running Cheesecake"/>
+    <sh:exec file="cheesecake_index"
+      args="--path=dist/ArcheologicalAddressbook-1.9.a1dev-r${revision}.tar.gz"/>
   </step>
 
 </build>

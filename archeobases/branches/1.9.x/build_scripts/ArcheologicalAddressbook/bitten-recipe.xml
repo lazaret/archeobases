@@ -2,19 +2,19 @@
     xmlns:python="http://bitten.edgewall.org/tools/python"
     xmlns:sh="http://bitten.edgewall.org/tools/sh">
 
-  <step id="Svn checkout" description="Subversion checkout">
+  <step id="Checkout" description="Subversion checkout">
     <sh:exec executable="echo" args="Subversion checkout at revision ${revision}"/>
     <sh:exec executable="svn" args="co http://lazaret.unice.fr/svn/${path} . -r ${revision} --quiet"/>
   </step>
 
-  <step id="Source dist build" description="Build source distribution"  onerror="continue">
-    <sh:exec executable="echo" args="Building source distribution"/>
-    <python:distutils command="sdist"/>
+  <step id="Build" description="Build package"  onerror="continue">
+    <sh:exec executable="echo" args="Building package"/>
+    <python:distutils command="build"/>
   </step>
 
-  <step id="Egg dist build" description="Build egg packages" onerror="continue">
-    <sh:exec executable="echo" args="Building egg package"/>
-    <python:distutils command="bdist_egg"/>
+  <step id="Sdist" description="Create source distribution"  onerror="continue">
+    <sh:exec executable="echo" args="Create source distribution"/>
+    <python:distutils command="sdist"/>
   </step>
 
   <step id="Tests" description="Execute tests" onerror="continue">

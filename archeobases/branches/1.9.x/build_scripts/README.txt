@@ -1,7 +1,4 @@
-This files are used to lauch a bitten-slave with a virtualenv environment.
-
-This will install all the required packages for the project, and some more build
-and testing packages (bitten, nose, pylint) and finaly run builds, lints and tests.
+This files are used to lauch a bitten-slave inside a virtualenv environment.
 
 
 Prerequistes :
@@ -9,23 +6,38 @@ Prerequistes :
  - setuptools --> http://peak.telecommunity.com/DevCenter/setuptools
  - a working Bitten master --> http://bitten.edgewall.org/
 
+Files :
+- boostrap.py is used to create a virtualenv environment with developement packages
+(bitten, nose, pylint, etc.) and required packages for the Pylons application
+(babel, pylons, sqlalchemy, etc.).
 
-usage :
-$ python build.py --no-site-package buildenv
+- bitten-recipe.xml is the bitten recipe used to build the application with Trac+Bitten.
 
-This script is based on the virtualenv bootscrapt, so his usage is nearly the same.
+- bitten-slave.ini is a basic config file for bitten slaves.
 
 
-The buid.py script do :
-- bootstrap the virtualenv environment
-- install the necessary prerequistes
-- lauch the bitten slave
+Usage :
+1) Create a build directory and put inside boostrap.py and bitten-slave.ini
 
-The bitten slave then :
+2) Update bitten-slave.ini with you user/password and softwares versions
+
+3) Prepare a virtualenv environment with boostrap.py
+$ python boostrap.py --no-site-package buildenv
+
+4) Activate the environment
+$ source buildenv/bin/activate
+
+5) Finaly lauch the bitten-slave
+$ bitten-slave --config=bitten-slave.ini --no-loop http://lazaret.unice.fr/opensource/builds
+
+
+The bitten slave use the recipe witch :
 - get the project revision
-- create source and eggs builds
-- run the pylint check
+- build sources and egg packages
 - run the tests
+- rune pylint and cheesecake
 
-Notes :
- * You probably have to change the bitten-slave.ini file to adapt it to your needs
+
+Note:
+Is better to do builds project by projects, so is preferable to
+activate only one recipe in Trac admin.

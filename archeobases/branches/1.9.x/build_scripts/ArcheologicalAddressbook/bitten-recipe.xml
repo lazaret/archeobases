@@ -47,7 +47,7 @@
   <step id="Cheesecake" description="Compute Cheesecake index" onerror="ignore">
     <sh:exec executable="echo" args="Running Cheesecake"/>
     <sh:exec file="cheesecake_index"
-      args="--path=dist/ArcheologicalAddressbook-1.9.a1dev-r${revision}.tar.gz"/>
+      args="--path=dist/ArcheologicalAddressbook-1.9.a1.dev-r${revision}.tar.gz"/>
   </step>
 
 </build>

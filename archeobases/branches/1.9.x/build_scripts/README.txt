@@ -3,11 +3,11 @@ This files are used to lauch a bitten-slave inside a virtualenv environment.
 
 Prerequistes :
  - python --> http://www.python.org/
- - setuptools --> http://peak.telecommunity.com/DevCenter/setuptools
+ - distribute (or setuptools) --> http://pypi.python.org/pypi/distribute
  - a working Bitten master --> http://bitten.edgewall.org/
 
 Files :
-- boostrap.py is used to create a virtualenv environment with developement packages
+- bootstrap.py is used to create a virtualenv environment with developement packages
 (bitten, nose, pylint, etc.) and required packages for the Pylons application
 (babel, pylons, sqlalchemy, etc.).
 
@@ -17,12 +17,12 @@ Files :
 
 
 Usage :
-1) Create a build directory and put inside boostrap.py and bitten-slave.ini
+1) Create a build directory and put inside bootstrap.py and bitten-slave.ini
 
 2) Update bitten-slave.ini with you user/password and softwares versions
 
-3) Prepare a virtualenv environment with boostrap.py
-$ python boostrap.py --no-site-package buildenv
+3) Prepare a virtualenv environment with bootstrap.py
+$ python bootstrap.py --no-site-package buildenv
 
 4) Activate the environment
 $ source buildenv/bin/activate

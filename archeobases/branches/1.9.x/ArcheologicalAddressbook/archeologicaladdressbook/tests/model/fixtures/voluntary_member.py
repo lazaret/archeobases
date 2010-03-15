@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-""" data used for testing the `VoluntaryMember` model of the application."""
+""" Data used for testing the `VoluntaryMember` model of the application."""
 
 import datetime
 
 
 class VoluntaryMemberData:
-    """ data used for testing the `VoluntaryMember` model."""
+    """ Data used for testing the `VoluntaryMember` model."""
 
     class john_smith:
         last_name = u'Smith'
@@ -18,7 +18,7 @@ class VoluntaryMemberData:
 
 
 class DuplicateVoluntaryMemberData:
-    """ data used for testing the unique constraint on the `VoluntaryMember` model."""
+    """ Data used for testing the unique constraint on the `VoluntaryMember` model."""
 
     class mary_johnes:
         last_name = u'Johnes'

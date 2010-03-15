@@ -14,6 +14,7 @@ class TestVoluntaryMemberModel(TestModel):
     """ Unit test cases for the `VoluntaryMember` model."""
 
     def setUp(self):
+        """ Extend the method used to build a test database."""
         meta.metadata.create_all(meta.engine)
         voluntary_member_fixture()
 

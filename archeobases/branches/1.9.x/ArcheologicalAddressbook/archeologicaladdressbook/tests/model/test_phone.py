@@ -13,6 +13,7 @@ class TestPhoneModel(TestModel):
     """ Unit test cases for the ``Phone`` model."""
 
     def setUp(self):
+        """ Extend the method used to build a test database."""
         super(TestPhoneModel, self).setUp()
         phone_fixture()
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from pylons import config
 from archeologicaladdressbook import model
 from archeologicaladdressbook.lib.base import render

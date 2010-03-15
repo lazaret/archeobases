@@ -13,6 +13,7 @@ class TestAddressModel(TestModel):
     """ Unit test cases for the ``Address`` model."""
 
     def setUp(self):
+        """ Extend the method used to build a test database."""
         super(TestAddressModel, self).setUp()
         address_fixture()
 

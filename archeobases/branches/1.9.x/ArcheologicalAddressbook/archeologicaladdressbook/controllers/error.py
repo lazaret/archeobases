@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+""" Error controler."""
+
 import cgi
 
 from paste.urlparser import PkgResourcesParser
@@ -10,8 +12,7 @@ from webhelpers.html.builder import literal
 from archeologicaladdressbook.lib.base import BaseController
 
 class ErrorController(BaseController):
-
-    """Generates error documents as and when they are required.
+    """ Generates error documents as and when they are required.
 
     The ErrorDocuments middleware forwards to ErrorController when error
     related status codes are returned from the application.

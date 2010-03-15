@@ -5,6 +5,7 @@ from archeologicaladdressbook.tests import *
 
 
 class TestAdminController(TestController):
+    """ Test the controller `AdminControler`."""
 
     def test_index(self):
         """ Test the url of the admin page."""

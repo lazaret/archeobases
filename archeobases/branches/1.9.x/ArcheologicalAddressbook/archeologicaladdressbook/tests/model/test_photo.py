@@ -13,6 +13,7 @@ class TestPhotoModel(TestModel):
     """ Unit test cases for the ``Email`` model."""
 
     def setUp(self):
+        """ Extend the method used to build a test database."""
         super(TestPhotoModel, self).setUp()
         photo_fixture()
 

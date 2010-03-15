@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-""" data used for testing the `Person` model of the application."""
+""" Data used for testing the `Person` model of the application."""
 
 import datetime
 
 
 class PersonData:
-    """ data used for testing the `Person` model."""
+    """ Data used for testing the `Person` model."""
 
     class john_doe:
         last_name = u'Doe'
@@ -16,7 +16,7 @@ class PersonData:
 
 
 class DuplicatePersonData:
-    """ data used for testing the unique constraint on the `Person` model."""
+    """ Data used for testing the unique constraint on the `Person` model."""
 
     class john_doe:
         last_name = PersonData.john_doe.last_name

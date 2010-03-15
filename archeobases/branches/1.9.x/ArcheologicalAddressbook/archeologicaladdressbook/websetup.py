@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Setup the ArcheologicalAddressbook application"""
+""" Setup the ArcheologicalAddressbook application."""
+
 import logging
 
 from archeologicaladdressbook.config.environment import load_environment
@@ -9,7 +10,7 @@ from archeologicaladdressbook.model import meta
 log = logging.getLogger(__name__)
 
 def setup_app(command, conf, vars):
-    """Place any commands to setup archeologicaladdressbook here"""
+    """ Setup archeologicaladdressbook."""
     load_environment(conf.global_conf, conf.local_conf)
 
     # Create the tables if they don't already exist
@@ -20,24 +21,24 @@ def setup_app(command, conf, vars):
     # Add default values in the tables
     log.info("Add default user, group and permission")
 
-    u = model.User()
-    u.user_name = u'manager'
-    u.display_name = u'Example manager'
-    u.email_address = u'manager@somedomain.com'
-    u.password = u'managepass'
-    meta.Session.add(u)
+    user = model.User()
+    user.user_name = u'manager'
+    user.display_name = u'Example manager'
+    user.email_address = u'manager@somedomain.com'
+    user.password = u'managepass'
+    meta.Session.add(user)
 
-    g = model.Group()
-    g.group_name = u'managers'
-    g.display_name = u'Managers Group'
-    g.users.append(u)
-    meta.Session.add(g)
+    group = model.Group()
+    group.group_name = u'managers'
+    group.display_name = u'Managers Group'
+    group.users.append(user)
+    meta.Session.add(group)
 
-    p = model.Permission()
-    p.permission_name = u'manage'
-    p.description = u'This permission give an administrative right to the bearer'
-    p.groups.append(g)
-    meta.Session.add(p)
+    permission = model.Permission()
+    permission.permission_name = u'manage'
+    permission.description = u'This permission give an administrative right to the bearer'
+    permission.groups.append(group)
+    meta.Session.add(permission)
 
     meta.Session.flush()
     meta.Session.commit()

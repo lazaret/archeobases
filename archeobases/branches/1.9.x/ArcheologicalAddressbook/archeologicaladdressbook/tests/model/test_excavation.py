@@ -14,6 +14,7 @@ class TestExcavationModel(TestModel):
     """ Unit test cases for the ``Excavation`` model."""
 
     def setUp(self):
+        """ Extend the method used to build a test database."""
         super(TestExcavationModel, self).setUp()
         excavation_fixture()
 

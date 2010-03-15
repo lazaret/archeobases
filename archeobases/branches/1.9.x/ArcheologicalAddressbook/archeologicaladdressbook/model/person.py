@@ -48,6 +48,6 @@ class VoluntaryMember(Person):
     __table_args__  = (sa.UniqueConstraint('member_number'), {})
     __mapper_args__ = {'polymorphic_identity': u'voluntary_member'}
 
-    person_id = sa.Column(sa.types.Integer,sa.ForeignKey('person.person_id'), primary_key=True)
+    person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'), primary_key=True)
     member_number = sa.Column(sa.types.Integer, nullable=False)
     last_fee_date = sa.Column(sa.types.Date, nullable=False)

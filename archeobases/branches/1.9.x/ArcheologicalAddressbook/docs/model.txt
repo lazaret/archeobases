@@ -1,0 +1,108 @@
+What is the “Archeologicaladdressbook“ project?
+
+This project provides an address book, specific to archeological excavations and voluntary association, where you can add persons, postal addresses, phone numbers, email addresses, photos and sites, using a Web interface.
+
+
+
+Developed with Pylons and SQL Alchemy
+
+Pylons is a framework based on the Model – View – Controller (MVC) architecture. It aims to develop rapid Web applications in Python.
+A framework is a set of components forming a structured program that you fill for the building. It produced an application easy to maintain.
+The MVC pattern isolates the data, the presentation and the user interactions.
+
+SQL Alchemy is a toolkit and Object Relational Mapper (ORM). It provides objects that look and act like real objects and allows to interact with the database. It supports MYSQL, Postgres, Oracle and SQLite.
+
+
+
+Data representation by Merise method
+
+(mcd.png)
+
+
+
+The data study highlights 7 entities:
+
+- PERSON
+- VOLUNTARY_MEMBER
+- ADDRESS
+- PHONE
+- EMAIL
+- PHOTO
+- EXCAVATION
+
+
+Each entity becomes a table, except "VOLUNTARY_MEMBER" derived from "PERSON":
+
+- person (person_id, last_name, first_name, title, birth_date, activity, person_type)
+- voluntary_member (member_number, last_fee_date, person_id#)
+- address (address_id, address_line1, address_line2, address_line3, zip_code, city, country, address_type)
+- phone (phone_id, phone_number, phone_type)
+- email (email_id, email_address, email_type)
+- photo (photo_id, path)
+- excavation (excavation_id, site_name, start_date, end_date, appreciation)
+
+
+
+Extract code: Person model
+
+""" SQLAlchemy model definition for persons and voluntary members.
+
+`voluntary_member` is a joined table inheritance of `person`.
+"""
+
+import sqlalchemy as sa
+from sqlalchemy import orm
+
+from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.address import Address
+from archeologicaladdressbook.model.email import Email
+from archeologicaladdressbook.model.excavation import Excavation
+from archeologicaladdressbook.model.phone import Phone
+from archeologicaladdressbook.model.photo import Photo
+
+from sqlalchemy.orm import relation, backref
+
+
+class Person(meta.DeclarativeBase):
+    """ Person model definition."""
+    __tablename__ = 'person'
+    __table_args__  = (sa.UniqueConstraint('last_name', 'first_name', 'birth_date'), {})
+
+    person_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
+    last_name = sa.Column(sa.types.Unicode(25), nullable=False, index=True)
+    first_name = sa.Column(sa.types.Unicode(25), nullable=False)
+    title = sa.Column(sa.types.Unicode(25))                         	# Mrs/Ms/Mr/Pr/Dr/Esq...
+    birth_date = sa.Column(sa.types.Date, nullable=False)
+    activity = sa.Column(sa.types.Unicode(25), nullable=False) 	# Work/studies...
+    # discriminator used for inheritance and polymorphism
+    person_type = sa.Column(sa.types.Unicode(16), nullable=False)
+
+    # child relations
+    addresses = relation(Address, backref='person', cascade='all, delete-orphan')
+    emails = relation(Email, backref='person', cascade='all, delete-orphan')
+    excavations = relation(Excavation, backref='person', cascade='all, delete-orphan')
+    phones = relation(Phone, backref='person', cascade='all, delete-orphan')
+    photos = relation(Photo, backref='person', cascade='all, delete-orphan')
+
+    # add polymorphism args for joined table inheritance with `VoluntaryMember`
+    __mapper_args__ = {'polymorphic_on': person_type, 'polymorphic_identity': u'person'}
+
+
+class VoluntaryMember(Person):
+    """ VoluntaryMember model definition."""
+    __tablename__ = 'voluntary_member'
+    __table_args__  = (sa.UniqueConstraint('member_number'), {})
+    __mapper_args__ = {'polymorphic_identity': u'voluntary_member'}
+
+    person_id = sa.Column(sa.types.Integer,sa.ForeignKey('person.person_id'), primary_key=True)
+    member_number = sa.Column(sa.types.Integer, nullable=False)
+    last_fee_date = sa.Column(sa.types.Date, nullable=False)
+
+
+
+In this example, “VoluntaryMember“ inherit from “Person”. Indeed, voluntary members are primarily persons who are members of the association. 
+We can also see the relationships between the different entities. A person may have one or more addresses, one or more telephone numbers, may have participated in the excavation sites, etc.
+Finally, the cascade delete is enabled. If an individual is removed from the database, all information concerning him/her will be deleted.
+
+
+All sources of the project are available at this address: http://lazaret.unice.fr/opensource/browser/archeobases/branches/1.9.x/ArcheologicalAddressbook

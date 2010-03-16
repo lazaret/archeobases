@@ -17,7 +17,6 @@ class TestEmailModel(TestModel):
         super(TestEmailModel, self).setUp()
         email_fixture()
 
-
     def test_columns(self):
         """ Test the `Email` model columns and types."""
         email = meta.Session.query(model.Email).filter_by().first()
@@ -31,7 +30,7 @@ class TestEmailModel(TestModel):
 
         Test the unique constraint on `person_id` and `email_address`.
         """
-        test_email = DuplicateEmailData.john_doe_mail()
+        test_email = DuplicateEmailData.JohnDoeMail()
         person = meta.Session.query(model.Person).filter_by().first()
         person.emails.append(
             model.Email(
@@ -60,7 +59,7 @@ class TestEmailModel(TestModel):
 
     def test_orphans(self):
         """ Test that orphans are forbidden for the `Email` model."""
-        test_email = OrphanEmailData.john_smith_mail()
+        test_email = OrphanEmailData.JohnSmithMail()
         email = model.Email(
             email_address = test_email.email_address,
             email_type = test_email.email_type

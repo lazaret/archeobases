@@ -5,7 +5,8 @@
 class AddressData:
     """ Data used for testing the `Address` model."""
 
-    class john_doe_address:
+    class JohnDoeAddress:
+        """ Test values for an address."""
         address_line1 = u'The Test Company'
         address_line2 = u'1, Test Street'
         address_line3 = u''
@@ -18,20 +19,22 @@ class AddressData:
 class DuplicateAddressData:
     """ Data used for testing the unique constraint on the `Address` model."""
 
-    class john_doe_address:
+    class JohnDoeAddress:
+        """ Duplicate tests values for an address."""
         address_line1 = u'The Test Organisation'
         address_line2 = u'2, Street of the Tests'
         address_line3 = u''
         zip_code = u'T-11111'
         city = u'City Test'
         country = u'Country Test'
-        address_type = AddressData.john_doe_address.address_type
+        address_type = AddressData.JohnDoeAddress.address_type
 
 
 class OrphanAddressData:
     """ Data used for testing the orphans constraint on the `Address` model."""
 
-    class john_smith_address:
+    class JohnSmithAddress:
+        """ Orphan tests values for an address."""
         address_line1 = u'Some Random Village'
         address_line2 = u'3, Somewhere Street'
         address_line3 = u'Batiment Test'

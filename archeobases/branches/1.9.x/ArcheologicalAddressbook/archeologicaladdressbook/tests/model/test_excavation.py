@@ -18,7 +18,6 @@ class TestExcavationModel(TestModel):
         super(TestExcavationModel, self).setUp()
         excavation_fixture()
 
-
     def test_columns(self):
         """ Test the `Excavation` model columns and types."""
         excavation = meta.Session.query(model.Excavation).filter_by().first()
@@ -44,7 +43,7 @@ class TestExcavationModel(TestModel):
 
     def test_orphans(self):
         """ Test that orphans are forbidden for the `Excavation` model."""
-        test_excavation = OrphanExcavationData.excavation_site_2()
+        test_excavation = OrphanExcavationData.ExcavationSite2()
         excavation = model.Excavation(
             site_name = test_excavation.site_name,
             start_date = test_excavation.start_date,

@@ -5,7 +5,8 @@
 class PhoneData:
     """ Data used for testing the `Phone` model."""
 
-    class john_doe_phone:
+    class JohnDoePhone:
+        """ Test values for a phone."""
         phone_number = u'00 10 20 30 40'
         phone_type = u'Mobile'
 
@@ -13,7 +14,8 @@ class PhoneData:
 class DuplicatePhoneData:
     """ Data used for testing the unique constraint on the `Phone` model."""
 
-    class john_doe_phone:
+    class JohnDoePhone:
+        """ Duplicate tests values for a phone."""
         phone_number = PhoneData.john_doe_phone.phone_number
         phone_type = u'Home'
 
@@ -21,6 +23,7 @@ class DuplicatePhoneData:
 class OrphanPhoneData:
     """ Data used for testing the orphans constraint on the `Phone` model."""
 
-    class john_smith_phone:
+    class JohnSmithPhone:
+        """ Orphan tests values for a phone."""
         phone_number = u'00 01 02 03 04'
         phone_type = u'Home'

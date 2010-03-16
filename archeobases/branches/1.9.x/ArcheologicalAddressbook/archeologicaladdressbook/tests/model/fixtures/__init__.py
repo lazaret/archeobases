@@ -8,13 +8,13 @@ from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 
 # data fixtures imports
-from archeologicaladdressbook.tests.model.fixtures.person import *
-from archeologicaladdressbook.tests.model.fixtures.voluntary_member import *
-from archeologicaladdressbook.tests.model.fixtures.address import *
-from archeologicaladdressbook.tests.model.fixtures.email import *
-from archeologicaladdressbook.tests.model.fixtures.excavation import *
-from archeologicaladdressbook.tests.model.fixtures.phone import *
-from archeologicaladdressbook.tests.model.fixtures.photo import *
+from archeologicaladdressbook.tests.model.fixtures.person import PersonData
+from archeologicaladdressbook.tests.model.fixtures.voluntary_member import VoluntaryMemberData
+from archeologicaladdressbook.tests.model.fixtures.address import AddressData
+from archeologicaladdressbook.tests.model.fixtures.email import EmailData
+from archeologicaladdressbook.tests.model.fixtures.excavation import ExcavationData
+from archeologicaladdressbook.tests.model.fixtures.phone import PhoneData
+from archeologicaladdressbook.tests.model.fixtures.photo import PhotoData
 
 
 def commit():
@@ -28,7 +28,7 @@ def commit():
 
 def person_fixture():
     """ Add a person test fixture in the database."""
-    test_person = PersonData.john_doe()
+    test_person = PersonData.JohnDoe()
     person = model.Person(
         last_name = test_person.last_name,
         first_name = test_person.first_name,
@@ -42,7 +42,7 @@ def person_fixture():
 
 def voluntary_member_fixture():
     """ Add a voluntary member test fixture in the database."""
-    test_v_member = VoluntaryMemberData.john_smith()
+    test_v_member = VoluntaryMemberData.JohnSmith()
     v_member = model.VoluntaryMember(
         last_name = test_v_member.last_name,
         first_name = test_v_member.first_name,
@@ -58,7 +58,7 @@ def voluntary_member_fixture():
 
 def address_fixture():
     """ Add an address test fixture in the database."""
-    test_address = AddressData.john_doe_address()
+    test_address = AddressData.JohnDoeAddress()
     person = meta.Session.query(model.Person).filter_by().first()
     #person.addresses is a list of objects
     person.addresses.append(
@@ -77,7 +77,7 @@ def address_fixture():
 
 def email_fixture():
     """ Add an email test fixture in the database."""
-    test_email = EmailData.john_doe_mail()
+    test_email = EmailData.JohnDoeMail()
     person = meta.Session.query(model.Person).filter_by().first()
     # person.emails is a list of objects
     person.emails.append(
@@ -91,7 +91,7 @@ def email_fixture():
 
 def excavation_fixture():
     """ Add an excavation test fixture in the database."""
-    test_excavation = ExcavationData.excavation_site_1()
+    test_excavation = ExcavationData.ExcavationSite1()
     person = meta.Session.query(model.Person).filter_by().first()
     person.excavations.append(
         model.Excavation(
@@ -106,7 +106,7 @@ def excavation_fixture():
 
 def phone_fixture():
     """ Add a phone test fixture in the database."""
-    test_phone = PhoneData.john_doe_phone()
+    test_phone = PhoneData.JohnDoePhone()
     person = meta.Session.query(model.Person).filter_by().first()
     person.phones.append(
         model.Phone(
@@ -119,7 +119,7 @@ def phone_fixture():
 
 def photo_fixture():
     """ Add a photo test fixture in the database."""
-    test_photo = PhotoData.john_doe_photo()
+    test_photo = PhotoData.JohnDoePhoto()
     person = meta.Session.query(model.Person).filter_by().first()
     person.photos.append(
         model.Photo(

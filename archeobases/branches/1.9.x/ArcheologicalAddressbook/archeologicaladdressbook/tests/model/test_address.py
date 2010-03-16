@@ -17,7 +17,6 @@ class TestAddressModel(TestModel):
         super(TestAddressModel, self).setUp()
         address_fixture()
 
-
     def test_columns(self):
         """ Test the `Address` model columns and types."""
         address = meta.Session.query(model.Address).filter_by().first()
@@ -34,7 +33,7 @@ class TestAddressModel(TestModel):
         """ Test for unique constraint for the `Address` model.
 
         Test the unique constraint on `person_id` and `address_type`."""
-        test_address = DuplicateAddressData.john_doe_address()
+        test_address = DuplicateAddressData.JohnDoeAddress()
         person = meta.Session.query(model.Person).filter_by().first()
         person.addresses.append(
             model.Address(
@@ -68,7 +67,7 @@ class TestAddressModel(TestModel):
 
     def test_orphans(self):
         """ Test that orphans are forbidden for the `Address` model."""
-        test_address = OrphanAddressData.john_smith_address()
+        test_address = OrphanAddressData.JohnSmithAddress()
         address = model.Address(
             address_line1 = test_address.address_line1,
             address_line2 = test_address.address_line2,

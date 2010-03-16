@@ -16,7 +16,7 @@ class DuplicatePhoneData:
 
     class JohnDoePhone:
         """ Duplicate tests values for a phone."""
-        phone_number = PhoneData.john_doe_phone.phone_number
+        phone_number = PhoneData.JohnDoePhone.phone_number
         phone_type = u'Home'
 
 

@@ -15,7 +15,7 @@ class DuplicatePhotoData:
 
     class JohnDoePhoto:
         """ Duplicate tests values for a photo."""
-        path = PhotoData.john_doe_photo.path
+        path = PhotoData.JohnDoePhoto.path
 
 
 class OrphanPhotoData:

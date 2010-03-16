@@ -7,7 +7,7 @@ import sqlalchemy as sa
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import *
+from archeologicaladdressbook.tests.model.fixtures import DuplicateVoluntaryMemberData, voluntary_member_fixture
 
 
 class TestVoluntaryMemberModel(TestModel):
@@ -17,7 +17,6 @@ class TestVoluntaryMemberModel(TestModel):
         """ Extend the method used to build a test database."""
         meta.metadata.create_all(meta.engine)
         voluntary_member_fixture()
-
 
     def test_columns(self):
         """ Test the `VoluntaryMember` model columns and types."""
@@ -44,7 +43,7 @@ class TestVoluntaryMemberModel(TestModel):
 
         Test the unique constraint on `member_number`.
         """
-        test_v_member = DuplicateVoluntaryMemberData.mary_johnes()
+        test_v_member = DuplicateVoluntaryMemberData.MaryJohnes()
         v_member = model.VoluntaryMember(
             last_name = test_v_member.last_name,
             first_name = test_v_member.first_name,

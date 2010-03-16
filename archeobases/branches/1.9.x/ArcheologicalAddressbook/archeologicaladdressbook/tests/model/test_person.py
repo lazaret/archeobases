@@ -7,7 +7,7 @@ import sqlalchemy as sa
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import *
+from archeologicaladdressbook.tests.model.fixtures import DuplicatePersonData
 
 
 class TestPersonModel(TestModel):
@@ -29,7 +29,7 @@ class TestPersonModel(TestModel):
 
         Test the unique constraint on `last_name`, `first_name` and `birth_date`.
         """
-        test_person = DuplicatePersonData.john_doe()
+        test_person = DuplicatePersonData.JohnDoe()
         person = model.Person(
             last_name = test_person.last_name,
             first_name = test_person.first_name,

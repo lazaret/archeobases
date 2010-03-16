@@ -17,7 +17,6 @@ class TestPhotoModel(TestModel):
         super(TestPhotoModel, self).setUp()
         photo_fixture()
 
-
     def test_columns(self):
         """ Test the `Photo` model columns and types."""
         photo = meta.Session.query(model.Photo).filter_by().first()
@@ -30,7 +29,7 @@ class TestPhotoModel(TestModel):
 
         Test the unique constraint on `path`.
         """
-        test_photo = DuplicatePhotoData.john_doe_photo()
+        test_photo = DuplicatePhotoData.JohnDoePhoto()
         person = meta.Session.query(model.Person).filter_by().first()
         person.photos.append(
             model.Photo(
@@ -58,7 +57,7 @@ class TestPhotoModel(TestModel):
 
     def test_orphans(self):
         """ Test that orphans are forbidden for the `Photo` model."""
-        test_photo = OrphanPhotoData.john_smith_photo()
+        test_photo = OrphanPhotoData.JohnSmithPhoto()
         photo = model.Photo(
             path = test_photo.path
         )

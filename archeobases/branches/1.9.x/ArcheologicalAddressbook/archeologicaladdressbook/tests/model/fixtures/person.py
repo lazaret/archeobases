@@ -7,7 +7,8 @@ import datetime
 class PersonData:
     """ Data used for testing the `Person` model."""
 
-    class john_doe:
+    class JohnDoe:
+        """ Test values for a person."""
         last_name = u'Doe'
         first_name = u'John'
         title = u'Mr'
@@ -18,9 +19,10 @@ class PersonData:
 class DuplicatePersonData:
     """ Data used for testing the unique constraint on the `Person` model."""
 
-    class john_doe:
-        last_name = PersonData.john_doe.last_name
-        first_name = PersonData.john_doe.first_name
+    class JohnDoe:
+        """ Duplicate tests values for a person."""
+        last_name = PersonData.JohnDoe.last_name
+        first_name = PersonData.JohnDoe.first_name
         title = u'Mrs'
-        birth_date = PersonData.john_doe.birth_date
+        birth_date = PersonData.JohnDoe.birth_date
         activity = u'Test person 2'

@@ -17,13 +17,11 @@ class TestPhoneModel(TestModel):
         super(TestPhoneModel, self).setUp()
         phone_fixture()
 
-
     def test_columns(self):
         """ Test the `Phone` model columns and types."""
         phone = meta.Session.query(model.Phone).filter_by().first()
         assert isinstance(phone.phone_id, int), '`phone_id` column is missing or has changed.'
         assert isinstance(phone.person_id, int), '`person_id` column is missing or has changed.'
-        #assert isinstance(phone.prefix, int), '`prefix` column is missing or has changed.'
         assert isinstance(phone.phone_number, unicode), '`phone_number` column is missing or has changed.'
         assert isinstance(phone.phone_type, unicode), '`phone_type` column is missing or has changed.'
 
@@ -32,7 +30,7 @@ class TestPhoneModel(TestModel):
 
         Test the unique constraint on `person_id` and `phone_number`.
         """
-        test_phone = DuplicatePhoneData.john_doe_phone()
+        test_phone = DuplicatePhoneData.JohnDoePhone()
         person = meta.Session.query(model.Person).filter_by().first()
         person.phones.append(
             model.Phone(
@@ -61,7 +59,7 @@ class TestPhoneModel(TestModel):
 
     def test_orphans(self):
         """ Test that orphans are forbidden for the `Phone` model."""
-        test_phone = OrphanPhoneData.john_smith_phone()
+        test_phone = OrphanPhoneData.JohnSmithPhone()
         phone = model.Phone(
             phone_number = test_phone.phone_number,
             phone_type = test_phone.phone_type

@@ -41,7 +41,7 @@ class TestVoluntaryMemberModel(TestModel):
 
     def test_inherinting(self):
         """ Test that `VoluntaryMember` model inherit from `Person` model."""
-        test_v_member = VoluntaryMemberData.john_smith()
+        test_v_member = VoluntaryMemberData.JohnSmith()
         person = meta.Session.query(model.Person).filter_by(last_name=test_v_member.last_name).one()
         v_member = meta.Session.query(model.VoluntaryMember).filter_by(last_name=test_v_member.last_name).one()
         assert person == v_member

@@ -1,0 +1,8 @@
+
+This package is maintained by the The LDPL (Laboratoire Départemental de Préhistoire du Lazaret)
+
+
+Contributors
+============
+  Bertrand LECERVOISIER (2010)
+  Corinne HERVÉ (2010)

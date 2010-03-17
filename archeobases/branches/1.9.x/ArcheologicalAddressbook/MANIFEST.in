@@ -1,3 +1,5 @@
 include archeologicaladdressbook/config/deployment.ini_tmpl
 recursive-include archeologicaladdressbook/public *
 recursive-include archeologicaladdressbook/templates *
+include *.txt
+recursive-include docs *.txt

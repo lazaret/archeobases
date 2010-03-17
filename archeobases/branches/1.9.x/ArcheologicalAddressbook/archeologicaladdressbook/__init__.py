@@ -7,6 +7,8 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" ArcheologicalAddressbook is a Pylons Web application for contact address management
-specific to archaelogical excavations and volontary association.
+""" ArcheologicalAddressbook is a Pylons web application for contact address management.
+
+The main objective of the application is to track contact addresses but also the
+contacts history as voluntary member and/or archeological excavators.
 """

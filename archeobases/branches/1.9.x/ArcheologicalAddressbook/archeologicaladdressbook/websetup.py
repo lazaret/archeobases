@@ -19,7 +19,10 @@ log = logging.getLogger(__name__)
 
 
 def setup_app(command, conf, vars):
-    """ Setup archeologicaladdressbook."""
+    """ Setup archeologicaladdressbook.
+
+    Set default values in the database for an admin user, a manager group and a manage permission.
+    """
     load_environment(conf.global_conf, conf.local_conf)
 
     # Create the tables if they don't already exist

@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright 2010 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# This file is part of ArcheologicalAdressbook and is released under
+# the GNU Affero General Public License 3 or any later version.
+# See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
+#
 """ Error controler."""
 
 import cgi
@@ -10,6 +18,7 @@ from pylons.middleware import error_document_template
 from webhelpers.html.builder import literal
 
 from archeologicaladdressbook.lib.base import BaseController
+
 
 class ErrorController(BaseController):
     """ Generates error documents as and when they are required.

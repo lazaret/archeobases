@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright 2010 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# This file is part of ArcheologicalAdressbook and is released under
+# the GNU Affero General Public License 3 or any later version.
+# See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
+#
 """Pylons middleware initialization"""
+
 from beaker.middleware import CacheMiddleware, SessionMiddleware
 from paste.cascade import Cascade
 from paste.registry import RegistryManager
@@ -12,6 +21,7 @@ from routes.middleware import RoutesMiddleware
 
 from archeologicaladdressbook.config.environment import load_environment
 from archeologicaladdressbook.lib.auth import add_auth
+
 
 def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
     """Create a Pylons WSGI application and return it

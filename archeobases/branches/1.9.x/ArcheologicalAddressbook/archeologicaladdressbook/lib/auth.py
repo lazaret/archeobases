@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Auth & Auth middleware."""
+#
+# Copyright 2010 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# This file is part of ArcheologicalAdressbook and is released under
+# the GNU Affero General Public License 3 or any later version.
+# See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
+#
+""" Auth & Auth middleware."""
 
 from repoze.what.plugins.quickstart import setup_sql_auth
 
@@ -8,7 +16,7 @@ from archeologicaladdressbook.model.auth import User, Group, Permission
 
 
 def add_auth(app):
-    """Add authentication and authorization middleware to the ``app``.
+    """ Add authentication and authorization middleware to the ``app``.
 
     We're going to define post-login and post-logout pages to do some cool things.
     """

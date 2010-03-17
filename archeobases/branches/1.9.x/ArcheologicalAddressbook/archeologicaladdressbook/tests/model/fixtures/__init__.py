@@ -16,13 +16,13 @@ from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 
 # data fixtures imports
-from archeologicaladdressbook.tests.model.fixtures.person import PersonData
-from archeologicaladdressbook.tests.model.fixtures.voluntary_member import VoluntaryMemberData
-from archeologicaladdressbook.tests.model.fixtures.address import AddressData
-from archeologicaladdressbook.tests.model.fixtures.email import EmailData
-from archeologicaladdressbook.tests.model.fixtures.excavation import ExcavationData
-from archeologicaladdressbook.tests.model.fixtures.phone import PhoneData
-from archeologicaladdressbook.tests.model.fixtures.photo import PhotoData
+from archeologicaladdressbook.tests.model.fixtures.person import *
+from archeologicaladdressbook.tests.model.fixtures.voluntary_member import *
+from archeologicaladdressbook.tests.model.fixtures.address import *
+from archeologicaladdressbook.tests.model.fixtures.email import *
+from archeologicaladdressbook.tests.model.fixtures.excavation import *
+from archeologicaladdressbook.tests.model.fixtures.phone import *
+from archeologicaladdressbook.tests.model.fixtures.photo import *
 
 
 def commit():

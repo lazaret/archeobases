@@ -1,0 +1,32 @@
+Introduction
+============
+
+ArcheologicalAddressbook is a web application for contact address management.
+
+The main objective of the application is to track contact addresses but also the
+contacts history as voluntary member and/or archeological excavators.
+
+
+History and license
+-------------------
+
+ArcheologicalAddressbook is a complete refactoring of the `Archeobases-Annuaire <http://lazaret.unice.fr/opensource/browser/archeobases/tags/1.1/annuaire>`_ project.
+Archeobases-Annuaire was developed by the LDLP and released under the GPL2 licence.
+
+ArcheologicalAddressbook is released under `the Affero GPL 3 license <http://www.gnu.org/licenses/agpl.html>`_.
+It contain modified files gererated with Pylons and TurboGears witch where originaly released with
+BSD and MIT licenses.
+
+
+Prerequisites
+-------------
+
+ArcheologicalAddressbook needs at least **Python 2.6** to run and require the following packages :
+
+ * `Pylons <http://www.pylonshq.com/>`_ web framework
+ * `SQLAlchemy <http://www.sqlalchemy.org/>`_ database abstraction library
+ * `Mako <http://www.makotemplates.org/>`_ template engine
+ * `Babel <http://babel.edgewall.org/>`_ internationalization utilities
+ * `repoze.what-pylons <http://code.gustavonarea.net/repoze.what-pylons/>`_ repoze.what Pylons integration
+ * `repoze.what-quickstart <http://code.gustavonarea.net/repoze.what-quickstart/>`_ repoze.what quickstart plugin
+

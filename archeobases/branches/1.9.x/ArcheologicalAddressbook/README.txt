@@ -1,19 +1,23 @@
-This file is for you to describe the ArcheologicalAddressbook application. 
-Typically you would include information such as the information below :
+=========================
+Archeological Addressbook
+=========================
 
-Installation and Setup
-======================
+ArcheologicalAddressbook is a Pylons web application for contact address management.
 
-Install ``ArcheologicalAddressbook`` using easy_install::
+Most of the recorded informations are very commons for address books:
+ * Name, firstname, birthdate
+ * Addresses, telephone, email
+ * ID photos
 
-    easy_install ArcheologicalAddressbook
+But some are very specific informations:
+ * Voluntary members informations
+ * Archeological excavations informations
 
-Make a config file as follows::
+Datas are keep in a relational database.
+By default it use SQLite, but you normaly can use all the SQL engines recognised by SQLAlchemy.
 
-    paster make-config ArcheologicalAddressbook config.ini
+The main objective of the application is to track contact addresses but also the contacts history
+as voluntary member and/or excavators.
 
-Tweak the config file as appropriate and then setup the application::
 
-    paster setup-app config.ini
 
-Then you are ready to go.

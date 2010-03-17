@@ -15,7 +15,7 @@ import sqlalchemy as sa
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import DuplicateVoluntaryMemberData, voluntary_member_fixture
+from archeologicaladdressbook.tests.model.fixtures import *
 
 
 class TestVoluntaryMemberModel(TestModel):

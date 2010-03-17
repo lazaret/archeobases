@@ -1,9 +1,17 @@
 # -*- coding: utf-8 -*-
-"""SQLAlchemy model definition for authentification and authorization with
+#
+# Copyright 2010 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# This file is part of ArcheologicalAdressbook and is released under
+# the GNU Affero General Public License 3 or any later version.
+# See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
+#
+""" SQLAlchemy model definition for authentification and authorization with
 the repoze.what SQL plugin.
-
-This model definition has been taken from a quickstarted TurboGears 2 project.
 """
+# This model definition has been taken from a quickstarted TurboGears 2 project.
+
 from os import urandom
 from hashlib import sha1
 from datetime import datetime
@@ -30,7 +38,7 @@ group_permission_table = sa.Table("tg_group_permission", meta.metadata,
 
 
 class User(meta.DeclarativeBase):
-    """User definition"""
+    """ User definition."""
     __tablename__ = "tg_user"
 
     user_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
@@ -57,20 +65,20 @@ class User(meta.DeclarativeBase):
         self._password = hashed_password
 
     def _get_password(self):
-        """Return the password hashed"""
+        """ Return the password hashed."""
         return self._password
 
     password = orm.synonym("_password", descriptor=property(_get_password, _set_password))
 
     def validate_password(self, password):
-        """Check the password against existing credentials."""
+        """ Check the password against existing credentials."""
         hashed_pass = sha1()
         hashed_pass.update(password + self.password[:40])
         return self.password[40:] == hashed_pass.hexdigest()
 
 
 class Group(meta.DeclarativeBase):
-    """Group definition"""
+    """ Group definition."""
     __tablename__ = "tg_group"
 
     group_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
@@ -81,7 +89,7 @@ class Group(meta.DeclarativeBase):
 
 
 class Permission(meta.DeclarativeBase):
-    """A relationship that determines what each Group can do"""
+    """ A relationship that determines what each Group can do."""
     __tablename__ = "tg_permission"
 
     permission_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)

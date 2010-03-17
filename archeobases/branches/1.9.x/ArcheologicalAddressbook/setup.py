@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright 2010 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+#
+# This file is part of ArcheologicalAdressbook and is released under
+# the GNU Affero General Public License 3 or any later version.
+# See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
+#
 """ Install script for The `ArchaeologicalAdressbook` package."""
+
 
 try:
     from setuptools import setup, find_packages
@@ -8,20 +17,23 @@ except ImportError:
     use_setuptools()
     from setuptools import setup, find_packages
 
+
 setup(
     name='ArcheologicalAddressbook',
     version='1.9.a1',
-    description='Web application for contact adress management \
-                 specific to archaelogical excavations and volontary association.',
     author='LDPL - Laboratoire Départemental de Préhistoire du Lazaret',
     author_email='opensource@lazaret.unice.fr',
     url='http://lazaret.unice.fr/opensource/',
+    license='Affero GPL 3',
+    description=('Web application for contact address management '
+                 'specific to archaelogical excavations and volontary association.'),
+    long_description=open('README.txt').read(),
     install_requires=[
         'Pylons>=0.9.7',
         'SQLAlchemy>=0.5.8',
         'Mako>=0.2.4',
         'FormAlchemy>=1.3.1',
-#       'Babel>=0.9.4',
+        'Babel>=0.9.4',
         'repoze.what-pylons>=1.0',
         'repoze.what-quickstart>=1.0.5',
     ],

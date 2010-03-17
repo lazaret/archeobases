@@ -29,8 +29,10 @@ if 'storage_path' in config['app_conf']:
 fa_config.encoding = 'utf-8'
 
 class TemplateEngine(templates.TemplateEngine):
-    """ Define the template engine."""
+    """ Configure the template engine."""
+
     def render(self, name, **kwargs):
+        """ Configure templates used to render forms."""
         return render('/forms/%s.mako' % name, extra_vars=kwargs)
 
 fa_config.engine = TemplateEngine()

@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-"""Pylons middleware initialization"""
+""" Pylons middleware initialization."""
 
 from beaker.middleware import CacheMiddleware, SessionMiddleware
 from paste.cascade import Cascade
@@ -24,7 +24,7 @@ from archeologicaladdressbook.lib.auth import add_auth
 
 
 def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
-    """Create a Pylons WSGI application and return it
+    """ Create a Pylons WSGI application and return it.
 
     ``global_conf``
         The inherited configuration for this application. Normally from

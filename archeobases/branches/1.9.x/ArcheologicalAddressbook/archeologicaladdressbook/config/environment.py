@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-"""Pylons environment configuration"""
+""" Pylons environment configuration."""
 
 import os
 
@@ -23,9 +23,7 @@ from archeologicaladdressbook.model import init_model
 
 
 def load_environment(global_conf, app_conf):
-    """Configure the Pylons environment via the ``pylons.config``
-    object
-    """
+    """ Configure the Pylons environment via the ``pylons.config`` object."""
     # Pylons paths
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     paths = dict(root=root,

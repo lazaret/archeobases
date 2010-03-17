@@ -15,7 +15,7 @@ import sqlalchemy as sa
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import DuplicatePersonData
+from archeologicaladdressbook.tests.model.fixtures import *
 
 
 class TestPersonModel(TestModel):

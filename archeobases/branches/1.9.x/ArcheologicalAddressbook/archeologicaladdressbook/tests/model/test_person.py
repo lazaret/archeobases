@@ -13,7 +13,7 @@ import datetime
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.tests.model import *
 from archeologicaladdressbook.tests.model.fixtures import *
 
@@ -23,7 +23,7 @@ class TestPersonModel(TestModel):
 
     def test_columns(self):
         """ Test the `Person` model columns and types."""
-        person = meta.Session.query(model.Person).filter_by().first()
+        person = Session.query(model.Person).filter_by().first()
         assert isinstance(person.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(person.last_name, unicode), '`last_name` column is missing or has changed.'
         assert isinstance(person.first_name, unicode), '`first_name` column is missing or has changed.'
@@ -45,12 +45,12 @@ class TestPersonModel(TestModel):
             birth_date = test_person.birth_date,
             activity = test_person.activity
         )
-        meta.Session.add(person)
+        Session.add(person)
         try:
-            meta.Session.commit()
+            Session.commit()
             raise AssertionError('`Person` unique constraint on `last_name`, `first_name` and `birth_date` is missing.')
         except sa.exc.IntegrityError:
-            meta.Session.rollback()
+            Session.rollback()
 
     def test_child_relations(self):
         """ Test the `Person` model child relations."""
@@ -58,7 +58,7 @@ class TestPersonModel(TestModel):
         email_fixture()
         phone_fixture()
         photo_fixture()
-        person = meta.Session.query(model.Person).filter_by().first()
+        person = Session.query(model.Person).filter_by().first()
         assert person.addresses, '`Address` child relation is missing.'
         assert person.emails, '`Email` child relation is missing.'
         assert person.phones, '`Phone` child relation is missing.'

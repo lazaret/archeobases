@@ -11,13 +11,13 @@
 
 from unittest import TestCase
 
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model import Session, Base
 from archeologicaladdressbook.tests.model.fixtures import person_fixture
 
 
 def setup():
     """ Detroy a possibly remaining test database."""
-    meta.metadata.drop_all(meta.engine)
+    Base.metadata.drop_all(bind=Session.bind)
 
 
 class TestModel(TestCase):
@@ -25,11 +25,11 @@ class TestModel(TestCase):
 
     def setUp(self):
         """ Method used to build a test database."""
-        meta.metadata.create_all(meta.engine)
+        Base.metadata.create_all(bind=Session.bind)
         person_fixture()
 
     def tearDown(self):
         """ Method used to destroy the test database."""
-        meta.metadata.drop_all(meta.engine)
+        Base.metadata.drop_all(bind=Session.bind)
 
 

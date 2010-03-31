@@ -10,24 +10,20 @@
 """ Admin controler."""
 
 import logging
-
-from pylons import request, response, session, tmpl_context as c
-from pylons.controllers.util import abort, redirect_to
-
-from archeologicaladdressbook.lib.base import BaseController, render
-
 from formalchemy.ext.pylons.controller import ModelsController
 from webhelpers.paginate import Page
 
+from archeologicaladdressbook.lib.base import BaseController, render
 from archeologicaladdressbook import model
-from archeologicaladdressbook.model import meta
 from archeologicaladdressbook import forms
+from archeologicaladdressbook.model import meta
 
 
 log = logging.getLogger(__name__)
 
-class AdminController(BaseController):
-    """ Generate CRUD admin interface with FormAlchemy."""
+
+class OrmadminController(BaseController):
+    """ Generate a CRUD admin interface with FormAlchemy."""
     model = model # SQLAlchemy mappers
     forms = forms # module containing FormAlchemy fieldsets definitions
 
@@ -36,8 +32,8 @@ class AdminController(BaseController):
         return meta.Session
 
 
-AdminController = ModelsController(AdminController,
-                                   prefix_name='admin',
+OrmadminController = ModelsController(OrmadminController,
+                                   prefix_name='ormadmin',
                                    member_name='model',
                                    collection_name='models',
                                   )

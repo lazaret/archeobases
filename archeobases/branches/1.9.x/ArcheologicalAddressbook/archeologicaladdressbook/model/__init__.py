@@ -12,14 +12,13 @@
 import sqlalchemy as sa
 from sqlalchemy import orm
 
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.meta import Session, Base
 
 
 def init_model(engine):
     """ Call me before using any of the tables or classes in the model."""
 
-    meta.Session.configure(bind=engine)
-    meta.engine = engine
+    Session.configure(bind=engine)
 
 
 # import tables classes
@@ -30,3 +29,4 @@ from archeologicaladdressbook.model.address import Address
 from archeologicaladdressbook.model.phone import Phone
 from archeologicaladdressbook.model.email import Email
 from archeologicaladdressbook.model.photo import Photo
+

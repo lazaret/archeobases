@@ -9,19 +9,19 @@
 #
 """ SQLAlchemy model definition for photos."""
 
-import sqlalchemy as sa
-from sqlalchemy import orm
+from sqlalchemy import Column, ForeignKey, UniqueConstraint
+from sqlalchemy.types import Date, Integer, Unicode
 
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.meta import Base
 
 
-class Photo(meta.DeclarativeBase):
+class Photo(Base):
     """ Photo model definition."""
     __tablename__ = 'photo'
-    __table_args__  = (sa.UniqueConstraint('path'), {})
+    __table_args__  = (UniqueConstraint('path'), {})
 
-    photo_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
+    photo_id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, ForeignKey('person.person_id'))
     # hash generated image file path on the filesystem
-    path = sa.Column(sa.types.Unicode(255), nullable=False)
+    path = Column(Unicode(255), nullable=False)
 

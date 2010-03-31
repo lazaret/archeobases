@@ -16,41 +16,54 @@ from os import urandom
 from hashlib import sha1
 from datetime import datetime
 
-import sqlalchemy as sa
-from sqlalchemy import orm
+from sqlalchemy import Table, Column, ForeignKey, UniqueConstraint
+from sqlalchemy.orm import relation, synonym
+from sqlalchemy.types import Date, DateTime, Integer, Unicode
 
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.meta import Base
 
 
 # many-to-many relation table between groups and users
-user_group_table = sa.Table("tg_user_group", meta.metadata,
-    sa.Column("user_id", sa.types.Integer, sa.ForeignKey("tg_user.user_id", onupdate="CASCADE", ondelete="CASCADE")),
-    sa.Column("group_id", sa.types.Integer, sa.ForeignKey("tg_group.group_id", onupdate="CASCADE", ondelete="CASCADE"))
+user_group_table = Table("tg_user_group", Base.metadata,
+    Column("user_id", Integer, ForeignKey("tg_user.user_id", onupdate="CASCADE", ondelete="CASCADE")),
+    Column("group_id", Integer, ForeignKey("tg_group.group_id", onupdate="CASCADE", ondelete="CASCADE"))
 )
 
 # many-to-many relation table between groups and permisions
-group_permission_table = sa.Table("tg_group_permission", meta.metadata,
-    sa.Column("group_id", sa.types.Integer,
-             sa.ForeignKey("tg_group.group_id", onupdate="CASCADE", ondelete="CASCADE")),
-    sa.Column("permission_id", sa.types.Integer,
-             sa.ForeignKey("tg_permission.permission_id", onupdate="CASCADE", ondelete="CASCADE"))
+group_permission_table = Table("tg_group_permission", Base.metadata,
+    Column("group_id", Integer,
+             ForeignKey("tg_group.group_id", onupdate="CASCADE", ondelete="CASCADE")),
+    Column("permission_id", Integer,
+             ForeignKey("tg_permission.permission_id", onupdate="CASCADE", ondelete="CASCADE"))
 )
 
 
-class User(meta.DeclarativeBase):
+class Group(Base):
+    """ Group definition."""
+    __tablename__ = "tg_group"
+
+    group_id = Column(Integer, autoincrement=True, primary_key=True)
+    group_name = Column(Unicode(16), unique=True, nullable=False)
+    display_name = Column(Unicode(255))
+    created = Column(DateTime, default=datetime.now)
+    # relations
+    users = relation("User", secondary=user_group_table, backref="groups")
+
+
+class User(Base):
     """ User definition."""
     __tablename__ = "tg_user"
 
-    user_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    user_name = sa.Column(sa.types.Unicode(16), unique=True, nullable=False)
-    #email_address = sa.Column(sa.types.Unicode(255), unique=True)
-    display_name = sa.Column(sa.types.Unicode(255))
-    created = sa.Column(sa.types.DateTime, default=datetime.now)
+    user_id = Column(Integer, autoincrement=True, primary_key=True)
+    user_name = Column(Unicode(16), unique=True, nullable=False)
+    email_address = Column(Unicode(255), unique=True)
+    display_name = Column(Unicode(255))
+    created = Column(DateTime, default=datetime.now)
     # password stuff
-    _password = sa.Column("password", sa.types.Unicode(80))
+    _password = Column("password", Unicode(80))
 
     def _set_password(self, password):
-        """Encrypt password on the fly."""
+        """ Hash ``password`` on the fly and store its hashed version."""
         if isinstance(password, unicode):
             password_8bit = password.encode("UTF-8")
         else:
@@ -65,10 +78,10 @@ class User(meta.DeclarativeBase):
         self._password = hashed_password
 
     def _get_password(self):
-        """ Return the password hashed."""
+        """ Return the hashed version of the password."""
         return self._password
 
-    password = orm.synonym("_password", descriptor=property(_get_password, _set_password))
+    password = synonym("_password", descriptor=property(_get_password, _set_password))
 
     def validate_password(self, password):
         """ Check the password against existing credentials."""
@@ -77,22 +90,12 @@ class User(meta.DeclarativeBase):
         return self.password[40:] == hashed_pass.hexdigest()
 
 
-class Group(meta.DeclarativeBase):
-    """ Group definition."""
-    __tablename__ = "tg_group"
-
-    group_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    group_name = sa.Column(sa.types.Unicode(16), unique=True, nullable=False)
-    display_name = sa.Column(sa.types.Unicode(255))
-    #created = sa.Column(sa.types.DateTime, default=datetime.now)
-    users = orm.relation(User, secondary=user_group_table, backref="groups")
-
-
-class Permission(meta.DeclarativeBase):
+class Permission(Base):
     """ A relationship that determines what each Group can do."""
     __tablename__ = "tg_permission"
 
-    permission_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    permission_name = sa.Column(sa.types.Unicode(16), unique=True, nullable=False)
-    description = sa.Column(sa.types.Unicode(255))
-    groups = orm.relation(Group, secondary=group_permission_table, backref="permissions")
+    permission_id = Column(Integer, autoincrement=True, primary_key=True)
+    permission_name = Column(Unicode(16), unique=True, nullable=False)
+    description = Column(Unicode(255))
+    # relations
+    groups = relation(Group, secondary=group_permission_table, backref="permissions")

@@ -12,8 +12,6 @@
 import cgi
 
 from paste.urlparser import PkgResourcesParser
-from pylons import request
-from pylons.controllers.util import forward
 from pylons.middleware import error_document_template
 from webhelpers.html.builder import literal
 
@@ -32,7 +30,8 @@ class ErrorController(BaseController):
     """
 
     def document(self):
-        """Render the error document"""
+        """ Render the error document."""
+        request = self._py_object.request
         resp = request.environ.get('pylons.original_response')
         content = literal(resp.body) or cgi.escape(request.GET.get('message', ''))
         page = error_document_template % \
@@ -42,16 +41,18 @@ class ErrorController(BaseController):
         return page
 
     def img(self, id):
-        """Serve Pylons' stock images"""
+        """ Serve Pylons' stock images."""
         return self._serve_file('/'.join(['media/img', id]))
 
     def style(self, id):
-        """Serve Pylons' stock stylesheets"""
+        """ Serve Pylons' stock stylesheets."""
         return self._serve_file('/'.join(['media/style', id]))
 
     def _serve_file(self, path):
-        """Call Paste's FileApp (a WSGI application) to serve the file
-        at the specified path
+        """ Call Paste's FileApp (a WSGI application) to serve the file
+        at the specified path.
+
         """
+        request = self._py_object.request
         request.environ['PATH_INFO'] = '/%s' % path
-        return forward(PkgResourcesParser('pylons', 'pylons'))
+        return PkgResourcesParser('pylons', 'pylons')(request.environ, self.start_response)

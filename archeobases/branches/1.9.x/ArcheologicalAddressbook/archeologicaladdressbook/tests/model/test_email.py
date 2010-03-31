@@ -12,7 +12,7 @@
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.tests.model import *
 from archeologicaladdressbook.tests.model.fixtures import DuplicateEmailData, OrphanEmailData, email_fixture
 
@@ -27,7 +27,7 @@ class TestEmailModel(TestModel):
 
     def test_columns(self):
         """ Test the `Email` model columns and types."""
-        email = meta.Session.query(model.Email).filter_by().first()
+        email = Session.query(model.Email).filter_by().first()
         assert isinstance(email.email_id, int), '`email_id` column is missing or has changed.'
         assert isinstance(email.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(email.email_address, unicode), '`email_address` column is missing or has changed.'
@@ -39,7 +39,7 @@ class TestEmailModel(TestModel):
         Test the unique constraint on `person_id` and `email_address`.
         """
         test_email = DuplicateEmailData.JohnDoeMail()
-        person = meta.Session.query(model.Person).filter_by().first()
+        person = Session.query(model.Person).filter_by().first()
         person.emails.append(
             model.Email(
                 email_address = test_email.email_address,
@@ -47,22 +47,22 @@ class TestEmailModel(TestModel):
             )
         )
         try:
-            meta.Session.commit()
+            Session.commit()
             raise AssertionError('`Email` unique constraint on `person_id` and `email_address` is missing.')
         except sa.exc.IntegrityError:
-            meta.Session.rollback()
+            Session.rollback()
 
     def test_parent_relation(self):
         """ Test the `Email` model parent relation."""
-        email = meta.Session.query(model.Email).filter_by().first()
+        email = Session.query(model.Email).filter_by().first()
         assert email.person
 
     def test_cascade_delete(self):
         """ Test for cascade delete on the `Email` model."""
-        person = meta.Session.query(model.Person).filter_by().first()
-        meta.Session.delete(person)
-        meta.Session.commit()
-        emails = meta.Session.query(model.Email).filter_by(person_id=person.person_id).count()
+        person = Session.query(model.Person).filter_by().first()
+        Session.delete(person)
+        Session.commit()
+        emails = Session.query(model.Email).filter_by(person_id=person.person_id).count()
         assert emails == 0
 
     def test_orphans(self):
@@ -72,12 +72,12 @@ class TestEmailModel(TestModel):
             email_address = test_email.email_address,
             email_type = test_email.email_type
         )
-        meta.Session.add(email)
+        Session.add(email)
         try:
-            meta.Session.commit()
+            Session.commit()
             raise AssertionError('`Email` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
-            meta.Session.rollback()
+            Session.rollback()
 
 
 

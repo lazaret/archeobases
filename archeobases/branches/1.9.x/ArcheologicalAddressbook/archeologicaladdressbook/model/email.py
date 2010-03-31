@@ -9,20 +9,20 @@
 #
 """ SQLAlchemy model definition for emails."""
 
-import sqlalchemy as sa
-from sqlalchemy import orm
+from sqlalchemy import Column, ForeignKey, UniqueConstraint
+from sqlalchemy.types import Date, Integer, Unicode
 
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.meta import Base
 
 
-class Email(meta.DeclarativeBase):
+class Email(Base):
     """ Email model definition."""
     __tablename__ = 'email'
-    __table_args__  = (sa.UniqueConstraint('person_id', 'email_address'), {})
+    __table_args__  = (UniqueConstraint('person_id', 'email_address'), {})
 
-    email_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
-    email_address = sa.Column(sa.types.Unicode(100), nullable=False)
+    email_id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, ForeignKey('person.person_id'))
+    email_address = Column(Unicode(100), nullable=False)
     # Type: home/business
-    email_type = sa.Column(sa.types.Unicode(8), nullable=False)
+    email_type = Column(Unicode(8), nullable=False)
 

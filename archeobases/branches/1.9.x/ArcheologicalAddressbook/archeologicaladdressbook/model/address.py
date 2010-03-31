@@ -9,24 +9,24 @@
 #
 """ SQLAlchemy model definition for addresses."""
 
-import sqlalchemy as sa
-from sqlalchemy import orm
+from sqlalchemy import Column, ForeignKey, UniqueConstraint
+from sqlalchemy.types import Date, Integer, Unicode
 
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.meta import Base
 
 
-class Address(meta.DeclarativeBase):
+class Address(Base):
     """ Address model definition."""
     __tablename__ = 'address'
-    __table_args__  = (sa.UniqueConstraint('person_id', 'address_type'), {})
+    __table_args__  = (UniqueConstraint('person_id', 'address_type'), {})
 
-    address_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
-    address_line1 = sa.Column(sa.types.Unicode(100), nullable=False)
-    address_line2 = sa.Column(sa.types.Unicode(100))
-    address_line3 = sa.Column(sa.types.Unicode(100))
-    zip_code = sa.Column(sa.types.Unicode(15), nullable=False)
-    city = sa.Column(sa.types.Unicode(25), nullable=False)
-    country = sa.Column(sa.types.Unicode(25))
+    address_id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, ForeignKey('person.person_id'))
+    address_line1 = Column(Unicode(100), nullable=False)
+    address_line2 = Column(Unicode(100))
+    address_line3 = Column(Unicode(100))
+    zip_code = Column(Unicode(15), nullable=False)
+    city = Column(Unicode(25), nullable=False)
+    country = Column(Unicode(25))
     # Type: home/business/correspondent
-    address_type = sa.Column(sa.types.Unicode(13), nullable=False)
+    address_type = Column(Unicode(13), nullable=False)

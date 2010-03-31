@@ -10,10 +10,11 @@
 """ Setup the ArcheologicalAddressbook application."""
 
 import logging
+import pylons.test
 
 from archeologicaladdressbook.config.environment import load_environment
 from archeologicaladdressbook import model
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.meta import Session, Base
 
 log = logging.getLogger(__name__)
 
@@ -23,11 +24,13 @@ def setup_app(command, conf, vars):
 
     Set default values in the database for an admin user, a manager group and a manage permission.
     """
-    load_environment(conf.global_conf, conf.local_conf)
+    # Don't reload the app if it was loaded under the testing environment
+    if not pylons.test.pylonsapp:
+        load_environment(conf.global_conf, conf.local_conf)
 
     # Create the tables if they don't already exist
     log.info("Creating tables")
-    meta.metadata.create_all(meta.engine)
+    Base.metadata.create_all(bind=Session.bind)
     log.info("Table creation done.")
 
     # Add default values in the tables
@@ -38,22 +41,22 @@ def setup_app(command, conf, vars):
     user.display_name = u'Example manager'
     user.email_address = u'manager@somedomain.com'
     user.password = u'managepass'
-    meta.Session.add(user)
+    Session.add(user)
 
     group = model.Group()
     group.group_name = u'managers'
     group.display_name = u'Managers Group'
     group.users.append(user)
-    meta.Session.add(group)
+    Session.add(group)
 
     permission = model.Permission()
     permission.permission_name = u'manage'
     permission.description = u'This permission give an administrative right to the bearer'
     permission.groups.append(group)
-    meta.Session.add(permission)
+    Session.add(permission)
 
-    meta.Session.flush()
-    meta.Session.commit()
+    Session.flush()
+    Session.commit()
     log.info("Adding default user, group and permission done.")
 
 

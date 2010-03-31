@@ -9,20 +9,20 @@
 #
 """ SQLAlchemy model definition for phones."""
 
-import sqlalchemy as sa
-from sqlalchemy import orm
+from sqlalchemy import Column, ForeignKey, UniqueConstraint
+from sqlalchemy.types import Date, Integer, Unicode
 
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model.meta import Base
 
 
-class Phone(meta.DeclarativeBase):
+class Phone(Base):
     """ Phone model definition."""
     __tablename__ = 'phone'
-    __table_args__  = (sa.UniqueConstraint('person_id', 'phone_number'), {})
+    __table_args__  = (UniqueConstraint('person_id', 'phone_number'), {})
 
-    phone_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
-    person_id = sa.Column(sa.types.Integer, sa.ForeignKey('person.person_id'))
-    phone_number = sa.Column(sa.types.Unicode(15), nullable=False)
+    phone_id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, ForeignKey('person.person_id'))
+    phone_number = Column(Unicode(15), nullable=False)
     # Type: home/business/mobile/fax
-    phone_type = sa.Column(sa.types.Unicode(8), nullable=False)
+    phone_type = Column(Unicode(8), nullable=False)
 

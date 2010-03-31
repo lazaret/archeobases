@@ -19,6 +19,7 @@ def add_auth(app):
     """ Add authentication and authorization middleware to the ``app``.
 
     We're going to define post-login and post-logout pages to do some cool things.
+
     """
     return setup_sql_auth(app, User, Group, Permission, Session,
                           logout_handler='/logout',

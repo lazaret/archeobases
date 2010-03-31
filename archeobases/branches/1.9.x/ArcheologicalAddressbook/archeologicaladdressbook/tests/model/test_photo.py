@@ -12,7 +12,7 @@
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.tests.model import *
 from archeologicaladdressbook.tests.model.fixtures import DuplicatePhotoData, OrphanPhotoData, photo_fixture
 
@@ -27,7 +27,7 @@ class TestPhotoModel(TestModel):
 
     def test_columns(self):
         """ Test the `Photo` model columns and types."""
-        photo = meta.Session.query(model.Photo).filter_by().first()
+        photo = Session.query(model.Photo).filter_by().first()
         assert isinstance(photo.photo_id, int), '`photo_id` column is missing or has changed.'
         assert isinstance(photo.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(photo.path, unicode), '`path` column is missing or has changed.'
@@ -38,29 +38,29 @@ class TestPhotoModel(TestModel):
         Test the unique constraint on `path`.
         """
         test_photo = DuplicatePhotoData.JohnDoePhoto()
-        person = meta.Session.query(model.Person).filter_by().first()
+        person = Session.query(model.Person).filter_by().first()
         person.photos.append(
             model.Photo(
                 path = test_photo.path
             )
         )
         try:
-            meta.Session.commit()
+            Session.commit()
             raise AssertionError('`Photo` unique constraint on `path` is missing.')
         except sa.exc.IntegrityError:
-            meta.Session.rollback()
+            Session.rollback()
 
     def test_parent_relation(self):
         """ Test the `Photo` model parent relation."""
-        photo = meta.Session.query(model.Photo).filter_by().first()
+        photo = Session.query(model.Photo).filter_by().first()
         assert photo.person
 
     def test_cascade_delete(self):
         """ Test for cascade delete on the `Photo` model."""
-        person = meta.Session.query(model.Person).filter_by().first()
-        meta.Session.delete(person)
-        meta.Session.commit()
-        photos = meta.Session.query(model.Photo).filter_by(person_id=person.person_id).count()
+        person = Session.query(model.Person).filter_by().first()
+        Session.delete(person)
+        Session.commit()
+        photos = Session.query(model.Photo).filter_by(person_id=person.person_id).count()
         assert photos == 0
 
     def test_orphans(self):
@@ -69,12 +69,12 @@ class TestPhotoModel(TestModel):
         photo = model.Photo(
             path = test_photo.path
         )
-        meta.Session.add(photo)
+        Session.add(photo)
         try:
-            meta.Session.commit()
+            Session.commit()
             raise AssertionError('`Photo` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
-            meta.Session.rollback()
+            Session.rollback()
 
 
 

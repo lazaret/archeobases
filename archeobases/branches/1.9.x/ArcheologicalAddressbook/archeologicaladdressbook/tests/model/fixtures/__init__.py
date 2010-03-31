@@ -137,3 +137,11 @@ def photo_fixture():
     commit()
 
 
+
+
+def toto_fixture():
+    toto = model.Toto(
+        toto_info = u'toto test string'
+    )
+    meta.Session.add(toto)
+    commit()

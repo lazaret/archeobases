@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright 2010 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
-# http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
-#
-# This file is part of ArcheologicalAdressbook and is released under
-# the GNU Affero General Public License 3 or any later version.
-# See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
-#
+##
+## Copyright 2010 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+## http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
+##
+## This file is part of ArcheologicalAdressbook and is released under
+## the GNU Affero General Public License 3 or any later version.
+## See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
+##
 <%!
 from formalchemy.ext.pylons.controller import model_url
 from pylons import url
@@ -28,11 +28,11 @@ from pylons import url
 <%def name="buttons()">
     <p class="fa_field">
       <a class="ui-widget-header ui-widget-link ui-widget-button ui-corner-all" href="#">
-        <input type="submit" />
+        <input type="submit" value="${F_('Save')}" />
       </a>
       <a class="ui-widget-header ui-widget-link ui-corner-all" href="${model_url(collection_name)}">
         <span class="ui-icon ui-icon-circle-arrow-w"></span>
-        Cancel
+        ${F_('Cancel')}
       </a>
     </p>
 </%def>
@@ -46,7 +46,7 @@ from pylons import url
   <body>
 <div id="content" class="ui-admin ui-widget">
   %if isinstance(models, dict):
-    <h1 id="header" class="ui-widget-header ui-corner-all">Models</h1>
+    <h1 id="header" class="ui-widget-header ui-corner-all">${F_('Models')}</h1>
     %for name in sorted(models):
       <p>
         <a class="ui-state-default ui-corner-all" href="${models[name]}">${name}</a>
@@ -63,7 +63,7 @@ from pylons import url
     <p>
       <a class="ui-widget-header ui-widget-link ui-corner-all" href="${model_url('new_%s' % member_name)}">
           <span class="ui-icon ui-icon-circle-plus"></span>
-          New ${model_name}
+          ${F_('New')} ${model_name}
       </a>
     </p>
   %else:
@@ -75,7 +75,7 @@ from pylons import url
       <p class="fa_field">
         <a class="ui-widget-header ui-widget-link ui-corner-all" href="${model_url('edit_%s' % member_name, id=id)}">
           <span class="ui-icon ui-icon-pencil"></span>
-          Edit
+          ${F_('Edit')}
         </a>
       </p>
     %elif action == 'edit':
@@ -94,7 +94,7 @@ from pylons import url
 </div>
 <script type="text/javascript">
   var icons = document.getElementsByClassName('ui-icon')
-  for (var i = 0; icons.length-1; i++) {
+  for (var i = 0; i < icons.length-1; i++) {
     icons[i].setAttribute('value', ' ');
   }
 </script>

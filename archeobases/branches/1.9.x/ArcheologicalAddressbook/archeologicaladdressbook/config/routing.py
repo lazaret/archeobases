@@ -7,18 +7,18 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-"""Routes configuration
+""" Routes configuration.
 
 The more specific and detailed routes should be defined first so they
 may take precedent over the more generic routes. For more information
 refer to the routes manual at http://routes.groovie.org/docs/
+
 """
-from pylons import config
 from routes import Mapper
 
 
-def make_map():
-    """Create, configure and return the routes Mapper"""
+def make_map(config):
+    """ Create, configure and return the routes Mapper."""
     map = Mapper(directory=config['pylons.paths']['controllers'],
                  always_scan=config['debug'])
     map.minimization = False
@@ -30,15 +30,11 @@ def make_map():
 
     # CUSTOM ROUTES HERE
 
-    # Map static files - You can bind it to any path but you **must** keep fa_static as route name
-    map.connect('fa_static', '/admin/_static/{path_info:.*}', controller='admin', action='static')
-
-    # Map the /admin url to FA's AdminController
-    # Index page
-    map.connect('admin', '/admin', controller='admin', action='models')
-    map.connect('formatted_admin', '/admin.json', controller='admin', action='models', format='json')
-    # Model resources
-    map.resource('model', 'models', path_prefix='/admin/{model_name}', controller='admin')
+    # Map /ormadmin url to FA's OrmadminController
+    map.connect('fa_static', '/ormadmin/_static/{path_info:.*}', controller='ormadmin', action='static')
+    map.connect('ormadmin', '/ormadmin', controller='ormadmin', action='models')
+    map.connect('formatted_admin', '/ormadmin.json', controller='ormadmin', action='models', format='json')
+    map.resource('model', 'models', path_prefix='/ormadmin/{model_name}', controller='ormadmin')
 
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')

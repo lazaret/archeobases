@@ -7,16 +7,16 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Root controler fonctional tests."""
+""" OrmadminController controler fonctional tests."""
 
 from archeologicaladdressbook.tests import *
 
 
-class TestAdminController(TestController):
-    """ Test the controller `AdminControler`."""
+class TestOrmadminController(TestController):
+    """ Test the controller `OrmadminControler`."""
 
     def test_index(self):
-        """ Test the url of the admin page."""
-        response = self.app.get(url('admin'))
+        """ Test the url of the CRUD admin interface."""
+        response = self.app.get(url(controller='ormadmin', action='models'))
         # Test response...
 

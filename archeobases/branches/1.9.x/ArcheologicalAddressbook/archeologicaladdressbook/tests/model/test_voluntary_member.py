@@ -13,7 +13,7 @@ import datetime
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
-from archeologicaladdressbook.model import meta
+from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.tests.model import *
 from archeologicaladdressbook.tests.model.fixtures import *
 
@@ -23,12 +23,12 @@ class TestVoluntaryMemberModel(TestModel):
 
     def setUp(self):
         """ Extend the method used to build a test database."""
-        meta.metadata.create_all(meta.engine)
+        Base.metadata.create_all(bind=Session.bind)
         voluntary_member_fixture()
 
     def test_columns(self):
         """ Test the `VoluntaryMember` model columns and types."""
-        v_member = meta.Session.query(model.VoluntaryMember).filter_by().first()
+        v_member = Session.query(model.VoluntaryMember).filter_by().first()
         assert isinstance(v_member.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(v_member.last_name, unicode), '`last_name` column is missing or has changed.'
         assert isinstance(v_member.first_name, unicode), '`first_name` column is missing or has changed.'
@@ -42,8 +42,8 @@ class TestVoluntaryMemberModel(TestModel):
     def test_inherinting(self):
         """ Test that `VoluntaryMember` model inherit from `Person` model."""
         test_v_member = VoluntaryMemberData.JohnSmith()
-        person = meta.Session.query(model.Person).filter_by(last_name=test_v_member.last_name).one()
-        v_member = meta.Session.query(model.VoluntaryMember).filter_by(last_name=test_v_member.last_name).one()
+        person = Session.query(model.Person).filter_by(last_name=test_v_member.last_name).one()
+        v_member = Session.query(model.VoluntaryMember).filter_by(last_name=test_v_member.last_name).one()
         assert person == v_member
 
     def test_unique_constraint(self):
@@ -61,19 +61,19 @@ class TestVoluntaryMemberModel(TestModel):
             member_number = test_v_member.member_number,
             last_fee_date = test_v_member.last_fee_date
         )
-        meta.Session.add(v_member)
+        Session.add(v_member)
         try:
-            meta.Session.commit()
+            Session.commit()
             raise AssertionError('`VoluntaryMember` unique constraint on `member_number` is missing.')
         except sa.exc.IntegrityError:
-            meta.Session.rollback()
+            Session.rollback()
 
     def test_cascade_delete(self):
         """ Test for cascade delete between `VoluntaryMember` and `Person` models."""
-        v_member = meta.Session.query(model.VoluntaryMember).filter_by().first()
-        meta.Session.delete(v_member)
-        meta.Session.commit()
-        person = meta.Session.query(model.Person).filter_by(person_id=v_member.person_id).count()
+        v_member = Session.query(model.VoluntaryMember).filter_by().first()
+        Session.delete(v_member)
+        Session.commit()
+        person = Session.query(model.Person).filter_by(person_id=v_member.person_id).count()
         assert person == 0
 
 

@@ -31,10 +31,10 @@ def make_map(config):
     # CUSTOM ROUTES HERE
 
     # Map /ormadmin url to FA's OrmadminController
-    map.connect('fa_static', '/ormadmin/_static/{path_info:.*}', controller='ormadmin', action='static')
-    map.connect('ormadmin', '/ormadmin', controller='ormadmin', action='models')
-    map.connect('formatted_admin', '/ormadmin.json', controller='ormadmin', action='models', format='json')
-    map.resource('model', 'models', path_prefix='/ormadmin/{model_name}', controller='ormadmin')
+    map.connect('fa_static', '/dbadmin/_static/{path_info:.*}', controller='dbadmin', action='static')
+    map.connect('dbadmin', '/dbadmin', controller='dbadmin', action='models')
+    map.connect('formatted_admin', '/dbadmin.json', controller='dbadmin', action='models', format='json')
+    map.resource('model', 'models', path_prefix='/dbadmin/{model_name}', controller='dbadmin')
 
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')

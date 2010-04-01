@@ -22,18 +22,18 @@ from archeologicaladdressbook.model import meta
 log = logging.getLogger(__name__)
 
 
-class OrmadminController(BaseController):
+class DbadminController(BaseController):
     """ Generate a CRUD admin interface with FormAlchemy."""
     model = model # SQLAlchemy mappers
     forms = forms # module containing FormAlchemy fieldsets definitions
 
     def Session(self):
-        """ `AdminControler` session factory."""
+        """ `DbadminControler` session factory."""
         return meta.Session
 
 
-OrmadminController = ModelsController(OrmadminController,
-                                   prefix_name='ormadmin',
+DbadminController = ModelsController(DbadminController,
+                                   prefix_name='dbadmin',
                                    member_name='model',
                                    collection_name='models',
                                   )

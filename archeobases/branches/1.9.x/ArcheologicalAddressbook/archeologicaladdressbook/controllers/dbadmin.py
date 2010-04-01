@@ -11,22 +11,51 @@
 
 import logging
 from formalchemy.ext.pylons.controller import ModelsController
+from formalchemy import forms
+from formalchemy import tables
 from webhelpers.paginate import Page
 
 from archeologicaladdressbook.lib.base import BaseController, render
 from archeologicaladdressbook import model
-from archeologicaladdressbook import forms
 from archeologicaladdressbook.model import meta
 
 
 log = logging.getLogger(__name__)
 
 
+class DbAdminForms():
+    """ CRUD admin interface fieldsets definitions."""
+
+    class FieldSet(forms.FieldSet):
+        """ Initialize fieldsets."""
+        pass
+
+    # Initialize fieldsets
+    User = FieldSet(model.User)
+    User.configure(options=[User.created.label('Creation date')])
+    UserAdd = FieldSet(model.User)
+    UserAdd.configure(exclude=[UserAdd.created])
+
+    class Grid(tables.Grid):
+        """ Initialize grids."""
+        pass
+
+    # Initialize grids
+    UserGrid = Grid(model.User)
+    UserGrid.configure(include=[
+        UserGrid.user_name,
+        UserGrid.display_name,
+        UserGrid.groups,
+        UserGrid.created,
+        ], options=[UserGrid.created.label('Creation date')])
+
+
 class DbadminController(BaseController):
     """ Generate a CRUD admin interface with FormAlchemy."""
     template = '/dbadmin/restfieldset.mako'
     model = model # SQLAlchemy mappers
-    forms = forms # module containing FormAlchemy fieldsets definitions
+    #forms = forms # module containing FormAlchemy fieldsets definitions
+    forms = DbAdminForms
 
     def Session(self):
         """ `DbadminControler` session factory."""

@@ -12,7 +12,6 @@
 from pylons import config
 from archeologicaladdressbook import model
 from archeologicaladdressbook.lib.base import render
-from formalchemy import config as fa_config
 from formalchemy import templates
 from formalchemy import validators
 from formalchemy import fields
@@ -21,17 +20,6 @@ from formalchemy import tables
 from formalchemy.ext.fsblob import FileFieldRenderer
 from formalchemy.ext.fsblob import ImageFieldRenderer
 
-
-fa_config.encoding = 'utf-8'
-
-class TemplateEngine(templates.TemplateEngine):
-    """ Configure the template engine."""
-
-    def render(self, name, **kwargs):
-        """ Configure templates used to render forms."""
-        return render('/forms/%s.mako' % name, extra_vars=kwargs)
-
-fa_config.engine = TemplateEngine()
 
 
 class FieldSet(forms.FieldSet):

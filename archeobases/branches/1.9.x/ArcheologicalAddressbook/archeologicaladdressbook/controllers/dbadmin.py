@@ -24,6 +24,7 @@ log = logging.getLogger(__name__)
 
 class DbadminController(BaseController):
     """ Generate a CRUD admin interface with FormAlchemy."""
+    template = '/dbadmin/restfieldset.mako'
     model = model # SQLAlchemy mappers
     forms = forms # module containing FormAlchemy fieldsets definitions
 

@@ -21,6 +21,9 @@ class PersonData:
         first_name = u'John'
         title = u'Mr'
         birth_date = datetime.date(1969, 9, 6)
+        email_address = u'john.doe@work.com'
+        phone = u'00 10 20 30 40'
+        mobile_phone = u'00 20 30 40 40'
         activity = u'Test person 1'
 
 
@@ -32,5 +35,8 @@ class DuplicatePersonData:
         last_name = PersonData.JohnDoe.last_name
         first_name = PersonData.JohnDoe.first_name
         title = u'Mrs'
-        birth_date = PersonData.JohnDoe.birth_date
+        birth_date = datetime.date(1970, 9, 6)
+        email_address = u'john.doe@home.net'
+        phone = u'00 01 02 03 04'
+        mobile_phone = u'00 02 03 04 05'
         activity = u'Test person 2'

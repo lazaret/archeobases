@@ -19,9 +19,7 @@ from archeologicaladdressbook.model import meta
 from archeologicaladdressbook.tests.model.fixtures.person import *
 from archeologicaladdressbook.tests.model.fixtures.voluntary_member import *
 from archeologicaladdressbook.tests.model.fixtures.address import *
-from archeologicaladdressbook.tests.model.fixtures.email import *
 from archeologicaladdressbook.tests.model.fixtures.excavation import *
-from archeologicaladdressbook.tests.model.fixtures.phone import *
 from archeologicaladdressbook.tests.model.fixtures.photo import *
 
 
@@ -42,6 +40,9 @@ def person_fixture():
         first_name = test_person.first_name,
         title = test_person.title,
         birth_date = test_person.birth_date,
+        email_address = test_person.email_address,
+        phone = test_person.phone,
+        mobile_phone = test_person.mobile_phone,
         activity = test_person.activity
     )
     meta.Session.add(person)
@@ -83,20 +84,6 @@ def address_fixture():
     commit()
 
 
-def email_fixture():
-    """ Add an email test fixture in the database."""
-    test_email = EmailData.JohnDoeMail()
-    person = meta.Session.query(model.Person).filter_by().first()
-    # person.emails is a list of objects
-    person.emails.append(
-        model.Email(
-            email_address = test_email.email_address,
-            email_type = test_email.email_type
-        )
-    )
-    commit()
-
-
 def excavation_fixture():
     """ Add an excavation test fixture in the database."""
     test_excavation = ExcavationData.ExcavationSite1()
@@ -112,36 +99,13 @@ def excavation_fixture():
     commit()
 
 
-def phone_fixture():
-    """ Add a phone test fixture in the database."""
-    test_phone = PhoneData.JohnDoePhone()
-    person = meta.Session.query(model.Person).filter_by().first()
-    person.phones.append(
-        model.Phone(
-            phone_number = test_phone.phone_number,
-            phone_type = test_phone.phone_type
-        )
-    )
-    commit()
-
-
 def photo_fixture():
     """ Add a photo test fixture in the database."""
     test_photo = PhotoData.JohnDoePhoto()
     person = meta.Session.query(model.Person).filter_by().first()
-    person.photos.append(
-        model.Photo(
-            path = test_photo.path
-        )
-    )
+    person.photos = model.Photo(
+                        path = test_photo.path
+                    )
     commit()
 
 
-
-
-def toto_fixture():
-    toto = model.Toto(
-        toto_info = u'toto test string'
-    )
-    meta.Session.add(toto)
-    commit()

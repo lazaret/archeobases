@@ -39,11 +39,9 @@ class TestPhotoModel(TestModel):
         """
         test_photo = DuplicatePhotoData.JohnDoePhoto()
         person = Session.query(model.Person).filter_by().first()
-        person.photos.append(
-            model.Photo(
-                path = test_photo.path
-            )
-        )
+        person.photos = model.Photo(
+                            path = test_photo.path
+                        )
         try:
             Session.commit()
             raise AssertionError('`Photo` unique constraint on `path` is missing.')

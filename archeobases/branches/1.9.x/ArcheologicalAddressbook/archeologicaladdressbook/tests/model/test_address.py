@@ -70,7 +70,7 @@ class TestAddressModel(TestModel):
         person = Session.query(model.Person).filter_by().first()
         Session.delete(person)
         Session.commit()
-        addresses = Session.query(model.Phone).filter_by(person_id=person.person_id).count()
+        addresses = Session.query(model.Address).filter_by(person_id=person.person_id).count()
         assert addresses == 0
 
     def test_orphans(self):

@@ -29,13 +29,16 @@ class TestPersonModel(TestModel):
         assert isinstance(person.first_name, unicode), '`first_name` column is missing or has changed.'
         assert isinstance(person.title, unicode), '`title` column is missing or has changed.'
         assert isinstance(person.birth_date, datetime.date), '`birth_date` column is missing or has changed.'
+        assert isinstance(person.email_address, unicode), '`email_address` column is missing or has changed.'
+        assert isinstance(person.phone, unicode), '`phone` column is missing or has changed.'
+        assert isinstance(person.mobile_phone, unicode), '`mobile_phone` column is missing or has changed.'
         assert isinstance(person.activity, unicode), '`activity` column is missing or has changed.'
         assert isinstance(person.person_type, unicode), '`person_type` column is missing or has changed.'
 
     def test_unique_constraint(self):
         """ Test for unique constraint for the `Person` model.
 
-        Test the unique constraint on `last_name`, `first_name` and `birth_date`.
+        Test the unique constraint on `last_name` and `first_name`.
         """
         test_person = DuplicatePersonData.JohnDoe()
         person = model.Person(
@@ -55,13 +58,9 @@ class TestPersonModel(TestModel):
     def test_child_relations(self):
         """ Test the `Person` model child relations."""
         address_fixture()
-        email_fixture()
-        phone_fixture()
         photo_fixture()
         person = Session.query(model.Person).filter_by().first()
         assert person.addresses, '`Address` child relation is missing.'
-        assert person.emails, '`Email` child relation is missing.'
-        assert person.phones, '`Phone` child relation is missing.'
         assert person.photos, '`Photo` child relation is missing.'
 
 

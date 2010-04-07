@@ -12,11 +12,11 @@
 from archeologicaladdressbook.tests import *
 
 
-class TestOrmadminController(TestController):
+class TestDbadminController(TestController):
     """ Test the controller `OrmadminControler`."""
 
     def test_index(self):
         """ Test the url of the CRUD admin interface."""
-        response = self.app.get(url(controller='ormadmin', action='models'))
+        response = self.app.get(url(controller='dbadmin', action='models'))
         # Test response...
 

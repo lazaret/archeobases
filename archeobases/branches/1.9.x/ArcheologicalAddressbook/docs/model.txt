@@ -1,23 +1,21 @@
-What is the “Archeologicaladdressbook“ project?
+ArcheologicalAddressbook database model
+=======================================
 
-This project provides an address book, specific to archeological excavations and voluntary association, where you can add persons, postal addresses, phone numbers, email addresses, photos and sites, using a Web interface.
+This project provides an address book, specific to archeological excavations and voluntary association, 
+where you can add persons, postal addresses, phone numbers, email addresses, photos and sites.
 
+The model depend on SQLAlchemy ans is used byt the Pylons application.
 
-
-Developed with Pylons and SQL Alchemy
-
-Pylons is a framework based on the Model – View – Controller (MVC) architecture. It aims to develop rapid Web applications in Python.
-A framework is a set of components forming a structured program that you fill for the building. It produced an application easy to maintain.
-The MVC pattern isolates the data, the presentation and the user interactions.
-
-SQL Alchemy is a toolkit and Object Relational Mapper (ORM). It provides objects that look and act like real objects and allows to interact with the database. It supports MYSQL, Postgres, Oracle and SQLite.
+SQL Alchemy is a toolkit and Object Relational Mapper (ORM). 
+It provides objects that look and act like real objects and allows to interact with the database. 
 
 
+The database model
+------------------
 
-Data representation by Merise method
+Data representation by Merise method :
 
 (mcd.png)
-
 
 
 The data study highlights 7 entities:
@@ -44,6 +42,7 @@ Each entity becomes a table, except "VOLUNTARY_MEMBER" derived from "PERSON":
 
 
 Extract code: Person model
+--------------------------
 
 """ SQLAlchemy model definition for persons and voluntary members.
 
@@ -100,9 +99,7 @@ class VoluntaryMember(Person):
 
 
 
-In this example, “VoluntaryMember“ inherit from “Person”. Indeed, voluntary members are primarily persons who are members of the association. 
-We can also see the relationships between the different entities. A person may have one or more addresses, one or more telephone numbers, may have participated in the excavation sites, etc.
+In this example, `VoluntaryMember` inherit from `Person`. Indeed, voluntary members are primarily persons who are members of the association. 
+We can also see the relationships between the different entities. A person may have one or more addresses, one or more telephone numbers, 
+may have participated in the excavation sites, etc.
 Finally, the cascade delete is enabled. If an individual is removed from the database, all information concerning him/her will be deleted.
-
-
-All sources of the project are available at this address: http://lazaret.unice.fr/opensource/browser/archeobases/branches/1.9.x/ArcheologicalAddressbook

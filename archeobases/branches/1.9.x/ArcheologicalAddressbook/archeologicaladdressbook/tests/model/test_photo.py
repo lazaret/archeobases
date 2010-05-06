@@ -28,7 +28,7 @@ class TestPhotoModel(TestModel):
     def test_columns(self):
         """ Test the `Photo` model columns and types."""
         photo = Session.query(model.Photo).filter_by().first()
-        assert isinstance(photo.photo_id, int), '`photo_id` column is missing or has changed.'
+        assert isinstance(photo.id, int), '`id` column is missing or has changed.'
         assert isinstance(photo.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(photo.path, unicode), '`path` column is missing or has changed.'
 
@@ -39,7 +39,7 @@ class TestPhotoModel(TestModel):
         """
         test_photo = DuplicatePhotoData.JohnDoePhoto()
         person = Session.query(model.Person).filter_by().first()
-        person.photos = model.Photo(
+        person.photo = model.Photo(
                             path = test_photo.path
                         )
         try:
@@ -58,7 +58,7 @@ class TestPhotoModel(TestModel):
         person = Session.query(model.Person).filter_by().first()
         Session.delete(person)
         Session.commit()
-        photos = Session.query(model.Photo).filter_by(person_id=person.person_id).count()
+        photos = Session.query(model.Photo).filter_by(person_id=person.id).count()
         assert photos == 0
 
     def test_orphans(self):

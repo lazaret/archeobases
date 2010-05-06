@@ -19,8 +19,8 @@ class Excavation(Base):
     """ Excavation model definition."""
     __tablename__ = "excavation"
 
-    excavation_id = Column(Integer, autoincrement=True, primary_key=True)
-    person_id = Column(Integer, ForeignKey('person.person_id'))
+    id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, ForeignKey('person.id'))
     site_name = Column(Unicode(25), nullable=False)
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)

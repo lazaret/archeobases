@@ -29,7 +29,7 @@ class TestVoluntaryMemberModel(TestModel):
     def test_columns(self):
         """ Test the `VoluntaryMember` model columns and types."""
         v_member = Session.query(model.VoluntaryMember).filter_by().first()
-        assert isinstance(v_member.person_id, int), '`person_id` column is missing or has changed.'
+        assert isinstance(v_member.id, int), '`id` column is missing or has changed.'
         assert isinstance(v_member.last_name, unicode), '`last_name` column is missing or has changed.'
         assert isinstance(v_member.first_name, unicode), '`first_name` column is missing or has changed.'
         assert isinstance(v_member.title, unicode), '`title` column is missing or has changed.'
@@ -73,7 +73,7 @@ class TestVoluntaryMemberModel(TestModel):
         v_member = Session.query(model.VoluntaryMember).filter_by().first()
         Session.delete(v_member)
         Session.commit()
-        person = Session.query(model.Person).filter_by(person_id=v_member.person_id).count()
+        person = Session.query(model.Person).filter_by(id=v_member.id).count()
         assert person == 0
 
 

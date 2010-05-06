@@ -27,7 +27,7 @@ class Person(Base):
     __tablename__ = 'person'
     __table_args__  = (UniqueConstraint('last_name', 'first_name'), {})
 
-    person_id = Column(Integer, autoincrement=True, primary_key=True)
+    id = Column(Integer, autoincrement=True, primary_key=True)
     last_name = Column(Unicode(25), nullable=False, index=True)
     first_name = Column(Unicode(25), nullable=False)
     title = Column(Unicode(25))                         # Mrs/Ms/Mr/Pr/Dr/Esq...
@@ -35,7 +35,7 @@ class Person(Base):
     email_address = Column(Unicode(100))
     phone = Column(Unicode(15))
     mobile_phone = Column(Unicode(15))
-    activity = Column(Unicode(25), nullable=False)     # Work/studies...
+    activity = Column(Unicode(25))     # Work/studies...
     # discriminator used for inheritance and polymorphism
     person_type = Column(Unicode(16), nullable=False)
 
@@ -43,7 +43,7 @@ class Person(Base):
     addresses = relationship(Address, backref='person', cascade='all, delete-orphan')
     excavations = relationship(Excavation, backref='person', cascade='all, delete-orphan')
     # One-to-one relationship between Person and Photo
-    photos = relationship(Photo, uselist=False, backref='person', cascade='all, delete-orphan')
+    photo = relationship(Photo, uselist=False, backref='person', cascade='all, delete-orphan')
     #photos = relationship(Photo, backref='person', cascade='all, delete-orphan')
 
     # add polymorphism args for joined table inheritance with `VoluntaryMember`
@@ -56,6 +56,6 @@ class VoluntaryMember(Person):
     __table_args__  = (UniqueConstraint('member_number'), {})
     __mapper_args__ = {'polymorphic_identity': u'voluntary_member'}
 
-    person_id = Column(Integer, ForeignKey('person.person_id'), primary_key=True)
+    id = Column(Integer, ForeignKey('person.id'), primary_key=True)
     member_number = Column(Integer, nullable=False)
     last_fee_date = Column(Date, nullable=False)

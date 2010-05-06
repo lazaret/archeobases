@@ -28,7 +28,7 @@ class TestAddressModel(TestModel):
     def test_columns(self):
         """ Test the `Address` model columns and types."""
         address = Session.query(model.Address).filter_by().first()
-        assert isinstance(address.address_id, int), '`address_id` column is missing or has changed.'
+        assert isinstance(address.id, int), '`id` column is missing or has changed.'
         assert isinstance(address.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(address.address_line1, unicode), '`address_line1` column is missing or has changed.'
         assert isinstance(address.address_line2, unicode), '`address_line2` column is missing or has changed.'
@@ -70,7 +70,7 @@ class TestAddressModel(TestModel):
         person = Session.query(model.Person).filter_by().first()
         Session.delete(person)
         Session.commit()
-        addresses = Session.query(model.Address).filter_by(person_id=person.person_id).count()
+        addresses = Session.query(model.Address).filter_by(person_id=person.id).count()
         assert addresses == 0
 
     def test_orphans(self):

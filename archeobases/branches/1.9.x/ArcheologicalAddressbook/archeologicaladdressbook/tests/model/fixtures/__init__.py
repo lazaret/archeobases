@@ -103,7 +103,7 @@ def photo_fixture():
     """ Add a photo test fixture in the database."""
     test_photo = PhotoData.JohnDoePhoto()
     person = meta.Session.query(model.Person).filter_by().first()
-    person.photos = model.Photo(
+    person.photo = model.Photo(
                         path = test_photo.path
                     )
     commit()

@@ -29,7 +29,7 @@ class TestExcavationModel(TestModel):
     def test_columns(self):
         """ Test the `Excavation` model columns and types."""
         excavation = Session.query(model.Excavation).filter_by().first()
-        assert isinstance(excavation.excavation_id, int), '`excavation_id` column is missing or has changed.'
+        assert isinstance(excavation.id, int), '`id` column is missing or has changed.'
         assert isinstance(excavation.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(excavation.site_name, unicode), '`site_name` column is missing or has changed.'
         assert isinstance(excavation.start_date, datetime.date), '`start_date` column is missing or has changed.'
@@ -46,7 +46,7 @@ class TestExcavationModel(TestModel):
         person = Session.query(model.Person).filter_by().first()
         Session.delete(person)
         Session.commit()
-        excavations = Session.query(model.Excavation).filter_by(person_id=person.person_id).count()
+        excavations = Session.query(model.Excavation).filter_by(person_id=person.id).count()
         assert excavations == 0
 
     def test_orphans(self):

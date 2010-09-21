@@ -10,11 +10,15 @@
 """ Admin controler."""
 
 import logging
+
+from pylons.i18n.translation import _
 from formalchemy.ext.pylons.controller import ModelsController
 from formalchemy import forms
 from formalchemy import tables
+from repoze.what.predicates import has_permission
 from webhelpers.paginate import Page
 
+from archeologicaladdressbook.lib.auth import protect_controller
 from archeologicaladdressbook.lib.base import BaseController, render
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
@@ -49,7 +53,7 @@ class DbAdminForms():
         UserGrid.created,
         ], options=[UserGrid.created.label('Creation date')])
 
-
+@protect_controller(has_permission('manage', msg=_('Only for managers')))
 class DbadminController(BaseController):
     """ Generate a CRUD admin interface with FormAlchemy."""
     template = '/dbadmin/restfieldset.mako'

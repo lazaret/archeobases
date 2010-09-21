@@ -13,6 +13,8 @@ Provides the BaseController class for subclassing.
 
 """
 from pylons.controllers import WSGIController
+from pylons.decorators import validate
+from pylons.decorators.secure import authenticate_form
 from pylons.templating import render_mako as render
 
 from archeologicaladdressbook.model.meta import Session

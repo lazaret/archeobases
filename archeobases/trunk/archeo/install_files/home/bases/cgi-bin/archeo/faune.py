@@ -43,7 +43,7 @@ class Faune(archeodata.Data):
                     "f_affgenre"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1},
                     "f_genre"          : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
                     "f_affespece"      : {"type": "text", "default": "", "mandatory": 0, "longueur": 0, "memory": 1},
-                    "f_espece"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
+                    "f_espece"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
                     "f_ssespece"       : {"type": "text", "default": "", "mandatory": 0, "longueur": 15, "memory": 1},
                     "f_typos1"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 1, "memory": 1},
                     "f_typos2"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 4, "memory": 1},
@@ -276,7 +276,7 @@ class Faune(archeodata.Data):
         afficheclefs.champ_nliste(self, "f_affespece", "espece", enreg, penreg, "", 1, dontchange=0)
 
     def f_espece_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_saisie_simple(self, "f_espece", 15, 35, enreg, penreg)
+        afficheclefs.champ_saisie_simple(self, "f_espece", 20, 35, enreg, penreg)
 
     def f_ssespece_base_to_form(self, enreg, penreg=None):
 #        liste_clefs = ["zone", "numero", "bis"]

@@ -33,7 +33,7 @@ def getCookies():
     if os.environ.has_key("HTTP_COOKIE"):
         cookies = os.environ["HTTP_COOKIE"]
         split = map(string.strip, string.split(cookies, ";"))
-        for (name, value) in map(lambda c: string.split(c, "="), split):
+        for (name, value) in map(lambda c: string.split(c, "=" ,1), split):
             cooker[name] = value
     return cooker
 

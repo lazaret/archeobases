@@ -1,0 +1,55 @@
+/* css styles for jquery plugins and functions*/
+
+/* flash messages */
+
+div#message_box {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 10;
+  width:100%;
+}
+
+div#message_box .close_message {
+  float:right;
+}
+
+div#error_message, div#notice_message,
+div#success_message, div#warning_message {
+  font-weight:bold;
+  padding:5px;
+  text-align:center;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  border-bottom:1px solid #CCCCCC;
+}
+
+div#error_message {
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url("../images/error.png");
+}
+
+div#notice_message {
+  color: #00529B;
+  background-color: #C2E1EF;
+  background-image: url("../images/notice.png");
+}
+
+div#success_message {
+  color: #4F8A10;
+  background-color: #F6FCEC;
+  background-image: url("../images/success.png");
+}
+
+div#warning_message {
+  color: #C35617;
+  background-color: #FEEFB3;
+  background-image: url("../images/warning.png");
+}
+
+
+/* jquery-ui datepicker */
+
+div.ui-datepicker{
+ font-size:12px;
+}

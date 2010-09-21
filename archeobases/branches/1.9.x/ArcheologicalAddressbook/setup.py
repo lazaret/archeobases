@@ -30,8 +30,9 @@ setup(
     long_description=open('README.txt').read(),
     install_requires=[
         'Pylons>=1.0',
-        'SQLAlchemy>=0.5.8',
         'Mako>=0.3.2',
+        'Paste>='1.7.5.1'',
+        'SQLAlchemy>=0.5.8',
         'FormAlchemy>=1.3.2',
         'Babel>=0.9.4',
         'repoze.what-pylons>=1.0',

@@ -13,5 +13,14 @@ Consists of functions to typically be used within templates, but also
 available to Controllers. This module is available to templates as 'h'.
 
 """
-# Import helpers as desired, or define your own, ie:
-#from webhelpers.html.tags import checkbox, password
+
+from pylons import url
+from webhelpers.html.tags import *
+from webhelpers.html.tools import *
+from webhelpers.pylonslib import secure_form #TODO : test and use this
+from webhelpers.pylonslib import Flash as _Flash
+
+
+flash_message = _Flash()
+
+

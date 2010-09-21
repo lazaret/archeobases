@@ -22,6 +22,7 @@ def make_map(config):
     map = Mapper(directory=config['pylons.paths']['controllers'],
                  always_scan=config['debug'])
     map.minimization = False
+    map.explicit = False
 
     # The ErrorController route (handles 404/500 error pages); it should
     # likely stay at the top, ensuring it can always be resolved
@@ -30,13 +31,24 @@ def make_map(config):
 
     # CUSTOM ROUTES HERE
 
-    # Map /ormadmin url to FA's OrmadminController
+    # Map /dbmadmin url to FA's OrmadminController
     map.connect('fa_static', '/dbadmin/_static/{path_info:.*}', controller='dbadmin', action='static')
     map.connect('dbadmin', '/dbadmin', controller='dbadmin', action='models')
     map.connect('formatted_admin', '/dbadmin.json', controller='dbadmin', action='models', format='json')
     map.resource('model', 'models', path_prefix='/dbadmin/{model_name}', controller='dbadmin')
 
-    map.connect('/{controller}/{action}')
-    map.connect('/{controller}/{action}/{id}')
+    # Default `index` action for controllers
+    map.connect('/{controller}', action='index')
+    map.connect('/{controller}/', action='index')
+
+    # Root controler action (index, login, logout, etc...)
+    map.connect('/', controller='root', action='index')
+    map.connect('/{action}', controller='root')
+
+    # Default controller/action routes
+    map.connect(None, '/{controller}/{action}')
+    map.connect(None, '/{controller}/{action}/{id}')
+    #map.connect('/{controller}/{action}')
+    #map.connect('/{controller}/{action}/{id}')
 
     return map

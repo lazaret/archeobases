@@ -35,7 +35,7 @@ The bitten slave use the recipe witch :
 - get the project revision
 - build sources and egg packages
 - run the tests
-- rune pylint and cheesecake
+- run pylint and cheesecake
 
 
 Note:

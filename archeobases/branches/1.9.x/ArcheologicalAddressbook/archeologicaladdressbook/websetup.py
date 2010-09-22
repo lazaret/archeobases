@@ -34,29 +34,57 @@ def setup_app(command, conf, vars):
     log.info("Table creation done.")
 
     # Add default values in the tables
-    log.info("Add default user, group and permission")
+    log.info("Add default users, groups and permissions")
 
-    user = model.User()
-    user.user_name = u'manager'
-    user.display_name = u'Example manager'
-    user.email_address = u'manager@somedomain.com'
-    user.password = u'managepass'
-    Session.add(user)
+    # add rights for administrative tasks
+    manage_user = model.User()
+    manage_user.user_name = u'manager'
+    manage_user.display_name = u'Example manager'
+    manage_user.email_address = u'manager@somedomain.com'
+    manage_user.password = u'managepass'
+    Session.add(manage_user)
 
-    group = model.Group()
-    group.group_name = u'managers'
-    group.display_name = u'Managers Group'
-    group.users.append(user)
-    Session.add(group)
+    manage_group = model.Group()
+    manage_group.group_name = u'managers'
+    manage_group.display_name = u'Managers Group'
+    manage_group.users.append(manage_user)
+    Session.add(manage_group)
 
-    permission = model.Permission()
-    permission.permission_name = u'manage'
-    permission.description = u'This permission give an administrative right to the bearer'
-    permission.groups.append(group)
-    Session.add(permission)
+    manage_permission = model.Permission()
+    manage_permission.permission_name = u'manage'
+    manage_permission.description = u'This permission give an administrative right'
+    manage_permission.groups.append(manage_group)
+    Session.add(manage_permission)
+
+    # add rights for editing
+    edit_user = model.User()
+    edit_user.user_name = u'editor'
+    edit_user.display_name = u'Example editor'
+    edit_user.email_address = u'editor@somedomain.com'
+    edit_user.password = u'editorpass'
+    Session.add(edit_user)
+
+    edit_group = model.Group()
+    edit_group.group_name = u'editors'
+    edit_group.display_name = u'editorss Group'
+    edit_group.users.append(edit_user)
+    Session.add(edit_group)
+
+    edit_permission = model.Permission()
+    edit_permission.permission_name = u'edit'
+    edit_permission.description = u'This permission give an editing right'
+    edit_permission.groups.append(edit_group)
+    edit_permission.groups.append(manage_group)
+    Session.add(edit_permission)
+
+#    view_permission = model.Permission()
+#    view_permission.permission_name = u'view'
+#    view_permission.description = u'This permission give a viewing right'
+#    view_permission.groups.append(manage_group)
+#    Session.add(view_permission)
 
     Session.flush()
     Session.commit()
-    log.info("Adding default user, group and permission done.")
+    log.info("Adding default users, groups and permissions done.")
 
 

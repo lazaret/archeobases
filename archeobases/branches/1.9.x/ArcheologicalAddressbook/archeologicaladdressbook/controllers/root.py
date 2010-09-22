@@ -67,7 +67,6 @@ class RootController(BaseController):
 ################# tests ####################### TODO REMOVE BELLOW
 
     @protect_action(is_user('manager', msg=_('Authentification required')))
-    #@protect_action(is_user('manager'))
     def test(self):
         flash_message('protected page !')
         return render('/index.mako')
@@ -76,6 +75,6 @@ class RootController(BaseController):
     def environ(self):
         result = '<html><body><h1>Environ</h1>'
         for key, value in request.environ.items():
-            result += '%s: %r <br />'%(key, value)
+            result += '%s: %r <br />' %(key, value)
         result += '</body></html>'
         return result

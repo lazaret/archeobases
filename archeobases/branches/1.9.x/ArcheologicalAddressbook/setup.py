@@ -31,7 +31,7 @@ setup(
     install_requires=[
         'Pylons>=1.0',
         'Mako>=0.3.2',
-        'Paste>='1.7.5.1',
+        'Paste>=1.7.5.1',
         'SQLAlchemy>=0.5.8',
         'FormAlchemy>=1.3.2',
         'Babel>=0.9.4',

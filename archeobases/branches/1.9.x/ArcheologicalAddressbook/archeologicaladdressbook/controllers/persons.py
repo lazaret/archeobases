@@ -7,13 +7,19 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
+"""Persons controler for the application"""
+
 import logging
 
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
+from pylons.i18n.translation import _
+from repoze.what.predicates import has_permission
 
 from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
 from archeologicaladdressbook.lib.helpers import flash_message
+from archeologicaladdressbook.lib.auth import protect_controller
+
 from archeologicaladdressbook.model import Session
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import forms
@@ -33,6 +39,7 @@ from formencode import htmlfill
 import webhelpers.paginate
 
 
+@protect_controller(has_permission('edit', msg=_('Authentification required')))
 class PersonsController(BaseController):
     """ """
 

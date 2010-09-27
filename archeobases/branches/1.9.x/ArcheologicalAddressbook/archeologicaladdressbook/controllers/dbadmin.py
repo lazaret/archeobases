@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Admin controler."""
+""" DBadmin controller for the application."""
 
 import logging
 
@@ -53,9 +53,13 @@ class DbAdminForms():
         UserGrid.created,
         ], options=[UserGrid.created.label('Creation date')])
 
+
 @protect_controller(has_permission('manage', msg=_('Only for managers')))
 class DbadminController(BaseController):
-    """ Generate a CRUD admin interface with FormAlchemy."""
+    """ Database Admin Controller.
+
+    Generate a CRUD admin interface with FormAlchemy.
+    """
     template = '/dbadmin/restfieldset.mako'
     model = model # SQLAlchemy mappers
     #forms = forms # module containing FormAlchemy fieldsets definitions

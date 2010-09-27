@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-"""Search controler for the application"""
+""" Search controller for the application."""
 
 import logging
 
@@ -19,10 +19,12 @@ from repoze.what.predicates import has_permission
 from archeologicaladdressbook.lib.base import BaseController, render
 from archeologicaladdressbook.lib.auth import protect_action
 
+
 log = logging.getLogger(__name__)
 
+
 class SearchController(BaseController):
-    """ """
+    """ Search Controller."""
 
     @protect_action(has_permission('edit', msg=_('Authentification required')))
     def index(self):

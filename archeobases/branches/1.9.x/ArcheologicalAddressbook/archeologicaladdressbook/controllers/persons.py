@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-"""Persons controler for the application"""
+""" Persons controller for the application."""
 
 import logging
 
@@ -41,19 +41,10 @@ import webhelpers.paginate
 
 @protect_controller(has_permission('edit', msg=_('Authentification required')))
 class PersonsController(BaseController):
-    """ """
+    """ Persons Controller."""
 
-    #TODO Auth & Auth
-    #def __before__(self):
-    #    """ """
-    #    credentials = request.environ.get('repoze.what.credentials', False)
-    #    if credentials:
-    #        c.userid = credentials['repoze.what.userid']
-    #    else:
-    #        c.userid = None
-
-    def _error_formatter(error):
-        """ """
+    def _error_formatter(self, error): #TODO move to basecontroller ?
+        """ FormEncode error formating."""
         return """<div id="error-message"><img src="/images/exclamation.png"/> %s</div>""" % (
             htmlfill.html_quote(error))
 
@@ -88,7 +79,7 @@ class PersonsController(BaseController):
             abort(404)
 
     def new(self, id=None):
-        """ display a form to create a new record."""
+        """ Display a form to create a new record."""
         #if id:
         #    # if someone mistype /persons/new/id
         #    redirect(url('new_person'))
@@ -101,7 +92,7 @@ class PersonsController(BaseController):
 #    @authenticate_form
     @validate(schema=forms.PersonForm(), form='new', auto_error_formatter=_error_formatter)
     def create(self):
-        """ """
+        """ Add a new record in the database."""
         person = model.Person(**self.form_result)
         Session.add(person)
         Session.commit()
@@ -109,7 +100,7 @@ class PersonsController(BaseController):
         return redirect(url.current(action='show', id=person.id))
 
     def edit(self, id=None):
-        """ """
+        """ Display a form to edit an existing record."""
         c.person = Session.query(model.Person).get(id)
         if c.person:
             return render('/persons/edit_person.mako')
@@ -119,7 +110,7 @@ class PersonsController(BaseController):
 
     @validate(schema=forms.PersonForm(), form='edit', auto_error_formatter=_error_formatter)
     def update(self, id=None):
-        """ """
+        """ Update an existing record."""
 # TODO no id error
         person = Session.query(model.Person).get(id)
 

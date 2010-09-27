@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-"""Stats controler for the application"""
+""" Stats controler for the application."""
 
 import logging
 
@@ -19,14 +19,16 @@ from repoze.what.predicates import has_permission
 from archeologicaladdressbook.lib.base import BaseController, render
 from archeologicaladdressbook.lib.auth import protect_action
 
+
 log = logging.getLogger(__name__)
 
+
 class StatsController(BaseController):
-    """ """
+    """ Statistics Controller."""
 
     @protect_action(has_permission('edit', msg=_('Authentification required')))
     def index(self):
-        """ Display basic countings on records """
+        """ Display basic countings on records."""
         #TODO maybe move this stats in the database with procedures
         c.person_count = 100
         c.address_count = 100

@@ -10,11 +10,12 @@
 """ The base Controller API.
 
 Provides the BaseController class for subclassing.
-
 """
+
+from pylons import request, tmpl_context as c
 from pylons.controllers import WSGIController
-from pylons.decorators import validate
-from pylons.decorators.secure import authenticate_form
+from pylons.decorators import validate # TODO check this
+from pylons.decorators.secure import authenticate_form # TODO test this
 from pylons.templating import render_mako as render
 
 from archeologicaladdressbook.model.meta import Session
@@ -32,3 +33,11 @@ class BaseController(WSGIController):
             return WSGIController.__call__(self, environ, start_response)
         finally:
             Session.remove()
+
+    def __before__(self):
+        """ Publish Auth & Auth credentials for the templates."""
+        credentials = request.environ.get('repoze.what.credentials', False)
+        if credentials:
+            c.userid = credentials['repoze.what.userid']
+        else:
+            c.userid = None

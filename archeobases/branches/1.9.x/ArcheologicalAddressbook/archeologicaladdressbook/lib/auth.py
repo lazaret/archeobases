@@ -9,7 +9,7 @@
 #
 """ Auth & Auth middleware."""
 
-from pylons import response
+from pylons import request, response
 from pylons.controllers.util import abort
 
 from repoze.what.plugins.quickstart import setup_sql_auth
@@ -34,8 +34,11 @@ def add_auth(app):
 
 
 def denial_handler(reason):
-    # When this handler is called, response.status has two possible values:
-    # 401 or 403.
+    """ Auth & Auth denial handler.
+
+    When this handler is called, response.status has two possible values:
+    401 or 403.
+    """
     if response.status_int == 401:
         message = 'Oops, you have to login: %s' % reason
         message_type = 'warning'

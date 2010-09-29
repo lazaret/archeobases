@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" DBadmin controller for the application."""
+""" `DBadmin` controller for the application."""
 
 import logging
 
@@ -31,7 +31,7 @@ class DbAdminForms():
     """ CRUD admin interface fieldsets definitions."""
 
     class FieldSet(forms.FieldSet):
-        """ Initialize fieldsets."""
+        """ Initialize `DbAdminForms` fieldsets."""
         pass
 
     # Initialize fieldsets
@@ -41,7 +41,7 @@ class DbAdminForms():
     UserAdd.configure(exclude=[UserAdd.created])
 
     class Grid(tables.Grid):
-        """ Initialize grids."""
+        """ Initialize `DbAdminForms` grids."""
         pass
 
     # Initialize grids
@@ -62,7 +62,7 @@ class DbadminController(BaseController):
     """
     template = '/dbadmin/restfieldset.mako'
     model = model # SQLAlchemy mappers
-    #forms = forms # module containing FormAlchemy fieldsets definitions
+    #forms = forms # module containing FormAlchemy fieldsets definitions #TODO check this
     forms = DbAdminForms
 
     def Session(self):

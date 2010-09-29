@@ -42,3 +42,5 @@ class BaseController(WSGIController):
             c.userid = credentials['repoze.what.userid']
         else:
             c.userid = None
+        # Add a default page title
+        c.page_title = None

@@ -28,7 +28,7 @@ from archeologicaladdressbook.model import forms
 log = logging.getLogger(__name__)
 
 
-#TODO move _before and _error in the Base controller ?
+#TODO move _error in the Base controller ?
 from formencode import htmlfill
 
 #TODO check flash messages and error handling
@@ -39,6 +39,7 @@ from formencode import htmlfill
 import webhelpers.paginate
 
 
+#TODO separate and add 'view' and 'edit' permissions
 @protect_controller(has_permission('edit', msg=_('Authentification required')))
 class PersonsController(BaseController):
     """ Persons Controller."""
@@ -52,25 +53,24 @@ class PersonsController(BaseController):
         """ Render the index template."""
         return render('/persons/index_person.mako')
 
-    def list(self, id=None):
+    def list(self, page_id=None):
         """ Display a paged list of records.""" #TODO better docstring
-        # id is used here for page number
 #        c.persons = Session.query(model.Person).all()
         c.page = webhelpers.paginate.Page(
                         Session.query(model.Person),
-                        page=id,
+                        page=page_id,
                         items_per_page = 5)
         return render('/persons/list_person.mako')
 
 # CRUD actions
 
-    def show(self, id=None):
+    def show(self, person_id=None):
         """ Display an individual record."""
         #flash_message('test success message', 'success') #TODO remove
         #flash_message('test warning message', 'warning') #TODO remove
         #flash_message('test error message', 'error') #TODO remove
         #flash_message('test notice message', 'notice') #TODO remove
-        c.person = Session.query(model.Person).get(id)
+        c.person = Session.query(model.Person).get(person_id)
         if c.person:
             return render('/persons/show_person.mako')
         else:
@@ -78,7 +78,7 @@ class PersonsController(BaseController):
             #return redirect(url.current(action='index'))
             abort(404)
 
-    def new(self, id=None):
+    def new(self, person_id=None):
         """ Display a form to create a new record."""
         #if id:
         #    # if someone mistype /persons/new/id
@@ -99,9 +99,9 @@ class PersonsController(BaseController):
         flash_message('success message', 'success')
         return redirect(url.current(action='show', id=person.id))
 
-    def edit(self, id=None):
+    def edit(self, person_id=None):
         """ Display a form to edit an existing record."""
-        c.person = Session.query(model.Person).get(id)
+        c.person = Session.query(model.Person).get(person_id)
         if c.person:
             return render('/persons/edit_person.mako')
         else:
@@ -109,10 +109,10 @@ class PersonsController(BaseController):
             abort(404)
 
     @validate(schema=forms.PersonForm(), form='edit', auto_error_formatter=_error_formatter)
-    def update(self, id=None):
+    def update(self, person_id=None):
         """ Update an existing record."""
 # TODO no id error
-        person = Session.query(model.Person).get(id)
+        person = Session.query(model.Person).get(person_id)
 
 # TODO shorter update
         person.last_name = self.form_result['last_name']
@@ -126,11 +126,11 @@ class PersonsController(BaseController):
 
         Session.commit()
         flash_message('success message', 'success')
-        return redirect(url.current(action='show', id=person.id))
+        return redirect(url.current(action='show', person_id=person.id))
 
-    def delete(self, id=None):
+    def delete(self, person_id=None):
         """ Delete an existing record."""
-        person = Session.query(model.Person).get(id)
+        person = Session.query(model.Person).get(person_id)
         if person:
             Session.delete(person)
             Session.commit()
@@ -140,10 +140,10 @@ class PersonsController(BaseController):
             #TODO flash message
             abort(404)
 
-    def confirm_delete(self, id=None):
+    def confirm_delete(self, person_id=None):
         """ Show a specific item and ask to confirm deletion."""
 
-        c.person = Session.query(model.Person).get(id)
+        c.person = Session.query(model.Person).get(person_id)
         if c.person:
             return render('/persons/confirm_delete_person.mako')
         else:

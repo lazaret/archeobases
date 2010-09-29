@@ -39,7 +39,7 @@ group_permission_table = Table("tg_group_permission", Base.metadata,
 
 
 class Group(Base):
-    """ Group definition."""
+    """ Group model definition."""
     __tablename__ = "tg_group"
 
     group_id = Column(Integer, autoincrement=True, primary_key=True)
@@ -51,7 +51,7 @@ class Group(Base):
 
 
 class User(Base):
-    """ User definition."""
+    """ User model definition."""
     __tablename__ = "tg_user"
 
     user_id = Column(Integer, autoincrement=True, primary_key=True)
@@ -91,7 +91,10 @@ class User(Base):
 
 
 class Permission(Base):
-    """ A relationship that determines what each Group can do."""
+    """ permission model definition.
+
+    A relationship that determines what each Group can do.
+    """
     __tablename__ = "tg_permission"
 
     permission_id = Column(Integer, autoincrement=True, primary_key=True)

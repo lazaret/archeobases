@@ -23,7 +23,7 @@ from archeologicaladdressbook.model import init_model
 
 
 def load_environment(global_conf, app_conf):
-    """ Configure the Pylons environment via the ``pylons.config`` object."""
+    """ Configure the Pylons environment via the `pylons.config` object."""
 
     config = PylonsConfig()
 

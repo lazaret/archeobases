@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 def setup_app(command, conf, vars):
     """ Setup archeologicaladdressbook.
 
-    Set default values in the database for an admin user, a manager group and a manage permission.
+    Set default values in the database for managers and editors.
     """
     # Don't reload the app if it was loaded under the testing environment
     if not pylons.test.pylonsapp:
@@ -66,7 +66,7 @@ def setup_app(command, conf, vars):
 
     edit_group = model.Group()
     edit_group.group_name = u'editors'
-    edit_group.display_name = u'editorss Group'
+    edit_group.display_name = u'editors Group'
     edit_group.users.append(edit_user)
     Session.add(edit_group)
 

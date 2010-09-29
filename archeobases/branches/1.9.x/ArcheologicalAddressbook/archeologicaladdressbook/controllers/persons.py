@@ -51,10 +51,12 @@ class PersonsController(BaseController):
 
     def index(self):
         """ Render the index template."""
+        c.page_title = _("Persons")
         return render('/persons/index_person.mako')
 
     def list(self, page_id=None):
         """ Display a paged list of records.""" #TODO better docstring
+        c.page_title = _("List persons")
 #        c.persons = Session.query(model.Person).all()
         c.page = webhelpers.paginate.Page(
                         Session.query(model.Person),
@@ -70,6 +72,7 @@ class PersonsController(BaseController):
         #flash_message('test warning message', 'warning') #TODO remove
         #flash_message('test error message', 'error') #TODO remove
         #flash_message('test notice message', 'notice') #TODO remove
+        c.page_title = _("Display person")
         c.person = Session.query(model.Person).get(person_id)
         if c.person:
             return render('/persons/show_person.mako')
@@ -80,6 +83,7 @@ class PersonsController(BaseController):
 
     def new(self, person_id=None):
         """ Display a form to create a new record."""
+        c.page_title = _("Add a person")
         #if id:
         #    # if someone mistype /persons/new/id
         #    redirect(url('new_person'))
@@ -101,6 +105,7 @@ class PersonsController(BaseController):
 
     def edit(self, person_id=None):
         """ Display a form to edit an existing record."""
+        c.page_title = _("Edit a person")
         c.person = Session.query(model.Person).get(person_id)
         if c.person:
             return render('/persons/edit_person.mako')
@@ -142,7 +147,7 @@ class PersonsController(BaseController):
 
     def confirm_delete(self, person_id=None):
         """ Show a specific item and ask to confirm deletion."""
-
+        c.page_title = _("Delete a person")
         c.person = Session.query(model.Person).get(person_id)
         if c.person:
             return render('/persons/confirm_delete_person.mako')

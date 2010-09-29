@@ -17,13 +17,17 @@
     ${h.javascript_link("/javascripts/jquery.min.js")}
     ${h.javascript_link("/javascripts/jquery-ui.custom.min.js")}
     ${h.javascript_link("/javascripts/main.js")}
+    % if c.page_title:
+      <title>${_("Addressbook")} : ${c.page_title}</title>
+    % else:
+      <title>${_("Addressbook")}</title>
+    % endif
   </head>
 
   <body>
       <div id="header">
         ##LOGIN BOX
         ${login_box()}
-        ##TODO auth & Auth
       </div>
       ##flash messages
       ${flash_message()}

@@ -46,7 +46,7 @@ import webhelpers.paginate
 class PersonsController(BaseController):
     """ Persons Controller."""
 
-    def _error_formatter(error): #TODO move to basecontroller ?
+    def _error_formatter(error): #TODO move to basecontroller or remove completly with css styles?
         """ FormEncode error formating."""
         return """<div id="error-message"><img src="/images/exclamation.png"/> %s</div>""" % (
             htmlfill.html_quote(error))
@@ -96,8 +96,9 @@ class PersonsController(BaseController):
             flash_message('form errors', 'warning')
         return render('/persons/new_person.mako')
 
-#    @authenticate_form
+
     @validate(schema=forms.PersonForm(), form='new', auto_error_formatter=_error_formatter)
+    @authenticate_form
     def create(self):
         """ Add a new record in the database."""
         person = model.Person(**self.form_result)
@@ -117,6 +118,7 @@ class PersonsController(BaseController):
             abort(404)
 
     @validate(schema=forms.PersonForm(), form='edit', auto_error_formatter=_error_formatter)
+    @authenticate_form
     def update(self, id=None):
         """ Update an existing record."""
 # TODO no id error

@@ -5,7 +5,7 @@
 
 new_person<br/><br/>
 
-${h.form(url.current(action='create'))}
+${h.secure_form(url.current(action='create'))}
   <fieldset>
     <legend>${_("Add a person")}</legend>
     ${_("Last name")} ${h.text(name="last_name")}<br/>

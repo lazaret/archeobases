@@ -15,6 +15,10 @@ from archeologicaladdressbook.tests import *
 class TestStatsController(TestController):
     """ Test the controller `StatsController`."""
 
+    editor = {'repoze.what.userid': u'editor',
+                   'groups': (u'editors',),
+                   'permissions': (u'edit',)}
+
     def test_1_routes(self):
         """ Test the routes of the `StatsController` controller."""
         self.app.get(url(controller='stats'))
@@ -28,15 +32,12 @@ class TestStatsController(TestController):
     #TODO: change 'edit' permission to 'view'
     def test_3_editors_allowed(self):
         """ Test than the `StatsController` controller is allowed for editors."""
-        editor = {'repoze.what.userid': u'editor',
-                   'groups': (u'editors',),
-                   'permissions': (u'edit',)}
-        response = self.app.get(url(controller='stats'),
-            extra_environ={'repoze.what.credentials': editor},
+        self.app.get(url(controller='stats'),
+            extra_environ={'repoze.what.credentials': self.editor},
             status=200)
-        return response
 
     def test_4_index_response(self):
         """ Test response of the `StatsController` index page."""
-        response = self.test_3_editors_allowed()
-        #assert 'test' in response
+        response = self.app.get(url(controller='stats', action='index'),
+            extra_environ={'repoze.what.credentials': self.editor})
+        assert 'index_stats template' in response

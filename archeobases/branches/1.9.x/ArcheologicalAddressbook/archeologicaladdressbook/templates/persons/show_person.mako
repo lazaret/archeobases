@@ -2,7 +2,7 @@
 
 <%inherit file="/base.mako" />
 <%namespace file="/lib/flash_message.mako" import="*"/>
-
+<!-- show_person template -->
 
 show_person<br/><br/>
 

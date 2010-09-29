@@ -7,4 +7,4 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" The application's controlers."""
+""" The application's controllers."""

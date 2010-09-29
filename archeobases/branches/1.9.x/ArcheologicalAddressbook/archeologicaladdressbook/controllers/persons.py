@@ -46,7 +46,7 @@ import webhelpers.paginate
 class PersonsController(BaseController):
     """ Persons Controller."""
 
-    def _error_formatter(self, error): #TODO move to basecontroller ?
+    def _error_formatter(error): #TODO move to basecontroller ?
         """ FormEncode error formating."""
         return """<div id="error-message"><img src="/images/exclamation.png"/> %s</div>""" % (
             htmlfill.html_quote(error))

@@ -1,6 +1,7 @@
 ## -*- coding: utf-8 -*-
 
 <%inherit file="/base.mako" />
+<!-- new_person template -->
 
 new_person<br/><br/>
 

@@ -1,6 +1,7 @@
 ## -*- coding: utf-8 -*-
 
 <%inherit file="/base.mako" />
+<!-- index_person template -->
 
 index_person<br/><br/>
 

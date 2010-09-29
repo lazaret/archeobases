@@ -17,16 +17,17 @@ from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
 
 from archeologicaladdressbook.lib.base import BaseController, render
-from archeologicaladdressbook.lib.auth import protect_action
+from archeologicaladdressbook.lib.auth import protect_controller
 
 
 log = logging.getLogger(__name__)
 
 
+#TODO : add a 'view' permission to search & displays datas
+@protect_controller(has_permission('edit', msg=_('Authentification required')))
 class SearchController(BaseController):
     """ Search Controller."""
 
-    @protect_action(has_permission('edit', msg=_('Authentification required')))
     def index(self):
         """ Render the index template."""
         return render('/search/index_search.mako')

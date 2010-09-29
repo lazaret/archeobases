@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Stats controler for the application."""
+""" Statistics controller for the application."""
 
 import logging
 
@@ -17,16 +17,16 @@ from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
 
 from archeologicaladdressbook.lib.base import BaseController, render
-from archeologicaladdressbook.lib.auth import protect_action
+from archeologicaladdressbook.lib.auth import protect_controller
 
 
 log = logging.getLogger(__name__)
 
-
+#TODO : add a 'view' permission to search & displays datas
+@protect_controller(has_permission('edit', msg=_('Authentification required')))
 class StatsController(BaseController):
     """ Statistics Controller."""
 
-    @protect_action(has_permission('edit', msg=_('Authentification required')))
     def index(self):
         """ Display basic countings on records."""
         #TODO maybe move this stats in the database with procedures

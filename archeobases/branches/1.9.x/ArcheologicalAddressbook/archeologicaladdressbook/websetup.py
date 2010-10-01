@@ -39,7 +39,7 @@ def setup_app(command, conf, vars):
     # add rights for administrative tasks
     manage_user = model.User()
     manage_user.user_name = u'manager'
-    manage_user.display_name = u'Example manager'
+    manage_user.display_name = u'Default manager'
     manage_user.email_address = u'manager@somedomain.com'
     manage_user.password = u'managepass'
     Session.add(manage_user)
@@ -56,10 +56,10 @@ def setup_app(command, conf, vars):
     manage_permission.groups.append(manage_group)
     Session.add(manage_permission)
 
-    # add rights for editing
+    # add rights for editing tasks
     edit_user = model.User()
     edit_user.user_name = u'editor'
-    edit_user.display_name = u'Example editor'
+    edit_user.display_name = u'Default editor'
     edit_user.email_address = u'editor@somedomain.com'
     edit_user.password = u'editorpass'
     Session.add(edit_user)
@@ -77,11 +77,14 @@ def setup_app(command, conf, vars):
     edit_permission.groups.append(manage_group)
     Session.add(edit_permission)
 
-#    view_permission = model.Permission()
-#    view_permission.permission_name = u'view'
-#    view_permission.description = u'This permission give a viewing right'
-#    view_permission.groups.append(manage_group)
-#    Session.add(view_permission)
+    # add rights for viewing
+    # this permission can be used for guests users or groups
+    view_permission = model.Permission()
+    view_permission.permission_name = u'view'
+    view_permission.description = u'This permission give a viewing right'
+    view_permission.groups.append(edit_group)
+    view_permission.groups.append(manage_group)
+    Session.add(view_permission)
 
     Session.flush()
     Session.commit()

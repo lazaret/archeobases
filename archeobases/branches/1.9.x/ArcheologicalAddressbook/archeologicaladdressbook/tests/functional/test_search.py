@@ -15,9 +15,9 @@ from archeologicaladdressbook.tests import *
 class TestSearchController(TestController):
     """ Test the controller `SearchController`."""
 
-    editor = {'repoze.what.userid': u'editor',
-                   'groups': (u'editors',),
-                   'permissions': (u'edit',)}
+    guest = {'repoze.what.userid': u'guest',
+                   'groups': (u'guests',),
+                   'permissions': (u'view',)}
 
     def test_1_routes(self):
         """ Test the routes of the `SearchController` controller."""
@@ -31,13 +31,13 @@ class TestSearchController(TestController):
 
     #TODO: change 'edit' permission to 'view'
     def test_3_editors_allowed(self):
-        """ Test than the `SearchController` controller is allowed for editors."""
+        """ Test than the `SearchController` controller is allowed for guests."""
         self.app.get(url(controller='search'),
-            extra_environ={'repoze.what.credentials': self.editor},
+            extra_environ={'repoze.what.credentials': self.guest},
             status=200)
 
     def test_4_index_response(self):
         """ Test response of the `SearchController` index page."""
         response = self.app.get(url(controller='search', action='index'),
-            extra_environ={'repoze.what.credentials': self.editor})
+            extra_environ={'repoze.what.credentials': self.guest})
         assert 'index_search template' in response

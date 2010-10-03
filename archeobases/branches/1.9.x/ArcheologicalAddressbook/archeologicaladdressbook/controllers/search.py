@@ -23,8 +23,7 @@ from archeologicaladdressbook.lib.auth import protect_controller
 log = logging.getLogger(__name__)
 
 
-#TODO : add a 'view' permission to search & displays datas
-@protect_controller(has_permission('edit', msg=_('Authentification required')))
+@protect_controller(has_permission('view', msg=_('Authentification required')))
 class SearchController(BaseController):
     """ Search Controller."""
 

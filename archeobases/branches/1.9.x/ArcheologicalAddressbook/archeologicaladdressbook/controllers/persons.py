@@ -48,8 +48,11 @@ class PersonsController(BaseController):
 
     @ProtectAction(has_permission('view', msg=_('Authentification required')))
     def list(self, id=None):
-        """ Display a paged list of records.""" #TODO better docstring
-        # `id` used for page listing
+        """ Display a paged list of records.
+
+        Use the `paginate` webhelper to display the list of persons.
+        `id` is used for page listing number.
+        """
         c.page_title = _("List persons")
 #        c.persons = Session.query(model.Person).all()
         c.page = webhelpers.paginate.Page(

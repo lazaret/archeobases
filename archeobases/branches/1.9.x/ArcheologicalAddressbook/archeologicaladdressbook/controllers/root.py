@@ -18,7 +18,6 @@ from repoze.what.predicates import is_user
 
 from archeologicaladdressbook.lib.base import BaseController, render
 from archeologicaladdressbook.lib.helpers import flash_message
-from archeologicaladdressbook.lib.auth import protect_action
 
 
 log = logging.getLogger(__name__)
@@ -63,12 +62,6 @@ class RootController(BaseController):
 
 
 ################# tests ####################### TODO REMOVE BELLOW
-#
-#    @protect_action(is_user('manager', msg=_('Authentification required')))
-#    def test(self):
-#        flash_message('protected page !')
-#        return render('/index.mako')
-#
 #
 #    def environ(self):
 #        result = '<html><body><h1>Environ</h1>'

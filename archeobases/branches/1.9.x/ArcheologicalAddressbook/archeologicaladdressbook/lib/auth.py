@@ -53,15 +53,15 @@ def denial_handler(reason):
 
 
 
-class protect_action(ActionProtector):
-    """ Decorator used to protect actions."""
+class ProtectAction(ActionProtector):
+    """ Decorator used to protect an action."""
     # Our denial handler should flash the denial reason:
     default_denial_handler = staticmethod(denial_handler)
 
 
-class protect_controller(ControllerProtector):
-    """ Decorator used to protect controllers."""
-    protector = protect_action
+class ProtectController(ControllerProtector):
+    """ Decorator used to protect a controller."""
+    protector = ProtectAction
 
 
 #TODO : check and refactor denial handler

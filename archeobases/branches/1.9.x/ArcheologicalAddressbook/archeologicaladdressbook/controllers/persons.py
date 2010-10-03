@@ -14,11 +14,11 @@ import logging
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 from pylons.i18n.translation import _
-from repoze.what.predicates import has_permission
+from repoze.what.predicates import has_any_permission, has_permission
 
 from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
 from archeologicaladdressbook.lib.helpers import flash_message
-from archeologicaladdressbook.lib.auth import protect_controller
+from archeologicaladdressbook.lib.auth import ProtectController, ProtectAction
 
 from archeologicaladdressbook.model import Session
 from archeologicaladdressbook import model
@@ -42,7 +42,7 @@ import webhelpers.paginate
 
 
 #TODO separate and add 'view' and 'edit' permissions
-@protect_controller(has_permission('edit', msg=_('Authentification required')))
+@ProtectController(has_any_permission('edit', 'view', msg=_('Authentification required')))
 class PersonsController(BaseController):
     """ Persons Controller."""
 

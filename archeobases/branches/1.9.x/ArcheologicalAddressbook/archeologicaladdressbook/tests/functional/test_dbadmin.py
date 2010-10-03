@@ -37,7 +37,7 @@ class TestDbadminController(TestController):
     def test_4_manager_allowed(self):
         """ Test than the `DbmadminController` controller is allowed for managers."""
         manager = {'repoze.what.userid': u'manager',
-                   'groups': (u'managers',),
+                   'groups': (u'managers'),
                    'permissions': (u'manage')}
         response = self.app.get(url(controller='dbadmin', action='models'),
             extra_environ={'repoze.what.credentials': manager},

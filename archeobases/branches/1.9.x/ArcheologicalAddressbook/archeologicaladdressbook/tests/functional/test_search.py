@@ -16,8 +16,8 @@ class TestSearchController(TestController):
     """ Test the controller `SearchController`."""
 
     guest = {'repoze.what.userid': u'guest',
-                   'groups': (u'guests',),
-                   'permissions': (u'view',)}
+                   'groups': (u'guests'),
+                   'permissions': (u'view')}
 
     def test_1_routes(self):
         """ Test the routes of the `SearchController` controller."""
@@ -29,7 +29,6 @@ class TestSearchController(TestController):
         # status 302 and not 401 because denied users are redirected to the main page
         self.app.get(url(controller='search'), status=302)
 
-    #TODO: change 'edit' permission to 'view'
     def test_3_editors_allowed(self):
         """ Test than the `SearchController` controller is allowed for guests."""
         self.app.get(url(controller='search'),

@@ -16,8 +16,12 @@ class TestPersonsController(TestController):
     """ Test the controller `PersonsController`."""
 
     editor = {'repoze.what.userid': u'editor',
-                   'groups': (u'editors',),
-                   'permissions': (u'edit',)}
+                   'groups': (u'editors'),
+                   'permissions': (u'edit',u'view')}
+
+    guest = {'repoze.what.userid': u'guest',
+                   'groups': (u'guests'),
+                   'permissions': (u'view')}
 
     def test_1_routes(self):
         """ Test the routes of the `PersonsController` controller."""
@@ -38,13 +42,19 @@ class TestPersonsController(TestController):
         self.app.get(url(controller='persons'), status=302)
 
     #TODO separate 'view' and 'edit' permissions tests (and update templates)
-    def test_3_editors_allowed(self):
-        """ Test than the `PersonsController` controller is allowed for editors."""
+    def test_3_edit_allowed(self):
+        """ Test than the `PersonsController` controller is allowed for users with 'edit' permission."""
         self.app.get(url(controller='persons'),
             extra_environ={'repoze.what.credentials': self.editor},
             status=200)
 
-    def test_4_index_response(self):
+    def test_4_view_allowed(self):
+        """ Test than the `PersonsController` controller is allowed for users with 'view' permission."""
+        self.app.get(url(controller='persons'),
+            extra_environ={'repoze.what.credentials': self.guest},
+            status=200)
+
+    def test_5_index_response(self):
         """ Test response of the `PersonsController` index page."""
         response = self.app.get(url(controller='persons', action='index'),
             extra_environ={'repoze.what.credentials': self.editor})
@@ -75,3 +85,5 @@ class TestPersonsController(TestController):
 #        response = self.app.get(url(controller='persons', action='show'),
 #            extra_environ={'repoze.what.credentials': self.editor})
 #        assert 'show_person template' in response
+
+#TODO add more auth tests -> view + edit

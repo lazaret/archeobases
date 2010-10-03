@@ -17,13 +17,13 @@ from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
 
 from archeologicaladdressbook.lib.base import BaseController, render
-from archeologicaladdressbook.lib.auth import protect_controller
+from archeologicaladdressbook.lib.auth import ProtectController
 
 
 log = logging.getLogger(__name__)
 
 
-@protect_controller(has_permission('view', msg=_('Authentification required')))
+@ProtectController(has_permission('view', msg=_('Authentification required')))
 class SearchController(BaseController):
     """ Search Controller."""
 

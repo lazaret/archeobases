@@ -28,9 +28,6 @@ from archeologicaladdressbook.model import forms
 log = logging.getLogger(__name__)
 
 
-#TODO move _error in the Base controller ?
-from formencode import htmlfill
-
 #TODO check flash messages and error handling
 #TODO check validation schema -> date & unique constrain
 #TODO try jgrid+json ???
@@ -39,18 +36,17 @@ from formencode import htmlfill
 import webhelpers.paginate
 
 
-
-
-#TODO separate and add 'view' and 'edit' permissions
 @ProtectController(has_any_permission('edit', 'view', msg=_('Authentification required')))
 class PersonsController(BaseController):
     """ Persons Controller."""
 
+    @ProtectAction(has_permission('view', msg=_('Authentification required')))
     def index(self):
         """ Render the index template."""
         c.page_title = _("Persons")
         return render('/persons/index_person.mako')
 
+    @ProtectAction(has_permission('view', msg=_('Authentification required')))
     def list(self, id=None):
         """ Display a paged list of records.""" #TODO better docstring
         # `id` used for page listing
@@ -64,6 +60,7 @@ class PersonsController(BaseController):
 
 # CRUD actions
 
+    @ProtectAction(has_permission('view', msg=_('Authentification required')))
     def show(self, id=None):
         """ Display an individual record."""
         #flash_message('test success message', 'success') #TODO remove
@@ -79,6 +76,7 @@ class PersonsController(BaseController):
             #return redirect(url.current(action='index'))
             abort(404)
 
+    @ProtectAction(has_permission('edit', msg=_('Authentification required')))
     def new(self, id=None):
         """ Display a form to create a new record."""
         c.page_title = _("Add a person")
@@ -91,7 +89,6 @@ class PersonsController(BaseController):
             flash_message('form errors', 'warning')
         return render('/persons/new_person.mako')
 
-
     @validate(schema=forms.PersonForm(), form='new', prefix_error=False)
     @authenticate_form
     def create(self):
@@ -102,6 +99,7 @@ class PersonsController(BaseController):
         flash_message('success message', 'success')
         return redirect(url.current(action='show', id=person.id))
 
+    #@ProtectAction(has_permission('edit', msg=_('Authentification required')))
     def edit(self, id=None):
         """ Display a form to edit an existing record."""
         c.page_title = _("Edit a person")
@@ -133,6 +131,7 @@ class PersonsController(BaseController):
         flash_message('success message', 'success')
         return redirect(url.current(action='show', id=person.id))
 
+# TODO authenticate form ?
     def delete(self, id=None):
         """ Delete an existing record."""
         person = Session.query(model.Person).get(id)
@@ -145,6 +144,7 @@ class PersonsController(BaseController):
             #TODO flash message
             abort(404)
 
+    @ProtectAction(has_permission('edit', msg=_('Authentification required')))
     def confirm_delete(self, id=None):
         """ Show a specific item and ask to confirm deletion."""
         c.page_title = _("Delete a person")

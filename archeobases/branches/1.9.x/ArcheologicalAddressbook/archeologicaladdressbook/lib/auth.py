@@ -9,8 +9,9 @@
 #
 """ Auth & Auth middleware."""
 
-from pylons import request, response
-from pylons.controllers.util import abort
+from pylons import request, response, url
+from pylons.controllers.util import redirect
+from pylons.i18n.translation import _
 
 from repoze.what.plugins.quickstart import setup_sql_auth
 from repoze.what.plugins.pylonshq import ActionProtector, ControllerProtector
@@ -24,14 +25,12 @@ def add_auth(app):
     """ Add authentication and authorization middleware to the ``app``.
 
     We're going to define post-login and post-logout pages to do some cool things.
-
     """
     return setup_sql_auth(app, User, Group, Permission, Session,
                           logout_handler='/logout',
                           post_login_url='/post_login',
                           post_logout_url='/post_logout',
                           charset='utf-8')
-
 
 def denial_handler(reason):
     """ Auth & Auth denial handler.
@@ -40,16 +39,15 @@ def denial_handler(reason):
     401 or 403.
     """
     if response.status_int == 401:
-        message = 'Oops, you have to login: %s' % reason
-        message_type = 'warning'
+        message = _('Forbiden access: %s') % reason
+        message_type = 'error'
     else:
         credentials = request.environ.get('repoze.what.credentials')
         userid = credentials['repoze.what.userid']
-        message = "Come on, %s, you know you can't do that: %s" % (userid,
-                                                                   reason)
+        message = _('Forbiden for %s: Permission denied') % (userid)
         message_type = 'error'
     flash_message(message, message_type)
-    abort(response.status_int, comment=reason)
+    redirect(url('/'))
 
 
 
@@ -64,4 +62,3 @@ class ProtectController(ControllerProtector):
     protector = ProtectAction
 
 
-#TODO : check and refactor denial handler

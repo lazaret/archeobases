@@ -29,7 +29,7 @@ class RootController(BaseController):
     def index(self):
         """ Render the main index page."""
         c.came_from = request.params.get('came_from') or url('/')
-        return render("index.mako")
+        return render('index.mako')
 
     def login(self):
         """ Redirect logins to the index page."""
@@ -48,15 +48,15 @@ class RootController(BaseController):
         credentials = request.environ.get('repoze.what.credentials', False)
         if credentials:
             userid = credentials['repoze.what.userid']
-            flash_message('Welcome back, %s!' % userid)
+            flash_message(_("Successful login, %s!") % userid)
             redirect(url(came_from))
         else:
-            flash_message('Wrong credentials', 'warning')
+            flash_message(_("Wrong credentials"), 'warning')
             redirect(url('/login', came_from=came_from))
 
     def post_logout(self):
         """ Post logout action."""
-        flash_message('You have been logout !')
+        flash_message(_("You have been logout !"), 'success')
         redirect(url(controller='root', action='index'))
 
 
@@ -69,3 +69,8 @@ class RootController(BaseController):
 #            result += '%s: %r <br />'% (key, value)
 #        result += '</body></html>'
 #        return result
+
+        #flash_message('test success message', 'success')
+        #flash_message('test warning message', 'warning')
+        #flash_message('test error message', 'error')
+        #flash_message('test notice message', 'notice')

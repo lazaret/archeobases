@@ -39,12 +39,12 @@ def denial_handler(reason):
     401 or 403.
     """
     if response.status_int == 401:
-        message = _('Forbiden access: %s') % reason
+        message = _("Forbiden access: %s") % reason
         message_type = 'error'
     else:
         credentials = request.environ.get('repoze.what.credentials')
         userid = credentials['repoze.what.userid']
-        message = _('Forbiden for %s: Permission denied') % (userid)
+        message = _("Forbiden for %s: Permission denied") % (userid)
         message_type = 'error'
     flash_message(message, message_type)
     redirect(url('/'))

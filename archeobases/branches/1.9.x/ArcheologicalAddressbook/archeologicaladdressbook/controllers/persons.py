@@ -17,7 +17,7 @@ from pylons.i18n.translation import _
 from repoze.what.predicates import has_any_permission, has_permission
 
 from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
-from archeologicaladdressbook.lib.helpers import flash_message
+from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.auth import ProtectController, ProtectAction
 
 from archeologicaladdressbook.model import Session
@@ -31,9 +31,6 @@ log = logging.getLogger(__name__)
 #TODO check flash messages and error handling
 #TODO check validation schema -> date & unique constrain
 #TODO try jgrid+json ???
-
-#TODO pagination
-import webhelpers.paginate
 
 
 @ProtectController(has_any_permission('edit', 'view', msg=_('Authentification required')))
@@ -55,7 +52,7 @@ class PersonsController(BaseController):
         """
         c.page_title = _("List persons")
 #        c.persons = Session.query(model.Person).all()
-        c.page = webhelpers.paginate.Page(
+        c.page = paginate.Page(
                         Session.query(model.Person),
                         page=id,
                         items_per_page = 5)

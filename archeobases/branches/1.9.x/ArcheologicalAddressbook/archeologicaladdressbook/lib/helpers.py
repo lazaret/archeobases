@@ -17,6 +17,7 @@ available to Controllers. This module is available to templates as 'h'.
 from pylons import url
 from webhelpers.html.tags import *
 from webhelpers.html.tools import *
+from webhelpers import paginate
 from webhelpers.pylonslib.secure_form import secure_form
 from webhelpers.pylonslib import Flash as _Flash
 

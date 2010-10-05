@@ -23,7 +23,7 @@ from archeologicaladdressbook.lib.auth import ProtectController
 log = logging.getLogger(__name__)
 
 
-@ProtectController(has_permission('view', msg=_('Authentification required')))
+@ProtectController(has_permission('view', msg=_("Authentification required")))
 class StatsController(BaseController):
     """ Statistics Controller."""
 

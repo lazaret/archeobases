@@ -16,5 +16,8 @@ ${_("Photo")} : ${c.person.photo}<br/>
 
 Are your sure you whan tot delete this person ?
 
-${h.button_to(_("Yes"), url.current(action='delete', id=c.person.id))}
-${h.button_to(_("No"), url.current(action='view', id=c.person.id))}
+${h.secure_form(url.current(action='delete', id=c.person.id))}
+  ${h.button_to(_("Yes"), url.current(action='delete', id=c.person.id))}
+  ${h.button_to(_("No"), url.current(action='show', id=c.person.id))}
+${h.end_form()}
+

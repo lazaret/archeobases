@@ -16,22 +16,23 @@ from archeologicaladdressbook.model.person import Person
 from archeologicaladdressbook.model import Session
 
 
-class UniquePerson(validators.FormValidator):
-    """ Unique Person validator.""" #TODO refactor and debug
+class UniquePerson(validators.FancyValidator):
+    """ Unique Person validator.
 
-    field_names = None
-    __unpackargs__ = ('*', 'field_names')
+    Check than there is not already someone with the same `fisrt_name` and
+    `last_name` in the database.
+    """
+    messages = {
+        'not_unique': "That person already exists in the database"
+    }
 
-    def _to_python(self, field_dict, state):
-        """ """
-        l_name = field_dict[self.field_names[0]]
-        f_name = field_dict[self.field_names[1]]
-        person = Session.query(Person).filter(Person.last_name==l_name).filter(Person.first_name==f_name)
+    def validate_python(self, values, state):
+        """ Check the database uniqueness of a person."""
+        l_name = values['last_name']
+        f_name = values['first_name']
+        person = Session.query(Person).filter(Person.first_name==f_name).filter(Person.last_name==l_name).first()
         if person:
-            raise formencode.Invalid(
-                'That person already exists',
-                field_dict, state)
-        return field_dict
+            raise formencode.Invalid(self.message('not_unique', state), values, state)
 
 
 class PersonForm(Schema):
@@ -48,6 +49,6 @@ class PersonForm(Schema):
     mobile_phone = validators.String()
     activity = validators.String()
     # check for uniqness of a person in the database
-    chained_validators = [UniquePerson('last_name', 'first_name')]
+    chained_validators = [UniquePerson()]
 
 #TODO: Better validators for phones ?

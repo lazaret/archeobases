@@ -28,7 +28,7 @@ from archeologicaladdressbook.model import forms
 log = logging.getLogger(__name__)
 
 
-#TODO check validation schema -> date & unique constrain
+#TODO check validation schema -> date
 #TODO try jgrid+json ???
 
 
@@ -52,7 +52,7 @@ class PersonsController(BaseController):
         c.page_title = _("List persons")
         c.page = paginate.Page(Session.query(model.Person),
                                 page=id,
-                                items_per_page = 5) # add more
+                                items_per_page = 20) # make it configurable ?
         return render('/persons/list_person.mako')
 
 # CRUD actions

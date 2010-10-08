@@ -24,6 +24,7 @@ from archeologicaladdressbook.model import Session
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import forms
 
+from sqlalchemy import update #TODO chack
 
 log = logging.getLogger(__name__)
 
@@ -52,7 +53,7 @@ class PersonsController(BaseController):
         c.page_title = _("List persons")
         c.page = paginate.Page(Session.query(model.Person),
                                 page=id,
-                                items_per_page = 20) # make it configurable ?
+                                items_per_page = 20) #TODO make it configurable ?
         return render('/persons/list_person.mako')
 
 # CRUD actions ###
@@ -60,7 +61,7 @@ class PersonsController(BaseController):
     @ProtectAction(has_permission('view'))
     def show(self, id=None):
         """ Display an individual record."""
-        c.page_title = _("Display person")
+        c.page_title = _("Display person") #TODO move in templates ?
         c.person = Session.query(model.Person).get(id)
         if c.person:
             return render('/persons/show_person.mako')
@@ -78,7 +79,7 @@ class PersonsController(BaseController):
         else:
             if hasattr(c, 'form_errors'):
                 # flash a message warning in case of validation errors
-                flash_message(_("Form errors"), 'warning')
+                flash_message(_("Please check the form for errors"), 'warning')
             return render('/persons/new_person.mako')
 
     @validate(schema=forms.PersonForm(), form='new')
@@ -93,7 +94,7 @@ class PersonsController(BaseController):
             filter(model.Person.first_name==f_name). \
             filter(model.Person.last_name==l_name).first()
         if person :
-            flash_message(_("Redirecting to existing record"), 'notice')
+            flash_message(_("This record exist, redirecting to it"), 'warning')
             return redirect(url.current(action='edit', id=person.id))
         else:
             person = model.Person(**self.form_result)
@@ -113,22 +114,16 @@ class PersonsController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
+
+
     @validate(schema=forms.PersonForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
         """ Update an existing record.""" #TODO add a check in case of name change ?
         person = Session.query(model.Person).get(id)
         if person:
-            # TODO shorter update
-            person.last_name = self.form_result['last_name']
-            person.first_name = self.form_result['first_name']
-            person.title = self.form_result['title']
-            person.birth_date = self.form_result['birth_date']
-            person.email_address = self.form_result['email_address']
-            person.phone = self.form_result['phone']
-            person.mobile_phone = self.form_result['mobile_phone']
-            person.activity = self.form_result['activity']
-
+            for key, value in self.form_result.items():
+                setattr(person, key, value)
             Session.commit()
             flash_message(_("Record updated"), 'success')
             return redirect(url.current(action='show', id=person.id))

@@ -58,20 +58,3 @@ class WorseDateConverter(formencode.FancyValidator):
         else:
             return value.strftime(self.dateformats[0])
 
-
-from archeologicaladdressbook.model.person import Person
-from archeologicaladdressbook.model import Session
-
-class UniquePerson(formencode.FormValidator):
-    """ """
-
-    def _to_python(self, value_dict, state):
-        """ """
-        last_name = value_dict.get('last_name')
-        first_name = value_dict.get('first_name')
-        person = Session.query(Person).filter(Person.last_name==last_name).filter(Person.first_name==first_name)
-        if person:
-            raise formencode.Invalid(
-                'That person already exists',
-                value, state)
-        return value_dict

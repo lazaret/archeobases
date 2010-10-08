@@ -24,7 +24,6 @@ from archeologicaladdressbook.model import Session
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import forms
 
-from sqlalchemy import update #TODO chack
 
 log = logging.getLogger(__name__)
 
@@ -36,6 +35,24 @@ log = logging.getLogger(__name__)
 @ProtectController(has_any_permission('edit', 'view'))
 class PersonsController(BaseController):
     """ Persons Controller."""
+
+    def _check_duplicate(self, form_result=None):
+        """ Check for a duplicate entry in the database.
+
+        Check than there is not already an entry with the same `last_name`
+        and `first_name`. If there is one redirect to the `edit` action
+        for this entry.
+        """
+        f_name = form_result['first_name']
+        l_name = form_result['last_name']
+        person = Session.query(model.Person). \
+            filter(model.Person.first_name==f_name). \
+            filter(model.Person.last_name==l_name).first()
+        if person :
+            flash_message(_("This record exist, redirecting to it"), 'warning')
+            return redirect(url.current(action='edit', id=person.id))
+
+# index and list actions
 
     @ProtectAction(has_permission('view'))
     def index(self):
@@ -86,22 +103,14 @@ class PersonsController(BaseController):
     @authenticate_form
     def create(self):
         """ Add a new record in the database."""
-        # check first than there is not already a record with the same
-        # `first_name` and `last_name` then redirect to edit if it's the case
-        f_name = self.form_result['first_name']
-        l_name = self.form_result['last_name']
-        person = Session.query(model.Person). \
-            filter(model.Person.first_name==f_name). \
-            filter(model.Person.last_name==l_name).first()
-        if person :
-            flash_message(_("This record exist, redirecting to it"), 'warning')
-            return redirect(url.current(action='edit', id=person.id))
-        else:
-            person = model.Person(**self.form_result)
-            Session.add(person)
-            Session.commit()
-            flash_message(_("Record added"), 'success')
-            return redirect(url.current(action='show', id=person.id))
+        # check first for duplicate
+        self._check_duplicate(self.form_result)
+        # create the record
+        person = model.Person(**self.form_result)
+        Session.add(person)
+        Session.commit()
+        flash_message(_("Record added"), 'success')
+        return redirect(url.current(action='show', id=person.id))
 
     @ProtectAction(has_permission('edit'))
     def edit(self, id=None):
@@ -114,14 +123,15 @@ class PersonsController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
-
-
     @validate(schema=forms.PersonForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
-        """ Update an existing record.""" #TODO add a check in case of name change ?
+        """ Update an existing record."""
         person = Session.query(model.Person).get(id)
         if person:
+            # check first for duplicate
+            self._check_duplicate(self.form_result)
+            # update the record
             for key, value in self.form_result.items():
                 setattr(person, key, value)
             Session.commit()

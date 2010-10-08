@@ -23,7 +23,7 @@ class UniquePerson(validators.FancyValidator):
     `last_name` in the database.
     """
     messages = {
-        'not_unique': "That person already exists in the database"
+        'not_unique': "That person already exists in the database" #TODO add _("blabla") ??
     }
 
     def validate_python(self, values, state):
@@ -32,7 +32,8 @@ class UniquePerson(validators.FancyValidator):
         f_name = values['first_name']
         person = Session.query(Person).filter(Person.first_name==f_name).filter(Person.last_name==l_name).first()
         if person:
-            raise formencode.Invalid(self.message('not_unique', state), values, state)
+            errors = {'last_name': self.message('not_unique', state)}
+            raise formencode.Invalid(self.message('not_unique', state), values, state, error_dict=errors)
 
 
 class PersonForm(Schema):
@@ -48,7 +49,8 @@ class PersonForm(Schema):
     phone = validators.String()
     mobile_phone = validators.String()
     activity = validators.String()
-    # check for uniqness of a person in the database
-    chained_validators = [UniquePerson()]
+    # check for uniqueness of a person in the database
+    #chained_validators = [UniquePerson()]
+
 
 #TODO: Better validators for phones ?

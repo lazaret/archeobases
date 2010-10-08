@@ -31,7 +31,6 @@ log = logging.getLogger(__name__)
 #TODO check validation schema -> date
 #TODO try jgrid+json ???
 
-
 @ProtectController(has_any_permission('edit', 'view', msg=_("Authentification required")))
 class PersonsController(BaseController):
     """ Persons Controller."""
@@ -81,15 +80,26 @@ class PersonsController(BaseController):
                 flash_message(_("Form errors"), 'warning')
             return render('/persons/new_person.mako')
 
-    @validate(schema=forms.PersonForm(), form='new', prefix_error=False)
+    @validate(schema=forms.PersonForm(), form='new')
     @authenticate_form
     def create(self):
         """ Add a new record in the database."""
-        person = model.Person(**self.form_result)
-        Session.add(person)
-        Session.commit()
-        flash_message(_("Record added"), 'success')
-        return redirect(url.current(action='show', id=person.id))
+        # check first than there is not already a record with the same
+        # `first_name` and `last_name` then redirect to edit if it's the case
+        f_name = self.form_result['first_name']
+        l_name = self.form_result['last_name']
+        person = Session.query(model.Person). \
+            filter(model.Person.first_name==f_name). \
+            filter(model.Person.last_name==l_name).first()
+        if person :
+            flash_message(_("Redirecting to existing record"), 'notice')
+            return redirect(url.current(action='edit', id=person.id))
+        else:
+            person = model.Person(**self.form_result)
+            Session.add(person)
+            Session.commit()
+            flash_message(_("Record added"), 'success')
+            return redirect(url.current(action='show', id=person.id))
 
     @ProtectAction(has_permission('edit', msg=_("Authentification required")))
     def edit(self, id=None):
@@ -102,10 +112,10 @@ class PersonsController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
-    @validate(schema=forms.PersonForm(), form='edit', prefix_error=False)
+    @validate(schema=forms.PersonForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
-        """ Update an existing record."""
+        """ Update an existing record.""" #TODO add a check in case of name change ?
         person = Session.query(model.Person).get(id)
         if person:
             # TODO shorter update

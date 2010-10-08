@@ -32,14 +32,14 @@ def add_auth(app):
                           post_logout_url='/post_logout',
                           charset='utf-8')
 
-def denial_handler(reason):
+def denial_handler():
     """ Auth & Auth denial handler.
 
     When this handler is called, response.status has two possible values:
     401 or 403.
     """
     if response.status_int == 401:
-        message = _("Forbiden access: %s") % reason
+        message = _("Forbiden access: Authentification required")
         message_type = 'error'
     else:
         credentials = request.environ.get('repoze.what.credentials')
@@ -48,7 +48,6 @@ def denial_handler(reason):
         message_type = 'error'
     flash_message(message, message_type)
     redirect(url('/'))
-
 
 
 class ProtectAction(ActionProtector):

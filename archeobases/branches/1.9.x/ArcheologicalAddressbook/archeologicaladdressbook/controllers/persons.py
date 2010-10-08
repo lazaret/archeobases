@@ -31,17 +31,18 @@ log = logging.getLogger(__name__)
 #TODO check validation schema -> date
 #TODO try jgrid+json ???
 
-@ProtectController(has_any_permission('edit', 'view', msg=_("Authentification required")))
+
+@ProtectController(has_any_permission('edit', 'view'))
 class PersonsController(BaseController):
     """ Persons Controller."""
 
-    @ProtectAction(has_permission('view', msg=_("Authentification required")))
+    @ProtectAction(has_permission('view'))
     def index(self):
         """ Render the index template."""
         c.page_title = _("Persons")
         return render('/persons/index_person.mako')
 
-    @ProtectAction(has_permission('view', msg=_("Authentification required")))
+    @ProtectAction(has_permission('view'))
     def list(self, id=None):
         """ Display a paged list of records.
 
@@ -56,7 +57,7 @@ class PersonsController(BaseController):
 
 # CRUD actions ###
 
-    @ProtectAction(has_permission('view', msg=_("Authentification required")))
+    @ProtectAction(has_permission('view'))
     def show(self, id=None):
         """ Display an individual record."""
         c.page_title = _("Display person")
@@ -67,7 +68,7 @@ class PersonsController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
-    @ProtectAction(has_permission('edit', msg=_("Authentification required")))
+    @ProtectAction(has_permission('edit'))
     def new(self, id=None):
         """ Display a form to create a new record."""
         c.page_title = _("Add a person")
@@ -101,7 +102,7 @@ class PersonsController(BaseController):
             flash_message(_("Record added"), 'success')
             return redirect(url.current(action='show', id=person.id))
 
-    @ProtectAction(has_permission('edit', msg=_("Authentification required")))
+    @ProtectAction(has_permission('edit'))
     def edit(self, id=None):
         """ Display a form to edit an existing record."""
         c.page_title = _("Edit a person")
@@ -135,7 +136,7 @@ class PersonsController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
-    @ProtectAction(has_permission('edit', msg=_("Authentification required")))
+    @ProtectAction(has_permission('edit'))
     def confirm_delete(self, id=None):
         """ Show a specific item and ask to confirm deletion."""
         c.page_title = _("Delete a person")

@@ -14,9 +14,10 @@ Provides the `BaseController` class for subclassing.
 
 from pylons import request, tmpl_context as c
 from pylons.controllers import WSGIController
-from pylons.decorators import validate
+from pylons.decorators import validate as pylons_validate
 from pylons.decorators.secure import authenticate_form
 from pylons.templating import render_mako as render
+from formencode import htmlfill
 
 from archeologicaladdressbook.model.meta import Session
 
@@ -44,3 +45,15 @@ class BaseController(WSGIController):
             c.userid = None
         # Add a default page title
         c.page_title = None
+
+
+def _error_formatter(error):
+    """ `FormEncode` default error formating in templates."""
+    return """<span class="error-message"> %s</span>""" % (
+    htmlfill.html_quote(error))
+
+def validate(*args, **kwargs):
+    """ Add default `FormEncode` formating options to the @validate decorator."""
+    kwargs.setdefault('prefix_error', False)
+    kwargs.setdefault('auto_error_formatter', _error_formatter)
+    return pylons_validate(*args, **kwargs)

@@ -54,7 +54,7 @@ class PersonsController(BaseController):
                                 items_per_page = 20) # make it configurable ?
         return render('/persons/list_person.mako')
 
-# CRUD actions
+# CRUD actions ###
 
     @ProtectAction(has_permission('view', msg=_("Authentification required")))
     def show(self, id=None):

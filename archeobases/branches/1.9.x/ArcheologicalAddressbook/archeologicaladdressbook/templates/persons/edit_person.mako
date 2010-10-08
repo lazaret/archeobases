@@ -3,6 +3,7 @@
 
 edit_person<br/><br/>
 
+
 ${h.secure_form(url.current(action='update', id=c.person.id))}
   <fieldset>
     <legend>${_("Add a person")}</legend>

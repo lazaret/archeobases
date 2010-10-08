@@ -36,5 +36,4 @@ ${h.end_form()}
 
 ___________
 
-##${if c.form_errors: str(c.form_errors)}
 

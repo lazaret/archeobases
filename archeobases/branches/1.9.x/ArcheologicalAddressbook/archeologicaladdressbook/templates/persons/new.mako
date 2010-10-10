@@ -1,9 +1,9 @@
 ## -*- coding: utf-8 -*-
 
 <%inherit file="/base.mako" />
-<!-- new_person template -->
+<%def name="page_title()">${_("Persons")} - ${_("New")}</%def>
+<!-- persons new template -->
 
-new_person<br/><br/>
 
 ${h.secure_form(url.current(action='create'))}
   <fieldset>

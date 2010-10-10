@@ -39,4 +39,4 @@ class TestSearchController(TestController):
         """ Test response of the `SearchController` index page."""
         response = self.app.get(url(controller='search', action='index'),
             extra_environ={'repoze.what.credentials': self.guest})
-        assert 'index_search template' in response
+        assert 'search index template' in response

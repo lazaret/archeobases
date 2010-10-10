@@ -57,8 +57,7 @@ class PersonsController(BaseController):
     @ProtectAction(has_permission('view'))
     def index(self):
         """ Render the index template."""
-        c.page_title = _("Persons")
-        return render('/persons/index_person.mako')
+        return render('/persons/index.mako')
 
     @ProtectAction(has_permission('view'))
     def list(self, id=None):
@@ -67,21 +66,19 @@ class PersonsController(BaseController):
         Use the `paginate` webhelper to display the list of persons.
         `id` is used for page listing number.
         """
-        c.page_title = _("List persons")
         c.page = paginate.Page(Session.query(model.Person),
                                 page=id,
                                 items_per_page = 20) #TODO make it configurable ?
-        return render('/persons/list_person.mako')
+        return render('/persons/list.mako')
 
 # CRUD actions ###
 
     @ProtectAction(has_permission('view'))
     def show(self, id=None):
         """ Display an individual record."""
-        c.page_title = _("Display person") #TODO move in templates ?
         c.person = Session.query(model.Person).get(id)
         if c.person:
-            return render('/persons/show_person.mako')
+            return render('/persons/show.mako')
         else:
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
@@ -89,7 +86,6 @@ class PersonsController(BaseController):
     @ProtectAction(has_permission('edit'))
     def new(self, id=None):
         """ Display a form to create a new record."""
-        c.page_title = _("Add a person")
         if id:
             # if someone mistype /persons/new/id
             return redirect(url.current(action='new', id=None))
@@ -97,7 +93,7 @@ class PersonsController(BaseController):
             if hasattr(c, 'form_errors'):
                 # flash a message warning in case of validation errors
                 flash_message(_("Please check the form for errors"), 'warning')
-            return render('/persons/new_person.mako')
+            return render('/persons/new.mako')
 
     @validate(schema=forms.PersonForm(), form='new')
     @authenticate_form
@@ -115,10 +111,9 @@ class PersonsController(BaseController):
     @ProtectAction(has_permission('edit'))
     def edit(self, id=None):
         """ Display a form to edit an existing record."""
-        c.page_title = _("Edit a person")
         c.person = Session.query(model.Person).get(id)
         if c.person:
-            return render('/persons/edit_person.mako')
+            return render('/persons/edit.mako')
         else:
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
@@ -144,10 +139,9 @@ class PersonsController(BaseController):
     @ProtectAction(has_permission('edit'))
     def confirm_delete(self, id=None):
         """ Show a specific item and ask to confirm deletion."""
-        c.page_title = _("Delete a person")
         c.person = Session.query(model.Person).get(id)
         if c.person:
-            return render('/persons/confirm_delete_person.mako')
+            return render('/persons/confirm_delete.mako')
         else:
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))

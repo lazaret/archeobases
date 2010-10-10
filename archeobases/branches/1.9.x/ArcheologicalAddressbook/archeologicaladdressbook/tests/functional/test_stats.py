@@ -39,4 +39,4 @@ class TestStatsController(TestController):
         """ Test response of the `StatsController` index page."""
         response = self.app.get(url(controller='stats', action='index'),
             extra_environ={'repoze.what.credentials': self.guest})
-        assert 'index_stats template' in response
+        assert 'stats index template' in response

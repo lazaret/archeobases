@@ -1,7 +1,8 @@
 ## -*- coding: utf-8 -*-
-<!-- edit_person template -->
 
-edit_person<br/><br/>
+<%inherit file="/base.mako" />
+<%def name="page_title()">${_("Persons")} - ${_("Edit")}</%def>
+<!-- persons edit template -->
 
 
 ${h.secure_form(url.current(action='update', id=c.person.id))}

@@ -17,11 +17,7 @@
     ${h.javascript_link("/javascripts/jquery.min.js")}
     ${h.javascript_link("/javascripts/jquery-ui.custom.min.js")}
     ${h.javascript_link("/javascripts/main.js")}
-    % if c.page_title:
-      <title>${_("Addressbook")} : ${c.page_title}</title>
-    % else:
-      <title>${_("Addressbook")}</title>
-    % endif
+    <title>${_("Addressbook")} - ${self.page_title()}</title>
   </head>
 
   <body>
@@ -29,13 +25,12 @@
         ##LOGIN BOX
         ${login_box()}
       </div>
-      ##flash messages
+      ##FLASH MESSAGES
       ${flash_message()}
 
       <div id="main_content">
-          ${next.body()}
+        ${next.body()}
       </div>
-
   </body>
 </html>
 

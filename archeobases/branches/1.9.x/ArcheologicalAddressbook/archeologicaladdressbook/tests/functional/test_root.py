@@ -26,3 +26,8 @@ class TestRootController(TestController):
         """ Test than the `RootController` controller index page is allowed to anonymous."""
         self.app.get('/', status=200)
         self.app.get('/index', status=200)
+
+    def test_3_index_response(self):
+        """ Test response of the `SearchController` index page."""
+        response = self.app.get(url(controller='root', action='index'))
+        assert 'root index template' in response

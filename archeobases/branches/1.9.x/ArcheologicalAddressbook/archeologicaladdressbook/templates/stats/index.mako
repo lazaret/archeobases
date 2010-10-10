@@ -1,9 +1,8 @@
 ## -*- coding: utf-8 -*-
 
 <%inherit file="/base.mako" />
-<!-- index_stats template -->
-
-index_stats<br/><br/>
+<%def name="page_title()">${_("Statistics")}</%def>
+<!-- stats index template -->
 
 
 Number of persons : ${c.person_count}

@@ -1,9 +1,9 @@
 ## -*- coding: utf-8 -*-
 
 <%inherit file="/base.mako" />
-<!-- index_person template -->
+<%def name="page_title()">${_("Persons")}</%def>
+<!-- persons index template -->
 
-index_person<br/><br/>
 
 Actions :<br/>
 __________<br/>

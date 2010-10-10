@@ -58,32 +58,32 @@ class TestPersonsController(TestController):
         """ Test response of the `PersonsController` index page."""
         response = self.app.get(url(controller='persons', action='index'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'index_person template' in response
+        assert 'persons index template' in response
 
 #TODO add fixture for this test
 #    def test_5_edit_response(self):
 #        """ Test response of the `PersonsController` edit page."""
 #        response = self.app.get(url(controller='persons', action='edit'),
 #            extra_environ={'repoze.what.credentials': self.editor})
-#        assert 'edit_person template' in response
+#        assert 'persons edit template' in response
 
     def test_6_list_response(self):
         """ Test response of the `PersonsController` list page."""
         response = self.app.get(url(controller='persons', action='list'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'list_person template' in response
+        assert 'persons list template' in response
 
     def test_7_new_response(self):
         """ Test response of the `PersonsController` new page."""
         response = self.app.get(url(controller='persons', action='new'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'new_person template' in response
+        assert 'persons new template' in response
 
 #TODO add fixture for this test
 #    def test_8_show_response(self):
 #        """ Test response of the `PersonsController` show page."""
 #        response = self.app.get(url(controller='persons', action='show'),
 #            extra_environ={'repoze.what.credentials': self.editor})
-#        assert 'show_person template' in response
+#        assert 'persons show template' in response
 
 #TODO add more auth tests -> view + edit

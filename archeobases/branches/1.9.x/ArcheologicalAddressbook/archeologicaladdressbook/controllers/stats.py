@@ -32,4 +32,4 @@ class StatsController(BaseController):
         #TODO maybe move this stats in the database with procedures
         c.person_count = 100
         c.address_count = 100
-        return render('/stats/index_stats.mako')
+        return render('/stats/index.mako')

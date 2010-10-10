@@ -29,5 +29,5 @@ class SearchController(BaseController):
 
     def index(self):
         """ Render the index template."""
-        return render('/search/index_search.mako')
+        return render('/search/index.mako')
 

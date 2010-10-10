@@ -32,7 +32,7 @@ def add_auth(app):
                           post_logout_url='/post_logout',
                           charset='utf-8')
 
-def denial_handler():
+def denial_handler(reason):
     """ Auth & Auth denial handler.
 
     When this handler is called, response.status has two possible values:

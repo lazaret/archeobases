@@ -22,10 +22,10 @@ Usage :
 2) Update bitten-slave.ini with you user/password and softwares versions
 
 3) Prepare a virtualenv environment with bootstrap.py
-$ python bootstrap.py --no-site-package buildenv
+$ python build_bootstrap.py --no-site-package env
 
 4) Activate the environment
-$ source buildenv/bin/activate
+$ source env/bin/activate
 
 5) Finaly lauch the bitten-slave
 $ bitten-slave --config=bitten-slave.ini --no-loop http://lazaret.unice.fr/opensource/builds

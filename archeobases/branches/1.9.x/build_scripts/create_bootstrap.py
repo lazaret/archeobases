@@ -52,4 +52,4 @@ def after_install(options, home_dir):
     print "You now have to activate the environment and lauch the bitten-slave"
     devnull.close()
 """))
-f = open('buid_bootstrap.py', 'w').write(output)
+f = open('build_bootstrap.py', 'w').write(output)

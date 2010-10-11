@@ -42,7 +42,7 @@ class Adresse(annuairedata.Data):
                 "telephone_1"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
                 "telephone_2"   : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
                 "fax"           : {"type": "text", "default": "", "mandatory": 0, "longueur": 20, "memory": 1},
-                "email"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 30, "memory": 1},
+                "email"         : {"type": "text", "default": "", "mandatory": 0, "longueur": 40, "memory": 1},
                 "modif_adresse" : {"type": "date", "mandatory" : 0 , "longueur" : 10},
                 }
     #
@@ -157,7 +157,7 @@ class Adresse(annuairedata.Data):
         afficheclefs.champ_saisie(self, "fax", "Fax", 20, 20, " ", enreg, penreg)
 
     def email_base_to_form(self, enreg, penreg=None):
-        afficheclefs.champ_saisie(self, "email", "Email", 30, 30, " ", enreg, penreg)
+        afficheclefs.champ_saisie(self, "email", "Email", 40, 40, " ", enreg, penreg)
         self.__doc__.pop()
         self.__doc__.pop()
 

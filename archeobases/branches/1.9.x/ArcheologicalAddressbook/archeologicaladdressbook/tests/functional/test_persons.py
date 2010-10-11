@@ -77,11 +77,11 @@ class TestPersonsController(TestController):
             extra_environ={'repoze.what.credentials': self.editor})
         assert 'persons index template' in response
 
-#    def test_9_edit_response(self): #TODO add a database fixture
-#        """ Test response of the `PersonsController` edit page."""
-#        response = self.app.get(url(controller='persons', action='edit'),
-#            extra_environ={'repoze.what.credentials': self.editor})
-#        assert 'persons edit template' in response
+    def test_9_edit_response(self): #TODO add a database fixture
+        """ Test response of the `PersonsController` edit page."""
+        response = self.app.get(url(controller='persons', action='edit', id='1'),
+            extra_environ={'repoze.what.credentials': self.editor})
+        assert 'persons edit template' in response
 
     def test_10_list_response(self):
         """ Test response of the `PersonsController` list page."""
@@ -95,9 +95,9 @@ class TestPersonsController(TestController):
             extra_environ={'repoze.what.credentials': self.editor})
         assert 'persons new template' in response
 
-#    def test_12_show_response(self): #TODO add a database fixture
-#        """ Test response of the `PersonsController` show page."""
-#        response = self.app.get(url(controller='persons', action='show'),
-#            extra_environ={'repoze.what.credentials': self.editor})
-#        assert 'persons show template' in response
+    def test_12_show_response(self): #TODO add a database fixture
+        """ Test response of the `PersonsController` show page."""
+        response = self.app.get(url(controller='persons', action='show', id='1'),
+            extra_environ={'repoze.what.credentials': self.editor})
+        assert 'persons show template' in response
 

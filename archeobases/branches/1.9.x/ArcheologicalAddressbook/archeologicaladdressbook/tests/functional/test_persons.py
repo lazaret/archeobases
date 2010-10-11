@@ -75,29 +75,29 @@ class TestPersonsController(TestController):
         """ Test response of the `PersonsController` index page."""
         response = self.app.get(url(controller='persons', action='index'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'persons index template' in response
+        assert 'persons index template' in response, 'person index template is missing or has changed.'
 
     def test_9_edit_response(self): #TODO add a database fixture
         """ Test response of the `PersonsController` edit page."""
         response = self.app.get(url(controller='persons', action='edit', id='1'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'persons edit template' in response
+        assert 'persons edit template' in response, 'edit person template is missing or has changed.'
 
     def test_10_list_response(self):
         """ Test response of the `PersonsController` list page."""
         response = self.app.get(url(controller='persons', action='list'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'persons list template' in response
+        assert 'persons list template' in response, 'list person template is missing or has changed.'
 
     def test_11_new_response(self):
         """ Test response of the `PersonsController` new page."""
         response = self.app.get(url(controller='persons', action='new'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'persons new template' in response
+        assert 'persons new template' in response, 'new person template is missing or has changed.'
 
     def test_12_show_response(self): #TODO add a database fixture
         """ Test response of the `PersonsController` show page."""
         response = self.app.get(url(controller='persons', action='show', id='1'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'persons show template' in response
+        assert 'persons show template' in response, 'show person template is missing or has changed.'
 

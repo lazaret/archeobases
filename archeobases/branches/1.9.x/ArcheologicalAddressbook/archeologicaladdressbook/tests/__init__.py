@@ -27,6 +27,9 @@ from webtest import TestApp
 
 import pylons.test
 
+from archeologicaladdressbook.model import Session, Base
+from archeologicaladdressbook.tests.model.fixtures import person_fixture
+
 
 __all__ = ['environ', 'url', 'TestController']
 
@@ -34,6 +37,11 @@ __all__ = ['environ', 'url', 'TestController']
 SetupCommand('setup-app').run([pylons.test.pylonsapp.config['__file__']])
 
 environ = {}
+
+
+def setup():
+    """ Detroy a possibly remaining test database."""
+    Base.metadata.drop_all(bind=Session.bind)
 
 
 class TestController(TestCase):
@@ -45,4 +53,13 @@ class TestController(TestCase):
         self.app = TestApp(wsgiapp)
         url._push_object(URLGenerator(config['routes.map'], environ))
         TestCase.__init__(self, *args, **kwargs)
+
+    def setUp(self):
+        """ Method used to build a test database."""
+        Base.metadata.create_all(bind=Session.bind)
+        person_fixture()
+
+    def tearDown(self):
+        """ Method used to destroy the test database."""
+        Base.metadata.drop_all(bind=Session.bind)
 

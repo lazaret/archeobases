@@ -20,4 +20,6 @@ The main objective of the application is to track contact addresses but also the
 as voluntary member and/or excavators.
 
 
-
+Icons used in the templates come from :
+- FamFam Silk Icons 1.3 by Mark James - http://www.famfamfam.com/lab/icons/silk/
+- Nuvola icon set 1.0 by David Vignoni - http://www.icon-king.com/projects/nuvola/

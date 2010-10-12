@@ -1,7 +1,6 @@
 
 html, body {
   margin: 5;
-  height: 100%;
   color: #454545;
   background-color: #fff;
   font-family: Arial, sans-serif;
@@ -139,14 +138,17 @@ tfoot th {
   background-image: url("../images/warning.png");
 }
 
+/* --- header styles --- */
+
+#header {
+  height: 25px;
+}
+
+
 /* --- main styles --- */
 
 label{
   line-height: 1.8;
-}
-
-#main_content {
-  padding-top: 25px;
 }
 
 .error-message {

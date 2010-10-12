@@ -4,8 +4,13 @@
   % if c.userid:
     ${h.link_to(c.userid, "#login", id="login-link")}
     <div id="login-panel">
-      ${h.link_to("logout", "/logout")}<br />
-      manage account
+      <div id="login-left">
+        <img src="../images/user_male.png" />
+      </div>
+      <div id="login-right">
+        ${h.link_to(_("logout"), "/logout")}<br />
+        ${_("manage account")}
+      </div>
     </div>
   % else:
     ${h.link_to("login", "#login", id="login-link")}

@@ -16,7 +16,7 @@ $(function(){
     $("#login-link").click(function(){
     if ($("#login-panel").is(':hidden')){
         $("#login-panel").slideDown(200);
-        $("#login-link").css("padding-bottom","8px");
+        $("#login-link").css("padding-bottom","6px");
         $("#login-link").css("-moz-border-radius","0");
         $("#login-link").css("-webkit-border-radius","0");
         $("#login-link").css("-khtml-border-radius","0");

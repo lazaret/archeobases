@@ -16,12 +16,17 @@
   </head>
 
   <body>
-    <div id="header">
+    <header>
       ${login_box()}
-    </div>
       ${flash_message()}
-    <div id="main_content">
+    </header>
+    <section id="main">
       ${next.body()}
-    </div>
+    </section>
+    <footer>
+      ${app_globals.name} ${app_globals.version} - \
+      ${h.link_to("AGPL3", "http://www.gnu.org/licenses/agpl.html")} - \
+      &copy; ${h.link_to("LDLP", "http://lazaret.unice.fr/opensource/")}
+    </footer>
   </body>
 </html>

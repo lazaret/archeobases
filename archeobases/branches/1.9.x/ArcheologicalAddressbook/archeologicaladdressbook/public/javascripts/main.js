@@ -1,7 +1,7 @@
 /** ================== jQuery javascript functions ================== **/
 
 
-/** ============ Display or hyde the top login box panel ============ **/
+/** ============ Top login box panel ============ **/
 
 // hide the login panel
 function hidelogin() {
@@ -40,12 +40,13 @@ $(function(){
 });
 
 
+/** ============ Top flash messages ============ **/
 
-// hide flash messages on close for all and after 4 for success and notice ones
+// hide flash messages on close for all and after 3 for success and notice ones
 $(function(){
     // slide up #success_message" and #notice_message messages after 4 seconds
-    $("#success_message").delay(4000).slideUp(250);
-    $("#notice_message").delay(4000).slideUp(250);
+    $("#success_message").delay(3000).slideUp(250);
+    $("#notice_message").delay(3000).slideUp(250);
     // slide up messages if closed
     $("div a.close_message").click(function(){
         //stop is used to remove the delay if there is one
@@ -54,7 +55,9 @@ $(function(){
 });
 
 
-// set the date picker defaults
+/** ============ Date picker ============ **/
+
+// set the jqueryUI date picker defaults
 $.datepicker.setDefaults({
     dateFormat: "dd/mm/yy",
     yearRange: 'c-15:c+15',

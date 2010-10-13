@@ -36,15 +36,12 @@ class BaseController(WSGIController):
             Session.remove()
 
     def __before__(self):
-        """ Add credentails ans default values for the templates."""
-        # Add Auth & Auth credentials for the templates.
+        """ Add Auth & Auth credentails for the templates."""
         credentials = request.environ.get('repoze.what.credentials', False)
         if credentials:
             c.userid = credentials['repoze.what.userid']
         else:
             c.userid = None
-        # Add a default page title
-        c.page_title = None
 
 
 def _error_formatter(error):

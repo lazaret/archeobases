@@ -26,3 +26,7 @@ class Globals(object):
 
         """
         self.cache = CacheManager(**parse_cache_config_options(config))
+
+        # TODO catch this from setup.py or developement.ini
+        self.name = 'ArcheologicalAddressbook'
+        self.version = '1.9.a1'

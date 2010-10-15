@@ -1,7 +1,10 @@
 MANIFEST.in
 README.txt
+development.ini
+ez_setup.py
 setup.cfg
 setup.py
+test.ini
 ArcheologicalCollection.egg-info/PKG-INFO
 ArcheologicalCollection.egg-info/SOURCES.txt
 ArcheologicalCollection.egg-info/dependency_links.txt
@@ -18,12 +21,16 @@ archeologicalcollection/config/environment.py
 archeologicalcollection/config/middleware.py
 archeologicalcollection/config/routing.py
 archeologicalcollection/controllers/__init__.py
+archeologicalcollection/controllers/admin.py
 archeologicalcollection/controllers/error.py
+archeologicalcollection/forms/__init__.py
 archeologicalcollection/lib/__init__.py
 archeologicalcollection/lib/app_globals.py
+archeologicalcollection/lib/auth.py
 archeologicalcollection/lib/base.py
 archeologicalcollection/lib/helpers.py
 archeologicalcollection/model/__init__.py
+archeologicalcollection/model/auth.py
 archeologicalcollection/model/meta.py
 archeologicalcollection/public/bg.png
 archeologicalcollection/public/favicon.ico
@@ -32,3 +39,5 @@ archeologicalcollection/public/pylons-logo.gif
 archeologicalcollection/tests/__init__.py
 archeologicalcollection/tests/test_models.py
 archeologicalcollection/tests/functional/__init__.py
+archeologicalcollection/tests/functional/test_admin.py
+docs/index.txt

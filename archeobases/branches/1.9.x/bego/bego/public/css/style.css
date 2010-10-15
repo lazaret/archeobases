@@ -88,6 +88,7 @@ ul#tabnav a:link.active, ul#tabnav a:visited.active {
 
 ul#tabnav a:hover {
   background: #FFF;
+  padding-top: 4px;
 }
 
 /* ==================== BREADCRUMB ==================== */

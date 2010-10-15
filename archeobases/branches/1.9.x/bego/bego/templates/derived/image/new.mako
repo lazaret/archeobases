@@ -24,6 +24,10 @@ ${h.form(h.url_for(action="create"), name="form", multipart=True)}
           ${helptip_button(_("Image upload help tip"))}
       </div>
       <p><label for="image_file"><strong>${_("Upload file")}</strong></label> ${h.file("image_file")} </p>
+
+##<input type="file" name="image_file.upload">
+##<input type="hidden" name="image_file.static">
+
       <p><label for="description">${_("Description")}</label> ${h.textarea(name="description", cols=52, maxlength=500)} </p>
     </fieldset>
   </div>

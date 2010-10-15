@@ -76,9 +76,9 @@
           <div id="fieldset_buttons">
             ${helptip_button(_("provision fieldset helptip"))}
           </div>
-          ${h.radio("provision", "test", label=(u"Caché"))}<br>
-          ${h.radio("provision", "test", label=(u"Ostentatoire"))}<br>
-          ${h.radio("provision", "test", label=(u"Indiférent"))}<br>
+          ${h.radio("provision", "test", label=_(u"Caché"))}<br>
+          ${h.radio("provision", "test", label=_(u"Ostentatoire"))}<br>
+          ${h.radio("provision", "test", label=_(u"Indiférent"))}<br>
         </fieldset>
       </div>
       <div id="clear"></div>

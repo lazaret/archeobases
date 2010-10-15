@@ -1,8 +1,9 @@
 ## -*- coding: utf-8 -*-
-
-<%inherit file="/base.mako" />
+<%inherit file="/persons/base.mako" />
 <%namespace file="/lib/paginate.mako" import="*"/>
+##
 <%def name="page_title()">${_("Persons")} - ${_("List")}</%def>
+##
 <!-- persons list template -->
 
 <table>
@@ -29,5 +30,3 @@
     % endfor
   </tbody>
 </table>
-
-

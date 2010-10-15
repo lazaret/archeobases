@@ -5,19 +5,22 @@
 ##
 <!-- persons new template -->
 
-${h.secure_form(url.current(action='create'))}
+${h.secure_form(url.current(action="create"))}
   <fieldset>
-    <legend>${_("Add a person")}</legend>
-    ${_("Last name")} ${h.text(name="last_name")}<br/>
-    ${_("First name")} ${h.text(name="first_name")}<br/>
-    ${_("Title")} ${h.text(name="title")}<br/>
-    ${_("Birth Date")} ${h.text(name="birth_date")}<br/>
+    <legend>${_("Person")}</legend>
+    <p><label for="last_name" class="mandatory">${_("Last name")} *</label> ${h.text(name="last_name")}<p/>
+    <p><label for="first_name" class="mandatory">${_("First name")} *</label> ${h.text(name="first_name")}<p/>
+    <p><label for="title">${_("Title")}</label> ${h.text(name="title")}<p/>
+    <p><label for="birth_date">${_("Birth Date")}</label> ${h.text(name="birth_date")}<p/>
   </fieldset>
   <fieldset>
-    ${_("Email Address")} ${h.text(name="email_address")}<br/>
-    ${_("Phone")} ${h.text(name="phone")}<br/>
-    ${_("Mobile phone")} ${h.text(name="mobile_phone")}<br/>
-    ${_("Activity")} ${h.text(name="activity")}<br/>
+    <p><label for="email_address">${_("Email Address")}</label> ${h.text(name="email_address")}<p/>
+    <p><label for="phone">${_("Phone")}</label> ${h.text(name="phone")}<p/>
+    <p><label for="mobile_phone">${_("Mobile phone")}</label> ${h.text(name="mobile_phone")}<p/>
+    <p><label for="activity">${_("Activity")}</label> ${h.text(name="activity")}<p/>
   </fieldset>
-  ${h.submit('Submit', 'Submit')}
+  <footer>
+##    <button name="cancel_button" type="submit"><img src="/images/cross.png"/>${_("Cancel")}</button>
+    <button name="new_button" type="submit"><img src="/images/tick.png"/>${_("Submit")}</button>
+  </footer>
 ${h.end_form()}

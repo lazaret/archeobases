@@ -8,6 +8,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>${_("Addressbook")} - ${self.page_title()}</title>
     ${h.stylesheet_link("/css/style.css")}
+    ${h.stylesheet_link("/css/form.css")}
     ${h.stylesheet_link("/css/ui-lightness/jquery-ui.custom.css")}
     ${h.stylesheet_link("/css/jquery_style.css")}
     ${h.javascript_link("/javascripts/jquery.min.js")}
@@ -16,17 +17,17 @@
   </head>
 
   <body>
-    <header>
+    <header id="header">
       ${login_box()}
       ${flash_message()}
     </header>
-    <nav>
+    <nav id ="navbar">
       ${self.navbar()}
     </nav>
     <section id="main">
       ${next.body()}
     </section>
-    <footer>
+    <footer id="footer">
       ${app_globals.name} ${app_globals.version} - \
       ${h.link_to("AGPL3", "http://www.gnu.org/licenses/agpl.html")} - \
       &copy; ${h.link_to("LDLP", "http://lazaret.unice.fr/opensource/")}

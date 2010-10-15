@@ -1,3 +1,4 @@
+/* main css styles */
 
 html, body {
   margin: 0;
@@ -153,16 +154,16 @@ tfoot th {
 
 /* --- header styles --- */
 
-header {
+header#header {
   height: 60px;
-  background: #BBD9EE;
+  background: #bbd9ee;
 }
 
-header a {
+header#header a {
   text-decoration: none;
 }
 
-header a:hover {
+header#header a:hover {
   text-decoration: underline;
 }
 
@@ -213,7 +214,7 @@ nav a:hover {
 
 /* --- footer styles --- */
 
-footer {
+footer#footer {
   position: fixed;
   bottom: 0;
   z-index: 10;
@@ -227,7 +228,7 @@ footer {
   font-size: 0.8em;
 }
 
-footer a {
+footer#footer a {
   color: #808080;
 }
 
@@ -259,14 +260,3 @@ aside section {
   -khtml-border-radius: 5px;
 }
 
-
-label{
-  line-height: 1.8;
-}
-
-.error-message {
-  padding-left: 18px;
-  background-image: url(/images/exclamation.png);
-  background-repeat: no-repeat;
-  color: #e41b17;
-}

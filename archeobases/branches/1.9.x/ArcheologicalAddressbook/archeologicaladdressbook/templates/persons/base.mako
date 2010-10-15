@@ -2,14 +2,18 @@
 <%inherit file="/base.mako" />
 ##
 <article>
-${next.body()}
+  <section>
+    ${next.body()}
+  </section>
 </article>
 <aside>
-Actions :<br/>
-__________<br/>
+  <section>
+    Actions :<br/>
+    __________<br/>
 
-${h.link_to(_("list"), url.current(action='list'))}<br/>
-${h.link_to(_("new"), url.current(action='new'))}<br/>
+    ${h.link_to(_("list"), url.current(action='list'))}<br/>
+    ${h.link_to(_("new"), url.current(action='new'))}<br/>
+  </section>
 </aside>
 
 ##

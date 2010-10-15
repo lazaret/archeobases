@@ -241,10 +241,24 @@ article {
   width: 75%;
 }
 
+article section {
+  padding: 1em;
+}
+
 aside {
   float: right;
   width: 25%;
 }
+
+aside section {
+  padding: 1em;
+  margin: 1em;
+  background : #fff6bf;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+}
+
 
 label{
   line-height: 1.8;

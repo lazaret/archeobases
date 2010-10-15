@@ -4,10 +4,14 @@
 ##
 <!-- root index template -->
 <article>
-  article
+  <section>
+    article
+  </section>
 </article>
 <aside>
-  aside
+  <section>
+    aside
+  </section>
 </aside>
 
 ##

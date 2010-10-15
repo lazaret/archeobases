@@ -2,10 +2,14 @@
 <%inherit file="/base.mako" />
 ##
 <article>
-${next.body()}
+  <section>
+    ${next.body()}
+  </section>
 </article>
 <aside>
-aside
+  <section>
+    aside
+  </section>
 </aside>
 
 ##

@@ -20,6 +20,9 @@
       ${login_box()}
       ${flash_message()}
     </header>
+    <nav>
+      ${self.navbar()}
+    </nav>
     <section id="main">
       ${next.body()}
     </section>
@@ -30,3 +33,13 @@
     </footer>
   </body>
 </html>
+
+##
+## DEFAULT TOP NAV BAR
+<%def name="navbar()">
+  <ul>
+    <li><a href="/">${_("Home")}</a></li>
+    <li><a href="/">${_("Persons")}</a></li>
+    <li><a href="/">${_("Statistics")}</a></li>
+  </ul>
+</%def>

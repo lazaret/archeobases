@@ -1,9 +1,9 @@
 ## -*- coding: utf-8 -*-
-
-<%inherit file="/base.mako" />
+<%inherit file="/persons/base.mako" />
+##
 <%def name="page_title()">${_("Persons")} - ${_("Edit")}</%def>
+##
 <!-- persons edit template -->
-
 
 ${h.secure_form(url.current(action='update', id=c.person.id))}
   <fieldset>
@@ -22,4 +22,3 @@ ${h.secure_form(url.current(action='update', id=c.person.id))}
   ${h.submit('Submit', 'Submit')}
   ##<button name="new_button" type="submit" class="positive">${_("Update")}</button>
 ${h.end_form()}
-

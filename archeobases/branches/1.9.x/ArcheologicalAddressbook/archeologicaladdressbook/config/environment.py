@@ -61,7 +61,4 @@ def load_environment(global_conf, app_conf):
     # CONFIGURATION OPTIONS HERE (note: all config options will override
     # any Pylons config options)
 
-    # Use the strict behaviour of the template context object
-    config['pylons.strict_c'] = True
-
     return config

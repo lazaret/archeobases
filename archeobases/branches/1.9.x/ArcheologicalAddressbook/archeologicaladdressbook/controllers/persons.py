@@ -36,7 +36,7 @@ log = logging.getLogger(__name__)
 class PersonsController(BaseController):
     """ Persons Controller."""
 
-    def _check_duplicate(self, form_result=None):
+    def _check_duplicate(self, form_result=None): #TODO correct edit bug
         """ Check for a duplicate entry in the database.
 
         Check than there is not already an entry with the same `last_name`
@@ -125,7 +125,7 @@ class PersonsController(BaseController):
         person = Session.query(model.Person).get(id)
         if person:
             # check first for duplicate
-            self._check_duplicate(self.form_result)
+#            self._check_duplicate(self.form_result) #TODO debug
             # update the record
             for key, value in self.form_result.items():
                 setattr(person, key, value)

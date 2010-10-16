@@ -40,8 +40,10 @@ class BaseController(WSGIController):
         credentials = request.environ.get('repoze.what.credentials', False)
         if credentials:
             c.userid = credentials['repoze.what.userid']
+            c.permissions = credentials['permissions']
         else:
             c.userid = None
+            c.permissions = None
 
 
 def _error_formatter(error):

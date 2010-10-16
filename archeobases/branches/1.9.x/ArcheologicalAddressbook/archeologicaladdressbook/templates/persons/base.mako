@@ -23,6 +23,9 @@
     <li>${h.link_to(_("Home"), url('/'))}</li>
     <li>${h.link_to(_("Persons"), url(controller='persons'), class_='active')}</li>
     <li>${h.link_to(_("Statistics"), url(controller='stats'))}</li>
+    % if 'manage' in c.permissions:
+      <li>${h.link_to(_("Admin"), url(controller='admin'))}</li>
+    % endif
   </ul>
 </%def>
 

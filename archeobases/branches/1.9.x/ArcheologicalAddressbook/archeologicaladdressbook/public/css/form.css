@@ -1,15 +1,15 @@
 /* css styles for forms */
 
 fieldset {
-  background: #fcfcfc;
+  background: #FCFCFC;
   border: 0;
   margin: 0;
-  border-top: 1px solid #ccc;
-  border: 1px solid #eee;
+  border-top: 1px solid #CCC;
+  border: 1px solid #EEE;
 }
 
 fieldset:hover {
-    border: 1px solid #ccc;
+    border: 1px solid #CCC;
 }
 
 fieldset legend{
@@ -33,11 +33,10 @@ fieldset p {
 /* fieldset footer & buttons */
 
 form footer {
-  background: #f0f8ff;
+  background: #F0F8FF;
   margin-top: 15px;
   padding: .5em;
-  border-top: 1px solid #9EC068;
-  border-top: 1px solid #c2e1ef;
+  border-top: 1px solid #C2E1EF;
   text-align: right;
 }
 
@@ -64,6 +63,6 @@ fieldset .mandatory {
   padding-left: 18px;
   background-image: url(/images/exclamation.png);
   background-repeat: no-repeat;
-  color: #e41b17;
+  color: #E41B17;
   font-style: italic;
 }

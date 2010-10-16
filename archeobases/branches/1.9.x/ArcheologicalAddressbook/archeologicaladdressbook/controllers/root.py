@@ -57,7 +57,7 @@ class RootController(BaseController):
     def post_logout(self):
         """ Post logout action."""
         flash_message(_("You have been logout !"), 'success')
-        redirect(url(controller='root', action='index'))
+        redirect(url('/'))
 
 
 

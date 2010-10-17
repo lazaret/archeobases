@@ -24,13 +24,13 @@ class TestStatsController(TestController):
         self.app.get(url(controller='stats'))
         self.app.get(url(controller='stats', action='index'))
 
-    def test_2_anonymous_denied(self):
+    def test_2_controller_denied_for_anonymous(self):
         """ Test than the `StatsController` controller is denied to anonymous."""
         # status 302 and not 401 because denied users are redirected to the main page
         self.app.get(url(controller='stats'), status=302)
 
-    def test_3_editors_allowed(self):
-        """ Test than the `StatsController` controller is allowed for guests."""
+    def test_3_controller_allowed_for_viewers(self):
+        """ Test than the `StatsController` controller is allowed for users with 'view' permission."""
         self.app.get(url(controller='stats'),
             extra_environ={'repoze.what.credentials': self.guest},
             status=200)
@@ -39,4 +39,4 @@ class TestStatsController(TestController):
         """ Test response of the `StatsController` index page."""
         response = self.app.get(url(controller='stats', action='index'),
             extra_environ={'repoze.what.credentials': self.guest})
-        assert 'stats index template' in response
+        assert 'stats index template' in response, 'stats index template is missing or has changed.'

@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-
+## -*- coding: utf-8 -*-
 ## display pagination links
 ## to be used with webhelpers.paginate.Page
-
-
-## paginate
+##
 <%def name="paginate(page=None)">
   % if page:
     % if page.page != page.first_page:

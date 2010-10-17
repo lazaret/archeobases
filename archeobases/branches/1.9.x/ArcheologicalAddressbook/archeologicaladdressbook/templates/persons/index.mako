@@ -4,4 +4,4 @@
 <%def name="page_title()">${_("Persons")}</%def>
 ##
 <!-- persons index template -->
-
+##

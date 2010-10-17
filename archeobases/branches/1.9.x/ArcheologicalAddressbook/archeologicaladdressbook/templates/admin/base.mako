@@ -11,7 +11,6 @@
     aside
   </section>
 </aside>
-
 ##
 ## NAV BAR
 <%def name="navbar()">
@@ -22,4 +21,3 @@
     <li>${h.link_to(_("Admin"), url(controller='admin'), class_='active')}</li>
   </ul>
 </%def>
-

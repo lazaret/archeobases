@@ -15,7 +15,7 @@
     ${h.javascript_link("/javascripts/jquery-ui.custom.min.js")}
     ${h.javascript_link("/javascripts/main.js")}
   </head>
-
+##
   <body>
     <header id="header">
       ${login_box()}
@@ -34,7 +34,6 @@
     </footer>
   </body>
 </html>
-
 ##
 ## DEFAULT TOP NAV BAR
 <%def name="navbar()">

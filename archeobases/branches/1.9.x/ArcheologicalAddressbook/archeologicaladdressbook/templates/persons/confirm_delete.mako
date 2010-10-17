@@ -4,7 +4,7 @@
 <%def name="page_title()">${_("Persons")} - ${_("Confim delete")}</%def>
 ##
 <!-- persons confirm_delete template -->
-
+##
 ${_("Last name")} : ${c.person.last_name}<br/>
 ${_("First name")} : ${c.person.first_name}<br/>
 ${_("Title")} : ${c.person.title}<br/>
@@ -19,6 +19,8 @@ ${_("Photo")} : ${c.person.photo}<br/>
 ${_("Are your sure you whan tot delete this person ?")}
 
 ${h.secure_form(url.current(action='delete', id=c.person.id))}
-  ${h.button_to(_("Yes"), url.current(action='delete', id=c.person.id))}
-  ${h.button_to(_("No"), url.current(action='show', id=c.person.id))}
+  <footer>
+    ${h.button_to(_("Yes"), url.current(action='delete', id=c.person.id))}
+    ${h.button_to(_("No"), url.current(action='show', id=c.person.id))}
+  </footer>
 ${h.end_form()}

@@ -5,7 +5,7 @@
 <%def name="page_title()">${_("Persons")} - ${_("List")}</%def>
 ##
 <!-- persons list template -->
-
+##
 <table>
   <caption>Titre du tableau</caption>
   <thead>

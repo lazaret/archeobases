@@ -7,3 +7,15 @@
 
 
 ${h.link_to(_("Database"), url(controller='dbadmin'))}
+
+Manage users
+
+Config options
+
+Save / restore database
+
+add alert to check default users and pass
+
+stats
+
+logs

@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Search controller for the application."""
+""" `Search` controller for the application."""
 
 import logging
 
@@ -25,9 +25,9 @@ log = logging.getLogger(__name__)
 
 @ProtectController(has_permission('view', msg=_("Authentification required")))
 class SearchController(BaseController):
-    """ Search Controller."""
+    """ `Search` Controller."""
 
     def index(self):
-        """ Render the index template."""
+        """ Render the search index template."""
         return render('/search/index.mako')
 

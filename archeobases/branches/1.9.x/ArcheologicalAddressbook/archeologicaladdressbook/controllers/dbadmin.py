@@ -54,7 +54,7 @@ class DbAdminForms():
         ], options=[UserGrid.created.label('Creation date')])
 
 
-@ProtectController(has_permission('manage', msg=_("Authentification required")))
+@ProtectController(has_permission('manage'))
 class DbadminController(BaseController):
     """ Database Admin Controller.
 

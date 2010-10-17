@@ -5,7 +5,7 @@
 <%def name="page_title()">${_("Persons")} - ${_("New")}</%def>
 ##
 <!-- persons new template -->
-
+##
 ${h.secure_form(url.current(action="create"))}
   ${person_form()}
   <footer>

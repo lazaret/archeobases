@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Statistics controller for the application."""
+""" `Statistics` controller for the application."""
 
 import logging
 
@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 
 @ProtectController(has_permission('view', msg=_("Authentification required")))
 class StatsController(BaseController):
-    """ Statistics Controller."""
+    """ `Stats` Controller."""
 
     def index(self):
         """ Display basic countings on records."""

@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Main controller for the application."""
+""" `Root` controller for the application."""
 
 import logging
 
@@ -24,7 +24,7 @@ log = logging.getLogger(__name__)
 
 
 class RootController(BaseController):
-    """ Main controller witch serve the main index page."""
+    """ `Root` controller witch serve the main index page."""
 
     def index(self):
         """ Render the main index page."""

@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Persons controller for the application."""
+""" `Persons` controller for the application."""
 
 import logging
 
@@ -34,7 +34,7 @@ log = logging.getLogger(__name__)
 
 @ProtectController(has_any_permission('edit', 'view'))
 class PersonsController(BaseController):
-    """ Persons Controller."""
+    """ `Persons` Controller."""
 
     def _check_duplicate(self, form_result=None): #TODO correct edit bug
         """ Check for a duplicate entry in the database.
@@ -56,7 +56,7 @@ class PersonsController(BaseController):
 
     @ProtectAction(has_permission('view'))
     def index(self):
-        """ Render the index template."""
+        """ Render the person index template."""
         return render('/persons/index.mako')
 
     @ProtectAction(has_permission('view'))

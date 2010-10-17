@@ -9,13 +9,10 @@
 <aside>
   <section>
     Actions :<br/>
-    __________<br/>
-
     ${h.link_to(_("list"), url.current(action='list'))}<br/>
     ${h.link_to(_("new"), url.current(action='new'))}<br/>
   </section>
 </aside>
-
 ##
 ## NAV BAR
 <%def name="navbar()">
@@ -28,4 +25,3 @@
     % endif
   </ul>
 </%def>
-

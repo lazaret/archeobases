@@ -3,6 +3,7 @@
 <%def name="page_title()">${_("Main index page")}</%def>\
 ##
 <!-- root index template -->
+##
 <article>
   <section>
     article

@@ -11,7 +11,6 @@
     aside
   </section>
 </aside>
-
 ##
 ## NAV BAR
 <%def name="navbar()">
@@ -24,4 +23,3 @@
     % endif
   </ul>
 </%def>
-

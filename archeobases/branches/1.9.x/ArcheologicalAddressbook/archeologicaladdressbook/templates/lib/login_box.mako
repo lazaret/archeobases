@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
 ## Display a top login box or the username on all pages
+##
 <%def name="login_box()">
   % if c.userid:
     ${h.link_to(c.userid, "#login", id="login-link")}

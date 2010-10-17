@@ -4,7 +4,7 @@
 <%def name="page_title()">${_("Persons")} - ${_("Show")}</%def>
 ##
 <!-- persons show template -->
-
+##
 ${_("Last name")} : ${c.person.last_name}<br/>
 ${_("First name")} : ${c.person.first_name}<br/>
 ${_("Title")} : ${c.person.title}<br/>

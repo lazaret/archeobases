@@ -22,12 +22,12 @@ class TestRootController(TestController):
         self.app.get(url(controller='root'))
         self.app.get(url(controller='root', action='index'))
 
-    def test_2_anonymous_allowed(self):
+    def test_2_controller_allowed_for_anonymous(self):
         """ Test than the `RootController` controller index page is allowed to anonymous."""
         self.app.get('/', status=200)
         self.app.get('/index', status=200)
 
     def test_3_index_response(self):
-        """ Test response of the `SearchController` index page."""
+        """ Test response of the `RootController` index page."""
         response = self.app.get(url(controller='root', action='index'))
-        assert 'root index template' in response
+        assert 'root index template' in response, 'root index template is missing or has changed.'

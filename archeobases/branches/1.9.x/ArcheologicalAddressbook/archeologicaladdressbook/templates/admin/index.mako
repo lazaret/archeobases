@@ -1,7 +1,12 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/admin/base.mako" />
 ##
-<%def name="page_title()">${_("Admin")}</%def>
+<%def name="page_title()">
+  ${_("Addressbook")} - ${_("Admin")}
+</%def>
+<%def name="breadcrumb()">
+  ${h.link_to(_("Addressbook"), "/")} > ${_("Admin")}
+</%def>
 ##
 <!-- admin index template -->
 ##

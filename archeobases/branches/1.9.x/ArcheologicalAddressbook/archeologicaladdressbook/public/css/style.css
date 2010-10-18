@@ -242,6 +242,28 @@ article {
   width: 75%;
 }
 
+article header#breadcrumb {
+  margin: 1em 0 0 1em;
+  padding: 3px 15px 3px 15px;
+  color: #808080;
+  font-size: 85%;
+#  border: 1px solid #EEE;
+  background-color: #EEE;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+}
+
+article header#breadcrumb a {
+  color: #808080;
+  text-decoration: none;
+}
+
+article header#breadcrumb a:hover {
+  text-decoration: none;
+  text-decoration: underline;
+}
+
 article section {
   padding: 1em;
 }
@@ -253,7 +275,7 @@ aside {
 
 aside section {
   padding: 1em;
-  margin: 1em;
+  margin: 1em 1em 0 1em;
   background : #FFF6BF;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;

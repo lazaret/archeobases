@@ -1,16 +1,9 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/base.mako" />
 ##
-<article>
-  <section>
-    ${next.body()}
-  </section>
-</article>
-<aside>
-  <section>
-    aside
-  </section>
-</aside>
+<section>
+  ${next.body()}
+</section>
 ##
 ## NAV BAR
 <%def name="navbar()">
@@ -20,4 +13,11 @@
     <li>${h.link_to(_("Statistics"), url(controller='stats'))}</li>
     <li>${h.link_to(_("Admin"), url(controller='admin'), class_='active')}</li>
   </ul>
+</%def>
+##
+## SIDE BAR
+<%def name="sidebar()">
+  <section>
+    admin aside
+  </section>
 </%def>

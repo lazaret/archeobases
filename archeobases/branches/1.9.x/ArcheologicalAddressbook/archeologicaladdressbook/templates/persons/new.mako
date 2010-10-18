@@ -2,7 +2,12 @@
 <%inherit file="/persons/base.mako" />
 <%namespace file="/persons/person_form.mako" import="*"/>
 ##
-<%def name="page_title()">${_("Persons")} - ${_("New")}</%def>
+<%def name="page_title()">
+  ${_("Addressbook")} - ${_("Persons")} - ${_("New")}
+</%def>
+<%def name="breadcrumb()">
+  ${h.link_to(_("Addressbook"), "/")} > ${h.link_to(_("Persons"), h.url(controller="persons"))} > ${_("New")}
+</%def>
 ##
 <!-- persons new template -->
 ##

@@ -1,7 +1,12 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/persons/base.mako" />
 ##
-<%def name="page_title()">${_("Persons")} - ${_("Show")}</%def>
+<%def name="page_title()">
+  ${_("Addressbook")} - ${_("Persons")} - ${_("Show")}
+</%def>
+<%def name="breadcrumb()">
+  ${h.link_to(_("Addressbook"), "/")} > ${h.link_to(_("Persons"), h.url(controller="persons"))} > ${_("Show")}
+</%def>
 ##
 <!-- persons show template -->
 ##

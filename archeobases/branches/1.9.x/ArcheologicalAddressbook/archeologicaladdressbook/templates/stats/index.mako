@@ -1,7 +1,12 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/stats/base.mako" />
 ##
-<%def name="page_title()">${_("Statistics")}</%def>
+<%def name="page_title()">
+  ${_("Addressbook")} - ${_("Statistics")}
+</%def>
+<%def name="breadcrumb()">
+  ${h.link_to(_("Addressbook"), "/")} > ${_("Statistics")}
+</%def>
 ##
 <!-- stats index template -->
 ##

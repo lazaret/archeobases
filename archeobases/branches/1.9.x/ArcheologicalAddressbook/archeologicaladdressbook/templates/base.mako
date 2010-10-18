@@ -6,7 +6,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>${_("Addressbook")} - ${self.page_title()}</title>
+    <title>${self.page_title()}</title>
     ${h.stylesheet_link("/css/style.css")}
     ${h.stylesheet_link("/css/form.css")}
     ${h.stylesheet_link("/css/ui-lightness/jquery-ui.custom.css")}
@@ -25,7 +25,15 @@
       ${self.navbar()}
     </nav>
     <section id="main">
-      ${next.body()}
+      <article>
+        <header id="breadcrumb">
+          ${self.breadcrumb()}
+        </header>
+        ${next.body()}
+      </article>
+      <aside>
+        ${self.sidebar()}
+      </aside>
     </section>
     <footer id="footer">
       ${app_globals.name} ${app_globals.version} - \
@@ -35,7 +43,16 @@
   </body>
 </html>
 ##
-## DEFAULT TOP NAV BAR
+## DEFAULT PAGE TITLE
+<%def name="page_title()">
+  ${_("Addressbook")}
+</%def>
+##
+## DEFAULT BREADCRUMB
+<%def name="breadcrumb()">
+  ${h.link_to(_("Addressbook"), "/")}
+</%def>
+## DEFAULT NAV BAR
 <%def name="navbar()">
   % if c.userid:
   <ul>
@@ -51,4 +68,8 @@
     <li>${h.link_to(_("Home"), url('/'), class_='active')}</li>
   </ul>
   % endif
+</%def>
+##
+## DEFAULT SIDE BAR
+<%def name="sidebar()">
 </%def>

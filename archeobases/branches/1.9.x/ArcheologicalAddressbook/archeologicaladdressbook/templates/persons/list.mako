@@ -2,7 +2,12 @@
 <%inherit file="/persons/base.mako" />
 <%namespace file="/lib/paginate.mako" import="*"/>
 ##
-<%def name="page_title()">${_("Persons")} - ${_("List")}</%def>
+<%def name="page_title()">
+  ${_("Addressbook")} - ${_("Persons")} - ${_("List")}
+</%def>
+<%def name="breadcrumb()">
+  ${h.link_to(_("Addressbook"), "/")} > ${h.link_to(_("Persons"), h.url(controller="persons"))} > ${_("List")}
+</%def>
 ##
 <!-- persons list template -->
 ##

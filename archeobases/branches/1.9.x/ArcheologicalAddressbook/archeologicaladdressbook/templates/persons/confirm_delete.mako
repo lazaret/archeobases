@@ -1,7 +1,12 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/persons/base.mako" />
 ##
-<%def name="page_title()">${_("Persons")} - ${_("Confim delete")}</%def>
+<%def name="page_title()">
+  ${_("Addressbook")} - ${_("Persons")} - ${_("Confirm delete")}
+</%def>
+<%def name="breadcrumb()">
+  ${h.link_to(_("Addressbook"), "/")} > ${h.link_to(_("Persons"), h.url(controller="persons"))} > ${_("Confirm delete")}
+</%def>
 ##
 <!-- persons confirm_delete template -->
 ##

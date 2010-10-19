@@ -29,3 +29,7 @@ class AdminController(BaseController):
     def index(self):
         """ Render the admin index template."""
         return render('/admin/index.mako')
+
+    def logs(self):
+        """ Render the application logs."""
+        return render('/admin/logs.mako')

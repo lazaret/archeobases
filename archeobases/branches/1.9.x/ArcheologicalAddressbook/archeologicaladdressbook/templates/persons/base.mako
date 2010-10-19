@@ -23,5 +23,6 @@
     Actions :<br/>
     ${h.link_to(_("list"), url.current(action='list'))}<br/>
     ${h.link_to(_("new"), url.current(action='new'))}<br/>
+    search<br/>
   </section>
 </%def>

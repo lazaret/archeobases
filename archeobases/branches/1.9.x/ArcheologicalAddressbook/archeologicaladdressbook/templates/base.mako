@@ -1,6 +1,6 @@
 ## -*- coding: utf-8 -*-
-<%namespace file="/lib/flash_message.mako" import="*"/>\
-<%namespace file="/lib/login_box.mako" import="*"/>\
+<%namespace file="/lib/flash_message.mako" import="*"/>
+<%namespace file="/lib/login_box.mako" import="*"/>
 ##
 <!DOCTYPE html>
 <html>

@@ -18,6 +18,7 @@
 ## SIDE BAR
 <%def name="sidebar()">
   <section>
-    admin aside
+    ${h.link_to(_("Database admin"), url(controller='dbadmin'))}<br/>
+    ${h.link_to(_("Logs"), url.current(action='logs'))}<br/>
   </section>
 </%def>

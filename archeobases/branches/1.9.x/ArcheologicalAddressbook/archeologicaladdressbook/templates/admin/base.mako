@@ -19,6 +19,7 @@
 <%def name="sidebar()">
   <section>
     ${h.link_to(_("Database admin"), url(controller='dbadmin'))}<br/>
-    ${h.link_to(_("Logs"), url.current(action='logs'))}<br/>
+    ${h.link_to(_("Access log"), url.current(action='accesslog'))}<br/>
+##    ${h.link_to(_("Error log"), url.current(action='errorlog'))}<br/>
   </section>
 </%def>

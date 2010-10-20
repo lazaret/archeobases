@@ -30,6 +30,7 @@ class TestAdminController(TestController):
         """ Test the routes of the `AdminController` controller."""
         self.app.get(url(controller='admin'))
         self.app.get(url(controller='admin', action='index'))
+        self.app.get(url(controller='admin', action='accesslog'))
 
     def test_2_controller_denied_for_anonymous(self):
         """ Test than the `AdminController` controller is denied to anonymous."""
@@ -59,3 +60,9 @@ class TestAdminController(TestController):
         response = self.app.get(url(controller='admin', action='index'),
             extra_environ={'repoze.what.credentials': self.manager})
         assert 'admin index template' in response, 'admin index template is missing or has changed.'
+
+    def test_6_accesslog_response(self):
+        """ Test response of the `AdminController` index page."""
+        response = self.app.get(url(controller='admin', action='accesslog'),
+            extra_environ={'repoze.what.credentials': self.manager})
+        assert 'admin accesslog template' in response, 'admin accesslog template is missing or has changed.'

@@ -21,5 +21,3 @@ Save / restore database
 add alert to check default users and pass
 
 stats
-
-logs

@@ -240,6 +240,7 @@ section#main {
 article {
   float: left;
   width: 75%;
+  margin-bottom: 21px;
 }
 
 article header#breadcrumb {

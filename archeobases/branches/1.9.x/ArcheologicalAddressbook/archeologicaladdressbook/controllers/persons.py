@@ -84,7 +84,7 @@ class PersonsController(BaseController):
             return redirect(url.current(action='index', id=None))
 
     @ProtectAction(has_permission('edit'))
-    def new(self, id=None):
+    def new(self, id=None): #TODO understand and correct the empty form error probably related to Modeltags usage
         """ Display a form to create a new record."""
         if id:
             # if someone mistype /persons/new/id

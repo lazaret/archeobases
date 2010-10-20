@@ -7,7 +7,7 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" `Admin` controller for the application."""
+""" `Users` controller for the application."""
 
 import logging
 
@@ -19,25 +19,13 @@ from repoze.what.predicates import has_permission
 from archeologicaladdressbook.lib.auth import ProtectController
 from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.base import BaseController, render
-from archeologicaladdressbook.lib.logparse import combined_log_parser
 
 log = logging.getLogger(__name__)
 
 
 @ProtectController(has_permission('manage'))
-class AdminController(BaseController):
+class UsersController(BaseController):
 
     def index(self):
-        """ Render the admin index template."""
-        return render('/admin/index.mako')
-
-    def accesslog(self, id=None):
-        """ Render the application access log."""
-        log = combined_log_parser("access.log") #TODO seek logfile name in INI file
-        #TODO manage error if file not found or empty logs
-        log.reverse() # Put yonger log lines at the begining of the list
-        c.page = paginate.Page(log, page=id, items_per_page = 20)
-        return render('/admin/accesslog.mako')
-
-#    def errorlog(self, id=None):
-#        pass
+        """ Render the users index template."""
+        return render('/users/index.mako')

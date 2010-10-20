@@ -12,6 +12,7 @@
 from beaker.middleware import SessionMiddleware
 from paste.cascade import Cascade
 from paste.registry import RegistryManager
+from paste.translogger import TransLogger
 from paste.urlparser import StaticURLParser
 from paste.deploy.converters import asbool
 from pylons.middleware import ErrorHandler, StatusCodeRedirect
@@ -57,6 +58,7 @@ def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
 
     # CUSTOM MIDDLEWARE HERE (filtered by error handling middlewares)
     app = add_auth(app) # Add repoze.what Auth & Auth
+    app = TransLogger(app, setup_console_handler=False) # Add Paste TransLogger
 
     if asbool(full_stack):
         # Handle Python exceptions

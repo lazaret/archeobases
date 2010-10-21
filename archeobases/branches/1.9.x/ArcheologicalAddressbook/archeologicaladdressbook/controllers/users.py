@@ -25,6 +25,7 @@ log = logging.getLogger(__name__)
 
 @ProtectController(has_permission('manage'))
 class UsersController(BaseController):
+    """ `Users` Controller."""
 
     def index(self):
         """ Render the users index template."""

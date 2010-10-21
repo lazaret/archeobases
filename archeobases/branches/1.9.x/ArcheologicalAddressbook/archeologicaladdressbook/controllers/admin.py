@@ -26,6 +26,7 @@ log = logging.getLogger(__name__)
 
 @ProtectController(has_permission('manage'))
 class AdminController(BaseController):
+    """ `Admin` Controller."""
 
     def index(self):
         """ Render the admin index template."""

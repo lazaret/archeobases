@@ -36,19 +36,20 @@ log = logging.getLogger(__name__)
 class PersonsController(BaseController):
     """ `Persons` Controller."""
 
-    def _check_duplicate(self, form_result=None): #TODO correct edit bug
+    def _check_duplicate(self, form_result=None, id=None):
         """ Check for a duplicate entry in the database.
 
         Check than there is not already an entry with the same `last_name`
-        and `first_name`. If there is one redirect to the `edit` action
-        for this entry.
+        and `first_name` with another `id`. If there is one redirect to the
+        `edit` action for this entry.
         """
+        # This check forbid homonyms
         f_name = form_result['first_name']
         l_name = form_result['last_name']
         person = Session.query(model.Person). \
             filter(model.Person.first_name==f_name). \
             filter(model.Person.last_name==l_name).first()
-        if person :
+        if person and person.id != id:
             flash_message(_("This record exist, redirecting to it"), 'warning')
             return redirect(url.current(action='edit', id=person.id))
 
@@ -128,7 +129,7 @@ class PersonsController(BaseController):
         person = Session.query(model.Person).get(id)
         if person:
             # check first for duplicate
-#            self._check_duplicate(self.form_result) #TODO debug
+            self._check_duplicate(self.form_result, person.id)
             # update the record
             for key, value in self.form_result.items():
                 setattr(person, key, value)

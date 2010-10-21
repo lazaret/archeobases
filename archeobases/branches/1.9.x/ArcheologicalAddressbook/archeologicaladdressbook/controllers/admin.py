@@ -19,7 +19,7 @@ from repoze.what.predicates import has_permission
 from archeologicaladdressbook.lib.auth import ProtectController
 from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.base import BaseController, render
-from archeologicaladdressbook.lib.logparse import combined_log_parser
+from archeologicaladdressbook.lib.logparser import combined_log_parser, error_log_parser
 
 log = logging.getLogger(__name__)
 
@@ -39,5 +39,10 @@ class AdminController(BaseController):
         c.page = paginate.Page(log, page=id, items_per_page = 20)
         return render('/admin/accesslog.mako')
 
-#    def errorlog(self, id=None):
-#        pass
+    def errorlog(self, id=None):
+        """ Render the application error log."""
+        log = error_log_parser("error.log") #TODO seek logfile name in INI file
+        #TODO manage error if file not found or empty logs
+        log.reverse() # Put yonger log lines at the begining of the list
+        c.page = paginate.Page(log, page=id, items_per_page = 20)
+        return render('/admin/errorlog.mako')

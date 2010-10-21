@@ -84,13 +84,13 @@ class PersonsController(BaseController):
             return redirect(url.current(action='index', id=None))
 
     @ProtectAction(has_permission('edit'))
-    def new(self, id=None): #TODO understand and correct the empty form error probably related to Modeltags usage
+    def new(self, id=None):
         """ Display a form to create a new record."""
         if id:
             # if someone mistype /persons/new/id
             return redirect(url.current(action='new', id=None))
         else:
-            if hasattr(c, 'form_errors'):
+            if c.form_errors:
                 # flash a message warning in case of validation errors
                 flash_message(_("Please check the form for errors"), 'warning')
             return render('/persons/new.mako')
@@ -113,6 +113,9 @@ class PersonsController(BaseController):
         """ Display a form to edit an existing record."""
         c.person = Session.query(model.Person).get(id)
         if c.person:
+            if c.form_errors:
+                # flash a message warning in case of validation errors
+                flash_message(_("Please check the form for errors"), 'warning')
             return render('/persons/edit.mako')
         else:
             flash_message(_("This record did not exist"), 'warning')

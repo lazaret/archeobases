@@ -6,7 +6,7 @@
     ${h.link_to(c.userid, "#login", id="login-link")}
     <div id="login-panel">
       <div id="login-left">
-        <img src="../images/user_male.png" />
+        <img src="/images/user_male.png" />
       </div>
       <div id="login-right">
         ${h.link_to(_("logout"), "/logout")}<br />

@@ -6,7 +6,7 @@
   ${_("Addressbook")} - ${_("Persons")} - ${_("List")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(_("Addressbook"), "/")} > ${h.link_to(_("Persons"), h.url(controller="persons"))} > ${_("List")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Persons"), h.url(controller="persons"))} > ${_("List")}
 </%def>
 ##
 <!-- persons list template -->

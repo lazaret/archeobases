@@ -11,7 +11,7 @@
 
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
+from pylons import config, request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
@@ -34,16 +34,18 @@ class AdminController(BaseController):
 
     def accesslog(self, id=None):
         """ Render the application access log."""
-        log = combined_log_parser("access.log") #TODO seek logfile name in INI file
+        logfile = config.get('accesslog', 'access.log')
+        accesslog = combined_log_parser(logfile)
         #TODO manage error if file not found or empty logs
-        log.reverse() # Put yonger log lines at the begining of the list
-        c.page = paginate.Page(log, page=id, items_per_page = 20)
+        accesslog.reverse() # Put yonger log lines at the begining of the list
+        c.page = paginate.Page(accesslog, page=id, items_per_page = 20)
         return render('/admin/accesslog.mako')
 
     def errorlog(self, id=None):
         """ Render the application error log."""
-        log = error_log_parser("error.log") #TODO seek logfile name in INI file
+        logfile = config.get('errorlog', 'error.log')
+        errorlog = error_log_parser('error.log')
         #TODO manage error if file not found or empty logs
-        log.reverse() # Put yonger log lines at the begining of the list
-        c.page = paginate.Page(log, page=id, items_per_page = 20)
+        errorlog.reverse() # Put yonger log lines at the begining of the list
+        c.page = paginate.Page(errorlog, page=id, items_per_page = 20)
         return render('/admin/errorlog.mako')

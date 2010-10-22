@@ -16,11 +16,12 @@ except ImportError:
     from ez_setup import use_setuptools
     use_setuptools()
     from setuptools import setup, find_packages
+from archeologicaladdressbook import __version__
 
 
 setup(
     name='ArcheologicalAddressbook',
-    version='1.9.a1',
+    version=__version__,
     author='LDPL - Laboratoire Départemental de Préhistoire du Lazaret',
     author_email='opensource@lazaret.unice.fr',
     url='http://lazaret.unice.fr/opensource/',

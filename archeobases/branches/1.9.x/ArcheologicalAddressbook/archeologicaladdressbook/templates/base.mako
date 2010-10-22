@@ -36,7 +36,7 @@
       </aside>
     </section>
     <footer id="footer">
-      ${app_globals.name} ${app_globals.version} - \
+      ArcheologicalAddressbook ${app_globals.version} - \
       ${h.link_to("AGPL3", "http://www.gnu.org/licenses/agpl.html")} - \
       &copy; ${h.link_to("LDLP", "http://lazaret.unice.fr/opensource/")}
     </footer>
@@ -50,7 +50,7 @@
 ##
 ## DEFAULT BREADCRUMB
 <%def name="breadcrumb()">
-  ${h.link_to(_("Addressbook"), "/")}
+  ${h.link_to(app_globals.sitename, "/")}
 </%def>
 ## DEFAULT NAV BAR
 <%def name="navbar()">

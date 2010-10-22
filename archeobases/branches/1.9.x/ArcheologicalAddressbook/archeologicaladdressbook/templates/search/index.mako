@@ -5,7 +5,7 @@
   ${_("Addressbook")} - ${_("Search")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(_("Addressbook"), "/")} > ${_("Search")}
+  ${h.link_to(app_globals.sitename, "/")} > ${_("Search")}
 </%def>
 ##
 <!-- search index template -->

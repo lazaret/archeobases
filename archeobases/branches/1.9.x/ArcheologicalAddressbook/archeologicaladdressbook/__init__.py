@@ -12,3 +12,6 @@
 The main objective of the application is to track contact addresses but also the
 contacts history as voluntary member and/or archeological excavators.
 """
+
+__version__ = '1.9.a1'
+__version_info__ = ((1, 9), ('a', 1))

@@ -11,6 +11,9 @@
 
 from beaker.cache import CacheManager
 from beaker.util import parse_cache_config_options
+from pylons import config
+
+from archeologicaladdressbook import __version__
 
 
 class Globals(object):
@@ -27,6 +30,5 @@ class Globals(object):
         """
         self.cache = CacheManager(**parse_cache_config_options(config))
 
-        # TODO catch this from setup.py or developement.ini
-        self.name = 'ArcheologicalAddressbook'
-        self.version = '1.9.a1'
+        self.version = __version__
+        self.sitename = config.get('sitename', 'AddressBook')

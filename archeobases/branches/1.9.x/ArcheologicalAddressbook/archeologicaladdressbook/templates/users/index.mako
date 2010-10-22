@@ -5,7 +5,7 @@
   ${_("Addressbook")} - ${_("Users")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(_("Addressbook"), "/")} > ${_("Users")}
+  ${h.link_to(app_globals.sitename, "/")} > ${_("Users")}
 </%def>
 ##
 <!-- users index template -->

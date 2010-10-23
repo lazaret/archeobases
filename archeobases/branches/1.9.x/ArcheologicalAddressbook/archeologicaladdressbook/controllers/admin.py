@@ -32,7 +32,7 @@ class AdminController(BaseController):
         """ Render the admin index template."""
         return render('/admin/index.mako')
 
-    def accesslog(self, id=None): #TODO try to make onli one action ?
+    def accesslog(self, id=None):
         """ Render the application access log."""
         logfile = config.get('accesslog', 'access.log')
         try:
@@ -63,3 +63,7 @@ class AdminController(BaseController):
             log.error("Error log file not found")
             flash_message(_("Error log file not found"), 'error')
         return render('/admin/errorlog.mako')
+
+    def options(self):
+        """ """
+        return render('/admin/options.mako')

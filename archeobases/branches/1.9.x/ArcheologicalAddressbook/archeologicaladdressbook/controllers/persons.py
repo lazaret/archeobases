@@ -28,8 +28,7 @@ from archeologicaladdressbook.model import forms
 log = logging.getLogger(__name__)
 
 
-#TODO check validation schema -> date
-#TODO try jgrid+json ???
+#TODO try jqgrid+json ???
 
 
 @ProtectController(has_any_permission('edit', 'view'))
@@ -43,7 +42,7 @@ class PersonsController(BaseController):
         and `first_name` with another `id`. If there is one redirect to the
         `edit` action for this entry.
         """
-        # This check forbid homonyms
+        # Limitation : This check actualy forbid homonyms
         f_name = form_result['first_name']
         l_name = form_result['last_name']
         person = Session.query(model.Person). \

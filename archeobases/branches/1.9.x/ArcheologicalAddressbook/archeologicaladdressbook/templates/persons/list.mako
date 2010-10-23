@@ -15,7 +15,7 @@
   <caption>Titre du tableau</caption>
   <thead>
     <th>${_("Last name")}</th>
-    <th>${("First name")}</th>
+    <th>${_("First name")}</th>
     <th></th>
   </thead>
   <tfoot>

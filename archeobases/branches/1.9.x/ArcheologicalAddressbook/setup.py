@@ -38,6 +38,7 @@ setup(
         'Babel>=0.9.4',
         'repoze.what-pylons>=1.0',
         'repoze.what-quickstart>=1.0.6',
+        'pydns>=2.3.4',
     ],
     setup_requires=['PasteScript>=1.7.3'],
     packages=find_packages(exclude=['ez_setup']),

@@ -22,6 +22,7 @@ from archeologicaladdressbook.lib.auth import ProtectController
 
 from archeologicaladdressbook.model import Session
 from archeologicaladdressbook import model
+from archeologicaladdressbook.model import forms
 
 log = logging.getLogger(__name__)
 
@@ -67,7 +68,7 @@ class UsersController(BaseController):
                 flash_message(_("Please check the form for errors"), 'warning')
             return render('/users/new.mako')
 
-#    @validate(schema=forms.UserForm(), form='new')
+    @validate(schema=forms.UserForm(), form='new')
     @authenticate_form
     def create(self):
         """ Add a new record in the database."""
@@ -92,7 +93,7 @@ class UsersController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
-#    @validate(schema=forms.UserForm(), form='edit')
+    @validate(schema=forms.UserForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
         """ Update an existing record."""

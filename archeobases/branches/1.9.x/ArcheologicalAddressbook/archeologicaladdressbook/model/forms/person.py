@@ -16,6 +16,7 @@ from archeologicaladdressbook.model.person import Person
 from archeologicaladdressbook.model import Session
 
 
+# TODO remove completly ?
 class UniquePerson(validators.FancyValidator):
     """ Unique Person validator.
 
@@ -45,7 +46,7 @@ class PersonForm(Schema):
     first_name = validators.String(not_empty=True)
     title = validators.String()
     birth_date = validators.DateConverter(month_style='dd/mm/yyyy')
-    email_address = validators.Email()
+    email_address = validators.Email(resolve_domain=True)
     phone = validators.String()
     mobile_phone = validators.String()
     activity = validators.String()

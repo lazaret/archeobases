@@ -11,4 +11,5 @@
 
 # import tables classes
 from archeologicaladdressbook.model.forms.person import PersonForm
+from archeologicaladdressbook.model.forms.user import UserForm
 

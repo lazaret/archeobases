@@ -13,3 +13,9 @@
 * Be more clear in Persons ans Users docstrings
 
 * Move all 'users' controller tamplates inside 'admin' ?
+
+* Add case changes for some fields in forms :
+username -> always lowercase
+email -> always lowercase
+last name -> always upercase
+first name -> camel case

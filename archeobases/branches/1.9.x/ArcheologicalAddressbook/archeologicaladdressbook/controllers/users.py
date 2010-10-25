@@ -52,6 +52,7 @@ class UsersController(BaseController):
         """ Display an individual record."""
         c.user = Session.query(model.User).get(id)
         if c.user:
+            c.group = c.user.groups[0].group_name
             return render('/users/show.mako')
         else:
             flash_message(_("This record did not exist"), 'warning')
@@ -68,15 +69,20 @@ class UsersController(BaseController):
                 flash_message(_("Please check the form for errors"), 'warning')
             return render('/users/new.mako')
 
-    @validate(schema=forms.UserForm(), form='new')
+    @validate(schema=forms.NewUserForm(), form='new')
     @authenticate_form
     def create(self):
         """ Add a new record in the database."""
-        # check first for duplicate
-        #self._check_duplicate(self.form_result)
-        # create the record
-        user = model.User(**self.form_result)
+        user = model.User(
+            user_name = self.form_result['user_name'],
+            email_address = self.form_result['email_address'],
+            display_name = self.form_result['display_name'],
+            password = self.form_result['password']
+        )
         Session.add(user)
+        g_name = self.form_result['group_name']
+        group = Session.query(model.Group).filter(model.Group.group_name==g_name).first()
+        group.users.append(user)
         Session.commit()
         flash_message(_("Record added"), 'success')
         return redirect(url.current(action='show', id=user.user_id))
@@ -85,6 +91,7 @@ class UsersController(BaseController):
         """ Display a form to edit an existing record."""
         c.user = Session.query(model.User).get(id)
         if c.user:
+            c.group = c.user.groups[0].group_name
             if c.form_errors:
                 # flash a message warning in case of validation errors
                 flash_message(_("Please check the form for errors"), 'warning')
@@ -93,15 +100,12 @@ class UsersController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
-    @validate(schema=forms.UserForm(), form='edit')
+    @validate(schema=forms.EditUserForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
         """ Update an existing record."""
         user = Session.query(model.User).get(id)
         if user:
-            # check first for duplicate
-            #self._check_duplicate(self.form_result, person.id)
-            # update the record
             for key, value in self.form_result.items():
                 setattr(user, key, value)
             Session.commit()

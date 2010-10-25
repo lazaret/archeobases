@@ -16,22 +16,23 @@ from archeologicaladdressbook.model.auth import User
 from archeologicaladdressbook.model import Session
 
 
-class UniqueUser(validators.FancyValidator):
-    """ Unique user validator.
+class UniqueUsername(formencode.FancyValidator):
+    """ Unique username validator.
 
     Check than there is not already someone with the same `user_name`
     in the database.
     """
+
     messages = {
         'not_unique': "That user name already exists"
     }
 
-    def validate_python(self, values, state):
-        """ Check the database uniqueness of an user."""
-        user = Session.query(User).filter(User.user_name==values['user_name']).first()
+    def validate_python(self, value, state):
+        """ Check for the uniqueness of an `user_name`."""
+        user = Session.query(User).filter(User.user_name==value).first()
         if user:
-            errors = {'user_name': self.message('not_unique', state)}
-            raise formencode.Invalid(self.message('not_unique', state), values, state, error_dict=errors)
+            raise formencode.Invalid(self.message('not_unique', state), value, state)
+            return value
 
 
 class UniqueEmail(validators.FancyValidator):
@@ -44,23 +45,50 @@ class UniqueEmail(validators.FancyValidator):
         'not_unique': "That email address is already used"
     }
 
+    def validate_python(self, value, state):
+        """ Check for the uniqueness of an `email_address`."""
+        email = Session.query(User).filter(User.email_address==value).first()
+        if email:
+            raise formencode.Invalid(self.message('not_unique', state), value, state)
+            return value
+
+
+class UniqueEmail2(validators.FancyValidator):
+    """ """
+    messages = {
+        'not_unique': "That email address is already used"
+    }
+
     def validate_python(self, values, state):
-        """ Check the database uniqueness of an email."""
-        email = Session.query(User).filter(User.email_address==values['email_address']).first()
+        """ Check for the uniqueness of an `email_address`."""
+        u_email = values['email_address']
+        u_id = values['user_id']
+        email = Session.query(User).filter(User.user_id!=u_id).filter(User.email_address==u_email).first()
         if email:
             errors = {'email_address': self.message('not_unique', state)}
             raise formencode.Invalid(self.message('not_unique', state), values, state, error_dict=errors)
 
 
-class UserForm(Schema):
-    """ Form validation schema for users."""
+class NewUserForm(Schema):
+    """ Form validation schema for new users."""
     allow_extra_fields = True
     filter_extra_fields = True
 
-    user_name = validators.String(not_empty=True)
+    user_name = formencode.All(validators.String(not_empty=True), UniqueUsername())
+    email_address = formencode.All(validators.Email(resolve_domain=True), UniqueEmail())
+    display_name = validators.String()
+    password = validators.String(not_empty=True)
+    password_confirm = validators.String(not_empty=True)
+    group_name = validators.String()
+    chained_validators = [validators.FieldsMatch('password', 'password_confirm')]
+
+
+class EditUserForm(Schema):
+    """ Form validation schema for user edition."""
+    allow_extra_fields = True
+#    filter_extra_fields = True
+
     email_address = validators.Email(resolve_domain=True)
     display_name = validators.String()
-    password = validators.String()
-#    password_confirm = validators.String()
-#    group = validators.String()
-#    chained_validators = [validators.FieldsMatch('password', 'password_confirm')]
+    group_name = validators.String()
+    chained_validators = [UniqueEmail2()]

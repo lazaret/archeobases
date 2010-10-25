@@ -24,7 +24,7 @@ class UniquePerson(validators.FancyValidator):
     `last_name` in the database.
     """
     messages = {
-        'not_unique': "That person already exists in the database" #TODO add _("blabla") ??
+        'not_unique': "That person already exists in the database"
     }
 
     def validate_python(self, values, state):

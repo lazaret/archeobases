@@ -19,3 +19,10 @@ username -> always lowercase
 email -> always lowercase
 last name -> always upercase
 first name -> camel case
+
+* Add more security on pasword validation :
+- != username
+- != email or first part of email
+- != display name
+- not from a dictionary
+- 6 char mini

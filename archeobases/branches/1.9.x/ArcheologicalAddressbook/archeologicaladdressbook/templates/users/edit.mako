@@ -1,6 +1,5 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/users/base.mako" />
-<%namespace file="/users/user_form.mako" import="*"/>
 ##
 <%def name="page_title()">
   ${_("Addressbook")} - ${_("Users")} - ${_("Edit")}

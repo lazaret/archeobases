@@ -144,6 +144,32 @@ class UsersController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
+    def edit_password(self, id=None):
+        """ Display a form to change an user password."""
+        c.user = Session.query(User).get(id)
+        if c.user:
+            if c.form_errors:
+                # flash a message warning in case of validation errors
+                flash_message(_("Please check the form for errors"), 'warning')
+            return render('/users/edit_password.mako')
+        else:
+            flash_message(_("This record did not exist"), 'warning')
+            return redirect(url.current(action='index', id=None))
+
+    @validate(schema=forms.ChangeUserPassword(), form='edit_password')
+    @authenticate_form
+    def update_password(self, id=None):
+        """ Update an user password."""
+        user = Session.query(User).get(id)
+        if user:
+            user.password = self.form_result['password']
+            Session.commit()
+            flash_message(_("Password updated"), 'success')
+            return redirect(url.current(action='index'))
+        else:
+            flash_message(_("This record did not exist"), 'warning')
+            return redirect(url.current(action='index', id=None))
+
     def confirm_delete(self, id=None): #TODO forbid delete of "manager" ?
         """ Show an user record and ask to confirm deletion."""
         c.user = Session.query(User).get(id)

@@ -14,20 +14,25 @@ schemas.
 """
 
 def lower_string(value):
-    """ Return the lowercase of `value` string"""
-    return value.lower()
+    """ Return the lowercase of `value` (and strip spaces)."""
+    return value.lower().strip()
 
 
 def upper_string(value):
-    """ Return the lowercase of `value` string"""
-    return value.upper()
+    """ Return the lowercase of `value` string (and strip spaces)."""
+    return value.upper().strip()
 
 
 def capitalize_string(value):
-    """ Capitalize the first letter of the `value` string."""
-    return value.capitalize()
+    """ Capitalize the first letter of the `value` string (and strip spaces)."""
+    return value.capitalize().strip()
 
 
 def title_string(value):
-    """ Capitalize the first letter of all words of the `value` string."""
-    return value.title()
+    """ Capitalize the first letter of all words of the `value` string (and strip spaces)."""
+    return value.title().strip()
+
+
+def strip_string(value):
+    """ Revove leading and trailling spaces."""
+    return value.strip()

@@ -17,6 +17,7 @@ from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.lib.converters import *
 
 
+#TODO: Better validators for phones ?
 # phone validator
 # can contain only [0-9] space . ( ) +
 
@@ -40,5 +41,3 @@ class PersonForm(Schema):
     mobile_phone = validators.String(max=15)
     activity = validators.String(max=25)
 
-
-#TODO: Better validators for phones ?

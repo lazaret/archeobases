@@ -29,12 +29,10 @@
       <td>${user.display_name}</td>
       <td>${user.email_address}</td>
       <td>${user.groups[0].group_name}</td>
-##      % for group in user.groups:
-##        <td>${group.group_name}</td>
-##      % endfor
       <td>
       ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url.current(action='show', id=user.user_id))}
       ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url.current(action='edit', id=user.user_id))}
+      ${h.link_to(h.image("/images/lock_edit.png", alt=_("change password")), url.current(action='edit_password', id=user.user_id))}
       ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url.current(action='confirm_delete', id=user.user_id))}
       </td>
     </tr>

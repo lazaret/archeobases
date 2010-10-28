@@ -3,26 +3,18 @@
 -> One user belong to one group who can have more than one permission
 -> We keep the TG2 Model but use mainly permissions
 
-* Check hasj password method, maybe use bcrypt
+* Check hash password method, maybe use bcrypt
 
 * Try to use FormAlchemy ?
 
 * Try to replace all 'id' by other name likes page_id of person_id
-(beacause 'id' is a reserved word)
+(because 'id' is a reserved word)
 
-* Be more clear in Persons ans Users docstrings
 
 * Move all 'users' controller tamplates inside 'admin' ?
-
-* Add case changes for some fields in forms :
-username -> always lowercase
-email -> always lowercase
-last name -> always upercase
-first name -> camel case
 
 * Add more security on pasword validation :
 - != username
 - != email or first part of email
 - != display name
 - not from a dictionary
-- 6 char mini

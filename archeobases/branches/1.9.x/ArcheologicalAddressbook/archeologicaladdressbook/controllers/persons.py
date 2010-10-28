@@ -31,21 +31,24 @@ class PersonsController(BaseController):
     """ `Persons` Controller."""
 
     def _check_duplicate(self, form_result=None, id=None):
-        """ Check for a duplicate entry in the database.
+        """ Check for a person duplicate entry in the database.
 
         Check than there is not already an entry with the same `last_name`
         and `first_name` with another `id`. If there is one redirect to the
-        `edit` action for this entry.
+        `show` action for this entry.
         """
         # Limitation : This check actualy forbid homonyms
+        # We prefer do to this manualy instead of using FormEncode so it's more
+        # easy to redirect to the already existing record
         f_name = form_result['first_name']
         l_name = form_result['last_name']
         person = Session.query(Person). \
+            filter(Person.id!=id). \
             filter(Person.first_name==f_name). \
             filter(Person.last_name==l_name).first()
-        if person and person.id != id:
-            flash_message(_("This record exist, redirecting to it"), 'warning')
-            return redirect(url.current(action='edit', id=person.id))
+        if person:
+            flash_message(_("This record already exist, redirecting to it"), 'warning')
+            return redirect(url.current(action='show', id=person.id))
 
 # index and list actions
 
@@ -94,7 +97,7 @@ class PersonsController(BaseController):
     @authenticate_form
     def create(self):
         """ Add a new person record in the database."""
-        # check first for duplicate
+        # check first for a duplicate entry
         self._check_duplicate(self.form_result)
         # create the record
         person = Person(**self.form_result)
@@ -122,7 +125,7 @@ class PersonsController(BaseController):
         """ Update an existing person record."""
         person = Session.query(Person).get(id)
         if person:
-            # check first for duplicate
+            # check first for a duplicate entry
             self._check_duplicate(self.form_result, person.id)
             # update record attributes
             for key, value in self.form_result.items():

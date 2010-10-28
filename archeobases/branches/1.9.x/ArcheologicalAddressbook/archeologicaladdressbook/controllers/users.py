@@ -29,6 +29,23 @@ log = logging.getLogger(__name__)
 class UsersController(BaseController):
     """ `Users` Controller."""
 
+    def _check_duplicate(self, form_result=None, id=None):
+        """ Check for an user duplicate entry in the database.
+
+        Check than there is not already an entry with the same `user_name`.
+        If there is one redirect to the `show` action for this entry.
+        """
+        # We prefer do to this manualy instead of using FormEncode so it's more
+        # easy to redirect to the already existing record
+        u_name = form_result['user_name']
+        user = Session.query(User). \
+            filter(User.user_name==u_name).first()
+        if user:
+            flash_message(_("This record already exist, redirecting to it"), 'warning')
+            return redirect(url.current(action='show', id=user.user_id))
+
+# index and list actions
+
     def index(self):
         """ Render the users index template."""
         return render('/users/index.mako')
@@ -72,6 +89,9 @@ class UsersController(BaseController):
     @authenticate_form
     def create(self):
         """ Add a new user record in the database."""
+        # check first for a duplicate entry
+        self._check_duplicate(self.form_result)
+        # create the record
         user = User(
             user_name = self.form_result['user_name'],
             email_address = self.form_result['email_address'],
@@ -88,6 +108,7 @@ class UsersController(BaseController):
 
     def edit(self, id=None):
         """ Display a form to edit an existing user record."""
+        # we prefere to not allow edition of `user_name`
         c.user = Session.query(User).get(id)
         if c.user:
             c.group = c.user.groups[0].group_name

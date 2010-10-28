@@ -18,3 +18,7 @@ ${h.secure_form(url.current(action="create"))}
     <button name="new_button" type="submit"><img src="/images/tick.png"/>${_("Submit")}</button>
   </footer>
 ${h.end_form()}
+
+% if c.form_errors:
+    ${c.form_errors}
+% endif

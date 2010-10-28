@@ -14,44 +14,31 @@ from formencode import Schema, validators
 
 from archeologicaladdressbook.model.person import Person
 from archeologicaladdressbook.model import Session
+from archeologicaladdressbook.lib.converters import *
 
 
-# TODO remove completly ?
-class UniquePerson(validators.FancyValidator):
-    """ Unique Person validator.
-
-    Check than there is not already someone with the same `fisrt_name` and
-    `last_name` in the database.
-    """
-    messages = {
-        'not_unique': "That person already exists in the database"
-    }
-
-    def validate_python(self, values, state):
-        """ Check the database uniqueness of a person."""
-        l_name = values['last_name']
-        f_name = values['first_name']
-        person = Session.query(Person).filter(Person.first_name==f_name).filter(Person.last_name==l_name).first()
-        if person:
-            errors = {'last_name': self.message('not_unique', state)}
-            raise formencode.Invalid(self.message('not_unique', state), values, state, error_dict=errors)
-
+# phone validator
+# can contain only [0-9] space . ( ) +
 
 class PersonForm(Schema):
     """ Form validation schema for persons."""
     allow_extra_fields = True
     filter_extra_fields = True
 
-    last_name = validators.String(not_empty=True)
-    first_name = validators.String(not_empty=True)
-    title = validators.String()
+    last_name = formencode.All(
+        validators.String(max=25, not_empty=True),
+        validators.Wrapper(to_python=upper_string))
+    first_name = formencode.All(
+        validators.String(max=25, not_empty=True),
+        validators.Wrapper(to_python=title_string))
+    title = validators.OneOf(['Mr', 'Mrs', 'Miss'])
     birth_date = validators.DateConverter(month_style='dd/mm/yyyy')
-    email_address = validators.Email(resolve_domain=True)
-    phone = validators.String()
-    mobile_phone = validators.String()
-    activity = validators.String()
-    # check for uniqueness of a person in the database
-    #chained_validators = [UniquePerson()]
+    email_address = formencode.All(
+        validators.Email(resolve_domain=True),
+        validators.Wrapper(to_python=lower_string))
+    phone = validators.String(max=15)
+    mobile_phone = validators.String(max=15)
+    activity = validators.String(max=25)
 
 
 #TODO: Better validators for phones ?

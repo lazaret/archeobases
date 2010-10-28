@@ -17,31 +17,13 @@ from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.lib.converters import *
 
 
-class UniqueUsername(formencode.FancyValidator):
-    """ Unique username validator.
-
-    Check than there is not already someone with the same `user_name`
-    in the database.
-    """
-    messages = {
-        'not_unique': "That user name already exists"
-    }
-
-    def validate_python(self, value, state):
-        """ Check for the uniqueness of an `user_name`."""
-        user = Session.query(User).filter(User.user_name==value).first()
-        if user:
-            raise formencode.Invalid(self.message('not_unique', state), value, state)
-            return value
-
-
 class UniqueEmail(validators.FancyValidator):
     """ Unique email validator.
 
     Check than there is not already someone with the same `email_address`
     in the database.
     """
-    # `user_id` is used to not raise error if an `email_adress` is not
+    # `user_id` is used to not raise an error if an `email_adress` is not
     # modified for an user
     messages = {
         'not_unique_email': "That email address is already used"
@@ -50,10 +32,11 @@ class UniqueEmail(validators.FancyValidator):
     def validate_python(self, values, state):
         """ Check for the uniqueness of an `email_address`."""
         u_email = values['email_address']
-        if u_email != '': # do not check for empty email_adress
+        if u_email != None: # do not check for empty `email_adress`
             if values.has_key('user_id'):
                 u_id = values['user_id']
-                email = Session.query(User).filter(User.user_id!=u_id).filter(User.email_address==u_email).first()
+                email = Session.query(User).filter(User.user_id!=u_id). \
+                    filter(User.email_address==u_email).first()
             else:
                 email = Session.query(User).filter(User.email_address==u_email).first()
             if email:
@@ -67,8 +50,7 @@ class NewUserForm(Schema):
     filter_extra_fields = True
 
     user_name = formencode.All(
-        validators.String(not_empty=True),
-        UniqueUsername(),
+        validators.String(min=6, max=16),
         validators.Wrapper(to_python=lower_string))
     email_address = formencode.All(
         validators.Email(resolve_domain=True),
@@ -76,9 +58,9 @@ class NewUserForm(Schema):
     display_name = formencode.All(
         validators.String(),
         validators.Wrapper(to_python=capitalize_string))
-    password = validators.String(not_empty=True)
-    password_confirm = validators.String(not_empty=True)
-    group_name = validators.OneOf(['managers', 'editors'])
+    password = validators.String(min=6, max=80)
+    password_confirm = validators.String(min=6, max=80)
+    group_name = validators.OneOf(['guests', 'editors', 'managers'])
     chained_validators = [
         validators.FieldsMatch('password', 'password_confirm'),
         UniqueEmail(),
@@ -98,5 +80,17 @@ class EditUserForm(Schema):
     display_name = formencode.All(
         validators.String(),
         validators.Wrapper(to_python=capitalize_string))
-    group_name = validators.OneOf(['managers', 'editors'])
+    group_name = validators.OneOf(['guests', 'editors', 'managers'])
     chained_validators = [UniqueEmail()]
+
+
+class ChangePassword(Schema):
+    """ Form validation schema for password change."""
+    allow_extra_fields = True
+
+    old_password =  validators.String(not_empty=True)
+    password = validators.String(min=6, max=80)
+    password_confirm = validators.String(min=6, max=80)
+    chained_validators = [
+        validators.FieldsMatch('password', 'password_confirm'),
+    ]

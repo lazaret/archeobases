@@ -20,9 +20,7 @@ from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
 from archeologicaladdressbook.lib.auth import ProtectController
 
-from archeologicaladdressbook.model import Session
-from archeologicaladdressbook import model
-from archeologicaladdressbook.model import forms
+from archeologicaladdressbook.model import Session, Group, User, forms
 
 log = logging.getLogger(__name__)
 
@@ -41,7 +39,7 @@ class UsersController(BaseController):
         Use the `paginate` webhelper to display the list of users.
         `id` is used for page listing number.
         """
-        c.page = paginate.Page(Session.query(model.User),
+        c.page = paginate.Page(Session.query(User),
                                 page=id,
                                 items_per_page = 20)
         return render('/users/list.mako')
@@ -49,19 +47,20 @@ class UsersController(BaseController):
 # CRUD actions ###
 
     def show(self, id=None):
-        """ Display an individual record."""
-        c.user = Session.query(model.User).get(id)
+        """ Display an user record."""
+        c.user = Session.query(User).get(id)
         if c.user:
             c.group = c.user.groups[0].group_name
+            c.permissions = c.user.groups[0].permissions
             return render('/users/show.mako')
         else:
-            flash_message(_("This record did not exist"), 'warning')
+            flash_message(_("This user did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     def new(self, id=None):
-        """ Display a form to create a new record."""
+        """ Display a form to create a new user."""
         if id:
-            # if someone mistype /persons/new/id
+            # if someone mistype /new/id
             return redirect(url.current(action='new', id=None))
         else:
             if c.form_errors:
@@ -72,8 +71,8 @@ class UsersController(BaseController):
     @validate(schema=forms.NewUserForm(), form='new')
     @authenticate_form
     def create(self):
-        """ Add a new record in the database."""
-        user = model.User(
+        """ Add a new user in the database."""
+        user = User(
             user_name = self.form_result['user_name'],
             email_address = self.form_result['email_address'],
             display_name = self.form_result['display_name'],
@@ -81,15 +80,15 @@ class UsersController(BaseController):
         )
         Session.add(user)
         g_name = self.form_result['group_name']
-        group = Session.query(model.Group).filter(model.Group.group_name==g_name).first()
-        group.users.append(user)
+        group = Session.query(Group).filter(Group.group_name==g_name).one()
+        user.groups.append(group)
         Session.commit()
-        flash_message(_("Record added"), 'success')
+        flash_message(_("new user added"), 'success')
         return redirect(url.current(action='show', id=user.user_id))
 
     def edit(self, id=None):
-        """ Display a form to edit an existing record."""
-        c.user = Session.query(model.User).get(id)
+        """ Display a form to edit an existing user."""
+        c.user = Session.query(User).get(id)
         if c.user:
             c.group = c.user.groups[0].group_name
             if c.form_errors:
@@ -97,42 +96,51 @@ class UsersController(BaseController):
                 flash_message(_("Please check the form for errors"), 'warning')
             return render('/users/edit.mako')
         else:
-            flash_message(_("This record did not exist"), 'warning')
+            flash_message(_("This user did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     @validate(schema=forms.EditUserForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
-        """ Update an existing record."""
-        user = Session.query(model.User).get(id)
+        """ Update an existing user."""
+        user = Session.query(User).get(id)
         if user:
+            # udate user attributes
             for key, value in self.form_result.items():
                 setattr(user, key, value)
+            # change group
+            old_g_name = user.groups[0].group_name
+            new_g_name = self.form_result['group_name']
+            if old_g_name != new_g_name:
+                old_group = Session.query(Group).filter(Group.group_name==old_g_name).one()
+                user.groups.remove(old_group)
+                new_group = Session.query(Group).filter(Group.group_name==new_g_name).one()
+                user.groups.append(new_group)
             Session.commit()
             flash_message(_("Record updated"), 'success')
             return redirect(url.current(action='show', id=user.user_id))
         else:
-            flash_message(_("This record did not exist"), 'warning')
+            flash_message(_("This user did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     def confirm_delete(self, id=None): #TODO forbid delete of "manager" ?
-        """ Show a specific item and ask to confirm deletion."""
-        c.user = Session.query(model.User).get(id)
+        """ Show an user record and ask to confirm deletion."""
+        c.user = Session.query(User).get(id)
         if c.user:
             return render('/users/confirm_delete.mako')
         else:
-            flash_message(_("This record did not exist"), 'warning')
+            flash_message(_("This user did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     @authenticate_form
     def delete(self, id=None):
-        """ Delete an existing record."""
-        user = Session.query(model.User).get(id)
+        """ Delete an existing user."""
+        user = Session.query(User).get(id)
         if user:
             Session.delete(user)
             Session.commit()
-            flash_message(_("Record deleted"), 'success')
+            flash_message(_("User deleted"), 'success')
             return redirect(url.current(action='index'))
         else:
-            flash_message(_("This record did not exist"), 'warning')
+            flash_message(_("This user did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))

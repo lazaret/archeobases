@@ -16,10 +16,10 @@ ${_("Email address")} : ${c.user.email_address}<br/>
 ${_("Group")} : ${c.group}<br/>
 ${_("Permissions")} :
 ## get the list of permissions except the las one, and add a coma
-% for permission in c.user.groups[0].permissions[0:-1]:
+% for permission in c.permissions[0:-1]:
   ${permission.permission_name},
 % endfor
 ## get the last permission without a coma
-  ${c.user.groups[0].permissions[-1].permission_name}<br/>
+  ${c.permissions[-1].permission_name}<br/>
 ${_("Creation date")} : ${c.user.created.strftime('%d / %m / %Y')}
 

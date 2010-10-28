@@ -14,7 +14,7 @@
 ${h.secure_form(url.current(action='update', id=c.user.user_id))}
   <fieldset>
     <legend>${_("Edit user")}</legend>
-    ${h.hidden(name="user_id", value=c.user.user_id)}
+    ${f.hidden(name="user_id")}
     <p><label for="user_name"> ${_("User name")}</label> ${c.user.user_name}<p/>
     <p><label for="Display name"> ${_("Display name")}</label> ${f.text(name="display_name")}<p/>
     <p><label for="email_address">${_("Email address")}</label> ${f.text(name="email_address")}<p/>

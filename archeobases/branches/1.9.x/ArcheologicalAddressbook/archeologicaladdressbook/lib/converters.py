@@ -12,11 +12,16 @@
 consist of functions to convert text to typically be used within
 """
 
-def lowercase(value):
-    """ Return the lowercase of `value`"""
+def lower_string(value):
+    """ Return the lowercase of `value` string"""
     return value.lower()
 
 
-def uppercase(value):
-    """ Return the lowercase of `value`"""
+def upper_string(value):
+    """ Return the lowercase of `value` string"""
     return value.upper()
+
+
+def capitalize_string(value):
+    """ Return the lowercase of `value` string."""
+    return value.capitalize()

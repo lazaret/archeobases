@@ -46,7 +46,7 @@ def setup_app(command, conf, vars):
 
     manage_group = model.Group()
     manage_group.group_name = u'managers'
-    manage_group.display_name = u'Managers Group'
+    manage_group.display_name = u'Managers group'
     manage_group.users.append(manage_user)
     Session.add(manage_group)
 
@@ -66,7 +66,7 @@ def setup_app(command, conf, vars):
 
     edit_group = model.Group()
     edit_group.group_name = u'editors'
-    edit_group.display_name = u'editors Group'
+    edit_group.display_name = u'Editors group'
     edit_group.users.append(edit_user)
     Session.add(edit_group)
 
@@ -77,11 +77,17 @@ def setup_app(command, conf, vars):
     edit_permission.groups.append(manage_group)
     Session.add(edit_permission)
 
-    # add rights for viewing
-    # this permission can be used for guests users or groups
+    # add rights for guests viewers
+    guest_group = model.Group()
+    guest_group.group_name = u'guests'
+    guest_group.display_name = u'Guests group'
+    Session.add(edit_group)
+
+    # limited view this permission for guests
     view_permission = model.Permission()
     view_permission.permission_name = u'view'
     view_permission.description = u'This permission give a viewing right'
+    view_permission.groups.append(guest_group)
     view_permission.groups.append(edit_group)
     view_permission.groups.append(manage_group)
     Session.add(view_permission)

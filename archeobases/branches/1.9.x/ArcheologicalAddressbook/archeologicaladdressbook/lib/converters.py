@@ -7,9 +7,10 @@
 # the GNU Affero General Public License 3 or any later version.
 # See LICENSE.txt or <http://www.gnu.org/licenses/agpl.html>
 #
-""" Converters fuctions.
+""" Converters functions.
 
-consist of functions to convert text to typically be used within
+Consist of functions to convert text to typically be used with FormEncode
+schemas.
 """
 
 def lower_string(value):
@@ -23,5 +24,10 @@ def upper_string(value):
 
 
 def capitalize_string(value):
-    """ Return the lowercase of `value` string."""
+    """ Capitalize the first letter of the `value` string."""
     return value.capitalize()
+
+
+def title_string(value):
+    """ Capitalize the first letter of all words of the `value` string."""
+    return value.title()

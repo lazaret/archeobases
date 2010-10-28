@@ -20,15 +20,10 @@ from archeologicaladdressbook.lib.base import BaseController, render, validate, 
 from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.auth import ProtectController, ProtectAction
 
-from archeologicaladdressbook.model import Session
-from archeologicaladdressbook import model
-from archeologicaladdressbook.model import forms
+from archeologicaladdressbook.model import Session, Person, forms
 
 
 log = logging.getLogger(__name__)
-
-
-#TODO try jqgrid+json ???
 
 
 @ProtectController(has_any_permission('edit', 'view'))
@@ -45,9 +40,9 @@ class PersonsController(BaseController):
         # Limitation : This check actualy forbid homonyms
         f_name = form_result['first_name']
         l_name = form_result['last_name']
-        person = Session.query(model.Person). \
-            filter(model.Person.first_name==f_name). \
-            filter(model.Person.last_name==l_name).first()
+        person = Session.query(Person). \
+            filter(Person.first_name==f_name). \
+            filter(Person.last_name==l_name).first()
         if person and person.id != id:
             flash_message(_("This record exist, redirecting to it"), 'warning')
             return redirect(url.current(action='edit', id=person.id))
@@ -56,17 +51,17 @@ class PersonsController(BaseController):
 
     @ProtectAction(has_permission('view'))
     def index(self):
-        """ Render the person index template."""
+        """ Render the persons index template."""
         return render('/persons/index.mako')
 
     @ProtectAction(has_permission('view'))
-    def list(self, id=None):
-        """ Display a paged list of records.
+    def list(self, id=None): #TODO try jqgrid+json
+        """ Display a paged list of persons.
 
         Use the `paginate` webhelper to display the list of persons.
         `id` is used for page listing number.
         """
-        c.page = paginate.Page(Session.query(model.Person),
+        c.page = paginate.Page(Session.query(Person),
                                 page=id,
                                 items_per_page = 20) #TODO make it configurable ?
         return render('/persons/list.mako')
@@ -75,8 +70,8 @@ class PersonsController(BaseController):
 
     @ProtectAction(has_permission('view'))
     def show(self, id=None):
-        """ Display an individual record."""
-        c.person = Session.query(model.Person).get(id)
+        """ Display a person record."""
+        c.person = Session.query(Person).get(id)
         if c.person:
             return render('/persons/show.mako')
         else:
@@ -85,9 +80,9 @@ class PersonsController(BaseController):
 
     @ProtectAction(has_permission('edit'))
     def new(self, id=None):
-        """ Display a form to create a new record."""
+        """ Display a form to create a new person record."""
         if id:
-            # if someone mistype /persons/new/id
+            # if someone mistype /new/id
             return redirect(url.current(action='new', id=None))
         else:
             if c.form_errors:
@@ -98,20 +93,20 @@ class PersonsController(BaseController):
     @validate(schema=forms.PersonForm(), form='new')
     @authenticate_form
     def create(self):
-        """ Add a new record in the database."""
+        """ Add a new person record in the database."""
         # check first for duplicate
         self._check_duplicate(self.form_result)
         # create the record
-        person = model.Person(**self.form_result)
+        person = Person(**self.form_result)
         Session.add(person)
         Session.commit()
-        flash_message(_("Record added"), 'success')
+        flash_message(_("New person record added"), 'success')
         return redirect(url.current(action='show', id=person.id))
 
     @ProtectAction(has_permission('edit'))
     def edit(self, id=None):
-        """ Display a form to edit an existing record."""
-        c.person = Session.query(model.Person).get(id)
+        """ Display a form to edit an existing person record."""
+        c.person = Session.query(Person).get(id)
         if c.person:
             if c.form_errors:
                 # flash a message warning in case of validation errors
@@ -124,16 +119,16 @@ class PersonsController(BaseController):
     @validate(schema=forms.PersonForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
-        """ Update an existing record."""
-        person = Session.query(model.Person).get(id)
+        """ Update an existing person record."""
+        person = Session.query(Person).get(id)
         if person:
             # check first for duplicate
             self._check_duplicate(self.form_result, person.id)
-            # update the record
+            # update record attributes
             for key, value in self.form_result.items():
                 setattr(person, key, value)
             Session.commit()
-            flash_message(_("Record updated"), 'success')
+            flash_message(_("Person record updated"), 'success')
             return redirect(url.current(action='show', id=person.id))
         else:
             flash_message(_("This record did not exist"), 'warning')
@@ -141,8 +136,8 @@ class PersonsController(BaseController):
 
     @ProtectAction(has_permission('edit'))
     def confirm_delete(self, id=None):
-        """ Show a specific item and ask to confirm deletion."""
-        c.person = Session.query(model.Person).get(id)
+        """ Show a person record and ask to confirm deletion."""
+        c.person = Session.query(Person).get(id)
         if c.person:
             return render('/persons/confirm_delete.mako')
         else:
@@ -151,12 +146,12 @@ class PersonsController(BaseController):
 
     @authenticate_form
     def delete(self, id=None):
-        """ Delete an existing record."""
-        person = Session.query(model.Person).get(id)
+        """ Delete an existing person record."""
+        person = Session.query(Person).get(id)
         if person:
             Session.delete(person)
             Session.commit()
-            flash_message(_("Record deleted"), 'success')
+            flash_message(_("Person record deleted"), 'success')
             return redirect(url.current(action='index'))
         else:
             flash_message(_("This record did not exist"), 'warning')

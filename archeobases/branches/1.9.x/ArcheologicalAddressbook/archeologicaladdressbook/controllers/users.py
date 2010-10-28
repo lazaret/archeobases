@@ -34,7 +34,7 @@ class UsersController(BaseController):
         return render('/users/index.mako')
 
     def list(self, id=None):
-        """ Display a paged list of records.
+        """ Display a paged list of users.
 
         Use the `paginate` webhelper to display the list of users.
         `id` is used for page listing number.
@@ -54,11 +54,11 @@ class UsersController(BaseController):
             c.permissions = c.user.groups[0].permissions
             return render('/users/show.mako')
         else:
-            flash_message(_("This user did not exist"), 'warning')
+            flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     def new(self, id=None):
-        """ Display a form to create a new user."""
+        """ Display a form to create a new user record."""
         if id:
             # if someone mistype /new/id
             return redirect(url.current(action='new', id=None))
@@ -71,7 +71,7 @@ class UsersController(BaseController):
     @validate(schema=forms.NewUserForm(), form='new')
     @authenticate_form
     def create(self):
-        """ Add a new user in the database."""
+        """ Add a new user record in the database."""
         user = User(
             user_name = self.form_result['user_name'],
             email_address = self.form_result['email_address'],
@@ -83,11 +83,11 @@ class UsersController(BaseController):
         group = Session.query(Group).filter(Group.group_name==g_name).one()
         user.groups.append(group)
         Session.commit()
-        flash_message(_("new user added"), 'success')
+        flash_message(_("New user record added"), 'success')
         return redirect(url.current(action='show', id=user.user_id))
 
     def edit(self, id=None):
-        """ Display a form to edit an existing user."""
+        """ Display a form to edit an existing user record."""
         c.user = Session.query(User).get(id)
         if c.user:
             c.group = c.user.groups[0].group_name
@@ -96,16 +96,16 @@ class UsersController(BaseController):
                 flash_message(_("Please check the form for errors"), 'warning')
             return render('/users/edit.mako')
         else:
-            flash_message(_("This user did not exist"), 'warning')
+            flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     @validate(schema=forms.EditUserForm(), form='edit')
     @authenticate_form
     def update(self, id=None):
-        """ Update an existing user."""
+        """ Update an existing user record."""
         user = Session.query(User).get(id)
         if user:
-            # udate user attributes
+            # udate user record attributes
             for key, value in self.form_result.items():
                 setattr(user, key, value)
             # change group
@@ -117,10 +117,10 @@ class UsersController(BaseController):
                 new_group = Session.query(Group).filter(Group.group_name==new_g_name).one()
                 user.groups.append(new_group)
             Session.commit()
-            flash_message(_("Record updated"), 'success')
+            flash_message(_("User record updated"), 'success')
             return redirect(url.current(action='show', id=user.user_id))
         else:
-            flash_message(_("This user did not exist"), 'warning')
+            flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     def confirm_delete(self, id=None): #TODO forbid delete of "manager" ?
@@ -129,18 +129,18 @@ class UsersController(BaseController):
         if c.user:
             return render('/users/confirm_delete.mako')
         else:
-            flash_message(_("This user did not exist"), 'warning')
+            flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
     @authenticate_form
     def delete(self, id=None):
-        """ Delete an existing user."""
+        """ Delete an existing user record."""
         user = Session.query(User).get(id)
         if user:
             Session.delete(user)
             Session.commit()
-            flash_message(_("User deleted"), 'success')
+            flash_message(_("User record deleted"), 'success')
             return redirect(url.current(action='index'))
         else:
-            flash_message(_("This user did not exist"), 'warning')
+            flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))

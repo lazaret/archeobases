@@ -10,9 +10,5 @@
 * Try to replace all 'id' by other name likes page_id of person_id
 (because 'id' is a reserved word)
 
-
 * Move all 'users' controller tamplates inside 'admin' ?
 
-* Add more security on pasword validation :
-- != display name
-- not from a dictionary

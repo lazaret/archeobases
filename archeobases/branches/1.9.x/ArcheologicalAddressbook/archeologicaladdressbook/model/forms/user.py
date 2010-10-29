@@ -9,12 +9,15 @@
 #
 """ FormEncode form schema for users."""
 
+import os
+
 import formencode
 from formencode import Schema, validators
 
 from archeologicaladdressbook.model.auth import User
 from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.lib.converters import *
+from archeologicaladdressbook.lib.badpasswords import bad_password_list
 
 
 class UniqueEmail(validators.FancyValidator):
@@ -47,26 +50,65 @@ class UniqueEmail(validators.FancyValidator):
 class SecurePassword(formencode.FancyValidator):
     """ Try to secure a bit the user password."""
     messages = {
-        'no_username': "Do not use same password than username",
-        'no_email': "Do not use password based on your email address",
+        'no_username': "Please do not use same password than username",
+        'no_email': "Please do not use password based on your email address",
+        'no_displayname': "Please do not use password based on your display name",
+        'no_dico': "Please do not base your password on a dictionary word",
+        'no_samechar': "Please do not use to much the same character",
+        'no_verybad': "Please do not use a so bad password",
     }
 
-    def validate_python(self, values, state):
-        """ Password comparison with other fields."""
-        user_name = values['user_name'].lower()
-        if values['email_address']:
-            email_address = values['email_address'].lower()
-            email_parts = email_address.split('@')
-        else:
-            email_address = None
-        password = values['password'].lower()
+    unix_words1 = '/usr/share/dict/words'
+    unix_words2 = '/usr/dict/words'
 
+    def validate_python(self, values, state):
+        """ Password security checker.
+
+        Try to compare with other fields and with dictionaries"""
+        password = values['password'].lower()
+        # compare password with user_name
+        user_name = values['user_name'].lower()
         if password == user_name:
             errors = {'password': self.message('no_username', state)}
             raise formencode.Invalid(self.message('no_username', state), values, state, error_dict=errors)
-        if password == email_address or password in email_parts:
-            errors = {'password': self.message('no_email', state)}
-            raise formencode.Invalid(self.message('no_email', state), values, state, error_dict=errors)
+        # compare password with email_address
+        if values['email_address']:
+            email_address = values['email_address'].lower()
+            email_parts = email_address.split('@')
+            if password == email_address or password in email_parts:
+                errors = {'password': self.message('no_email', state)}
+                raise formencode.Invalid(self.message('no_email', state), values, state, error_dict=errors)
+        # compare password with display_name
+        if values['display_name']:
+            display_name = values['display_name'].lower()
+            display_parts = display_name.split()
+            if password == display_name or password in display_parts:
+                errors = {'password': self.message('no_displayname', state)}
+                raise formencode.Invalid(self.message('no_displayname', state), values, state, error_dict=errors)
+        # test character occurences and fail if >= 6 of same char
+        # this block password like '000000' or 'aaaaaa'
+        for char in password:
+            occur = password.count(char)
+            if occur >= 6:
+                errors = {'password': self.message('no_samechar', state)}
+                raise formencode.Invalid(self.message('no_samechar', state), values, state, error_dict=errors)
+        # TODO : Add a check for repetitives 2 or 3 lettres passwords like '010101', 'tototo' or '123123'
+        # compare password with our list of common bad passwords
+        bad_list = bad_password_list()
+        for word in bad_list:
+            if password == word:
+                errors = {'password': self.message('no_verybad', state)}
+                raise formencode.Invalid(self.message('no_verybad', state), values, state, error_dict=errors)
+        # compare password with the unix word dictionary if available
+        if os.path.isfile(self.unix_words1):
+            file = open(self.unix_words1)
+        elif os.path.isfile(self.unix_words1):
+            file = open(self.unix_words2)
+        if file:
+            for line in file:
+                if password == line.strip().lower():
+                    errors = {'password': self.message('no_dico', state)}
+                    raise formencode.Invalid(self.message('no_dico', state), values, state, error_dict=errors)
 
 
 class NewUserForm(Schema):

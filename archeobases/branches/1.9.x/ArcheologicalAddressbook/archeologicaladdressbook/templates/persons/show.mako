@@ -26,7 +26,36 @@ ${_("Person type")} : ${c.person.person_type}<br/>
 ${_("Photo")} : ${c.person.photo}<br/>
 
 
+<table>
+  <thead>
+    <th>${_("Line 1")}</th>
+    <th>${_("Zip code")}</th>
+    <th>${_("City")}</th>
+    <th>${_("Address type")}</th>
+    <th></th>
+  </thead>
+  <tfoot>
+##    <th colspan="6">${paginate(c.page)}</th>
+  </tfoot>
+  <tbody>
+    % for address in c.person.addresses:
+    <tr>
+      <td>${address.address_line1}</td>
+      <td>${address.zip_code}</td>
+      <td>${address.city}</td>
+      <td>${address.address_type}</td>
+      <td>
+      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url(controller='addresses', action='show', id=address.id))}
+      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='addresses', action='edit', id=address.id))}
+      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='addresses', action='confirm_delete', id=address.id))}
+      </td>
+    </tr>
+    % endfor
+  </tbody>
+</table>
+
 <br>________________<br>
 ${h.link_to(_("Edit"), url.current(action='edit', id=c.person.id))} |
 ${h.link_to(_("Delete"), url.current(action='confirm_delete', id=c.person.id))} |
-
+<br>________________<br>
+${h.link_to(_("Add address"), url(controller='addresses', action='new', id=c.person.id))}

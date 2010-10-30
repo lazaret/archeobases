@@ -8,7 +8,26 @@
 * Try to use FormAlchemy ?
 
 * Try to replace all 'id' by other name likes page_id of person_id
-(because 'id' is a reserved word)
+- in models because it can be more clear in template and controlers
+- in controllers because 'id' is a python reserved word
 
-* Move all 'users' controller tamplates inside 'admin' ?
+* Move all 'users' controller templates inside 'admin' ?
+* The same for 'addresses' / 'photos' etc inside 'persons' ?
 
+* Exctend functional tests for users
+
+* Redesign login box and login/logout mecanism add the possibility
+for the user to change pass or infos
+
+* For lists try to
+- use jgrid + json (instead of paginate)
+- add an option for item/pages
+
+* Try to use refer to track what user are doing and
+- say no if they bind directly some pages instead of using links
+(like new / edit /delete) maybe use secure_form to check this
+- redirect them to the page they comme from when they have finisih something
+For exemple :
+user is at "show user" and click link to add an user address
+when addres si corectly add the user is send back to show user
+(or assume to send it back here always ?)

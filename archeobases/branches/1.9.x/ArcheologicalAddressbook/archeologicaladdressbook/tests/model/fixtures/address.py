@@ -21,7 +21,7 @@ class AddressData:
         zip_code = u'T-00000'
         city = u'Test City'
         country = u'Test Country'
-        address_type = u'Work'
+        address_type = u'Business'
 
 
 class DuplicateAddressData:

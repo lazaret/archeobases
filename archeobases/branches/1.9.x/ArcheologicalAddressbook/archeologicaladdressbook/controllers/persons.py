@@ -58,7 +58,7 @@ class PersonsController(BaseController):
         return render('/persons/index.mako')
 
     @ProtectAction(has_permission('view'))
-    def list(self, id=None): #TODO try jqgrid+json
+    def list(self, id=None):
         """ Display a paged list of persons.
 
         Use the `paginate` webhelper to display the list of persons.
@@ -66,7 +66,7 @@ class PersonsController(BaseController):
         """
         c.page = paginate.Page(Session.query(Person),
                                 page=id,
-                                items_per_page = 20) #TODO make it configurable ?
+                                items_per_page = 20)
         return render('/persons/list.mako')
 
 # CRUD actions ###

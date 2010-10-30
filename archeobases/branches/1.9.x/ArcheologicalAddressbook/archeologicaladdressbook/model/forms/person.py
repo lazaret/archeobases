@@ -12,8 +12,6 @@
 import formencode
 from formencode import Schema, validators
 
-from archeologicaladdressbook.model.person import Person
-from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.lib.converters import *
 
 

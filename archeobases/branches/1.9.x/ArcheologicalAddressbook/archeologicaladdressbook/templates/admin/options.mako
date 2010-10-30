@@ -5,7 +5,7 @@
   ${_("Addressbook")} - ${_("Admin")} - ${_("Options")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Admin"), h.url(controller="admin"))} > ${_("Options")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Admin"), url(controller="admin"))} > ${_("Options")}
 </%def>
 ##
 <!-- admin options template -->

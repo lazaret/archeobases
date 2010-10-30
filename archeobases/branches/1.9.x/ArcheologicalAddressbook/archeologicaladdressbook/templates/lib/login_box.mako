@@ -16,7 +16,7 @@
   % else:
     ${h.link_to("login", "#login", id="login-link")}
     <div id="login-panel">
-      ${h.form(h.url("/login_handler", came_from=c.came_from))}
+      ${h.form(url("/login_handler", came_from=c.came_from))}
         <label>${_("Username")} : ${h.text(name="login")}</label><br />
         <label>${_("Password")} : ${h.password(name="password")}</label><br />
         ${h.submit('Submit', 'Login')}

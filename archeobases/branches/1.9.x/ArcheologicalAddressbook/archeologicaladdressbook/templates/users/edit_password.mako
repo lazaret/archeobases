@@ -5,7 +5,7 @@
   ${_("Addressbook")} - ${_("Users")} - ${_("Change password")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Users"), h.url(controller="users"))} > ${_("Change password")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Users"), url(controller="users"))} > ${_("Change password")}
 </%def>
 ##
 <!-- users edit password template -->

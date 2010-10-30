@@ -4,5 +4,4 @@
 <!-- root index template -->
 ##
 <section>
-  section
 </section>

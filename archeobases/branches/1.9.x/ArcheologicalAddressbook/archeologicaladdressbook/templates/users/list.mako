@@ -10,7 +10,7 @@
   ${h.link_to(_("Users"), url(controller="users"))} > ${_("List")}
 </%def>
 ##
-<!-- persons list template -->
+<!-- users list template -->
 ##
 <table>
   <thead>

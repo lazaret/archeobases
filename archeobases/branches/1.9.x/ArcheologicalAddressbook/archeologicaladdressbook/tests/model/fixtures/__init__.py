@@ -16,6 +16,9 @@ from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 
 # data fixtures imports
+from archeologicaladdressbook.tests.model.fixtures.user import *
+from archeologicaladdressbook.tests.model.fixtures.group import *
+from archeologicaladdressbook.tests.model.fixtures.permission import *
 from archeologicaladdressbook.tests.model.fixtures.person import *
 from archeologicaladdressbook.tests.model.fixtures.voluntary_member import *
 from archeologicaladdressbook.tests.model.fixtures.address import *
@@ -29,7 +32,44 @@ def commit():
         meta.Session.commit()
     except sa.exc.IntegrityError:
         meta.Session.rollback()
-        raise AssertionError('The model may have changed.')
+        raise AssertionError('The model may have changed, or check the tests fixtures.')
+
+
+def user_fixture():
+    """ Add an user test fixture in the database."""
+    test_user = UserData.Guest()
+    user = model.User(
+        user_name = test_user.user_name,
+        email_address = test_user.email_address,
+        display_name = test_user.display_name,
+        password = test_user.password
+    )
+    meta.Session.add(user)
+    commit()
+
+def group_fixture():
+    """ Add a group test fixture in the database."""
+    test_group = GroupData.Guests()
+    user = meta.Session.query(model.User).filter_by().first()
+    group = model.Group(
+        group_name = test_group.group_name,
+        display_name = test_group.display_name
+    )
+    group.users.append(user)
+    meta.Session.add(group)
+    commit()
+
+def permission_fixture():
+    """ Add a permission test fixture in the database."""
+    test_permission = PermissionData.View()
+    group = meta.Session.query(model.Group).filter_by().first()
+    permission = model.Permission(
+        permission_name = test_permission.permission_name,
+        description = test_permission.description
+    )
+    permission.groups.append(group)
+    meta.Session.add(permission)
+    commit()
 
 
 def person_fixture():
@@ -48,7 +88,6 @@ def person_fixture():
     meta.Session.add(person)
     commit()
 
-
 def voluntary_member_fixture():
     """ Add a voluntary member test fixture in the database."""
     test_v_member = VoluntaryMemberData.JohnSmith()
@@ -63,7 +102,6 @@ def voluntary_member_fixture():
     )
     meta.Session.add(v_member)
     commit()
-
 
 def address_fixture():
     """ Add an address test fixture in the database."""
@@ -83,7 +121,6 @@ def address_fixture():
     )
     commit()
 
-
 def excavation_fixture():
     """ Add an excavation test fixture in the database."""
     test_excavation = ExcavationData.ExcavationSite1()
@@ -98,7 +135,6 @@ def excavation_fixture():
     )
     commit()
 
-
 def photo_fixture():
     """ Add a photo test fixture in the database."""
     test_photo = PhotoData.JohnDoePhoto()
@@ -107,5 +143,3 @@ def photo_fixture():
                         path = test_photo.path
                     )
     commit()
-
-

@@ -13,8 +13,6 @@
 
 * Move all 'photos' etc inside 'persons' ?
 
-* Extend functional tests for users
-
 * Redesign login box and login/logout mecanism add the possibility
 for the user to change pass or infos
 
@@ -44,3 +42,7 @@ when addres si corectly add the user is send back to show user
 - stats ?
 - last changes ?
 - search form ?
+
+* Add tests for Auth Model (look if we can steal them from TG2)
+
+* Add functional tests for addresses

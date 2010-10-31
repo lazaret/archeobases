@@ -26,7 +26,7 @@ class TestExcavationModel(TestModel):
         super(TestExcavationModel, self).setUp()
         excavation_fixture()
 
-    def test_columns(self):
+    def test_01_columns(self):
         """ Test the `Excavation` model columns and types."""
         excavation = Session.query(model.Excavation).filter_by().first()
         assert isinstance(excavation.id, int), '`id` column is missing or has changed.'
@@ -36,12 +36,12 @@ class TestExcavationModel(TestModel):
         assert isinstance(excavation.end_date, datetime.date), '`end_date` column is missing or has changed.'
         assert isinstance(excavation.appreciation, unicode), '`appreciation` column is missing or has changed.'
 
-    def test_parent_relation(self):
+    def test_02_parent_relation(self):
         """ Test the `Excavation` model parent relation."""
         excavation = Session.query(model.Excavation).filter_by().first()
         assert excavation.person
 
-    def test_cascade_delete(self):
+    def test_03_cascade_delete(self):
         """ Test for cascade delete on the `Excavation` model."""
         person = Session.query(model.Person).filter_by().first()
         Session.delete(person)
@@ -49,7 +49,7 @@ class TestExcavationModel(TestModel):
         excavations = Session.query(model.Excavation).filter_by(person_id=person.id).count()
         assert excavations == 0
 
-    def test_orphans(self):
+    def test_04_orphans(self):
         """ Test that orphans are forbidden for the `Excavation` model."""
         test_excavation = OrphanExcavationData.ExcavationSite2()
         excavation = model.Excavation(
@@ -64,8 +64,3 @@ class TestExcavationModel(TestModel):
             raise AssertionError('`Excavation` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             Session.rollback()
-
-
-
-
-

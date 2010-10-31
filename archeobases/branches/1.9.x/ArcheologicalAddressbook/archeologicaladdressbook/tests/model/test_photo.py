@@ -25,14 +25,14 @@ class TestPhotoModel(TestModel):
         super(TestPhotoModel, self).setUp()
         photo_fixture()
 
-    def test_columns(self):
+    def test_01_columns(self):
         """ Test the `Photo` model columns and types."""
         photo = Session.query(model.Photo).filter_by().first()
         assert isinstance(photo.id, int), '`id` column is missing or has changed.'
         assert isinstance(photo.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(photo.path, unicode), '`path` column is missing or has changed.'
 
-    def test_unique_constraint(self):
+    def test_02_unique_constraint(self):
         """ Test for unique constraint for the `Photo` model.
 
         Test the unique constraint on `path`.
@@ -48,12 +48,12 @@ class TestPhotoModel(TestModel):
         except sa.exc.IntegrityError:
             Session.rollback()
 
-    def test_parent_relation(self):
+    def test_03_parent_relation(self):
         """ Test the `Photo` model parent relation."""
         photo = Session.query(model.Photo).filter_by().first()
         assert photo.person
 
-    def test_cascade_delete(self):
+    def test_04_cascade_delete(self):
         """ Test for cascade delete on the `Photo` model."""
         person = Session.query(model.Person).filter_by().first()
         Session.delete(person)
@@ -61,7 +61,7 @@ class TestPhotoModel(TestModel):
         photos = Session.query(model.Photo).filter_by(person_id=person.id).count()
         assert photos == 0
 
-    def test_orphans(self):
+    def test_05_orphans(self):
         """ Test that orphans are forbidden for the `Photo` model."""
         test_photo = OrphanPhotoData.JohnSmithPhoto()
         photo = model.Photo(
@@ -73,8 +73,3 @@ class TestPhotoModel(TestModel):
             raise AssertionError('`Photo` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             Session.rollback()
-
-
-
-
-

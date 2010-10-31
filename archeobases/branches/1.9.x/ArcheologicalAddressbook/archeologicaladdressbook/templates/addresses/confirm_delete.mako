@@ -9,7 +9,7 @@
   ${h.link_to(_("Addresses"), url(controller="addresses"))} > ${_("Confirm delete")}
 </%def>
 ##
-<!-- adresses confirm_delete template -->
+<!-- addresses confirm_delete template -->
 ##
 ${_("Last name")} : ${c.address.person.last_name}<br/>
 ${_("First name")} : ${c.address.person.first_name}<br/>

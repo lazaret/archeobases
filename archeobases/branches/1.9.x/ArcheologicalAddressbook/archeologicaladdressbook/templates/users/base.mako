@@ -1,23 +1,12 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/base.mako" />
+<%inherit file="/admin/base.mako" />
 ##
 <section>
   ${next.body()}
 </section>
 ##
-## NAV BAR
-<%def name="navbar()">
-  <ul>
-    <li>${h.link_to(_("Home"), url('/'))}</li>
-    <li>${h.link_to(_("Persons"), url(controller='persons'))}</li>
-    <li>${h.link_to(_("Statistics"), url(controller='stats'))}</li>
-    <li>${h.link_to(_("Users"), url(controller='users'), class_='active')}</li>
-    <li>${h.link_to(_("Admin"), url(controller='admin'), class_='admin')}</li>
-  </ul>
-</%def>
-##
-## SIDE BAR
-<%def name="sidebar()">
+## SIDE BOX 2
+<%def name="sidebox_2()">
   <section>
     Actions :<br/>
     ${h.link_to(_("list"), url.current(action='list'))}<br/>

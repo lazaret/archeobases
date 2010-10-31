@@ -5,7 +5,8 @@
   ${_("Addressbook")} - ${_("Addresses")} - ${_("Confirm delete")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Addresses"), url(controller="addresses"))} > ${_("Confirm delete")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Persons"), url(controller="persons"))} > \
+  ${h.link_to(_("Addresses"), url(controller="addresses"))} > ${_("Confirm delete")}
 </%def>
 ##
 <!-- adresses confirm_delete template -->

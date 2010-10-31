@@ -72,6 +72,7 @@ class AddressesController(BaseController):
             return render('/addresses/new.mako')
         else:
             # we arrive here if the person did not exist
+            # TODO correct if None
             # most probably if someone mistyped addresses/new
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))

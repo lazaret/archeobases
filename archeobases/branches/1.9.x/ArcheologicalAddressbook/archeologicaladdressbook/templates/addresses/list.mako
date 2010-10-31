@@ -3,10 +3,10 @@
 <%namespace file="/lib/paginate.mako" import="*"/>
 ##
 <%def name="page_title()">
-  ${_("Addressbook")} - ${_("Addresses")} - ${_("List")}
+  ${_("Addressbook")} - ${_("Persons")} - ${_("Addresses")} - ${_("List")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Addresses"), url(controller="addresses"))} > ${_("List")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Persons"), url(controller="persons"))} > ${h.link_to(_("Addresses"), url(controller="addresses"))} > ${_("List")}
 </%def>
 ##
 <!-- addresses list template -->
@@ -34,7 +34,7 @@
       <td>${address.city}</td>
       <td>${address.address_type}</td>
       <td>
-      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url(controller='persons', action='show', id=address.person_id))}
+      ${h.link_to(h.image("/images/user.png", alt=_("show")), url(controller='persons', action='show', id=address.person_id))}
       ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url.current(action='show', id=address.id))}
       ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url.current(action='edit', id=address.id))}
       ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url.current(action='confirm_delete', id=address.id))}

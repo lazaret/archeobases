@@ -45,7 +45,7 @@ ${_("Photo")} : ${c.person.photo}<br/>
       <td>${address.city}</td>
       <td>${address.address_type}</td>
       <td>
-      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url(controller='addresses', action='show', id=address.id))}
+      ${h.link_to(h.image("/images/vcard.png", alt=_("show")), url(controller='addresses', action='show', id=address.id))}
       ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='addresses', action='edit', id=address.id))}
       ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='addresses', action='confirm_delete', id=address.id))}
       </td>

@@ -3,10 +3,11 @@
 <%namespace file="/addresses/address_form.mako" import="*"/>
 ##
 <%def name="page_title()">
-  ${_("Addressbook")} - ${_("Addresses")} - ${_("Edit")}
+  ${_("Addressbook")} - ${_("Persons")} - ${_("Addresses")} - ${_("Edit")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Addresses"), url(controller="addresses"))} > ${_("Edit")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Persons"), url(controller="persons"))} > \
+  ${h.link_to(_("Addresses"), url(controller="addresses"))} > ${_("Edit")}
 </%def>
 ##
 <!-- addresses edit template -->

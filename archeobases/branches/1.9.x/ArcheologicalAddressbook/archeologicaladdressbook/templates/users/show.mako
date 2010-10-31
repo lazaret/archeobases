@@ -2,10 +2,11 @@
 <%inherit file="/users/base.mako" />
 ##
 <%def name="page_title()">
-  ${_("Addressbook")} - ${_("Users")} - ${_("Show")}
+  ${_("Addressbook")} - ${_("Admin")} - ${_("Users")} - ${_("Show")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Users"), url(controller="users"))} > ${_("Show")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Admin"), url(controller="admin"))} > \
+  ${h.link_to(_("Users"), url(controller="users"))} > ${_("Show")}
 </%def>
 ##
 <!-- users show template -->

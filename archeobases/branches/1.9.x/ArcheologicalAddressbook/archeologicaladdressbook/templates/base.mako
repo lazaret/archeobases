@@ -32,7 +32,8 @@
         ${next.body()}
       </article>
       <aside>
-        ${self.sidebar()}
+        ${self.sidebox_1()}
+        ${self.sidebox_2()}
       </aside>
     </section>
     <footer id="footer">
@@ -60,7 +61,6 @@
     <li>${h.link_to(_("Persons"), url(controller='persons'))}</li>
     <li>${h.link_to(_("Statistics"), url(controller='stats'))}</li>
     % if 'manage' in c.permissions:
-      <li>${h.link_to(_("Users"), url(controller='users'), class_='admin')}</li>
       <li>${h.link_to(_("Admin"), url(controller='admin'), class_='admin')}</li>
     % endif
   </ul>
@@ -71,6 +71,9 @@
   % endif
 </%def>
 ##
-## DEFAULT SIDE BAR
-<%def name="sidebar()">
+## DEFAULT SIDES BOXES
+<%def name="sidebox_1()">
+</%def>
+##
+<%def name="sidebox_2()">
 </%def>

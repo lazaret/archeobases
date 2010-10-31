@@ -2,10 +2,11 @@
 <%inherit file="/users/base.mako" />
 ##
 <%def name="page_title()">
-  ${_("Addressbook")} - ${_("Users")} - ${_("Change password")}
+  ${_("Addressbook")} - ${_("Admin")} - ${_("Users")} - ${_("Change password")}
 </%def>
 <%def name="breadcrumb()">
-  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Users"), url(controller="users"))} > ${_("Change password")}
+  ${h.link_to(app_globals.sitename, "/")} > ${h.link_to(_("Admin"), url(controller="admin"))} > \
+  ${h.link_to(_("Users"), url(controller="users"))} > ${_("Change password")}
 </%def>
 ##
 <!-- users edit password template -->

@@ -25,8 +25,8 @@ class TestPersonsController(TestController):
         self.app.get(url(controller='persons', action='create'))
         self.app.get(url(controller='persons', action='edit'))
         self.app.get(url(controller='persons', action='update'))
-        self.app.get(url(controller='persons', action='delete'))
         self.app.get(url(controller='persons', action='confirm_delete'))
+        self.app.get(url(controller='persons', action='delete'))
 
     def test_02_controller_denied_for_anonymous(self):
         """ Test than the `PersonsController` controller is denied to anonymous."""
@@ -69,17 +69,17 @@ class TestPersonsController(TestController):
             extra_environ={'repoze.what.credentials': self.editor})
         assert 'persons index template' in response, 'person index template is missing or has changed.'
 
-    def test_09_edit_response(self):
-        """ Test response of the `PersonsController` edit page."""
-        response = self.app.get(url(controller='persons', action='edit', id='1'),
-            extra_environ={'repoze.what.credentials': self.editor})
-        assert 'persons edit template' in response, 'edit person template is missing or has changed.'
-
-    def test_10_list_response(self):
+    def test_09_list_response(self):
         """ Test response of the `PersonsController` list page."""
         response = self.app.get(url(controller='persons', action='list'),
             extra_environ={'repoze.what.credentials': self.editor})
         assert 'persons list template' in response, 'list person template is missing or has changed.'
+
+    def test_10_show_response(self):
+        """ Test response of the `PersonsController` show page."""
+        response = self.app.get(url(controller='persons', action='show', id='1'),
+            extra_environ={'repoze.what.credentials': self.editor})
+        assert 'persons show template' in response, 'show person template is missing or has changed.'
 
     def test_11_new_response(self):
         """ Test response of the `PersonsController` new page."""
@@ -87,9 +87,14 @@ class TestPersonsController(TestController):
             extra_environ={'repoze.what.credentials': self.editor})
         assert 'persons new template' in response, 'new person template is missing or has changed.'
 
-    def test_12_show_response(self):
-        """ Test response of the `PersonsController` show page."""
-        response = self.app.get(url(controller='persons', action='show', id='1'),
+    def test_12_edit_response(self):
+        """ Test response of the `PersonsController` edit page."""
+        response = self.app.get(url(controller='persons', action='edit', id='1'),
             extra_environ={'repoze.what.credentials': self.editor})
-        assert 'persons show template' in response, 'show person template is missing or has changed.'
+        assert 'persons edit template' in response, 'edit person template is missing or has changed.'
 
+    def test_13_confirm_delete_response(self):
+        """ Test response of the `PersonsController` confirm_delete page."""
+        response = self.app.get(url(controller='persons', action='confirm_delete', id='1'),
+            extra_environ={'repoze.what.credentials': self.editor})
+        assert 'persons confirm_delete template' in response, 'confirm delete person template is missing or has changed.'

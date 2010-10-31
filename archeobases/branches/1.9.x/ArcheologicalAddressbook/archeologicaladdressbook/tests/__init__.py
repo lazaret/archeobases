@@ -63,3 +63,13 @@ class TestController(TestCase):
         """ Method used to destroy the test database."""
         Base.metadata.drop_all(bind=Session.bind)
 
+    # Auth & Auth fixtures for responses testing
+    manager = {'repoze.what.userid': u'manager',
+                   'groups': (u'managers'),
+                   'permissions': (u'manage', u'edit', u'view')}
+    editor = {'repoze.what.userid': u'editor',
+                   'groups': (u'editors'),
+                   'permissions': (u'edit', u'view')}
+    guest = {'repoze.what.userid': u'guest',
+                   'groups': (u'guests'),
+                   'permissions': (u'view')}

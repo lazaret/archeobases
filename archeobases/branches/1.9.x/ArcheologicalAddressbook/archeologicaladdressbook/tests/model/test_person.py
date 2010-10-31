@@ -21,7 +21,7 @@ from archeologicaladdressbook.tests.model.fixtures import *
 class TestPersonModel(TestModel):
     """ Unit test cases for the `Person` model."""
 
-    def test_columns(self):
+    def test_01_columns(self):
         """ Test the `Person` model columns and types."""
         person = Session.query(model.Person).filter_by().first()
         assert isinstance(person.id, int), '`id` column is missing or has changed.'
@@ -35,7 +35,7 @@ class TestPersonModel(TestModel):
         assert isinstance(person.activity, unicode), '`activity` column is missing or has changed.'
         assert isinstance(person.person_type, unicode), '`person_type` column is missing or has changed.'
 
-    def test_unique_constraint(self):
+    def test_02_unique_constraint(self):
         """ Test for unique constraint for the `Person` model.
 
         Test the unique constraint on `last_name` and `first_name`.
@@ -55,12 +55,10 @@ class TestPersonModel(TestModel):
         except sa.exc.IntegrityError:
             Session.rollback()
 
-    def test_child_relations(self):
+    def test_03_child_relations(self):
         """ Test the `Person` model child relations."""
         address_fixture()
         photo_fixture()
         person = Session.query(model.Person).filter_by().first()
         assert person.addresses, '`Address` child relation is missing.'
         assert person.photo, '`Photo` child relation is missing.'
-
-

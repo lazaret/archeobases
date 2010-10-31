@@ -15,27 +15,23 @@ from archeologicaladdressbook.tests import *
 class TestStatsController(TestController):
     """ Test the controller `StatsController`."""
 
-    guest = {'repoze.what.userid': u'guest',
-                   'groups': (u'guests'),
-                   'permissions': (u'view')}
-
-    def test_1_routes(self):
+    def test_01_routes(self):
         """ Test the routes of the `StatsController` controller."""
         self.app.get(url(controller='stats'))
         self.app.get(url(controller='stats', action='index'))
 
-    def test_2_controller_denied_for_anonymous(self):
+    def test_02_controller_denied_for_anonymous(self):
         """ Test than the `StatsController` controller is denied to anonymous."""
         # status 302 and not 401 because denied users are redirected to the main page
         self.app.get(url(controller='stats'), status=302)
 
-    def test_3_controller_allowed_for_viewers(self):
+    def test_03_controller_allowed_for_viewers(self):
         """ Test than the `StatsController` controller is allowed for users with 'view' permission."""
         self.app.get(url(controller='stats'),
             extra_environ={'repoze.what.credentials': self.guest},
             status=200)
 
-    def test_4_index_response(self):
+    def test_04_index_response(self):
         """ Test response of the `StatsController` index page."""
         response = self.app.get(url(controller='stats', action='index'),
             extra_environ={'repoze.what.credentials': self.guest})

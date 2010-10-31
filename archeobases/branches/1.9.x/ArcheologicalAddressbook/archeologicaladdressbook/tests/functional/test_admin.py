@@ -14,62 +14,57 @@ from archeologicaladdressbook.tests import *
 class TestAdminController(TestController):
     """ Test the controller `AdminController`."""
 
-    manager = {'repoze.what.userid': u'manager',
-                   'groups': (u'managers'),
-                   'permissions': (u'manage', u'edit', u'view')}
-
-    editor = {'repoze.what.userid': u'editor',
-                   'groups': (u'editors'),
-                   'permissions': (u'edit', u'view')}
-
-    guest = {'repoze.what.userid': u'guest',
-                   'groups': (u'guests'),
-                   'permissions': (u'view')}
-
-    def test_1_routes(self):
+    def test_01_routes(self):
         """ Test the routes of the `AdminController` controller."""
         self.app.get(url(controller='admin'))
         self.app.get(url(controller='admin', action='index'))
         self.app.get(url(controller='admin', action='accesslog'))
         self.app.get(url(controller='admin', action='errorlog'))
+        self.app.get(url(controller='admin', action='options'))
 
-    def test_2_controller_denied_for_anonymous(self):
+    def test_02_controller_denied_for_anonymous(self):
         """ Test than the `AdminController` controller is denied to anonymous."""
         # status 302 and not 401 because denied users are redirected to the main page
         self.app.get(url(controller='admin'), status=302)
 
-    def test_3_controller_denied_for_viewers(self):
+    def test_03_controller_denied_for_viewers(self):
         """ Test than the `AdminController` controller is denied for users with 'view' permission."""
         self.app.get(url(controller='admin'),
             extra_environ={'repoze.what.credentials': self.guest},
             status=302)
 
-    def test_4_controller_denied_for_editors(self):
+    def test_04_controller_denied_for_editors(self):
         """ Test than the `AdminController` controller is denied for users with 'edit' permission."""
         self.app.get(url(controller='admin'),
             extra_environ={'repoze.what.credentials': self.editor},
             status=302)
 
-    def test_5_controller_allowed_for_managers(self):
+    def test_05_controller_allowed_for_managers(self):
         """ Test than the `AdminController` controller is allowed for users with 'manage' permission."""
         self.app.get(url(controller='admin'),
             extra_environ={'repoze.what.credentials': self.manager},
             status=200)
 
-    def test_6_index_response(self):
+    def test_06_index_response(self):
         """ Test response of the `AdminController` index page."""
         response = self.app.get(url(controller='admin', action='index'),
             extra_environ={'repoze.what.credentials': self.manager})
         assert 'admin index template' in response, 'admin index template is missing or has changed.'
 
-    def test_6_accesslog_response(self):
+    def test_07_accesslog_response(self):
         """ Test response of the `AdminController` accesslog page."""
         response = self.app.get(url(controller='admin', action='accesslog'),
             extra_environ={'repoze.what.credentials': self.manager})
         assert 'admin accesslog template' in response, 'admin accesslog template is missing or has changed.'
 
-    def test_6_errorlog_response(self):
+    def test_08_errorlog_response(self):
         """ Test response of the `AdminController` errorlog page."""
         response = self.app.get(url(controller='admin', action='errorlog'),
             extra_environ={'repoze.what.credentials': self.manager})
         assert 'admin errorlog template' in response, 'admin errorlog template is missing or has changed.'
+
+    def test_09_options_response(self):
+        """ Test response of the `AdminController` errorlog page."""
+        response = self.app.get(url(controller='admin', action='options'),
+            extra_environ={'repoze.what.credentials': self.manager})
+        assert 'admin options template' in response, 'admin options template is missing or has changed.'

@@ -15,19 +15,19 @@ from archeologicaladdressbook.tests import *
 class TestRootController(TestController):
     """ Test the controller `RootController`."""
 
-    def test_1_routes(self):
+    def test_01_routes(self):
         """ Test the routes of the `RootController` controller."""
         self.app.get('/')
         self.app.get('/index')
         self.app.get(url(controller='root'))
         self.app.get(url(controller='root', action='index'))
 
-    def test_2_controller_allowed_for_anonymous(self):
+    def test_02_controller_allowed_for_anonymous(self):
         """ Test than the `RootController` controller index page is allowed to anonymous."""
         self.app.get('/', status=200)
         self.app.get('/index', status=200)
 
-    def test_3_index_response(self):
+    def test_03_index_response(self):
         """ Test response of the `RootController` index page."""
         response = self.app.get(url(controller='root', action='index'))
         assert 'root index template' in response, 'root index template is missing or has changed.'

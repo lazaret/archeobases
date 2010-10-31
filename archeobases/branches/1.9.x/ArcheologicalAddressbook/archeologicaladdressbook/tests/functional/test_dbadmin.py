@@ -15,37 +15,38 @@ from archeologicaladdressbook.tests import *
 class TestDbadminController(TestController):
     """ Test the controller `DbmadminController`."""
 
-    def test_1_routes(self):
+    def test_01_routes(self):
         """ Test the routes of the `DbmadminController` controller."""
         self.app.get(url(controller='dbadmin'))
         self.app.get(url(controller='dbadmin', action='models'))
 
-    def test_2_anonymous_denied(self):
+    def test_02_controller_denied_for_anonymous(self):
         """ Test than the `DbmadminController` controller is denied to anonymous."""
         # status 302 and not 401 because denied users are redirected to the main page
         self.app.get(url(controller='dbadmin', action='models'), status=302)
 
-    def test_3_editors_denied(self):
-        """ Test than the `DbmadminController` controller is denied to editors."""
-        editor = {'repoze.what.userid': u'editor',
-                   'groups': (u'editors',),
-                   'permissions': (u'edit',)}
+    def test_03_controller_denied_for_viewers(self):
+        """ Test than the `DbmadminController` controller is denied for users with 'view' permission."""
         self.app.get(url(controller='dbadmin', action='models'),
-            extra_environ={'repoze.what.credentials': editor},
+            extra_environ={'repoze.what.credentials': self.guest},
             status=302)
 
-    def test_4_manager_allowed(self):
+    def test_04_controller_denied_for_editors(self):
+        """ Test than the `DbmadminController` controller is denied to editors."""
+        self.app.get(url(controller='dbadmin', action='models'),
+            extra_environ={'repoze.what.credentials': self.editor},
+            status=302)
+
+    def test_05_controller_allowed_for_managers(self):
         """ Test than the `DbmadminController` controller is allowed for managers."""
-        manager = {'repoze.what.userid': u'manager',
-                   'groups': (u'managers'),
-                   'permissions': (u'manage')}
         response = self.app.get(url(controller='dbadmin', action='models'),
-            extra_environ={'repoze.what.credentials': manager},
+            extra_environ={'repoze.what.credentials': self.manager},
             status=200)
         return response
 
-    def test_5_response(self):
+    def test_06_response(self):
         """ Test response of the `DbmadminController` main page."""
-        response = self.test_4_manager_allowed()
+        response = self.app.get(url(controller='dbadmin', action='models'),
+            extra_environ={'repoze.what.credentials': self.manager})
         assert 'Models' in response
 

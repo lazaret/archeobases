@@ -25,7 +25,7 @@ class TestAddressModel(TestModel):
         super(TestAddressModel, self).setUp()
         address_fixture()
 
-    def test_columns(self):
+    def test_01_columns(self):
         """ Test the `Address` model columns and types."""
         address = Session.query(model.Address).filter_by().first()
         assert isinstance(address.id, int), '`id` column is missing or has changed.'
@@ -37,7 +37,7 @@ class TestAddressModel(TestModel):
         assert isinstance(address.country, unicode), '`country` column is missing or has changed.'
         assert isinstance(address.address_type, unicode), '`address_type` column is missing or has changed.'
 
-    def test_unique_constraint(self):
+    def test_02_unique_constraint(self):
         """ Test for unique constraint for the `Address` model.
 
         Test the unique constraint on `person_id` and `address_type`."""
@@ -60,12 +60,12 @@ class TestAddressModel(TestModel):
         except sa.exc.IntegrityError:
             Session.rollback()
 
-    def test_parent_relation(self):
+    def test_03_parent_relation(self):
         """ Test the `Address` model parent relation."""
         address = Session.query(model.Address).filter_by().first()
         assert address.person
 
-    def test_cascade_delete(self):
+    def test_04_cascade_delete(self):
         """ Test for cascade delete on the `Address` model."""
         person = Session.query(model.Person).filter_by().first()
         Session.delete(person)
@@ -73,7 +73,7 @@ class TestAddressModel(TestModel):
         addresses = Session.query(model.Address).filter_by(person_id=person.id).count()
         assert addresses == 0
 
-    def test_orphans(self):
+    def test_05_orphans(self):
         """ Test that orphans are forbidden for the `Address` model."""
         test_address = OrphanAddressData.JohnSmithAddress()
         address = model.Address(
@@ -91,8 +91,3 @@ class TestAddressModel(TestModel):
             raise AssertionError('`Address` delete-orphans constraint is missing.')
         except sa.exc.FlushError:
             Session.rollback()
-
-
-
-
-

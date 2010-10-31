@@ -26,7 +26,7 @@ class TestVoluntaryMemberModel(TestModel):
         Base.metadata.create_all(bind=Session.bind)
         voluntary_member_fixture()
 
-    def test_columns(self):
+    def test_01_columns(self):
         """ Test the `VoluntaryMember` model columns and types."""
         v_member = Session.query(model.VoluntaryMember).filter_by().first()
         assert isinstance(v_member.id, int), '`id` column is missing or has changed.'
@@ -39,14 +39,14 @@ class TestVoluntaryMemberModel(TestModel):
         assert isinstance(v_member.member_number, int), '`member_number` column is missing or has changed.'
         assert isinstance(v_member.last_fee_date, datetime.date), '`last_fee_date` column is missing or has changed.'
 
-    def test_inherinting(self):
+    def test_02_inherinting(self):
         """ Test that `VoluntaryMember` model inherit from `Person` model."""
         test_v_member = VoluntaryMemberData.JohnSmith()
         person = Session.query(model.Person).filter_by(last_name=test_v_member.last_name).one()
         v_member = Session.query(model.VoluntaryMember).filter_by(last_name=test_v_member.last_name).one()
         assert person == v_member
 
-    def test_unique_constraint(self):
+    def test_03_unique_constraint(self):
         """ Test for unique constraint for the `VoluntaryMember` model.
 
         Test the unique constraint on `member_number`.
@@ -68,7 +68,7 @@ class TestVoluntaryMemberModel(TestModel):
         except sa.exc.IntegrityError:
             Session.rollback()
 
-    def test_cascade_delete(self):
+    def test_04_cascade_delete(self):
         """ Test for cascade delete between `VoluntaryMember` and `Person` models."""
         v_member = Session.query(model.VoluntaryMember).filter_by().first()
         Session.delete(v_member)
@@ -76,7 +76,4 @@ class TestVoluntaryMemberModel(TestModel):
         person = Session.query(model.Person).filter_by(id=v_member.id).count()
         assert person == 0
 
-
 # `VoluntaryMember` child relations are not tested as the test for this in test_person.py may be sufficient
-
-

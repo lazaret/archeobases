@@ -51,7 +51,7 @@ class TestPersonModel(TestModel):
         Session.add(person)
         try:
             Session.commit()
-            raise AssertionError('`Person` unique constraint on `last_name`, `first_name` and `birth_date` is missing.')
+            raise AssertionError('`Person` unique constraint on `last_name` and `first_name` is missing.')
         except sa.exc.IntegrityError:
             Session.rollback()
 

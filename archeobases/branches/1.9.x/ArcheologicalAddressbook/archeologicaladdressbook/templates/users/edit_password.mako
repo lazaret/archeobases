@@ -9,7 +9,7 @@
   ${h.link_to(_("Users"), url(controller="users"))} > ${_("Change password")}
 </%def>
 ##
-<!-- users edit password template -->
+<!-- users edit_password template -->
 ##
 ${h.secure_form(url.current(action='update_password', id=c.user.user_id))}
 ##  ${f.hidden(name="user_id")}

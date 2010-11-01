@@ -13,7 +13,7 @@ import re
 
 
 def _log_parser(pattern=None, logfile=None):
-    """ Create a list of dictionaries from the logfile with the pattern"""
+    """ Create a list of dictionaries from the logfile with the pattern."""
     log = []
     for line in open(logfile):
         match = pattern.search(line)

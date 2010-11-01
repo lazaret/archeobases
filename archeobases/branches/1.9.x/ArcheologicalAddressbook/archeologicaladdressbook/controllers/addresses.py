@@ -66,7 +66,7 @@ class AddressesController(BaseController):
     @ProtectAction(has_permission('edit'))
     def new(self, id=None):
         """ Display a form to create a new address record for a person."""
-        # `id` is used here as the parent person.id
+        # `id` is used here as the parent person.person_id
         c.person = Session.query(Person).get(id)
         if c.person:
             return render('/addresses/new.mako')

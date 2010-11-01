@@ -25,6 +25,7 @@ class TestUserModel(TestModel):
         """ Extend the method used to build a test database."""
         super(TestUserModel, self).setUp()
         user_fixture()
+        group_fixture()
 
     def test_01_columns(self):
         """ Test the `User` model columns and types."""
@@ -54,3 +55,8 @@ class TestUserModel(TestModel):
             raise AssertionError('`User` unique constraint on `user_name`, is missing.')
         except sa.exc.IntegrityError:
             Session.rollback()
+
+    def test_03_group_relation(self):
+        """ Test the `User` model relation with `Group`."""
+        user = Session.query(model.User).filter_by().first()
+        assert user.groups

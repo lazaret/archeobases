@@ -24,7 +24,7 @@ class TestPermissionModel(TestModel):
     def setUp(self):
         """ Extend the method used to build a test database."""
         super(TestPermissionModel, self).setUp()
-        #user_fixture()
+        group_fixture()
         permission_fixture()
 
     def test_01_columns(self):
@@ -50,3 +50,8 @@ class TestPermissionModel(TestModel):
             raise AssertionError('`Permission` unique constraint on `group_name`, is missing.')
         except sa.exc.IntegrityError:
             Session.rollback()
+
+    def test_03_group_relation(self):
+        """ Test the `Permission` model relation with `Group`."""
+        permission = Session.query(model.Permission).filter_by().first()
+        assert permission.groups

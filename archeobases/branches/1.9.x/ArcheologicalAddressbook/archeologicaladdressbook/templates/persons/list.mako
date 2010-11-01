@@ -27,9 +27,9 @@
       <td>${person.last_name}</td>
       <td>${person.first_name}</td>
       <td>
-      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url.current(action='show', id=person.id))}
-      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url.current(action='edit', id=person.id))}
-      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url.current(action='confirm_delete', id=person.id))}
+      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url.current(action='show', id=person.person_id))}
+      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url.current(action='edit', id=person.person_id))}
+      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url.current(action='confirm_delete', id=person.person_id))}
       </td>
     </tr>
     % endfor

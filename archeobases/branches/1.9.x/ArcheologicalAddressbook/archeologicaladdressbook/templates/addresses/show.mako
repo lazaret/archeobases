@@ -23,6 +23,6 @@ ${_("Country")} : ${c.address.country}<br/>
 ${_("Address type")} : ${c.address.address_type}<br/>
 
 <br>________________<br>
-${h.link_to(_("Edit"), url.current(action='edit', id=c.address.id))} |
-${h.link_to(_("Delete"), url.current(action='confirm_delete', id=c.address.id))} |
+${h.link_to(_("Edit"), url.current(action='edit', id=c.address.address_id))} |
+${h.link_to(_("Delete"), url.current(action='confirm_delete', id=c.address.address_id))} |
 

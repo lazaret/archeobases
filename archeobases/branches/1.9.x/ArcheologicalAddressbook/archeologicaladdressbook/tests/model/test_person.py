@@ -24,7 +24,7 @@ class TestPersonModel(TestModel):
     def test_01_columns(self):
         """ Test the `Person` model columns and types."""
         person = Session.query(model.Person).filter_by().first()
-        assert isinstance(person.id, int), '`id` column is missing or has changed.'
+        assert isinstance(person.person_id, int), '`person_id` column is missing or has changed.'
         assert isinstance(person.last_name, unicode), '`last_name` column is missing or has changed.'
         assert isinstance(person.first_name, unicode), '`first_name` column is missing or has changed.'
         assert isinstance(person.title, unicode), '`title` column is missing or has changed.'

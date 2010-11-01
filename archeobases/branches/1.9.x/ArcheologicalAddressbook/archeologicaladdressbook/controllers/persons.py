@@ -34,7 +34,7 @@ class PersonsController(BaseController):
         """ Check for a person duplicate entry in the database.
 
         Check than there is not already an entry with the same `last_name`
-        and `first_name` with another `id`. If there is one redirect to the
+        and `first_name` with another `person_id`. If there is one redirect to the
         `show` action for this entry.
         """
         # Limitation : This check actualy forbid homonyms
@@ -43,12 +43,12 @@ class PersonsController(BaseController):
         f_name = form_result['first_name']
         l_name = form_result['last_name']
         person = Session.query(Person). \
-            filter(Person.id!=id). \
+            filter(Person.person_id!=id). \
             filter(Person.first_name==f_name). \
             filter(Person.last_name==l_name).first()
         if person:
             flash_message(_("This record already exist, redirecting to it"), 'warning')
-            return redirect(url.current(action='show', id=person.id))
+            return redirect(url.current(action='show', id=person.person_id))
 
 # index and list actions
 
@@ -104,7 +104,7 @@ class PersonsController(BaseController):
         Session.add(person)
         Session.commit()
         flash_message(_("New person record added"), 'success')
-        return redirect(url.current(action='show', id=person.id))
+        return redirect(url.current(action='show', id=person.person_id))
 
     @ProtectAction(has_permission('edit'))
     def edit(self, id=None):
@@ -126,13 +126,13 @@ class PersonsController(BaseController):
         person = Session.query(Person).get(id)
         if person:
             # check first for a duplicate entry
-            self._check_duplicate(self.form_result, person.id)
+            self._check_duplicate(self.form_result, person.person_id)
             # update record attributes
             for key, value in self.form_result.items():
                 setattr(person, key, value)
             Session.commit()
             flash_message(_("Person record updated"), 'success')
-            return redirect(url.current(action='show', id=person.id))
+            return redirect(url.current(action='show', id=person.person_id))
         else:
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))

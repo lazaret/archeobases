@@ -3,7 +3,7 @@
 <%def name="person_form()">
   <% f = h.ModelTags(c.person, date_format='%m/%d/%Y') %>
 ##
-  ${f.hidden(name="id")}
+  ${f.hidden(name="person_id")}
   <fieldset>
     <legend>${_("Person")}</legend>
     <p><label for="last_name" class="mandatory"> ${_("Last name")} *</label> ${f.text(name="last_name", maxlength=25)}<p/>

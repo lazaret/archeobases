@@ -11,7 +11,7 @@
 ##
 <!-- persons edit template -->
 ##
-${h.secure_form(url.current(action='update', id=c.person.id))}
+${h.secure_form(url.current(action='update', id=c.person.person_id))}
   ${person_form()}
   <footer>
     <button name="update_button" type="submit"><img src="/images/tick.png"/>${_("Update")}</button>

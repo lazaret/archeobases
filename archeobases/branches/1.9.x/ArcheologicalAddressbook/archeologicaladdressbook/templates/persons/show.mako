@@ -45,9 +45,9 @@ ${_("Photo")} : ${c.person.photo}<br/>
       <td>${address.city}</td>
       <td>${address.address_type}</td>
       <td>
-      ${h.link_to(h.image("/images/vcard.png", alt=_("show")), url(controller='addresses', action='show', id=address.id))}
-      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='addresses', action='edit', id=address.id))}
-      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='addresses', action='confirm_delete', id=address.id))}
+      ${h.link_to(h.image("/images/vcard.png", alt=_("show")), url(controller='addresses', action='show', id=address.address_id))}
+      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='addresses', action='edit', id=address.address_id))}
+      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='addresses', action='confirm_delete', id=address.address_id))}
       </td>
     </tr>
     % endfor
@@ -55,7 +55,7 @@ ${_("Photo")} : ${c.person.photo}<br/>
 </table>
 
 <br>________________<br>
-${h.link_to(_("Edit"), url.current(action='edit', id=c.person.id))} |
-${h.link_to(_("Delete"), url.current(action='confirm_delete', id=c.person.id))} |
+${h.link_to(_("Edit"), url.current(action='edit', id=c.person.person_id))} |
+${h.link_to(_("Delete"), url.current(action='confirm_delete', id=c.person.person_id))} |
 <br>________________<br>
-${h.link_to(_("Add address"), url(controller='addresses', action='new', id=c.person.id))}
+${h.link_to(_("Add address"), url(controller='addresses', action='new', id=c.person.person_id))}

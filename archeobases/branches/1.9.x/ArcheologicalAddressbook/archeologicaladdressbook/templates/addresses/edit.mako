@@ -16,7 +16,7 @@ ${_("Last name")} : ${c.address.person.last_name}<br/>
 ${_("First name")} : ${c.address.person.first_name}<br/>
 <br/>
 
-${h.secure_form(url.current(action='update', id=c.address.id))}
+${h.secure_form(url.current(action='update', id=c.address.address_id))}
   ${address_form()}
   <footer>
     <button name="update_button" type="submit"><img src="/images/tick.png"/>${_("Update")}</button>

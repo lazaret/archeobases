@@ -27,7 +27,7 @@ class Person(Base):
     __tablename__ = 'person'
     __table_args__  = (UniqueConstraint('last_name', 'first_name'), {})
 
-    id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, autoincrement=True, primary_key=True)
     last_name = Column(Unicode(25), nullable=False, index=True)
     first_name = Column(Unicode(25), nullable=False)
     title = Column(Unicode(25))                         # Mrs/Ms/Mr/Pr/Dr/Esq...
@@ -56,6 +56,6 @@ class VoluntaryMember(Person):
     __table_args__  = (UniqueConstraint('member_number'), {})
     __mapper_args__ = {'polymorphic_identity': u'voluntary_member'}
 
-    id = Column(Integer, ForeignKey('person.id'), primary_key=True)
+    voluntary_member_id = Column(Integer, ForeignKey('person.person_id'), primary_key=True)
     member_number = Column(Integer, nullable=False)
     last_fee_date = Column(Date, nullable=False)

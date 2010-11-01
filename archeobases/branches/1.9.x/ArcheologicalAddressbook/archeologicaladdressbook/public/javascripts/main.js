@@ -74,4 +74,6 @@ $.datepicker.setDefaults({
 // display a date picker for date fields
 $(function() {
     $("#birth_date").datepicker();
+    $("#start_date").datepicker();
+    $("#end_date").datepicker();
 });

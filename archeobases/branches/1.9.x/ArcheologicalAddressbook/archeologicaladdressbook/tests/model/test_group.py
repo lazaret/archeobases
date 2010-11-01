@@ -24,8 +24,9 @@ class TestGroupModel(TestModel):
     def setUp(self):
         """ Extend the method used to build a test database."""
         super(TestGroupModel, self).setUp()
-        #user_fixture()
+        user_fixture()
         group_fixture()
+        permission_fixture()
 
     def test_01_columns(self):
         """ Test the `Group` model columns and types."""
@@ -50,3 +51,13 @@ class TestGroupModel(TestModel):
             raise AssertionError('`Group` unique constraint on `group_name`, is missing.')
         except sa.exc.IntegrityError:
             Session.rollback()
+
+    def test_03_user_relation(self):
+        """ Test the `Group` model relation with `User`."""
+        group = Session.query(model.Group).filter_by().first()
+        assert group.users
+
+    def test_03_group_relation(self):
+        """ Test the `Group` model relation with `Permission`."""
+        group = Session.query(model.Group).filter_by().first()
+        assert group.permissions

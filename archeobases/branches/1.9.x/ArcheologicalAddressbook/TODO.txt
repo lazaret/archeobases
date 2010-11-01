@@ -43,5 +43,3 @@ when addres si corectly add the user is send back to show user
 - last changes ?
 - search form ?
 
-* Add relations testings for Auth Model
-

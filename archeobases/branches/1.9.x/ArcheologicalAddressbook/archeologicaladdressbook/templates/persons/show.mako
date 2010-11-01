@@ -59,3 +59,5 @@ ${h.link_to(_("Edit"), url.current(action='edit', id=c.person.person_id))} |
 ${h.link_to(_("Delete"), url.current(action='confirm_delete', id=c.person.person_id))} |
 <br>________________<br>
 ${h.link_to(_("Add address"), url(controller='addresses', action='new', id=c.person.person_id))}
+<br>________________<br>
+${h.link_to(_("Add excavation"), url(controller='excavations', action='new', id=c.person.person_id))}

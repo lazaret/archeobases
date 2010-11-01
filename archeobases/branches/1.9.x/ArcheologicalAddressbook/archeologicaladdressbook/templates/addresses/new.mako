@@ -17,7 +17,7 @@ ${_("First name")} : ${c.person.first_name}<br/>
 <br/>
 
 ${h.secure_form(url.current(action="create"))}
-${h.hidden(name="person_id", value=c.person.id)}
+${h.hidden(name="person_id", value=c.person.person_id)}
   ${address_form()}
   <footer>
     <button name="new_button" type="submit"><img src="/images/tick.png"/>${_("Submit")}</button>

@@ -27,9 +27,9 @@ ${_("Photo")} : ${c.person.photo}<br/>
 
 ${_("Are your sure you whan tot delete this person ?")}
 
-${h.secure_form(url.current(action='delete', id=c.person.id))}
+${h.secure_form(url.current(action='delete', id=c.person.person_id))}
   <footer>
-    ${h.button_to(_("Yes"), url.current(action='delete', id=c.person.id))}
-    ${h.button_to(_("No"), url.current(action='show', id=c.person.id))}
+    ${h.button_to(_("Yes"), url.current(action='delete', id=c.person.person_id))}
+    ${h.button_to(_("No"), url.current(action='show', id=c.person.person_id))}
   </footer>
 ${h.end_form()}

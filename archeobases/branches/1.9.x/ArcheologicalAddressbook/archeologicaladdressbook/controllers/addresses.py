@@ -87,7 +87,7 @@ class AddressesController(BaseController):
         person.addresses.append(address)
         Session.commit()
         flash_message(_("New address record added"), 'success')
-        return redirect(url.current(action='show', id=address.id))
+        return redirect(url.current(action='show', id=address.address_id))
 
     @ProtectAction(has_permission('edit'))
     def edit(self, id=None):
@@ -113,7 +113,7 @@ class AddressesController(BaseController):
                 setattr(address, key, value)
             Session.commit()
             flash_message(_("Address record updated"), 'success')
-            return redirect(url.current(action='show', id=address.id))
+            return redirect(url.current(action='show', id=address.address_id))
         else:
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))

@@ -20,8 +20,8 @@ class Photo(Base):
     __tablename__ = 'photo'
     __table_args__  = (UniqueConstraint('path'), {})
 
-    id = Column(Integer, autoincrement=True, primary_key=True)
-    person_id = Column(Integer, ForeignKey('person.id'))
+    photo_id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, ForeignKey('person.person_id'))
     # hash generated image file path on the filesystem
     path = Column(Unicode(255), nullable=False)
 

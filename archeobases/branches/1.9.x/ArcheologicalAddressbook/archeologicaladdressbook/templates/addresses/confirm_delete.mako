@@ -24,9 +24,9 @@ ${_("Address type")} : ${c.address.address_type}<br/>
 
 ${_("Are your sure you whan tot delete this address ?")}
 
-${h.secure_form(url.current(action='delete', id=c.address.id))}
+${h.secure_form(url.current(action='delete', id=c.address.address_id))}
   <footer>
-    ${h.button_to(_("Yes"), url.current(action='delete', id=c.address.id))}
-    ${h.button_to(_("No"), url.current(action='show', id=c.address.id))}
+    ${h.button_to(_("Yes"), url.current(action='delete', id=c.address.address_id))}
+    ${h.button_to(_("No"), url.current(action='show', id=c.address.address_id))}
   </footer>
 ${h.end_form()}

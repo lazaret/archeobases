@@ -3,13 +3,10 @@
 -> One user belong to one group who can have more than one permission
 -> We keep the TG2 Model but use mainly permissions
 
-* Check hash password method, maybe use bcrypt
-
-* Try to use FormAlchemy ?
+* Try to use FormAlchemy in forms ?
 
 * Try to replace all 'id' by other name likes page_id of person_id
-- in models because it can be more clear in template and controlers
-- in controllers because 'id' is a python reserved word
+- in controllers because 'id' it's a python reserved word
 
 * Move all 'photos' etc inside 'persons' ?
 
@@ -43,3 +40,9 @@ when addres si corectly add the user is send back to show user
 - last changes ?
 - search form ?
 
+tempates:
+- do not display address list in person show if no address
+
+
+Extend tests :
+- Add test for check_duplicate

@@ -35,9 +35,9 @@
       <td>${address.address_type}</td>
       <td>
       ${h.link_to(h.image("/images/user.png", alt=_("show")), url(controller='persons', action='show', id=address.person_id))}
-      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url.current(action='show', id=address.id))}
-      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url.current(action='edit', id=address.id))}
-      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url.current(action='confirm_delete', id=address.id))}
+      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url.current(action='show', id=address.address_id))}
+      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url.current(action='edit', id=address.address_id))}
+      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url.current(action='confirm_delete', id=address.address_id))}
       </td>
     </tr>
     % endfor

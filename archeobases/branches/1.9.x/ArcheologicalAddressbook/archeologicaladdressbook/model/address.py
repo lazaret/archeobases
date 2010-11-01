@@ -20,8 +20,8 @@ class Address(Base):
     __tablename__ = 'address'
     __table_args__  = (UniqueConstraint('person_id', 'address_type'), {})
 
-    id = Column(Integer, autoincrement=True, primary_key=True)
-    person_id = Column(Integer, ForeignKey('person.id'))
+    address_id = Column(Integer, autoincrement=True, primary_key=True)
+    person_id = Column(Integer, ForeignKey('person.person_id'))
     address_line1 = Column(Unicode(100), nullable=False)
     address_line2 = Column(Unicode(100))
     address_line3 = Column(Unicode(100))

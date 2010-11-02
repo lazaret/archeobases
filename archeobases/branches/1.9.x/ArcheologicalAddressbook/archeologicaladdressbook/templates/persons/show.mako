@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/persons/base.mako" />
+<%namespace file="/persons/person_display.mako" import="*"/>
 ##
 <%def name="page_title()">
   ${_("Addressbook")} - ${_("Persons")} - ${_("Show")}
@@ -10,22 +11,9 @@
 ##
 <!-- persons show template -->
 ##
-${_("Last name")} : ${c.person.last_name}<br/>
-${_("First name")} : ${c.person.first_name}<br/>
-${_("Title")} : ${c.person.title}<br/>
-${_("Birth Date")} :
-% if c.person.birth_date:
-  ${c.person.birth_date.strftime('%d / %m / %Y')}
-% endif
-<br/>
-${_("Email Address")} : ${c.person.email_address}<br/>
-${_("Phone")} : ${c.person.phone}<br/>
-${_("Mobile phone")} : ${c.person.mobile_phone}<br/>
-${_("Activity")} : ${c.person.activity}<br/>
-${_("Person type")} : ${c.person.person_type}<br/>
-${_("Photo")} : ${c.person.photo}<br/>
+${person_display()}
 
-
+% if c.person.addresses:
 <table>
   <thead>
     <th>${_("Line 1")}</th>
@@ -34,9 +22,6 @@ ${_("Photo")} : ${c.person.photo}<br/>
     <th>${_("Address type")}</th>
     <th></th>
   </thead>
-  <tfoot>
-##    <th colspan="6">${paginate(c.page)}</th>
-  </tfoot>
   <tbody>
     % for address in c.person.addresses:
     <tr>
@@ -45,7 +30,7 @@ ${_("Photo")} : ${c.person.photo}<br/>
       <td>${address.city}</td>
       <td>${address.address_type}</td>
       <td>
-      ${h.link_to(h.image("/images/vcard.png", alt=_("show")), url(controller='addresses', action='show', id=address.address_id))}
+      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url(controller='addresses', action='show', id=address.address_id))}
       ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='addresses', action='edit', id=address.address_id))}
       ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='addresses', action='confirm_delete', id=address.address_id))}
       </td>
@@ -53,6 +38,34 @@ ${_("Photo")} : ${c.person.photo}<br/>
     % endfor
   </tbody>
 </table>
+% endif
+
+% if c.person.excavations:
+<table>
+  <thead>
+    <th>${_("Site Name")}</th>
+    <th>${_("Start date")}</th>
+    <th>${_("End date")}</th>
+    <th>${_("Appreciation")}</th>
+    <th></th>
+  </thead>
+  <tbody>
+    % for excavation in c.person.excavations:
+    <tr>
+      <td>${excavation.site_name}</td>
+      <td>${excavation.start_date.strftime('%d / %m / %Y')}</td>
+      <td>${excavation.end_date.strftime('%d / %m / %Y')}</td>
+      <td>${excavation.appreciation}</td>
+      <td>
+      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url(controller='excavations', action='show', id=address.address_id))}
+      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='excavations', action='edit', id=address.address_id))}
+      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='excavations', action='confirm_delete', id=address.address_id))}
+      </td>
+    </tr>
+    % endfor
+  </tbody>
+</table>
+% endif
 
 <br>________________<br>
 ${h.link_to(_("Edit"), url.current(action='edit', id=c.person.person_id))} |

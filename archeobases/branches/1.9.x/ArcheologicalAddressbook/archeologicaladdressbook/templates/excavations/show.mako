@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/addresses/base.mako" />
+<%inherit file="/excavations/base.mako" />
+<%namespace file="/excavations/excavation_display.mako" import="*"/>
 ##
 <%def name="page_title()">
   ${_("Addressbook")} - ${_("Persons")} - ${_("Excavations")} - ${_("Show")}
@@ -14,18 +15,8 @@
 ${_("Last name")} : ${c.excavation.person.last_name}<br/>
 ${_("First name")} : ${c.excavation.person.first_name}<br/>
 <br/>
-${_("Site Name")} : ${c.excavation.site_name}<br/>
-${_("Start date")} :
-% if c.excavation.start_date:
-  ${c.excavation.start_date.strftime('%d / %m / %Y')}
-% endif
-<br/>
-${_("End date")} :
-% if c.excavation.end_date:
-  ${c.excavation.end_date.strftime('%d / %m / %Y')}
-% endif
-<br/>
-${_("Appreciation")} : ${c.excavation.appreciation}<br/>
+${excavation_display()}
+<br />
 
 <br>________________<br>
 ${h.link_to(_("Edit"), url.current(action='edit', id=c.excavation.excavation_id))} |

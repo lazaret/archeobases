@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/users/base.mako" />
+<%namespace file="/users/user_display.mako" import="*"/>
 ##
 <%def name="page_title()">
   ${_("Addressbook")} - ${_("Admin")} - ${_("Users")} - ${_("Show")}
@@ -11,16 +12,9 @@
 ##
 <!-- users show template -->
 ##
-${_("User name")} : ${c.user.user_name}<br/>
-${_("Display name")} : ${c.user.display_name}<br/>
-${_("Email address")} : ${c.user.email_address}<br/>
-${_("Group")} : ${c.group}<br/>
-${_("Permissions")} :
-## get the list of permissions except the las one, and add a coma
-% for permission in c.permissions[0:-1]:
-  ${permission.permission_name},
-% endfor
-## get the last permission without a coma
-  ${c.permissions[-1].permission_name}<br/>
-${_("Creation date")} : ${c.user.created.strftime('%d / %m / %Y')}
+${user_display()}
+<br />
 
+<br>________________<br>
+${h.link_to(_("Edit"), url.current(action='edit', id=c.user.user_id))} |
+${h.link_to(_("Delete"), url.current(action='confirm_delete', id=c.user.user_id))} |

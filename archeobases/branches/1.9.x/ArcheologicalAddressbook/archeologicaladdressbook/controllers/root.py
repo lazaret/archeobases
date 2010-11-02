@@ -63,12 +63,12 @@ class RootController(BaseController):
 
 ################# tests ####################### TODO REMOVE BELLOW
 #
-#    def environ(self):
-#        result = '<html><body><h1>Environ</h1>'
-#        for key, value in request.environ.items():
-#            result += '%s: %r <br />'% (key, value)
-#        result += '</body></html>'
-#        return result
+    def environ(self):
+        result = '<html><body><h1>Environ</h1>'
+        for key, value in request.environ.items():
+            result += '%s: %r <br />'% (key, value)
+        result += '</body></html>'
+        return result
 
         #flash_message('test success message', 'success')
         #flash_message('test warning message', 'warning')

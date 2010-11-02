@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/addresses/base.mako" />
+<%namespace file="/addresses/address_display.mako" import="*"/>
 ##
 <%def name="page_title()">
   ${_("Addressbook")} - ${_("Persons")} - ${_("Addresses")} - ${_("Show")}
@@ -14,13 +15,8 @@
 ${_("Last name")} : ${c.address.person.last_name}<br/>
 ${_("First name")} : ${c.address.person.first_name}<br/>
 <br/>
-${_("Line 1")} : ${c.address.address_line1}<br/>
-${_("Line 2")} : ${c.address.address_line2}<br/>
-${_("Line 3")} : ${c.address.address_line3}<br/>
-${_("Zip code")} : ${c.address.zip_code}<br/>
-${_("City")} : ${c.address.city}<br/>
-${_("Country")} : ${c.address.country}<br/>
-${_("Address type")} : ${c.address.address_type}<br/>
+${address_display()}
+<br />
 
 <br>________________<br>
 ${h.link_to(_("Edit"), url.current(action='edit', id=c.address.address_id))} |

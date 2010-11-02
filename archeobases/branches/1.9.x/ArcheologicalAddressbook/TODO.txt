@@ -40,10 +40,6 @@ when addres si corectly add the user is send back to show user
 - last changes ?
 - search form ?
 
-tempates:
-- do not display address list in person show if no address
-- move 'show' and 'confirm_delete' info display in a common def template
-(like for forms)
 
 Extend tests :
 - Add test for check_duplicate

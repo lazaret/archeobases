@@ -6,8 +6,8 @@
   ${f.hidden(name="person_id")}
   <fieldset>
     <legend>${_("Person")}</legend>
-    <p><label for="last_name" class="mandatory"> ${_("Last name")} *</label> ${f.text(name="last_name", maxlength=25)}<p/>
-    <p><label for="first_name" class="mandatory"> ${_("First name")} *</label> ${f.text(name="first_name", maxlength=25)}<p/>
+    <p><label for="last_name" class="mandatory"> ${_("Last name")}</label> ${f.text(name="last_name", maxlength=25)}<p/>
+    <p><label for="first_name" class="mandatory"> ${_("First name")}</label> ${f.text(name="first_name", maxlength=25)}<p/>
     <p><label for="title">${_("Title")}</label> ${f.select("title", [("Mr", _("Mr")), ("Mrs", _("Mrs")), ("Miss", _("Miss"))])}<p/>
     <p><label for="birth_date">${_("Birth Date")}</label> ${f.date(name="birth_date")}<p/>
   </fieldset>

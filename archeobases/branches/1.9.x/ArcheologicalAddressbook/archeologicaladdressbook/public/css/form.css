@@ -1,12 +1,122 @@
 /* css styles for forms */
 
-fieldset {
-  background: #FCFCFC;
+article form {
+  padding: 1em 1em 0 1em;
+  border: solid 2px #BBD9EE;
+  background: #EBF4FB;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+}
+
+article fieldset {
   border: 0;
   margin: 0;
-  border-top: 1px solid #CCC;
-  border: 1px solid #EEE;
+  border-top: solid 1px #B7DDF2;
 }
+
+article form label {
+  float: left;
+  width: 15%;
+  padding-right: 7px;
+  text-align: right;
+}
+
+article form .mandatory {
+  font-weight: bold;
+}
+
+/* inputs */
+
+article form input {
+  border: 1px solid #B7DDF2;
+#  border: 1px solid #FFF;
+  padding: 3px;
+  font-size: 16px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-radius-bottomright: 0;
+  -khtml-border-radius-bottomright: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-radius-topright: 0;
+  -khtml-border-radius-topright: 0;
+}
+
+article form input:focus {
+  -moz-box-shadow: -1px 0 6px #bbb;
+}
+
+/*<input id="email_address" name="email_address" type="text" value="" />*/
+
+#birth_date, #start_date, #end_date {
+  background-image: url(/images/calendar_edit.png);
+  background-repeat: no-repeat;
+  background-position: 99%;
+}
+
+
+/* validation error messages */
+
+article form .error {
+  border-top: 1px solid #FFBABA;
+  border-bottom: 1px solid #FFBABA;
+  border-left: 1px solid #FFBABA;
+  -moz-box-shadow: -1px 0 6px #bbb;
+}
+
+article form .error-message {
+  border-top: 1px solid #FFBABA;
+  border-right: 1px solid #FFBABA;
+  border-bottom: 1px solid #FFBABA;
+  background: #FFF6BF;
+  padding: 3px 10px 3px 27px;
+  margin-left: -5px;
+  background-image: url(/images/exclamation.png);
+  background-repeat: no-repeat;
+  background-position: 4px;
+  font-style: italic;
+  font-size: 16px;
+/*  color: #E41B17; */
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-radius-bottomleft: 0;
+  -khtml-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-radius-topleft: 0;
+  -khtml-border-radius-topleft: 0;
+  -moz-box-shadow: 1px 0 6px #bbb;
+  -webkit-box-shadow: 1px 0 6px #ccc;
+  -khtml-box-shadow: 1px 0 6px #ccc;
+}
+
+
+/* form footer & buttons */
+
+form footer {
+  border-top: 1px solid #B7DDF2;
+  text-align: right;
+  padding-top: .5em;
+  padding-bottom: .5em
+}
+
+form footer button {
+  padding:2px 4px 2px 3px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #666;
+}
+
+form footer button img {
+  margin:0 3px -3px 0;
+  padding:0;
+}
+
+
+/*
 
 fieldset:hover {
     border: 1px solid #CCC;
@@ -31,7 +141,7 @@ fieldset p {
 }
 
 /* fieldset footer & buttons */
-
+/*
 form footer {
   background: #F0F8FF;
   margin-top: 15px;
@@ -46,23 +156,4 @@ form footer button {
   cursor: pointer;
   font-weight: bold;
   color: #666;
-}
-
-form footer button img {
-  margin:0 3px -3px 0 !important;
-  padding:0;
-  border:none;
-}
-
-
-fieldset .mandatory {
-  font-weight: bold;
-}
-
-.error-message {
-  padding-left: 18px;
-  background-image: url(/images/exclamation.png);
-  background-repeat: no-repeat;
-  color: #E41B17;
-  font-style: italic;
 }

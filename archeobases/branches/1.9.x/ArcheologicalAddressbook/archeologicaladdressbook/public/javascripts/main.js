@@ -5,10 +5,10 @@
 
 // hide the login panel
 function hidelogin() {
-        $("#login-panel").slideUp(200);
-        $("#login-link").css("-moz-border-radius","0 0 7px 7px");
-        $("#login-link").css("-webkit-border-radius","0 0 7px 7px");
-        $("#login-link").css("-khtml-border-radius","0 0 7px 7px");
+    $("#login-panel").slideUp(200);
+    $("#login-link").css("-moz-border-radius","0 0 7px 7px");
+    $("#login-link").css("-webkit-border-radius","0 0 7px 7px");
+    $("#login-link").css("-khtml-border-radius","0 0 7px 7px");
 }
 
 // manage events to show or hide the login panel
@@ -42,11 +42,13 @@ $(function(){
 
 /** ============ Top flash messages ============ **/
 
-// hide flash messages on close for all and after 3 for success and notice ones
+// hide flash messages on close for all or with delay except for error messages
 $(function(){
-    // slide up #success_message" and #notice_message messages after 4 seconds
+    // slide up #success_message" and #notice_message messages after 3 seconds
     $("#success_message").delay(3000).slideUp(250);
     $("#notice_message").delay(3000).slideUp(250);
+    // slide up #warning_message" and #notice_message messages after 10 seconds
+    $("#warning_message").delay(10000).slideUp(250);
     // slide up messages if closed
     $("div a.close_message").click(function(){
         //stop is used to remove the delay if there is one
@@ -64,10 +66,7 @@ $.datepicker.setDefaults({
     maxDate: '+0D',
     changeYear: true,
     showOtherMonths: true,
-    selectOtherMonths: true,
-    showOn: "both",
-    buttonImageOnly: true,
-    buttonImage: "/images/calendar_edit.png"
+    selectOtherMonths: true
 });
 
 

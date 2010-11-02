@@ -266,7 +266,7 @@ article header#breadcrumb a:hover {
 }
 
 article section {
-  padding: 1em;
+  margin: 1em 0 0 1em;
 }
 
 aside {

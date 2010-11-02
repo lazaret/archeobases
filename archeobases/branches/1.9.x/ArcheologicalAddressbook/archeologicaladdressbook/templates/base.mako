@@ -22,7 +22,9 @@
       ${flash_message()}
     </header>
     <nav id ="navbar">
+      <div id="wrapper">
       ${self.navbar()}
+      </div>
     </nav>
     <section id="main">
       <article>

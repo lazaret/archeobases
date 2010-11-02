@@ -12,6 +12,8 @@
 <!-- persons new template -->
 ##
 ${h.secure_form(url.current(action="create"))}
+  <header>
+  </header>
   ${person_form()}
   <footer>
 ##    <button name="cancel_button" type="submit"><img src="/images/cross.png"/>${_("Cancel")}</button>

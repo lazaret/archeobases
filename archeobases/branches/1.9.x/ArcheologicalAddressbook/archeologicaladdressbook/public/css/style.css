@@ -102,10 +102,9 @@ tfoot th {
 /* --- flash messages styles --- */
 
 #message_box {
-  position: fixed;
-  top: 0; right: 25%;
+  max-width: 1000px;
+  margin: auto;
   z-index: 10;
-  width:50%;
 }
 
 #message_box .close_message {
@@ -114,17 +113,21 @@ tfoot th {
 
 #error_message, #notice_message,
 #success_message, #warning_message {
-  font-weight:bold;
+  margin-right:25%;
   padding:5px;
-  text-align:center;
   background-repeat: no-repeat;
   background-position: 5px center;
+  font-weight:bold;
+  text-align:center;
   border-bottom:1px solid #FFF;
   border-left:1px solid #FFF;
   border-right:1px solid #FFF;
   -moz-border-radius: 0 0 7px 7px;
   -webkit-border-radius: 0 0 7px 7px;
   -khtml-border-radius: 0 0 7px 7px;
+  -moz-box-shadow: 0 0 3px #000;
+  -webkit-box-shadow: 0 0 3px #000;
+  -khtml-box-shadow: 0 0 3px #000;
 }
 
 #error_message {
@@ -170,14 +173,20 @@ header#header a:hover {
 /* --- nav bar styles -- */
 
 nav {
+  padding: 0;
+  border-bottom: 3px solid #BBD9EE;
   background: #BBD9EE;
   font-size: 85%;
-  border-bottom: 3px solid #BBD9EE;
+}
+
+nav #wrapper {
+  margin: auto;
+  max-width: 1000px;
 }
 
 nav ul {
-  margin: 0;
   padding: 0;
+  margin: 0;
   text-align:right;
   list-style-type: none;
   padding-right:25%;
@@ -186,6 +195,7 @@ nav ul {
 nav li {
   display: inline;
   margin-left: 2px;
+
 }
 
 nav a:link, nav a:visited {
@@ -235,6 +245,8 @@ footer#footer a {
 /* --- main styles --- */
 
 section#main {
+  max-width: 1000px;
+  margin: auto;
 }
 
 article {
@@ -244,11 +256,10 @@ article {
 }
 
 article header#breadcrumb {
-  margin: 1em 0 0 1em;
+  margin-top: 1em;
   padding: 3px 15px 3px 15px;
   color: #808080;
   font-size: 85%;
-#  border: 1px solid #EEE;
   background-color: #EEE;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -266,7 +277,7 @@ article header#breadcrumb a:hover {
 }
 
 article section {
-  margin: 1em 0 0 1em;
+  margin-top: 1em;
 }
 
 aside {
@@ -276,10 +287,10 @@ aside {
 
 aside section {
   padding: 1em;
-  margin: 1em 1em 0 1em;
+  margin-top: 1em;
+  margin-left: 1em;
   background : #FFF6BF;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
 }
-

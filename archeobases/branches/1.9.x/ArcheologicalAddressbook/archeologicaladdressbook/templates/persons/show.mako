@@ -30,7 +30,7 @@ ${person_display()}
       <td>${address.city}</td>
       <td>${address.address_type}</td>
       <td>
-      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url(controller='addresses', action='show', id=address.address_id))}
+      ${h.link_to(h.image("/images/page_white_magnify.png", alt=_("show")), url(controller='addresses', action='show', id=address.address_id))}
       ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='addresses', action='edit', id=address.address_id))}
       ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='addresses', action='confirm_delete', id=address.address_id))}
       </td>
@@ -57,9 +57,9 @@ ${person_display()}
       <td>${excavation.end_date.strftime('%d / %m / %Y')}</td>
       <td>${excavation.appreciation}</td>
       <td>
-      ${h.link_to(h.image("/images/magnifier.png", alt=_("show")), url(controller='excavations', action='show', id=address.address_id))}
-      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='excavations', action='edit', id=address.address_id))}
-      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='excavations', action='confirm_delete', id=address.address_id))}
+      ${h.link_to(h.image("/images/page_white_magnify.png", alt=_("show")), url(controller='excavations', action='show', id=excavation.excavation_id))}
+      ${h.link_to(h.image("/images/pencil.png", alt=_("edit")), url(controller='excavations', action='edit', id=excavation.excavation_id))}
+      ${h.link_to(h.image("/images/bin_closed.png", alt=_("delete")), url(controller='excavations', action='confirm_delete', id=excavation.excavation_id))}
       </td>
     </tr>
     % endfor

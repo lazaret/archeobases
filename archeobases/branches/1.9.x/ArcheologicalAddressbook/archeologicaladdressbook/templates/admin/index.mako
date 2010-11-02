@@ -10,11 +10,6 @@
 ##
 <!-- admin index template -->
 ##
-${h.link_to(_("Database"), url(controller='dbadmin'))}
-
-Manage users
-
-Config options
 
 Save / restore database
 

@@ -55,48 +55,36 @@ tfoot th {
 }
 
 
-/* --- top login box styles --- */
+/* --- top user box --- */
 
-#login-link {
-  position: fixed;
-  top: 0px; right: 20px;
-  z-index: 10;
-  display: block;
-  height:21px;
-  background: #2A2A2A;
-  padding: 6px 15px 6px 15px;
-  color: #FFF;
-  -moz-border-radius: 0 0 7px 7px;
-  -webkit-border-radius: 0 0 7px 7px;
-  -khtml-border-radius: 0 0 7px 7px;
+#user_box_wrapper {
+  position: relative;
+  margin: auto;
+  max-width: 1000px;
 }
 
-#login-panel {
-  position: fixed;
-  top: 33px; right: 20px;
-  z-index: 10;
-  padding: 7px 7px 5px 7px;
-  background: #2A2A2A;
-  font-size: 8pt;
+#user_box {
+  position: absolute;
+  top: 0; right: 0;
+  z-index: 8;
+  width: 150px;
+  background: #FFF;
+  padding: 2px 1em 5px 10px;
+  font-size: 90%;
+  color: #454545;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -khtml-border-radius: 0 0 5px 5px;
+}
+
+#user_box header {
+  color: #666;
   font-weight: bold;
-  color: #FFF;
-  display: none;
-  -moz-border-radius: 7px 0 7px 7px;
-  -webkit-border-radius: 7px 0 7px 7px;
-  -khtml-border-radius: 7px 0 7px 7px;
+  border-bottom: 1px solid #E7F1F8;
 }
 
-#login-panel a {
-  color: #FFF;
-}
-
-#login-left {
-  float: left;
-  padding-right: 5px;
-}
-
-#login-right {
-  float: left;
+#user_box a {
+  color: #454545;
 }
 
 /* --- flash messages styles --- */
@@ -108,26 +96,26 @@ tfoot th {
 }
 
 #message_box .close_message {
-  float:right;
+  float: right;
 }
 
 #error_message, #notice_message,
 #success_message, #warning_message {
-  margin-right:25%;
-  padding:5px;
+  margin-right: 25%;
+  padding: 5px;
   background-repeat: no-repeat;
   background-position: 5px center;
-  font-weight:bold;
-  text-align:center;
-  border-bottom:1px solid #FFF;
-  border-left:1px solid #FFF;
-  border-right:1px solid #FFF;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #FFF;
   -moz-border-radius: 0 0 7px 7px;
   -webkit-border-radius: 0 0 7px 7px;
   -khtml-border-radius: 0 0 7px 7px;
-  -moz-box-shadow: 0 0 3px #000;
-  -webkit-box-shadow: 0 0 3px #000;
-  -khtml-box-shadow: 0 0 3px #000;
+  -moz-box-shadow: 0 0 2px #000;
+  -webkit-box-shadow: 0 0 2px #000;
+  -khtml-box-shadow: 0 0 2px #000;
 }
 
 #error_message {
@@ -179,7 +167,7 @@ nav {
   font-size: 85%;
 }
 
-nav #wrapper {
+nav #nav_wrapper {
   margin: auto;
   max-width: 1000px;
 }
@@ -187,15 +175,14 @@ nav #wrapper {
 nav ul {
   padding: 0;
   margin: 0;
-  text-align:right;
+  text-align: right;
   list-style-type: none;
-  padding-right:25%;
+  padding-right: 25%;
 }
 
 nav li {
   display: inline;
   margin-left: 2px;
-
 }
 
 nav a:link, nav a:visited {

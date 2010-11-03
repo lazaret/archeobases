@@ -20,7 +20,7 @@ from archeologicaladdressbook.lib.base import BaseController, render, validate, 
 from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.auth import ProtectController, ProtectAction
 
-from archeologicaladdressbook.model import Session, Person, forms
+from archeologicaladdressbook.model import Session, Person, VoluntaryMember, forms
 
 
 log = logging.getLogger(__name__)
@@ -50,12 +50,19 @@ class PersonsController(BaseController):
             flash_message(_("This record already exist, redirecting to it"), 'warning')
             return redirect(url.current(action='show', id=person.person_id))
 
-# index and list actions
+# index, stats and list actions
 
     @ProtectAction(has_permission('view'))
     def index(self):
         """ Render the persons index template."""
         return render('/persons/index.mako')
+
+    @ProtectAction(has_permission('view'))
+    def stats(self):
+        """ Perform basic countings on `Person` records and display them."""
+        c.person_count = Session.query(Person).count()
+        c.v_member_count = Session.query(VoluntaryMember).count()
+        return render('/persons/stats.mako')
 
     @ProtectAction(has_permission('view'))
     def list(self, id=None):

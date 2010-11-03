@@ -69,6 +69,12 @@ class TestPersonsController(TestController):
             extra_environ={'repoze.what.credentials': self.editor})
         assert 'persons index template' in response, 'person index template is missing or has changed.'
 
+    def test_09_stats_response(self):
+        """ Test response of the `PersonsController` stats page."""
+        response = self.app.get(url(controller='persons', action='stats'),
+            extra_environ={'repoze.what.credentials': self.editor})
+        assert 'persons stats template' in response, 'person stats template is missing or has changed.'
+
     def test_09_list_response(self):
         """ Test response of the `PersonsController` list page."""
         response = self.app.get(url(controller='persons', action='list'),

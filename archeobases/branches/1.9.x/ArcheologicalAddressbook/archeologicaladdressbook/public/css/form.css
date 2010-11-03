@@ -30,7 +30,6 @@ article form .mandatory {
 
 article form input {
   border: 1px solid #B7DDF2;
-#  border: 1px solid #FFF;
   padding: 3px;
   font-size: 16px;
   -moz-border-radius: 5px;
@@ -42,12 +41,16 @@ article form input:focus {
   -moz-box-shadow: -1px 0 6px #bbb;
 }
 
+article form select {
+  padding: 1px;
+  font-size: 15px;
+}
+
 #birth_date, #start_date, #end_date {
   background-image: url(/images/calendar_edit.png);
   background-repeat: no-repeat;
   background-position: 99%;
 }
-
 
 /* validation error messages */
 

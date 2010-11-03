@@ -13,10 +13,12 @@ from sqlalchemy import Column, ForeignKey, UniqueConstraint
 from sqlalchemy.types import Date, Integer, Unicode
 
 from archeologicaladdressbook.model.meta import Base
+from archeologicaladdressbook.lib.history_meta import VersionedMeta
 
 
 class Address(Base):
     """ Address model definition."""
+    __metaclass__ = VersionedMeta # add 'version' and 'timestamp' columns
     __tablename__ = 'address'
     __table_args__  = (UniqueConstraint('person_id', 'address_type'), {})
 

@@ -13,10 +13,12 @@ from sqlalchemy import Column, ForeignKey, UniqueConstraint
 from sqlalchemy.types import Date, Integer, Unicode
 
 from archeologicaladdressbook.model.meta import Base
+from archeologicaladdressbook.lib.history_meta import VersionedMeta
 
 
 class Excavation(Base):
     """ Excavation model definition."""
+    __metaclass__ = VersionedMeta # add 'version' and 'timestamp' columns
     __tablename__ = "excavation"
 
     excavation_id = Column(Integer, autoincrement=True, primary_key=True)

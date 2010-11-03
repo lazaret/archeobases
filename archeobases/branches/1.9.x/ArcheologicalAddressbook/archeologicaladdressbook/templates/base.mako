@@ -1,6 +1,5 @@
 ## -*- coding: utf-8 -*-
 <%namespace file="/lib/flash_message.mako" import="*"/>
-<%namespace file="/lib/login_box.mako" import="*"/>
 ##
 <!DOCTYPE html>
 <html>
@@ -18,12 +17,20 @@
 ##
   <body>
     <header id="header">
-      ${login_box()}
+      % if c.userid:
+      <div id="user_box_wrapper">
+        <div id="user_box">
+          <header>${c.userid}</strong></header>
+          ${h.link_to(_("manage account"), "/account")}<br />
+          ${h.link_to(_("logout"), "/logout")}
+        </div>
+      </div>
+      % endif
       ${flash_message()}
     </header>
     <nav id ="navbar">
-      <div id="wrapper">
-      ${self.navbar()}
+      <div id="nav_wrapper">
+        ${self.navbar()}
       </div>
     </nav>
     <section id="main">

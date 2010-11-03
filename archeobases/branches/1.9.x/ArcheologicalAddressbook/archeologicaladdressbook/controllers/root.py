@@ -16,7 +16,7 @@ from pylons.controllers.util import abort, redirect
 from pylons.i18n.translation import _
 from repoze.what.predicates import is_user
 
-from archeologicaladdressbook.lib.base import BaseController, render
+from archeologicaladdressbook.lib.base import BaseController, render, validate
 from archeologicaladdressbook.lib.helpers import flash_message
 
 
@@ -28,47 +28,51 @@ class RootController(BaseController):
 
     def index(self):
         """ Render the main index page."""
-        c.came_from = request.params.get('came_from') or url('/')
-        return render('index.mako')
+        credentials = request.environ.get('repoze.what.credentials', False)
+        if credentials:
+            return render('index.mako')
+        else:
+            redirect(url.current(action='login'))
 
     def login(self):
-        """ Redirect logins to the index page."""
-        # We do not have a special login page,
-        # login is done only with the login box
-        came_from = request.params.get('came_from') or url('/')
-        redirect(url(controller='root', action='index', came_from=came_from))
+        """ Render the login page."""
+        credentials = request.environ.get('repoze.what.credentials', False)
+        if credentials:
+            redirect(url.current(action='index'))
+        else:
+            return render('login.mako')
 
     def post_login(self):
         """ Post login action.
 
         If the credentials are good the user is connected and redirect to the
-        page he comme from. If they are wrong the user his resend to login.
+        main index page . If they are wrong the user his resend to login.
         """
-        came_from = str(request.params.get('came_from', '')) or url('/')
         credentials = request.environ.get('repoze.what.credentials', False)
         if credentials:
             userid = credentials['repoze.what.userid']
             flash_message(_("Successful login, %s!") % userid)
-            redirect(url(came_from))
+            redirect(url.current(action='index'))
         else:
             flash_message(_("Wrong credentials"), 'warning')
-            redirect(url('/login', came_from=came_from))
+            redirect(url.current(action='login'))
 
     def post_logout(self):
-        """ Post logout action."""
-        flash_message(_("You have been logout !"), 'success')
-        redirect(url('/'))
+        """ Post logout action.
 
+        User is resend to login page after logout."""
+        flash_message(_("You have been logout !"), 'success')
+        redirect(url.current(action='login'))
 
 
 ################# tests ####################### TODO REMOVE BELLOW
 #
-    def environ(self):
-        result = '<html><body><h1>Environ</h1>'
-        for key, value in request.environ.items():
-            result += '%s: %r <br />'% (key, value)
-        result += '</body></html>'
-        return result
+#    def environ(self):
+#        result = '<html><body><h1>Environ</h1>'
+#        for key, value in request.environ.items():
+#            result += '%s: %r <br />'% (key, value)
+#        result += '</body></html>'
+#        return result
 
         #flash_message('test success message', 'success')
         #flash_message('test warning message', 'warning')

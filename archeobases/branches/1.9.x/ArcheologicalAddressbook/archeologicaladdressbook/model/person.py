@@ -12,11 +12,14 @@
 `voluntary_member` is a joined table inheritance of `person`.
 """
 
+from datetime import datetime
+
 from sqlalchemy import Column, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
-from sqlalchemy.types import Date, Integer, Unicode
+from sqlalchemy.types import Date, DateTime, Integer, Unicode
 
 from archeologicaladdressbook.model.meta import Base
+from archeologicaladdressbook.lib.history_meta import VersionedMeta
 from archeologicaladdressbook.model.address import Address
 from archeologicaladdressbook.model.excavation import Excavation
 from archeologicaladdressbook.model.photo import Photo
@@ -24,6 +27,7 @@ from archeologicaladdressbook.model.photo import Photo
 
 class Person(Base):
     """ Person model definition."""
+    __metaclass__ = VersionedMeta # add 'version' and 'timestamp' columns
     __tablename__ = 'person'
     __table_args__  = (UniqueConstraint('last_name', 'first_name'), {})
 
@@ -39,6 +43,8 @@ class Person(Base):
     # discriminator used for inheritance and polymorphism
     person_type = Column(Unicode(16), nullable=False)
 
+    # TODO add user version tracking
+
     # child relations
     addresses = relationship(Address, backref='person', cascade='all, delete-orphan')
     excavations = relationship(Excavation, backref='person', cascade='all, delete-orphan')
@@ -52,6 +58,7 @@ class Person(Base):
 
 class VoluntaryMember(Person):
     """ VoluntaryMember model definition."""
+    # this is versioned too thanks to inheritance
     __tablename__ = 'voluntary_member'
     __table_args__  = (UniqueConstraint('member_number'), {})
     __mapper_args__ = {'polymorphic_identity': u'voluntary_member'}

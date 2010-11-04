@@ -10,7 +10,7 @@
 <!-- root login template -->
 ##
 <section>
-  ${h.form(url("/login_handler"))}
+  ${h.form(url("/login_handler"), class_="login")}
     <header>
     </header>
     <fieldset>

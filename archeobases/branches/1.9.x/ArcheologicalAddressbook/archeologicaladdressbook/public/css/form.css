@@ -1,7 +1,8 @@
 /* css styles for forms */
 
+
 article form {
-  padding: 1em 1em 0 1em;
+  padding: 0.5em 0.5em 0 0.5em;
   border: solid 2px #BBD9EE;
   background: #EBF4FB;
   -moz-border-radius: 5px;
@@ -9,15 +10,22 @@ article form {
   -khtml-border-radius: 5px;
 }
 
-article fieldset {
+article form.login{
+  max-width: 500px;
+  margin: auto;
+  margin-top: 5em;
+}
+
+article form fieldset {
   border: 0;
   margin: 0;
+  padding: 0;
   border-top: solid 1px #B7DDF2;
 }
 
 article form label {
   float: left;
-  width: 15%;
+  width: 20%;
   padding-right: 7px;
   text-align: right;
 }
@@ -28,10 +36,16 @@ article form .mandatory {
 
 /* inputs */
 
+fieldset p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+
 article form input {
   border: 1px solid #B7DDF2;
-  padding: 3px;
-  font-size: 16px;
+  padding: 2px;
+  font-size: 14px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -43,7 +57,7 @@ article form input:focus {
 
 article form select {
   padding: 1px;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 #birth_date, #start_date, #end_date {
@@ -72,13 +86,12 @@ article form .error-message {
   border-right: 1px solid #FFBABA;
   border-bottom: 1px solid #FFBABA;
   background: #FFF6BF;
-  padding: 3px 10px 3px 27px;
+  padding: 2px 10px 2px 27px;
   margin-left: -5px;
   background-image: url(/images/exclamation.png);
   background-repeat: no-repeat;
   background-position: 4px;
-  font-size: 16px;
-/*  color: #E41B17; */
+  font-size: 14px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -115,45 +128,17 @@ form footer button img {
   padding:0;
 }
 
+/* collapsible fielsets */
 
-/*
 
-fieldset:hover {
-    border: 1px solid #CCC;
+fieldset.collapsed {
+  border: 0px;
 }
 
-fieldset legend{
-  color: #888;
-  font-weight: bold;
+fieldset.collapsible {
+  border-top: solid 1px #B7DDF2;
 }
 
-fieldset label {
-  float: left;
-  width: 20%;
-  margin-right : 7px;
-  text-align: right;
-  line-height: 1.8;
-}
-
-fieldset p {
-  margin: 0;
-  line-height: 1.8;
-}
-
-/* fieldset footer & buttons */
-/*
-form footer {
-  background: #F0F8FF;
-  margin-top: 15px;
-  padding: .5em;
-  border-top: 1px solid #C2E1EF;
-  text-align: right;
-}
-
-form footer button {
-  margin: 0 5px 0 0;
-  padding:1px 4px 1px 3px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #666;
+fieldset.collapsible b {
+  display: none;
 }

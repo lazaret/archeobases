@@ -1,45 +1,6 @@
 /** ================== jQuery javascript functions ================== **/
 
 
-/** ============ Top login box panel ============ **/
-
-// hide the login panel
-function hidelogin() {
-    $("#login-panel").slideUp(200);
-    $("#login-link").css("-moz-border-radius","0 0 7px 7px");
-    $("#login-link").css("-webkit-border-radius","0 0 7px 7px");
-    $("#login-link").css("-khtml-border-radius","0 0 7px 7px");
-}
-
-// manage events to show or hide the login panel
-$(function(){
-    $("#login-link").click(function(){
-    if ($("#login-panel").is(':hidden')){
-        $("#login-panel").slideDown(200);
-        $("#login-link").css("padding-bottom","6px");
-        $("#login-link").css("-moz-border-radius","0");
-        $("#login-link").css("-webkit-border-radius","0");
-        $("#login-link").css("-khtml-border-radius","0");
-    }
-    else{
-        hidelogin();
-    }
-    return false;
-    });
-    $('#login-panel').click(function(e){
-        e.stopPropagation();
-    });
-    $(document).click(function(){
-        hidelogin();
-    });
-    $(document).keydown(function(e){
-        if (e.keyCode == 27){
-            hidelogin();
-        }
-    });
-});
-
-
 /** ============ Top flash messages ============ **/
 
 // hide flash messages on close for all or with delay except for error messages
@@ -75,4 +36,22 @@ $(function() {
     $("#birth_date").datepicker();
     $("#start_date").datepicker();
     $("#end_date").datepicker();
+    $("#last_fee_date").datepicker();
 });
+
+
+/** ============== Forms =============== **/
+
+// add collapsible fielsets
+// .collapsible and .collapsed classes must
+// be set on fieldsets elements
+
+$(function() {
+    $(".collapsed").children().not("legend").hide();
+    $("legend").click(function(){
+        $(this).parent(".collapsed").children().not("legend").slideToggle(300);
+        $(this).parent(".collapsed").toggleClass("collapsible");
+    });
+});
+
+

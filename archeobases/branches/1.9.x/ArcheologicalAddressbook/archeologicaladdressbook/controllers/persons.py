@@ -20,7 +20,7 @@ from archeologicaladdressbook.lib.base import BaseController, render, validate, 
 from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.auth import ProtectController, ProtectAction
 
-from archeologicaladdressbook.model import Session, Person, VoluntaryMember, forms
+from archeologicaladdressbook.model import Session, Person, PersonHistory, VoluntaryMember, forms
 
 
 log = logging.getLogger(__name__)
@@ -83,6 +83,7 @@ class PersonsController(BaseController):
         """ Display a person record."""
         c.person = Session.query(Person).get(id)
         if c.person:
+            c.person_history = Session.query(PersonHistory).all()
             return render('/persons/show.mako')
         else:
             flash_message(_("This record did not exist"), 'warning')

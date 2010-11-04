@@ -23,7 +23,7 @@ def init_model(engine):
 
 # import tables classes
 from archeologicaladdressbook.model.auth import User, Group, Permission
-from archeologicaladdressbook.model.person import Person, VoluntaryMember
+from archeologicaladdressbook.model.person import Person, VoluntaryMember, PersonHistory
 from archeologicaladdressbook.model.excavation import Excavation
 from archeologicaladdressbook.model.address import Address
 from archeologicaladdressbook.model.photo import Photo

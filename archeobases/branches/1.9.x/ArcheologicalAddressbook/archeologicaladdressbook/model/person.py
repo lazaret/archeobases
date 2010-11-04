@@ -66,3 +66,6 @@ class VoluntaryMember(Person):
     voluntary_member_id = Column(Integer, ForeignKey('person.person_id'), primary_key=True)
     member_number = Column(Integer, nullable=False)
     last_fee_date = Column(Date, nullable=False)
+
+
+PersonHistory = Person.__history_mapper__.class_

@@ -93,7 +93,7 @@ def _history_mapper(local_mapper):
 
     if not super_history_mapper:
         cls.version = Column('version', Integer, default=1, nullable=False)
-        cls.timestamp = Column('timestamp', DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+        cls.timestamp = Column('timestamp', DateTime, default=datetime.datetime.now)
 
 
 class VersionedMeta(DeclarativeMeta):
@@ -129,6 +129,8 @@ def create_version(obj, session, deleted = False):
 
         for hist_col in hm.local_table.c:
             if hist_col.key == 'version':
+                continue
+            if hist_col.key == 'timestamp':
                 continue
 
             obj_col = om.local_table.c[hist_col.key]
@@ -167,11 +169,13 @@ def create_version(obj, session, deleted = False):
         return
 
     attr['version'] = obj.version
+    attr['timestamp'] = obj.timestamp
     hist = history_cls()
     for key, value in attr.iteritems():
         setattr(hist, key, value)
     session.add(hist)
     obj.version += 1
+    obj.timestamp = datetime.datetime.now()
 
 
 class VersionedListener(SessionExtension):

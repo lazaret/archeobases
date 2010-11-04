@@ -37,7 +37,9 @@ when addres si corectly add the user is send back to show user
 - last changes ?
 - search form ?
 
-
-Extend tests :
+* Extend tests :
 - Add test for check_duplicate
-- Add tests for login page
+
+
+* Check label form css align
+to test -> change .login class to max-width: <500px

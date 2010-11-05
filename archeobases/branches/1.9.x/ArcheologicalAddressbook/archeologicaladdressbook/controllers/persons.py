@@ -15,6 +15,7 @@ from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 from pylons.i18n.translation import _
 from repoze.what.predicates import has_any_permission, has_permission
+from sqlalchemy.sql import desc
 
 from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
 from archeologicaladdressbook.lib.helpers import flash_message, paginate
@@ -37,15 +38,15 @@ class PersonsController(BaseController):
         and `first_name` with another `person_id`. If there is one redirect to the
         `show` action for this entry.
         """
-        # Limitation : This check actualy forbid homonyms
+        # Limitation : Database model actualy forbid homonyms
         # We prefer do to this manualy instead of using FormEncode so it's more
         # easy to redirect to the already existing record
-        f_name = form_result['first_name']
-        l_name = form_result['last_name']
+        last_name = form_result['last_name']
+        first_name = form_result['first_name']
         person = Session.query(Person). \
             filter(Person.person_id!=id). \
-            filter(Person.first_name==f_name). \
-            filter(Person.last_name==l_name).first()
+            filter(Person.last_name==last_name). \
+            filter(Person.first_name==first_name).first()
         if person:
             flash_message(_("This record already exist, redirecting to it"), 'warning')
             return redirect(url.current(action='show', id=person.person_id))
@@ -55,6 +56,8 @@ class PersonsController(BaseController):
     @ProtectAction(has_permission('view'))
     def index(self):
         """ Render the persons index template."""
+        # get last changes for persons
+        c.person = Session.query(Person).order_by(desc(Person.timestamp)).limit(10)
         return render('/persons/index.mako')
 
     @ProtectAction(has_permission('view'))

@@ -25,7 +25,7 @@ user is at "show user" and click link to add an user address
 when addres si corectly add the user is send back to show user
 (or assume to send it back here always ?)
 
-* Finish search feature
+* Add a more complete search feature
 
 * Add database changes tracking for photos ?
 - decide who can rollback
@@ -35,7 +35,6 @@ when addres si corectly add the user is send back to show user
 
 * Use index pages and/or replace by lists
 - last changes ?
-- search form ?
 
 * Extend tests :
 - Add test for check_duplicate

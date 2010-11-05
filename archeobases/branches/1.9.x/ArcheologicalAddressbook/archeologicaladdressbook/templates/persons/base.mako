@@ -24,7 +24,7 @@
     ${h.image("/images/table.png", alt=_("List persons"))}
     ${h.link_to(_("List persons"), url(controller='persons', action='list'))}<br/>
     ${h.image("/images/magnifier.png", alt=_("Add new person"))}
-    Search<br/>
+    ${h.link_to(_("Search"), url(controller='search'))}<br/>
     ${h.image("/images/chart_bar.png", alt=_("statistics"))}
     ${h.link_to(_("Statistics"), url(controller='persons', action='stats'))}<br/>
   </section>

@@ -42,3 +42,12 @@ when addres si corectly add the user is send back to show user
 
 * Check label form css align
 to test -> change .login class to max-width: <500px
+
+* be more explicit in person model to take care of asian names
+replace :
+first_name -> given_name
+last_name -> family_name
+- Add a tip in template
+
+* check than person>address ; person>excavation and person>photo
+are realy one-to-many

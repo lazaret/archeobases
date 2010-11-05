@@ -27,3 +27,11 @@ class Excavation(Base):
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
     appreciation = Column(Unicode(25))
+
+    # Special methods
+    def __repr__(self):
+        return ('<Excavation: site=%r, date=%r>' % (
+                self.site_name, self.start_date)).encode('utf-8')
+
+    def __unicode__(self):
+         return '%s %s' % (self.site_name, self.start_date)

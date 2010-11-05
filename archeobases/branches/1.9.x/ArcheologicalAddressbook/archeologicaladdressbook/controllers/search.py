@@ -17,8 +17,10 @@ from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
 
 from archeologicaladdressbook.lib.base import BaseController, render
+from archeologicaladdressbook.lib.helpers import flash_message, paginate
 from archeologicaladdressbook.lib.auth import ProtectController
 
+from archeologicaladdressbook.model import Session, Person
 
 log = logging.getLogger(__name__)
 
@@ -31,3 +33,24 @@ class SearchController(BaseController):
         """ Render the search index template."""
         return render('/search/index.mako')
 
+    def quick_search(self):
+        """ Search on `Persons` based on `last_name` and `first_name` only."""
+        last_name = request.params.get('last_name', '')
+        first_name = request.params.get('first_name', '')
+        # query contruction
+        query = Session.query(Person)
+        if last_name:
+            query = query.filter(Person.last_name.ilike(last_name))
+        if first_name:
+            query = query.filter(Person.first_name.ilike(first_name))
+        c.page = paginate.Page(query, page=id, items_per_page=20)
+        return render('/persons/list.mako')
+
+
+# or_ search reminder for future more complete search feature
+#
+# from sqlalchemy.sql import and_, or_
+#
+# query = Session.query(Person). \
+#              filter(or_(Person.last_name.ilike(last_name)), \
+#              (Person.first_name.ilike(first_name)))

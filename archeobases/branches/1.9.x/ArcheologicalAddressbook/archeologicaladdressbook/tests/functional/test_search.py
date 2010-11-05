@@ -19,6 +19,7 @@ class TestSearchController(TestController):
         """ Test the routes of the `SearchController` controller."""
         self.app.get(url(controller='search'))
         self.app.get(url(controller='search', action='index'))
+        self.app.get(url(controller='search', action='quick_search'))
 
     def test_02_controller_denied_for_anonymous(self):
         """ Test than the `SearchController` controller is denied to anonymous."""

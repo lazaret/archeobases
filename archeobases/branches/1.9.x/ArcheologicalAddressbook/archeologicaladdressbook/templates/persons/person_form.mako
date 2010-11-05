@@ -22,9 +22,9 @@
     <p><label for="activity">${_("Activity")}</label> ${f.text(name="activity", maxlength=25)}<p/>
   </fieldset>
 
-  <fieldset class="collapsed">
-    <legend>${_("Member")}</legend>
-    <p><label for="member_number">${_("Member number")}</label> ${f.text(name="member_number")}<p/>
-    <p><label for="last_fee_date">${_("Last fee date")}</label> ${f.date(name="last_fee_date")}<p/>
-  </fieldset>
+##  <fieldset class="collapsed">
+##    <legend>${_("Member")}</legend>
+##    <p><label for="member_number">${_("Member number")}</label> ${f.text(name="member_number")}<p/>
+##    <p><label for="last_fee_date">${_("Last fee date")}</label> ${f.date(name="last_fee_date")}<p/>
+##  </fieldset>
 </%def>

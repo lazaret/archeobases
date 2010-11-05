@@ -55,6 +55,15 @@ class Person(Base):
     # add polymorphism args for joined table inheritance with `VoluntaryMember`
     __mapper_args__ = {'polymorphic_on': person_type, 'polymorphic_identity': u'person'}
 
+    # Special methods
+    def __repr__(self):
+        return ('<Person: surname=%r, forename=%r>' % (
+                self.last_name, self.first_name)).encode('utf-8')
+
+    def __unicode__(self):
+         return '%s %s' % (self.last_name, self.first_name)
+
+
 
 class VoluntaryMember(Person):
     """ VoluntaryMember model definition."""

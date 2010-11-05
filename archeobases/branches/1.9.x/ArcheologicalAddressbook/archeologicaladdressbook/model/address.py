@@ -32,3 +32,11 @@ class Address(Base):
     country = Column(Unicode(25))
     # Type: home/business/correspondent
     address_type = Column(Unicode(13), nullable=False)
+
+    # Special methods
+    def __repr__(self):
+        return ('Address: street=%r, city=%r>' % (
+                self.address_line1, self.city)).encode('utf-8')
+
+    def __unicode__(self):
+         return '%s %s' % (self.address_line1, self.city)

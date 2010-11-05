@@ -25,3 +25,9 @@ class Photo(Base):
     # hash generated image file path on the filesystem
     path = Column(Unicode(255), nullable=False)
 
+    # Special methods
+    def __repr__(self):
+        return ('<Photo: path=%r>' % (self.path)).encode('utf-8')
+
+    def __unicode__(self):
+         return '%s' % (self.path)

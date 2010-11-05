@@ -10,8 +10,10 @@
 from sqlalchemy.ext.declarative import DeclarativeMeta
 from sqlalchemy.orm import mapper, class_mapper, attributes, object_mapper
 from sqlalchemy.orm.exc import UnmappedClassError, UnmappedColumnError
-from sqlalchemy import Table, Column, ForeignKeyConstraint, Integer, DateTime
+from sqlalchemy import Table, Column, ForeignKeyConstraint, Integer, DateTime, Unicode
 from sqlalchemy.orm.interfaces import SessionExtension
+
+from pylons import tmpl_context as c
 
 import datetime
 
@@ -57,9 +59,11 @@ def _history_mapper(local_mapper):
             super_fks.append(('version', super_history_mapper.base_mapper.local_table.c.version))
             cols.append(Column('version', Integer, primary_key=True))
             cols.append(Column('timestamp', DateTime))
+            cols.append(Column('user_name', Unicode(16)))
         else:
             cols.append(Column('version', Integer, primary_key=True))
             cols.append(Column('timestamp', DateTime))
+            cols.append(Column('user_name', Unicode(16)))
 
         if super_fks:
             cols.append(ForeignKeyConstraint(*zip(*super_fks)))
@@ -94,6 +98,7 @@ def _history_mapper(local_mapper):
     if not super_history_mapper:
         cls.version = Column('version', Integer, default=1, nullable=False)
         cls.timestamp = Column('timestamp', DateTime, default=datetime.datetime.now)
+        cls.user_name = Column('user_name', Unicode(16), default='unknown')
 
 
 class VersionedMeta(DeclarativeMeta):
@@ -131,6 +136,8 @@ def create_version(obj, session, deleted = False):
             if hist_col.key == 'version':
                 continue
             if hist_col.key == 'timestamp':
+                continue
+            if hist_col.key == 'user_name':
                 continue
 
             obj_col = om.local_table.c[hist_col.key]
@@ -170,12 +177,14 @@ def create_version(obj, session, deleted = False):
 
     attr['version'] = obj.version
     attr['timestamp'] = obj.timestamp
+    attr['user_name'] = obj.user_name
     hist = history_cls()
     for key, value in attr.iteritems():
         setattr(hist, key, value)
     session.add(hist)
     obj.version += 1
     obj.timestamp = datetime.datetime.now()
+    obj.user_name = c.userid
 
 
 class VersionedListener(SessionExtension):

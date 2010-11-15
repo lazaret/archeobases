@@ -9,8 +9,12 @@
 #
 """ SQLAlchemy model definition for photos."""
 
-from sqlalchemy import Column, ForeignKey, UniqueConstraint
-from sqlalchemy.types import Date, Integer, Unicode
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+from sqlalchemy import UniqueConstraint
+from sqlalchemy.types import Date
+from sqlalchemy.types import Integer
+from sqlalchemy.types import Unicode
 
 from archeologicaladdressbook.model.meta import Base
 
@@ -27,7 +31,7 @@ class Photo(Base):
 
     # Special methods
     def __repr__(self):
-        return ('<Photo: path=%r>' % (self.path)).encode('utf-8')
+        return ("<Photo: path=%r>" % (self.path)).encode('utf-8')
 
     def __unicode__(self):
-         return '%s' % (self.path)
+         return "%s" % (self.path)

@@ -9,16 +9,18 @@
 #
 """ SQLAlchemy model definition for addresses."""
 
-from sqlalchemy import Column, ForeignKey, UniqueConstraint
-from sqlalchemy.types import Date, Integer, Unicode
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+from sqlalchemy import UniqueConstraint
+from sqlalchemy.types import Date
+from sqlalchemy.types import Integer
+from sqlalchemy.types import Unicode
 
 from archeologicaladdressbook.model.meta import Base
-from archeologicaladdressbook.lib.history_meta import VersionedMeta
 
 
 class Address(Base):
     """ Address model definition."""
-    __metaclass__ = VersionedMeta # add 'version' and 'timestamp' columns
     __tablename__ = 'address'
     __table_args__  = (UniqueConstraint('person_id', 'address_type'), {})
 
@@ -35,8 +37,8 @@ class Address(Base):
 
     # Special methods
     def __repr__(self):
-        return ('Address: street=%r, city=%r>' % (
+        return ("Address: street=%r, city=%r>" % (
                 self.address_line1, self.city)).encode('utf-8')
 
     def __unicode__(self):
-         return '%s %s' % (self.address_line1, self.city)
+         return "%s %s" % (self.address_line1, self.city)

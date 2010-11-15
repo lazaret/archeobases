@@ -13,36 +13,29 @@
 ##
 ${person_display()}
 
-<br />
-Version : ${c.person.version}<br />
-Last change : ${c.person.timestamp.strftime('%d/ %m / %Y %H:%M')}
-<br />
+##<br />
+##Version : ${c.person.version}<br />
+##Last change : ${c.person.timestamp.strftime('%d/ %m / %Y %H:%M')}
+##<br />
 
-% if c.person_history:
-<table>
-  <thead>
-    <th>${_("Last name")}</th>
-    <th>${_("First name")}</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </thead>
-  <tbody>
-    % for person in c.person_history:
-    <tr>
-      <td>${person.last_name}</td>
-      <td>${person.first_name}</td>
-      <td>${person.title}</td>
-      <td>${person.email_address}</td>
-      <td>${person.timestamp}</td>
-      <td> roolback </td>
-    </tr>
-    % endfor
-  </tbody>
-</table>
-% endif
+##% if c.audit:
+##<table>
+##  <thead>
+##    <th>${_("Type")}</th>
+##    <th>${_("User")}</th>
+##    <th>${_("Date")}</th>
+##  </thead>
+##  <tbody>
+##    % for audit in c.audit:
+##    <tr>
+##      <td>${audit.type}</td>
+##      <td>${audit.user}</td>
+##      <td>${audit.timestamp.strftime('%d %b %Y %H:%M')}</td>
+##    </tr>
+##    % endfor
+##  </tbody>
+##</table>
+##% endif
 
 % if c.person.addresses:
 <table>

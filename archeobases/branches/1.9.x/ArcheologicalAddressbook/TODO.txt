@@ -51,3 +51,9 @@ last_name -> family_name
 
 * check than person>address ; person>excavation and person>photo
 are realy one-to-many
+
+* move history_meta inside model because is part of it
+maybe rewrite it too
+
+* avoid usage of c.userid inside the audit models. try to find a way to
+send it as argument

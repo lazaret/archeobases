@@ -11,17 +11,34 @@
 
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect
+from pylons import request
+from pylons import response
+from pylons import session
+from pylons import tmpl_context as c
+from pylons import url
+from pylons.controllers.util import abort
+from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
-from repoze.what.predicates import has_any_permission, has_permission
+
+from repoze.what.predicates import has_any_permission
+from repoze.what.predicates import has_permission
 from sqlalchemy.sql import desc
 
-from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
-from archeologicaladdressbook.lib.helpers import flash_message, paginate
-from archeologicaladdressbook.lib.auth import ProtectController, ProtectAction
+from archeologicaladdressbook.lib.base import BaseController
+from archeologicaladdressbook.lib.base import render
+from archeologicaladdressbook.lib.base import validate
+from archeologicaladdressbook.lib.base import authenticate_form
+from archeologicaladdressbook.lib.helpers import flash_message
+from archeologicaladdressbook.lib.helpers import paginate
+from archeologicaladdressbook.lib.auth import ProtectController
+from archeologicaladdressbook.lib.auth import ProtectAction
 
-from archeologicaladdressbook.model import Session, Person, PersonHistory, VoluntaryMember, forms
+from archeologicaladdressbook.model import Session
+from archeologicaladdressbook.model import Person
+from archeologicaladdressbook.model import VoluntaryMember
+from archeologicaladdressbook.model import forms
+
+#from archeologicaladdressbook.model import Audit
 
 
 log = logging.getLogger(__name__)
@@ -57,7 +74,7 @@ class PersonsController(BaseController):
     def index(self):
         """ Render the persons index template."""
         # get last changes for persons
-        c.person = Session.query(Person).order_by(desc(Person.timestamp)).limit(10)
+        #c.person = Session.query(Person).order_by(desc(Person.timestamp)).limit(10)
         return render('/persons/index.mako')
 
     @ProtectAction(has_permission('view'))
@@ -85,8 +102,8 @@ class PersonsController(BaseController):
     def show(self, id=None):
         """ Display a person record."""
         c.person = Session.query(Person).get(id)
+        #c.audit = Session.query(Audit).filter(Audit.modelname=='Person').all()
         if c.person:
-            c.person_history = Session.query(PersonHistory).all()
             return render('/persons/show.mako')
         else:
             flash_message(_("This record did not exist"), 'warning')

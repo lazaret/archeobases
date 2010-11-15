@@ -9,17 +9,19 @@
 #
 """ SQLAlchemy model definition for excavation sites."""
 
-from sqlalchemy import Column, ForeignKey, UniqueConstraint
-from sqlalchemy.types import Date, Integer, Unicode
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+from sqlalchemy import UniqueConstraint
+from sqlalchemy.types import Date
+from sqlalchemy.types import Integer
+from sqlalchemy.types import Unicode
 
 from archeologicaladdressbook.model.meta import Base
-from archeologicaladdressbook.lib.history_meta import VersionedMeta
 
 
 class Excavation(Base):
     """ Excavation model definition."""
-    __metaclass__ = VersionedMeta # add 'version' and 'timestamp' columns
-    __tablename__ = "excavation"
+    __tablename__ = 'excavation'
 
     excavation_id = Column(Integer, autoincrement=True, primary_key=True)
     person_id = Column(Integer, ForeignKey('person.person_id'))
@@ -30,8 +32,8 @@ class Excavation(Base):
 
     # Special methods
     def __repr__(self):
-        return ('<Excavation: site=%r, date=%r>' % (
+        return ("<Excavation: site=%r, date=%r>" % (
                 self.site_name, self.start_date)).encode('utf-8')
 
     def __unicode__(self):
-         return '%s %s' % (self.site_name, self.start_date)
+         return "%s %s" % (self.site_name, self.start_date)

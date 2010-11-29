@@ -39,55 +39,56 @@ def setup_app(command, conf, vars):
     try:
         # add rights for administrative tasks
         manage_user = model.User()
-        manage_user.user_name = u'manager'
-        manage_user.display_name = u'Default manager'
-        manage_user.email_address = u'manager@somedomain.com'
-        manage_user.password = u'managepass'
+        manage_user.user_name = u"manager"
+        manage_user.display_name = u"Default manager"
+        manage_user.email_address = u"manager@somedomain.com"
+        manage_user.password = u"managepass"
         Session.add(manage_user)
 
         manage_group = model.Group()
-        manage_group.group_name = u'managers'
-        manage_group.display_name = u'Managers group'
+        manage_group.group_name = u"managers"
+        manage_group.display_name = u"Managers group"
         manage_group.users.append(manage_user)
         Session.add(manage_group)
 
         manage_permission = model.Permission()
-        manage_permission.permission_name = u'manage'
-        manage_permission.description = u'This permission give an administrative right'
+        manage_permission.permission_name = u"manage"
+        manage_permission.description = u"This permission give an \
+            administrative right"
         manage_permission.groups.append(manage_group)
         Session.add(manage_permission)
 
         # add rights for editing tasks
         edit_user = model.User()
-        edit_user.user_name = u'editor'
-        edit_user.display_name = u'Default editor'
-        edit_user.email_address = u'editor@somedomain.com'
-        edit_user.password = u'editorpass'
+        edit_user.user_name = u"editor"
+        edit_user.display_name = u"Default editor"
+        edit_user.email_address = u"editor@somedomain.com"
+        edit_user.password = u"editorpass"
         Session.add(edit_user)
 
         edit_group = model.Group()
-        edit_group.group_name = u'editors'
-        edit_group.display_name = u'Editors group'
+        edit_group.group_name = u"editors"
+        edit_group.display_name = u"Editors group"
         edit_group.users.append(edit_user)
         Session.add(edit_group)
 
         edit_permission = model.Permission()
-        edit_permission.permission_name = u'edit'
-        edit_permission.description = u'This permission give an editing right'
+        edit_permission.permission_name = u"edit"
+        edit_permission.description = u"This permission give an editing right"
         edit_permission.groups.append(edit_group)
         edit_permission.groups.append(manage_group)
         Session.add(edit_permission)
 
         # add rights for guests viewers
         guest_group = model.Group()
-        guest_group.group_name = u'guests'
-        guest_group.display_name = u'Guests group'
+        guest_group.group_name = u"guests"
+        guest_group.display_name = u"Guests group"
         Session.add(edit_group)
 
         # limited view this permission for guests
         view_permission = model.Permission()
-        view_permission.permission_name = u'view'
-        view_permission.description = u'This permission give a viewing right'
+        view_permission.permission_name = u"view"
+        view_permission.description = u"This permission give a viewing right"
         view_permission.groups.append(guest_group)
         view_permission.groups.append(edit_group)
         view_permission.groups.append(manage_group)
@@ -97,10 +98,7 @@ def setup_app(command, conf, vars):
         Session.commit()
         log.info("Adding default users, groups and permissions done.")
     except IntegrityError:
-        log.error("There was a problem adding default datas, it may have already been added:")
+        log.error("There was a problem adding default datas, it may have \
+            already been added:")
         import traceback
         print traceback.format_exc()
-
-
-
-

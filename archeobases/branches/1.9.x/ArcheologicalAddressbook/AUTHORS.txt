@@ -1,5 +1,6 @@
 
-This package is maintained by the The LDPL (Laboratoire Départemental de Préhistoire du Lazaret)
+This package is maintained by the The LDPL (Laboratoire Départemental de 
+Préhistoire du Lazaret)
 
 
 Contributors

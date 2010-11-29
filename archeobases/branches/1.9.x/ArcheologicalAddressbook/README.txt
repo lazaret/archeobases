@@ -2,7 +2,8 @@
 Archeological Addressbook
 =========================
 
-ArcheologicalAddressbook is a Pylons web application for contact address management.
+ArcheologicalAddressbook is a Pylons web application for contact address
+management.
 
 Most of the recorded informations are very commons for address books:
  * Name, firstname, birthdate
@@ -14,12 +15,13 @@ But some are very specific informations:
  * Archeological excavations informations
 
 Datas are keep in a relational database.
-By default it use SQLite, but you normaly can use all the SQL engines recognised by SQLAlchemy.
+By default it use SQLite, but you normaly can use all the SQL engines
+recognised by SQLAlchemy.
 
-The main objective of the application is to track contact addresses but also the contacts history
-as voluntary member and/or excavators.
+The main objective of the application is to track contact addresses but also
+the contacts history as voluntary member and/or excavators.
 
 
 Icons used in the templates come from :
-- FamFam Silk Icons 1.3 by Mark James - http://www.famfamfam.com/lab/icons/silk/
-- Nuvola icon set 1.0 by David Vignoni - http://www.icon-king.com/projects/nuvola/
+- FamFam Silk Icons 1.3 by Mark James http://www.famfamfam.com/lab/icons/silk/
+- Nuvola icon set 1.0 by David Vignoni http://www.icon-king.com/projects/nuvola/

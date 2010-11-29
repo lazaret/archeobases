@@ -1,47 +1,17 @@
+For 1.9.0
+=========
 
-* Document User / Groups / Auth usage an Auth & Auth middleware
--> One user belong to one group who can have more than one permission
--> We keep the TG2 Model but use mainly permissions
+* check than person>address ; person>excavation and person>photo
+are realy one-to-many
 
-* Try to use FormAlchemy in forms ?
-
-* Try to replace all 'id' by other name likes page_id of person_id
-- in controllers because 'id' it's a python reserved word
-
-* Move all 'photos' etc inside 'persons' ?
 
 * Add the possibility for the user to change his pass or infos
 
-* For lists try to
-- use jgrid + json (instead of paginate)
-- add an option for item/pages
+* Try to simplify controllers to avoid "if id" in each action
 
-* Try to use refer to track what user are doing and
-- say no if they bind directly some pages instead of using links
-(like new / edit /delete) maybe use secure_form to check this
-- redirect them to the page they comme from when they have finisih something
-For exemple :
-user is at "show user" and click link to add an user address
-when addres si corectly add the user is send back to show user
-(or assume to send it back here always ?)
-
-* Add a more complete search feature
-
-* Add database changes tracking for photos ?
-- decide who can rollback
 * add database schema-migration
 
 * Add photo/image upload feature and auto-recrop
-
-* Use index pages and/or replace by lists
-- last changes ?
-
-* Extend tests :
-- Add test for check_duplicate
-
-
-* Check label form css align
-to test -> change .login class to max-width: <500px
 
 * be more explicit in person model to take care of asian names
 replace :
@@ -49,11 +19,65 @@ first_name -> given_name
 last_name -> family_name
 - Add a tip in template
 
-* check than person>address ; person>excavation and person>photo
-are realy one-to-many
+* Extend tests :
+- Add test for check_duplicate
 
-* move history_meta inside model because is part of it
-maybe rewrite it too
+For 1.9.1
+=========
 
-* avoid usage of c.userid inside the audit models. try to find a way to
+* Document User / Groups / Auth usage an Auth & Auth middleware
+-> One user belong to one group who can have more than one permission
+-> We keep the TG2 Model but use mainly permissions
+
+* Try to replace all 'id' by other name likes page_id of person_id
+- in controllers because 'id' it's a python reserved word
+
+* Finish the Audit Trail
+- decide who can rollback
+- Add database changes tracking for photos ?
+
+For 1.9.2
+=========
+
+* Add a more complete search feature
+
+* Try to use FormAlchemy in forms ?
+
+* Move all 'photos' etc inside 'persons' ?
+
+* For lists try to
+- use jgrid + json (instead of paginate)
+- add an option for item/pages
+
+* avoid usage of c.userid inside the audit models. Try to find a way to
 send it as argument
+
+
+* Check label form css align
+to test -> change .login class to max-width: <500px
+
+* Use index pages and/or replace by lists
+- last changes ?
+
+
+* Try to use refer to track what user are doing and
+- say no if they bind directly some pages instead of using links
+(like new / edit /delete) 
+- maybe use secure_form to avoid refer hacks
+- redirect them to the page they comme from when they have finisih something
+For exemple :
+user is at "show user" and click link to add an user address
+when address si corectly added the user is send back to show user
+(or assume to send it back here always ?)
+
+
+
+
+
+
+
+
+
+
+
+

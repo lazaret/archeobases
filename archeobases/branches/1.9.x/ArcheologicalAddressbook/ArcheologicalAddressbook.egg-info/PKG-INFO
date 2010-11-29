@@ -1,7 +1,7 @@
 Metadata-Version: 1.0
 Name: ArcheologicalAddressbook
-Version: 1.9.a1.dev-r903
-Summary: Web application for contact address management specific to archaelogical excavations and volontary association.
+Version: 1.9.a1.dev-r929
+Summary: Web application for contact address management specific toarchaelogical excavations and volontary association.
 Home-page: http://lazaret.unice.fr/opensource/
 Author: LDPL - Laboratoire Départemental de Préhistoire du Lazaret
 Author-email: opensource@lazaret.unice.fr
@@ -10,25 +10,27 @@ Description: =========================
         Archeological Addressbook
         =========================
         
-        ArcheologicalAddressbook is a Pylons web application for contact address management.
+        ArcheologicalAddressbook is a Pylons web application for contact address
+        management.
         
         Most of the recorded informations are very commons for address books:
-        * Name, firstname, birthdate
-        * Addresses, telephone, email
-        * ID photos
+         * Name, firstname, birthdate
+         * Addresses, telephone, email
+         * ID photos
         
         But some are very specific informations:
-        * Voluntary members informations
-        * Archeological excavations informations
+         * Voluntary members informations
+         * Archeological excavations informations
         
         Datas are keep in a relational database.
-        By default it use SQLite, but you normaly can use all the SQL engines recognised by SQLAlchemy.
+        By default it use SQLite, but you normaly can use all the SQL engines
+        recognised by SQLAlchemy.
         
-        The main objective of the application is to track contact addresses but also the contacts history
-        as voluntary member and/or excavators.
+        The main objective of the application is to track contact addresses but also
+        the contacts history as voluntary member and/or excavators.
         
         
         Icons used in the templates come from :
-        - FamFam Silk Icons 1.3 by Mark James - http://www.famfamfam.com/lab/icons/silk/
-        - Nuvola icon set 1.0 by David Vignoni - http://www.icon-king.com/projects/nuvola/
+        - FamFam Silk Icons 1.3 by Mark James http://www.famfamfam.com/lab/icons/silk/
+        - Nuvola icon set 1.0 by David Vignoni http://www.icon-king.com/projects/nuvola/
 Platform: UNKNOWN

@@ -11,14 +11,24 @@
 
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect
+#from pylons import request
+#from pylons import response
+#from pylons import session
+from pylons import tmpl_context as c, url
+#from pylons.controllers.util import abort
+from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
-from repoze.what.predicates import has_any_permission, has_permission
+from repoze.what.predicates import has_any_permission
+from repoze.what.predicates import has_permission
 
-from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
-from archeologicaladdressbook.lib.helpers import flash_message, paginate
-from archeologicaladdressbook.lib.auth import ProtectController, ProtectAction
+from archeologicaladdressbook.lib.base import BaseController
+from archeologicaladdressbook.lib.base import render
+from archeologicaladdressbook.lib.base import validate
+from archeologicaladdressbook.lib.base import authenticate_form
+from archeologicaladdressbook.lib.helpers import flash_message
+from archeologicaladdressbook.lib.helpers import paginate
+from archeologicaladdressbook.lib.auth import ProtectController
+from archeologicaladdressbook.lib.auth import ProtectAction
 
 from archeologicaladdressbook.model import Session, Address, Person, forms
 
@@ -29,7 +39,7 @@ log = logging.getLogger(__name__)
 class AddressesController(BaseController):
     """ `Addresses` Controller."""
 
-# TODO add check personn + address_type uniqueness constrain
+# TODO: add check personn + address_type uniqueness constrain
 # See related person infos and/or include in person templates
 
 # index and list actions
@@ -48,7 +58,7 @@ class AddressesController(BaseController):
         """
         c.page = paginate.Page(Session.query(Address),
                                 page=id,
-                                items_per_page = 20)
+                                items_per_page=20)
         return render('/addresses/list.mako')
 
 # CRUD actions ###
@@ -72,7 +82,7 @@ class AddressesController(BaseController):
             return render('/addresses/new.mako')
         else:
             # we arrive here if the person did not exist
-            # TODO correct if None
+            # TODO: correct if None
             # most probably if someone mistyped addresses/new
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))

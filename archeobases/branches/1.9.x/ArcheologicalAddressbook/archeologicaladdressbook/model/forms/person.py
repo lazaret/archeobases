@@ -10,12 +10,15 @@
 """ FormEncode form schema for persons."""
 
 import formencode
-from formencode import Schema, validators
+from formencode import Schema
+from formencode import validators
 
-from archeologicaladdressbook.lib.converters import *
+from archeologicaladdressbook.lib.converters import lower_string
+from archeologicaladdressbook.lib.converters import title_string
+from archeologicaladdressbook.lib.converters import upper_string
 
 
-#TODO: Better validators for phones ?
+# TODO: Better validators for phones ?
 # phone validator
 # can contain only [0-9] space . ( ) +
 
@@ -38,4 +41,3 @@ class PersonForm(Schema):
     phone = validators.String(max=15)
     mobile_phone = validators.String(max=15)
     activity = validators.String(max=25)
-

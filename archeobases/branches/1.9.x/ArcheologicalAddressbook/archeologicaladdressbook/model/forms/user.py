@@ -12,11 +12,13 @@
 import os
 
 import formencode
-from formencode import Schema, validators
+from formencode import Schema
+from formencode import validators
 
 from archeologicaladdressbook.model.auth import User
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.lib.converters import *
+from archeologicaladdressbook.lib.converters import capitalize_string
+from archeologicaladdressbook.lib.converters import lower_string
 from archeologicaladdressbook.lib.badpasswords import bad_password_list
 
 
@@ -35,13 +37,14 @@ class UniqueEmail(validators.FancyValidator):
     def validate_python(self, values, state):
         """ Check for the uniqueness of an `email_address`."""
         email_address = values['email_address']
-        if email_address != None: # do not check for empty `email_adress`
+        if email_address != None:  # do not check for empty `email_adress`
             if values.has_key('user_id'):
                 user_id = values['user_id']
-                email = Session.query(User).filter(User.user_id!=user_id). \
-                    filter(User.email_address==email_address).first()
+                email = Session.query(User).filter(User.user_id != user_id). \
+                    filter(User.email_address == email_address).first()
             else:
-                email = Session.query(User).filter(User.email_address==email_address).first()
+                email = Session.query(User).filter(
+                    User.email_address == email_address).first()
             if email:
                 errors = {'email_address': self.message('not_unique_email', state)}
                 raise formencode.Invalid(self.message('not_unique_email', state), values, state, error_dict=errors)
@@ -92,7 +95,7 @@ class SecurePassword(formencode.FancyValidator):
             if occur >= 6:
                 errors = {'password': self.message('no_samechar', state)}
                 raise formencode.Invalid(self.message('no_samechar', state), values, state, error_dict=errors)
-        # TODO : Add a check for repetitives 2 or 3 lettres passwords like '010101', 'tototo' or '123123'
+        # TODO: Add a check for repetitives 2 or 3 lettres passwords like '010101', 'tototo' or '123123'
         # compare password with our list of common bad passwords
         bad_list = bad_password_list()
         for word in bad_list:

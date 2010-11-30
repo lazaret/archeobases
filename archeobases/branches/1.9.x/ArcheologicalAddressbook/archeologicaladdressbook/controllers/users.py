@@ -11,13 +11,21 @@
 
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect
+#from pylons import request
+#from pylons import response
+#from pylons import session
+from pylons import tmpl_context as c, url
+#from pylons.controllers.util import abort
+from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
 
-from archeologicaladdressbook.lib.helpers import flash_message, paginate
-from archeologicaladdressbook.lib.base import BaseController, render, validate, authenticate_form
+from archeologicaladdressbook.lib.helpers import flash_message
+from archeologicaladdressbook.lib.helpers import paginate
+from archeologicaladdressbook.lib.base import BaseController
+from archeologicaladdressbook.lib.base import render
+from archeologicaladdressbook.lib.base import validate
+from archeologicaladdressbook.lib.base import authenticate_form
 from archeologicaladdressbook.lib.auth import ProtectController
 
 from archeologicaladdressbook.model import Session, Group, User, forms
@@ -38,8 +46,7 @@ class UsersController(BaseController):
         # We prefer do to this manualy instead of using FormEncode so it's more
         # easy to redirect to the already existing record
         u_name = form_result['user_name']
-        user = Session.query(User). \
-            filter(User.user_name==u_name).first()
+        user = Session.query(User).filter(User.user_name == u_name).first()
         if user:
             flash_message(_("This record already exist, redirecting to it"), 'warning')
             return redirect(url.current(action='show', id=user.user_id))
@@ -58,7 +65,7 @@ class UsersController(BaseController):
         """
         c.page = paginate.Page(Session.query(User),
                                 page=id,
-                                items_per_page = 20)
+                                items_per_page=20)
         return render('/users/list.mako')
 
 # CRUD actions ###
@@ -93,14 +100,14 @@ class UsersController(BaseController):
         self._check_duplicate(self.form_result)
         # create the record
         user = User(
-            user_name = self.form_result['user_name'],
-            email_address = self.form_result['email_address'],
-            display_name = self.form_result['display_name'],
-            password = self.form_result['password']
+            user_name=self.form_result['user_name'],
+            email_address=self.form_result['email_address'],
+            display_name=self.form_result['display_name'],
+            password=self.form_result['password']
         )
         Session.add(user)
         g_name = self.form_result['group_name']
-        group = Session.query(Group).filter(Group.group_name==g_name).one()
+        group = Session.query(Group).filter(Group.group_name == g_name).one()
         user.groups.append(group)
         Session.commit()
         flash_message(_("New user record added"), 'success')
@@ -133,9 +140,9 @@ class UsersController(BaseController):
             old_g_name = user.groups[0].group_name
             new_g_name = self.form_result['group_name']
             if old_g_name != new_g_name:
-                old_group = Session.query(Group).filter(Group.group_name==old_g_name).one()
+                old_group = Session.query(Group).filter(Group.group_name == old_g_name).one()
                 user.groups.remove(old_group)
-                new_group = Session.query(Group).filter(Group.group_name==new_g_name).one()
+                new_group = Session.query(Group).filter(Group.group_name == new_g_name).one()
                 user.groups.append(new_group)
             Session.commit()
             flash_message(_("User record updated"), 'success')
@@ -170,7 +177,7 @@ class UsersController(BaseController):
             flash_message(_("This record did not exist"), 'warning')
             return redirect(url.current(action='index', id=None))
 
-    def confirm_delete(self, id=None): #TODO forbid delete of "manager" ?
+    def confirm_delete(self, id=None):  # TODO: forbid delete of "manager" ?
         """ Show an user record and ask to confirm deletion."""
         c.user = Session.query(User).get(id)
         if c.user:

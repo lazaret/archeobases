@@ -14,8 +14,10 @@ import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import *
+from archeologicaladdressbook.tests.model import TestModel
+from archeologicaladdressbook.tests.model.fixtures import DuplicatePersonData
+from archeologicaladdressbook.tests.model.fixtures import address_fixture
+from archeologicaladdressbook.tests.model.fixtures import photo_fixture
 
 
 class TestPersonModel(TestModel):
@@ -24,16 +26,26 @@ class TestPersonModel(TestModel):
     def test_01_columns(self):
         """ Test the `Person` model columns and types."""
         person = Session.query(model.Person).filter_by().first()
-        assert isinstance(person.person_id, int), '`person_id` column is missing or has changed.'
-        assert isinstance(person.last_name, unicode), '`last_name` column is missing or has changed.'
-        assert isinstance(person.first_name, unicode), '`first_name` column is missing or has changed.'
-        assert isinstance(person.title, unicode), '`title` column is missing or has changed.'
-        assert isinstance(person.birth_date, datetime.date), '`birth_date` column is missing or has changed.'
-        assert isinstance(person.email_address, unicode), '`email_address` column is missing or has changed.'
-        assert isinstance(person.phone, unicode), '`phone` column is missing or has changed.'
-        assert isinstance(person.mobile_phone, unicode), '`mobile_phone` column is missing or has changed.'
-        assert isinstance(person.activity, unicode), '`activity` column is missing or has changed.'
-        assert isinstance(person.person_type, unicode), '`person_type` column is missing or has changed.'
+        assert isinstance(person.person_id, int), \
+            '`person_id` column is missing or has changed.'
+        assert isinstance(person.last_name, unicode), \
+            '`last_name` column is missing or has changed.'
+        assert isinstance(person.first_name, unicode), \
+            '`first_name` column is missing or has changed.'
+        assert isinstance(person.title, unicode), \
+            '`title` column is missing or has changed.'
+        assert isinstance(person.birth_date, datetime.date), \
+            '`birth_date` column is missing or has changed.'
+        assert isinstance(person.email_address, unicode), \
+            '`email_address` column is missing or has changed.'
+        assert isinstance(person.phone, unicode), \
+            '`phone` column is missing or has changed.'
+        assert isinstance(person.mobile_phone, unicode), \
+            '`mobile_phone` column is missing or has changed.'
+        assert isinstance(person.activity, unicode), \
+            '`activity` column is missing or has changed.'
+        assert isinstance(person.person_type, unicode), \
+            '`person_type` column is missing or has changed.'
 
     def test_02_unique_constraint(self):
         """ Test for unique constraint for the `Person` model.
@@ -42,16 +54,17 @@ class TestPersonModel(TestModel):
         """
         test_person = DuplicatePersonData.JohnDoe()
         person = model.Person(
-            last_name = test_person.last_name,
-            first_name = test_person.first_name,
-            title = test_person.title,
-            birth_date = test_person.birth_date,
-            activity = test_person.activity
+            last_name=test_person.last_name,
+            first_name=test_person.first_name,
+            title=test_person.title,
+            birth_date=test_person.birth_date,
+            activity=test_person.activity
         )
         Session.add(person)
         try:
             Session.commit()
-            raise AssertionError('`Person` unique constraint on `last_name` and `first_name` is missing.')
+            raise AssertionError('`Person` unique constraint on `last_name` \
+                                 and `first_name` is missing.')
         except sa.exc.IntegrityError:
             Session.rollback()
 

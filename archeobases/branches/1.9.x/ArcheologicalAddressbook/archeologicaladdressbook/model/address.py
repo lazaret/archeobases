@@ -12,7 +12,7 @@
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import UniqueConstraint
-from sqlalchemy.types import Date
+#from sqlalchemy.types import Date
 from sqlalchemy.types import Integer
 from sqlalchemy.types import Unicode
 
@@ -22,7 +22,7 @@ from archeologicaladdressbook.model.meta import Base
 class Address(Base):
     """ Address model definition."""
     __tablename__ = 'address'
-    __table_args__  = (UniqueConstraint('person_id', 'address_type'), {})
+    __table_args__ = (UniqueConstraint('person_id', 'address_type'), {})
 
     address_id = Column(Integer, autoincrement=True, primary_key=True)
     person_id = Column(Integer, ForeignKey('person.person_id'))
@@ -41,4 +41,4 @@ class Address(Base):
                 self.address_line1, self.city)).encode('utf-8')
 
     def __unicode__(self):
-         return "%s %s" % (self.address_line1, self.city)
+        return "%s %s" % (self.address_line1, self.city)

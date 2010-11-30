@@ -11,7 +11,7 @@
 
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
-from sqlalchemy import UniqueConstraint
+#from sqlalchemy import UniqueConstraint
 from sqlalchemy.types import Date
 from sqlalchemy.types import Integer
 from sqlalchemy.types import Unicode
@@ -36,4 +36,4 @@ class Excavation(Base):
                 self.site_name, self.start_date)).encode('utf-8')
 
     def __unicode__(self):
-         return "%s %s" % (self.site_name, self.start_date)
+        return "%s %s" % (self.site_name, self.start_date)

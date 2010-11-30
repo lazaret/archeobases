@@ -10,9 +10,11 @@
 """ FormEncode form schema for addresses."""
 
 import formencode
-from formencode import Schema, validators
+from formencode import Schema
+from formencode import validators
 
-from archeologicaladdressbook.lib.converters import *
+from archeologicaladdressbook.lib.converters import title_string
+from archeologicaladdressbook.lib.converters import upper_string
 
 
 class AddressForm(Schema):
@@ -34,4 +36,3 @@ class AddressForm(Schema):
         validators.String(max=25),
         validators.Wrapper(to_python=upper_string))
     address_type = validators.OneOf(['Home', 'Business', 'Correspondent'])
-

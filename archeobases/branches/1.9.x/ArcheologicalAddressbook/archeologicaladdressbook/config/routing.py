@@ -32,10 +32,13 @@ def make_map(config):
     # CUSTOM ROUTES HERE
 
     # FormAlechemy `DbmadminController` controller routes
-    map.connect('fa_static', '/dbadmin/_static/{path_info:.*}', controller='dbadmin', action='static')
+    map.connect('fa_static', '/dbadmin/_static/{path_info:.*}',
+                controller='dbadmin', action='static')
     map.connect('dbadmin', '/dbadmin', controller='dbadmin', action='models')
-    map.connect('formatted_admin', '/dbadmin.json', controller='dbadmin', action='models', format='json')
-    map.resource('model', 'models', path_prefix='/dbadmin/{model_name}', controller='dbadmin')
+    map.connect('formatted_admin', '/dbadmin.json', controller='dbadmin',
+                action='models', format='json')
+    map.resource('model', 'models', path_prefix='/dbadmin/{model_name}',
+                 controller='dbadmin')
 
     # Default `index` action for controllers
     map.connect('/{controller}', action='index')

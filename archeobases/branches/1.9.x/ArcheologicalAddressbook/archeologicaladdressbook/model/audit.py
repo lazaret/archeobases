@@ -13,7 +13,7 @@ import datetime
 
 from sqlalchemy import Column
 from sqlalchemy.orm.interfaces import MapperExtension
-from  sqlalchemy.orm.mapper import Mapper
+#from  sqlalchemy.orm.mapper import Mapper
 from sqlalchemy.types import DateTime
 from sqlalchemy.types import Integer
 from sqlalchemy.types import PickleType
@@ -23,7 +23,7 @@ from archeologicaladdressbook.model.meta import Base
 from archeologicaladdressbook.model.meta import Session
 
 
-from pylons import tmpl_context as c #TODO try to get rif of this
+from pylons import tmpl_context as c  # TODO: try to get rif of this
 
 
 class Audit(Base):
@@ -31,7 +31,7 @@ class Audit(Base):
     __tablename__ = "audit"
     audit_id = Column(Integer, autoincrement=True, primary_key=True)
     modelname = Column(Unicode)
-    type = Column(Unicode(6)) # INSERT UPDATE DELETE
+    type = Column(Unicode(6))  # INSERT UPDATE DELETE
     user = Column(Unicode(16), default='unknown')
     timestamp = Column(DateTime, default=datetime.datetime.now)
 #    tableid = Column(Integer, nullable=False)
@@ -43,7 +43,7 @@ class Audit(Base):
                 self.audit_id, self.timestamp)).encode('utf-8')
 
     def __unicode__(self):
-         return '%s %s' % (self.audit_id, self.timestamp)
+        return '%s %s' % (self.audit_id, self.timestamp)
 
 
 class AuditChanges(MapperExtension):
@@ -59,7 +59,7 @@ class AuditChanges(MapperExtension):
 
     def after_insert(self, mapper, connection, instance):
         audit = Audit()
-        audit.modelname = instance.__class__.__name__ # model name
+        audit.modelname = instance.__class__.__name__  # model name
         audit.type = 'INSERT'
         audit.user = c.userid
         #audit.tableid = instance.person_id
@@ -70,7 +70,7 @@ class AuditChanges(MapperExtension):
 
     def after_update(self, mapper, connection, instance):
         audit = Audit()
-        audit.modelname = instance.__class__.__name__ # model name
+        audit.modelname = instance.__class__.__name__  # model name
         audit.type = 'UPDATE'
         audit.user = c.userid
 #        audit.tableid = instance.person_id
@@ -78,7 +78,7 @@ class AuditChanges(MapperExtension):
 
     def after_delete(self, mapper, connection, instance):
         audit = Audit()
-        audit.modelname = instance.__class__.__name__ # model name
+        audit.modelname = instance.__class__.__name__  # model name
         audit.type = 'DELETE'
         audit.user = c.userid
 #        audit.tableid = instance.person_id

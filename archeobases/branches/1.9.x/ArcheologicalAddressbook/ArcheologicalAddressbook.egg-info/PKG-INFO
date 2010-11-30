@@ -1,7 +1,9 @@
 Metadata-Version: 1.0
 Name: ArcheologicalAddressbook
 Version: 1.9.a1.dev-r929
-Summary: Web application for contact address management specific toarchaelogical excavations and volontary association.
+Summary: Web application for contact address management 
+                 specific to archaelogical excavations and volontary 
+                 association.
 Home-page: http://lazaret.unice.fr/opensource/
 Author: LDPL - Laboratoire Départemental de Préhistoire du Lazaret
 Author-email: opensource@lazaret.unice.fr

@@ -26,8 +26,9 @@ setup(
     author_email='opensource@lazaret.unice.fr',
     url='http://lazaret.unice.fr/opensource/',
     license='Affero GPL 3',
-    description=('Web application for contact address management specific to'
-                 'archaelogical excavations and volontary association.'),
+    description=("""Web application for contact address management 
+                 specific to archaelogical excavations and volontary 
+                 association."""),
     long_description=open('README.txt').read(),
     install_requires=[
         'Paste>=1.7.5.1',

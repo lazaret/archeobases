@@ -11,15 +11,16 @@
 
 import logging
 
-from pylons.i18n.translation import _
+#from pylons.i18n.translation import _
 from formalchemy.ext.pylons.controller import ModelsController
 from formalchemy import forms
 from formalchemy import tables
 from repoze.what.predicates import has_permission
-from webhelpers.paginate import Page
+#from webhelpers.paginate import Page
 
 from archeologicaladdressbook.lib.auth import ProtectController
-from archeologicaladdressbook.lib.base import BaseController, render
+from archeologicaladdressbook.lib.base import BaseController
+#from archeologicaladdressbook.lib.base import render
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import meta
 
@@ -61,8 +62,9 @@ class DbadminController(BaseController):
     Generate a CRUD admin interface with FormAlchemy.
     """
     template = '/dbadmin/restfieldset.mako'
-    model = model # SQLAlchemy mappers
-    #forms = forms # module containing FormAlchemy fieldsets definitions #TODO check this
+    model = model  # SQLAlchemy mappers
+    # TODO: check this
+    #forms = forms  # module containing FormAlchemy fieldsets definitions
     forms = DbAdminForms
 
     def Session(self):

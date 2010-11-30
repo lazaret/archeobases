@@ -24,5 +24,3 @@ from webhelpers.pylonslib import Flash as _Flash
 
 
 flash_message = _Flash()
-
-

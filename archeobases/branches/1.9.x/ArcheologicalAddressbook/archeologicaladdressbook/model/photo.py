@@ -12,7 +12,7 @@
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import UniqueConstraint
-from sqlalchemy.types import Date
+#from sqlalchemy.types import Date
 from sqlalchemy.types import Integer
 from sqlalchemy.types import Unicode
 
@@ -22,7 +22,7 @@ from archeologicaladdressbook.model.meta import Base
 class Photo(Base):
     """ Photo model definition."""
     __tablename__ = 'photo'
-    __table_args__  = (UniqueConstraint('path'), {})
+    __table_args__ = (UniqueConstraint('path'), {})
 
     photo_id = Column(Integer, autoincrement=True, primary_key=True)
     person_id = Column(Integer, ForeignKey('person.person_id'))
@@ -34,4 +34,4 @@ class Photo(Base):
         return ("<Photo: path=%r>" % (self.path)).encode('utf-8')
 
     def __unicode__(self):
-         return "%s" % (self.path)
+        return "%s" % (self.path)

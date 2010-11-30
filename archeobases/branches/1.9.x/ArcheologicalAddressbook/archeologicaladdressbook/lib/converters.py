@@ -13,6 +13,7 @@ Consist of functions to convert text to typically be used with FormEncode
 schemas.
 """
 
+
 def lower_string(value):
     """ Return the lowercase of `value` (and strip spaces)."""
     return value.lower().strip()
@@ -24,12 +25,16 @@ def upper_string(value):
 
 
 def capitalize_string(value):
-    """ Capitalize the first letter of the `value` string (and strip spaces)."""
+    """ Capitalize the first letter of the `value` string
+    (and strip spaces).
+    """
     return value.capitalize().strip()
 
 
 def title_string(value):
-    """ Capitalize the first letter of all words of the `value` string (and strip spaces)."""
+    """ Capitalize the first letter of all words of the `value` string
+    (and strip spaces).
+    """
     return value.title().strip()
 
 

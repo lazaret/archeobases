@@ -13,8 +13,10 @@ import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import DuplicatePhotoData, OrphanPhotoData, photo_fixture
+from archeologicaladdressbook.tests.model import TestModel
+from archeologicaladdressbook.tests.model.fixtures import DuplicatePhotoData
+from archeologicaladdressbook.tests.model.fixtures import OrphanPhotoData
+from archeologicaladdressbook.tests.model.fixtures import photo_fixture
 
 
 class TestPhotoModel(TestModel):
@@ -28,9 +30,12 @@ class TestPhotoModel(TestModel):
     def test_01_columns(self):
         """ Test the `Photo` model columns and types."""
         photo = Session.query(model.Photo).filter_by().first()
-        assert isinstance(photo.photo_id, int), '`photo_id` column is missing or has changed.'
-        assert isinstance(photo.person_id, int), '`person_id` column is missing or has changed.'
-        assert isinstance(photo.path, unicode), '`path` column is missing or has changed.'
+        assert isinstance(photo.photo_id, int), \
+            '`photo_id` column is missing or has changed.'
+        assert isinstance(photo.person_id, int), \
+            '`person_id` column is missing or has changed.'
+        assert isinstance(photo.path, unicode), \
+            '`path` column is missing or has changed.'
 
     def test_02_unique_constraint(self):
         """ Test for unique constraint for the `Photo` model.
@@ -39,9 +44,7 @@ class TestPhotoModel(TestModel):
         """
         test_photo = DuplicatePhotoData.JohnDoePhoto()
         person = Session.query(model.Person).filter_by().first()
-        person.photo = model.Photo(
-                            path = test_photo.path
-                        )
+        person.photo = model.Photo(path=test_photo.path)
         try:
             Session.commit()
             raise AssertionError('`Photo` unique constraint on `path` is missing.')
@@ -64,9 +67,7 @@ class TestPhotoModel(TestModel):
     def test_05_orphans(self):
         """ Test that orphans are forbidden for the `Photo` model."""
         test_photo = OrphanPhotoData.JohnSmithPhoto()
-        photo = model.Photo(
-            path = test_photo.path
-        )
+        photo = model.Photo(path=test_photo.path)
         Session.add(photo)
         try:
             Session.commit()

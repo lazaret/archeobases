@@ -14,23 +14,27 @@ from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
 
 from repoze.what.plugins.quickstart import setup_sql_auth
-from repoze.what.plugins.pylonshq import ActionProtector, ControllerProtector
+from repoze.what.plugins.pylonshq import ActionProtector
+from repoze.what.plugins.pylonshq import ControllerProtector
 
 from archeologicaladdressbook.lib.helpers import flash_message
 from archeologicaladdressbook.model.meta import Session
-from archeologicaladdressbook.model.auth import User, Group, Permission
+from archeologicaladdressbook.model.auth import User
+from archeologicaladdressbook.model.auth import Group
+from archeologicaladdressbook.model.auth import Permission
 
 
 def add_auth(app):
     """ Add authentication and authorization middleware to the ``app``.
 
-    We're going to define post-login and post-logout pages to do some cool things.
+    Post-login and post-logout pages setup.
     """
     return setup_sql_auth(app, User, Group, Permission, Session,
                           logout_handler='/logout',
                           post_login_url='/post_login',
                           post_logout_url='/post_logout',
                           charset='utf-8')
+
 
 def denial_handler(reason):
     """ Auth & Auth denial handler.
@@ -58,5 +62,3 @@ class ProtectAction(ActionProtector):
 class ProtectController(ControllerProtector):
     """ Decorator used to protect a controller."""
     protector = ProtectAction
-
-

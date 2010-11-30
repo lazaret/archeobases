@@ -13,8 +13,10 @@ import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import DuplicateAddressData, OrphanAddressData, address_fixture
+from archeologicaladdressbook.tests.model import TestModel
+from archeologicaladdressbook.tests.model.fixtures import DuplicateAddressData
+from archeologicaladdressbook.tests.model.fixtures import OrphanAddressData
+from archeologicaladdressbook.tests.model.fixtures import address_fixture
 
 
 class TestAddressModel(TestModel):

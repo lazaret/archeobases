@@ -11,15 +11,24 @@
 
 import logging
 
-from pylons import config, request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect
+from pylons import config
+#from pylons import request
+#from pylons import response
+#from pylons import session
+from pylons import tmpl_context as c
+#from pylons import url
+#from pylons.controllers.util import abort
+#from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
 
 from archeologicaladdressbook.lib.auth import ProtectController
-from archeologicaladdressbook.lib.helpers import flash_message, paginate
-from archeologicaladdressbook.lib.base import BaseController, render
-from archeologicaladdressbook.lib.logparser import combined_log_parser, error_log_parser
+from archeologicaladdressbook.lib.helpers import flash_message
+from archeologicaladdressbook.lib.helpers import paginate
+from archeologicaladdressbook.lib.base import BaseController
+from archeologicaladdressbook.lib.base import render
+from archeologicaladdressbook.lib.logparser import combined_log_parser
+from archeologicaladdressbook.lib.logparser import error_log_parser
 
 log = logging.getLogger(__name__)
 
@@ -41,8 +50,8 @@ class AdminController(BaseController):
                 log.warning("Access log file empty")
                 flash_message(_("Access log file empty"), 'warning')
             else:
-                accesslog.reverse() # Put yonger log lines at the begining of the list
-                c.page = paginate.Page(accesslog, page=id, items_per_page = 20)
+                accesslog.reverse()  # Yonger logs at the begining of the list
+                c.page = paginate.Page(accesslog, page=id, items_per_page=20)
         except IOError:
             log.error("Access log file not found")
             flash_message(_("Access log file not found"), 'error')
@@ -53,12 +62,12 @@ class AdminController(BaseController):
         logfile = config.get('errorlog', 'error.log')
         try:
             errorlog = error_log_parser(logfile)
-            if len (errorlog) == 0:
+            if len(errorlog) == 0:
                 log.warning("Error log file empty")
                 flash_message(_("Error log file empty"), 'warning')
             else:
-                errorlog.reverse() # Put yonger log lines at the begining of the list
-                c.page = paginate.Page(errorlog, page=id, items_per_page = 20)
+                errorlog.reverse()  # Yonger logs at the begining of the list
+                c.page = paginate.Page(errorlog, page=id, items_per_page=20)
         except IOError:
             log.error("Error log file not found")
             flash_message(_("Error log file not found"), 'error')

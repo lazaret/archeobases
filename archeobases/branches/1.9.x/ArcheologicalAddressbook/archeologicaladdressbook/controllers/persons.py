@@ -11,18 +11,17 @@
 
 import logging
 
-from pylons import request
-from pylons import response
-from pylons import session
+#from pylons import request
+#from pylons import response
+#from pylons import session
 from pylons import tmpl_context as c
 from pylons import url
-from pylons.controllers.util import abort
+#from pylons.controllers.util import abort
 from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
-
 from repoze.what.predicates import has_any_permission
 from repoze.what.predicates import has_permission
-from sqlalchemy.sql import desc
+#from sqlalchemy.sql import desc
 
 from archeologicaladdressbook.lib.base import BaseController
 from archeologicaladdressbook.lib.base import render
@@ -52,8 +51,8 @@ class PersonsController(BaseController):
         """ Check for a person duplicate entry in the database.
 
         Check than there is not already an entry with the same `last_name`
-        and `first_name` with another `person_id`. If there is one redirect to the
-        `show` action for this entry.
+        and `first_name` with another `person_id`. If there is one redirect to
+        the `show` action for this entry.
         """
         # Limitation : Database model actualy forbid homonyms
         # We prefer do to this manualy instead of using FormEncode so it's more
@@ -61,9 +60,9 @@ class PersonsController(BaseController):
         last_name = form_result['last_name']
         first_name = form_result['first_name']
         person = Session.query(Person). \
-            filter(Person.person_id!=id). \
-            filter(Person.last_name==last_name). \
-            filter(Person.first_name==first_name).first()
+            filter(Person.person_id != id). \
+            filter(Person.last_name == last_name). \
+            filter(Person.first_name == first_name).first()
         if person:
             flash_message(_("This record already exist, redirecting to it"), 'warning')
             return redirect(url.current(action='show', id=person.person_id))
@@ -93,7 +92,7 @@ class PersonsController(BaseController):
         """
         c.page = paginate.Page(Session.query(Person),
                                 page=id,
-                                items_per_page = 20)
+                                items_per_page=20)
         return render('/persons/list.mako')
 
 # CRUD actions ###

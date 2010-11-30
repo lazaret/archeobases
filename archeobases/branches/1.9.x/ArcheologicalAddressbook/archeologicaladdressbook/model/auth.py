@@ -10,15 +10,22 @@
 """ SQLAlchemy model definition for authentification and authorization with
 the repoze.what SQL plugin.
 """
-# This model definition has been taken from a quickstarted TurboGears 2 project.
+# This model definition has been taken from a quickstarted TurboGears2 project.
 
 from os import urandom
 from hashlib import sha1
 from datetime import datetime
 
-from sqlalchemy import Table, Column, ForeignKey, UniqueConstraint
-from sqlalchemy.orm import relation, synonym
-from sqlalchemy.types import Date, DateTime, Integer, Unicode
+from sqlalchemy import Table
+from sqlalchemy import Column
+from sqlalchemy import ForeignKey
+#from sqlalchemy import UniqueConstraint
+from sqlalchemy.orm import relation
+from sqlalchemy.orm import synonym
+#from sqlalchemy.types import Date
+from sqlalchemy.types import DateTime
+from sqlalchemy.types import Integer
+from sqlalchemy.types import Unicode
 
 from archeologicaladdressbook.model.meta import Base
 
@@ -85,7 +92,8 @@ class User(Base):
     # Special methods
     def __repr__(self):
         return ('<User: name=%r, email=%r, display=%r>' % (
-                self.user_name, self.email_address, self.display_name)).encode('utf-8')
+                self.user_name, self.email_address,
+                self.display_name)).encode('utf-8')
 
     def __unicode__(self):
         return self.display_name or self.user_name
@@ -119,7 +127,8 @@ class User(Base):
         """ Return the hashed version of the password."""
         return self._password
 
-    password = synonym('_password', descriptor=property(_get_password, _set_password))
+    password = synonym('_password',
+                       descriptor=property(_get_password, _set_password))
 
     def validate_password(self, password):
         """ Check the password against existing credentials."""
@@ -142,7 +151,8 @@ class Permission(Base):
     permission_name = Column(Unicode(16), unique=True, nullable=False)
     description = Column(Unicode(255))
     # Relations
-    groups = relation(Group, secondary=group_permission_table, backref='permissions')
+    groups = relation(Group, secondary=group_permission_table,
+                      backref='permissions')
 
     # Special methods
     def __repr__(self):

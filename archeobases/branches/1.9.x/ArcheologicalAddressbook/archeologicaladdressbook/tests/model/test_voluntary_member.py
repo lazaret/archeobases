@@ -14,8 +14,11 @@ import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import *
+from archeologicaladdressbook.tests.model import Base
+from archeologicaladdressbook.tests.model import TestModel
+from archeologicaladdressbook.tests.model.fixtures import VoluntaryMemberData
+from archeologicaladdressbook.tests.model.fixtures import DuplicateVoluntaryMemberData
+from archeologicaladdressbook.tests.model.fixtures import voluntary_member_fixture
 
 
 class TestVoluntaryMemberModel(TestModel):
@@ -29,15 +32,24 @@ class TestVoluntaryMemberModel(TestModel):
     def test_01_columns(self):
         """ Test the `VoluntaryMember` model columns and types."""
         v_member = Session.query(model.VoluntaryMember).filter_by().first()
-        assert isinstance(v_member.voluntary_member_id, int), '`voluntary_member_id` column is missing or has changed.'
-        assert isinstance(v_member.last_name, unicode), '`last_name` column is missing or has changed.'
-        assert isinstance(v_member.first_name, unicode), '`first_name` column is missing or has changed.'
-        assert isinstance(v_member.title, unicode), '`title` column is missing or has changed.'
-        assert isinstance(v_member.birth_date, datetime.date), '`birth_date` column is missing or has changed.'
-        assert isinstance(v_member.activity, unicode), '`activity` column is missing or has changed.'
-        assert isinstance(v_member.person_type, unicode), '`person_type` column is missing or has changed.'
-        assert isinstance(v_member.member_number, int), '`member_number` column is missing or has changed.'
-        assert isinstance(v_member.last_fee_date, datetime.date), '`last_fee_date` column is missing or has changed.'
+        assert isinstance(v_member.voluntary_member_id, int), \
+            '`voluntary_member_id` column is missing or has changed.'
+        assert isinstance(v_member.last_name, unicode), \
+            '`last_name` column is missing or has changed.'
+        assert isinstance(v_member.first_name, unicode), \
+            '`first_name` column is missing or has changed.'
+        assert isinstance(v_member.title, unicode), \
+            '`title` column is missing or has changed.'
+        assert isinstance(v_member.birth_date, datetime.date), \
+            '`birth_date` column is missing or has changed.'
+        assert isinstance(v_member.activity, unicode), \
+            '`activity` column is missing or has changed.'
+        assert isinstance(v_member.person_type, unicode), \
+            '`person_type` column is missing or has changed.'
+        assert isinstance(v_member.member_number, int), \
+            '`member_number` column is missing or has changed.'
+        assert isinstance(v_member.last_fee_date, datetime.date), \
+            '`last_fee_date` column is missing or has changed.'
 
     def test_02_inherinting(self):
         """ Test that `VoluntaryMember` model inherit from `Person` model."""
@@ -53,13 +65,13 @@ class TestVoluntaryMemberModel(TestModel):
         """
         test_v_member = DuplicateVoluntaryMemberData.MaryJohnes()
         v_member = model.VoluntaryMember(
-            last_name = test_v_member.last_name,
-            first_name = test_v_member.first_name,
-            title = test_v_member.title,
-            birth_date = test_v_member.birth_date,
-            activity = test_v_member.activity,
-            member_number = test_v_member.member_number,
-            last_fee_date = test_v_member.last_fee_date
+            last_name=test_v_member.last_name,
+            first_name=test_v_member.first_name,
+            title=test_v_member.title,
+            birth_date=test_v_member.birth_date,
+            activity=test_v_member.activity,
+            member_number=test_v_member.member_number,
+            last_fee_date=test_v_member.last_fee_date
         )
         Session.add(v_member)
         try:

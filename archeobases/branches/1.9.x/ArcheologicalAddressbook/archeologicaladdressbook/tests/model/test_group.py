@@ -9,13 +9,16 @@
 #
 """ Unit test cases for the `Group` model."""
 
-import datetime
+#import datetime
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import *
+from archeologicaladdressbook.tests.model import TestModel
+from archeologicaladdressbook.tests.model.fixtures import DuplicateGroupData
+from archeologicaladdressbook.tests.model.fixtures import user_fixture
+from archeologicaladdressbook.tests.model.fixtures import group_fixture
+from archeologicaladdressbook.tests.model.fixtures import permission_fixture
 
 
 class TestGroupModel(TestModel):
@@ -31,9 +34,12 @@ class TestGroupModel(TestModel):
     def test_01_columns(self):
         """ Test the `Group` model columns and types."""
         group = Session.query(model.Group).filter_by().first()
-        assert isinstance(group.group_id, int), '`group_id` column is missing or has changed.'
-        assert isinstance(group.group_name, unicode), '`group_name` column is missing or has changed.'
-        assert isinstance(group.display_name, unicode), '`display_name` column is missing or has changed.'
+        assert isinstance(group.group_id, int), \
+            '`group_id` column is missing or has changed.'
+        assert isinstance(group.group_name, unicode), \
+            '`group_name` column is missing or has changed.'
+        assert isinstance(group.display_name, unicode), \
+            '`display_name` column is missing or has changed.'
 
     def test_02_unique_constraint(self):
         """ Test for unique constraint for the `Group` model.
@@ -42,13 +48,14 @@ class TestGroupModel(TestModel):
         """
         test_group = DuplicateGroupData.Guests()
         group = model.Group(
-            group_name = test_group.group_name,
-            display_name = test_group.display_name
+            group_name=test_group.group_name,
+            display_name=test_group.display_name
         )
         Session.add(group)
         try:
             Session.commit()
-            raise AssertionError('`Group` unique constraint on `group_name`, is missing.')
+            raise AssertionError('`Group` unique constraint on `group_name`, \
+                is missing.')
         except sa.exc.IntegrityError:
             Session.rollback()
 

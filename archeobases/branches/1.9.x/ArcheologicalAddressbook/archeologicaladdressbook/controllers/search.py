@@ -11,16 +11,24 @@
 
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect
+from pylons import request
+#from pylons import response
+#from pylons import session
+from pylons import tmpl_context as c
+#from pylons import url
+#from pylons.controllers.util import abort
+#from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
 from repoze.what.predicates import has_permission
 
-from archeologicaladdressbook.lib.base import BaseController, render
-from archeologicaladdressbook.lib.helpers import flash_message, paginate
+from archeologicaladdressbook.lib.base import BaseController
+from archeologicaladdressbook.lib.base import render
+#from archeologicaladdressbook.lib.helpers import flash_message
+from archeologicaladdressbook.lib.helpers import paginate
 from archeologicaladdressbook.lib.auth import ProtectController
 
-from archeologicaladdressbook.model import Session, Person
+from archeologicaladdressbook.model import Session
+from archeologicaladdressbook.model import Person
 
 log = logging.getLogger(__name__)
 

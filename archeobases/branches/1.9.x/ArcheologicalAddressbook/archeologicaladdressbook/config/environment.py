@@ -35,7 +35,11 @@ def load_environment(global_conf, app_conf):
                  templates=[os.path.join(root, 'templates')])
 
     # Initialize config with the basic options
-    config.init_app(global_conf, app_conf, package='archeologicaladdressbook', paths=paths)
+    config.init_app(
+        global_conf,
+        app_conf,
+        package='archeologicaladdressbook',
+        paths=paths)
 
     config['routes.map'] = make_map(config)
     config['pylons.app_globals'] = app_globals.Globals(config)
@@ -44,7 +48,6 @@ def load_environment(global_conf, app_conf):
     # Setup cache object as early as possible
     import pylons
     pylons.cache._push_object(config['pylons.app_globals'].cache)
-
 
     # Create the Mako TemplateLookup, with the default auto-escaping
     config['pylons.app_globals'].mako_lookup = TemplateLookup(

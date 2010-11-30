@@ -13,7 +13,7 @@ import sqlalchemy as sa
 from sqlalchemy import orm
 
 from archeologicaladdressbook.model.meta import Session
-from archeologicaladdressbook.model.meta import  Base
+from archeologicaladdressbook.model.meta import Base
 
 
 def init_model(engine):

@@ -14,8 +14,10 @@ import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import *
+from archeologicaladdressbook.tests.model import TestModel
+from archeologicaladdressbook.tests.model.fixtures import DuplicateUserData
+from archeologicaladdressbook.tests.model.fixtures import user_fixture
+from archeologicaladdressbook.tests.model.fixtures import group_fixture
 
 
 class TestUserModel(TestModel):
@@ -30,12 +32,18 @@ class TestUserModel(TestModel):
     def test_01_columns(self):
         """ Test the `User` model columns and types."""
         user = Session.query(model.User).filter_by().first()
-        assert isinstance(user.user_id, int), '`user_id` column is missing or has changed.'
-        assert isinstance(user.user_name, unicode), '`user_name` column is missing or has changed.'
-        assert isinstance(user.email_address, unicode), '`email_address` column is missing or has changed.'
-        assert isinstance(user.password, unicode), '`password` column is missing or has changed.'
-        assert isinstance(user.display_name, unicode), '`display_name` column is missing or has changed.'
-        assert isinstance(user.created, datetime.date), '`created` column is missing or has changed.'
+        assert isinstance(user.user_id, int), \
+            '`user_id` column is missing or has changed.'
+        assert isinstance(user.user_name, unicode), \
+            '`user_name` column is missing or has changed.'
+        assert isinstance(user.email_address, unicode), \
+            '`email_address` column is missing or has changed.'
+        assert isinstance(user.password, unicode), \
+            '`password` column is missing or has changed.'
+        assert isinstance(user.display_name, unicode), \
+            '`display_name` column is missing or has changed.'
+        assert isinstance(user.created, datetime.date), \
+            '`created` column is missing or has changed.'
 
     def test_02_unique_constraint(self):
         """ Test for unique constraint for the `User` model.
@@ -44,10 +52,10 @@ class TestUserModel(TestModel):
         """
         test_user = DuplicateUserData.Guest()
         user = model.User(
-            user_name = test_user.user_name,
-            email_address = test_user.email_address,
-            password = test_user.password,
-            display_name = test_user.display_name
+            user_name=test_user.user_name,
+            email_address=test_user.email_address,
+            password=test_user.password,
+            display_name=test_user.display_name
         )
         Session.add(user)
         try:

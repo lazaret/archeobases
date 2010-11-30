@@ -31,5 +31,3 @@ class TestModel(TestCase):
     def tearDown(self):
         """ Method used to destroy the test database."""
         Base.metadata.drop_all(bind=Session.bind)
-
-

@@ -13,5 +13,6 @@
 from archeologicaladdressbook.model.forms.address import AddressForm
 from archeologicaladdressbook.model.forms.excavation import ExcavationForm
 from archeologicaladdressbook.model.forms.person import PersonForm
-from archeologicaladdressbook.model.forms.user import NewUserForm, EditUserForm, ChangeUserPassword
-
+from archeologicaladdressbook.model.forms.user import NewUserForm
+from archeologicaladdressbook.model.forms.user import EditUserForm
+from archeologicaladdressbook.model.forms.user import ChangeUserPassword

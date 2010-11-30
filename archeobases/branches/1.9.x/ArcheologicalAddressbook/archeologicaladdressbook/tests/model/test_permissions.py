@@ -9,13 +9,15 @@
 #
 """ Unit test cases for the `Permission` model."""
 
-import datetime
+#import datetime
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model
 from archeologicaladdressbook.model import Session
-from archeologicaladdressbook.tests.model import *
-from archeologicaladdressbook.tests.model.fixtures import *
+from archeologicaladdressbook.tests.model import TestModel
+from archeologicaladdressbook.tests.model.fixtures import DuplicatePermissionData
+from archeologicaladdressbook.tests.model.fixtures import group_fixture
+from archeologicaladdressbook.tests.model.fixtures import permission_fixture
 
 
 class TestPermissionModel(TestModel):
@@ -30,9 +32,12 @@ class TestPermissionModel(TestModel):
     def test_01_columns(self):
         """ Test the `Permission` model columns and types."""
         permission = Session.query(model.Permission).filter_by().first()
-        assert isinstance(permission.permission_id, int), '`permission_id` column is missing or has changed.'
-        assert isinstance(permission.permission_name, unicode), '`permission_name` column is missing or has changed.'
-        assert isinstance(permission.description, unicode), '`description` column is missing or has changed.'
+        assert isinstance(permission.permission_id, int), \
+            '`permission_id` column is missing or has changed.'
+        assert isinstance(permission.permission_name, unicode), \
+            '`permission_name` column is missing or has changed.'
+        assert isinstance(permission.description, unicode), \
+            '`description` column is missing or has changed.'
 
     def test_02_unique_constraint(self):
         """ Test for unique constraint for the `Permission` model.
@@ -41,8 +46,8 @@ class TestPermissionModel(TestModel):
         """
         test_permission = DuplicatePermissionData.View()
         permission = model.Permission(
-            permission_name = test_permission.permission_name,
-            description = test_permission.description
+            permission_name=test_permission.permission_name,
+            description=test_permission.description
         )
         Session.add(permission)
         try:

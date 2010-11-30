@@ -10,9 +10,10 @@
 """ FormEncode form schema for excavations."""
 
 import formencode
-from formencode import Schema, validators
+from formencode import Schema
+from formencode import validators
 
-from archeologicaladdressbook.lib.converters import *
+from archeologicaladdressbook.lib.converters import upper_string
 
 
 class ExcavationForm(Schema):
@@ -24,7 +25,9 @@ class ExcavationForm(Schema):
     site_name = formencode.All(
         validators.String(max=25, not_empty=True),
         validators.Wrapper(to_python=upper_string))
-    start_date = validators.DateConverter(month_style='dd/mm/yyyy', not_empty=True)
-    end_date = validators.DateConverter(month_style='dd/mm/yyyy', not_empty=True)
+    start_date = validators.DateConverter(month_style='dd/mm/yyyy',
+                                          not_empty=True)
+    end_date = validators.DateConverter(month_style='dd/mm/yyyy',
+                                        not_empty=True)
     appreciation = validators.String(max=25)
-    # TODO change appreciation to OneOff ?
+    # TODO: change appreciation to OneOff ?

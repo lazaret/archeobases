@@ -9,7 +9,7 @@
 #
 """ Testing fixtures used to test the application model."""
 
-import datetime
+#import datetime
 import sqlalchemy as sa
 
 from archeologicaladdressbook import model

@@ -11,11 +11,13 @@
 
 import cgi
 
-from pylons import request, tmpl_context as c
-from pylons.i18n.translation import _
+from pylons import request
+from pylons import  tmpl_context as c
+#from pylons.i18n.translation import _
 from webhelpers.html.builder import literal
 
-from archeologicaladdressbook.lib.base import BaseController, render
+from archeologicaladdressbook.lib.base import BaseController
+from archeologicaladdressbook.lib.base import render
 from archeologicaladdressbook.lib.helpers import flash_message
 
 
@@ -40,8 +42,5 @@ class ErrorController(BaseController):
         if not code:
             raise Exception('No status code was found')
         c.code = code
-        #if code == '404':
-        #    message = _('404 Error. The page you try to access did not exist ! \
-        #                You may try to go back to the previous page.')
         flash_message(message, 'error')
         return render('error.mako')

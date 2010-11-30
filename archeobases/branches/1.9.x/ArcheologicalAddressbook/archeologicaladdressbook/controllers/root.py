@@ -11,12 +11,19 @@
 
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
-from pylons.controllers.util import abort, redirect
+from pylons import request
+#from pylons import response
+#from pylons import session
+#from pylons import tmpl_context as c
+from pylons import url
+#from pylons.controllers.util import abort
+from pylons.controllers.util import redirect
 from pylons.i18n.translation import _
-from repoze.what.predicates import is_user
+#from repoze.what.predicates import is_user
 
-from archeologicaladdressbook.lib.base import BaseController, render, validate
+from archeologicaladdressbook.lib.base import BaseController
+from archeologicaladdressbook.lib.base import render
+#from archeologicaladdressbook.lib.base import validate
 from archeologicaladdressbook.lib.helpers import flash_message
 
 
@@ -65,7 +72,7 @@ class RootController(BaseController):
         redirect(url.current(action='login'))
 
 
-################# tests ####################### TODO REMOVE BELLOW
+################# tests ####################### TODO: REMOVE BELLOW
 #
 #    def environ(self):
 #        result = '<html><body><h1>Environ</h1>'

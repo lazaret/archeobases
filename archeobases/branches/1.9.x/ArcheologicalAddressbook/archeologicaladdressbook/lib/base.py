@@ -51,8 +51,9 @@ def _error_formatter(error):
     return """<span class="error-message"> %s</span>""" % (
     htmlfill.html_quote(error))
 
+
 def validate(*args, **kwargs):
-    """ Add default `FormEncode` formating options to the @validate decorator."""
+    """ Add default `FormEncode` options for the @validate decorator."""
     kwargs.setdefault('prefix_error', False)
     kwargs.setdefault('auto_error_formatter', _error_formatter)
     return pylons_validate(*args, **kwargs)

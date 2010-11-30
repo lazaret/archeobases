@@ -11,7 +11,7 @@
 
 from beaker.cache import CacheManager
 from beaker.util import parse_cache_config_options
-from pylons import config
+#from pylons import config
 
 from archeologicaladdressbook import __version__
 

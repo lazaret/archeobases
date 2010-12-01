@@ -19,6 +19,7 @@ from archeologicaladdressbook.model.auth import User
 from archeologicaladdressbook.model import Session
 from archeologicaladdressbook.lib.converters import capitalize_string
 from archeologicaladdressbook.lib.converters import lower_string
+from archeologicaladdressbook.lib.converters import strip_string
 from archeologicaladdressbook.lib.badpasswords import bad_password_list
 
 

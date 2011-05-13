@@ -40,7 +40,7 @@ def load_environment(global_conf, app_conf):
         imports=['from webhelpers.html import escape'],
         default_filters=['escape'])
 
-    # Setup SQLAlchemy database engine
+    # Setup the SQLAlchemy database engine
     engine = engine_from_config(config, 'sqlalchemy.')
     init_model(engine)
 

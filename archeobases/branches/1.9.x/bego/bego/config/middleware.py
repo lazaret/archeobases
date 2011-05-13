@@ -43,14 +43,14 @@ def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
     # The Pylons WSGI app
     app = PylonsApp()
 
-    # CUSTOM MIDDLEWARE HERE (filtered by error handling middlewares)
-    app = add_auth(app) # Add repoze.what Auth & Auth
-    app = add_thumbs(app) # Add iw.thumbs Thumbnail generation
-
     # Routing/Session/Cache Middleware
     app = RoutesMiddleware(app, config['routes.map'])
     app = SessionMiddleware(app, config)
     app = CacheMiddleware(app, config)
+
+    # CUSTOM MIDDLEWARE HERE (filtered by error handling middlewares)
+    app = add_auth(app) # Add repoze.what Auth & Auth
+    app = add_thumbs(app) # Add iw.thumbs Thumbnail generation
 
     if asbool(full_stack):
         # Handle Python exceptions

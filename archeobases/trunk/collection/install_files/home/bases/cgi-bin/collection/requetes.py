@@ -173,7 +173,7 @@ endpart = "rachelvaudron"
 form = cgi.FieldStorage()   #recupere tous les param passes par le script precedent
 doc = PageRequete("Requêtes SQL", "Requêtes SQL")
 ruser = doc.remote_user()
-hostname = socket.gethostbyname(socket.gethostname())
+hostname = socket.getfqdn()
 
 
 if ruser not in collectionconf.visitorusers:

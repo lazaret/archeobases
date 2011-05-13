@@ -18,7 +18,7 @@ def init_model(engine):
     meta.engine = engine
 
 
-# import tables models
+# import models classes
 from bego.model.image import Image
 from bego.model.rock import Rock
 from bego.model.auth import User, Group, Permission

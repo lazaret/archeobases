@@ -45,10 +45,10 @@ class EditionPDF(BaseDocTemplate): # Avery C2651
             NBROWS = NBLABELS / NBCOLS
             for x in range(NBCOLS):
                 for y in range(NBROWS):
-                    xpos = (x * (3.81*cm + DECX)) + MARGEDROITE
-                    ypos = (y * (2.12*cm + DECY)) + MARGEBAS     # ou par exemple 0.5*inch
                     width = 3.81*cm
                     height = 2.12*cm
+                    xpos = (x * (width + DECX)) + MARGEDROITE
+                    ypos = (y * (height + DECY)) + MARGEBAS
                     frames.append(Frame(xpos, ypos, width, height, showBoundary=0))
             PageTemplate.__init__(self, name, frames)
 
@@ -87,13 +87,12 @@ class EditionPDF(BaseDocTemplate): # Avery C2651
             self._append(code128.Code128("%s" % message, quiet=0))
             self._append(FrameBreak())
 
-
 def generePlanche(prefix, mincount, maxcount):
     return str(EditionPDF(prefix, mincount, maxcount))
 
 def main():
     if len(sys.argv) != 4:
-        sys.stderr.write("Usage:  etiquettes  prefix  mincount  maxcount  >fichier.pdf\n")
+        sys.stderr.write("Usage: etiquettes.py prefix mincount maxcount > fichier.pdf\n")
         sys.exit(-1)
     prefix = sys.argv[1]
     mincount = int(sys.argv[2])

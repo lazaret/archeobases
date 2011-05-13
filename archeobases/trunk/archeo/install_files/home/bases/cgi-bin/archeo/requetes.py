@@ -29,8 +29,8 @@ import archeoconf
 import jahtml
 
 
-elabore = "Elaboré"
 simplifie = "Simplifié"
+elabore = "Elaboré"
 telechargexls = "Fichier format Excel"
 telechargecsv = "Fichier format CSV"
 liste_affichage = (simplifie, elabore, telechargexls, telechargecsv)
@@ -49,7 +49,7 @@ def display_field(key, champ, enregistrement):
     linkeys = archeoconf.linkeys # clefs pour lesquelles on veut un lien vers un ecran
     if key in linkeys: # si dans les clefs primaires
         if key == "coderequete":
-            dico = {"requete": enregistrement["coderequete"], "presentation": elabore, "lue": 1}
+            dico = {"requete": enregistrement["coderequete"], "presentation": simplifie, "lue": 1}
             if enregistrement.has_key("nomrequete"):
                 dico["nomrequete"] = enregistrement["nomrequete"]
             link = doc.script_name() + '?' + urllib.urlencode(dico)
@@ -173,8 +173,7 @@ endpart = "rachelvaudron"
 form = cgi.FieldStorage()   #recupere tous les param passes par le script precedent
 doc = PageRequete("Requêtes SQL", "Requêtes SQL")
 ruser = doc.remote_user()
-hostname = socket.gethostbyname(socket.gethostname())
-
+hostname = socket.getfqdn()
 
 if ruser not in archeoconf.visitorusers:
     db = archeoconf.ArcheoDataBase()
@@ -212,7 +211,7 @@ if ruser not in archeoconf.visitorusers:
             # par fatalerror_message() 5 secondes c'est plutot pas mal.
             # debut du timer activé seulement pour l'affichage html élaboré et simplifié
             # et si le module threading a été correctement importé (le timer casse cvs.witer)
-            if form["presentation"].value in (elabore, simplifie) and havethreads:
+            if form["presentation"].value in (simplifie, elabore) and havethreads:
                 heure_debut = time.time()
                 rendezvous = threading.Event()
                 threading.Thread(target=mixed_part_handler, kwargs={"parent": threading.currentThread(), "indicateur": rendezvous, "timer": premier_timer}).start()
@@ -346,7 +345,7 @@ if ruser not in archeoconf.visitorusers:
                 doc.pop()
             # fin du timer activé seulement pour l'affichage html élaboré et simplifié
             # et si le module threading a été correctement importé
-            if form["presentation"].value in [elabore, simplifie] and havethreads:
+            if form["presentation"].value in [simplifie, elabore] and havethreads:
                 rendezvous.set()
     doc.output()
 else:

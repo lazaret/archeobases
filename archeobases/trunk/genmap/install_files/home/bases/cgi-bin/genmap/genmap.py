@@ -25,12 +25,6 @@ import urlparse
 import tempfile
 import jaxml
 from pdfmap import maptool
-try:
-    import psyco
-except ImportError:
-    pass
-else:
-    psyco.profile()
 
 
 # calcule la position du centre de l'objet
@@ -331,19 +325,45 @@ def main(arguments):
 def mainForCGI():
     """Main function when used as a CGI script."""
     # first retrieve all variables:
-    variables = [("auteur", "text", str), ("titre", "text", str), ("soustitre", "text", str),
-                 ("typetrace", "text", str, True), ("papier", "text", str, True),
-                 ("orientation", "text", str, True), ("marge", "text", str, True  ),
-                 ("echelle", "text", float, True), ("xmontrerechelle", "bool", bool), ("ymontrerechelle", "bool", bool),
-                 ("legende", "text", str), ("xmontrergrille", "bool", bool), ("xalignergraduation", "bool", bool),
-                 ("ymontrergrille", "bool", bool), ("yalignergraduation", "bool", bool),
-                 ("xpas", "text", float, True), ("ypas", "text", float, True), ("detail", "bool", bool, True),
-                 ("miroir", "bool", bool), ("forcetaille", "text", float),
-                 ("xorigine", "text", float, True), ("yorigine", "text", float, True),
-                 ("xaxis", "text", lambda s: s.split(",")), ("yaxis", "text", lambda s: s.split(",")), ("rotation", "text", lambda s: s.strip() or None),
-                 ("ximage", "text", float), ("yimage", "text", float), ("largeurimage", "text", float), ("hauteurimage", "text", float),
-                 ("rotationimage", "text", lambda s: s.strip() or None), ("imagefond", "file", str), ("url", "text", str, True), ("fichierconfignatures", "file", str, True),
-                 ("fichierdonnees", "file", str, True), ("incomplets", "bool", bool)]
+    variables = [
+        ("auteur", "text", str),
+        ("titre", "text", str),
+        ("soustitre", "text", str),
+        ("typetrace", "text", str, True),
+        ("papier", "text", str, True),
+        ("orientation", "text", str, True),
+        ("marge", "text", str, True),
+        ("echelle", "text", float, True),
+        ("xmontrerechelle", "bool", bool),
+        ("ymontrerechelle", "bool", bool),
+        ("legende", "text", str),
+        ("xmontrergrille", "bool", bool),
+        ("xalignergraduation", "bool", bool),
+        ("ymontrergrille", "bool", bool),
+        ("yalignergraduation", "bool", bool),
+        ("xpas", "text", float, True),
+        ("ypas", "text", float, True),
+        ("detail", "bool", bool, True),
+        ("miroir", "bool", bool),
+        ("forcetaille", "text", float),
+        ("xorigine", "text", float, True),
+        ("yorigine", "text", float, True),
+        ("xaxis", "text", lambda s: s.split(",")),
+        ("yaxis", "text", lambda s: s.split(",")),
+        #("rotation", "text", lambda s: s.strip() or None),
+        ("rotation", "text", float),
+        ("ximage", "text", float),
+        ("yimage", "text", float),
+        ("largeurimage", "text", float),
+        ("hauteurimage", "text", float),
+        #("rotationimage", "text", lambda s: s.strip() or None),
+        ("rotationimage", "text", float),
+        ("imagefond", "file", str),
+        ("url", "text", str, True),
+        ("fichierconfignatures", "file", str, True),
+        ("fichierdonnees", "file", str, True),
+        ("incomplets", "bool", bool)
+        ]
     form = cgi.FieldStorage()
     varvalues = {}
     errors = []
@@ -453,7 +473,7 @@ def mainForCGI():
         doc.li()
         doc._text("Fichier PDF :")
         if erreur :
-            doc._text("<strong>Génération du PDF impossible, vérifiez vos données s.v.p !</strong>")
+            doc._text("<strong>Génération du PDF impossible, vérifiez vos données s.v.p ! : </strong> ")
         else:
             doc.a("%s/resultat.pdf" % url, href="%s/resultat.pdf" % url, target="_new")
         doc._pop()

@@ -261,9 +261,9 @@ class Carte(collectiondata.Data):
                 self.__doc__.hidden(name="referer", value=self.__doc__.script_name())
                 self.__doc__.submit(name="action", value="Modifier")
                 self.__doc__.br()
-                self.__doc__.submit(name="action", value="Supprimer")
-                self.__doc__.br()
                 self.__doc__.submit(name="action", value="Nouvelle")
+                self.__doc__.br()
+                self.__doc__.submit(name="action", value="Supprimer")
                 self.__doc__.pop()
             self.__doc__.pop()
         else:

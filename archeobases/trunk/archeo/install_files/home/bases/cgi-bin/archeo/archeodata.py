@@ -168,11 +168,16 @@ class Data:
         self.__doc__.font(size=archeoconf.font_size)
         if enreg != None:
             self.__doc__.submit(name="action", value="Modifier")
-            self.__doc__.br()
-            self.__doc__.submit(name="action", value="Supprimer")
             if self.__parent__ == self.__tablename__:
                 self.__doc__.br()
                 self.__doc__.submit(name="action", value=self.__new_record__)
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.submit(name="action", value="Supprimer")
         else:
             self.__doc__.push()
             self.__doc__.p()

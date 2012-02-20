@@ -15,7 +15,7 @@ class Rock(meta.DeclarativeBase):
 
     rock_id = sa.Column(sa.types.Integer, autoincrement=True, primary_key=True)
     # general rock infos
-    geo_zone = sa.Column(sa.types.Integer, nullable=False)
+    geo_zone = sa.Column(sa.types.Integer, nullable=False) ### TODO contraine uniques ?
     geo_group = sa.Column(sa.types.Integer, nullable=False)
     rock_number = sa.Column(sa.types.Unicode(24), nullable=False)
     rock_name = sa.Column(sa.types.Unicode(255))

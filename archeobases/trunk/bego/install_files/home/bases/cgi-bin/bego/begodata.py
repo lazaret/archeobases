@@ -164,12 +164,18 @@ class Data:
         if enreg != None:
             self.__doc__.p()
             self.__doc__.submit(name="action", value="Modifier")
-            self.__doc__.p()
-            self.__doc__.submit(name="action", value="Supprimer")
             if self.__parent__ == self.__tablename__:
                 self.__doc__.p()
                 self.__doc__.submit(name="action", value=self.__new_record__)
-                self.__doc__.pop()
+            self.__doc__.p()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.br()
+            self.__doc__.submit(name="action", value="Supprimer")
+            self.__doc__.pop()
         else:
             self.__doc__.push()
             self.__doc__.p()

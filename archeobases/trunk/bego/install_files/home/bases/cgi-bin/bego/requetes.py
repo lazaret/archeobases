@@ -12,6 +12,7 @@
 # the Free Software Foundation's WEB site http://www.fsf.org
 #
 
+import os
 import sys
 import time
 import string
@@ -231,7 +232,7 @@ if ruser in begoconf.superusers:
                         # CSV all quoted, delimited by double quotes with quote escaped
                         # We quote all because we can have comas and return line insisde fields
                         # see RFC-4180 CVS format section 2.7
-                        csv_file = open("/home/bases/bego/resultat_requete.csv", "wb")
+                        csv_file = open("/tmp/resultat_requete.csv", "wb")
                         csvwriter = csv.writer(csv_file, dialect="csvrfc")
                         #write the first row
                         csvwriter.writerow(liste_champs)
@@ -240,6 +241,8 @@ if ruser in begoconf.superusers:
                             csvwriter.writerow(row)
                         # save the file and post the file for download
                         csv_file.close()
+                        if not os.path.exists("/srv/www/default/bego/resultat_requete.csv"):
+                            os.symlink("/tmp/resultat_requete.csv", "/srv/www/default/bego/resultat_requete.csv")
                         doc.set_redirect("http://"+hostname+"/bego/resultat_requete.csv")
                     # export to excel format encoded in iso-8859-15
                     if form["presentation"].value == telechargexls:
@@ -286,7 +289,9 @@ if ruser in begoconf.superusers:
                                     champ = int(champ)
                                 xls_sheet.write(row, col, champ, sheet_style)
                         # save the file and post the file for download
-                        xls_file.save("/home/bases/bego/resultat_requete.xls")
+                        xls_file.save("/tmp/resultat_requete.xls")
+                        if not os.path.exists("/srv/www/default/bego/resultat_requete.xls"):
+                            os.symlink("/tmp/resultat_requete.xls", "/srv/www/default/bego/resultat_requete.xls")
                         doc.set_redirect("http://"+hostname+"/bego/resultat_requete.xls")
                     # display HTML results
                     else:

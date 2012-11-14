@@ -63,10 +63,34 @@ class DataBase:
     def set_debug(self, debuglevel):
         self.__debuglevel = debuglevel
 
-    def quote(self, field, typ):
+    def quote(self, d, t):
         # met le champs entre apostrophes et gère les appostrophes au sein d'une chaine
         # par exemple L'arnaque est transformé en  'L''arnaque'
-        return pg._quote(field, typ)
+        #return pg._quote(d, t)
+
+        """Return quotes if needed."""
+        # take from pygresql 3.8.1 as db._quote do not exist anymore
+        from types import StringType
+        if d is None:
+            return 'NULL'
+        if t in ('int', 'seq', 'decimal'):
+            if d == '': return 'NULL'
+            return str(d)
+        if t == 'money':
+            if d == '': return 'NULL'
+            return "'%.2f'" % float(d)
+        if t == 'bool':
+            if type(d) == StringType:
+                if d == '': return 'NULL'
+                d = str(d).lower() in ('t', 'true', '1', 'y', 'yes', 'on')
+            else:
+                d = not not d
+            return ("'f'", "'t'")[d]
+        if t in ('date', 'inet', 'cidr'):
+            if d == '': return 'NULL'
+        return "'%s'" % str(d).replace("\\", "\\\\").replace("'", "''")
+
+
 
     def query(self, q):
         if self.__database != None:

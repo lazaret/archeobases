@@ -86,7 +86,7 @@ class Nonos(archeodata.Data):
     # liste des tables enfants
     __listenfants__ = ()
     __listeparents__ = ("carnet", "faune")
-    __listeclefs__ = ("zone", "numero", "bis", "o_serie"]
+    __listeclefs__ = ("zone", "numero", "bis", "o_serie")
     __vraiparent__ = "faune"
     #
     # liste des seuls champs que l'on veut pouvoir modifier

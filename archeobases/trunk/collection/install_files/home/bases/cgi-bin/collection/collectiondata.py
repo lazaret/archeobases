@@ -256,7 +256,8 @@ class Data:
             return 1
         if table == None:
             table = self.__tablename__
-        query = "SELECT COUNT(*) FROM controle_%s WHERE %s=%s;" % (champ, champ, valeur)
+        ## ::text is an update to Postgres 8.3
+        query = "SELECT COUNT(*) FROM controle_%s WHERE %s=%s::text;" % (champ, champ, valeur)
         res = self.__db__.query(query)
         res = res.dictresult()
         return res[0]["count"]

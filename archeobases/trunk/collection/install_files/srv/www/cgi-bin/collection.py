@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Collection - (c) 2006-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -18,10 +18,10 @@ import cgi
 import jahtml
 
 
-# ces fonctions sont dupliquées volontairement d'archeoconf.py
+# ces fonctions sont dupliquées volontairement de collectionconf.py
 # ne pas toucher !
 def getConfig():
-    fconfig = open("/etc/archeo.conf")
+    fconfig = open("/etc/collection.conf")
     exec(fconfig)
     fconfig.close()
     return {'cgipath': cgipath, 'docpath': docpath, 'bases': bases}
@@ -33,64 +33,58 @@ def getCookies():
     if os.environ.has_key("HTTP_COOKIE"):
         cookies = os.environ["HTTP_COOKIE"]
         split = map(string.strip, string.split(cookies, ";"))
-        for (name, value) in map(lambda c: string.split(c, "=", 1), split):
+        for (name, value) in map(lambda c: string.split(c, "=" ,1), split):
             cooker[name] = value
     return cooker
 
 cookies = getCookies()
 
 def positionne_cookie(doc):
-    doc.insert_text('<META HTTP-EQUIV="Set-Cookie" CONTENT="basechoisie=%s;" />' % basechoisie)
+    doc.insert_text('<META HTTP-EQUIV="Set-Cookie" CONTENT="collectionchoisie=%s;" />' % collectionchoisie)
     doc.pop()
     doc.body(bgcolor="white")
     doc.push()
     doc.insert_text("Vous avez choisi de travailler sur la base")
-    doc.strong(basechoisie)
+    doc.strong(collectionchoisie)
     doc.pop()
     doc.push()
     doc.p("Un nom d'utilisateur et un mot de passe vont vous être demandés lorsque vous cliquerez sur")
     doc.strong("Connexion !")
     doc.pop()
-    doc.form(action="archeo/main.py", method="POST")
+    doc.form(action="collection/main.py", method="POST")
     doc.submit(name="submit", value="Connexion !")
 
 x = jahtml.CGI_document()
 x.html()
 x.push()
 x.head()
-form = cgi.FieldStorage()
+x.insert_text('<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=UTF-8" />')
 
+form = cgi.FieldStorage()
 if form.has_key("base") and (form["base"].value in config["bases"].keys()):
     # étape de positionnement du cookie
     # qui restera actif jusqu'à ce que l'on ferme le navigateur
     #
-    basechoisie = form["base"].value
+    collectionchoisie = form["base"].value
     positionne_cookie(x)
 else:
-    x.title("Choix de la Base de données")
+    x.title("Choix de la Base de Données")
     x.pop()
     x.body(bgcolor="white")
-    basechoisie = cookies.get("basechoisie", None)
-    if (not form.has_key("base")) and (basechoisie is not None) and (basechoisie in config["bases"].keys()):
+    collectionchoisie = cookies.get("collectionchoisie", None)
+    if (not form.has_key("base")) and (collectionchoisie is not None) and (collectionchoisie in config["bases"].keys()):
         # bon cookie déjà positionné, on reste sur l'application
         # voir pb de frames, on risque d'être en bas...
-        x.set_redirect("archeo/main.py")
+        x.set_redirect("collection/main.py")
     else:
         # on affiche la liste des bases et on choisit l'une d'entre elles
         x.form(action=x.script_name(), method="POST")
         x.push()
         x.p()
         x.select(name="base")
-        # on cree une liste à partir du dictionnaire 'config'
-        liste_bases = config["bases"].keys()
-        # on trie la liste
-        liste_bases.sort()
-        for base in liste_bases:
+        for base in config["bases"].keys():
             x.option(base, value=base)
         x.pop()
         x.p()
         x.submit(name="submit", value="Connexion !")
-    x.p()
-    x.insert_text("<br><br>")
-    x.insert_text("<hr><small><b>Autres bases: <a href=http://gouleyrous.univ-perp.fr/cgi-bin/archeo.py>http://gouleyrous.univ-perp.fr/</a></b><br>")
 x.output()

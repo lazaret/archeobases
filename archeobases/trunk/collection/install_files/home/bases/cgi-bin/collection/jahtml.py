@@ -1110,8 +1110,8 @@ class CGI_document(Html_document):
         self.__redirect__ = ""
         self.__status__ = ""
         self.__statmes__ = ""
-        # self.__debug__ can be used to debug jahtml as well as the user's own scripts
-        self.__debug__ = None
+        # illegal since python 2.7
+        #self.__debug__ = None
         Html_document.__init__(self)
 
     def __output__(self, file):
@@ -1144,7 +1144,9 @@ class CGI_document(Html_document):
 
     def set_debug(self, file):
         """Sets the flag to send the output to a file too."""
-        self.__debug__ = file
+        # illegal since python 2.7
+        #self.__debug__ = file
+        pass
 
     def set_pragma(self, prag):
         """Defines the pragma value.
@@ -1305,5 +1307,6 @@ class CGI_document(Html_document):
            to which send the output to too.
         """
         self.__output__(file)
-        if self.__debug__ != None:
-            self.__output__(self.__debug__)
+        # illegal since python 2.7
+        #if self.__debug__ != None:
+        #    self.__output__(self.__debug__)

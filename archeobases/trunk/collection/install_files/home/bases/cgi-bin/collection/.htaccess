@@ -1,4 +1,4 @@
-AuthUserFile /home/bases/auth/authcollection
+AuthUserFile /srv/www/collection-auth
 AuthName "Application Collection: Acces Restreint"
 AuthType Basic
 Require valid-user

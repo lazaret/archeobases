@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Collection - (c) 2000-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Archeo - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -26,8 +26,8 @@ import pg
 # logiciel serveur WEB (teste uniquement avec Apache).
 
 class DataBase:
-    __database = None
-    __debuglevel = False # Modifier collectionconf.py pour configurer le mode debug
+    __database  = None
+    __debuglevel = False # mettre à True pour le debug
 
     def __init__(self, host=None, database=None, username=None, debuglevel=False):
         self.set_debug(debuglevel)
@@ -49,7 +49,7 @@ class DataBase:
         return message
 
     def sql_message(self, msg):
-        """affiche les requettes SQL dans les logs Apache si le niveau de debug est True"""
+        """affiche les requettes SQL dans les logs Apache si le niveau de debug est supperieur à 0"""
         if self.__debuglevel:
             return self.log_message(msg, level="sql")
 
@@ -63,10 +63,34 @@ class DataBase:
     def set_debug(self, debuglevel):
         self.__debuglevel = debuglevel
 
-    def quote(self, field, typ):
+    def quote(self, d, t):
         # met le champs entre apostrophes et gère les appostrophes au sein d'une chaine
         # par exemple L'arnaque est transformé en  'L''arnaque'
-        return pg._quote(field, typ)
+        #return pg._quote(d, t)
+
+        """Return quotes if needed."""
+        # take from pygresql 3.8.1 as db._quote do not exist anymore
+        from types import StringType
+        if d is None:
+            return 'NULL'
+        if t in ('int', 'seq', 'decimal'):
+            if d == '': return 'NULL'
+            return str(d)
+        if t == 'money':
+            if d == '': return 'NULL'
+            return "'%.2f'" % float(d)
+        if t == 'bool':
+            if type(d) == StringType:
+                if d == '': return 'NULL'
+                d = str(d).lower() in ('t', 'true', '1', 'y', 'yes', 'on')
+            else:
+                d = not not d
+            return ("'f'", "'t'")[d]
+        if t in ('date', 'inet', 'cidr'):
+            if d == '': return 'NULL'
+        return "'%s'" % str(d).replace("\\", "\\\\").replace("'", "''")
+
+
 
     def query(self, q):
         if self.__database != None:
@@ -80,3 +104,4 @@ class DataBase:
                 self.fatal_message("%s ==>> [%s]" % (q, msg))
         else:
             self.error_message("No DataBase connection available")
+

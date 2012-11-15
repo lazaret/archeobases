@@ -1,0 +1,26 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@mydomain.com
+        ServerName mydomain
+	DocumentRoot /srv/www/default
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /srv/www/default/>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+        # archeobases scripts
+	ScriptAlias /cgi-bin/ /srv/www/cgi-bin/
+	<Directory "/srv/www/cgi-bin">
+		AllowOverride AuthConfig
+		#Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		Options +ExecCGI -MultiViews
+                Order allow,deny
+		Allow from all
+	</Directory>
+
+</VirtualHost>

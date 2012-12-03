@@ -1,0 +1,14 @@
+# $Id: CREDITS,v 1.3 2002/04/13 13:01:08 jalet Exp $
+# pdfmap credits file.
+
+Bernhard Herzog and Bernhard Reiter from Intevation GmbH,
+http://www.intevation.de/ for the Europe map and dataset,
+and for MapIt, http://www.mapit.de/ which gave me the idea
+to generalise this software to other maps than
+archaeological ones.
+
+The ReportLab team, http://www.reportlab.com/ for their
+wonderful software, and their patience with me ;-)
+
+Geraldine Chouard http://wwwusers.imaginet.fr/~chouard/
+for the nice Eiffel Tower picture.

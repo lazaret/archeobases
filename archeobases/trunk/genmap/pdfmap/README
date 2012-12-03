@@ -1,0 +1,318 @@
+# $Id: README,v 1.9 2004/07/26 21:15:29 jalet Exp $
+pdfmap v2.00 - July 26th, 2004
+
+(c) 2001-2004 Jerome Alet <alet@librelogiciel.com>
+You're welcome to redistribute this software under the
+terms of the GNU General Public Licence version 2.0
+or, at your option, any higher version.
+
+You can read the complete GNU GPL in the file COPYING
+which should come along with this software, or visit
+the Free Software Foundation's WEB site http://www.fsf.org
+
+============================================================
+
+PDFMap is both a Python module and a command line tool which
+allows people to easily create very high quality maps in
+PDF format.
+
+It serves successfully in drawing archaelogical objects
+on cave maps, but as the examples may show you, it can
+also draw things at a very high scale, e.g. an Europe
+or World map.
+
+Each document can contain multiple maps (one per page).
+
+Each map can have an optional rasterized background which
+can be rotated automatically if it is not North oriented.
+
+PDFMap can automatically draw objects on each map. Objects
+can be of any type (e.g. City, School, Archaeological
+objects, whatever you like), and are represented by
+shapes or images, scaled to the actual object's dimensions
+and orientation. Each object can also have an associated
+url which will render the object clickable in tools
+like Adobe Acrobat Reader (NB : the clickable area is
+always a rectangle of the actual object's dimensions, not
+of the representing shape's dimensions), the use of this
+feature depends entirely on your imagination : draw
+maps from a database and link back to a web enabled
+application which manipulates this database is just
+an example (and an interesting one at that, just
+believe me).
+
+PDFMap uses two types of input files :
+
+        - Configuration files :
+
+          Those are used to tell PDFMap which shape or image
+          should represent each type of object, as well as
+          set different parameters for this object's type :
+          pen thickness, colors, minimal and maximal size,
+          etc...
+
+        - Data files :
+
+          Those are used to feed PDFMap with lists of objects
+          to draw. They are generally the result of an ASCII
+          export from your favorite spreadsheet or relational
+          database management system.
+
+The tests/ subdirectory contains sample configuration and data
+files which are well commented. Read them and run the tests
+programs to learn how PDFMap works.
+
+============================================================
+
+Command line options :
+======================
+
+        pdfmap [options] [[inputfile1] [inputfile2] ...]
+
+options :
+
+  -v | --version          prints PDFMap's version number then exits
+  -h | --help             prints this message then exits
+
+  --config file.cfg       uses file.cfg as the configuration file
+  --outputfile file.pdf   uses file.pdf as the output file, otherwise sends
+                          the output to stdout
+  --author authorname     uses authorname as the document author's name
+  --title doctitle        uses doctitle as the document's title
+  --subtitle docsubtitle  uses docsubtitle as the document's subtitle
+
+  --papersize psize       uses psize as the paper size. psize can be any
+                          paper size natively recognized by the ReportLab
+                          ToolKit, expressed in UPPERCASE (i.e. A4 or LETTER
+                          for example), or any size expressed as 'WxH' where
+                          W and H respectively are Width and Height of
+                          the page in centimeters (e.g. 21x29.7 for A4).
+                          For each dimension, you can specify a unit which
+                          may be different from one dimension to the other.
+                          Allowed units are :
+                            cm : centimeters (DEFAULT)
+                            in : inches
+                            pt : points
+                            (e.g. 8.5inx11in for LETTER)
+
+  --orientation o         uses o as the paper orientation, which must be
+                          either "portrait" or "landscape"
+
+  --leftmargin lm         left margin
+  --bottommargin bm       bottom margin
+  --rightmargin rm        right margin
+  --topmargin tm          top margin
+                          You can choose the unit in which you express
+                          the four margins, sticking either 'cm', 'in',
+                          or 'pt' at the end of each number.
+                            cm : centimeters (DEFAULT)
+                            in : inches
+                            pt : points
+                            (e.g. 100pt for 100 points)
+
+  --legend                generates the map legend, default is no legend
+
+  --bgmap image.jpeg      uses image.jpeg as the map background. Most graphic
+                          formats are allowed, and you can also give an URL
+                          to download the background from a remote location.
+  --bgx x                 X position of the map background in units
+  --bgy y                 Y position of the map background in units
+  --bgwidth w             width of the map background in units
+  --bgheight h            height of the map background in units
+  --bgrotation r          rotation of the map background in degres (counter
+                          clockwise) wrt the North
+
+  --xlabels labels        Labels for the X ticks
+  --ylabels labels        Labels for the Y ticks
+  --xalign                Align X labels on X ticks or center them (default)
+  --yalign                Align Y labels on Y ticks or center them (default)
+
+  --xorigin x             X origin of the generated map in units (from lower
+                          left)
+  --yorigin y             Y origin of the generated map in units (from lower
+                          left)
+  --xscale xs             scale for the X dimension
+  --yscale ys             scale for the Y dimension
+  --xstep stx             distance between two X ticks in units
+  --ystep sty             distance between two Y ticks in units
+
+  --rotation r            angle of the generated map in degres (counter
+                          clockwise) wrt the North
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+
+============================================================
+
+Prerequisite :
+==============
+
+You need to have installed the following software
+before being able to launch the test programs :
+
+        Python - The Python language
+        Download it from http://www.python.org
+
+        PIL - The Python Imaging Library :
+        Download it from http://www.pythonware.com
+
+        ReportLab - The ReportLab ToolKit :
+        Download it from http://www.reportlab.com
+        (You'll need version 1.14 or above, but 
+        beware : recent versions can't open images
+        via http anymore, this functionnality will
+        be readded to ReportLab in the future though)
+
+        JAXML - The jaxml Python module :
+        Download it from http://cortex.unice.fr/~jerome/
+        This module is currently not needed unless you
+        try to run PDFMap as a CGI script.
+
+  For those of you who run Debian, the following will
+do all the necessary steps for you (launch this as root) :
+
+  # apt-get install python jaxml python-reportlab python-imaging
+
+  If you run a recent GNU/Linux distribution of any sort,
+the Python language is probably already installed.
+
+Note for Windows users :
+------------------------
+
+  The easiest for you to make PDFMap work, is probably to
+download ReportLab Demo from http://www.reportlab.com
+ReportLab Demo is a big (7 Mb) bundle which installs Python,
+ReportLab, PIL, and configure Windows correctly to execute Python
+scripts.
+
+After having installed ReportLab Demo, you should be able to
+launch all PDFMap's tests successfully (tested under Win98, with
+ReportLab Demo 1.11). The tests/europe.bat script expects you
+have installed ReportLab Demo in C:\REPORTLAB (default) and
+PDFMap somewhere on the same disk.
+
+============================================================
+
+Installation :
+==============
+
+        NB : Windows installation will not be described here, although
+it should be very similar to the GNU/Linux installation instructions
+described below :
+
+        Now that you've installed the necessary Python modules,
+and tried the test programs in the tests/ subdirectory, you really
+enjoy PDFMap and you want to install it your system :
+
+        Although PDFMap works fine with Python 1.5.2, installing
+it requires that you've got the Distutils package installed.
+Unfortunately the Distutils module is not part of Python 1.5.2,
+so you have to download it separately from :
+
+        http://www.python.org/sigs/distutils-sig/
+
+        If you use a Python version above 2.0 then Distutils
+is probably already installed, if not then read above and
+install it.
+
+Once Distutils is installed :
+
+        * extract the PDFMap tar+gzip archive (if you're reading
+          this file then you've probably already done this) :
+
+                $ gunzip <pdfmap-x.xx.tar.gz | tar -xf -
+
+        * install PDFMap :
+
+                $ cd pdfmap-x.xx
+                $ python ./setup.py install
+
+        That's all.
+
+        NB : in the lines above, x.xx represents PDFMap's version
+        number.
+
+You can now use PDFMap from the command line or import it
+in your own Python programs. To use it from the command line :
+
+        $ pdfmap --help
+
+If you plan to import this module in your own
+Python software, you'll have to do something like :
+
+      >>> from pdfmap import maptool
+
+============================================================
+
+PDFMap's official website is :
+
+        http://www.librelogiciel.com/software/
+
+There's a public mailing list for general discussion about
+this software : announces, bugs, help, etc...
+
+        pdfmap-users@lists.sourceforge.net
+
+You can buy support or consulting time to help future
+developpement of this tool :
+
+        http://www.librelogiciel.com
+
+        contact@librelogiciel.com
+
+============================================================
+
+Licensing issues :
+==================
+
+  This code is licensed under the GNU General Public
+License of the Free Software Foundation, version 2.0
+or, at your option, any higher version.
+
+  This license was chosen to be sure that this software
+will remain free in the future. This means that You
+will always be authorized to use, modify, or redistribute
+this software provided that You respect this license.
+
+  You may not agree with this license, but in this
+case you must either :
+
+        - Not use this software at all.
+
+        or :
+
+        - Pay the author(s) mucho dinero to obtain the source
+          code under another licensing scheme. You must note
+          that in this case each and every author must agree
+          with your proposition.
+
+  Any request to release this code under another license,
+even recognized as being Free by any open source group of
+some sort, and without a just compensation for the work done
+will be silently ignored.
+
+============================================================
+
+For the code lovers :
+=====================
+
+        * Most of the code is abundantely commented, but don't
+          hesitate to ask any question about it.
+
+        * Any method you shouldn't override has a name
+          which begins with an underscore.
+
+============================================================
+
+Please e-mail bugs to: alet@librelogiciel.com (Jerome Alet)

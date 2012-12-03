@@ -1,0 +1,3 @@
+include COPYING TODO NEWS CREDITS MANIFEST.in bin/pdfmap
+recursive-include tests *.py *.sh *.bat README *.png *.conf *.datas *.gif
+recursive-include doc *.html

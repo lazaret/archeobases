@@ -1,0 +1,67 @@
+# pdfmap (c) 2001, 2002 Jerome Alet - Conseil Internet & Logiciels Libres
+#
+# $Id: NEWS,v 1.15 2006/03/15 22:59:38 jalet Exp $
+#
+
+pdfmap NEWS:
+============
+
+        3.00 : Many, many, many improvements : legend can be place in any corner,
+               colors can be specified as hex values (#112233 for example) or 
+               as names, increased robustness against bad datas, etc...
+        
+        2.00 : Now works without warning with recent versions of Python.
+               Code restructured a bit, there's now an independant executable
+               named pdfmap, and a Python module (pdfmap.maptool).
+               API doc regenerated.
+        
+        1.60 : Now needs ReportLab 1.14 or above or any CVS version
+               newer than April 14th 2002.
+               The --extremequality option was suppressed, because
+               it wasn't really useful.
+               Images which are transparent are now automatically rendered
+               correctly, and a color mask can be used for images which don't
+               have transparency information.
+               The map background image can also be remote now (e.g.
+               http://youserver.com/yourbackgroundimage.gif)
+               Page sizes can now be specified in centimeters (default),
+               inches, or points.
+
+        1.51 : Now accepts arbitrary page sizes expressed as WxH where
+               W and H respectively are the Width and Height of the page
+               in centimeters (e.g. 21x29.7 for ISO A4).
+               Small bug fixes and some parameters checks added.
+
+        1.50 : Now works as a CGI script, with a default HTML form included.
+               Module documentation generated with HappyDoc is now included.
+               Margins can now be set in centimeters, inches, or points.
+               In the configuration file, you can now use URLs for Image
+               shapes (but you must double-quote them).
+
+        1.0 : Minor tweaks to the code, and improved documentation.
+              CVS tree now imported to SourceForge's CVS, all CVS
+              vars reset to blank.
+
+        0.99 : Inclusion of a sample script and datas, with the
+               permission of MapIt's author, Bernhard Herzog, from
+               Intevation GmbH.
+
+        0.9 : Code simplifications wrt image caching, and
+              previsions about the future canvas in ReportLab.
+              Unneeded forms are not created anymore : saves space.
+              The map background is now rotated correctly.
+              Configuration files now accept a thickness field, to
+              set the pen width for the shape drawing.
+
+        0.8 : Errors are PDFMapError exceptions now
+              Better CGI detection and preliminary skeleton
+              Caches the list of available shapes
+
+        0.7 : Doesn't use a Z field anymore
+
+        0.2 to 0.6 : Big improvements
+
+        0.1 : First version in (my) CVS
+
+
+Jerome Alet - <alet@librelogiciel.com>

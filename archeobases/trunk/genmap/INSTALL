@@ -6,10 +6,16 @@ You can take them from :
  Take it from the sourceforge CVS :
 http://sourceforge.net/projects/pdfmap/
 http://sourceforge.net/cvs/?group_id=44025
+or
+
 --Jaxtml 3.1--
 http://www.librelogiciel.com/software/jaxml/action_Download
+or http://pypi.python.org/pypi/jaxml
+or for debian/ubuntu use the python-jaxml package
 --Reportlab 2.00--
 http://www.reportlab.org/downloads.html
+or http://pypi.python.org/pypi/reportlab
+or for debian/ubuntu python-reportlab paclage
 
 Users of Python 2.5 have to modify by hand /usr/local/lib64/python2.5/site-packages/pdfmap/maptool.py
 as whrandom is now depreciated

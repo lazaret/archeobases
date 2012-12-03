@@ -1,0 +1,36 @@
+# pdfmap (c) 2001 Jerome Alet - Conseil Internet & Logiciels Libres
+#
+# $Id: TODO,v 1.3 2002/04/14 12:20:44 jalet Exp $
+#
+
+pdfmap TODO (in no particular order) :
+======================================
+
+        - Allow multiple passes, probably using pickle.
+        
+        - Allow page numbering (input first page number, and
+          page number position).
+
+        - Render the current date somewhere (ask).
+
+        - Reactivate scales rendering (input the unit, and scales
+          positions.
+
+        - Allow legend positionning/sizing (input that)
+
+        - Make it work from within Zope.
+
+        - Add more shapes, and allow the user to register his own shapes.
+        
+        - Add the Text shape type.
+
+        - Allow company's logo naming, sizing and positionning.
+
+        - Allow sizing and positionning of title, subtitle, copyright
+          message.
+
+        - Make the test suite grow.
+
+        - Keep the number of options low (hhmmm...)
+
+Jerome Alet - <alet@librelogiciel.com>

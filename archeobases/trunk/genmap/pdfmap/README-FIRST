@@ -1,0 +1,12 @@
+ 
+Modified version of pdfmap from http://pdfmap.cvs.sourceforge.net/pdfmap/
+
+The base version is the 3.0 version of pdfmap with a few change to update it
+to python 2.7
+
+Changes:
++ 'whrandom' import replaced by 'random' in maptool.py
+
+
+Install:
+> python setup.py install

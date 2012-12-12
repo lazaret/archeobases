@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html40/loose.dtd">
+
+<html>
+         
+  <head>
+    <title>Module: maptool</title>
+  </head>
+
+  <body bgcolor="#ffffff">
+
+        <p><i><a href="../index.html">Table of Contents</a></i></p>
+        
+        <table border="0" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+            <th rowspan="2"
+                valign="top"
+                align="left"
+                width="10%"
+                bgcolor="#88bbee"><font color="#000000">Module: maptool</font>
+            </th>
+            <th bgcolor="#88bbee"
+                width="90%"
+                align="right"><font color="#000000">pdfmap/maptool.py</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Imported modules">Imported modules</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-cStringIO.html">cStringIO</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-cgi.html">cgi</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-getopt.html">getopt</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-os.html">os</a><br>
+<b>from</b> <a href="index.html">pdfmap</a> <b>import</b> <a href="version.html">version</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-re.html">re</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-string.html">string</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-sys.html">sys</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-urllib.html">urllib</a><br>
+<b>import</b> <a href="http://www.python.org/doc/current/lib/module-whrandom.html">whrandom</a><br>
+
+</td></tr>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Functions">Functions</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+<a href="#__display_usage_and_quit">__display_usage_and_quit</a><br>
+<a href="#__display_version_and_quit">__display_version_and_quit</a><br>
+<a href="#createpdfmap">createpdfmap</a><br>
+<a href="#main">main</a><br>
+<a href="#parse_commandline">parse_commandline</a><br>
+<a href="#standardize_form">standardize_form</a><br>
+
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="__display_usage_and_quit"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">__display_usage_and_quit&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+__display_usage_and_quit ()
+
+</pre></font>
+
+<p>Displays command line usage, then exists successfully.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="__display_version_and_quit"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">__display_version_and_quit&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+__display_version_and_quit ()
+
+</pre></font>
+
+<p>Displays version number, then exists successfully.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="createpdfmap"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">createpdfmap&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+createpdfmap (
+        cmdline,
+        arguments,
+        mandatory,
+        )
+
+</pre></font>
+
+<p>Options check and conversions, then does the real work.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="main"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">main&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+main ()
+
+</pre></font>
+
+<p>Main code here.</p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Exceptions">Exceptions</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+PDFMapError, "You must pass some datas as input !"<br>
+
+</td></tr>
+</table>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="parse_commandline"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">parse_commandline&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+parse_commandline (
+        argv,
+        short,
+        long,
+        )
+
+</pre></font>
+
+<p>Parses the command line, controlling options.</p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Exceptions">Exceptions</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+PDFMapError, "Unexpected problem when parsing command line"<br>
+
+</td></tr>
+</table>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="standardize_form"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">standardize_form&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+standardize_form ( form )
+
+</pre></font>
+
+<p>Tries to determine if we were launched as a CGI script
+           or from Zope, then returns the form contents as a dictionnary
+           identical in both cases.</p>
+</td></tr>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Classes">Classes</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+<table border="0" cellpadding="3" cellspacing="0">
+<tr><td valign="top" align="left"><p><a href="maptool/Circle.html">Circle</a></p></td><td valign="top" align="left">
+<p>For objects represented by circles on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Cross.html">Cross</a></p></td><td valign="top" align="left">
+<p>For objects represented by crosses on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Diamond.html">Diamond</a></p></td><td valign="top" align="left">
+<p>For objects represented by diamonds on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Ellipse.html">Ellipse</a></p></td><td valign="top" align="left">
+<p>For objects represented by ellipses on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Image.html">Image</a></p></td><td valign="top" align="left">
+<p>For objects represented by images on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/MapBackground.html">MapBackground</a></p></td><td valign="top" align="left">
+<p>For rasterized background images.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/MapObject.html">MapObject</a></p></td><td valign="top" align="left">
+<p>For shapes/images which represent objects on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/PDFMap.html">PDFMap</a></p></td><td valign="top" align="left">
+<p>Our Map class.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/PDFMapError.html">PDFMapError</a></p></td><td valign="top" align="left">
+<p>PDFMap's Exception class.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Rectangle.html">Rectangle</a></p></td><td valign="top" align="left">
+<p>For objects represented by rectangles on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Square.html">Square</a></p></td><td valign="top" align="left">
+<p>For objects represented by squares on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Star.html">Star</a></p></td><td valign="top" align="left">
+<p>For objects represented by stars on the map.</p>
+</td></tr>
+<tr><td valign="top" align="left"><p><a href="maptool/Triangle.html">Triangle</a></p></td><td valign="top" align="left">
+<p>For objects represented by triangles on the map.</p>
+</td></tr>
+</table>
+</td></tr>
+</td></tr>
+</table>
+
+        </td>
+        </tr>
+        </table>
+
+        <hr>
+
+        <p><i><a href="../index.html">Table of Contents</a></i></p>
+
+        <font size="-2"><i>This document was automatically generated
+        on Tue Jul 27 14:49:44 2004 by
+        <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
+        2.1</i></font>
+        
+        </body>
+        </html>
+        

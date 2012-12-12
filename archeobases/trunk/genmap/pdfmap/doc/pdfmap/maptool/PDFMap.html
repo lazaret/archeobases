@@ -1,0 +1,889 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html40/loose.dtd">
+
+<html>
+         
+  <head>
+    <title>Class: PDFMap</title>
+  </head>
+
+  <body bgcolor="#ffffff">
+
+        <p><i><a href="../../index.html">Table of Contents</a></i></p>
+        
+        <table border="0" cellpadding="5" cellspacing="0" width="100%">
+        <tr>
+            <th rowspan="2"
+                valign="top"
+                align="left"
+                width="10%"
+                bgcolor="#88bbee"><font color="#000000">Class: PDFMap</font>
+            </th>
+            <th bgcolor="#88bbee"
+                width="90%"
+                align="right"><font color="#000000">pdfmap/maptool.py</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+<p>Our Map class.</p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Methods">Methods</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+
+            <table border="0" cellspacing="2" cellpadding="2" width="100%">
+              <tr>
+            <td align="LEFT" valign="TOP">
+<a href="#__del__">__del__</a><br>
+<a href="#__init__">__init__</a><br>
+<a href="#__str__">__str__</a><br>
+<a href="#_available_shapes">_available_shapes</a><br>
+<a href="#_draw_call_logo">_draw_call_logo</a><br>
+<a href="#_draw_grid">_draw_grid</a><br>
+<a href="#_draw_legend">_draw_legend</a><br>
+<a href="#_draw_north">_draw_north</a><br>
+</td>
+<td align="LEFT" valign="TOP">
+<a href="#_draw_object">_draw_object</a><br>
+<a href="#_draw_scales">_draw_scales</a><br>
+<a href="#_draw_titles">_draw_titles</a><br>
+<a href="#_read_config">_read_config</a><br>
+<a href="#_splitline">_splitline</a><br>
+<a href="#draw_datas">draw_datas</a><br>
+<a href="#endpage">endpage</a><br>
+<a href="#formatpage">formatpage</a><br>
+</td>
+<td align="LEFT" valign="TOP">
+<a href="#initpage">initpage</a><br>
+<a href="#output">output</a><br>
+<a href="#setaxis">setaxis</a><br>
+<a href="#unit_to_points">unit_to_points</a><br>
+</td>
+</tr>
+            </table>
+            
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="__del__"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">__del__&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+__del__ ( self )
+
+</pre></font>
+
+<p>Frees some more memory.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="__init__"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">__init__&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+__init__ (
+        self,
+        author,
+        title,
+        subtitle,
+        papersize,
+        )
+
+</pre></font>
+
+<h3>Initialize a PDF Map.</h3>
+<p>                     author : the author's name</p>
+<p>                     title : the document's title</p>
+<p>                     subtitle : the document's subtitle</p>
+<p>                     papersize : any paper size natively recognized by the ReportLab toolkit,
+                                 or a string of the form &quot;WxH&quot; where W and H are the Page's
+                                 dimensions in centimeters (default), inches or points.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="__str__"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">__str__&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+__str__ ( self )
+
+</pre></font>
+
+<p>Returns the PDF document as a string of text.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_available_shapes"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_available_shapes&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_available_shapes ( self )
+
+</pre></font>
+
+<p>Returns the list of available shapes as defined in this module.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_draw_call_logo"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_draw_call_logo&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_draw_call_logo ( self )
+
+</pre></font>
+
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_draw_grid"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_draw_grid&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_draw_grid ( self )
+
+</pre></font>
+
+<p>Draws the grid on the page.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_draw_legend"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_draw_legend&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_draw_legend (
+        self,
+        config,
+        total,
+        rejected,
+        )
+
+</pre></font>
+
+<p>Draws the map legend.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_draw_north"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_draw_north&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_draw_north ( self )
+
+</pre></font>
+
+<p>Draws the North arrow.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_draw_object"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_draw_object&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_draw_object ( self,  linesplit )
+
+</pre></font>
+
+<h3>Draws an object on the map.</h3>
+<p>                     linesplit : a tuple containing the corresponding
+                                 entry in the configuration file and
+                                 the fields from the input file :<p>                       (confobject, [ nature, x, y, length, width, orientation, url ])</p>
+</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_draw_scales"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_draw_scales&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_draw_scales ( self )
+
+</pre></font>
+
+<h3>Draws the x and optionally y scales.</h3>
+<p>                     This code is actually deactivated.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_draw_titles"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_draw_titles&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_draw_titles ( self )
+
+</pre></font>
+
+<p>Draws the different titles and copyright messages.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_read_config"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_read_config&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_read_config ( self,  filename )
+
+</pre></font>
+
+<p>Reads a configuration file and returns a Python dictionnary.</p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Exceptions">Exceptions</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+
+            <table border="0" cellspacing="2" cellpadding="2" width="100%">
+              <tr>
+            <td align="LEFT" valign="TOP">
+PDFMapError, "%s : file doesn't exist" % filename<br>
+PDFMapError, "Error in configuration file %s\n\tduplicated line : '%s'" %( filename, confline )<br>
+PDFMapError, "Error in configuration file %s\n\tincomplete line : '%s'" %( filename, confline )<br>
+PDFMapError, "Error in configuration file %s\n\tinvalid Magnify field : '%s'" %( filename, confline )<br>
+PDFMapError, "Error in configuration file %s\n\tinvalid MaximalSize field : '%s'" %( filename, confline )<br>
+</td>
+<td align="LEFT" valign="TOP">
+PDFMapError, "Error in configuration file %s\n\tinvalid MinimalSize field : '%s'" %( filename, confline )<br>
+PDFMapError, "Error in configuration file %s\n\tinvalid RGBin field : '%s'" %( filename, confline )<br>
+PDFMapError, "Error in configuration file %s\n\tinvalid RGBout field : '%s'" %( filename, confline )<br>
+PDFMapError, "Error in configuration file %s\n\tinvalid Thickness field : '%s'" %( filename, confline )<br>
+PDFMapError, "Error in configuration file %s\n\tunknown shape type : '%s'" %( filename, confline )<br>
+</td>
+</tr>
+            </table>
+            
+</td></tr>
+</table>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="_splitline"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">_splitline&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+_splitline (
+        self,
+        configuration,
+        line,
+        )
+
+</pre></font>
+
+<h3>Splits a data line, trying to be intelligent about the line format at the same time.</h3>
+<h4>                     The datas read from the input file must be of the form :</h4>
+<p>                       nature   x       y       length  width   orientation     url</p>
+<p>                       or nature,x,y,length,width,orientation,url</p>
+<p>                       or nature;x;y;length;width;orientation;url</p>
+<p>                       or all the fields separated by any amount of whitespace</p>
+<p>                       The url field is optionnal.</p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Exceptions">Exceptions</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+PDFMapError, "Nature %s unknown and no DEFAULT entry in configuration file" % nature<br>
+
+</td></tr>
+</table>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="draw_datas"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">draw_datas&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+draw_datas (
+        self,
+        configfile,
+        inputfile,
+        legend=1,
+        )
+
+</pre></font>
+
+<h3>Draws all objects of an input file on the map.</h3>
+<p>                     configfile : the configuration file name</p>
+<p>                     inputfile : the datas file name or handle,
+                                 or &quot;-&quot; or None which both mean sys.stdin</p>
+<p>                     legend : 1 indicates that we want a legend, 0 that we don't</p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Exceptions">Exceptions</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+PDFMapError, "%s : file doesn't exist" % inputfile<br>
+PDFMapError, "%s : invalid configuration file" % configfile<br>
+
+</td></tr>
+</table>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="endpage"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">endpage&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+endpage ( self )
+
+</pre></font>
+
+<p>Ends the previous page and creates a new one.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="formatpage"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">formatpage&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+formatpage (
+        self,
+        orientation=&quot;portrait&quot;,
+        leftmargin=&quot;1.5cm&quot;,
+        bottommargin=&quot;1.5cm&quot;,
+        rightmargin=&quot;1.5cm&quot;,
+        topmargin=&quot;1.5cm&quot;,
+        )
+
+</pre></font>
+
+<h3>Set the page orientation and margins.</h3>
+<p>                     The page dimensions are set from the constructor's papersize
+                     parameter, because having multiple different page sizes is
+                     probably possible but not convenient for printing. However
+                     having a different orientation from page to page is
+                     interesting.</p>
+<p>                     orientation : &quot;portrait&quot; or &quot;landscape&quot;, defaults to &quot;portrait&quot;</p>
+<p>                     leftmargin : left margin, defaults to 1.5cm</p>
+<p>                     bottommargin : bottom margin, defaults to 1.5cm</p>
+<p>                     rightmargin : right margin, defaults to 1.5cm</p>
+<p>                     topmargin : top margin, defaults to 1.5cm</p>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="Exceptions">Exceptions</a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        
+PDFMapError, "Invalid bottommargin %s" % bottommargin<br>
+PDFMapError, "Invalid leftmargin %s" % leftmargin<br>
+PDFMapError, "Invalid orientation %s" % str( orientation )<br>
+PDFMapError, "Invalid papersize %s" % str( self.papersize )<br>
+PDFMapError, "Invalid rightmargin %s" % rightmargin<br>
+PDFMapError, "Invalid topmargin %s" % topmargin<br>
+
+</td></tr>
+</table>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="initpage"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">initpage&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+initpage (
+        self,
+        background,
+        xorigin,
+        yorigin,
+        xscale,
+        yscale,
+        xstep,
+        ystep,
+        rotation,
+        )
+
+</pre></font>
+
+<h3>Creates a new page in the PDF document.</h3>
+<p>                     background : a MapBackground object</p>
+<p>                     xorigin, yorigin : origin coordinates in map units</p>
+<p>                     xscale, yscale : x and y scales (e.g. 1.0/25000.0)</p>
+<p>                     xstep, ystep : grid cell's dimensions in map units</p>
+<p>                     rotation : orientation wrt. the North, in degres.</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="output"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">output&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+output ( self,  file=&quot;-&quot; )
+
+</pre></font>
+
+<h3>Outputs the PDF document to the specified file.</h3>
+<p>                     file : &quot;-&quot; or None both mean sys.stdout, which is the default
+                            you can also pass a file object</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="setaxis"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">setaxis&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+setaxis (
+        self,
+        xaxis=[],
+        yaxis=[],
+        xaxisalign=1,
+        yaxisalign=1,
+        )
+
+</pre></font>
+
+<h3>Sets the two axis labels.</h3>
+<p>                     xaxis : list of labels for x</p>
+<p>                     yaxis : list of labels for y</p>
+<p>                     xaxisalign : 1 if x labels are aligned with grid, 0 if they are centered in cell's width</p>
+<p>                     yaxisalign : 1 if y labels are aligned with grid, 0 if they are centered in cell's height</p>
+
+        <tr>
+            <th bgcolor="#99ccff"
+                rowspan="2"
+                valign="top"
+                align="left"
+                width="20%"
+                >
+                <font color="#000000">
+                  <a name="unit_to_points"></a>&nbsp;
+                </font>
+            </th>
+            <th bgcolor="#99ccff"
+                valign="top"
+                align="left"
+                width="80%"
+                >
+                <font color="#000000">unit_to_points&nbsp;</font>
+            </th>
+        </tr>
+        <tr>
+        <td>
+        <font color="#000088"><pre>
+unit_to_points ( self,  value )
+
+</pre></font>
+
+<h3>Converts a value expressed in centimeters, inches, points into points.</h3>
+<p>                     value : The number to convert. If it doesn't contain a unit string
+                             like pt for points, cm for centimeters or in for inches, then
+                             centimeters is assumed.</p>
+</td></tr>
+</td></tr>
+</table>
+
+        </td>
+        </tr>
+        </table>
+
+        <hr>
+
+        <p><i><a href="../../index.html">Table of Contents</a></i></p>
+
+        <font size="-2"><i>This document was automatically generated
+        on Tue Jul 27 14:49:44 2004 by
+        <a href="http://happydoc.sourceforge.net">HappyDoc</a> version
+        2.1</i></font>
+        
+        </body>
+        </html>
+        

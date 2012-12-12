@@ -1,0 +1,83 @@
+# $Id: README,v 1.4 2002/01/23 10:12:50 jalet Exp $
+#
+# pdfmap tests - January 13th, 2002
+
+# (c) 2001 Jerome Alet <alet@librelogiciel.com>
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2.0
+# or, at your option, any higher version.
+
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+
+The sample scripts europe.sh, europe.py and europe.bat, will
+produce a map of Europe and draw on this map some symbols to
+represent cities and capitols. The europe.sh script is Unix
+specific, while the europe.bat script is Windows specific. The
+europe.py script works both under Unix and under Windows.
+
+The sample dataset comes from the MapIt project, which is
+downloadable from :
+
+	http://www.mapit.de/
+
+and I was generously allowed to include it in this project
+by Bernhard Reiter and Bernhard Herzog, from Intevation GmbH.
+
+I was generously allowed to include the Eiffel Tower picture
+by Geraldine Chouard (http://wwwusers.imaginet.fr/~chouard).
+
+To produce the map of Europe with pdfmap, simply type :
+
+	$ ./europe.sh europe.datas
+
+or :
+
+	$ ./europe.py europe.datas
+
+Windows users have to launch either :
+
+	C:\PDFMAP\TESTS> europe.bat europe.datas
+
+or :
+
+	C:\PDFMAP\TESTS> python europe.py europe.datas
+
+Then view or print it with any tool of your choice,
+some examples are : Adobe Acrobat Reader, gv, xpdf
+
+	$ acroread europe.pdf
+
+Some tools like Adobe Acrobat Reader will then
+allow you to click on each city or capitol to
+view Google's search results about this town.
+
+Both europe.py, europe.bat and europe.sh produce exactly
+the same map, although the size of the resulting pdf
+files may differ a bit. Reading these scripts as well
+as the configuration file europe.conf and the data file
+europe.datas will help you in understanding how
+to use successfully pdfmap with your own datas.
+
+When viewing europe.pdf, don't be afraid of seing
+the big logo of my freelancer company at the upper
+left. This won't appear on your own maps provided
+you don't put a file named "calllogo.png" in
+your application's directory.
+
+If you plan to produce some maps from your own
+datas and don't know how to do, then you can
+buy some consulting time. Just send me an email
+describing where your datas come from (MSExcel, RDBMS...)
+and what they look like, and I'll send you a quote with
+great pleasure ;-)
+
+Buying some consulting time will help improve this
+software, but you can also help improve it by sending
+patches, sample datasets and maps (which must be Freely
+redistributable, and for no fee), etc...
+
+Enjoy !
+
+Please e-mail bugs to: alet@librelogiciel.com (Jerome Alet)

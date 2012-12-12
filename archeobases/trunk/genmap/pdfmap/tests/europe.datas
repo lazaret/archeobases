@@ -1,0 +1,118 @@
+# $Id: europe.datas,v 1.3 2004/09/09 12:46:34 jalet Exp $
+# pdfmap sample data - January 13th, 2002
+#
+# (c) 2001 Jerome Alet <alet@librelogiciel.com>
+# You're welcome to redistribute this software under the
+# terms of the GNU General Public Licence version 2.0
+# or, at your option, any higher version.
+#
+# You can read the complete GNU GPL in the file COPYING
+# which should come along with this software, or visit
+# the Free Software Foundation's WEB site http://www.fsf.org
+#
+# This data set comes from the MapIt project
+# http://www.mapit.de/
+#
+#
+# Each line has the following structure :
+#
+# Nature, X, Y, Length, Width, Orientation, Url
+#
+# The fields may be separated with :
+#
+#       , ; or any amount of whitespace
+#
+#       field separators are tested in the order above.
+#
+# Fields explanation :
+#
+# Nature : What differentiate objects. All objects of the
+#          same nature will be represented the same way.
+#          A corresponding entry in the configuration file
+#          must be present. WARNING : This field is case
+#          sensitive.
+#
+# X, Y : Position of the object on the map, in map coordinates.
+#
+# Length, Width : Dimensions of the object in map coordinates.
+#                 In this sample file, every town is considered
+#                 to be 20x20 (whatever the 20 may represent).
+#                 You may modify this sample file to set these
+#                 dimensions to be a factor of each town's number
+#                 of inhabitants for example, so bigger cities
+#                 would also appear bigger on the map.
+#
+# Orientation : Orientation of the object. Can be a string
+#               like NE for North-East for example, or a number
+#               which will represent degres counter-clockwise
+#               with regard to the North.
+#               The object will be rotated before being placed
+#               on the map to reflect this orientation. If you
+#               don't need this, then just set this field to N
+#               or 0, which means no rotation (or North oriented).
+#
+# Url : This optional field renders the object clickable on
+#       the map, at least in Adobe Acrobat Reader. This may
+#       allow you to access to your own datas easily from the
+#       map viewer, provided your legacy applications are
+#       web enabled, and that you specify the correct url for
+#       each object.
+#
+#
+Capitol,76,394,20,20,N,http://www.google.com/search?q=Lisbon
+Capitol,132,87,20,20,N,http://www.google.com/search?q=Rabat
+Capitol,424,439,20,20,N,http://www.google.com/search?q=Madrid
+Capitol,795,178,20,20,N,http://www.google.com/search?q=Algiers
+Capitol,1244,165,20,20,N,http://www.google.com/search?q=Tunis
+Capitol,1374,477,20,20,N,http://www.google.com/search?q=Rome
+Capitol,157,1986,20,20,N,http://www.google.com/search?q=Reykjavík
+Capitol,1250,1552,20,20,N,http://www.google.com/search?q=Oslo
+Capitol,1537,1532,20,20,N,http://www.google.com/search?q=Stockholm
+Capitol,1792,1615,20,20,N,http://www.google.com/search?q=Helsinki
+Capitol,2383,1481,20,20,N,http://www.google.com/search?q=Moscow
+Capitol,1796,1570,20,20,N,http://www.google.com/search?q=Tallinn
+Capitol,1809,1421,20,20,N,http://www.google.com/search?q=Riga
+Capitol,1896,1297,20,20,N,http://www.google.com/search?q=Vilnius
+Capitol,2007,1270,20,20,N,http://www.google.com/search?q=Minsk
+Capitol,1739,1125,20,20,N,http://www.google.com/search?q=Warsaw
+Capitol,2211,1099,20,20,N,http://www.google.com/search?q=Kiev
+Capitol,2200,884,20,20,N,http://www.google.com/search?q=Chisinau
+Capitol,952,1016,20,20,N,http://www.google.com/search?q=Brussels
+Capitol,488,1218,20,20,N,http://www.google.com/search?q=Dublin
+Capitol,745,1072,20,20,N,http://www.google.com/search?q=London
+Capitol,987,1105,20,20,N,http://www.google.com/search?q=Amsterdam
+Capitol,1335,1299,20,20,N,http://www.google.com/search?q=Copenhagen
+Capitol,1551,865,20,20,N,http://www.google.com/search?q=Vienna
+Capitol,1982,581,20,20,N,http://www.google.com/search?q=Sofia
+Capitol,1445,971,20,20,N,http://www.google.com/search?q=Prague
+Capitol,1382,1113,20,20,N,http://www.google.com/search?q=Berlin
+Capitol,1696,836,20,20,N,http://www.google.com/search?q=Budapest
+Capitol,2106,708,20,20,N,http://www.google.com/search?q=Bucharest
+Capitol,1590,865,20,20,N,http://www.google.com/search?q=Bratislava
+Capitol,1696,615,20,20,N,http://www.google.com/search?q=Sarajevo
+Capitol,1467,730,20,20,N,http://www.google.com/search?q=Ljubljana
+Capitol,1799,686,20,20,N,http://www.google.com/search?q=Belgrade
+Capitol,1549,721,20,20,N,http://www.google.com/search?q=Zagreb
+Capitol,1888,525,20,20,N,http://www.google.com/search?q=Skopje
+Capitol,1755,536,20,20,N,http://www.google.com/search?q=Podgorica
+Capitol,2076,304,20,20,N,http://www.google.com/search?q=Athens
+Capitol,1801,474,20,20,N,http://www.google.com/search?q=Tirana
+Capitol,614,1734,20,20,N,http://www.google.com/search?q=Tórshavn
+Capitol,751,534,20,20,N,http://www.google.com/search?q=Andorra la Vella
+Capitol,1202,790,20,20,N,http://www.google.com/search?q=Liechtenstein
+Capitol,1034,939,20,20,N,http://www.google.com/search?q=Luxemburg
+Capitol,1516,119,20,20,N,http://www.google.com/search?q=Malta
+City,1079,1017,20,20,N,http://www.google.com/search?q=Essen
+City,1339,1043,20,20,N,http://www.google.com/search?q=Leipzig
+City,1170,1143,20,20,N,http://www.google.com/search?q=Bremen
+City,1224,1172,20,20,N,http://www.google.com/search?q=Hamburg
+City,1160,966,20,20,N,http://www.google.com/search?q=Frankfurt am Main
+City,1382,1113,20,20,N,http://www.google.com/search?q=Berlin
+City,1077,1008,20,20,N,http://www.google.com/search?q=Bonn
+City,1185,887,20,20,N,http://www.google.com/search?q=Stuttgart
+City,1306,850,20,20,N,http://www.google.com/search?q=München
+City,1095,777,20,20,N,http://www.google.com/search?q=Geneva
+INTEVATION,1127,1094,100,30,N,http://intevation.net/
+LOGIBALL,1093,1050,100,30,N,http://www.logiball.de/
+C@LL,1060,575,100,30,N,http://www.librelogiciel.com/
+PARIS,841,906,50,100,N,http://wwwusers.imaginet.fr/~chouard

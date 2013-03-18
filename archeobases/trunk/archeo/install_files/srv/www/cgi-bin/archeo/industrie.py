@@ -518,6 +518,10 @@ class Industrie(archeodata.Data):
             if not self.exist(self.__listeclefs__, table="carnet"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
+            # et sauf si ce n'est pas de l industrie
+            elif nature not in ['GAL', 'GCA', 'GMA', 'IND', 'PIE']:
+				primarykeys = {"zone": None, "numero": None, "bis": None}
+				return (-4, primarykeys) 
             else:
                 # on insère maintenant la industrie dans la base
                 z = self.__form__["zone"].value

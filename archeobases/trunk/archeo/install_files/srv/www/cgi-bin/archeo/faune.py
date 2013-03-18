@@ -636,6 +636,10 @@ class Faune(archeodata.Data):
             if not self.exist(self.__listeclefs__, table="carnet"):
                 primarykeys = {"zone": None, "numero": None, "bis": None}
                 return (-2, primarykeys)
+            # et sauf si ce n'est pas de la faune
+            elif nature not in ['COP', 'COQ', 'DNT', 'ESQ', 'MDB', 'OB', 'OSD', 'OSH']:
+				primarykeys = {"zone": None, "numero": None, "bis": None}
+				return (-4, primarykeys)
             else:
                 # on insère maintenant la faune dans la base
                 z = self.__form__["zone"].value

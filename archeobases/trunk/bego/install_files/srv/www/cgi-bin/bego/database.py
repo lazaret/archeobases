@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 #
-# Mont Bego - (c) 1999-2008 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
+# Mont Bego - (c) 1999-2014 LDLP (Laboratoire Départemental de Prehistoire du Lazaret)
 # http://lazaret.unice.fr/opensource/ - opensource@lazaret.unice.fr
 #
 # You're welcome to redistribute this software under the
@@ -35,7 +35,7 @@ class DataBase:
             if self.__debuglevel:
                 self.sql_message("Connected to Host [%s] DataBase [%s] Username [%s]" % (host, database, username))
             self.query("SET CLIENT_ENCODING TO 'UTF-8';")
-        except pg.Error, msg:
+        except pg.InternalError, msg:
             self.fatal_message("Unable to connect to Host [%s] DataBase [%s] Username [%s] ==> [%s]" % (host, database, username, msg))
 
     def log_message(self, msg, level):
